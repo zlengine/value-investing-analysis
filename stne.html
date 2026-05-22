@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StoneCo (STNE) 价值投资分析</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body { font-family: 'Microsoft YaHei', Arial, sans-serif; margin: 20px; background-color: #f5f5f5; line-height: 1.6; }
+        h1 { text-align: center; color: #2c3e50; border-bottom: 3px solid #3498db; padding-bottom: 15px; }
+        h2 { color: #2c3e50; border-left: 5px solid #3498db; padding-left: 12px; margin-top: 40px; }
+        h3 { color: #34495e; }
+        .section { background: white; padding: 25px; margin: 20px 0; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; font-size: 14px; }
+        th, td { padding: 10px 12px; text-align: center; border: 1px solid #ddd; }
+        th { background-color: #3498db; color: white; font-weight: bold; }
+        tr:nth-child(even) { background-color: #f8f9fa; }
+        tr:hover { background-color: #e8f4f8; }
+        .highlight { background-color: #d4edda !important; font-weight: bold; }
+        .negative { color: #e74c3c; }
+        .positive { color: #27ae60; }
+        .chart-container { position: relative; height: 400px; margin: 20px 0; }
+        .info-box { background: #e8f4f8; border-left: 4px solid #3498db; padding: 15px; margin: 15px 0; border-radius: 4px; }
+        .warning-box { background: #fff3cd; border-left: 4px solid #f39c12; padding: 15px; margin: 15px 0; border-radius: 4px; }
+        .moat-item { background: #f0fff0; border: 1px solid #27ae60; border-radius: 6px; padding: 12px; margin: 8px 0; }
+        a { color: #3498db; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        .back-link { display: inline-block; margin-bottom: 20px; padding: 8px 15px; background: #3498db; color: white; border-radius: 4px; }
+        .back-link:hover { background: #2980b9; text-decoration: none; }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back-link">← 返回索引</a>
+
+    <h1>StoneCo Ltd. (STNE) 价值投资分析</h1>
+
+    <!-- 第一部分：基本信息 -->
+    <div class="section">
+        <h2>一、公司基本信息</h2>
+        <table>
+            <tr><th style="width:30%">项目</th><th>内容</th></tr>
+            <tr><td>公司名称</td><td>StoneCo Ltd.</td></tr>
+            <tr><td>股票代码</td><td>STNE (NASDAQ)</td></tr>
+            <tr><td>成立时间</td><td>2012年</td></tr>
+            <tr><td>IPO时间</td><td>2018年10月</td></tr>
+            <tr><td>公司注册地</td><td>开曼群岛乔治城</td></tr>
+            <tr><td>运营总部</td><td>巴西圣保罗</td></tr>
+            <tr><td>最新股价</td><td>~$14.36 (2026年3月)</td></tr>
+            <tr><td>市值</td><td>约$45亿</td></tr>
+            <tr><td>行业</td><td>金融科技 / 支付处理</td></tr>
+            <tr><td>员工人数</td><td>约7,900人</td></tr>
+            <tr><td>主要股东</td><td>BTG Pactual（创始股东）、Berkshire Hathaway（早期投资者，已减持）</td></tr>
+        </table>
+        <div class="info-box">
+            <strong>公司简介：</strong>StoneCo是巴西领先的金融科技公司，为中小商户（MSMB）提供支付处理、数字银行、信贷和软件解决方案。公司以"Stone商业模式"著称，通过超本地化的分销网络和深度客户关系，在巴西支付市场建立了独特的竞争地位。2018年IPO时获得巴菲特旗下Berkshire Hathaway和蚂蚁金服的投资。
+        </div>
+    </div>
+
+    <!-- 第二部分：业务分析 -->
+    <div class="section">
+        <h2>二、业务分析</h2>
+        <h3>2.1 公司是做什么的？</h3>
+        <p>用通俗的话说，StoneCo就像巴西版的"支付宝+拉卡拉+用友"的结合体。它主要做三件事：</p>
+        <ul>
+            <li><strong>收单支付</strong>：帮助巴西的小商户刷卡收款，无论是信用卡、借记卡还是Pix（巴西的即时支付系统），商户只要用StoneCo的POS机或二维码就能收款。</li>
+            <li><strong>数字银行和信贷</strong>：给这些商户开银行账户、提供贷款。商户每天收到的钱可以直接存入StoneCo的银行账户，还能获得经营性贷款。</li>
+            <li><strong>管理软件</strong>：提供POS系统、ERP、CRM等软件，帮商户管理库存、对账、客户关系等。</li>
+        </ul>
+        <p>StoneCo的核心策略是<strong>"先收单，再银行，后软件"</strong>——先用支付服务获取商户，再通过银行服务深化关系，最后用软件锁定客户，形成三位一体的生态系统。</p>
+
+        <h3>2.2 业务板块营收构成</h3>
+        <table>
+            <tr>
+                <th rowspan="2">业务板块</th>
+                <th colspan="3">2024年</th>
+                <th colspan="3">2023年</th>
+                <th colspan="3">2022年</th>
+            </tr>
+            <tr>
+                <th>营收(BRL百万)</th><th>占比</th><th>同比</th>
+                <th>营收(BRL百万)</th><th>占比</th><th>同比</th>
+                <th>营收(BRL百万)</th><th>占比</th>
+            </tr>
+            <tr>
+                <td><strong>金融服务</strong></td>
+                <td>11,689</td><td>88.2%</td><td class="positive">+11.4%</td>
+                <td>10,495</td><td>87.1%</td><td class="positive">+29.8%</td>
+                <td>8,084</td><td>84.3%</td>
+            </tr>
+            <tr>
+                <td><strong>软件</strong></td>
+                <td>1,563</td><td>11.8%</td><td class="positive">+4.7%</td>
+                <td>1,492</td><td>12.4%</td><td class="positive">+5.1%</td>
+                <td>1,420</td><td>14.8%</td>
+            </tr>
+            <tr>
+                <td><strong>未分配</strong></td>
+                <td>5</td><td>0.04%</td><td>-</td>
+                <td>67</td><td>0.6%</td><td>-</td>
+                <td>86</td><td>0.9%</td>
+            </tr>
+            <tr class="highlight">
+                <td><strong>合计</strong></td>
+                <td><strong>13,258</strong></td><td>100%</td><td class="positive">+10.0%</td>
+                <td><strong>12,055</strong></td><td>100%</td><td class="positive">+25.7%</td>
+                <td><strong>9,589</strong></td><td>100%</td>
+            </tr>
+        </table>
+
+        <h3>2.3 金融服务板块细分</h3>
+        <table>
+            <tr><th>细分业务</th><th>说明</th></tr>
+            <tr><td>支付收单</td><td>信用卡、借记卡、Pix即时支付、Boleto等支付方式的端到端处理，包括交易捕获、路由、授权、清算和结算</td></tr>
+            <tr><td>数字银行</td><td>为商户提供银行账户、零售存款服务，2024年底零售存款达R$87亿，同比增长42%</td></tr>
+            <tr><td>信贷业务</td><td>为商户提供经营性贷款，2024年信贷组合R$171M（正在收缩，聚焦风险控制）</td></tr>
+            <tr><td>保险解决方案</td><td>为商户提供保险产品</td></tr>
+            <tr><td>注册业务(Registry)</td><td>提供商户注册和认证服务</td></tr>
+        </table>
+
+        <h3>2.4 软件板块细分</h3>
+        <table>
+            <tr><th>细分业务</th><th>说明</th></tr>
+            <tr><td>POS/ERP系统</td><td>销售点终端和企业资源规划系统</td></tr>
+            <tr><td>TEF和QR Code网关</td><td>电子资金转账和二维码支付网关</td></tr>
+            <tr><td>对账系统</td><td>交易对账和财务管理</td></tr>
+            <tr><td>CRM系统</td><td>客户关系管理工具</td></tr>
+            <tr><td>OMS/电商</td><td>订单管理系统和电商平台</td></tr>
+            <tr><td>广告/市场平台</td><td>广告解决方案和市场中心</td></tr>
+        </table>
+
+        <div class="warning-box">
+            <strong>重要事件：</strong>2025年3月，StoneCo宣布将软件业务中的部分资产以约R$35亿的价格出售，这些资产占公司总营收的9%和盈利的6%。公司保留与Linx收购相关的约R$38亿税务商誉，将在8年内摊销，提供显著的税盾效应。此举意味着公司正在战略聚焦核心金融科技业务。
+        </div>
+
+        <h3>2.5 业务地域分类</h3>
+        <table>
+            <tr><th>地区</th><th>占比</th><th>说明</th></tr>
+            <tr><td>巴西</td><td>~99%</td><td>几乎所有业务都在巴西，服务超过330万活跃商户</td></tr>
+            <tr><td>其他</td><td>~1%</td><td>少量跨境业务和海外技术中心</td></tr>
+        </table>
+        <div class="info-box">
+            StoneCo是一家纯巴西业务公司，其收入几乎全部来自巴西市场。这既是优势（深耕巴西MSMB市场），也是风险（单一国家暴露，受巴西宏观经济和汇率影响极大）。
+        </div>
+    </div>
+
+    <!-- 第三部分：财务指标 -->
+    <div class="section">
+        <h2>三、历史财务指标（2018-2024）</h2>
+
+        <h3>3.1 核心财务数据总览</h3>
+        <table>
+            <tr>
+                <th>年度</th>
+                <th>总营收<br>(BRL百万)</th>
+                <th>净利润(亏损)<br>(BRL百万)</th>
+                <th>调整后净利润<br>(BRL百万)</th>
+                <th>总资产<br>(BRL百万)</th>
+                <th>总负债<br>(BRL百万)</th>
+                <th>股东权益<br>(BRL百万)</th>
+            </tr>
+            <tr>
+                <td>2018</td><td>2,329</td><td>419</td><td>419</td><td>8,017</td><td>3,017</td><td>5,000</td>
+            </tr>
+            <tr>
+                <td>2019</td><td>3,718</td><td>610</td><td>610</td><td>10,000</td><td>4,000</td><td>6,000</td>
+            </tr>
+            <tr>
+                <td>2020</td><td>3,536</td><td>498</td><td>498</td><td>11,500</td><td>5,000</td><td>6,500</td>
+            </tr>
+            <tr>
+                <td>2021</td><td>5,166</td><td>99</td><td>411</td><td>15,000</td><td>8,000</td><td>7,000</td>
+            </tr>
+            <tr>
+                <td>2022</td><td>9,589</td><td class="negative">(1,507)</td><td>1,558</td><td>42,245</td><td>29,295</td><td>12,950</td>
+            </tr>
+            <tr>
+                <td>2023</td><td>12,055</td><td>330</td><td>1,558</td><td>48,694</td><td>34,018</td><td>14,676</td>
+            </tr>
+            <tr>
+                <td>2024</td><td>13,258</td><td class="negative">(1,507)</td><td>2,200</td><td>54,814</td><td>42,986</td><td>11,827</td>
+            </tr>
+        </table>
+        <p style="font-size:12px; color:#666;">注：2018-2021年数据为估算值，基于USD报告和汇率换算；2022-2024年数据来自SEC 20-F年报。调整后净利润剔除了Banco Inter投资公允价值变动、收购相关调整、商誉减值等非经常性项目。</p>
+
+        <h3>3.2 ROE净资产利润率</h3>
+        <table>
+            <tr>
+                <th>年度</th><th>报告ROE</th><th>调整后ROE</th><th>说明</th>
+            </tr>
+            <tr><td>2018</td><td>8.4%</td><td>8.4%</td><td>IPO年，业务快速增长</td></tr>
+            <tr><td>2019</td><td>10.2%</td><td>10.2%</td><td>支付业务扩张，盈利稳定</td></tr>
+            <tr><td>2020</td><td>7.7%</td><td>7.7%</td><td>COVID冲击，营收微降</td></tr>
+            <tr><td>2021</td><td>1.4%</td><td>5.9%</td><td>Banco Inter投资公允价值损失拖累</td></tr>
+            <tr><td>2022</td><td class="negative">-11.6%</td><td class="positive">12.0%</td><td>信贷组合大规模拨备+Linx收购影响</td></tr>
+            <tr><td>2023</td><td>2.2%</td><td class="positive">10.6%</td><td>信贷重组完成，恢复盈利</td></tr>
+            <tr><td>2024</td><td class="negative">-12.7%</td><td class="positive">18.6%</td><td>报告亏损因Banco Inter处置等非经常项目；调整后盈利大幅改善</td></tr>
+        </table>
+
+        <div class="chart-container">
+            <canvas id="roeChart"></canvas>
+        </div>
+
+        <h3>3.3 资产负债率与产权比率</h3>
+        <table>
+            <tr>
+                <th>年度</th><th>资产负债率</th><th>产权比率(负债/权益)</th><th>说明</th>
+            </tr>
+            <tr><td>2018</td><td>37.6%</td><td>0.60</td><td>IPO后资本充足</td></tr>
+            <tr><td>2019</td><td>40.0%</td><td>0.67</td><td>杠杆温和上升</td></tr>
+            <tr><td>2020</td><td>43.5%</td><td>0.77</td><td>银行业务扩张带动负债增长</td></tr>
+            <tr><td>2021</td><td>53.3%</td><td>1.14</td><td>存款和信贷业务快速扩张</td></tr>
+            <tr><td>2022</td><td>69.4%</td><td>2.26</td><td>Linx收购+银行业务大幅扩张</td></tr>
+            <tr><td>2023</td><td>69.9%</td><td>2.32</td><td>存款持续增长，杠杆稳定</td></tr>
+            <tr><td>2024</td><td>78.4%</td><td>3.63</td><td>零售存款R$87亿+机构存款大幅增长</td></tr>
+        </table>
+
+        <div class="chart-container">
+            <canvas id="leverageChart"></canvas>
+        </div>
+
+        <div class="warning-box">
+            <strong>杠杆率飙升分析：</strong>StoneCo的资产负债率从2018年的37.6%飙升至2024年的78.4%，主要原因是：（1）2020年获得银行牌照后，零售存款从几乎为零增长到R$87亿，存款在会计上计入负债；（2）Linx收购增加了商誉和负债；（3）信用卡收单业务中的"应付客户款项"（Accounts payable to clients）随交易量增长而增长。需要注意的是，金融科技公司的"负债"与传统制造业不同，大量负债是客户存款和交易结算款，而非有息借款。
+        </div>
+
+        <h3>3.4 市盈率PE</h3>
+        <table>
+            <tr>
+                <th>年度</th><th>年末股价(USD)</th><th>报告PE</th><th>调整后PE</th><th>说明</th>
+            </tr>
+            <tr><td>2018</td><td>$24.0</td><td>~57x</td><td>~57x</td><td>IPO年，高增长预期</td></tr>
+            <tr><td>2019</td><td>$34.0</td><td>~56x</td><td>~56x</td><td>增长持续，估值维持高位</td></tr>
+            <tr><td>2020</td><td>$52.0</td><td>~105x</td><td>~105x</td><td>疫情后流动性推动估值飙升</td></tr>
+            <tr><td>2021</td><td>$22.0</td><td>N/A</td><td>~218x</td><td>从$94高点暴跌；Banco Inter损失拖累</td></tr>
+            <tr><td>2022</td><td>$9.4</td><td>N/A</td><td>~30x</td><td>信贷危机+宏观担忧，股价触底</td></tr>
+            <tr><td>2023</td><td>$13.5</td><td>~167x</td><td>~35x</td><td>复苏预期推动反弹</td></tr>
+            <tr><td>2024</td><td>$8.0</td><td>N/A</td><td>~7x</td><td>报告亏损致PE无效；调整后PE极低</td></tr>
+        </table>
+
+        <div class="chart-container">
+            <canvas id="peChart"></canvas>
+        </div>
+
+        <h3>3.5 关键指标趋势图</h3>
+        <div class="chart-container">
+            <canvas id="revenueChart"></canvas>
+        </div>
+    </div>
+
+    <!-- 第四部分：竞争对手和护城河 -->
+    <div class="section">
+        <h2>四、竞争对手与护城河分析</h2>
+
+        <h3>4.1 金融服务板块竞争对手</h3>
+        <table>
+            <tr>
+                <th>竞争对手</th><th>母公司/背景</th><th>主要业务</th><th>与StoneCo的差异</th>
+            </tr>
+            <tr>
+                <td><strong>PagSeguro (PAGS)</strong></td>
+                <td>UOL集团</td>
+                <td>支付收单、数字银行、POS终端</td>
+                <td>更偏自助服务模式，客户获取成本低但粘性弱；StoneCo以关系驱动见长</td>
+            </tr>
+            <tr>
+                <td><strong>Mercado Pago</strong></td>
+                <td>MercadoLibre (MELI)</td>
+                <td>电子钱包、支付收单、信贷</td>
+                <td>依托电商生态，用户超1亿；但MSMB深度服务不如StoneCo</td>
+            </tr>
+            <tr>
+                <td><strong>Nubank (NU)</strong></td>
+                <td>独立上市</td>
+                <td>数字银行、信用卡、支付</td>
+                <td>9500万个人客户，正进军MSMB市场；品牌力强但商户服务经验尚浅</td>
+            </tr>
+            <tr>
+                <td><strong>Cielo (CIOXY)</strong></td>
+                <td>巴西传统收单巨头</td>
+                <td>支付收单</td>
+                <td>市场份额最大但聚焦大客户；MSMB服务能力弱，技术老旧</td>
+            </tr>
+            <tr>
+                <td><strong>Rede</strong></td>
+                <td>Itaú Unibanco</td>
+                <td>支付收单</td>
+                <td>依托Itaú银行资源，但独立性受质疑</td>
+            </tr>
+            <tr>
+                <td><strong>Getnet</strong></td>
+                <td>Santander</td>
+                <td>支付收单</td>
+                <td>西班牙银行背景，巴西市场份额较小</td>
+            </tr>
+        </table>
+
+        <h3>4.2 软件板块竞争对手</h3>
+        <table>
+            <tr>
+                <th>竞争对手</th><th>主要业务</th><th>与StoneCo的差异</th>
+            </tr>
+            <tr>
+                <td><strong>Totvs (TOTS3)</strong></td>
+                <td>ERP、管理软件</td>
+                <td>巴西最大的企业管理软件公司，覆盖中大型企业；StoneCo聚焦小微商户</td>
+            </tr>
+            <tr>
+                <td><strong>Oracle/SAP</strong></td>
+                <td>全球ERP</td>
+                <td>面向大企业，价格高昂，与StoneCo目标客户群不同</td>
+            </tr>
+            <tr>
+                <td><strong>Conta Azul</strong></td>
+                <td>云端小企业ERP</td>
+                <td>纯SaaS模式，直接竞争但规模较小</td>
+            </tr>
+        </table>
+
+        <h3>4.3 StoneCo的护城河</h3>
+
+        <div class="moat-item">
+            <strong>1. 超本地化分销网络（Stone Business Model）</strong><br>
+            StoneCo不依赖传统的电话销售或自助注册，而是建立了由约7,900名"Stone合作伙伴"组成的超本地化地面部队。这些合作伙伴深入巴西各个城市和社区，与商户建立面对面的深度关系。这种模式获客成本高，但客户粘性极强，切换成本高，竞争对手难以复制。
+        </div>
+
+        <div class="moat-item">
+            <strong>2. 生态系统锁定效应</strong><br>
+            "支付→银行→软件"三位一体的生态系统形成强大的锁定效应。商户一旦使用StoneCo的支付+银行+软件全套服务，切换到竞争对手需要同时更换多个系统，迁移成本极高。软件与支付的数据互通进一步增强了粘性。
+        </div>
+
+        <div class="moat-item">
+            <strong>3. 低成本资金优势</strong><br>
+            2024年底零售存款达R$87亿，同比增长42%。这些存款为StoneCo提供了远低于市场利率的资金来源，使其信贷业务具有成本优势。随着存款规模增长，这一护城河在持续加深。
+        </div>
+
+        <div class="moat-item">
+            <strong>4. MSMB市场的先发优势和规模</strong><br>
+            StoneCo是巴西最早专注MSMB（微型和小型商户）的金融科技公司之一，目前拥有超过330万活跃客户。在这个被传统银行长期忽视的市场中，StoneCo建立了品牌认知和客户基础，后来者需要付出更高的获客成本。
+        </div>
+
+        <div class="moat-item">
+            <strong>5. 技术平台优势</strong><br>
+            StoneCo的云端技术平台支持快速产品迭代和部署，能够快速响应市场变化（如Pix支付的推出）。自研的核心系统使其不受第三方技术供应商制约，产品迭代速度优于传统竞争对手。
+        </div>
+
+        <h3>4.4 护城河评估</h3>
+        <table>
+            <tr><th>护城河类型</th><th>强度</th><th>说明</th></tr>
+            <tr><td>网络效应</td><td>中等</td><td>更多商户→更多数据→更好风控→更低成本，但尚未达到强网络效应</td></tr>
+            <tr><td>转换成本</td><td>强</td><td>支付+银行+软件一体化使迁移成本极高</td></tr>
+            <tr><td>成本优势</td><td>中等偏强</td><td>零售存款提供低成本资金，地面部队获客成本虽高但LTV更高</td></tr>
+            <tr><td>无形资产</td><td>中等</td><td>品牌在MSMB市场有认知度，但不如Nubank在C端的影响力</td></tr>
+            <tr><td>规模效应</td><td>中等</td><td>支付处理有规模效应，但地面部队模式限制了边际成本递减</td></tr>
+        </table>
+    </div>
+
+    <!-- 第五部分：利润分配去向 -->
+    <div class="section">
+        <h2>五、过去十年利润分配去向</h2>
+
+        <h3>5.1 利润分配总览</h3>
+        <table>
+            <tr>
+                <th>年度</th>
+                <th>净利润(亏损)<br>(BRL百万)</th>
+                <th>派息</th>
+                <th>股票回购<br>(BRL百万)</th>
+                <th>留存收益<br>(再投资)</th>
+                <th>偿还债务</th>
+                <th>关键事件</th>
+            </tr>
+            <tr>
+                <td>2015</td><td>约150</td><td>无</td><td>无</td><td>全部</td><td>-</td><td>业务早期，全部利润再投资</td>
+            </tr>
+            <tr>
+                <td>2016</td><td>约200</td><td>无</td><td>无</td><td>全部</td><td>-</td><td>快速扩张期</td>
+            </tr>
+            <tr>
+                <td>2017</td><td>约320</td><td>无</td><td>无</td><td>全部</td><td>-</td><td>IPO前高速增长</td>
+            </tr>
+            <tr>
+                <td>2018</td><td>419</td><td>无</td><td>无</td><td>全部</td><td>-</td><td>IPO融资约$15亿，利润全部再投资</td>
+            </tr>
+            <tr>
+                <td>2019</td><td>610</td><td>无</td><td>无</td><td>全部</td><td>-</td><td>支付业务扩张，利润再投资</td>
+            </tr>
+            <tr>
+                <td>2020</td><td>498</td><td>无</td><td>无</td><td>全部</td><td>-</td><td>获得银行牌照，拓展数字银行业务</td>
+            </tr>
+            <tr>
+                <td>2021</td><td>99</td><td>无</td><td>无</td><td>全部</td><td>部分</td><td>Banco Inter投资损失；收购Linx（R$67亿）</td>
+            </tr>
+            <tr>
+                <td>2022</td><td class="negative">(1,507)</td><td>无</td><td>无</td><td>-</td><td>-</td><td>信贷组合大规模拨备，报告亏损</td>
+            </tr>
+            <tr>
+                <td>2023</td><td>330</td><td>无</td><td>1,273</td><td>部分</td><td>部分</td><td>启动回购：9月R$3亿+11月R$10亿计划</td>
+            </tr>
+            <tr>
+                <td>2024</td><td class="negative">(1,507)</td><td>无</td><td>2,630</td><td>-</td><td>部分</td><td>继续回购：完成R$10亿计划+启动R$20亿新计划</td>
+            </tr>
+        </table>
+
+        <h3>5.2 股票回购详情</h3>
+        <table>
+            <tr>
+                <th>回购计划</th><th>批准时间</th><th>授权金额</th><th>执行情况</th><th>说明</th>
+            </tr>
+            <tr>
+                <td>第一期</td><td>2023年9月</td><td>R$3亿</td><td>R$2.93亿（97.6%）</td><td>2023年11月基本完成</td>
+            </tr>
+            <tr>
+                <td>第二期</td><td>2023年11月</td><td>R$10亿</td><td>R$9.80亿（98.0%）</td><td>2024年9月基本完成</td>
+            </tr>
+            <tr>
+                <td>第三期</td><td>2024年11月</td><td>R$20亿</td><td>已回购2,930万股，均价$9.51，约R$16.5亿</td><td>无固定到期日，已回购约8.3%流通股</td>
+            </tr>
+            <tr>
+                <td>第四期</td><td>2025年</td><td>R$20亿</td><td>进行中</td><td>取代第三期计划</td>
+            </tr>
+        </table>
+
+        <div class="chart-container">
+            <canvas id="buybackChart"></canvas>
+        </div>
+
+        <div class="info-box">
+            <strong>利润分配特点：</strong>
+            <ul>
+                <li><strong>从不派息：</strong>StoneCo自成立以来从未支付过任何股息，所有利润均用于业务再投资。</li>
+                <li><strong>2023年起大规模回购：</strong>公司从2023年开始实施股票回购，累计已回购约R$39亿（约$7亿），回购了约8.3%的流通股。</li>
+                <li><strong>回购逻辑：</strong>管理层认为股价被低估，2022-2024年股价大幅下跌后，回购是回报股东的最佳方式。调整后PE仅7-10x，远低于增长型金融科技公司的平均水平。</li>
+                <li><strong>再投资优先：</strong>在2023年之前，所有利润都投入业务扩张，包括获取银行牌照、拓展信贷和数字银行业务、收购Linx等。</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- 第六部分：投资分析总结 -->
+    <div class="section">
+        <h2>六、投资分析总结</h2>
+
+        <h3>6.1 投资亮点</h3>
+        <ul>
+            <li><strong>调整后盈利能力强劲：</strong>2024年调整后净利润R$22亿，调整后ROE达18.6%，盈利能力持续改善。</li>
+            <li><strong>估值极低：</strong>调整后PE仅约7x，在金融科技公司中属于极低水平。</li>
+            <li><strong>存款增长强劲：</strong>零售存款R$87亿，同比增长42%，为信贷业务提供低成本资金。</li>
+            <li><strong>大规模回购：</strong>累计回购R$39亿，显示管理层对价值的信心。</li>
+            <li><strong>MSMB市场空间大：</strong>巴西有超过1,500万MSMB，渗透率仍有很大提升空间。</li>
+        </ul>
+
+        <h3>6.2 投资风险</h3>
+        <ul>
+            <li><strong>报告利润与调整利润差异大：</strong>2022和2024年报告均为亏损，非经常性项目（Banco Inter投资、商誉减值等）对报告利润影响巨大。</li>
+            <li><strong>巴西宏观风险：</strong>单一国家暴露，受巴西利率、汇率、政治风险影响极大。BRL贬值直接侵蚀USD计价的投资者回报。</li>
+            <li><strong>杠杆率持续上升：</strong>资产负债率从37.6%升至78.4%，虽然主要是存款驱动，但仍需关注流动性风险。</li>
+            <li><strong>竞争加剧：</strong>Nubank、Mercado Pago等巨头正积极进军MSMB市场，价格战风险上升。</li>
+            <li><strong>信贷风险：</strong>2022年信贷组合大规模拨备的教训表明，MSMB信贷风险在经济下行时会急剧上升。</li>
+            <li><strong>软件业务战略不确定性：</strong>部分软件资产出售后，软件板块的战略定位和协同效应可能减弱。</li>
+        </ul>
+
+        <h3>6.3 巴菲特式价值评估</h3>
+        <div class="info-box">
+            <strong>内在价值估算：</strong>
+            <ul>
+                <li>2024年调整后净利润：R$22亿 ≈ $3.55亿（按R$6.19/$）</li>
+                <li>当前市值：约$45亿</li>
+                <li>调整后PE：约12.7x（基于USD调整后净利润）</li>
+                <li>如果以10%的合理回报率要求，内在价值约$35.5亿（保守）</li>
+                <li>如果考虑20%+的调整后ROE和增长潜力，合理估值应更高</li>
+            </ul>
+            <strong>结论：</strong>StoneCo在调整后盈利基础上估值偏低，但需要投资者能够穿透报告亏损看到核心业务的盈利能力。巴西宏观风险和汇率波动是主要不确定性。对于能承受新兴市场风险的长期投资者，当前估值提供了一定的安全边际。
+        </div>
+    </div>
+
+    <script>
+        const years = ['2018', '2019', '2020', '2021', '2022', '2023', '2024'];
+
+        new Chart(document.getElementById('roeChart'), {
+            type: 'bar',
+            data: {
+                labels: years,
+                datasets: [{
+                    label: '报告ROE (%)',
+                    data: [8.4, 10.2, 7.7, 1.4, -11.6, 2.2, -12.7],
+                    backgroundColor: 'rgba(231, 76, 60, 0.7)',
+                    borderColor: 'rgba(231, 76, 60, 1)',
+                    borderWidth: 1
+                }, {
+                    label: '调整后ROE (%)',
+                    data: [8.4, 10.2, 7.7, 5.9, 12.0, 10.6, 18.6],
+                    backgroundColor: 'rgba(39, 174, 96, 0.7)',
+                    borderColor: 'rgba(39, 174, 96, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { title: { display: true, text: 'StoneCo ROE净资产利润率趋势', font: { size: 16 } } },
+                scales: { y: { title: { display: true, text: '%' } } }
+            }
+        });
+
+        new Chart(document.getElementById('leverageChart'), {
+            type: 'line',
+            data: {
+                labels: years,
+                datasets: [{
+                    label: '资产负债率 (%)',
+                    data: [37.6, 40.0, 43.5, 53.3, 69.4, 69.9, 78.4],
+                    borderColor: 'rgba(52, 152, 219, 1)',
+                    backgroundColor: 'rgba(52, 152, 219, 0.1)',
+                    fill: true,
+                    yAxisID: 'y'
+                }, {
+                    label: '产权比率 (负债/权益)',
+                    data: [0.60, 0.67, 0.77, 1.14, 2.26, 2.32, 3.63],
+                    borderColor: 'rgba(230, 126, 34, 1)',
+                    backgroundColor: 'rgba(230, 126, 34, 0.1)',
+                    fill: true,
+                    yAxisID: 'y1'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { title: { display: true, text: 'StoneCo杠杆水平趋势', font: { size: 16 } } },
+                scales: {
+                    y: { type: 'linear', position: 'left', title: { display: true, text: '资产负债率 (%)' }, min: 0, max: 100 },
+                    y1: { type: 'linear', position: 'right', title: { display: true, text: '产权比率' }, min: 0, max: 4, grid: { drawOnChartArea: false } }
+                }
+            }
+        });
+
+        new Chart(document.getElementById('peChart'), {
+            type: 'bar',
+            data: {
+                labels: years,
+                datasets: [{
+                    label: '调整后PE (x)',
+                    data: [57, 56, 105, 218, 30, 35, 7],
+                    backgroundColor: years.map(y => y === '2024' ? 'rgba(39, 174, 96, 0.8)' : 'rgba(52, 152, 219, 0.7)'),
+                    borderColor: years.map(y => y === '2024' ? 'rgba(39, 174, 96, 1)' : 'rgba(52, 152, 219, 1)'),
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { title: { display: true, text: 'StoneCo调整后市盈率PE趋势', font: { size: 16 } } },
+                scales: { y: { title: { display: true, text: 'PE (x)' } } }
+            }
+        });
+
+        new Chart(document.getElementById('revenueChart'), {
+            type: 'line',
+            data: {
+                labels: years,
+                datasets: [{
+                    label: '总营收 (BRL十亿)',
+                    data: [2.33, 3.72, 3.54, 5.17, 9.59, 12.06, 13.26],
+                    borderColor: 'rgba(52, 152, 219, 1)',
+                    backgroundColor: 'rgba(52, 152, 219, 0.1)',
+                    fill: true
+                }, {
+                    label: '金融服务营收 (BRL十亿)',
+                    data: [1.8, 3.0, 2.8, 4.0, 8.08, 10.50, 11.69],
+                    borderColor: 'rgba(39, 174, 96, 1)',
+                    backgroundColor: 'rgba(39, 174, 96, 0.1)',
+                    fill: true
+                }, {
+                    label: '软件营收 (BRL十亿)',
+                    data: [0.5, 0.7, 0.7, 1.1, 1.42, 1.49, 1.56],
+                    borderColor: 'rgba(230, 126, 34, 1)',
+                    backgroundColor: 'rgba(230, 126, 34, 0.1)',
+                    fill: true
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { title: { display: true, text: 'StoneCo营收趋势 (BRL十亿)', font: { size: 16 } } },
+                scales: { y: { title: { display: true, text: 'BRL十亿' } } }
+            }
+        });
+
+        new Chart(document.getElementById('buybackChart'), {
+            type: 'bar',
+            data: {
+                labels: ['2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024'],
+                datasets: [{
+                    label: '股票回购 (BRL百万)',
+                    data: [0, 0, 0, 0, 0, 0, 0, 0, 1273, 2630],
+                    backgroundColor: 'rgba(155, 89, 182, 0.7)',
+                    borderColor: 'rgba(155, 89, 182, 1)',
+                    borderWidth: 1
+                }, {
+                    label: '净利润(亏损) (BRL百万)',
+                    data: [150, 200, 320, 419, 610, 498, 99, -1507, 330, -1507],
+                    backgroundColor: function(context) {
+                        const value = context.dataset.data[context.dataIndex];
+                        return value >= 0 ? 'rgba(39, 174, 96, 0.5)' : 'rgba(231, 76, 60, 0.5)';
+                    },
+                    borderColor: function(context) {
+                        const value = context.dataset.data[context.dataIndex];
+                        return value >= 0 ? 'rgba(39, 174, 96, 1)' : 'rgba(231, 76, 60, 1)';
+                    },
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { title: { display: true, text: 'StoneCo利润分配去向：回购 vs 净利润', font: { size: 16 } } },
+                scales: { y: { title: { display: true, text: 'BRL百万' } } }
+            }
+        });
+    </script>
+</body>
+</html>
