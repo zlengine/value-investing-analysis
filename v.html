@@ -1,0 +1,1070 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>V (Visa Inc.) 详细分析</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f5f5f5;
+        }
+        h1 {
+            text-align: center;
+            color: #1A1F71;
+        }
+        h2 {
+            color: #1A1F71;
+            margin-top: 30px;
+        }
+        h3 {
+            color: #333;
+            margin-top: 20px;
+        }
+        .info-box {
+            background-color: white;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border-radius: 5px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #1A1F71;
+            color: white;
+        }
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+        a {
+            color: #4CAF50;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .highlight {
+            background-color: #f9f9f9;
+            border-left: 4px solid #1A1F71;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        .chart-container {
+            background-color: white;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border-radius: 5px;
+        }
+        canvas {
+            max-height: 400px;
+        }
+        .tag {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 3px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        .tag-green {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .tag-orange {
+            background-color: #FF9800;
+            color: white;
+        }
+        .tag-red {
+            background-color: #f44336;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <h1>Visa Inc. (V) 价值投资分析</h1>
+
+    <div class="info-box">
+        <h2>一、公司基本信息</h2>
+        <table>
+            <tr><th>项目</th><th>详情</th></tr>
+            <tr><td>公司全称</td><td>Visa Inc.（维萨公司）</td></tr>
+            <tr><td>股票代码</td><td>V</td></tr>
+            <tr><td>上市交易所</td><td>纽约证券交易所（NYSE）</td></tr>
+            <tr><td>成立时间</td><td>1958年（前身为BankAmericard，1976年更名为VISA）</td></tr>
+            <tr><td>IPO时间</td><td>2008年3月（募资178.6亿美元，创当时美国最大IPO纪录）</td></tr>
+            <tr><td>总部</td><td>美国加利福尼亚州旧金山（PO Box 8999, San Francisco, CA）</td></tr>
+            <tr><td>当前市值（2026年5月）</td><td>约$6,200亿美元</td></tr>
+            <tr><td>市值（美元）</td><td>~$620B USD</td></tr>
+            <tr><td>最新收盘价（2026年5月）</td><td>约$322</td></tr>
+            <tr><td>流通股数</td><td>约19.7亿股（稀释后）</td></tr>
+            <tr><td>CEO</td><td>Ryan McInerney（2023年2月起任职，前任总裁）</td></tr>
+            <tr><td>前任CEO</td><td>Alfred F. Kelly Jr.（2016-2023）</td></tr>
+            <tr><td>CFO</td><td>Chris Suh</td></tr>
+            <tr><td>行业</td><td>金融服务——支付技术/支付网络</td></tr>
+            <tr><td>员工数</td><td>约34,100人（FY2025）</td></tr>
+            <tr><td>52周范围</td><td>~$252 - $335</td></tr>
+            <tr><td>股息</td><td>$2.68/年（季度$0.67），收益率约0.8%</td></tr>
+            <tr><td>道琼斯成分股</td><td>是</td></tr>
+            <tr><td>S&P 500成分股</td><td>是</td></tr>
+        </table>
+    </div>
+
+    <div class="info-box">
+        <h2>二、业务分析</h2>
+        <h3>2.1 通俗解释：Visa是干什么的？</h3>
+        <p>
+            用最简单的话说，<strong>Visa就是全球最大的"支付高速公路"</strong>。当你用信用卡在商店刷卡、在网上购物、或在国外ATM取钱时，钱从你的银行账户到商家的银行账户之间，需要一条安全、快速、可靠的信息通道——Visa就是修这条路、维护这条路、收过路费的公司。
+        </p>
+        <p>
+            但Visa<strong>不是银行</strong>——它不吸收存款、不放贷款、不承担信用风险。Visa是纯粹的<strong>"网络运营商"</strong>，连接四方：持卡人（你）、商户（商店）、发卡行（给你发卡的银行，如大通银行）和收单行（帮商家收钱的银行）。每笔交易，Visa负责授权（你的卡能不能刷）、清算（算清楚谁欠谁多少钱）和结算（钱真的从一家银行转到另一家银行）。每处理一笔交易，Visa就收一笔小小的费用——虽然每笔只有几分钱到几毛钱，但一年处理2,575亿笔交易，积少成多，这就是Visa年入400亿美元的秘诀。
+        </p>
+        <p>
+            与American Express（美国运通）的"闭环网络"不同，Visa是<strong>"开环网络"</strong>——它只做通道，不认识消费者（发卡行认识），也不认识商家（收单行认识）。Visa知道"有一笔交易发生了"，但不知道持卡人是谁、信用如何。这种模式的优势是<strong>轻资产、不承担风险、规模可以无限扩张</strong>——全球200多个国家、1.75亿商户、14,500家金融机构、49亿张支付凭证，都连在Visa的网络上。
+        </p>
+
+        <h3>2.2 业务板块（按收入类型）</h3>
+        <table>
+            <tr>
+                <th>收入类型</th>
+                <th>FY2025金额</th>
+                <th>占比（净收入）</th>
+                <th>同比增长</th>
+                <th>说明</th>
+            </tr>
+            <tr>
+                <td><strong>数据处理收入（Data Processing）</strong></td>
+                <td>$199.9亿</td>
+                <td>35.86%</td>
+                <td>+12.8%</td>
+                <td>按交易笔数收费；授权、清算、结算；网络接入费；VisaNet处理费</td>
+            </tr>
+            <tr>
+                <td><strong>服务收入（Service）</strong></td>
+                <td>$175.4亿</td>
+                <td>31.46%</td>
+                <td>+8.9%</td>
+                <td>按支付金额抽成；境内交易服务费；发卡解决方案增值服务</td>
+            </tr>
+            <tr>
+                <td><strong>国际交易收入（International Transaction）</strong></td>
+                <td>$141.7亿</td>
+                <td>25.41%</td>
+                <td>+11.9%</td>
+                <td>跨境交易处理费+货币兑换费；受跨境旅游和电商驱动</td>
+            </tr>
+            <tr>
+                <td><strong>其他收入（Service, Other）</strong></td>
+                <td>$40.5亿</td>
+                <td>7.27%</td>
+                <td>+26.6%</td>
+                <td>增值服务（VAS）：风控、咨询、数据分析、代币化；增速最快</td>
+            </tr>
+        </table>
+        <div class="highlight">
+            <p><strong>注意</strong>：以上为毛收入口径。Visa还支付大量<strong>客户激励（Client Incentives）</strong>——FY2025为$157.5亿，占毛收入的28%。客户激励是Visa为鼓励银行发行Visa卡、商户接受Visa支付而支付的返佣/回扣。扣除激励后，FY2025净收入为$400亿，同比增长11%。</p>
+        </div>
+
+        <h3>2.3 三大战略支柱</h3>
+        <table>
+            <tr>
+                <th>战略支柱</th>
+                <th>市场规模</th>
+                <th>Visa渗透率</th>
+                <th>FY2025收入贡献</th>
+                <th>增速</th>
+                <th>核心驱动力</th>
+            </tr>
+            <tr>
+                <td><strong>消费者支付</strong></td>
+                <td>$41万亿</td>
+                <td>~25%</td>
+                <td>核心引擎</td>
+                <td>高个位数</td>
+                <td>现金→数字支付转换；非接触支付；新兴市场渗透</td>
+            </tr>
+            <tr>
+                <td><strong>新增支付流（New Flows）</strong></td>
+                <td>$200万亿</td>
+                <td>~0.9%</td>
+                <td>~$80亿（20%）</td>
+                <td>+14%</td>
+                <td>B2B支付（145万亿市场）；Visa Direct实时转账（126亿笔交易，+27%）</td>
+            </tr>
+            <tr>
+                <td><strong>增值服务（VAS）</strong></td>
+                <td>$5,200亿</td>
+                <td>~2%</td>
+                <td>$109亿（27%）</td>
+                <td>+24%</td>
+                <td>AI风控、代币化、咨询、数据分析；FY2021以来CAGR超20%</td>
+            </tr>
+        </table>
+        <div class="highlight">
+            <p><strong>关键洞察</strong>：Visa的增长逻辑不是"抢更多市场份额"（信用卡市场已占61%，提升空间有限），而是<strong>"开疆拓土"</strong>——(1) 把现金和支票数字化（全球仍有11万亿美元现金消费）；(2) 进入B2B支付蓝海（200万亿市场，渗透率仅0.9%）；(3) 卖增值服务（5200亿市场，渗透率仅2%）。这三条增长曲线，任何一条兑现都意味着巨大的增量空间。</p>
+        </div>
+
+        <h3>2.4 地理分布</h3>
+        <table>
+            <tr>
+                <th>地区</th>
+                <th>FY2025收入</th>
+                <th>占比</th>
+                <th>支付量增长（Q3 FY2025，固定美元）</th>
+                <th>说明</th>
+            </tr>
+            <tr>
+                <td><strong>国际（Non-US）</strong></td>
+                <td>$243.7亿</td>
+                <td>60.92%</td>
+                <td>—</td>
+                <td>国际业务占比持续提升；欧洲、亚太、拉美增长强劲</td>
+            </tr>
+            <tr>
+                <td><strong>美国（US）</strong></td>
+                <td>$156.3亿</td>
+                <td>39.08%</td>
+                <td>+6.8%</td>
+                <td>成熟市场，增长稳定；借记卡市场份额超70%</td>
+            </tr>
+        </table>
+        <table>
+            <tr>
+                <th>区域</th>
+                <th>Q3 FY2025支付量</th>
+                <th>同比增长（固定美元）</th>
+                <th>交易笔数</th>
+            </tr>
+            <tr>
+                <td>美国</td>
+                <td>$1,766亿</td>
+                <td>+6.8%</td>
+                <td>277亿笔</td>
+            </tr>
+            <tr>
+                <td>欧洲</td>
+                <td>$774亿</td>
+                <td>+11.1%</td>
+                <td>201亿笔</td>
+            </tr>
+            <tr>
+                <td>亚太</td>
+                <td>$509亿</td>
+                <td>+2.1%</td>
+                <td>124亿笔</td>
+            </tr>
+            <tr>
+                <td>拉美</td>
+                <td>$241亿</td>
+                <td>+18.7%</td>
+                <td>99亿笔</td>
+            </tr>
+            <tr>
+                <td>CEMEA（中欧/中东/非洲）</td>
+                <td>$219亿</td>
+                <td>+17.0%</td>
+                <td>74亿笔</td>
+            </tr>
+        </table>
+        <div class="highlight">
+            <p><strong>关键趋势</strong>：国际业务是增长最快的板块，FY2025跨境交易量增长13%（不含欧洲内部交易增长14%）。拉美（+18.7%）和CEMEA（+17.0%）是增速最高的区域，受益于现金数字化和电商渗透。2016年Visa以$234亿收购Visa Europe，补齐了欧洲市场短板，实现了全球网络的统一运营。目前国际收入占比已超60%，且持续提升。</p>
+        </div>
+
+        <h3>2.5 商业模式</h3>
+        <div class="highlight">
+            <p><strong>Visa的商业模式可以用三个关键词概括：四方模式、轻资产、网络效应</strong></p>
+            <ul>
+                <li><strong>四方模式（Four-Party Model）</strong>：Visa连接发卡行（给消费者发卡的银行）、收单行（帮商家处理收款的银行）、持卡人（消费者）和商户。Visa本身不发行卡片、不吸收存款、不承担信用风险——它只做"信息高速公路"。这意味着：(a) Visa的资产极轻（不需要像银行那样持有大量资本金）；(b) Visa不承担信用风险（消费者违约是发卡行的事）；(c) Visa的利润率极高（毛利率接近100%，因为几乎没有"销货成本"）</li>
+                <li><strong>轻资产运营</strong>：Visa的"生产资料"就是VisaNet——一个全球支付处理网络。这个网络建好之后，每多处理一笔交易的边际成本几乎为零。FY2025营收$400亿，运营利润$240亿，运营利润率60%——这是典型的"修好高速公路后收过路费"的生意。34,100名员工创造$400亿营收，人均创收$117万</li>
+                <li><strong>网络效应飞轮</strong>：更多持卡人→更多商户接受Visa→更多银行想发行Visa卡→更多持卡人。这个飞轮已经转了60多年，如今全球49亿张支付凭证、1.75亿商户、14,500家金融机构都在Visa网络上。新竞争者要复制这个网络，几乎不可能——你需要同时说服数万家银行和数亿商户加入你的新网络</li>
+                <li><strong>收入结构</strong>：数据处理收入（按笔数收费）+服务收入（按金额抽成）+国际交易收入（跨境溢价）+增值服务（风控、咨询、数据）。这种多元化收入结构使Visa不依赖单一收入来源，抗周期能力强</li>
+            </ul>
+        </div>
+
+        <h3>2.6 开环vs闭环——Visa和American Express的根本区别</h3>
+        <div class="highlight">
+            <table>
+                <tr>
+                    <th>维度</th>
+                    <th>Visa（开环网络）</th>
+                    <th>American Express（闭环网络）</th>
+                </tr>
+                <tr>
+                    <td>角色</td>
+                    <td>只做"高速公路"——连接发卡行和收单行</td>
+                    <td>做"整车厂"——自己发卡、自己收单、自己运营网络</td>
+                </tr>
+                <tr>
+                    <td>认识消费者？</td>
+                    <td>❌ 不认识（发卡行认识，但Visa不认识）</td>
+                    <td>✅ 认识（自己就是发卡行）</td>
+                </tr>
+                <tr>
+                    <td>认识商家？</td>
+                    <td>❌ 不认识（收单行认识，但Visa不认识）</td>
+                    <td>✅ 认识（自己就是收单行）</td>
+                </tr>
+                <tr>
+                    <td>承担信用风险？</td>
+                    <td>❌ 不承担（发卡行承担）</td>
+                    <td>✅ 承担（自己就是发卡行）</td>
+                </tr>
+                <tr>
+                    <td>交易数据完整性</td>
+                    <td>只有"半幅画"——要么看消费者端，要么看商家端</td>
+                    <td>全幅画——消费者+商家+交易细节全有</td>
+                </tr>
+                <tr>
+                    <td>收入模式</td>
+                    <td>收过路费（网络使用费，约0.1-0.15%+每笔固定费）</td>
+                    <td>收全链条费（折扣率2.2-2.5%+卡费+利息）</td>
+                </tr>
+                <tr>
+                    <td>利润率</td>
+                    <td>极高（无信用风险，纯通道费）运营利润率60%</td>
+                    <td>较高（有信用风险）运营利润率约21%</td>
+                </tr>
+                <tr>
+                    <td>规模天花板</td>
+                    <td>极高（不承担风险，可无限扩张）</td>
+                    <td>受资本金约束（需要为信贷业务持有资本）</td>
+                </tr>
+                <tr>
+                    <td>护城河来源</td>
+                    <td>规模效应+网络效应（越多银行加入越强）</td>
+                    <td>数据飞轮+品牌溢价+客户粘性（越用越离不开）</td>
+                </tr>
+                <tr>
+                    <td>最大优势</td>
+                    <td>轻资产、不承担风险、全球覆盖最广</td>
+                    <td>完整数据、精准服务、定价能力、客户忠诚度</td>
+                </tr>
+                <tr>
+                    <td>最大劣势</td>
+                    <td>看不到完整画面，无法提供精准服务</td>
+                    <td>承担信用风险，需要更多资本金</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div class="info-box">
+        <h2>三、关键财务指标（2008-2025）</h2>
+
+        <h3>3.1 净资产收益率（ROE）</h3>
+        <table>
+            <tr><th>年份</th><th>ROE (%)</th><th>说明</th></tr>
+            <tr><td>2008</td><td>7.5</td><td>IPO年+金融危机</td></tr>
+            <tr><td>2009</td><td>15.2</td><td>恢复中</td></tr>
+            <tr><td>2010</td><td>18.5</td><td>增长期</td></tr>
+            <tr><td>2011</td><td>13.8</td><td>重组影响</td></tr>
+            <tr><td>2012</td><td>7.8</td><td>特殊项目影响</td></tr>
+            <tr><td>2013</td><td>18.5</td><td>恢复正常</td></tr>
+            <tr><td>2014</td><td>19.8</td><td>稳健</td></tr>
+            <tr><td>2015</td><td>21.2</td><td>增长期</td></tr>
+            <tr><td>2016</td><td>18.2</td><td>Visa Europe收购影响</td></tr>
+            <tr><td>2017</td><td>20.5</td><td>整合期</td></tr>
+            <tr><td>2018</td><td>30.3</td><td>税改红利+回购增厚</td></tr>
+            <tr><td>2019</td><td>34.8</td><td>优秀</td></tr>
+            <tr><td>2020</td><td>30.0</td><td>疫情冲击但韧性突出</td></tr>
+            <tr><td>2021</td><td>32.8</td><td>强劲复苏</td></tr>
+            <tr><td>2022</td><td>42.0</td><td>跨境旅游恢复+回购</td></tr>
+            <tr><td>2023</td><td>44.6</td><td>持续提升</td></tr>
+            <tr><td>2024</td><td>50.5</td><td>回购大幅增厚</td></tr>
+            <tr><td>2025</td><td>52.9</td><td>历史新高</td></tr>
+        </table>
+        <div class="highlight">
+            <p><strong>ROE趋势分析</strong>：Visa的ROE从2012年的7.8%一路攀升至2025年的52.9%，堪称教科书级的增长曲线。这背后的驱动力有三个：(1) <strong>利润率持续提升</strong>——运营利润率从2016年的52.3%提升至2024年的65.7%（FY2025因诉讼拨备降至60%）；(2) <strong>持续回购</strong>——过去10年累计回购约$1,000亿，流通股大幅缩减，权益基数持续缩小；(3) <strong>轻资产模式</strong>——不需要大量资本开支，资产周转率高。当前52.9%的ROE在全球大型公司中名列前茅，但需注意：如此高的ROE部分是回购"人为"推高的——如果Visa停止回购，ROE会自然回落至30-35%的"自然"水平。</p>
+        </div>
+
+        <h3>3.2 产权比率（D/E）</h3>
+        <table>
+            <tr><th>年份</th><th>产权比率（D/E）</th><th>说明</th></tr>
+            <tr><td>2015</td><td>—</td><td>收购Visa Europe前</td></tr>
+            <tr><td>2016</td><td>0.48</td><td>收购Visa Europe后负债增加</td></tr>
+            <tr><td>2017</td><td>0.56</td><td>整合期</td></tr>
+            <tr><td>2018</td><td>0.49</td><td>去杠杆</td></tr>
+            <tr><td>2019</td><td>0.48</td><td>稳定</td></tr>
+            <tr><td>2020</td><td>0.66</td><td>疫情期回购+发债</td></tr>
+            <tr><td>2021</td><td>0.56</td><td>恢复</td></tr>
+            <tr><td>2022</td><td>0.63</td><td>持续回购</td></tr>
+            <tr><td>2023</td><td>0.53</td><td>改善</td></tr>
+            <tr><td>2024</td><td>0.53</td><td>稳定</td></tr>
+            <tr><td>2025</td><td>0.66</td><td>大额回购+发债</td></tr>
+        </table>
+        <div class="highlight">
+            <p><strong>D/E趋势解读</strong>：Visa的D/E比率长期维持在0.48-0.66区间，这对于一家非金融公司来说属于中等水平。Visa的债务主要用于：(1) 2016年收购Visa Europe（$234亿）；(2) 持续回购股票（有时回购金额超过自由现金流，需要借债补充）。FY2024自由现金流$187亿，但回购+分红$209亿，超出现金流$22亿，导致净债务从$47亿增至$89亿。FY2025继续大额回购$182亿，D/E升至0.66。虽然D/E在可控范围内，但投资者应关注：如果Visa持续以超现金流的速度回购，债务将逐步累积。</p>
+        </div>
+
+        <h3>3.3 运营利润率</h3>
+        <table>
+            <tr><th>年份</th><th>运营利润率 (%)</th><th>说明</th></tr>
+            <tr><td>2015</td><td>65.3</td><td>优秀</td></tr>
+            <tr><td>2016</td><td>52.3</td><td>Visa Europe收购整合拉低</td></tr>
+            <tr><td>2017</td><td>66.2</td><td>恢复</td></tr>
+            <tr><td>2018</td><td>62.9</td><td>稳定</td></tr>
+            <tr><td>2019</td><td>65.3</td><td>优秀</td></tr>
+            <tr><td>2020</td><td>64.5</td><td>疫情下韧性突出</td></tr>
+            <tr><td>2021</td><td>65.6</td><td>优秀</td></tr>
+            <tr><td>2022</td><td>64.2</td><td>稳定</td></tr>
+            <tr><td>2023</td><td>64.3</td><td>稳定</td></tr>
+            <tr><td>2024</td><td>65.7</td><td>历史高位</td></tr>
+            <tr><td>2025</td><td>60.0</td><td>诉讼拨备$8.99亿拉低</td></tr>
+        </table>
+        <div class="highlight">
+            <p><strong>利润率解读</strong>：Visa的运营利润率长期稳定在64-66%区间，这是全球大型上市公司中最高的之一。FY2025降至60%是因为MDL（多区诉讼）拨备$8.99亿，属于一次性项目。剔除该影响，非GAAP运营利润率仍在65%以上。这种超高利润率源于Visa的轻资产模式——VisaNet建好后，每多处理一笔交易的边际成本几乎为零。FY2025处理2,575亿笔交易，营收$400亿，意味着平均每笔交易收入约$0.155——但每笔交易的边际成本只有几分钱。</p>
+        </div>
+
+        <h3>3.4 市盈率（P/E）</h3>
+        <table>
+            <tr><th>年份</th><th>年末P/E</th><th>说明</th></tr>
+            <tr><td>2011</td><td>22</td><td>成长期估值</td></tr>
+            <tr><td>2012</td><td>25</td><td>稳定</td></tr>
+            <tr><td>2013</td><td>27</td><td>估值提升</td></tr>
+            <tr><td>2014</td><td>26</td><td>合理</td></tr>
+            <tr><td>2015</td><td>27</td><td>合理</td></tr>
+            <tr><td>2016</td><td>30</td><td>Visa Europe收购提振预期</td></tr>
+            <tr><td>2017</td><td>35</td><td>估值扩张</td></tr>
+            <tr><td>2018</td><td>32</td><td>合理偏高</td></tr>
+            <tr><td>2019</td><td>35</td><td>溢价持续</td></tr>
+            <tr><td>2020</td><td>42</td><td>疫情拖累EPS推高P/E</td></tr>
+            <tr><td>2021</td><td>38</td><td>复苏期</td></tr>
+            <tr><td>2022</td><td>30</td><td>利率上升压制估值</td></tr>
+            <tr><td>2023</td><td>30</td><td>稳定</td></tr>
+            <tr><td>2024</td><td>31</td><td>合理</td></tr>
+            <tr><td>2025</td><td>28</td><td>当前水平</td></tr>
+        </table>
+        <div class="highlight">
+            <p><strong>P/E趋势</strong>：Visa过去10年平均P/E约31倍，当前TTM P/E约28倍，略低于历史均值。市场给予Visa高估值的原因是：(1) 全球最大支付网络，护城河极深；(2) 轻资产模式，利润率极高（60%+）；(3) 不承担信用风险，抗衰退能力强；(4) 增长逻辑清晰（现金数字化+B2B+VAS）。但需注意：28倍P/E对于一家营收增速10-12%的公司而言并不便宜——这意味着市场已经定价了"完美执行"。如果增速放缓至个位数，估值可能回调至22-25倍。</p>
+        </div>
+    </div>
+
+    <div class="chart-container">
+        <canvas id="roeChart"></canvas>
+    </div>
+    <div class="chart-container">
+        <canvas id="deRatioChart"></canvas>
+    </div>
+    <div class="chart-container">
+        <canvas id="marginChart"></canvas>
+    </div>
+    <div class="chart-container">
+        <canvas id="peChart"></canvas>
+    </div>
+
+    <div class="info-box">
+        <h2>四、竞争对手与护城河分析</h2>
+
+        <h3>4.1 全球支付行业竞争格局</h3>
+        <table>
+            <tr>
+                <th>竞争对手</th>
+                <th>业务模式</th>
+                <th>全球信用卡份额</th>
+                <th>市值</th>
+                <th>核心优势</th>
+            </tr>
+            <tr>
+                <td><strong>Visa（V）</strong></td>
+                <td>开环网络</td>
+                <td>~61%</td>
+                <td>~$6,200亿</td>
+                <td>全球最大支付网络；规模效应；不承担信用风险；极高利润率</td>
+            </tr>
+            <tr>
+                <td><strong>Mastercard（MA）</strong></td>
+                <td>开环网络</td>
+                <td>~25%</td>
+                <td>~$4,400亿</td>
+                <td>全球第二大网络；"Beyond Cards"战略；欧洲和拉美渗透率高</td>
+            </tr>
+            <tr>
+                <td><strong>American Express（AXP）</strong></td>
+                <td>闭环网络</td>
+                <td>~9%</td>
+                <td>~$2,150亿</td>
+                <td>高端品牌；闭环数据优势；更高折扣率；客户质量最优</td>
+            </tr>
+            <tr>
+                <td><strong>China UnionPay</strong></td>
+                <td>国家网络</td>
+                <td>~15%（按卡量）</td>
+                <td>未上市</td>
+                <td>中国市场垄断；全球发卡量最大；但国际接受度有限</td>
+            </tr>
+            <tr>
+                <td><strong>Discover/Capital One</strong></td>
+                <td>闭环/开环混合</td>
+                <td>~3%</td>
+                <td>~$330亿</td>
+                <td>Discover网络+发卡；Capital One数字化能力</td>
+            </tr>
+            <tr>
+                <td><strong>PayPal/Apple Pay</strong></td>
+                <td>数字钱包</td>
+                <td>~3%</td>
+                <td>~$400亿</td>
+                <td>线上支付优势；BNPL；年轻用户；但依赖Visa/MC网络</td>
+        </table>
+        <div class="highlight">
+            <p><strong>市场份额解读</strong>：在全球信用卡交易中，Visa以61%的份额遥遥领先，Mastercard以25%位居第二，Amex以9%排名第三。在美国借记卡市场，Visa的份额更是高达70%。但需注意：UnionPay按发卡量计算全球第一（中国14亿张卡），但按交易金额和跨境接受度计算，远不及Visa。数字钱包（PayPal、Apple Pay）虽然在用户端增长迅速，但底层仍主要依赖Visa/Mastercard网络——它们是"入口"，不是"网络"。</p>
+        </div>
+
+        <h3>4.2 Visa vs Mastercard——双寡头深度对比</h3>
+        <table>
+            <tr>
+                <th>维度</th>
+                <th>Visa</th>
+                <th>Mastercard</th>
+            </tr>
+            <tr>
+                <td>全球信用卡份额</td>
+                <td>~61%</td>
+                <td>~25%</td>
+            </tr>
+            <tr>
+                <td>美国借记卡份额</td>
+                <td>~70%</td>
+                <td>~20%</td>
+            </tr>
+            <tr>
+                <td>FY2025营收</td>
+                <td>$400亿</td>
+                <td>~$320亿（预估）</td>
+            </tr>
+            <tr>
+                <td>运营利润率</td>
+                <td>~60%</td>
+                <td>~58%</td>
+            </tr>
+            <tr>
+                <td>区域优势</td>
+                <td>北美绝对优势（35%份额）</td>
+                <td>欧洲（35%）、拉美（30-35%）更强</td>
+            </tr>
+            <tr>
+                <td>增长策略</td>
+                <td>Visa Direct实时支付+VAS+稳定币</td>
+                <td>"Beyond Cards"——数据+网络安全+咨询</td>
+            </tr>
+            <tr>
+                <td>技术专利</td>
+                <td>PCT申请占比59.3%，授权率77.5%</td>
+                <td>PCT申请占比44%，授权率46.5%</td>
+            </tr>
+            <tr>
+                <td>估值（P/E）</td>
+                <td>~28倍</td>
+                <td>~32倍</td>
+            </tr>
+        </table>
+        <div class="highlight">
+            <p><strong>关键差异</strong>：Visa和Mastercard虽然是"双寡头"，但差异显著。Visa在北美（尤其是借记卡）占据绝对优势，Mastercard在欧洲和拉美更强。Visa的专利布局和技术投入远超Mastercard（PCT授权率77.5% vs 46.5%）。有趣的是，市场给Mastercard的估值（P/E ~32倍）反而高于Visa（~28倍），原因是Mastercard的国际业务占比更高、增速更快、"Beyond Cards"增值服务战略更成熟。但从纯支付网络角度看，Visa的规模优势和护城河深度仍然更强。</p>
+        </div>
+
+        <h3>4.3 Visa的竞争优势</h3>
+
+        <div class="highlight">
+            <p><strong>1. 网络效应——全球最强大的双边网络</strong></p>
+            <ul>
+                <li>Visa连接了14,500家金融机构、1.75亿商户和49亿张支付凭证——这是全球最大的支付网络</li>
+                <li>更多持卡人→更多商户接受Visa→更多银行想发行Visa卡→更多持卡人。这个飞轮已经转了60多年</li>
+                <li>新竞争者要复制这个网络，需要同时说服数万家银行和数亿商户——几乎不可能</li>
+                <li>VisaNet每秒可处理65,000+笔交易，全年无休7×24小时运行，这种基础设施的可靠性是数十年积累的结果</li>
+            </ul>
+        </div>
+
+        <div class="highlight">
+            <p><strong>2. 规模经济——边际成本趋近于零</strong></p>
+            <ul>
+                <li>VisaNet建好之后，每多处理一笔交易的边际成本几乎为零</li>
+                <li>FY2025处理2,575亿笔交易，日均9.01亿笔——规模越大，单位成本越低</li>
+                <li>过去5年投资$130亿于技术和基础设施，小型竞争者根本无法匹配这种投入</li>
+                <li>34,100名员工创造$400亿营收，人均创收$117万——这是规模经济的极致体现</li>
+            </ul>
+        </div>
+
+        <div class="highlight">
+            <p><strong>3. 品牌信任——"Visa Everywhere"</strong></p>
+            <ul>
+                <li>Visa品牌在全球200+国家和地区代表着安全、可靠和便捷的支付体验</li>
+                <li>全球NPS（净推荐值）达76分，反映客户对Visa的高度信任</li>
+                <li>FY2025电商欺诈率下降8%，为商户和发卡行节省$11亿损失</li>
+                <li>"Visa"几乎成为"信用卡支付"的代名词——这种品牌心智占有率是数十年广告投入的积累</li>
+            </ul>
+        </div>
+
+        <div class="highlight">
+            <p><strong>4. 技术创新——代币化+AI+稳定币</strong></p>
+            <ul>
+                <li><strong>代币化</strong>：已发行160亿+个代币，54%的CNP（卡不在场）交易采用代币化，授权率提升近5%，为电商卖家带来$1,100亿+增量销售</li>
+                <li><strong>AI风控</strong>：Visa Advanced Authorization使用机器学习实时识别欺诈，每天额外阻止40万+笔欺诈交易；Visa Protect系列利用AI实时评分</li>
+                <li><strong>稳定币</strong>：已处理$37亿稳定币支付，结算量$8亿；推出VTAP（Visa Tokenized Asset Platform）支持稳定币结算</li>
+                <li><strong>Visa Direct</strong>：实时支付平台，FY2025处理126亿笔交易（+27%），覆盖190个国家，触达120亿终端</li>
+                <li>PCT专利申请占比59.3%，授权率77.5%——远超Mastercard的44%/46.5%</li>
+            </ul>
+        </div>
+
+        <div class="highlight">
+            <p><strong>5. 转换成本——银行和商户难以离开</strong></p>
+            <ul>
+                <li><strong>银行端</strong>：发卡行需要重新对接支付网关、风控系统、清算系统——转换成本极高。Visa与14,500家金融机构的深度集成，是数十年合作的结果</li>
+                <li><strong>商户端</strong>：放弃Visa意味着失去全球最大支付网络的客户——对大多数商户来说，这等于关门</li>
+                <li><strong>消费者端</strong>：消费者已习惯使用Visa卡，钱包里最常用的卡几乎总是Visa</li>
+                <li><strong>增值服务锁定</strong>：客户已深度使用Visa的咨询、分析、风控等增值服务，迁移成本高昂</li>
+            </ul>
+        </div>
+
+        <h3>4.4 护城河评估</h3>
+        <table>
+            <tr>
+                <th>护城河类型</th>
+                <th>强度</th>
+                <th>说明</th>
+            </tr>
+            <tr>
+                <td>网络效应</td>
+                <td><span class="tag tag-green">极强</span></td>
+                <td>全球最大支付网络；49亿凭证+1.75亿商户+14,500家金融机构；双边强化效应形成几乎不可逾越的进入壁垒</td>
+            </tr>
+            <tr>
+                <td>规模经济</td>
+                <td><span class="tag tag-green">极强</span></td>
+                <td>边际成本趋近于零；2,575亿笔交易分摊固定成本；运营利润率60%+；小竞争者无法匹配</td>
+            </tr>
+            <tr>
+                <td>品牌力量</td>
+                <td><span class="tag tag-green">强</span></td>
+                <td>全球NPS 76分；"Visa"几乎等于"信用卡支付"；数十年品牌投入积累</td>
+            </tr>
+            <tr>
+                <td>转换成本</td>
+                <td><span class="tag tag-green">强</span></td>
+                <td>银行系统深度集成；商户放弃Visa等于放弃最大客户群；VAS服务锁定</td>
+            </tr>
+            <tr>
+                <td>技术/IP</td>
+                <td><span class="tag tag-orange">中强</span></td>
+                <td>代币化技术领先（160亿+代币）；AI风控领先；专利授权率77.5%；但技术可被复制</td>
+            </tr>
+            <tr>
+                <td>成本优势</td>
+                <td><span class="tag tag-green">极强</span></td>
+                <td>轻资产模式，不承担信用风险；人均创收$117万；运营利润率60%+</td>
+            </tr>
+        </table>
+        <div class="highlight">
+            <p><strong>护城河总结</strong>：Visa拥有<strong>全球支付行业最深的经济护城河</strong>，核心来源是网络效应+规模经济的双重壁垒。49亿凭证+1.75亿商户构成的双边网络是60多年积累的结果，新竞争者几乎不可能复制。轻资产模式（不承担信用风险）赋予了Visa极高的利润率和抗衰退能力。技术/IP虽然重要，但不是Visa最核心的护城河——即使有人复制了Visa的技术，也无法复制其网络。Visa真正的"不可替代性"在于：它是全球支付的基础设施，就像互联网的TCP/IP协议——你可以不用某个网站，但你不能不用互联网。</p>
+        </div>
+
+        <h3>4.5 潜在威胁——Visa面临的结构性挑战</h3>
+        <div class="highlight">
+            <p><strong>1. 监管风险——CCCA法案与全球反垄断</strong></p>
+            <ul>
+                <li><strong>CCCA（信用卡竞争法案）</strong>：要求资产超$1,000亿的大银行在信用卡上提供至少两个支付网络路由选项。如果通过，商家可以选择更便宜的网络处理交易，Visa的刷卡费收入将直接受到冲击</li>
+                <li><strong>Durbin修正案的前车之鉴</strong>：2010年针对借记卡的Durbin修正案使借记卡刷卡费下降45%，银行年收入减少$60-80亿。CCCA是"信用卡版Durbin"——影响范围更大</li>
+                <li><strong>全球监管趋势</strong>：欧盟已对Visa/Mastercard的跨境刷卡费设限；澳大利亚、英国也在推进类似监管</li>
+                <li><strong>通过概率</strong>：约25-30%（特朗普公开背书增加了政治动能，但银行业游说力量强大）</li>
+            </ul>
+        </div>
+        <div class="highlight">
+            <p><strong>2. 替代支付方式——数字货币与区域网络</strong></p>
+            <ul>
+                <li><strong>稳定币</strong>：USDC等稳定币可实现即时结算、24/7运行、更低跨境成本。Visa已主动拥抱——已处理$37亿稳定币支付，推出VTAP平台。策略是"如果不能打败它们，就加入它们"</li>
+                <li><strong>区域支付网络</strong>：中国UnionPay、印度RuPay、巴西Pix等区域网络在本土市场快速增长，受政府支持。这些网络在跨境交易上尚无法挑战Visa，但在国内市场正在蚕食份额</li>
+                <li><strong>央行数字货币（CBDC）</strong>：多国央行正在研发数字货币，可能绕过Visa网络。但目前仍处于早期阶段</li>
+                <li><strong>Apple Pay/Google Pay</strong>：虽然底层仍依赖Visa/Mastercard网络，但它们正在构建"入口"优势——消费者与Apple/Google的关系可能比与Visa的关系更紧密</li>
+            </ul>
+        </div>
+        <div class="highlight">
+            <p><strong>3. 客户激励增速超过营收增速</strong></p>
+            <ul>
+                <li>FY2025客户激励增长14%，超过净收入增速（11%）。这意味着Visa为留住银行客户而支付的"返佣"在加速增长</li>
+                <li>激励占毛收入的比例从FY2021的25.8%上升至FY2025的28.2%——如果这个趋势持续，将压缩Visa的利润率</li>
+                <li>这反映了支付网络竞争的加剧——银行在Visa和Mastercard之间有选择权，需要更高的激励才能留住</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="chart-container">
+        <h2>五、利润分配去向 (FY2016-FY2025)</h2>
+        <h3>5.1 过去十年利润分配总览</h3>
+        <table>
+            <tr>
+                <th>财年</th>
+                <th>净利润(百万$)</th>
+                <th>派息(百万$)</th>
+                <th>股票回购(百万$)</th>
+                <th>股东总回报(百万$)</th>
+                <th>股东回报占净利润比</th>
+            </tr>
+            <tr>
+                <td>FY2016</td>
+                <td>5,991</td>
+                <td>1,210</td>
+                <td>5,100</td>
+                <td>6,310</td>
+                <td>105%</td>
+            </tr>
+            <tr>
+                <td>FY2017</td>
+                <td>6,699</td>
+                <td>1,400</td>
+                <td>6,200</td>
+                <td>7,600</td>
+                <td>113%</td>
+            </tr>
+            <tr>
+                <td>FY2018</td>
+                <td>10,301</td>
+                <td>1,650</td>
+                <td>8,400</td>
+                <td>10,050</td>
+                <td>98%</td>
+            </tr>
+            <tr>
+                <td>FY2019</td>
+                <td>12,080</td>
+                <td>1,950</td>
+                <td>9,500</td>
+                <td>11,450</td>
+                <td>95%</td>
+            </tr>
+            <tr>
+                <td>FY2020</td>
+                <td>10,866</td>
+                <td>2,250</td>
+                <td>7,800</td>
+                <td>10,050</td>
+                <td>92%</td>
+            </tr>
+            <tr>
+                <td>FY2021</td>
+                <td>12,311</td>
+                <td>2,600</td>
+                <td>10,500</td>
+                <td>13,100</td>
+                <td>106%</td>
+            </tr>
+            <tr>
+                <td>FY2022</td>
+                <td>14,957</td>
+                <td>3,200</td>
+                <td>11,000</td>
+                <td>14,200</td>
+                <td>95%</td>
+            </tr>
+            <tr>
+                <td>FY2023</td>
+                <td>17,273</td>
+                <td>3,700</td>
+                <td>12,400</td>
+                <td>16,100</td>
+                <td>93%</td>
+            </tr>
+            <tr>
+                <td>FY2024</td>
+                <td>19,743</td>
+                <td>4,220</td>
+                <td>16,710</td>
+                <td>20,930</td>
+                <td>106%</td>
+            </tr>
+            <tr>
+                <td>FY2025</td>
+                <td>20,058</td>
+                <td>4,600</td>
+                <td>18,200</td>
+                <td>22,800</td>
+                <td>114%</td>
+            </tr>
+        </table>
+
+        <h3>5.2 利润分配分析</h3>
+        <div class="highlight">
+            <p><strong>Visa的利润分配策略：激进回购+适度分红+极低再投资</strong></p>
+            <ul>
+                <li><strong>激进回购</strong>：过去10年累计回购约$1,000亿，是利润分配的绝对主力。回购占股东总回报的~80%。流通股从FY2016的约24.6亿股（稀释）缩减至FY2025的约19.7亿股，年复合缩减约2.4%</li>
+                <li><strong>适度分红</strong>：过去10年累计分红约$260亿，占股东总回报的~20%。当前季度股息$0.67/股（年化$2.68），派息率仅约23%。Visa的分红增速惊人——FY2025季度股息提升14%，FY2024提升13%，FY2023提升16%</li>
+                <li><strong>极低再投资</strong>：Visa的资本开支极低（FY2025约$12-13亿，含折旧摊销$12.2亿），因为轻资产模式不需要大量资本支出。大部分利润被返还给股东，而非再投资</li>
+                <li><strong>超现金流回报</strong>：FY2024和FY2025，股东总回报（$209亿和$228亿）均超过自由现金流（$187亿和约$200亿），差额通过发债弥补。这导致净债务从FY2023的$47亿增至FY2025的$89亿+</li>
+            </ul>
+        </div>
+
+        <h3>5.3 资本配置质量评估</h3>
+        <div class="highlight">
+            <p><strong>巴菲特式评估</strong>：Visa的资本配置是"极致回购派"的典型代表。</p>
+            <ul>
+                <li>✅ <strong>回购纪律优秀</strong>：10年累计回购$1,000亿，流通股缩减20%。管理层在股价低迷时加大回购，体现了对自身业务价值的信心</li>
+                <li>✅ <strong>分红增速可持续</strong>：派息率仅23%，5年分红CAGR约15%，增速远超盈利增速，但仍有充足空间</li>
+                <li>✅ <strong>技术投资前瞻</strong>：过去5年投资$130亿于技术和基础设施，收购Featurespace（$9.46亿）加强AI风控，布局稳定币和代币化</li>
+                <li>⚠️ <strong>超现金流回购</strong>：FY2024-2025回购金额超过自由现金流，需要发债补充。虽然当前债务水平可控（D/E 0.66），但如果持续超支，债务将逐步累积</li>
+                <li>⚠️ <strong>客户激励增速过快</strong>：FY2025激励增长14%，超过营收增速11%。激励占毛收入比例从25.8%升至28.2%，如果趋势持续将压缩利润率</li>
+                <li>⚠️ <strong>收购纪律</strong>：Visa的收购规模相对较小（最大单笔Featurespace $9.46亿），没有犯过"高价收购"的错误，但也没有通过收购实现重大突破</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="chart-container">
+        <canvas id="profitAllocationChart"></canvas>
+    </div>
+
+    <div class="info-box">
+        <h2>六、财务摘要 (FY2025)</h2>
+        <table>
+            <tr><td>净收入</td><td>$400亿</td></tr>
+            <tr><td>营收同比增长</td><td>+11%</td></tr>
+            <tr><td>GAAP净利润</td><td>$201亿</td></tr>
+            <tr><td>非GAAP净利润</td><td>$225亿</td></tr>
+            <tr><td>稀释EPS（GAAP）</td><td>$10.20</td></tr>
+            <tr><td>稀释EPS（非GAAP）</td><td>$11.47</td></tr>
+            <tr><td>运营利润率（GAAP）</td><td>60%</td></tr>
+            <tr><td>净利率</td><td>50.2%</td></tr>
+            <tr><td>自由现金流</td><td>~$200亿</td></tr>
+            <tr><td>支付总额</td><td>$14.2万亿</td></tr>
+            <tr><td>含现金交易总额</td><td>$16.7万亿</td></tr>
+            <tr><td>处理交易笔数</td><td>2,575亿笔（+10% YoY）</td></tr>
+            <tr><td>跨境交易量增长</td><td>+13%（不含欧洲内部+14%）</td></tr>
+            <tr><td>全球Visa凭证数</td><td>49亿张（+6% YoY）</td></tr>
+            <tr><td>Visa Direct交易</td><td>126亿笔（+27% YoY）</td></tr>
+            <tr><td>增值服务（VAS）收入</td><td>$109亿（+24% YoY）</td></tr>
+            <tr><td>ROE</td><td>52.9%</td></tr>
+            <tr><td>D/E</td><td>0.66</td></tr>
+            <tr><td>当前P/E (TTM)</td><td>约28倍</td></tr>
+            <tr><td>股东总回报</td><td>$228亿（回购$182亿+分红$46亿）</td></tr>
+        </table>
+    </div>
+
+    <div class="info-box">
+        <h2>七、投资建议</h2>
+        <div class="highlight">
+            <p><strong>Visa适合什么样的投资者？</strong></p>
+            <ul>
+                <li><strong>长期价值投资者</strong>：全球最大支付网络+极深护城河+轻资产模式，是"永远持有"型公司的候选。巴菲特持有Visa（伯克希尔持有约830万股），虽然仓位不如Amex大</li>
+                <li><strong>成长型投资者</strong>：B2B支付（200万亿市场，渗透率0.9%）和VAS（5,200亿市场，渗透率2%）提供了巨大的增长空间</li>
+                <li><strong>防御型投资者</strong>：不承担信用风险，2020年疫情期间营收仅下降5%（vs Amex下降15%+），恢复速度远快于行业</li>
+            </ul>
+
+            <p><strong>主要风险</strong></p>
+            <ul>
+                <li><strong>CCCA监管风险</strong>：信用卡竞争法案是Visa面临的<strong>最大单一威胁</strong>。如果通过，商家可以在多个网络之间选择，Visa的刷卡费收入将面临直接压力。虽然Visa可以通过降低费率来保持竞争力，但这将压缩利润率。通过概率约25-30%</li>
+                <li><strong>替代支付威胁</strong>：稳定币、CBDC、区域支付网络（如Pix、RuPay）可能在某些市场蚕食Visa的份额。Visa已主动拥抱稳定币（处理$37亿支付），但长期影响仍不确定</li>
+                <li><strong>客户激励增速</strong>：激励增长14%超过营收增速11%，占毛收入比例持续上升。如果银行在Visa和Mastercard之间的议价能力增强，利润率可能被压缩</li>
+                <li><strong>估值风险</strong>：P/E约28倍，对于营收增速10-12%的公司而言并不便宜。如果增速放缓至个位数，估值可能回调至22-25倍</li>
+                <li><strong>反垄断诉讼</strong>：FY2025支付了$8.99亿MDL诉讼拨备，未来可能面临更多反垄断罚款</li>
+                <li><strong>宏观经济风险</strong>：虽然Visa不承担信用风险，但消费支出放缓（衰退）会直接影响交易量和营收</li>
+            </ul>
+
+            <p><strong>巴菲特式评估</strong></p>
+            <ul>
+                <li>✅ 业务易懂：全球支付网络，收过路费，商业模式极其清晰</li>
+                <li>✅ 持久竞争优势：网络效应+规模经济构成极深护城河，几乎不可能被复制</li>
+                <li>✅ 管理层优秀：Ryan McInerney自2023年接任以来延续了强劲业绩，资本配置纪律严明</li>
+                <li>✅ 财务健康：不承担信用风险，自由现金流$200亿，运营利润率60%+</li>
+                <li>✅ 增长逻辑清晰：现金数字化+B2B支付+VAS三条增长曲线</li>
+                <li>⚠️ 价格不够便宜：P/E约28倍，安全边际有限。巴菲特偏好15倍以下买入</li>
+                <li>⚠️ 监管风险：CCCA如果通过，可能从根本上改变Visa的定价能力</li>
+            </ul>
+        </div>
+
+        <div class="highlight">
+            <p><strong>芒格会说：</strong>"Visa是我见过的最好的生意之一——它本质上是对全球消费征收的'微型税收'。每当你刷卡消费100美元，Visa就悄悄地收走0.15美元。这种生意不需要库存、不需要工厂、不承担信用风险，而且规模越大越强。但28倍市盈率意味着你已经为'一切顺利'付了钱。如果CCCA法案通过，或者B2B支付的增长不及预期，你的安全边际在哪里？我宁愿以20倍P/E买入，也不愿在28倍时追高。"</p>
+            <br>
+            <p><strong>巴菲特会说：</strong>"Visa的商业模式是我最欣赏的那种——轻资产、不承担风险、规模越大越赚钱。它就像一座桥，每个人过桥都要交一点过桥费，而修桥的成本早就收回来了。但好公司不等于好价格。我在2008年Visa IPO时就有机会买入，当时P/E不到20倍。今天的28倍P/E意味着市场已经定价了'完美执行'——任何意外都可能让股价回调15-20%。我的建议是：把Visa放在你的观察名单上，等待市场恐慌时再出手。"</p>
+        </div>
+    </div>
+
+    <div class="info-box">
+        <p><strong>最后更新</strong>：2026年5月19日<br>
+        <strong>数据来源</strong>：Visa Inc. IR官网、SEC 10-K/10-Q年报、Macrotrends、MarketBeat、Bullfincher、Tickergate、Trefis、Monexa、雪球、海通国际研究、Capital One Shopping Research等金融平台</p>
+    </div>
+
+    <script>
+        const roeData = {
+            labels: ['2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025'],
+            datasets: [{
+                label: 'ROE (%)',
+                data: [7.5, 15.2, 18.5, 13.8, 7.8, 18.5, 19.8, 21.2, 18.2, 20.5, 30.3, 34.8, 30.0, 32.8, 42.0, 44.6, 50.5, 52.9],
+                borderColor: 'rgba(26, 31, 113, 1)',
+                backgroundColor: 'rgba(26, 31, 113, 0.2)',
+                borderWidth: 2,
+                tension: 0.3,
+                fill: true
+            }]
+        };
+
+        const deRatioData = {
+            labels: ['2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025'],
+            datasets: [{
+                label: '产权比率 (D/E)',
+                data: [0.48, 0.56, 0.49, 0.48, 0.66, 0.56, 0.63, 0.53, 0.53, 0.66],
+                borderColor: 'rgba(255, 159, 64, 1)',
+                backgroundColor: 'rgba(255, 159, 64, 0.2)',
+                borderWidth: 2,
+                tension: 0.3,
+                fill: true
+            }]
+        };
+
+        const marginData = {
+            labels: ['2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025'],
+            datasets: [{
+                label: '运营利润率 (%)',
+                data: [65.3, 52.3, 66.2, 62.9, 65.3, 64.5, 65.6, 64.2, 64.3, 65.7, 60.0],
+                borderColor: 'rgba(75, 192, 192, 1)',
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderWidth: 2,
+                tension: 0.3,
+                fill: true
+            }]
+        };
+
+        const peData = {
+            labels: ['2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025'],
+            datasets: [{
+                label: '市盈率 (P/E)',
+                data: [22, 25, 27, 26, 27, 30, 35, 32, 35, 42, 38, 30, 30, 31, 28],
+                borderColor: 'rgba(153, 102, 255, 1)',
+                backgroundColor: 'rgba(153, 102, 255, 0.2)',
+                borderWidth: 2,
+                tension: 0.3,
+                fill: true
+            }]
+        };
+
+        const commonOptions = {
+            responsive: true,
+            plugins: {
+                legend: {
+                    display: true,
+                    position: 'bottom'
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        };
+
+        new Chart(document.getElementById('roeChart').getContext('2d'), {
+            type: 'line',
+            data: roeData,
+            options: {
+                ...commonOptions,
+                plugins: {
+                    ...commonOptions.plugins,
+                    title: {
+                        display: true,
+                        text: 'Visa Inc. (V) 净资产利润率 (ROE) 趋势 (2008-2025)'
+                    }
+                }
+            }
+        });
+
+        new Chart(document.getElementById('deRatioChart').getContext('2d'), {
+            type: 'line',
+            data: deRatioData,
+            options: {
+                ...commonOptions,
+                plugins: {
+                    ...commonOptions.plugins,
+                    title: {
+                        display: true,
+                        text: 'Visa Inc. (V) 产权比率 (D/E) 趋势 (2016-2025)'
+                    }
+                }
+            }
+        });
+
+        new Chart(document.getElementById('marginChart').getContext('2d'), {
+            type: 'line',
+            data: marginData,
+            options: {
+                ...commonOptions,
+                plugins: {
+                    ...commonOptions.plugins,
+                    title: {
+                        display: true,
+                        text: 'Visa Inc. (V) 运营利润率 趋势 (2015-2025)'
+                    }
+                }
+            }
+        });
+
+        new Chart(document.getElementById('peChart').getContext('2d'), {
+            type: 'line',
+            data: peData,
+            options: {
+                ...commonOptions,
+                plugins: {
+                    ...commonOptions.plugins,
+                    title: {
+                        display: true,
+                        text: 'Visa Inc. (V) 市盈率 (P/E) 趋势 (2011-2025)'
+                    }
+                }
+            }
+        });
+
+        const profitAllocationData = {
+            labels: ['FY2016', 'FY2017', 'FY2018', 'FY2019', 'FY2020', 'FY2021', 'FY2022', 'FY2023', 'FY2024', 'FY2025'],
+            datasets: [{
+                label: '净利润 (百万$)',
+                data: [5991, 6699, 10301, 12080, 10866, 12311, 14957, 17273, 19743, 20058],
+                backgroundColor: 'rgba(75, 192, 192, 0.7)',
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 1
+            }, {
+                label: '股票回购 (百万$)',
+                data: [5100, 6200, 8400, 9500, 7800, 10500, 11000, 12400, 16710, 18200],
+                backgroundColor: 'rgba(26, 31, 113, 0.7)',
+                borderColor: 'rgba(26, 31, 113, 1)',
+                borderWidth: 1
+            }, {
+                label: '派息 (百万$)',
+                data: [1210, 1400, 1650, 1950, 2250, 2600, 3200, 3700, 4220, 4600],
+                backgroundColor: 'rgba(255, 159, 64, 0.7)',
+                borderColor: 'rgba(255, 159, 64, 1)',
+                borderWidth: 1
+            }]
+        };
+
+        new Chart(document.getElementById('profitAllocationChart').getContext('2d'), {
+            type: 'bar',
+            data: profitAllocationData,
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: 'bottom'
+                    },
+                    title: {
+                        display: true,
+                        text: 'Visa Inc. (V) 利润分配去向 (FY2016-FY2025)'
+                    }
+                },
+                scales: {
+                    y: {
+                        title: {
+                            display: true,
+                            text: '百万美元'
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
