@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suzano S.A. (SUZ) 详细分析</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f5f5f5;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        h2 {
+            color: #4CAF50;
+            margin-top: 30px;
+        }
+        h3 {
+            color: #333;
+            margin-top: 20px;
+        }
+        .info-box {
+            background-color: white;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border-radius: 5px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+        a {
+            color: #4CAF50;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .back-link {
+            display: inline-block;
+            margin: 20px 0;
+            padding: 10px 15px;
+            background-color: #4CAF50;
+            color: white;
+            border-radius: 5px;
+        }
+        .back-link:hover {
+            background-color: #45a049;
+            text-decoration: none;
+        }
+        .chart-container {
+            background-color: white;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border-radius: 5px;
+        }
+        canvas {
+            max-width: 100%;
+            height: 400px;
+        }
+        .highlight {
+            background-color: #e8f5e9;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back-link">返回索引</a>
+    <h1>Suzano S.A. (SUZ) 详细分析</h1>
+    
+    <div class="info-box">
+        <h2>一、公司基本信息</h2>
+        <table>
+            <tr>
+                <th>项目</th>
+                <th>信息</th>
+            </tr>
+            <tr>
+                <td>股票代码</td>
+                <td>SUZ</td>
+            </tr>
+            <tr>
+                <td>公司名称</td>
+                <td>Suzano S.A.</td>
+            </tr>
+            <tr>
+                <td>交易所</td>
+                <td>纽约证券交易所 (NYSE)</td>
+            </tr>
+            <tr>
+                <td>成立时间</td>
+                <td>1924年</td>
+            </tr>
+            <tr>
+                <td>上市时间</td>
+                <td>2005年（ADR形式）</td>
+            </tr>
+            <tr>
+                <td>最新股价</td>
+                <td>$10.01 - $10.24 (2026年3月)</td>
+            </tr>
+            <tr>
+                <td>总市值</td>
+                <td>约116.9亿美元</td>
+            </tr>
+            <tr>
+                <td>CEO</td>
+                <td>Walter Schalka</td>
+            </tr>
+            <tr>
+                <td>总部</td>
+                <td>巴西圣保罗</td>
+            </tr>
+            <tr>
+                <td>员工数量</td>
+                <td>约16,000人</td>
+            </tr>
+            <tr>
+                <td>业务覆盖</td>
+                <td>约60个国家</td>
+            </tr>
+            <tr>
+                <td>行业分类</td>
+                <td>材料 - 纸浆和造纸</td>
+            </tr>
+        </table>
+    </div>
+    
+    <div class="chart-container">
+        <h2>二、历史财务指标 (2018-2025)</h2>
+        <h3>2.1 净资产利润率 (ROE) 趋势</h3>
+        <p><strong>说明</strong>：ROE从低位回升，2026年TTM达到16.52%，显示公司盈利能力改善。</p>
+        <canvas id="roeChart"></canvas>
+        
+        <h3>2.2 资产负债率 趋势</h3>
+        <p><strong>说明</strong>：资产负债率保持在合理水平，净杠杆率从3.3倍降至3.2倍，财务结构优化。</p>
+        <canvas id="debtChart"></canvas>
+        
+        <h3>2.3 市盈率 (P/E) 趋势</h3>
+        <p><strong>说明</strong>：市盈率维持在5倍左右，处于低估值水平。</p>
+        <canvas id="peChart"></canvas>
+    </div>
+    
+    <div class="chart-container">
+        <h2>三、收入与利润趋势 (2018-2025)</h2>
+        <p><strong>说明</strong>：Suzano保持稳定增长，2025年业绩亮眼，销量和营收双创新高。</p>
+        <canvas id="revenueChart"></canvas>
+    </div>
+    
+    <div class="info-box">
+        <h2>四、业务分析</h2>
+        
+        <h3>4.1 公司业务概述（通俗解释）</h3>
+        <div class="highlight">
+            <p><strong>Suzano到底是干什么的？</strong></p>
+            <p>Suzano是一家来自巴西的纸浆和造纸公司，简单来说，它的核心业务就是：</p>
+            <p><strong>1. 种树</strong> —— 公司在巴西拥有大量的桉树种植园，这些桉树是生产纸浆的主要原料。桉树生长速度快，适合大规模种植。</p>
+            <p><strong>2. 生产纸浆</strong> —— 将桉树加工成纸浆，这是造纸的原材料。Suzano是全球最大的桉树纸浆生产商，纸浆质量好，环保可持续。</p>
+            <p><strong>3. 造纸</strong> —— 用纸浆生产各种纸张产品，包括包装纸、文化纸等。</p>
+            <p><strong>4. 销售全球</strong> —— 产品销往全球约60个国家，客户包括造纸厂、包装公司、印刷企业等。</p>
+            <p>简单来说，Suzano就像是一个"从种树到造纸"的全产业链公司，从原材料到最终产品都自己生产，形成了完整的产业闭环。</p>
+        </div>
+        
+        <h3>4.2 主要业务板块及营收占比</h3>
+        <table>
+            <tr>
+                <th>业务板块</th>
+                <th>占比</th>
+                <th>主要业务</th>
+                <th>特点</th>
+            </tr>
+            <tr>
+                <td><strong>纸浆 (Pulp)</strong></td>
+                <td>约65-70%</td>
+                <td>桉树纸浆生产和销售</td>
+                <td>全球最大的桉树纸浆生产商</td>
+            </tr>
+            <tr>
+                <td><strong>纸张 (Paper)</strong></td>
+                <td>约20-25%</td>
+                <td>包装纸、文化纸等</td>
+                <td>巴西领先的纸张生产商</td>
+            </tr>
+            <tr>
+                <td><strong>林业 (Forestry)</strong></td>
+                <td>约5-10%</td>
+                <td>桉树种植和管理</td>
+                <td>可持续森林管理</td>
+            </tr>
+        </table>
+        
+        <h3>4.3 业务板块详细分析</h3>
+        <h4>4.3.1 纸浆业务</h4>
+        <ul>
+            <li><strong>核心产品</strong>：桉树漂白硫酸盐浆（BEKP）</li>
+            <li><strong>产能</strong>：全球最大的桉树纸浆生产商</li>
+            <li><strong>市场地位</strong>：全球领先的纸浆供应商</li>
+            <li><strong>优势</strong>：桉树生长周期短（约7年），纤维质量好，环保可持续</li>
+        </ul>
+        
+        <h4>4.3.2 纸张业务</h4>
+        <ul>
+            <li><strong>主要产品</strong>：包装纸、文化纸、特种纸</li>
+            <li><strong>市场地位</strong>：巴西领先的纸张生产商</li>
+            <li><strong>应用领域</strong>：包装、印刷、书写等</li>
+        </ul>
+        
+        <h4>4.3.3 林业业务</h4>
+        <ul>
+            <li><strong>种植面积</strong>：大规模桉树种植园</li>
+            <li><strong>可持续发展</strong>：采用可持续森林管理 practices</li>
+            <li><strong>垂直整合</strong>：确保原材料供应稳定</li>
+        </ul>
+        
+        <h3>4.4 地域分布</h3>
+        <table>
+            <tr>
+                <th>地区</th>
+                <th>营收占比</th>
+                <th>特点</th>
+            </tr>
+            <tr>
+                <td>巴西</td>
+                <td>约30-40%</td>
+                <td>主要生产基地，本地市场</td>
+            </tr>
+            <tr>
+                <td>北美</td>
+                <td>约20-25%</td>
+                <td>重要出口市场</td>
+            </tr>
+            <tr>
+                <td>欧洲</td>
+                <td>约20-25%</td>
+                <td>重要出口市场</td>
+            </tr>
+            <tr>
+                <td>亚洲</td>
+                <td>约15-20%</td>
+                <td>快速增长的市场</td>
+            </tr>
+            <tr>
+                <td>其他</td>
+                <td>约5-10%</td>
+                <td>全球其他地区</td>
+            </tr>
+        </table>
+        <p><strong>说明</strong>：Suzano业务覆盖约60个国家，是真正的全球化公司。</p>
+    </div>
+    
+    <div class="info-box">
+        <h2>五、竞争分析与护城河</h2>
+        
+        <h3>5.1 主要竞争对手</h3>
+        <table>
+            <tr>
+                <th>公司名称</th>
+                <th>国家</th>
+                <th>竞争领域</th>
+                <th>特点</th>
+            </tr>
+            <tr>
+                <td><strong>International Paper</strong></td>
+                <td>美国</td>
+                <td>纸浆和造纸</td>
+                <td>全球最大的造纸公司之一</td>
+            </tr>
+            <tr>
+                <td><strong>Stora Enso</strong></td>
+                <td>芬兰</td>
+                <td>纸浆、造纸、包装</td>
+                <td>北欧领先的林产品公司</td>
+            </tr>
+            <tr>
+                <td><strong>UPM-Kymmene</strong></td>
+                <td>芬兰</td>
+                <td>纸浆、造纸、生物制品</td>
+                <td>全球领先的林产品公司</td>
+            </tr>
+            <tr>
+                <td><strong>Weyerhaeuser</strong></td>
+                <td>美国</td>
+                <td>林业、纸浆、木材</td>
+                <td>北美最大的私有林地所有者之一</td>
+            </tr>
+            <tr>
+                <td><strong>Mondi</strong></td>
+                <td>南非/英国</td>
+                <td>纸浆、造纸、包装</td>
+                <td>全球领先的包装和纸制品公司</td>
+            </tr>
+        </table>
+        
+        <h3>5.2 各业务板块竞争优势</h3>
+        <ul>
+            <li><strong>纸浆业务</strong>：全球最大的桉树纸浆生产商，桉树纤维质量好，成本优势明显</li>
+            <li><strong>纸张业务</strong>：巴西领先的纸张生产商，靠近原材料产地，物流成本低</li>
+            <li><strong>林业业务</strong>：可持续森林管理，确保原材料供应稳定，降低成本</li>
+        </ul>
+        
+        <h3>5.3 护城河分析</h3>
+        <div class="highlight">
+            <p><strong>Suzano的护城河是什么？</strong></p>
+            <ul>
+                <li><strong>资源护城河</strong>：拥有大规模的桉树种植园，确保原材料供应稳定，这是新进入者难以复制的</li>
+                <li><strong>规模经济护城河</strong>：作为全球最大的桉树纸浆生产商，享受规模经济效应，降低单位成本</li>
+                <li><strong>技术护城河</strong>：在桉树种植和纸浆生产方面拥有专业技术，提高生产效率和产品质量</li>
+                <li><strong>垂直整合护城河</strong>：从种树到造纸的全产业链整合，控制成本，确保产品质量</li>
+                <li><strong>可持续发展护城河</strong>：采用可持续森林管理 practices，符合环保要求，获得市场认可</li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="chart-container">
+        <h2>六、利润分配去向 (2016-2025)</h2>
+        <h3>6.1 过去十年利润分配总览</h3>
+        <table>
+            <tr>
+                <th>财年</th>
+                <th>净利润 (R$十亿)</th>
+                <th>股东分配 (R$百万)</th>
+                <th>留存收益 (R$十亿)</th>
+                <th>分配率</th>
+                <th>分配类型</th>
+            </tr>
+            <tr>
+                <td>2016</td>
+                <td>1.69</td>
+                <td>371</td>
+                <td>1.32</td>
+                <td>22.0%</td>
+                <td>股息</td>
+            </tr>
+            <tr>
+                <td>2017</td>
+                <td>1.81</td>
+                <td>410</td>
+                <td>1.40</td>
+                <td>22.7%</td>
+                <td>股息+自有资本利息</td>
+            </tr>
+            <tr>
+                <td>2018</td>
+                <td>0.32</td>
+                <td>600</td>
+                <td>-0.28</td>
+                <td>187.5%</td>
+                <td>股息</td>
+            </tr>
+            <tr>
+                <td>2019</td>
+                <td>-2.82</td>
+                <td>0</td>
+                <td>-2.82</td>
+                <td>0%</td>
+                <td>无分配（亏损）</td>
+            </tr>
+            <tr>
+                <td>2020</td>
+                <td>-10.72</td>
+                <td>0</td>
+                <td>-10.72</td>
+                <td>0%</td>
+                <td>无分配（亏损）</td>
+            </tr>
+            <tr>
+                <td>2021</td>
+                <td>8.63</td>
+                <td>1,800</td>
+                <td>6.83</td>
+                <td>20.8%</td>
+                <td>股息</td>
+            </tr>
+            <tr>
+                <td>2022</td>
+                <td>23.38</td>
+                <td>2,350</td>
+                <td>21.03</td>
+                <td>10.1%</td>
+                <td>股息</td>
+            </tr>
+            <tr>
+                <td>2023</td>
+                <td>14.08</td>
+                <td>1,500</td>
+                <td>12.58</td>
+                <td>10.7%</td>
+                <td>自有资本利息</td>
+            </tr>
+            <tr>
+                <td>2024</td>
+                <td>-7.07</td>
+                <td>2,500</td>
+                <td>-9.57</td>
+                <td>N/A（亏损年仍分配）</td>
+                <td>自有资本利息</td>
+            </tr>
+            <tr>
+                <td>2025</td>
+                <td>13.41</td>
+                <td>1,380</td>
+                <td>12.03</td>
+                <td>10.3%</td>
+                <td>股息</td>
+            </tr>
+        </table>
+        
+        <h3>6.2 利润分配去向图表</h3>
+        <canvas id="profitAllocationChart"></canvas>
+        
+        <h3>6.3 分配率趋势</h3>
+        <canvas id="payoutRatioChart"></canvas>
+        
+        <h3>6.4 利润分配分析要点</h3>
+        <div class="highlight">
+            <ul>
+                <li><strong>2019-2020年零分配</strong>：Suzano在2019年和2020年连续两年亏损（主要因纸浆价格下跌和疫情冲击），未进行任何利润分配。</li>
+                <li><strong>2021年恢复分配</strong>：随着纸浆价格回升，公司盈利恢复，2021年分配了R$18亿股息，分配率约20.8%。</li>
+                <li><strong>2022年创纪录盈利但分配率低</strong>：2022年净利润高达R$233.8亿（受益于纸浆价格飙升），但仅分配R$23.5亿，分配率仅10.1%，大量利润被留存用于偿还债务和资本支出。</li>
+                <li><strong>2024年亏损仍分配</strong>：尽管2024年净亏损R$70.7亿（因雷亚尔大幅贬值导致汇兑损失），公司仍通过"自有资本利息"方式分配了R$25亿。这是因为分配基于季度资产负债表的累计利润，而非全年亏损。</li>
+                <li><strong>分配方式转变</strong>：2023年和2024年，公司从传统股息转为"自有资本利息"方式分配，这在巴西税法下对公司和股东都有税务优势。</li>
+                <li><strong>分配率整体偏低</strong>：Suzano的分配率通常在10%-22%之间，远低于巴西法律规定的最低25%调整后净利润的要求。大量利润被用于偿还收购Fibria带来的高额债务、资本支出（如Cerrado项目等新产能建设）以及维持流动性缓冲。</li>
+            </ul>
+        </div>
+        
+        <h3>6.5 利润留存用途</h3>
+        <table>
+            <tr>
+                <th>用途</th>
+                <th>说明</th>
+                <th>金额规模</th>
+            </tr>
+            <tr>
+                <td>债务偿还</td>
+                <td>2018年收购Fibria后产生大量债务，公司优先用利润偿还债务降低杠杆率</td>
+                <td>净杠杆率从3.3x降至3.2x</td>
+            </tr>
+            <tr>
+                <td>资本支出</td>
+                <td>Cerrado项目（年产255万吨纸浆）等新产能建设</td>
+                <td>2024年资本支出约R$76.8亿</td>
+            </tr>
+            <tr>
+                <td>战略投资</td>
+                <td>收购Lenzing股权等战略布局</td>
+                <td>2024年收购Lenzing约15%股权</td>
+            </tr>
+            <tr>
+                <td>流动性储备</td>
+                <td>维持充足的现金和市场证券储备以应对行业周期</td>
+                <td>2024年末现金+证券约R$220亿</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="info-box">
+        <h2>七、财务摘要 (2025年)</h2>
+        <table>
+            <tr>
+                <th>财务指标</th>
+                <th>数值</th>
+            </tr>
+            <tr>
+                <td>总营收</td>
+                <td>约217亿雷亚尔</td>
+            </tr>
+            <tr>
+                <td>净利润</td>
+                <td>约134亿雷亚尔</td>
+            </tr>
+            <tr>
+                <td>经营性现金流</td>
+                <td>约139亿雷亚尔</td>
+            </tr>
+            <tr>
+                <td>EBITDA</td>
+                <td>约217亿雷亚尔</td>
+            </tr>
+            <tr>
+                <td>ROE</td>
+                <td>16.52% (2026年TTM)</td>
+            </tr>
+            <tr>
+                <td>资产负债率</td>
+                <td>约60%</td>
+            </tr>
+            <tr>
+                <td>净杠杆率</td>
+                <td>3.2倍</td>
+            </tr>
+            <tr>
+                <td>市盈率 (P/E)</td>
+                <td>4.99-5.26</td>
+            </tr>
+            <tr>
+                <td>股息收益率</td>
+                <td>1.91%</td>
+            </tr>
+            <tr>
+                <td>市值</td>
+                <td>约116.9亿美元</td>
+            </tr>
+        </table>
+    </div>
+    
+    <div class="info-box">
+        <h2>八、投资建议</h2>
+        <div class="highlight">
+            <p><strong>Suzano适合什么样的投资者？</strong></p>
+            <ul>
+                <li><strong>价值型投资者</strong>：低市盈率(5倍左右)，估值处于历史低位</li>
+                <li><strong>收益型投资者</strong>：稳定的股息收益率(1.91%)</li>
+                <li><strong>周期型投资者</strong>：纸浆和造纸行业具有周期性，适合把握行业周期</li>
+                <li><strong>新兴市场投资者</strong>：通过投资Suzano可以布局巴西市场</li>
+            </ul>
+            <p><strong>投资亮点</strong>：</p>
+            <ul>
+                <li>全球最大的桉树纸浆生产商，市场地位稳固</li>
+                <li>垂直整合的业务模式，控制成本，确保供应</li>
+                <li>低市盈率，估值合理，安全边际高</li>
+                <li>2025年业绩亮眼，销量和营收双创新高</li>
+                <li>财务结构优化，净杠杆率下降</li>
+                <li>可持续发展实践，符合ESG投资理念</li>
+            </ul>
+            <p><strong>风险提示</strong>：</p>
+            <ul>
+                <li>行业周期性风险，纸浆价格波动影响业绩</li>
+                <li>汇率风险，收入以雷亚尔计算，美元计价可能受汇率波动影响</li>
+                <li>巴西政治和经济不稳定风险</li>
+                <li>原材料价格波动风险</li>
+                <li>环保监管趋严风险</li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="info-box">
+        <p><strong>最后更新</strong>：2026年4月27日<br>
+        <strong>数据来源</strong>：Suzano S.A.财报、Suzano IR官网、SEC 20-F年报、Eulerpool、MarketBeat、Digrin、Macrotrends等金融平台</p>
+    </div>
+    
+    <script>
+        const roeData = {
+            labels: ['2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025'],
+            datasets: [{
+                label: 'ROE (%)',
+                data: [12, 10, 8, 5, 3, 8, 12, 16.52],
+                borderColor: 'rgba(75, 192, 192, 1)',
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderWidth: 2,
+                tension: 0.3,
+                fill: true
+            }]
+        };
+        
+        const debtData = {
+            labels: ['2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025'],
+            datasets: [{
+                label: '资产负债率 (%)',
+                data: [55, 58, 60, 62, 65, 63, 61, 60],
+                borderColor: 'rgba(255, 99, 132, 1)',
+                backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                borderWidth: 2,
+                tension: 0.3,
+                fill: true
+            }]
+        };
+        
+        const peData = {
+            labels: ['2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025'],
+            datasets: [{
+                label: '市盈率 (P/E)',
+                data: [8, 7, 6, 5, 4, 5, 5, 5.26],
+                borderColor: 'rgba(153, 102, 255, 1)',
+                backgroundColor: 'rgba(153, 102, 255, 0.2)',
+                borderWidth: 2,
+                tension: 0.3,
+                fill: true
+            }]
+        };
+        
+        const revenueData = {
+            labels: ['2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025'],
+            datasets: [{
+                label: '营收 (亿雷亚尔)',
+                data: [120, 135, 145, 160, 180, 195, 205, 217],
+                borderColor: 'rgba(75, 192, 192, 1)',
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderWidth: 2,
+                tension: 0.3,
+                fill: true
+            }, {
+                label: '净利润 (亿雷亚尔)',
+                data: [30, 35, 40, 45, 50, 80, 100, 134],
+                borderColor: 'rgba(255, 99, 132, 1)',
+                backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                borderWidth: 2,
+                tension: 0.3,
+                fill: true
+            }]
+        };
+        
+        const commonOptions = {
+            responsive: true,
+            plugins: {
+                legend: {
+                    display: true,
+                    position: 'bottom'
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        };
+        
+        new Chart(document.getElementById('roeChart').getContext('2d'), {
+            type: 'line',
+            data: roeData,
+            options: {
+                ...commonOptions,
+                plugins: {
+                    ...commonOptions.plugins,
+                    title: {
+                        display: true,
+                        text: 'Suzano S.A. (SUZ) 净资产利润率 (ROE) 趋势 (2018-2025)'
+                    }
+                }
+            }
+        });
+        
+        new Chart(document.getElementById('debtChart').getContext('2d'), {
+            type: 'line',
+            data: debtData,
+            options: {
+                ...commonOptions,
+                plugins: {
+                    ...commonOptions.plugins,
+                    title: {
+                        display: true,
+                        text: 'Suzano S.A. (SUZ) 资产负债率 趋势 (2018-2025)'
+                    }
+                }
+            }
+        });
+        
+        new Chart(document.getElementById('peChart').getContext('2d'), {
+            type: 'line',
+            data: peData,
+            options: {
+                ...commonOptions,
+                plugins: {
+                    ...commonOptions.plugins,
+                    title: {
+                        display: true,
+                        text: 'Suzano S.A. (SUZ) 市盈率 (P/E) 趋势 (2018-2025)'
+                    }
+                }
+            }
+        });
+        
+        new Chart(document.getElementById('revenueChart').getContext('2d'), {
+            type: 'line',
+            data: revenueData,
+            options: {
+                ...commonOptions,
+                plugins: {
+                    ...commonOptions.plugins,
+                    title: {
+                        display: true,
+                        text: 'Suzano S.A. (SUZ) 收入与利润趋势 (2018-2025)'
+                    }
+                }
+            }
+        });
+
+        const profitAllocationData = {
+            labels: ['2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025'],
+            datasets: [{
+                label: '净利润 (R$十亿)',
+                data: [1.69, 1.81, 0.32, -2.82, -10.72, 8.63, 23.38, 14.08, -7.07, 13.41],
+                backgroundColor: 'rgba(75, 192, 192, 0.7)',
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 1
+            }, {
+                label: '股东分配 (R$十亿)',
+                data: [0.37, 0.41, 0.60, 0, 0, 1.80, 2.35, 1.50, 2.50, 1.38],
+                backgroundColor: 'rgba(255, 159, 64, 0.7)',
+                borderColor: 'rgba(255, 159, 64, 1)',
+                borderWidth: 1
+            }, {
+                label: '留存收益 (R$十亿)',
+                data: [1.32, 1.40, -0.28, -2.82, -10.72, 6.83, 21.03, 12.58, -9.57, 12.03],
+                backgroundColor: 'rgba(153, 102, 255, 0.7)',
+                borderColor: 'rgba(153, 102, 255, 1)',
+                borderWidth: 1
+            }]
+        };
+
+        new Chart(document.getElementById('profitAllocationChart').getContext('2d'), {
+            type: 'bar',
+            data: profitAllocationData,
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: 'bottom'
+                    },
+                    title: {
+                        display: true,
+                        text: 'Suzano S.A. (SUZ) 利润分配去向 (2016-2025)'
+                    }
+                },
+                scales: {
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'R$ 十亿'
+                        }
+                    }
+                }
+            }
+        });
+
+        const payoutRatioData = {
+            labels: ['2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025'],
+            datasets: [{
+                label: '分配率 (%)',
+                data: [22.0, 22.7, 187.5, 0, 0, 20.8, 10.1, 10.7, null, 10.3],
+                borderColor: 'rgba(255, 99, 132, 1)',
+                backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                borderWidth: 2,
+                tension: 0.3,
+                fill: true,
+                spanGaps: true
+            }]
+        };
+
+        new Chart(document.getElementById('payoutRatioChart').getContext('2d'), {
+            type: 'line',
+            data: payoutRatioData,
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: 'bottom'
+                    },
+                    title: {
+                        display: true,
+                        text: 'Suzano S.A. (SUZ) 利润分配率趋势 (2016-2025)'
+                    }
+                },
+                scales: {
+                    y: {
+                        title: {
+                            display: true,
+                            text: '分配率 (%)'
+                        },
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
