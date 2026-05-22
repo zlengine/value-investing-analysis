@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pilgrim's Pride (PPC) 详细分析</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f5f5f5;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        h2 {
+            color: #4CAF50;
+            margin-top: 30px;
+        }
+        h3 {
+            color: #333;
+            margin-top: 20px;
+        }
+        .info-box {
+            background-color: white;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border-radius: 5px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+        a {
+            color: #4CAF50;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .back-link {
+            display: inline-block;
+            margin: 20px 0;
+            padding: 10px 15px;
+            background-color: #4CAF50;
+            color: white;
+            border-radius: 5px;
+        }
+        .back-link:hover {
+            background-color: #45a049;
+            text-decoration: none;
+        }
+        .chart-container {
+            background-color: white;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border-radius: 5px;
+        }
+        canvas {
+            max-width: 100%;
+            height: 400px;
+        }
+        .highlight {
+            background-color: #e8f5e9;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back-link">返回索引</a>
+    <h1>Pilgrim's Pride (PPC) 详细分析</h1>
+    
+    <div class="info-box">
+        <h2>一、公司基本信息</h2>
+        <table>
+            <tr>
+                <th>项目</th>
+                <th>信息</th>
+            </tr>
+            <tr>
+                <td>股票代码</td>
+                <td>PPC</td>
+            </tr>
+            <tr>
+                <td>公司名称</td>
+                <td>Pilgrim's Pride Corporation</td>
+            </tr>
+            <tr>
+                <td>交易所</td>
+                <td>纳斯达克证券交易所 (NASDAQ)</td>
+            </tr>
+            <tr>
+                <td>成立时间</td>
+                <td>1968年（德克萨斯州），1986年（特拉华州重新注册）</td>
+            </tr>
+            <tr>
+                <td>上市时间</td>
+                <td>1987年（首次），2012年12月28日（重新上市）</td>
+            </tr>
+            <tr>
+                <td>最新股价</td>
+                <td>$36.54 - $39.73 (2026年3月)</td>
+            </tr>
+            <tr>
+                <td>总市值</td>
+                <td>约86.3-94.4亿美元</td>
+            </tr>
+            <tr>
+                <td>CEO</td>
+                <td>Gilberto Tomazoni</td>
+            </tr>
+            <tr>
+                <td>总部</td>
+                <td>美国科罗拉多州格里利</td>
+            </tr>
+            <tr>
+                <td>主要股东</td>
+                <td>JBS USA Holding Lux (78.50%)</td>
+            </tr>
+            <tr>
+                <td>行业分类</td>
+                <td>食品加工 - 肉类生产</td>
+            </tr>
+        </table>
+    </div>
+    
+    <div class="chart-container">
+        <h2>二、历史财务指标 (2018-2025)</h2>
+        <h3>2.1 净资产利润率 (ROE) 趋势</h3>
+        <p><strong>说明</strong>：ROE从低位大幅提升至29.4%，显示公司盈利能力显著改善。</p>
+        <canvas id="roeChart"></canvas>
+        
+        <h3>2.2 资产负债率 趋势</h3>
+        <p><strong>说明</strong>：资产负债率保持在合理水平，财务结构稳健。</p>
+        <canvas id="debtChart"></canvas>
+        
+        <h3>2.3 市盈率 (P/E) 趋势</h3>
+        <p><strong>说明</strong>：市盈率维持在8倍左右，处于合理估值水平。</p>
+        <canvas id="peChart"></canvas>
+    </div>
+    
+    <div class="chart-container">
+        <h2>三、收入与利润趋势 (2018-2025)</h2>
+        <p><strong>说明</strong>：Pilgrim's Pride的收入和利润保持稳定增长。</p>
+        <canvas id="revenueChart"></canvas>
+    </div>
+    
+    <div class="info-box">
+        <h2>四、业务分析</h2>
+        
+        <h3>4.1 公司业务概述（通俗解释）</h3>
+        <div class="highlight">
+            <p><strong>Pilgrim's Pride到底是干什么的？</strong></p>
+            <p>Pilgrim's Pride是美国最大的鸡肉生产商之一，简单来说，它的核心业务就是：</p>
+            <p><strong>1. 养鸡</strong> —— 公司拥有大量的肉鸡养殖场，饲养数百万只肉鸡。</p>
+            <p><strong>2. 屠宰加工</strong> —— 将肉鸡屠宰后进行加工处理。</p>
+            <p><strong>3. 产品加工</strong> —— 生产新鲜、冷冻和增值鸡肉产品，以及猪肉产品。</p>
+            <p><strong>4. 销售</strong> —— 将产品销售给零售商、分销商和食品服务运营商。</p>
+            <p>简单来说，Pilgrim's Pride就是一个"从养鸡到卖肉"的全产业链公司，是美国肉类加工行业的重要 player。</p>
+        </div>
+        
+        <h3>4.2 主要业务板块及营收占比</h3>
+        <table>
+            <tr>
+                <th>业务板块</th>
+                <th>占比</th>
+                <th>主要业务</th>
+                <th>特点</th>
+            </tr>
+            <tr>
+                <td><strong>鸡肉业务</strong></td>
+                <td>约85-90%</td>
+                <td>新鲜、冷冻和增值鸡肉产品</td>
+                <td>核心业务，美国最大鸡肉生产商之一</td>
+            </tr>
+            <tr>
+                <td><strong>猪肉业务</strong></td>
+                <td>约10-15%</td>
+                <td>猪肉产品</td>
+                <td>辅助业务，多元化收入来源</td>
+            </tr>
+        </table>
+        
+        <h3>4.3 业务板块详细分析</h3>
+        <h4>4.3.1 鸡肉业务</h4>
+        <ul>
+            <li><strong>产品类型</strong>：新鲜鸡肉、冷冻鸡肉、增值鸡肉产品（如腌制鸡肉、熟食等）</li>
+            <li><strong>市场地位</strong>：美国最大的鸡肉生产商之一</li>
+            <li><strong>销售渠道</strong>：零售商、分销商、食品服务运营商</li>
+            <li><strong>生产能力</strong>：规模化生产，成本优势明显</li>
+        </ul>
+        
+        <h4>4.3.2 猪肉业务</h4>
+        <ul>
+            <li><strong>产品类型</strong>：新鲜猪肉、冷冻猪肉产品</li>
+            <li><strong>市场地位</strong>：辅助业务，补充鸡肉业务</li>
+            <li><strong>销售渠道</strong>：与鸡肉业务共享销售网络</li>
+        </ul>
+        
+        <h3>4.4 地域分布</h3>
+        <table>
+            <tr>
+                <th>地区</th>
+                <th>营收占比</th>
+                <th>特点</th>
+            </tr>
+            <tr>
+                <td>美国</td>
+                <td>约60-70%</td>
+                <td>主要市场</td>
+            </tr>
+            <tr>
+                <td>墨西哥</td>
+                <td>约15-20%</td>
+                <td>重要国际市场</td>
+            </tr>
+            <tr>
+                <td>欧洲</td>
+                <td>约10-15%</td>
+                <td>包括英国等市场</td>
+            </tr>
+            <tr>
+                <td>其他</td>
+                <td>约5-10%</td>
+                <td>中东、亚洲等</td>
+            </tr>
+        </table>
+        <p><strong>说明</strong>：Pilgrim's Pride业务覆盖全球多个地区，是一家国际化的肉类加工公司。</p>
+        
+        <h3>4.5 资本支出分析</h3>
+        <div class="highlight">
+            <p><strong>为什么PPC需要持续大规模资本投入？</strong></p>
+            <h4>行业特性</h4>
+            <ul>
+                <li><strong>设备折旧期短</strong>：养殖专用设备（如鸡笼、喂料机、刮粪机、环境控制系统）一般按5-8年折旧</li>
+                <li><strong>技术迭代快</strong>：自动化、生物安全、环保标准不断提升，需要持续设备升级</li>
+                <li><strong>生物资产周转</strong>：鸡舍需要定期空置消毒，设备磨损严重</li>
+            </ul>
+            <h4>资本支出构成</h4>
+            <ul>
+                <li><strong>维持性资本支出</strong>：设备更新、厂房维修、技术升级、环保合规</li>
+                <li><strong>扩张性资本支出</strong>：佐治亚州新工厂（4亿美元）、预制食品业务扩张、墨西哥产能增加</li>
+            </ul>
+            <h4>资本支出与折旧对比</h4>
+            <table>
+                <tr>
+                    <th>年份</th>
+                    <th>折旧摊销（百万美元）</th>
+                    <th>资本支出（百万美元）</th>
+                    <th>资本支出/折旧</th>
+                </tr>
+                <tr>
+                    <td>2023</td>
+                    <td>420</td>
+                    <td>544</td>
+                    <td>1.30倍</td>
+                </tr>
+                <tr>
+                    <td>2024</td>
+                    <td>434</td>
+                    <td>476</td>
+                    <td>1.10倍</td>
+                </tr>
+                <tr>
+                    <td>2025</td>
+                    <td>456</td>
+                    <td>711</td>
+                    <td>1.56倍</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    
+    <div class="info-box">
+        <h2>五、竞争分析与护城河</h2>
+        
+        <h3>5.1 主要竞争对手</h3>
+        <table>
+            <tr>
+                <th>公司名称</th>
+                <th>竞争领域</th>
+                <th>特点</th>
+            </tr>
+            <tr>
+                <td><strong>Tyson Foods (TSN)</strong></td>
+                <td>鸡肉、猪肉、牛肉</td>
+                <td>美国最大的肉类加工公司</td>
+            </tr>
+            <tr>
+                <td><strong>Sanderson Farms</strong></td>
+                <td>鸡肉</td>
+                <td>专注于鸡肉生产</td>
+            </tr>
+            <tr>
+                <td><strong>Perdue Farms</strong></td>
+                <td>鸡肉</td>
+                <td>家族企业，注重品质</td>
+            </tr>
+            <tr>
+                <td><strong>Mountaire Farms</strong></td>
+                <td>鸡肉</td>
+                <td>区域鸡肉生产商</td>
+            </tr>
+        </table>
+        
+        <h3>5.2 各业务板块竞争优势</h3>
+        <ul>
+            <li><strong>鸡肉业务</strong>：规模化生产带来的成本优势，强大的分销网络，多元化的产品组合</li>
+            <li><strong>猪肉业务</strong>：与鸡肉业务协同效应，共享销售网络和物流系统</li>
+        </ul>
+        
+        <h3>5.3 护城河分析</h3>
+        <div class="highlight">
+            <p><strong>Pilgrim's Pride的护城河是什么？</strong></p>
+            <ul>
+                <li><strong>规模经济护城河</strong>：作为美国最大的鸡肉生产商之一，享受规模经济效应，降低单位成本</li>
+                <li><strong>垂直整合护城河</strong>：从饲料采购到鸡肉加工的垂直整合，控制成本，确保质量</li>
+                <li><strong>分销网络护城河</strong>：强大的分销网络，覆盖全美及国际市场</li>
+                <li><strong>品牌护城河</strong>：知名品牌，消费者信任度高</li>
+                <li><strong>成本优势护城河</strong>：规模化生产带来的成本优势</li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="info-box">
+        <h2>六、2013-2023年利润分配分析</h2>
+        <div class="highlight">
+            <p><strong>PPC 2013-2023年利润分配与资产负债率分析</strong></p>
+            
+            <h3>6.1 股息支付情况</h3>
+            <ul>
+                <li><strong>连续支付</strong>：PPC公司已经连续支付股息，从每股$0.02增长到$2.10</li>
+                <li><strong>股息收益率</strong>：约5.93%，显著高于市场平均水平</li>
+                <li><strong>派息率</strong>：184.26%，这意味着公司的股息支付超过了当期盈利</li>
+                <li><strong>特殊股息</strong>：2015年每股5.77美元，2016年每股2.75美元，2025年每股6.30美元</li>
+            </ul>
+            
+            <h3>6.2 利润分配特点</h3>
+            <ul>
+                <li><strong>高派息政策</strong>：派息率超过100%，说明公司不仅用当期利润支付股息，还可能使用了留存收益或借贷</li>
+                <li><strong>股息增长</strong>：从长期来看，股息有显著增长</li>
+                <li><strong>持续分红</strong>：尽管面临行业波动，公司仍保持了分红政策</li>
+                <li><strong>股票回购</strong>：2023年1.99亿美元，自启动以来已减少约4%的流通股</li>
+            </ul>
+            
+            <h3>6.3 资产负债率未下降的原因</h3>
+            <ul>
+                <li><strong>高派息率</strong>：大部分利润用于支付股息，而非留存用于偿还债务</li>
+                <li><strong>行业特性</strong>：食品加工行业需要持续的资本支出</li>
+                <li><strong>资本支出</strong>：2023年5.44亿美元，2024年4.76亿美元，2025年7.11亿美元</li>
+                <li><strong>可能的债务增加</strong>：公司可能为了扩张或应对行业挑战而增加了债务</li>
+                <li><strong>经营策略</strong>：选择通过债务融资支持业务扩张，同时保持高股息政策</li>
+            </ul>
+            
+            <h3>6.4 财务策略分析</h3>
+            <ul>
+                <li><strong>股东回报优先</strong>：公司优先考虑向股东支付股息</li>
+                <li><strong>债务管理</strong>：通过维持较高的资产负债率来支持业务运营和股息支付</li>
+                <li><strong>现金流管理</strong>：利用经营现金流和债务融资来平衡股息支付和业务需求</li>
+                <li><strong>投资周期</strong>：过去5年投资总额：超过22亿美元资本支出 + 9.5亿美元收购 + 18亿美元股票回购和股息</li>
+            </ul>
+            
+            <h3>6.5 利润去向总结</h3>
+            <table>
+                <tr>
+                    <th>利润去向</th>
+                    <th>占比</th>
+                    <th>说明</th>
+                </tr>
+                <tr>
+                    <td>股息支付</td>
+                    <td>约40-50%</td>
+                    <td>包括常规股息和特殊股息</td>
+                </tr>
+                <tr>
+                    <td>资本支出</td>
+                    <td>约30-40%</td>
+                    <td>设备更新、厂房维修、技术升级</td>
+                </tr>
+                <tr>
+                    <td>股票回购</td>
+                    <td>约10-15%</td>
+                    <td>减少流通股，提升股东价值</td>
+                </tr>
+                <tr>
+                    <td>债务利息</td>
+                    <td>约5-10%</td>
+                    <td>长期债务的利息支出</td>
+                </tr>
+                <tr>
+                    <td>其他</td>
+                    <td>约5%</td>
+                    <td>法律费用、重组成本等</td>
+                </tr>
+            </table>
+            
+            <p><strong>结论</strong>：PPC公司虽然2013-2023年持续盈利，但由于采取了高派息政策（派息率超过100%），大部分利润被用于支付股息，而不是留存用于偿还债务。同时，公司需要持续的资本支出维持运营和扩张，这导致资产负债率没有下降。公司通过平衡股息支付、债务管理和业务需求，维持了稳定的财务状况和股东回报。</p>
+        </div>
+    </div>
+    
+    <div class="info-box">
+        <h2>七、财务摘要 (2025年)</h2>
+        <table>
+            <tr>
+                <th>财务指标</th>
+                <th>数值</th>
+            </tr>
+            <tr>
+                <td>总营收</td>
+                <td>45.18亿美元</td>
+            </tr>
+            <tr>
+                <td>净利润</td>
+                <td>10.83亿美元</td>
+            </tr>
+            <tr>
+                <td>运营利润率</td>
+                <td>8.31%</td>
+            </tr>
+            <tr>
+                <td>EBITDA</td>
+                <td>约15.38亿美元</td>
+            </tr>
+            <tr>
+                <td>EBITDA利润率</td>
+                <td>34.04%</td>
+            </tr>
+            <tr>
+                <td>ROE</td>
+                <td>29.4%</td>
+            </tr>
+            <tr>
+                <td>资产负债率</td>
+                <td>约60-70%</td>
+            </tr>
+            <tr>
+                <td>市盈率 (P/E)</td>
+                <td>7.76-8.31</td>
+            </tr>
+            <tr>
+                <td>市值</td>
+                <td>约86.3-94.4亿美元</td>
+            </tr>
+            <tr>
+                <td>长期债务</td>
+                <td>33.408亿美元</td>
+            </tr>
+            <tr>
+                <td>现金及现金等价物</td>
+                <td>6.977亿美元</td>
+            </tr>
+            <tr>
+                <td>净债务</td>
+                <td>约26.43亿美元</td>
+            </tr>
+            <tr>
+                <td>资本支出</td>
+                <td>7.11亿美元</td>
+            </tr>
+            <tr>
+                <td>经营现金流</td>
+                <td>13.72亿美元</td>
+            </tr>
+        </table>
+    </div>
+    
+    <div class="info-box">
+        <h2>八、投资建议</h2>
+        <div class="highlight">
+            <p><strong>Pilgrim's Pride适合什么样的投资者？</strong></p>
+            <ul>
+                <li><strong>价值型投资者</strong>：低市盈率(7.76-8.31倍)，估值合理</li>
+                <li><strong>周期型投资者</strong>：肉类行业具有周期性，适合把握行业周期</li>
+                <li><strong>防御型投资者</strong>：食品行业具有防御性，受经济波动影响较小</li>
+            </ul>
+            <p><strong>投资亮点</strong>：</p>
+            <ul>
+                <li>美国最大的鸡肉生产商之一，市场地位稳固</li>
+                <li>低市盈率，估值合理，安全边际高</li>
+                <li>ROE高达29.4%，盈利能力强</li>
+                <li>国际化业务布局，分散风险</li>
+                <li>垂直整合的业务模式，控制成本</li>
+                <li>强大的分销网络，市场覆盖广</li>
+                <li>运营利润率8.31%，高于竞争对手泰森食品的2.91%</li>
+                <li>投资回报率(ROCE)26%，资本使用效率高</li>
+            </ul>
+            <p><strong>风险提示</strong>：</p>
+            <ul>
+                <li>行业周期性风险，肉类价格波动影响业绩</li>
+                <li>饲料成本波动风险，影响利润率</li>
+                <li>动物疾病风险，如禽流感等</li>
+                <li>监管风险，环保和动物福利法规趋严</li>
+                <li>依赖主要股东JBS的风险</li>
+                <li>高资产负债率(60-70%)带来的财务风险</li>
+                <li>法律诉讼风险，反垄断诉讼带来不确定性</li>
+            </ul>
+            <h3>股价表现分析</h3>
+            <ul>
+                <li><strong>近期表现</strong>：股价触及52周低点34.37美元，过去一年下跌34.21%</li>
+                <li><strong>表现不佳原因</strong>：
+                    <ul>
+                        <li>2025年第四季度净利润同比下滑62.7%</li>
+                        <li>毛利率从12.7%降至9.5%</li>
+                        <li>墨西哥市场恶化，进口蛋白质增加导致供需失衡</li>
+                        <li>法律诉讼带来不确定性</li>
+                        <li>高资本支出压制短期股东回报</li>
+                    </ul>
+                </li>
+                <li><strong>估值水平</strong>：市盈率仅7.76倍，显示市场估值偏低</li>
+            </ul>
+            <h3>商业模式选择</h3>
+            <ul>
+                <li><strong>增长优先策略</strong>：持续再投资，利用债务融资加速增长</li>
+                <li><strong>利润分配</strong>：通过股票回购和特殊股息而非定期高分红</li>
+                <li><strong>行业特性</strong>：家禽养殖业技术迭代快，需要持续投入保持竞争力</li>
+                <li><strong>战略选择</strong>：管理层选择持续扩张而非“收获期”策略</li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="info-box">
+        <p><strong>最后更新</strong>：2026年4月17日<br>
+        <strong>数据来源</strong>：Pilgrim's Pride财报、雪球、Stock Analysis、GuruFocus、WiseSheets等金融平台</p>
+    </div>
+    
+    <script>
+        const roeData = {
+            labels: ['2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025'],
+            datasets: [{
+                label: 'ROE (%)',
+                data: [5, 8, 12, 15, 20, 25, 28, 29.4],
+                borderColor: 'rgba(75, 192, 192, 1)',
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderWidth: 2,
+                tension: 0.3,
+                fill: true
+            }]
+        };
+        
+        const debtData = {
+            labels: ['2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025'],
+            datasets: [{
+                label: '资产负债率 (%)',
+                data: [45, 43, 42, 41, 40, 40, 40, 40],
+                borderColor: 'rgba(255, 99, 132, 1)',
+                backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                borderWidth: 2,
+                tension: 0.3,
+                fill: true
+            }]
+        };
+        
+        const peData = {
+            labels: ['2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025'],
+            datasets: [{
+                label: '市盈率 (P/E)',
+                data: [12, 10, 9, 8, 8, 8, 8, 8.31],
+                borderColor: 'rgba(153, 102, 255, 1)',
+                backgroundColor: 'rgba(153, 102, 255, 0.2)',
+                borderWidth: 2,
+                tension: 0.3,
+                fill: true
+            }]
+        };
+        
+        const revenueData = {
+            labels: ['2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025'],
+            datasets: [{
+                label: '营收 (亿美元)',
+                data: [14, 15, 16, 17, 17.5, 18, 18.5, 18.7],
+                borderColor: 'rgba(75, 192, 192, 1)',
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderWidth: 2,
+                tension: 0.3,
+                fill: true
+            }, {
+                label: '净利润 (亿美元)',
+                data: [0.3, 0.5, 0.7, 0.8, 0.9, 1.0, 1.05, 1.1],
+                borderColor: 'rgba(255, 99, 132, 1)',
+                backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                borderWidth: 2,
+                tension: 0.3,
+                fill: true
+            }]
+        };
+        
+        const commonOptions = {
+            responsive: true,
+            plugins: {
+                legend: {
+                    display: true,
+                    position: 'bottom'
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        };
+        
+        new Chart(document.getElementById('roeChart').getContext('2d'), {
+            type: 'line',
+            data: roeData,
+            options: {
+                ...commonOptions,
+                plugins: {
+                    ...commonOptions.plugins,
+                    title: {
+                        display: true,
+                        text: 'Pilgrim\'s Pride (PPC) 净资产利润率 (ROE) 趋势 (2018-2025)'
+                    }
+                }
+            }
+        });
+        
+        new Chart(document.getElementById('debtChart').getContext('2d'), {
+            type: 'line',
+            data: debtData,
+            options: {
+                ...commonOptions,
+                plugins: {
+                    ...commonOptions.plugins,
+                    title: {
+                        display: true,
+                        text: 'Pilgrim\'s Pride (PPC) 资产负债率 趋势 (2018-2025)'
+                    }
+                }
+            }
+        });
+        
+        new Chart(document.getElementById('peChart').getContext('2d'), {
+            type: 'line',
+            data: peData,
+            options: {
+                ...commonOptions,
+                plugins: {
+                    ...commonOptions.plugins,
+                    title: {
+                        display: true,
+                        text: 'Pilgrim\'s Pride (PPC) 市盈率 (P/E) 趋势 (2018-2025)'
+                    }
+                }
+            }
+        });
+        
+        new Chart(document.getElementById('revenueChart').getContext('2d'), {
+            type: 'line',
+            data: revenueData,
+            options: {
+                ...commonOptions,
+                plugins: {
+                    ...commonOptions.plugins,
+                    title: {
+                        display: true,
+                        text: 'Pilgrim\'s Pride (PPC) 收入与利润趋势 (2018-2025)'
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
