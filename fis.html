@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FIS (Fidelity National Information Services) 详细分析</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f5f5f5;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        h2 {
+            color: #4CAF50;
+            margin-top: 30px;
+        }
+        h3 {
+            color: #333;
+            margin-top: 20px;
+        }
+        .info-box {
+            background-color: white;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border-radius: 5px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+        a {
+            color: #4CAF50;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .highlight {
+            background-color: #e8f5e9;
+            padding: 15px;
+            border-left: 4px solid #4CAF50;
+            margin: 15px 0;
+        }
+        .moat-item {
+            background-color: #fff3e0;
+            padding: 15px;
+            border-left: 4px solid #ff9800;
+            margin: 15px 0;
+        }
+        .negative {
+            color: red;
+        }
+        .positive {
+            color: green;
+        }
+        .chart-container {
+            position: relative;
+            height: 400px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <h1>FIS (Fidelity National Information Services) 详细分析</h1>
+    <p><a href="index.html">返回首页</a></p>
+
+    <div class="info-box">
+        <h2>一、公司基本信息</h2>
+        <table>
+            <tr><th>项目</th><th>详情</th></tr>
+            <tr><td>公司全称</td><td>Fidelity National Information Services, Inc.</td></tr>
+            <tr><td>股票代码</td><td>FIS</td></tr>
+            <tr><td>上市交易所</td><td>纽约证券交易所（NYSE）</td></tr>
+            <tr><td>成立时间</td><td>1968年</td></tr>
+            <tr><td>总部</td><td>美国佛罗里达州杰克逊维尔（347 Riverside Avenue, Jacksonville, FL 32202）</td></tr>
+            <tr><td>当前市值（2026年5月）</td><td>约$219亿美元</td></tr>
+            <tr><td>市值（美元）</td><td>~$21.9B USD</td></tr>
+            <tr><td>最新收盘价（2026年5月12日）</td><td>约$42.60</td></tr>
+            <tr><td>流通股数</td><td>约5.14亿股</td></tr>
+            <tr><td>CEO</td><td>Stephanie Ferris</td></tr>
+            <tr><td>CFO</td><td>James Kehoe</td></tr>
+            <tr><td>行业</td><td>金融科技/信息技术服务</td></tr>
+            <tr><td>IPO日期</td><td>2001年6月20日</td></tr>
+            <tr><td>标普500成分股</td><td>是</td></tr>
+            <tr><td>财富500强</td><td>是</td></tr>
+        </table>
+    </div>
+
+    <div class="info-box">
+        <h2>二、业务分析</h2>
+
+        <h3>2.1 公司是做什么的？</h3>
+        <p>
+            用最简单的话说：FIS是一家<strong>给银行和金融机构提供"后台操作系统"的公司</strong>。就像餐厅需要收银系统、库存管理系统一样，银行也需要核心处理系统来管理账户、处理交易、发放贷款、管理风险。FIS就是那个给银行提供这些"基础设施"的公司。
+        </p>
+        <p>
+            你每次用银行卡刷卡、ATM取款、手机银行转账，背后很可能就有FIS的系统在运转。全球超过20,000家金融机构使用FIS的技术，每年处理数万亿美元的交易。可以说，<strong>没有FIS这样的公司，现代银行业就无法运转</strong>。
+        </p>
+
+        <h3>2.2 业务结构</h3>
+        <p>2026年Q1（含Total Issuing Solutions收购后），FIS的业务分为两大板块：</p>
+
+        <table>
+            <tr><th>业务板块</th><th>2026年Q1收入</th><th>占总收入比例</th><th>同比增长</th><th>核心功能</th></tr>
+            <tr>
+                <td><strong>Banking Solutions（银行解决方案）</strong></td>
+                <td>$23.74亿</td>
+                <td>74.2%</td>
+                <td class="positive">+45%（调整后+44%）</td>
+                <td>核心银行处理、借记卡/信用卡发卡处理、支付处理、风险管理</td>
+            </tr>
+            <tr>
+                <td><strong>Capital Market Solutions（资本市场解决方案）</strong></td>
+                <td>$8.23亿</td>
+                <td>25.8%</td>
+                <td class="positive">+5%（调整后+3%）</td>
+                <td>交易处理、清算结算、资产管理、合规与监管报告</td>
+            </tr>
+        </table>
+
+        <div class="highlight">
+            <strong>重要说明：Worldpay的剥离与Total Issuing Solutions的收购</strong><br><br>
+            FIS的业务结构在2024-2026年经历了重大变革：<br>
+            <ul>
+                <li><strong>2019年</strong>：FIS以$430亿收购Worldpay，成为全球最大的支付处理公司之一</li>
+                <li><strong>2024年2月</strong>：FIS将Worldpay 55%的股权以$185亿估值出售给私募基金GTCR，保留45%股权，获得超过$120亿现金</li>
+                <li><strong>2025年4月</strong>：FIS宣布将剩余45% Worldpay股权以$66亿出售给Global Payments（GPN），同时以$135亿收购GPN的Issuer Solutions（发卡处理）业务</li>
+                <li><strong>2026年1月9日</strong>：上述交易完成，FIS正式退出Worldpay，获得Total Issuing Solutions业务</li>
+            </ul>
+            这意味着FIS从"银行系统+商户支付"双轮驱动，转变为<strong>纯粹的"金融机构技术供应商"</strong>——专注于为银行和金融机构提供核心系统、发卡处理和资本市场解决方案。
+        </div>
+
+        <h3>2.3 收入按地域分布</h3>
+        <table>
+            <tr><th>地区</th><th>占总收入比例（估计）</th><th>说明</th></tr>
+            <tr><td>北美</td><td>~65%</td><td>最大市场，美国银行和信用合作社是核心客户</td></tr>
+            <tr><td>欧洲、中东和非洲（EMEA）</td><td>~20%</td><td>通过收购扩展，包括Total Issuing Solutions的75国客户</td></tr>
+            <tr><td>亚太地区</td><td>~10%</td><td>增长最快的市场</td></tr>
+            <tr><td>拉丁美洲</td><td>~5%</td><td>新兴市场</td></tr>
+        </table>
+
+        <h3>2.4 商业模式</h3>
+        <p>FIS的商业模式核心是<strong>"订阅+交易量"双轮驱动</strong>：</p>
+        <ul>
+            <li><strong>经常性收入（Recurring Revenue）</strong>：占收入约85%以上。银行一旦采用FIS的核心系统，就像"换心脏"一样难以更换，每年持续支付许可费和维护费</li>
+            <li><strong>交易量收入</strong>：按交易笔数收费——每处理一笔银行卡交易、每清算一笔证券交易，FIS都收取小额费用</li>
+            <li><strong>专业服务</strong>：系统实施、定制开发、咨询等，占收入较小比例</li>
+        </ul>
+        <p>
+            这种模式的关键优势是<strong>收入高度可预测</strong>：银行不会每年换核心系统，交易量随经济增长自然增加。巴菲特最喜欢的就是这种"客户离不开、收入可预测"的生意。
+        </p>
+
+        <h3>2.5 近年财务数据</h3>
+        <table>
+            <tr><th>指标</th><th>2025年</th><th>2024年</th><th>2023年</th><th>2022年</th></tr>
+            <tr><td>总收入</td><td>$106.77亿</td><td>$101.27亿</td><td>$98.31亿</td><td>$97.2亿（含Worldpay）</td></tr>
+            <tr><td>调整后收入增长</td><td>+5%</td><td>+3%</td><td>-</td><td>-</td></tr>
+            <tr><td>调整后EBITDA</td><td>~$41亿</td><td>~$41亿</td><td>~$39亿</td><td>-</td></tr>
+            <tr><td>调整后EPS</td><td>$5.75</td><td>$5.24</td><td>$5.12</td><td>$5.88</td></tr>
+            <tr><td>GAAP净利润</td><td>$3.82亿</td><td>$14.50亿</td><td>-$64.56亿</td><td>-$167.52亿</td></tr>
+            <tr><td>经营现金流</td><td>$26亿</td><td>~$24亿</td><td>~$23亿</td><td>-</td></tr>
+            <tr><td>自由现金流</td><td>~$20亿</td><td>~$18亿</td><td>~$20亿</td><td>-</td></tr>
+        </table>
+    </div>
+
+    <div class="info-box">
+        <h2>三、历史财务指标</h2>
+
+        <h3>3.1 净资产收益率（ROE）</h3>
+        <table>
+            <tr><th>年份</th><th>ROE</th><th>说明</th></tr>
+            <tr><td>2025</td><td>2.75%</td><td>受Worldpay出售相关非现金费用影响</td></tr>
+            <tr><td>2024</td><td>9.24%</td><td>从巨亏中恢复</td></tr>
+            <tr><td>2023</td><td class="negative">-34.93%</td><td>Worldpay商誉减值$167亿</td></tr>
+            <tr><td>2022</td><td class="negative">-61.55%</td><td>Worldpay商誉减值</td></tr>
+            <tr><td>2021</td><td>0.88%</td><td>含Worldpay全年业绩</td></tr>
+            <tr><td>2020</td><td>0.32%</td><td>含Worldpay全年业绩</td></tr>
+            <tr><td>2019</td><td>0.60%</td><td>Worldpay收购完成（7月）</td></tr>
+            <tr><td>2018</td><td>8.28%</td><td>收购前正常水平</td></tr>
+            <tr><td>2017</td><td>12.05%</td><td>收购前正常水平</td></tr>
+            <tr><td>2016</td><td>5.77%</td><td></td></tr>
+            <tr><td>2015</td><td>6.71%</td><td></td></tr>
+            <tr><td>2014</td><td>10.15%</td><td></td></tr>
+            <tr><td>2013</td><td>7.32%</td><td></td></tr>
+            <tr><td>2012</td><td>6.79%</td><td></td></tr>
+            <tr><td>2011</td><td>7.06%</td><td></td></tr>
+            <tr><td>2010</td><td>6.32%</td><td></td></tr>
+            <tr><td>2009</td><td>1.27%</td><td>金融危机影响</td></tr>
+            <tr><td>2008</td><td>6.08%</td><td></td></tr>
+            <tr><td>2007</td><td>14.79%</td><td>历史高点</td></tr>
+        </table>
+        <div class="highlight">
+            <strong>ROE分析：</strong>FIS的GAAP ROE在2019年收购Worldpay后急剧恶化，2022-2023年因Worldpay商誉减值（合计超过$300亿）出现巨额负值。但这是<strong>非现金会计费用</strong>，不影响公司实际经营能力。剔除商誉减值后，FIS的"真实"ROE更接近8-12%的水平。2024年ROE恢复至9.24%，2025年因Worldpay出售相关费用降至2.75%。
+        </div>
+
+        <h3>3.2 资产负债率（Debt-to-Asset Ratio）</h3>
+        <table>
+            <tr><th>年份</th><th>资产负债率</th><th>债务/股本比</th><th>说明</th></tr>
+            <tr><td>2025</td><td>~58%</td><td>0.94</td><td>Total Issuing Solutions收购新增$80亿债务</td></tr>
+            <tr><td>2024</td><td>~43%</td><td>0.74</td><td>Worldpay出售后大幅还债</td></tr>
+            <tr><td>2023</td><td>~50%</td><td>1.01</td><td>负商誉导致股东权益大幅减少</td></tr>
+            <tr><td>2022</td><td>~60%</td><td>0.75</td><td>含Worldpay</td></tr>
+            <tr><td>2021</td><td>~56%</td><td>0.44</td><td>含Worldpay</td></tr>
+            <tr><td>2020</td><td>~54%</td><td>0.42</td><td>含Worldpay</td></tr>
+            <tr><td>2019</td><td>~52%</td><td>0.40</td><td>Worldpay收购大幅增加债务</td></tr>
+            <tr><td>2018</td><td>~40%</td><td>0.30</td><td>收购前</td></tr>
+            <tr><td>2017</td><td>~38%</td><td>0.25</td><td></td></tr>
+        </table>
+
+        <h3>3.3 产权比率（Assets/Equity）</h3>
+        <table>
+            <tr><th>年份</th><th>产权比率</th><th>说明</th></tr>
+            <tr><td>2025</td><td>~2.4x</td><td>收购Total Issuing Solutions后杠杆上升</td></tr>
+            <tr><td>2024</td><td>~1.7x</td><td>还债后杠杆下降</td></tr>
+            <tr><td>2023</td><td>~2.0x</td><td>商誉减值导致权益减少</td></tr>
+            <tr><td>2022</td><td>~2.5x</td><td></td></tr>
+            <tr><td>2021</td><td>~1.8x</td><td></td></tr>
+            <tr><td>2018</td><td>~1.7x</td><td></td></tr>
+        </table>
+
+        <h3>3.4 市盈率（PE Ratio）</h3>
+        <table>
+            <tr><th>年份</th><th>GAAP PE</th><th>调整后PE</th><th>说明</th></tr>
+            <tr><td>2025</td><td>65.0x</td><td>~11.7x</td><td>GAAP PE因净利润低而偏高</td></tr>
+            <tr><td>2024</td><td>26.1x</td><td>~15.3x</td><td></td></tr>
+            <tr><td>2023</td><td class="negative">N/A（亏损）</td><td>~11.7x</td><td>商誉减值导致亏损</td></tr>
+            <tr><td>2022</td><td class="negative">N/A（亏损）</td><td>~11.4x</td><td>商誉减值导致亏损</td></tr>
+            <tr><td>2021</td><td>140.2x</td><td>~16.8x</td><td></td></tr>
+            <tr><td>2020</td><td>532.9x</td><td>~22.1x</td><td></td></tr>
+            <tr><td>2019</td><td>220.3x</td><td>~20.0x</td><td>Worldpay收购影响</td></tr>
+            <tr><td>2018</td><td>40.9x</td><td>~20.3x</td><td></td></tr>
+            <tr><td>2017</td><td>25.7x</td><td>~19.7x</td><td></td></tr>
+            <tr><td>2016</td><td>45.7x</td><td>~22.4x</td><td></td></tr>
+            <tr><td>2015</td><td>27.0x</td><td>~21.1x</td><td></td></tr>
+            <tr><td>2014</td><td>26.2x</td><td>~18.4x</td><td></td></tr>
+            <tr><td>2013</td><td>30.4x</td><td>~16.6x</td><td></td></tr>
+            <tr><td>2012</td><td>23.5x</td><td>~13.0x</td><td></td></tr>
+            <tr><td>2011</td><td>18.3x</td><td>-</td><td></td></tr>
+            <tr><td>2010</td><td>23.3x</td><td>-</td><td></td></tr>
+        </table>
+        <div class="highlight">
+            <strong>PE分析：</strong>FIS的GAAP PE在2019-2023年间因Worldpay相关费用严重失真。调整后PE更能反映真实估值，历史区间在11-22倍。当前（2026年5月）FIS股价约$42.6，对应调整后EPS（TTM约$5.12）的PE约8.3倍，处于<strong>历史最低水平</strong>。这反映了市场对Total Issuing Solutions收购后杠杆上升的担忧，以及2025年下半年以来股价的大幅下跌（从$83跌至$42，跌幅约49%）。
+        </div>
+
+        <div class="chart-container">
+            <canvas id="roeChart"></canvas>
+        </div>
+        <div class="chart-container">
+            <canvas id="peChart"></canvas>
+        </div>
+    </div>
+
+    <div class="info-box">
+        <h2>四、竞争分析</h2>
+
+        <h3>4.1 各业务板块主要竞争对手</h3>
+
+        <h4>Banking Solutions（银行解决方案）</h4>
+        <table>
+            <tr><th>竞争对手</th><th>市值</th><th>年收入</th><th>市场份额/定位</th><th>核心优势</th></tr>
+            <tr>
+                <td><strong>Fiserv (FI)</strong></td>
+                <td>~$710亿</td>
+                <td>~$162亿</td>
+                <td>美国银行业核心系统第一/第二名</td>
+                <td>规模最大，Clover POS生态，First Data收购后支付能力增强</td>
+            </tr>
+            <tr>
+                <td><strong>Jack Henry & Associates (JKHY)</strong></td>
+                <td>~$143亿</td>
+                <td>~$18亿</td>
+                <td>社区银行和信用合作社市场领导者</td>
+                <td>深耕中小银行，客户粘性极高，Symitar系统</td>
+            </tr>
+            <tr>
+                <td><strong>Temenos</strong></td>
+                <td>~$50亿</td>
+                <td>~$10亿</td>
+                <td>全球核心银行系统领导者（3000+金融机构）</td>
+                <td>欧洲和新兴市场强势，云原生架构</td>
+            </tr>
+            <tr>
+                <td><strong>Finastra</strong></td>
+                <td>私有</td>
+                <td>~$20亿</td>
+                <td>全球银行软件重要玩家</td>
+                <td>Misys和D+H合并，产品线广泛</td>
+            </tr>
+            <tr>
+                <td><strong>Oracle (ORCL)</strong></td>
+                <td>~$4000亿</td>
+                <td>~$530亿</td>
+                <td>企业级银行解决方案</td>
+                <td>Flexcube核心银行系统，云基础设施</td>
+            </tr>
+        </table>
+
+        <h4>Capital Market Solutions（资本市场解决方案）</h4>
+        <table>
+            <tr><th>竞争对手</th><th>核心优势</th></tr>
+            <tr><td><strong>Broadridge (BR)</strong></td><td>证券清算和代理投票市场领导者</td></tr>
+            <tr><td><strong>SS&C Technologies (SSNC)</strong></td><td>另类投资和基金管理软件领导者</td></tr>
+            <tr><td><strong>Murex</strong></td><td>衍生品交易和风险管理全球领先</td></tr>
+            <tr><td><strong>Addepar</strong></td><td>财富管理数据聚合平台（新兴）</td></tr>
+        </table>
+
+        <h4>发卡处理（Total Issuing Solutions新增）</h4>
+        <table>
+            <tr><th>竞争对手</th><th>核心优势</th></tr>
+            <tr><td><strong>Fiserv (FI)</strong></td><td>借记卡和信用卡发卡处理双强</td></tr>
+            <tr><td><strong>Global Payments (GPN)</strong></td><td>已将Issuer Solutions出售给FIS，不再直接竞争</td></tr>
+            <tr><td><strong>Marqeta (MQ)</strong></td><td>现代发卡平台，面向金融科技和新兴企业</td></tr>
+            <tr><td><strong>Stripe</strong></td><td>互联网发卡和支付基础设施</td></tr>
+        </table>
+
+        <h3>4.2 FIS的竞争护城河</h3>
+
+        <div class="moat-item">
+            <strong>1. 转换成本（Switching Costs）——最核心的护城河</strong><br>
+            银行更换核心处理系统就像"换心脏"——风险极高、成本巨大、耗时极长。<br>
+            <ul>
+                <li><strong>平均实施时间</strong>：18-24个月</li>
+                <li><strong>迁移费用</strong>：$350万-$720万</li>
+                <li><strong>潜在收入中断</strong>：占年度IT预算的5-8%</li>
+                <li><strong>运营风险</strong>：迁移过程中可能导致交易处理中断、客户数据丢失</li>
+            </ul>
+            巴菲特最看重的就是转换成本。一旦银行选择了FIS，几乎不可能更换——这不是因为FIS的产品最好，而是因为<strong>换的成本太高、风险太大</strong>。这创造了极强的客户粘性和收入可预测性。
+        </div>
+
+        <div class="moat-item">
+            <strong>2. 规模优势（Scale Advantages）</strong><br>
+            FIS服务全球超过20,000家金融机构，年处理超过400亿笔交易（含Total Issuing Solutions）。规模带来的优势包括：<br>
+            <ul>
+                <li><strong>数据网络效应</strong>：处理越多交易，越能识别欺诈模式、优化风控模型</li>
+                <li><strong>成本分摊</strong>：研发投入可以分摊到更大的客户基础上</li>
+                <li><strong>合规优势</strong>：满足全球监管要求的能力，小公司难以复制</li>
+            </ul>
+        </div>
+
+        <div class="moat-item">
+            <strong>3. 客户关系深度</strong><br>
+            FIS服务全球50家最大银行中的大多数，前10大客户占年收入约45%。这些关系通常持续10年以上，FIS深度嵌入客户的运营流程，形成"你中有我、我中有你"的共生关系。
+        </div>
+
+        <div class="moat-item">
+            <strong>4. 产品组合广度</strong><br>
+            收购Total Issuing Solutions后，FIS成为<strong>唯一同时提供借记卡和信用卡发卡处理</strong>的供应商。加上核心银行系统、资本市场解决方案，FIS可以提供"一站式"金融服务技术，降低客户的多供应商管理成本。
+        </div>
+
+        <div class="moat-item">
+            <strong>5. 品牌与信任</strong><br>
+            银行选择技术供应商时，"不出错"比"最先进"更重要。FIS作为行业老兵（1968年成立），在银行圈有深厚的信任基础。银行CIO更愿意选择"大家都在用"的FIS，而不是冒险选择新创公司。
+        </div>
+
+        <h3>4.3 护城河的可持续性评估</h3>
+        <div class="highlight">
+            <strong>护城河强度：强（7/10）</strong><br><br>
+            FIS的转换成本护城河非常坚固，短期内不太可能被颠覆。但需要注意以下风险：<br>
+            <ul>
+                <li><strong>云原生竞争</strong>：Temenos、Mambu等云原生核心银行系统正在吸引新成立的数字银行和中小银行，这些客户可能永远不会选择传统供应商</li>
+                <li><strong>大银行自建系统</strong>：摩根大通等超大型银行有能力和意愿自建核心系统，减少对FIS的依赖</li>
+                <li><strong>技术债务</strong>：FIS的部分核心系统基于老旧架构，现代化改造需要大量投资</li>
+                <li><strong>AI颠覆风险</strong>：AI可能改变银行运营方式，降低对传统核心系统的依赖</li>
+            </ul>
+            芒格会说："转换成本是很好的护城河，但不要以为它永远存在。技术变革可以绕过任何护城河。"
+        </div>
+    </div>
+
+    <div class="info-box">
+        <h2>五、利润分配分析（2015-2025）</h2>
+
+        <h3>5.1 过去十年利润分配明细</h3>
+        <table>
+            <tr>
+                <th>年度</th>
+                <th>股票回购</th>
+                <th>派息</th>
+                <th>资本支出</th>
+                <th>重大收购/剥离</th>
+                <th>股东回报总计</th>
+            </tr>
+            <tr>
+                <td>2025</td>
+                <td>$13亿</td>
+                <td>$2.1亿</td>
+                <td>~$3亿</td>
+                <td>出售Worldpay 45%股权（$66亿），收购Total Issuing Solutions（$135亿）</td>
+                <td>$15.1亿</td>
+            </tr>
+            <tr>
+                <td>2024</td>
+                <td>$30亿+</td>
+                <td>$2.2亿</td>
+                <td>~$3亿</td>
+                <td>出售Worldpay 55%股权（获$120亿+现金）</td>
+                <td>$32.2亿+</td>
+            </tr>
+            <tr>
+                <td>2023</td>
+                <td>$10亿</td>
+                <td>$2.5亿</td>
+                <td>~$3亿</td>
+                <td>-</td>
+                <td>$12.5亿</td>
+            </tr>
+            <tr>
+                <td>2022</td>
+                <td>$15亿</td>
+                <td>$2.8亿</td>
+                <td>~$5亿</td>
+                <td>-</td>
+                <td>$17.8亿</td>
+            </tr>
+            <tr>
+                <td>2021</td>
+                <td>$5亿</td>
+                <td>$2.3亿</td>
+                <td>~$5亿</td>
+                <td>-</td>
+                <td>$7.3亿</td>
+            </tr>
+            <tr>
+                <td>2020</td>
+                <td>极少</td>
+                <td>$2.0亿</td>
+                <td>~$5亿</td>
+                <td>-</td>
+                <td>$2亿+</td>
+            </tr>
+            <tr>
+                <td>2019</td>
+                <td>$15亿</td>
+                <td>$1.4亿</td>
+                <td>~$4亿</td>
+                <td>收购Worldpay（$430亿）</td>
+                <td>$16.4亿</td>
+            </tr>
+            <tr>
+                <td>2018</td>
+                <td>$10亿</td>
+                <td>$1.3亿</td>
+                <td>~$3亿</td>
+                <td>-</td>
+                <td>$11.3亿</td>
+            </tr>
+            <tr>
+                <td>2017</td>
+                <td>$8亿</td>
+                <td>$1.2亿</td>
+                <td>~$3亿</td>
+                <td>-</td>
+                <td>$9.2亿</td>
+            </tr>
+            <tr>
+                <td>2016</td>
+                <td>$6亿</td>
+                <td>$1.0亿</td>
+                <td>~$3亿</td>
+                <td>-</td>
+                <td>$7亿</td>
+            </tr>
+            <tr>
+                <td>2015</td>
+                <td>$5亿</td>
+                <td>$1.0亿</td>
+                <td>~$3亿</td>
+                <td>-</td>
+                <td>$6亿</td>
+            </tr>
+        </table>
+
+        <h3>5.2 利润分配比例分析</h3>
+        <div class="highlight">
+            <strong>资本配置评估：中等偏上（6.5/10）</strong><br><br>
+
+            <strong>正面：</strong><br>
+            <ul>
+                <li><strong>果断纠错</strong>：CEO Stephanie Ferris在2023年上任后，迅速承认Worldpay收购失败，果断剥离并回收大量现金。这需要极大的勇气——承认前任的$430亿收购是错误并不容易</li>
+                <li><strong>积极回购</strong>：2024年回购超过$30亿股票，2025年回购$13亿，利用Worldpay出售所得现金回馈股东</li>
+                <li><strong>战略再投资</strong>：收购Total Issuing Solutions虽然增加杠杆，但将非现金产生的Worldpay少数股权替换为高利润率的经常性收入和现金流</li>
+            </ul>
+
+            <strong>负面：</strong><br>
+            <ul>
+                <li><strong>Worldpay收购是灾难性的资本配置</strong>：2019年以$430亿收购Worldpay，2024年仅以$185亿估值出售55%股权，2025年以$146亿估值出售剩余45%股权。总回收约$186亿，<strong>亏损超过$240亿</strong>。这是美股历史上最糟糕的大型收购之一</li>
+                <li><strong>收购Total Issuing Solutions增加杠杆</strong>：新增$80亿债务，pro forma杠杆率约3.4x EBITDA。虽然FIS计划在3年内去杠杆至2.5x，但这限制了回购和投资能力</li>
+                <li><strong>股息增长缓慢</strong>：年股息率约2.4%，派息率较低，但增长速度不快</li>
+            </ul>
+
+            <strong>芒格会说：</strong>"Worldpay收购是典型的'帝国建造'——管理层为了规模而收购，忽视了价格和整合难度。Ferris的纠错行动值得赞赏，但投资者为前任管理层的错误已经付出了沉重代价。关键看Total Issuing Solutions能否证明这次收购不同于Worldpay。"
+        </div>
+    </div>
+
+    <div class="info-box">
+        <h2>六、价值投资评估</h2>
+
+        <h3>6.1 巴菲特/芒格式评估</h3>
+        <div class="highlight">
+            <strong>总体评分：6/10（观望为主，等待确定性提升）</strong><br><br>
+
+            <strong>1. 业务是否可理解？——是</strong><br>
+            FIS的商业模式很简单：给银行提供"后台操作系统"，按年收费、按交易量收费。巴菲特能理解这种生意——就像给公路收过路费一样。<br><br>
+
+            <strong>2. 是否有可持续的竞争优势？——有，但需警惕</strong><br>
+            转换成本护城河很强，但云原生竞争对手正在侵蚀边缘市场。FIS需要证明自己能在AI时代保持相关性。<br><br>
+
+            <strong>3. 管理层是否诚实能干？——有改善迹象</strong><br>
+            Stephanie Ferris果断纠错Worldpay，展现了"做正确的事"的勇气。但Total Issuing Solutions收购是否明智，需要2-3年才能验证。新任CFO James Kehoe需要证明去杠杆计划的可执行性。<br><br>
+
+            <strong>4. 价格是否有安全边际？——可能正在出现</strong><br>
+            当前股价约$42.6，调整后PE约8.3倍，处于历史最低水平。如果FIS能实现2026年指引（调整后EPS增长8-10%，自由现金流增长27-33%），当前估值有吸引力。但风险也很明显：<br>
+            <ul>
+                <li>杠杆率高（3.4x EBITDA），如果经济衰退导致客户缩减IT支出，偿债压力会很大</li>
+                <li>Total Issuing Solutions整合风险——这毕竟是$135亿的大收购</li>
+                <li>2025年下半年股价暴跌49%，可能反映了市场对某些未公开风险的定价</li>
+            </ul>
+        </div>
+
+        <h3>6.2 关键风险</h3>
+        <table>
+            <tr><th>风险类别</th><th>具体风险</th><th>影响程度</th></tr>
+            <tr><td>杠杆风险</td><td>Total Issuing Solutions收购新增$80亿债务，经济衰退可能导致偿债困难</td><td style="color: red;"><strong>高</strong></td></tr>
+            <tr><td>整合风险</td><td>$135亿收购的整合复杂度，可能影响利润率和客户留存</td><td style="color: red;"><strong>高</strong></td></tr>
+            <tr><td>技术颠覆</td><td>云原生核心银行系统可能侵蚀FIS的市场份额</td><td style="color: orange;">中</td></tr>
+            <tr><td>客户集中</td><td>前10大客户占收入约45%，大客户流失影响显著</td><td style="color: orange;">中</td></tr>
+            <tr><td>监管风险</td><td>全球金融监管变化可能增加合规成本</td><td style="color: orange;">中</td></tr>
+            <tr><td>宏观风险</td><td>经济衰退导致银行削减IT预算</td><td style="color: orange;">中</td></tr>
+        </table>
+
+        <h3>6.3 估值参考</h3>
+        <table>
+            <tr><th>估值方法</th><th>假设</th><th>估算价值</th></tr>
+            <tr><td>调整后PE（12x）</td><td>2026年调整后EPS ~$6.2</td><td>~$74</td></tr>
+            <tr><td>调整后PE（10x）</td><td>保守估值</td><td>~$62</td></tr>
+            <tr><td>自由现金流收益率</td><td>2026年FCF ~$25亿，市值$219亿</td><td>~11.4%</td></tr>
+            <tr><td>EV/EBITDA（12x）</td><td>2026年调整后EBITDA ~$53亿</td><td>隐含股价~$55</td></tr>
+        </table>
+        <div class="highlight">
+            <strong>结论：</strong>当前股价$42.6对应调整后PE约8.3倍，自由现金流收益率约11.4%，处于历史低位。如果FIS能成功整合Total Issuing Solutions并实现去杠杆目标，当前价格有显著的安全边际。但<strong>在杠杆率降至2.5x之前，建议谨慎</strong>——巴菲特说过："不要用借来的钱去买一个还在还债的公司。"
+        </div>
+    </div>
+
+    <div class="info-box">
+        <h2>七、数据来源</h2>
+        <ul>
+            <li>FIS 2025年10-K年报（SEC EDGAR）</li>
+            <li>FIS 2026年Q1财报（2026年5月8日发布）</li>
+            <li>FIS 2025年全年财报（2026年2月24日发布）</li>
+            <li>Macrotrends.net - FIS历史ROE数据</li>
+            <li>StockAnalysis.com - FIS财务比率</li>
+            <li>MarketCap.ru - FIS历史PE数据</li>
+            <li>HistoricalPERatio.com - FIS季度PE数据</li>
+            <li>ValueInvesting.io - FIS ROE历史数据</li>
+            <li>同花顺金融网 - FIS分红和股本数据</li>
+            <li>FIS官方新闻稿 - Worldpay剥离和Total Issuing Solutions收购</li>
+            <li>Fortune - FIS/Global Payments/Worldpay交易报道</li>
+        </ul>
+    </div>
+
+    <div class="info-box">
+        <p><strong>最后更新</strong>：2026年5月12日<br>
+        <strong>数据来源</strong>：FIS官方财报、SEC EDGAR、Macrotrends、StockAnalysis等金融平台</p>
+    </div>
+
+    <script>
+        const commonOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                y: {
+                    beginAtZero: false
+                }
+            }
+        };
+
+        const roeData = {
+            labels: ['2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025'],
+            datasets: [{
+                label: 'ROE (%)',
+                data: [14.79, 6.08, 1.27, 6.32, 7.06, 6.79, 7.32, 10.15, 6.71, 5.77, 12.05, 8.28, 0.60, 0.32, 0.88, -61.55, -34.93, 9.24, 2.75],
+                borderColor: '#4CAF50',
+                backgroundColor: 'rgba(76, 175, 80, 0.1)',
+                fill: true,
+                tension: 0.3
+            }]
+        };
+
+        new Chart(document.getElementById('roeChart'), {
+            type: 'line',
+            data: roeData,
+            options: {
+                ...commonOptions,
+                plugins: {
+                    ...commonOptions.plugins,
+                    title: {
+                        display: true,
+                        text: 'FIS 净资产收益率 (ROE) 2007-2025'
+                    }
+                }
+            }
+        });
+
+        const peData = {
+            labels: ['2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025'],
+            datasets: [{
+                label: '调整后PE (x)',
+                data: [null, null, 13.0, 16.6, 18.4, 21.1, 22.4, 19.7, 20.3, 20.0, 22.1, 16.8, 11.4, 11.7, 15.3, 11.7],
+                borderColor: '#2196F3',
+                backgroundColor: 'rgba(33, 150, 243, 0.1)',
+                fill: true,
+                tension: 0.3
+            }]
+        };
+
+        new Chart(document.getElementById('peChart'), {
+            type: 'line',
+            data: peData,
+            options: {
+                ...commonOptions,
+                plugins: {
+                    ...commonOptions.plugins,
+                    title: {
+                        display: true,
+                        text: 'FIS 调整后市盈率 (PE) 2012-2025'
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
