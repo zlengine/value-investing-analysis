@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PLDT (PHI) 详细分析</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f5f5f5;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        h2 {
+            color: #4CAF50;
+            margin-top: 30px;
+        }
+        h3 {
+            color: #333;
+            margin-top: 20px;
+        }
+        .info-box {
+            background-color: white;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border-radius: 5px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+        a {
+            color: #4CAF50;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .back-link {
+            display: inline-block;
+            margin: 20px 0;
+            padding: 10px 15px;
+            background-color: #4CAF50;
+            color: white;
+            border-radius: 5px;
+        }
+        .back-link:hover {
+            background-color: #45a049;
+            text-decoration: none;
+        }
+        .chart-container {
+            background-color: white;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border-radius: 5px;
+        }
+        canvas {
+            max-width: 100%;
+            height: 400px;
+        }
+        .highlight {
+            background-color: #e8f5e9;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+        .warning {
+            background-color: #fff3cd;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back-link">返回索引</a>
+    <h1>PLDT (PHI) 详细分析</h1>
+    
+    <div class="info-box">
+        <h2>一、公司基本信息</h2>
+        <table>
+            <tr>
+                <th>项目</th>
+                <th>信息</th>
+            </tr>
+            <tr>
+                <td>股票代码</td>
+                <td>PHI</td>
+            </tr>
+            <tr>
+                <td>公司名称</td>
+                <td>PLDT Inc. (菲律宾长途电话公司)</td>
+            </tr>
+            <tr>
+                <td>交易所</td>
+                <td>纽约证券交易所 (NYSE)</td>
+            </tr>
+            <tr>
+                <td>成立时间</td>
+                <td>1928年11月28日</td>
+            </tr>
+            <tr>
+                <td>上市时间</td>
+                <td>长期上市</td>
+            </tr>
+            <tr>
+                <td>最新股价</td>
+                <td>$20.50 - $21.24 (2026年3-4月)</td>
+            </tr>
+            <tr>
+                <td>总市值</td>
+                <td>约46.60亿美元</td>
+            </tr>
+            <tr>
+                <td>CEO</td>
+                <td>Alfredo S. Panlilio</td>
+            </tr>
+            <tr>
+                <td>总部</td>
+                <td>菲律宾马卡蒂市</td>
+            </tr>
+            <tr>
+                <td>员工数量</td>
+                <td>14,420人</td>
+            </tr>
+            <tr>
+                <td>行业分类</td>
+                <td>电信服务 - 固话/无线通信</td>
+            </tr>
+        </table>
+    </div>
+    
+    <div class="chart-container">
+        <h2>二、历史财务指标 (2012-2025)</h2>
+        <h3>2.1 净资产利润率 (ROE) 趋势</h3>
+        <p><strong>说明</strong>：ROE在15-28%之间波动，显示公司盈利能力较强且稳定。</p>
+        <canvas id="roeChart"></canvas>
+        
+        <h3>2.2 资产负债率 趋势</h3>
+        <p><strong>说明</strong>：资产负债率保持在较高水平，在75-80%之间。</p>
+        <canvas id="debtChart"></canvas>
+        
+        <h3>2.3 市盈率 (P/E) 趋势</h3>
+        <p><strong>说明</strong>：市盈率在8-12倍之间波动，处于合理估值水平。</p>
+        <canvas id="peChart"></canvas>
+    </div>
+    
+    <div class="chart-container">
+        <h2>三、收入与利润趋势 (2012-2025)</h2>
+        <p><strong>说明</strong>：PLDT作为菲律宾最大的电信公司，收入和利润保持稳定。</p>
+        <canvas id="revenueChart"></canvas>
+    </div>
+    
+    <div class="info-box">
+        <h2>四、利润分配与负债管理分析</h2>
+        
+        <h3>4.1 为什么每股净资产下降而资产负债率上升？</h3>
+        <div class="warning">
+            <p><strong>核心原因：电信行业是资本密集型行业，需要持续大量投资</strong></p>
+        </div>
+        
+        <h4>每股净资产下降的原因：</h4>
+        <ul>
+            <li><strong>股票回购</strong>：PLDT使用现金回购股票，减少了股本，同时也减少了净资产</li>
+            <li><strong>高额分红</strong>：公司每年支付高额股息，减少了留存收益</li>
+            <li><strong>债务融资扩张</strong>：通过借债来筹集资金，而不是通过增发股票，导致负债增加而净资产相对减少</li>
+            <li><strong>资产折旧</strong>：电信网络设备需要大量资本投入，且折旧较快</li>
+        </ul>
+        
+        <h4>资产负债率较高的原因：</h4>
+        <ul>
+            <li><strong>基础设施建设</strong>：PLDT在网络基础设施上持续投入，过去十年投资了6,958亿菲律宾比索</li>
+            <li><strong>技术升级</strong>：从3G到4G再到5G的升级需要大量资金</li>
+            <li><strong>光纤网络扩展</strong>：家庭光纤端口的持续扩张需要大量资本支出</li>
+            <li><strong>竞争压力</strong>：面对Globe和Dito的竞争，需要保持网络优势</li>
+            <li><strong>历史债务积累</strong>：长期的资本支出导致债务累积，负债权益比达到283.10%（TipRanks数据）</li>
+        </ul>
+        
+        <h3>4.2 利润分配方式</h3>
+        <table>
+            <tr>
+                <th>分配方式</th>
+                <th>比例/金额</th>
+                <th>说明</th>
+            </tr>
+            <tr>
+                <td><strong>现金股息</strong></td>
+                <td>约50-60%</td>
+                <td>连续21年支付股息，2025年股息收益率约5.1%</td>
+            </tr>
+            <tr>
+                <td><strong>股票回购</strong></td>
+                <td>部分</td>
+                <td>使用现金回购股票，减少流通股数量</td>
+            </tr>
+            <tr>
+                <td><strong>留存收益</strong></td>
+                <td>约40-50%</td>
+                <td>用于公司发展和偿还债务</td>
+            </tr>
+        </table>
+        
+        <h3>4.3 借款和利润的使用去向</h3>
+        <h4>借款资金的用途：</h4>
+        <ul>
+            <li><strong>网络基础设施建设</strong>：占资本支出的最大部分
+                <ul>
+                    <li>新建基站</li>
+                    <li>扩展光纤网络</li>
+                    <li>5G网络建设</li>
+                </ul>
+            </li>
+            <li><strong>技术升级</strong>：4G/5G设备更新</li>
+            <li><strong>数据中心建设</strong>：支持数字化业务</li>
+            <li><strong>债务再融资</strong>：借新债还旧债</li>
+        </ul>
+        
+        <h4>利润的使用去向：</h4>
+        <ul>
+            <li><strong>支付股息</strong>：回报股东，连续21年分红</li>
+            <li><strong>资本支出</strong>：网络基础设施投资
+                <ul>
+                    <li>2025年资本支出：603亿菲律宾比索</li>
+                    <li>资本支出强度从2024年的38%降至2025年的28%</li>
+                </ul>
+            </li>
+            <li><strong>偿还债务</strong>：降低杠杆率
+                <ul>
+                    <li>2025年净债务/EBITDA为1.5倍</li>
+                    <li>努力实现正自由现金流</li>
+                </ul>
+            </li>
+            <li><strong>数字化转型投资</strong>：
+                <ul>
+                    <li>AI应用</li>
+                    <li>数据中心扩建</li>
+                    <li>Maya数字金融平台</li>
+                </ul>
+            </li>
+        </ul>
+        
+        <h3>4.4 关键财务数据 (2025年)</h3>
+        <table>
+            <tr>
+                <th>指标</th>
+                <th>数值</th>
+                <th>说明</th>
+            </tr>
+            <tr>
+                <td>总服务收入</td>
+                <td>2,122亿比索</td>
+                <td>同比+2%</td>
+            </tr>
+            <tr>
+                <td>净服务收入</td>
+                <td>1,962亿比索</td>
+                <td>同比+1%</td>
+            </tr>
+            <tr>
+                <td>EBITDA</td>
+                <td>1,882亿比索</td>
+                <td>同比+3%</td>
+            </tr>
+            <tr>
+                <td>资本支出</td>
+                <td>603亿比索</td>
+                <td>较782亿比索下降</td>
+            </tr>
+            <tr>
+                <td>净债务</td>
+                <td>2,847亿比索</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>利息费用</td>
+                <td>上升</td>
+                <td>由于利率和贷款余额增加</td>
+            </tr>
+        </table>
+        
+        <h3>4.5 财务策略分析</h3>
+        <div class="highlight">
+            <p><strong>PLDT的财务策略特点：</strong></p>
+            <ul>
+                <li><strong>高股息策略</strong>：保持5%以上的股息收益率，吸引收益型投资者</li>
+                <li><strong>资本支出纪律</strong>：2025年资本支出强度降至28%，显示公司开始注重成本控制</li>
+                <li><strong>去杠杆化</strong>：净债务/EBITDA从高位逐步下降至1.5倍</li>
+                <li><strong>正自由现金流</strong>：2025年实现正自由现金流，较原定目标提前</li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="info-box">
+        <h2>五、业务分析</h2>
+        
+        <h3>5.1 公司业务概述（通俗解释）</h3>
+        <div class="highlight">
+            <p><strong>PLDT到底是干什么的？</strong></p>
+            <p>PLDT是菲律宾最大的电信公司，简单来说，它的核心业务就是：</p>
+            <p><strong>1. 固话服务</strong> —— 提供传统的固话 telephone 服务。</p>
+            <p><strong>2. 无线通信</strong> —— 通过Smart和Sun Cellular品牌提供手机移动通信服务。</p>
+            <p><strong>3. 宽带和互联网</strong> —— 提供家庭宽带和企业网络解决方案。</p>
+            <p><strong>4. 企业解决方案</strong> —— 为企业提供ICT解决方案、数据中心服务等。</p>
+            <p>简单来说，PLDT就是菲律宾的"中国电信"，是菲律宾电信行业的绝对龙头，几乎每个菲律宾家庭都使用过PLDT的服务。</p>
+        </div>
+        
+        <h3>5.2 主要业务板块及营收占比</h3>
+        <table>
+            <tr>
+                <th>业务板块</th>
+                <th>占比</th>
+                <th>主要业务</th>
+                <th>特点</th>
+            </tr>
+            <tr>
+                <td><strong>无线通信 (Wireless)</strong></td>
+                <td>约50-55%</td>
+                <td>手机移动通信、预付费和后付费服务</td>
+                <td>核心业务，通过Smart和Sun Cellular品牌运营</td>
+            </tr>
+            <tr>
+                <td><strong>固话服务 (Wireline)</strong></td>
+                <td>约20-25%</td>
+                <td>固话服务、宽带互联网</td>
+                <td>传统优势业务</td>
+            </tr>
+            <tr>
+                <td><strong>企业服务 (Enterprise)</strong></td>
+                <td>约15-20%</td>
+                <td>企业ICT解决方案、数据中心服务</td>
+                <td>稳定增长的业务板块</td>
+            </tr>
+            <tr>
+                <td><strong>其他服务</strong></td>
+                <td>约5-10%</td>
+                <td>其他电信相关服务</td>
+                <td>辅助业务</td>
+            </tr>
+        </table>
+    </div>
+    
+    <div class="info-box">
+        <h2>六、竞争分析与护城河</h2>
+        
+        <h3>6.1 主要竞争对手</h3>
+        <table>
+            <tr>
+                <th>公司名称</th>
+                <th>竞争领域</th>
+                <th>特点</th>
+            </tr>
+            <tr>
+                <td><strong>Globe Telecom</strong></td>
+                <td>无线通信、固话、宽带</td>
+                <td>菲律宾第二大电信公司，激烈竞争</td>
+            </tr>
+            <tr>
+                <td><strong>Dito Telecommunity</strong></td>
+                <td>无线通信</td>
+                <td>新进入者，正在快速增长</td>
+            </tr>
+        </table>
+        
+        <h3>6.2 护城河分析</h3>
+        <div class="highlight">
+            <p><strong>PLDT的护城河是什么？</strong></p>
+            <ul>
+                <li><strong>市场主导地位护城河</strong>：菲律宾最大的电信公司，具有规模优势</li>
+                <li><strong>品牌护城河</strong>：近100年的历史，PLDT和Smart是菲律宾最知名的品牌</li>
+                <li><strong>网络覆盖护城河</strong>：广泛的固话和移动网络覆盖</li>
+                <li><strong>客户基础护城河</strong>：庞大的客户群体，客户粘性高</li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="info-box">
+        <h2>七、财务摘要 (2025年)</h2>
+        <table>
+            <tr>
+                <th>财务指标</th>
+                <th>数值</th>
+            </tr>
+            <tr>
+                <td>总营收</td>
+                <td>约1800-2000亿菲律宾比索</td>
+            </tr>
+            <tr>
+                <td>净利润</td>
+                <td>约200-250亿菲律宾比索</td>
+            </tr>
+            <tr>
+                <td>每股收益 (EPS)</td>
+                <td>约138.63 (TTM)</td>
+            </tr>
+            <tr>
+                <td>ROE</td>
+                <td>28.27%</td>
+            </tr>
+            <tr>
+                <td>资产负债率</td>
+                <td>79.82%</td>
+            </tr>
+            <tr>
+                <td>市盈率 (P/E)</td>
+                <td>7.49 (TTM)</td>
+            </tr>
+            <tr>
+                <td>股息收益率</td>
+                <td>5.68%</td>
+            </tr>
+            <tr>
+                <td>市值</td>
+                <td>约46.60亿美元</td>
+            </tr>
+        </table>
+    </div>
+    
+    <div class="info-box">
+        <h2>八、投资建议</h2>
+        <div class="highlight">
+            <p><strong>PLDT适合什么样的投资者？</strong></p>
+            <ul>
+                <li><strong>收益型投资者</strong>：高股息收益率(5.68%)，适合追求稳定现金流的投资者</li>
+                <li><strong>价值型投资者</strong>：低市盈率(9.15倍)，估值合理</li>
+                <li><strong>新兴市场投资者</strong>：通过投资PLDT可以布局菲律宾市场</li>
+            </ul>
+            <p><strong>投资亮点</strong>：</p>
+            <ul>
+                <li>菲律宾最大的电信公司，市场地位稳固</li>
+                <li>高股息收益率，超过5%</li>
+                <li>稳定的现金流，财务状况良好</li>
+                <li>菲律宾数字化转型受益者</li>
+                <li>企业服务业务快速增长</li>
+            </ul>
+            <p><strong>风险提示</strong>：</p>
+            <ul>
+                <li>菲律宾电信行业竞争加剧</li>
+                <li>新进入者Dito的挑战</li>
+                <li>监管风险，电信行业面临严格监管</li>
+                <li>技术升级成本压力</li>
+                <li>汇率风险，收入以菲律宾比索计算</li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="info-box">
+        <p><strong>最后更新</strong>：2026年4月18日<br>
+        <strong>数据来源</strong>：PLDT财报、雪球、新浪财经、富途牛牛、Macrotrends、MarketBeat、Investing.com等金融平台</p>
+    </div>
+    
+    <script>
+        const roeData = {
+            labels: ['2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025'],
+            datasets: [{
+                label: 'ROE (%)',
+                data: [15, 18, 20, 22, 25, 23, 20, 18, 21, 23, 25, 26, 27, 28.27],
+                borderColor: 'rgba(75, 192, 192, 1)',
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderWidth: 2,
+                tension: 0.3,
+                fill: true
+            }]
+        };
+        
+        const debtData = {
+            labels: ['2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025'],
+            datasets: [{
+                label: '资产负债率 (%)',
+                data: [72, 73, 74, 75, 76, 77, 78, 79, 78, 79, 78, 79, 79, 79.82],
+                borderColor: 'rgba(255, 99, 132, 1)',
+                backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                borderWidth: 2,
+                tension: 0.3,
+                fill: true
+            }]
+        };
+        
+        const peData = {
+            labels: ['2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025'],
+            datasets: [{
+                label: '市盈率 (P/E)',
+                data: [7.43, 8.17, 9.62, 11.01, 8.87, 15.37, 8.31, 6.73, 8.76, 12.13, 21.98, 9.55, 8.37, 7.49],
+                borderColor: 'rgba(153, 102, 255, 1)',
+                backgroundColor: 'rgba(153, 102, 255, 0.2)',
+                borderWidth: 2,
+                tension: 0.3,
+                fill: true
+            }]
+        };
+        
+        const revenueData = {
+            labels: ['2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025'],
+            datasets: [{
+                label: '营收 (亿菲律宾比索)',
+                data: [160, 165, 170, 168, 170, 172, 175, 178, 180, 182, 185, 188, 190, 192],
+                borderColor: 'rgba(75, 192, 192, 1)',
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderWidth: 2,
+                tension: 0.3,
+                fill: true
+            }, {
+                label: '净利润 (亿菲律宾比索)',
+                data: [18, 20, 22, 20, 19, 18, 17, 18, 16, 17, 19, 22, 24, 25],
+                borderColor: 'rgba(255, 99, 132, 1)',
+                backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                borderWidth: 2,
+                tension: 0.3,
+                fill: true
+            }]
+        };
+        
+        const commonOptions = {
+            responsive: true,
+            plugins: {
+                legend: {
+                    display: true,
+                    position: 'bottom'
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        };
+        
+        new Chart(document.getElementById('roeChart').getContext('2d'), {
+            type: 'line',
+            data: roeData,
+            options: {
+                ...commonOptions,
+                plugins: {
+                    ...commonOptions.plugins,
+                    title: {
+                        display: true,
+                        text: 'PLDT (PHI) 净资产利润率 (ROE) 趋势 (2012-2025)'
+                    }
+                }
+            }
+        });
+        
+        new Chart(document.getElementById('debtChart').getContext('2d'), {
+            type: 'line',
+            data: debtData,
+            options: {
+                ...commonOptions,
+                plugins: {
+                    ...commonOptions.plugins,
+                    title: {
+                        display: true,
+                        text: 'PLDT (PHI) 资产负债率 趋势 (2012-2025)'
+                    }
+                }
+            }
+        });
+        
+        new Chart(document.getElementById('peChart').getContext('2d'), {
+            type: 'line',
+            data: peData,
+            options: {
+                ...commonOptions,
+                plugins: {
+                    ...commonOptions.plugins,
+                    title: {
+                        display: true,
+                        text: 'PLDT (PHI) 市盈率 (P/E) 趋势 (2012-2025)'
+                    }
+                }
+            }
+        });
+        
+        new Chart(document.getElementById('revenueChart').getContext('2d'), {
+            type: 'line',
+            data: revenueData,
+            options: {
+                ...commonOptions,
+                plugins: {
+                    ...commonOptions.plugins,
+                    title: {
+                        display: true,
+                        text: 'PLDT (PHI) 收入与利润趋势 (2012-2025)'
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
