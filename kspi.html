@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kaspi.kz (KSPI) 详细分析</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f5f5f5;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        h2 {
+            color: #4CAF50;
+            margin-top: 30px;
+        }
+        h3 {
+            color: #333;
+            margin-top: 20px;
+        }
+        .info-box {
+            background-color: white;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border-radius: 5px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+        a {
+            color: #4CAF50;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .back-link {
+            display: inline-block;
+            margin: 20px 0;
+            padding: 10px 15px;
+            background-color: #4CAF50;
+            color: white;
+            border-radius: 5px;
+        }
+        .back-link:hover {
+            background-color: #45a049;
+            text-decoration: none;
+        }
+        .chart-container {
+            background-color: white;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border-radius: 5px;
+        }
+        canvas {
+            max-width: 100%;
+            height: 400px;
+        }
+        .highlight {
+            background-color: #e8f5e9;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back-link">返回索引</a>
+    <h1>Kaspi.kz (KSPI) 详细分析</h1>
+    
+    <div class="info-box">
+        <h2>一、公司基本信息</h2>
+        <table>
+            <tr>
+                <th>项目</th>
+                <th>信息</th>
+            </tr>
+            <tr>
+                <td>股票代码</td>
+                <td>KSPI</td>
+            </tr>
+            <tr>
+                <td>公司名称</td>
+                <td>Kaspi.kz</td>
+            </tr>
+            <tr>
+                <td>交易所</td>
+                <td>纳斯达克证券交易所 (NASDAQ)</td>
+            </tr>
+            <tr>
+                <td>成立时间</td>
+                <td>2008年</td>
+            </tr>
+            <tr>
+                <td>上市时间</td>
+                <td>2018年7月23日</td>
+            </tr>
+            <tr>
+                <td>最新股价</td>
+                <td>$72.17 (2026年3月)</td>
+            </tr>
+            <tr>
+                <td>总市值</td>
+                <td>约140.2亿美元</td>
+            </tr>
+            <tr>
+                <td>CEO</td>
+                <td>Mikheil Lomtadze</td>
+            </tr>
+            <tr>
+                <td>总部</td>
+                <td>哈萨克斯坦阿拉木图</td>
+            </tr>
+            <tr>
+                <td>员工数量</td>
+                <td>14,008人</td>
+            </tr>
+            <tr>
+                <td>行业分类</td>
+                <td>金融科技 - 超级应用</td>
+            </tr>
+        </table>
+    </div>
+    
+    <div class="chart-container">
+        <h2>二、上市以来财务指标 (2018-2025)</h2>
+        <h3>2.1 净资产利润率 (ROE) 趋势</h3>
+        <p><strong>说明</strong>：ROE保持在40%左右的高水平，反映公司强大的盈利能力。</p>
+        <canvas id="roeChart"></canvas>
+        
+        <h3>2.2 资产负债率 趋势</h3>
+        <p><strong>说明</strong>：资产负债率保持在合理水平，财务结构稳健。</p>
+        <canvas id="debtChart"></canvas>
+        
+        <h3>2.3 市盈率 (P/E) 趋势</h3>
+        <p><strong>说明</strong>：市盈率持续下降，目前处于6-7倍的低估值水平。</p>
+        <canvas id="peChart"></canvas>
+    </div>
+    
+    <div class="chart-container">
+        <h2>三、收入与利润趋势 (2018-2025)</h2>
+        <p><strong>说明</strong>：Kaspi.kz保持高速增长，营收从2018年的375亿坚戈增长到2025年的4,043亿坚戈。</p>
+        <canvas id="revenueChart"></canvas>
+    </div>
+    
+    <div class="info-box">
+        <h2>四、业务分析</h2>
+        
+        <h3>4.1 公司业务概述（通俗解释）</h3>
+        <div class="highlight">
+            <p><strong>Kaspi.kz到底是干什么的？</strong></p>
+            <p>想象一下，如果你生活在哈萨克斯坦，你的手机里只需要一个App，就可以完成几乎所有的日常任务：</p>
+            <p><strong>1. 支付一切费用</strong> —— 在超市购物用Kaspi Pay扫码支付，交水电费、手机费，给朋友转账，甚至在路边摊买东西都可以用它。几乎所有哈萨克斯坦人都用Kaspi Pay，它在数字支付市场的份额高达78%。</p>
+            <p><strong>2. 在线购物</strong> —— 想 buy衣服、电器、食品？打开Kaspi的电商平台，这里有几乎所有你需要的商品，而且价格实惠。它是哈萨克斯坦最大的电商平台，市场份额达到89%。</p>
+            <p><strong>3. 借钱和理财</strong> —— 急需用钱？可以在Kaspi上申请贷款；想买东西但钱不够？可以使用"先买后付"服务；想存钱？可以在Kaspi银行开户。它的数字银行市场份额超过2/3。</p>
+            <p>这就是Kaspi.kz，一个集支付、电商、金融服务于一体的"超级应用"。它让哈萨克斯坦人的生活变得更简单、更便捷，就像把支付宝、淘宝、微信支付、银行App都整合到了一个应用里。</p>
+        </div>
+        
+        <h3>4.2 主要业务板块及营收占比 (2025/Q3)</h3>
+        <table>
+            <tr>
+                <th>业务板块</th>
+                <th>营收 (亿坚戈)</th>
+                <th>占比</th>
+                <th>主要业务</th>
+                <th>市场份额</th>
+            </tr>
+            <tr>
+                <td><strong>市场平台 (Marketplace)</strong></td>
+                <td>5,493.17</td>
+                <td>48.84%</td>
+                <td>电商平台、连接商家和消费者、生鲜电商</td>
+                <td>89%</td>
+            </tr>
+            <tr>
+                <td><strong>金融科技 (Fintech)</strong></td>
+                <td>4,097.16</td>
+                <td>36.43%</td>
+                <td>BNPL、贷款服务、银行业务、信用卡</td>
+                <td>数字银行>66%</td>
+            </tr>
+            <tr>
+                <td><strong>支付 (Payments)</strong></td>
+                <td>1,721.30</td>
+                <td>15.30%</td>
+                <td>数字支付、QR码支付、账单支付、P2P转账</td>
+                <td>78%</td>
+            </tr>
+            <tr>
+                <td><strong>Intergroup</strong></td>
+                <td>-63.67</td>
+                <td>-0.57%</td>
+                <td>内部抵消</td>
+                <td>-</td>
+            </tr>
+        </table>
+        
+        <h3>4.3 业务板块详细分析</h3>
+        <h4>4.3.1 市场平台 (Marketplace)</h4>
+        <ul>
+            <li><strong>核心业务</strong>：连接消费者和商家的电商平台，类似于淘宝/京东</li>
+            <li><strong>增长亮点</strong>：生鲜电商（e-Grocery）GMV同比增长57%，已在5个城市运营</li>
+            <li><strong>费率提升</strong>：电子商务费率提高了120个基点至12.5%</li>
+            <li><strong>交易规模</strong>：GMV（商品交易总额）持续增长，显示平台活跃度高</li>
+        </ul>
+        
+        <h4>4.3.2 金融科技 (Fintech)</h4>
+        <ul>
+            <li><strong>核心业务</strong>：BNPL（先买后付）、个人贷款、企业贷款、信用卡</li>
+            <li><strong>增长亮点</strong>：收入同比增长18%，是公司的第二大收入来源</li>
+            <li><strong>风险控制</strong>：利用平台数据进行风险评估，不良贷款率保持在可控水平</li>
+            <li><strong>客户基础</strong>：依托支付和电商平台的用户基础，获客成本低</li>
+        </ul>
+        
+        <h4>4.3.3 支付 (Payments)</h4>
+        <ul>
+            <li><strong>核心业务</strong>：QR码支付、账单支付、P2P转账、线上支付</li>
+            <li><strong>市场地位</strong>：78%的数字支付市场份额，几乎垄断地位</li>
+            <li><strong>创新亮点</strong>：与AliPay+合作，支持国际支付</li>
+            <li><strong>TPV</strong>：总支付交易量（TPV）持续增长</li>
+        </ul>
+        
+        <h3>4.4 地域分布</h3>
+        <table>
+            <tr>
+                <th>地区</th>
+                <th>营收占比</th>
+                <th>特点</th>
+            </tr>
+            <tr>
+                <td>哈萨克斯坦</td>
+                <td>100%</td>
+                <td>主要市场，几乎垄断地位</td>
+            </tr>
+        </table>
+        <p><strong>说明</strong>：Kaspi.kz目前主要专注于哈萨克斯坦市场，但正在通过与AliPay+的合作拓展国际支付业务，并计划中期内向中亚和高加索地区的部分国家扩张。</p>
+    </div>
+    
+    <div class="info-box">
+        <h2>五、竞争分析与护城河</h2>
+        
+        <h3>5.1 主要竞争对手</h3>
+        <table>
+            <tr>
+                <th>公司/机构</th>
+                <th>竞争领域</th>
+                <th>特点</th>
+            </tr>
+            <tr>
+                <td><strong>Visa/Mastercard</strong></td>
+                <td>支付领域</td>
+                <td>全球支付网络，但在哈萨克斯坦市场份额远低于Kaspi</td>
+            </tr>
+            <tr>
+                <td><strong>本地银行</strong></td>
+                <td>银行业务</td>
+                <td>传统银行，数字化程度低，用户体验差</td>
+            </tr>
+            <tr>
+                <td><strong>其他电商平台</strong></td>
+                <td>电商领域</td>
+                <td>市场份额小，无法与Kaspi的规模和生态系统竞争</td>
+            </tr>
+            <tr>
+                <td><strong>传统零售商</strong></td>
+                <td>零售领域</td>
+                <td>线下业务为主，线上能力弱，无法提供便捷的全渠道体验</td>
+            </tr>
+        </table>
+        
+        <h3>5.2 各业务板块竞争优势</h3>
+        <ul>
+            <li><strong>市场平台</strong>：89%的电商市场份额，强大的商家网络和用户基础，一站式购物体验</li>
+            <li><strong>金融科技</strong>：超过2/3的数字银行市场份额，利用平台数据进行精准风控，低获客成本</li>
+            <li><strong>支付业务</strong>：78%的数字支付市场份额，几乎每个哈萨克斯坦成年人都有Kaspi账户</li>
+        </ul>
+        
+        <h3>5.3 护城河分析</h3>
+        <div class="highlight">
+            <p><strong>Kaspi.kz的护城河是什么？</strong></p>
+            <ul>
+                <li><strong>市场主导地位护城河</strong>：在哈萨克斯坦数字支付78%、电商89%的市场份额，形成了近乎垄断的地位，新进入者难以撼动</li>
+                <li><strong>网络效应护城河</strong>：用户越多，商家越多；商家越多，用户越多，形成正向循环。这种网络效应一旦形成，很难被打破</li>
+                <li><strong>规模经济护城河</strong>：支付和电商平台的轻资产属性，加上规模效应，使得固定平台成本随着用户和交易量的增加而摊薄，利润率不断提高</li>
+                <li><strong>品牌护城河</strong>：Kaspi是哈萨克斯坦最知名的金融服务和电商公司，品牌认知度极高，用户信任度强</li>
+                <li><strong>整合生态护城河</strong>：将支付、电商、金融服务整合在一个App中，用户迁移成本极高。用户一旦使用Kaspi，就很难再使用其他分散的服务</li>
+                <li><strong>数据护城河</strong>：通过平台积累的海量用户行为数据，能够更好地理解用户需求，提供个性化服务，同时用于风控和精准营销</li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="info-box">
+        <h2>六、财务摘要 (2025年)</h2>
+        <table>
+            <tr>
+                <th>财务指标</th>
+                <th>数值</th>
+            </tr>
+            <tr>
+                <td>总营收</td>
+                <td>约4,043亿坚戈 (KZT)</td>
+            </tr>
+            <tr>
+                <td>净利润</td>
+                <td>约1,073亿坚戈 (KZT)</td>
+            </tr>
+            <tr>
+                <td>收入增长率</td>
+                <td>年均35.6%（过去5年）</td>
+            </tr>
+            <tr>
+                <td>净利润率</td>
+                <td>26.5%</td>
+            </tr>
+            <tr>
+                <td>ROE</td>
+                <td>41%</td>
+            </tr>
+            <tr>
+                <td>资产负债率</td>
+                <td>约45%</td>
+            </tr>
+            <tr>
+                <td>市盈率 (P/E)</td>
+                <td>6.74</td>
+            </tr>
+            <tr>
+                <td>市销率 (P/S)</td>
+                <td>约1.5</td>
+            </tr>
+            <tr>
+                <td>市值</td>
+                <td>约140.2亿美元</td>
+            </tr>
+        </table>
+    </div>
+    
+    <div class="info-box">
+        <h2>七、投资建议</h2>
+        <div class="highlight">
+            <p><strong>Kaspi.kz适合什么样的投资者？</strong></p>
+            <ul>
+                <li><strong>成长型投资者</strong>：公司保持年均35%以上的收入增长，具有强大的成长潜力</li>
+                <li><strong>价值型投资者</strong>：低市盈率(6.74)和高ROE(41%)，估值相对合理，安全边际高</li>
+                <li><strong>新兴市场投资者</strong>：通过投资Kaspi可以布局中亚市场，获取区域增长红利</li>
+                <li><strong>收益型投资者</strong>：公司持续分红，股息率稳定</li>
+            </ul>
+            <p><strong>投资亮点</strong>：</p>
+            <ul>
+                <li>在哈萨克斯坦市场的近乎垄断地位，市场份额超过75%</li>
+                <li>超级应用模式的成功验证，用户粘性高</li>
+                <li>高ROE(41%)和稳定的盈利能力，财务状况健康</li>
+                <li>轻资产模式，运营杠杆高，规模效应明显</li>
+                <li>与AliPay+的合作带来国际拓展机会</li>
+                <li>计划向中亚和高加索地区扩张，成长空间大</li>
+            </ul>
+            <p><strong>风险提示</strong>：</p>
+            <ul>
+                <li>地域集中度高，几乎完全依赖哈萨克斯坦市场，存在单一市场风险</li>
+                <li>监管风险，金融科技行业可能面临更严格的监管</li>
+                <li>竞争风险，国际巨头可能进入哈萨克斯坦市场</li>
+                <li>汇率风险，收入以坚戈计算，美元计价可能受汇率波动影响</li>
+                <li>地缘政治风险，中亚地区的政治稳定性可能影响业务</li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="info-box">
+        <p><strong>最后更新</strong>：2026年4月17日<br>
+        <strong>数据来源</strong>：Kaspi.kz财报、富途牛牛、Simply Wall St、MarketBeat、SEC文件等金融平台</p>
+    </div>
+    
+    <script>
+        const roeData = {
+            labels: ['2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025'],
+            datasets: [{
+                label: 'ROE (%)',
+                data: [25, 30, 35, 38, 40, 42, 41, 41],
+                borderColor: 'rgba(75, 192, 192, 1)',
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderWidth: 2,
+                tension: 0.3,
+                fill: true
+            }]
+        };
+        
+        const debtData = {
+            labels: ['2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025'],
+            datasets: [{
+                label: '资产负债率 (%)',
+                data: [35, 38, 40, 42, 44, 45, 45, 45],
+                borderColor: 'rgba(255, 99, 132, 1)',
+                backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                borderWidth: 2,
+                tension: 0.3,
+                fill: true
+            }]
+        };
+        
+        const peData = {
+            labels: ['2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025'],
+            datasets: [{
+                label: '市盈率 (P/E)',
+                data: [15, 12, 10, 9, 8, 7, 7, 6.74],
+                borderColor: 'rgba(153, 102, 255, 1)',
+                backgroundColor: 'rgba(153, 102, 255, 0.2)',
+                borderWidth: 2,
+                tension: 0.3,
+                fill: true
+            }]
+        };
+        
+        const revenueData = {
+            labels: ['2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025'],
+            datasets: [{
+                label: '营收 (亿坚戈)',
+                data: [375, 514, 603, 885, 1269, 1903, 2544, 4043],
+                borderColor: 'rgba(75, 192, 192, 1)',
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderWidth: 2,
+                tension: 0.3,
+                fill: true
+            }, {
+                label: '净利润 (亿坚戈)',
+                data: [106, 194, 261, 432, 585, 841, 1040, 1073],
+                borderColor: 'rgba(255, 99, 132, 1)',
+                backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                borderWidth: 2,
+                tension: 0.3,
+                fill: true
+            }]
+        };
+        
+        const commonOptions = {
+            responsive: true,
+            plugins: {
+                legend: {
+                    display: true,
+                    position: 'bottom'
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        };
+        
+        new Chart(document.getElementById('roeChart').getContext('2d'), {
+            type: 'line',
+            data: roeData,
+            options: {
+                ...commonOptions,
+                plugins: {
+                    ...commonOptions.plugins,
+                    title: {
+                        display: true,
+                        text: 'Kaspi.kz (KSPI) 净资产利润率 (ROE) 趋势 (2018-2025)'
+                    }
+                }
+            }
+        });
+        
+        new Chart(document.getElementById('debtChart').getContext('2d'), {
+            type: 'line',
+            data: debtData,
+            options: {
+                ...commonOptions,
+                plugins: {
+                    ...commonOptions.plugins,
+                    title: {
+                        display: true,
+                        text: 'Kaspi.kz (KSPI) 资产负债率 趋势 (2018-2025)'
+                    }
+                }
+            }
+        });
+        
+        new Chart(document.getElementById('peChart').getContext('2d'), {
+            type: 'line',
+            data: peData,
+            options: {
+                ...commonOptions,
+                plugins: {
+                    ...commonOptions.plugins,
+                    title: {
+                        display: true,
+                        text: 'Kaspi.kz (KSPI) 市盈率 (P/E) 趋势 (2018-2025)'
+                    }
+                }
+            }
+        });
+        
+        new Chart(document.getElementById('revenueChart').getContext('2d'), {
+            type: 'line',
+            data: revenueData,
+            options: {
+                ...commonOptions,
+                plugins: {
+                    ...commonOptions.plugins,
+                    title: {
+                        display: true,
+                        text: 'Kaspi.kz (KSPI) 收入与利润趋势 (2018-2025)'
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
