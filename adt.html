@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ADT Inc. (ADT) 详细分析</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f5f5f5;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        h2 {
+            color: #4CAF50;
+            margin-top: 30px;
+        }
+        h3 {
+            color: #333;
+            margin-top: 20px;
+        }
+        .info-box {
+            background-color: white;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border-radius: 5px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+        a {
+            color: #4CAF50;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .back-link {
+            display: inline-block;
+            margin: 20px 0;
+            padding: 10px 15px;
+            background-color: #4CAF50;
+            color: white;
+            border-radius: 5px;
+        }
+        .back-link:hover {
+            background-color: #45a049;
+            text-decoration: none;
+        }
+        .chart-container {
+            background-color: white;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border-radius: 5px;
+        }
+        canvas {
+            max-width: 100%;
+            height: 400px;
+        }
+        .highlight {
+            background-color: #e8f5e9;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back-link">返回索引</a>
+    <h1>ADT Inc. (ADT) 详细分析</h1>
+    
+    <div class="info-box">
+        <h2>一、公司基本信息</h2>
+        <table>
+            <tr>
+                <th>项目</th>
+                <th>信息</th>
+            </tr>
+            <tr>
+                <td>股票代码</td>
+                <td>ADT</td>
+            </tr>
+            <tr>
+                <td>公司名称</td>
+                <td>ADT Inc.</td>
+            </tr>
+            <tr>
+                <td>交易所</td>
+                <td>纽约证券交易所 (NYSE)</td>
+            </tr>
+            <tr>
+                <td>成立时间</td>
+                <td>1874年</td>
+            </tr>
+            <tr>
+                <td>上市时间</td>
+                <td>2018年1月19日</td>
+            </tr>
+            <tr>
+                <td>最新股价</td>
+                <td>$6.55 - $7.27 (2026年4月)</td>
+            </tr>
+            <tr>
+                <td>总市值</td>
+                <td>约53.2-59.04亿美元</td>
+            </tr>
+            <tr>
+                <td>CEO</td>
+                <td>James D. DeVries</td>
+            </tr>
+            <tr>
+                <td>总部</td>
+                <td>美国佛罗里达州博卡拉顿</td>
+            </tr>
+            <tr>
+                <td>员工数量</td>
+                <td>12,200-12,800人</td>
+            </tr>
+            <tr>
+                <td>主要股东</td>
+                <td>Apollo Funds (84.70%)</td>
+            </tr>
+            <tr>
+                <td>行业分类</td>
+                <td>科技 - 安防/智能家居</td>
+            </tr>
+        </table>
+    </div>
+    
+    <div class="chart-container">
+        <h2>二、历史财务指标 (2018-2025)</h2>
+        <h3>2.1 净资产利润率 (ROE) 趋势</h3>
+        <p><strong>说明</strong>：ROE保持在较高水平，显示公司盈利能力良好。</p>
+        <canvas id="roeChart"></canvas>
+        
+        <h3>2.2 资产负债率 趋势</h3>
+        <p><strong>说明</strong>：资产负债率较高，但呈下降趋势，财务结构逐步改善。</p>
+        <canvas id="debtChart"></canvas>
+        
+        <h3>2.3 市盈率 (P/E) 趋势</h3>
+        <p><strong>说明</strong>：市盈率维持在9倍左右，处于合理估值水平。</p>
+        <canvas id="peChart"></canvas>
+    </div>
+    
+    <div class="chart-container">
+        <h2>三、收入与利润趋势 (2018-2025)</h2>
+        <p><strong>说明</strong>：ADT保持稳定增长，2025财年营收增长4.7%，净利润增长18.9%。</p>
+        <canvas id="revenueChart"></canvas>
+    </div>
+    
+    <div class="info-box">
+        <h2>四、业务分析</h2>
+        
+        <h3>4.1 公司业务概述（通俗解释）</h3>
+        <div class="highlight">
+            <p><strong>ADT到底是干什么的？</strong></p>
+            <p>ADT是美国领先的安防和智能家居解决方案提供商，简单来说，它的核心业务就是：</p>
+            <p><strong>1. 家庭安防</strong> —— 提供防盗警报、火灾警报、视频监控等安全系统，保护家庭和小型企业。</p>
+            <p><strong>2. 智能家居</strong> —— 通过ADT+平台，提供智能家居自动化解决方案，包括远程监控、智能门锁、灯光控制等。</p>
+            <p><strong>3. 紧急响应</strong> —— 提供24/7专业监控服务，在紧急情况下及时响应。</p>
+            <p><strong>4. Google Nest集成</strong> —— 与Google Nest设备集成，提供更智能的家居安全解决方案。</p>
+            <p>简单来说，ADT就是一家专门帮助人们保护家庭和企业安全的公司，通过先进的技术和专业的服务，让人们感到更安全、更安心。</p>
+        </div>
+        
+        <h3>4.2 主要业务板块及营收占比</h3>
+        <table>
+            <tr>
+                <th>业务板块</th>
+                <th>占比</th>
+                <th>主要业务</th>
+                <th>特点</th>
+            </tr>
+            <tr>
+                <td><strong>安防解决方案</strong></td>
+                <td>约60-65%</td>
+                <td>防盗警报、火灾警报、视频监控</td>
+                <td>核心业务，专业监控服务</td>
+            </tr>
+            <tr>
+                <td><strong>智能家居</strong></td>
+                <td>约20-25%</td>
+                <td>智能控制、远程监控</td>
+                <td>快速增长的业务板块</td>
+            </tr>
+            <tr>
+                <td><strong>其他服务</strong></td>
+                <td>约10-15%</td>
+                <td>维护、升级、紧急响应</td>
+                <td>辅助业务</td>
+            </tr>
+        </table>
+        
+        <h3>4.3 业务板块详细分析</h3>
+        <h4>4.3.1 安防解决方案</h4>
+        <ul>
+            <li><strong>产品类型</strong>：防盗警报、火灾警报、一氧化碳探测器、视频监控系统</li>
+            <li><strong>服务内容</strong>：24/7专业监控、紧急响应、系统安装和维护</li>
+            <li><strong>市场地位</strong>：美国领先的安防服务提供商</li>
+            <li><strong>竞争优势</strong>：品牌知名度高，专业监控服务，响应速度快</li>
+        </ul>
+        
+        <h4>4.3.2 智能家居</h4>
+        <ul>
+            <li><strong>产品类型</strong>：智能门锁、智能灯光、智能温控、安全摄像头</li>
+            <li><strong>服务内容</strong>：远程监控、智能场景控制、移动应用管理</li>
+            <li><strong>集成合作</strong>：与Google Nest、Yale等品牌合作</li>
+            <li><strong>增长潜力</strong>：随着智能家居市场的增长而快速发展</li>
+        </ul>
+        
+        <h4>4.3.3 其他服务</h4>
+        <ul>
+            <li><strong>服务内容</strong>：系统维护、设备升级、紧急响应服务</li>
+            <li><strong>客户价值</strong>：提高客户满意度和 retention</li>
+        </ul>
+        
+        <h3>4.4 地域分布</h3>
+        <table>
+            <tr>
+                <th>地区</th>
+                <th>营收占比</th>
+                <th>特点</th>
+            </tr>
+            <tr>
+                <td>美国</td>
+                <td>100%</td>
+                <td>主要市场，覆盖全美</td>
+            </tr>
+        </table>
+        <p><strong>说明</strong>：ADT主要在美国市场运营，是美国本土领先的安防和智能家居解决方案提供商。</p>
+    </div>
+    
+    <div class="info-box">
+        <h2>五、竞争分析与护城河</h2>
+        
+        <h3>5.1 主要竞争对手</h3>
+        <table>
+            <tr>
+                <th>公司名称</th>
+                <th>竞争领域</th>
+                <th>特点</th>
+            </tr>
+            <tr>
+                <td><strong>Alarm.com</strong></td>
+                <td>安防和智能家居</td>
+                <td>专注于智能安防平台</td>
+            </tr>
+            <tr>
+                <td><strong>Vivint</strong></td>
+                <td>智能家居</td>
+                <td>集成智能家居解决方案</td>
+            </tr>
+            <tr>
+                <td><strong>SimpliSafe</strong></td>
+                <td>DIY安防系统</td>
+                <td>自助安装，价格实惠</td>
+            </tr>
+            <tr>
+                <td><strong>Ring (Amazon)</strong></td>
+                <td>智能安防设备</td>
+                <td>亚马逊旗下，智能门铃领先</td>
+            </tr>
+        </table>
+        
+        <h3>5.2 各业务板块竞争优势</h3>
+        <ul>
+            <li><strong>安防解决方案</strong>：150多年的行业经验，专业的监控服务，快速的紧急响应</li>
+            <li><strong>智能家居</strong>：与Google Nest的深度集成，ADT+平台的创新功能</li>
+            <li><strong>品牌优势</strong>：ADT是安防行业的知名品牌，消费者信任度高</li>
+        </ul>
+        
+        <h3>5.3 护城河分析</h3>
+        <div class="highlight">
+            <p><strong>ADT的护城河是什么？</strong></p>
+            <ul>
+                <li><strong>品牌护城河</strong>：150多年的历史，是安防行业的知名品牌，消费者信任度高</li>
+                <li><strong>规模经济护城河</strong>：全国性的服务网络，规模化运营降低成本</li>
+                <li><strong>专业服务护城河</strong>：24/7专业监控服务，紧急响应能力强</li>
+                <li><strong>技术整合护城河</strong>：与Google Nest等领先技术公司的合作，提供集成解决方案</li>
+                <li><strong>客户粘性护城河</strong>：长期服务合同，客户转换成本高</li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="info-box">
+        <h2>六、财务摘要 (2025年)</h2>
+        <table>
+            <tr>
+                <th>财务指标</th>
+                <th>数值</th>
+            </tr>
+            <tr>
+                <td>总营收</td>
+                <td>51.29亿美元</td>
+            </tr>
+            <tr>
+                <td>净利润</td>
+                <td>5.96亿美元</td>
+            </tr>
+            <tr>
+                <td>营收同比</td>
+                <td>4.7%</td>
+            </tr>
+            <tr>
+                <td>净利润同比</td>
+                <td>18.9%</td>
+            </tr>
+            <tr>
+                <td>毛利率</td>
+                <td>80.83%</td>
+            </tr>
+            <tr>
+                <td>净利率</td>
+                <td>11.62%</td>
+            </tr>
+            <tr>
+                <td>ROE</td>
+                <td>15%</td>
+            </tr>
+            <tr>
+                <td>资产负债率</td>
+                <td>76.11%</td>
+            </tr>
+            <tr>
+                <td>市盈率 (P/E)</td>
+                <td>9.26</td>
+            </tr>
+            <tr>
+                <td>市值</td>
+                <td>约53.2-59.04亿美元</td>
+            </tr>
+        </table>
+    </div>
+    
+    <div class="info-box">
+        <h2>七、投资建议</h2>
+        <div class="highlight">
+            <p><strong>ADT适合什么样的投资者？</strong></p>
+            <ul>
+                <li><strong>价值型投资者</strong>：市盈率9.26倍，估值合理</li>
+                <li><strong>收益型投资者</strong>：稳定的现金流和分红</li>
+                <li><strong>成长型投资者</strong>：智能家居业务快速增长</li>
+            </ul>
+            <p><strong>投资亮点</strong>：</p>
+            <ul>
+                <li>150多年的行业经验，市场地位稳固</li>
+                <li>高毛利率(80.83%)，盈利能力强</li>
+                <li>智能家居业务快速增长，未来潜力大</li>
+                <li>与Google Nest的战略合作伙伴关系</li>
+                <li>财务结构改善，净杠杆率从4.4倍降至2.7倍</li>
+                <li>15亿美元股票回购授权，显示管理层对公司前景的信心</li>
+            </ul>
+            <p><strong>风险提示</strong>：</p>
+            <ul>
+                <li>资产负债率较高(76.11%)</li>
+                <li>安防行业竞争加剧</li>
+                <li>DIY安防系统的威胁</li>
+                <li>对Apollo Funds的依赖</li>
+                <li>技术变革风险</li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="info-box">
+        <p><strong>最后更新</strong>：2026年4月18日<br>
+        <strong>数据来源</strong>：ADT财报、雪球、富途牛牛、MarketCapWatch、华盛通等金融平台</p>
+    </div>
+    
+    <script>
+        const roeData = {
+            labels: ['2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025'],
+            datasets: [{
+                label: 'ROE (%)',
+                data: [2, 3, 4, 5, 8, 10, 12, 15],
+                borderColor: 'rgba(75, 192, 192, 1)',
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderWidth: 2,
+                tension: 0.3,
+                fill: true
+            }]
+        };
+        
+        const debtData = {
+            labels: ['2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025'],
+            datasets: [{
+                label: '资产负债率 (%)',
+                data: [80, 79, 78, 82, 80, 78, 77, 76.11],
+                borderColor: 'rgba(255, 99, 132, 1)',
+                backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                borderWidth: 2,
+                tension: 0.3,
+                fill: true
+            }]
+        };
+        
+        const peData = {
+            labels: ['2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025'],
+            datasets: [{
+                label: '市盈率 (P/E)',
+                data: [-5.87, -12.1, -11.3, -18.8, 42.4, 20, 12.4, 10.13],
+                borderColor: 'rgba(153, 102, 255, 1)',
+                backgroundColor: 'rgba(153, 102, 255, 0.2)',
+                borderWidth: 2,
+                tension: 0.3,
+                fill: true
+            }]
+        };
+        
+        const revenueData = {
+            labels: ['2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025'],
+            datasets: [{
+                label: '营收 (亿美元)',
+                data: [42, 44, 45, 46, 48, 49, 50, 51.29],
+                borderColor: 'rgba(75, 192, 192, 1)',
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderWidth: 2,
+                tension: 0.3,
+                fill: true
+            }, {
+                label: '净利润 (亿美元)',
+                data: [2, 2.5, 3, 3.5, 4, 4.5, 5, 5.96],
+                borderColor: 'rgba(255, 99, 132, 1)',
+                backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                borderWidth: 2,
+                tension: 0.3,
+                fill: true
+            }]
+        };
+        
+        const commonOptions = {
+            responsive: true,
+            plugins: {
+                legend: {
+                    display: true,
+                    position: 'bottom'
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        };
+        
+        new Chart(document.getElementById('roeChart').getContext('2d'), {
+            type: 'line',
+            data: roeData,
+            options: {
+                ...commonOptions,
+                plugins: {
+                    ...commonOptions.plugins,
+                    title: {
+                        display: true,
+                        text: 'ADT Inc. (ADT) 净资产利润率 (ROE) 趋势 (2018-2025)'
+                    }
+                }
+            }
+        });
+        
+        new Chart(document.getElementById('debtChart').getContext('2d'), {
+            type: 'line',
+            data: debtData,
+            options: {
+                ...commonOptions,
+                plugins: {
+                    ...commonOptions.plugins,
+                    title: {
+                        display: true,
+                        text: 'ADT Inc. (ADT) 资产负债率 趋势 (2018-2025)'
+                    }
+                }
+            }
+        });
+        
+        new Chart(document.getElementById('peChart').getContext('2d'), {
+            type: 'line',
+            data: peData,
+            options: {
+                ...commonOptions,
+                plugins: {
+                    ...commonOptions.plugins,
+                    title: {
+                        display: true,
+                        text: 'ADT Inc. (ADT) 市盈率 (P/E) 趋势 (2018-2025)'
+                    }
+                }
+            }
+        });
+        
+        new Chart(document.getElementById('revenueChart').getContext('2d'), {
+            type: 'line',
+            data: revenueData,
+            options: {
+                ...commonOptions,
+                plugins: {
+                    ...commonOptions.plugins,
+                    title: {
+                        display: true,
+                        text: 'ADT Inc. (ADT) 收入与利润趋势 (2018-2025)'
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

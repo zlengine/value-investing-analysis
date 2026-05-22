@@ -1,0 +1,1110 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VST (Vistra Corp.) 详细分析</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f5f5f5;
+        }
+        h1 {
+            text-align: center;
+            color: #003B5C;
+        }
+        h2 {
+            color: #003B5C;
+            margin-top: 30px;
+        }
+        h3 {
+            color: #333;
+            margin-top: 20px;
+        }
+        .info-box {
+            background-color: white;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border-radius: 5px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #003B5C;
+            color: white;
+        }
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+        a {
+            color: #4CAF50;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .highlight {
+            background-color: #f9f9f9;
+            border-left: 4px solid #003B5C;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        .chart-container {
+            background-color: white;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border-radius: 5px;
+        }
+        canvas {
+            max-height: 400px;
+        }
+        .tag {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 3px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        .tag-green {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .tag-orange {
+            background-color: #FF9800;
+            color: white;
+        }
+        .tag-red {
+            background-color: #f44336;
+            color: white;
+        }
+        .tag-blue {
+            background-color: #2196F3;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <h1>Vistra Corp. (VST) 价值投资分析</h1>
+
+    <div class="info-box">
+        <h2>一、公司基本信息</h2>
+        <table>
+            <tr><th>项目</th><th>详情</th></tr>
+            <tr><td>公司全称</td><td>Vistra Corp.（维斯特拉能源公司）</td></tr>
+            <tr><td>股票代码</td><td>VST</td></tr>
+            <tr><td>上市交易所</td><td>纽约证券交易所（NYSE）</td></tr>
+            <tr><td>成立时间</td><td>2016年10月（从Energy Future Holdings破产重组中脱胎而出）</td></tr>
+            <tr><td>前身</td><td>Energy Future Holdings Corp.（EFH），2014年申请Chapter 11破产保护，消除超330亿美元债务后重组为Vistra Energy</td></tr>
+            <tr><td>总部</td><td>美国德克萨斯州欧文市（Irving, Texas）</td></tr>
+            <tr><td>当前市值（2026年5月）</td><td>约$496亿美元</td></tr>
+            <tr><td>市值（美元）</td><td>~$49.6B USD</td></tr>
+            <tr><td>最新收盘价（2026年5月）</td><td>约$148</td></tr>
+            <tr><td>流通股数</td><td>约3.39亿股（FY2025末）</td></tr>
+            <tr><td>CEO</td><td>Jim Burke（总裁兼首席执行官）</td></tr>
+            <tr><td>前任CEO</td><td>Curt Morgan（2016-2022，带领公司从破产中重建）</td></tr>
+            <tr><td>CFO</td><td>Chris Sorrells</td></tr>
+            <tr><td>行业</td><td>公用事业——独立发电商/综合电力零售商</td></tr>
+            <tr><td>员工数</td><td>约6,500人</td></tr>
+            <tr><td>52周范围</td><td>~$100 - $210</td></tr>
+            <tr><td>股息</td><td>$0.91/年（季度$0.228），收益率约0.62%</td></tr>
+            <tr><td>信用评级</td><td>BBB-（标普，2025年12月升级至投资级）/ BBB-（惠誉，2026年3月升级至投资级）</td></tr>
+            <tr><td>S&P 500成分股</td><td>是</td></tr>
+            <tr><td>Fortune 500</td><td>是</td></tr>
+            <tr><td>发电总容量</td><td>约41,000 MW（含Lotus收购后约43,600 MW；Cogentrix收购完成后约49,100 MW）</td></tr>
+            <tr><td>零售客户数</td><td>约500万（覆盖20个州）</td></tr>
+        </table>
+    </div>
+
+    <div class="info-box">
+        <h2>二、业务分析</h2>
+        <h3>2.1 通俗解释：Vistra是干什么的？</h3>
+        <p>
+            用最简单的话说，<strong>Vistra是一家"既发电又卖电"的综合能源公司</strong>。想象一下，如果一家公司既拥有发电厂（生产电），又拥有电力零售店（把电卖给千家万户），那它就既能控制上游成本，又能锁定下游需求——这就是Vistra的商业模式。
+        </p>
+        <p>
+            更具体地讲，Vistra做三件事：<strong>发电、卖电、管风险</strong>。
+        </p>
+        <p>
+            <strong>第一，发电</strong>：Vistra拥有全美最大的多元化发电机组之一，总容量约41,000兆瓦（MW）。它的发电厂包括天然气电厂、核电站、煤电厂、太阳能电站和电池储能设施。其中最值钱的是核电站——核能可以24小时不间断发电，零碳排放，而且燃料成本极低。Vistra的核电资产包括德州的Comanche Peak（2,425 MW）、俄亥俄州的Perry（1,243 MW）和Davis-Besse（908 MW）、宾州的Beaver Valley（1,770 MW），合计约6,400 MW零碳基荷电力。
+        </p>
+        <p>
+            <strong>第二，卖电</strong>：Vistra通过旗下品牌TXU Energy、Ambit Energy、Dynegy Energy Services等，向约500万居民、商业和工业客户零售电力和天然气。在德州（ERCOT市场），Vistra是最大的零售电力供应商之一，服务约250万客户。零售业务的好处是——无论批发电力价格如何波动，零售客户每月按时交电费，为Vistra提供稳定的现金流"压舱石"。
+        </p>
+        <p>
+            <strong>第三，管风险</strong>：因为既发电又卖电，Vistra天然拥有对冲能力——电价涨了，发电多赚钱；电价跌了，零售采购成本降低。这种"一体化"模式让Vistra的盈利比纯发电公司更稳定。此外，Vistra还通过大规模对冲（hedging）锁定未来数年的电价，FY2025对冲了约98%的预期发电量。
+        </p>
+        <div class="highlight">
+            <p><strong>一句话总结</strong>：Vistra就像一家"既种粮食又开超市"的农业集团——上游自己生产，下游直接卖给消费者，中间还能通过期货市场锁定价格，三重保障让它在电力这个波动巨大的行业里获得了罕见的稳定性。</p>
+        </div>
+
+        <h3>2.2 业务板块（按调整后EBITDA）</h3>
+        <p>Vistra的运营分为以下业务板块，FY2025 Ongoing Operations Adjusted EBITDA合计$59.12亿：</p>
+        <table>
+            <tr>
+                <th>业务板块</th>
+                <th>FY2025 Adj. EBITDA</th>
+                <th>占比</th>
+                <th>同比变化</th>
+                <th>核心内容</th>
+            </tr>
+            <tr>
+                <td><strong>Retail（零售）</strong></td>
+                <td>$16.22亿</td>
+                <td>27.4%</td>
+                <td>+10.9%</td>
+                <td>TXU Energy等品牌向500万客户零售电力/天然气；FY2025零售收入$143.4亿</td>
+            </tr>
+            <tr>
+                <td><strong>Texas（德州发电）</strong></td>
+                <td>$18.34亿</td>
+                <td>31.0%</td>
+                <td>-9.7%</td>
+                <td>ERCOT市场天然气/煤电/核电/太阳能发电；含Comanche Peak核电站</td>
+            </tr>
+            <tr>
+                <td><strong>East（东部发电）</strong></td>
+                <td>$22.82亿</td>
+                <td>38.6%</td>
+                <td>+13.1%</td>
+                <td>PJM/MISO市场核电/天然气/煤电；含Perry、Davis-Besse、Beaver Valley核电站</td>
+            </tr>
+            <tr>
+                <td><strong>West（西部发电）</strong></td>
+                <td>$2.44亿</td>
+                <td>4.1%</td>
+                <td>+8.4%</td>
+                <td>CAISO市场天然气发电；Moss Landing储能（2025年火灾受损）</td>
+            </tr>
+            <tr>
+                <td><strong>Corporate & Other</strong></td>
+                <td>-$0.70亿</td>
+                <td>-1.2%</td>
+                <td>改善</td>
+                <td>公司层面费用</td>
+            </tr>
+            <tr>
+                <td><strong>Asset Closure</strong></td>
+                <td>-$0.16亿</td>
+                <td>-0.3%</td>
+                <td>改善</td>
+                <td>退役电厂的维护和关闭成本</td>
+            </tr>
+            <tr style="font-weight:bold; background-color:#e8f4f8;">
+                <td>合计</td>
+                <td>$59.12亿</td>
+                <td>100%</td>
+                <td>+4.8%</td>
+                <td></td>
+            </tr>
+        </table>
+
+        <h3>2.3 按收入口径的业务构成（FY2025）</h3>
+        <table>
+            <tr>
+                <th>收入来源</th>
+                <th>FY2025收入</th>
+                <th>占比</th>
+                <th>同比变化</th>
+            </tr>
+            <tr>
+                <td><strong>Retail（零售）</strong></td>
+                <td>$143.40亿</td>
+                <td>80.8%</td>
+                <td>+12.1%</td>
+            </tr>
+            <tr>
+                <td><strong>East（东部发电）</strong></td>
+                <td>$61.74亿</td>
+                <td>34.8%</td>
+                <td>+9.1%</td>
+            </tr>
+            <tr>
+                <td><strong>Texas（德州发电）</strong></td>
+                <td>$43.52亿</td>
+                <td>24.5%</td>
+                <td>-7.4%</td>
+            </tr>
+            <tr>
+                <td><strong>West（西部发电）</strong></td>
+                <td>$3.25亿</td>
+                <td>1.8%</td>
+                <td>-61.3%</td>
+            </tr>
+        </table>
+        <div class="highlight">
+            <p><strong>注意</strong>：各板块收入加总超过公司总收入，因为板块间存在内部交易——Retail板块从Texas/East/West板块购电再卖给终端客户。合并后抵消内部交易，FY2025公司总收入为$177.38亿。</p>
+        </div>
+
+        <h3>2.4 发电组合（按燃料类型）</h3>
+        <table>
+            <tr>
+                <th>燃料类型</th>
+                <th>容量（约MW）</th>
+                <th>占比</th>
+                <th>特点</th>
+            </tr>
+            <tr>
+                <td><strong>天然气</strong></td>
+                <td>~26,000</td>
+                <td>~60%</td>
+                <td>灵活调峰，碳排放低于煤电；Cogentrix收购后将增至~31,500 MW</td>
+            </tr>
+            <tr>
+                <td><strong>核能</strong></td>
+                <td>~6,400</td>
+                <td>~15%</td>
+                <td>零碳基荷，24/7运行，容量因子>90%；运营许可延至2050年代</td>
+            </tr>
+            <tr>
+                <td><strong>煤炭</strong></td>
+                <td>~6,000</td>
+                <td>~14%</td>
+                <td>逐步退役（Sunset板块）；部分转为天然气/太阳能</td>
+            </tr>
+            <tr>
+                <td><strong>太阳能+储能</strong></td>
+                <td>~2,600</td>
+                <td>~6%</td>
+                <td>快速增长；Oak Hill 200MW太阳能已投运</td>
+            </tr>
+            <tr>
+                <td><strong>其他</strong></td>
+                <td>~1,000</td>
+                <td>~5%</td>
+                <td>电池储能等</td>
+            </tr>
+        </table>
+
+        <h3>2.5 地理分布</h3>
+        <table>
+            <tr>
+                <th>电力市场</th>
+                <th>覆盖区域</th>
+                <th>核心资产</th>
+                <th>战略意义</th>
+            </tr>
+            <tr>
+                <td><strong>ERCOT（德州）</strong></td>
+                <td>德克萨斯州</td>
+                <td>Comanche Peak核电站；大型天然气机组；TXU Energy零售</td>
+                <td>最大市场；数据中心需求激增；AWS 20年PPA</td>
+            </tr>
+            <tr>
+                <td><strong>PJM</strong></td>
+                <td>宾州/俄亥俄/新泽西等13州+DC</td>
+                <td>Beaver Valley、Perry、Davis-Besse核电站；天然气机组</td>
+                <td>全美最大电力市场；Meta 20年PPA；容量拍卖价格飙升</td>
+            </tr>
+            <tr>
+                <td><strong>MISO</strong></td>
+                <td>中西部15州</td>
+                <td>天然气机组；煤电机组</td>
+                <td>补充市场</td>
+            </tr>
+            <tr>
+                <td><strong>CAISO</strong></td>
+                <td>加利福尼亚州</td>
+                <td>Moss Landing储能；天然气机组</td>
+                <td>储能前沿；但2025年火灾受损</td>
+            </tr>
+            <tr>
+                <td><strong>ISO-NE / NYISO</strong></td>
+                <td>新英格兰/纽约</td>
+                <td>天然气机组（Dynegy遗产）</td>
+                <td>补充市场</td>
+            </tr>
+        </table>
+
+        <h3>2.6 核心战略里程碑</h3>
+        <table>
+            <tr>
+                <th>时间</th>
+                <th>事件</th>
+                <th>战略意义</th>
+            </tr>
+            <tr>
+                <td>2016年</td>
+                <td>从EFH破产重组中诞生</td>
+                <td>消除$330亿+债务，轻装上阵</td>
+            </tr>
+            <tr>
+                <td>2018年</td>
+                <td>收购Dynegy Inc.（$17亿+承担债务）</td>
+                <td>从德州扩展至PJM/MISO/CAISO等全国市场；成为全美最大竞争性发电商</td>
+            </tr>
+            <tr>
+                <td>2020年</td>
+                <td>推出Vistra Zero品牌；承诺2050年净零</td>
+                <td>战略转向清洁能源</td>
+            </tr>
+            <tr>
+                <td>2024年3月</td>
+                <td>完成收购Energy Harbor（$34.3亿含债务）</td>
+                <td>获得6座核电站，核电容量增至6,400 MW；成为全美第二大私营核电运营商</td>
+            </tr>
+            <tr>
+                <td>2024年</td>
+                <td>收购Vistra Vision 15%少数股权（$31亿）</td>
+                <td>100%控股核电/储能/太阳能/零售资产</td>
+            </tr>
+            <tr>
+                <td>2025年9月</td>
+                <td>AWS 20年PPA：Comanche Peak 1,200 MW</td>
+                <td>锁定核电长期收入；AI数据中心供电标杆</td>
+            </tr>
+            <tr>
+                <td>2025年11月</td>
+                <td>完成Lotus收购：7座天然气电厂，2,600 MW（$19亿）</td>
+                <td>扩大天然气版图</td>
+            </tr>
+            <tr>
+                <td>2026年1月</td>
+                <td>Meta 20年PPA：PJM核电2,600+ MW</td>
+                <td>全美最大企业核电PPA之一；含433 MW功率提升</td>
+            </tr>
+            <tr>
+                <td>2026年（预计）</td>
+                <td>收购Cogentrix Energy：10座天然气电厂，5,500 MW（$23亿+股权）</td>
+                <td>总容量将达~49,100 MW；天然气调峰能力大幅增强</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="info-box">
+        <h2>三、历史财务指标</h2>
+
+        <h3>3.1 净资产收益率（ROE）</h3>
+        <div class="chart-container">
+            <canvas id="roeChart"></canvas>
+        </div>
+        <table>
+            <tr>
+                <th>年份</th><th>ROE</th><th>说明</th>
+            </tr>
+            <tr><td>2016</td><td>344%</td><td>破产重组后净资产极低导致ROE失真</td></tr>
+            <tr><td>2017</td><td>-4.01%</td><td>重组初期，盈利能力弱</td></tr>
+            <tr><td>2018</td><td>-0.71%</td><td>Dynegy收购整合期</td></tr>
+            <tr><td>2019</td><td>11.63%</td><td>首次实现正ROE，业务趋于稳定</td></tr>
+            <tr><td>2020</td><td>7.46%</td><td>疫情冲击电力需求</td></tr>
+            <tr><td>2021</td><td>-20.09%</td><td>冬季风暴Uri后巨额亏损；德州电网危机</td></tr>
+            <tr><td>2022</td><td>-41.47%</td><td>电价剧烈波动，对冲损失</td></tr>
+            <tr><td>2023</td><td>52.42%</td><td>电价回升+核电PTC收益开始体现</td></tr>
+            <tr><td>2024</td><td>90.51%</td><td>Energy Harbor并表+电价高峰；净资产因回购持续缩减推高ROE</td></tr>
+            <tr><td>电价高峰+核电贡献</td></tr>
+            <tr><td>2025</td><td>~33%</td><td>GAAP净利润下降（对冲损失+事故）；但Ongoing Adj. EBITDA创新高</td></tr>
+        </table>
+        <div class="highlight">
+            <p><strong>ROE分析</strong>：VST的ROE波动极大，这是独立发电商的典型特征——GAAP净利润受未实现对冲损益影响巨大。2024年90.51%的ROE不可持续（含大额未实现收益），2025年GAAP净利润仅$9.44亿但Ongoing Operations Adj. EBITDA达$59.12亿。投资者应更多关注<strong>调整后EBITDA和自由现金流</strong>而非GAAP ROE。</p>
+        </div>
+
+        <h3>3.2 负债率指标</h3>
+        <div class="chart-container">
+            <canvas id="debtChart"></canvas>
+        </div>
+        <table>
+            <tr>
+                <th>年份</th><th>资产负债率</th><th>长期债务/资本</th><th>债务/权益比（D/E）</th><th>说明</th>
+            </tr>
+            <tr><td>2016</td><td>~41%</td><td>0.41</td><td>0.70</td><td>破产重组后低杠杆起步</td></tr>
+            <tr><td>2017</td><td>~41%</td><td>0.41</td><td>0.70</td><td>稳定</td></tr>
+            <tr><td>2018</td><td>~58%</td><td>0.58</td><td>1.41</td><td>Dynegy收购大幅增加债务</td></tr>
+            <tr><td>2019</td><td>~56%</td><td>0.56</td><td>1.35</td><td>略有改善</td></tr>
+            <tr><td>2020</td><td>~52%</td><td>0.52</td><td>1.12</td><td>继续去杠杆</td></tr>
+            <tr><td>2021</td><td>~56%</td><td>0.56</td><td>1.29</td><td>Uri风暴影响</td></tr>
+            <tr><td>2022</td><td>~71%</td><td>0.71</td><td>2.57</td><td>亏损导致权益缩减</td></tr>
+            <tr><td>2023</td><td>~69%</td><td>0.69</td><td>2.71</td><td>盈利恢复但债务仍高</td></tr>
+            <tr><td>2024</td><td>~73%</td><td>0.73</td><td>2.92</td><td>Energy Harbor/Vistra Vision收购增加债务</td></tr>
+            <tr><td>2025</td><td>~75%</td><td>0.75</td><td>~4.0</td><td>总债务$211亿；但净杠杆~3x，获投资级评级</td></tr>
+        </table>
+        <div class="highlight">
+            <p><strong>负债分析</strong>：VST的绝对债务水平较高（FY2025总债务约$211亿），但需注意：1）独立发电商的债务/权益比天然偏高，因为电厂资产重、资本密集；2）VST的<strong>净杠杆率约3x</strong>，在同行中属中等水平；3）2025年12月标普将评级从BB+上调至BBB-（投资级），2026年3月惠誉跟进升级，<strong>进入投资级是重大里程碑</strong>，将显著降低融资成本；4）大量对冲锁定未来收入，债务偿还能力有保障。</p>
+        </div>
+
+        <h3>3.3 市盈率（PE）</h3>
+        <div class="chart-container">
+            <canvas id="peChart"></canvas>
+        </div>
+        <table>
+            <tr>
+                <th>年份</th><th>年末股价（约）</th><th>年度EPS（GAAP）</th><th>PE（TTM）</th><th>说明</th>
+            </tr>
+            <tr><td>2016</td><td>~$18</td><td>微利</td><td>0.29</td><td>刚从破产中走出</td></tr>
+            <tr><td>2017</td><td>~$22</td><td>亏损</td><td>-30.85</td><td>负PE</td></tr>
+            <tr><td>2018</td><td>~$24</td><td>亏损</td><td>-214.04</td><td>Dynegy整合期</td></tr>
+            <tr><td>2019</td><td>~$23</td><td>$1.87</td><td>12.24</td><td>首次全年盈利</td></tr>
+            <tr><td>2020</td><td>~$18</td><td>$1.19</td><td>15.11</td><td>疫情压低估值</td></tr>
+            <tr><td>2021</td><td>~$22</td><td>-$2.69</td><td>-8.62</td><td>Uri风暴亏损</td></tr>
+            <tr><td>2022</td><td>~$23</td><td>-$3.26</td><td>-7.99</td><td>连续两年亏损</td></tr>
+            <tr><td>2023</td><td>~$34</td><td>$3.63</td><td>9.54</td><td>盈利恢复，市场开始重估</td></tr>
+            <tr><td>2024</td><td>~$130</td><td>$7.16</td><td>17.88</td><td>S&P 500年度最佳表现股；核电叙事爆发</td></tr>
+            <tr><td>2025</td><td>~$177</td><td>$2.22</td><td>58.07</td><td>GAAP EPS受对冲损失拖累；但Forward PE仅~16x</td></tr>
+        </table>
+        <div class="highlight">
+            <p><strong>PE分析</strong>：VST的GAAP PE极度失真——2025年TTM PE高达58-70倍，但这主要是因为GAAP净利润被未实现的对冲损失（$8.08亿）和事故损失（Moss Landing火灾$5.55亿+Martin Lake火灾$3.84亿）严重拖累。如果看<strong>Forward PE（基于2026年预期EPS约$9-10），仅约16倍</strong>，对于一个拥有核电护城河+AI数据中心叙事+两位数EBITDA增长的公司来说，并不算贵。投资者必须区分VST的"GAAP PE"和"经济PE"——这是理解VST估值的关键。</p>
+        </div>
+
+        <h3>3.4 关键盈利指标趋势</h3>
+        <table>
+            <tr>
+                <th>指标</th><th>FY2021</th><th>FY2022</th><th>FY2023</th><th>FY2024</th><th>FY2025</th>
+            </tr>
+            <tr>
+                <td>总收入</td><td>$120.7亿</td><td>$136.8亿</td><td>$148.0亿</td><td>$172.2亿</td><td>$177.4亿</td>
+            </tr>
+            <tr>
+                <td>GAAP净利润</td><td>-$13.7亿</td><td>-$13.8亿</td><td>$18.1亿</td><td>$28.1亿</td><td>$9.4亿</td>
+            </tr>
+            <tr>
+                <td>Ongoing Adj. EBITDA</td><td>$38.0亿</td><td>$38.5亿</td><td>$50.3亿</td><td>$56.4亿</td><td>$59.1亿</td>
+            </tr>
+            <tr>
+                <td>Ongoing Adj. FCFbG</td><td>-$0.4亿</td><td>-$8.0亿</td><td>$37.7亿</td><td>$28.5亿</td><td>$35.9亿</td>
+            </tr>
+            <tr>
+                <td>毛利率</td><td>11.2%</td><td>12.3%</td><td>37.4%</td><td>43.7%</td><td>48.7%</td>
+            </tr>
+            <tr>
+                <td>营业利润率</td><td>-12.5%</td><td>-8.6%</td><td>18.0%</td><td>23.7%</td><td>10.8%</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="info-box">
+        <h2>四、竞争分析</h2>
+
+        <h3>4.1 主要竞争对手</h3>
+        <table>
+            <tr>
+                <th>竞争对手</th>
+                <th>市值</th>
+                <th>核心业务</th>
+                <th>发电容量</th>
+                <th>核电容量</th>
+                <th>与VST的差异</th>
+            </tr>
+            <tr>
+                <td><strong>Constellation Energy (CEG)</strong></td>
+                <td>~$540亿</td>
+                <td>核电+零售</td>
+                <td>~33,000 MW</td>
+                <td>~19,000 MW</td>
+                <td>全美最大核电运营商；核电占比远超VST；但零售规模较小</td>
+            </tr>
+            <tr>
+                <td><strong>NRG Energy (NRG)</strong></td>
+                <td>~$350亿</td>
+                <td>天然气发电+零售</td>
+                <td>~18,000 MW</td>
+                <td>0</td>
+                <td>VST在ERCOT零售市场的直接对手；无核电；更依赖天然气</td>
+            </tr>
+            <tr>
+                <td><strong>Talen Energy (TLN)</strong></td>
+                <td>~$80亿</td>
+                <td>核电+天然气</td>
+                <td>~10,000 MW</td>
+                <td>~2,500 MW</td>
+                <td>规模较小；AWS核电PPA先行者（但交易被FERC否决）</td>
+            </tr>
+            <tr>
+                <td><strong>NextEra Energy (NEE)</strong></td>
+                <td>~$1,960亿</td>
+                <td>受监管公用事业+可再生能源</td>
+                <td>~58,000 MW</td>
+                <td>~7,400 MW</td>
+                <td>受监管模式，盈利更稳定但增长较慢；全球最大可再生能源运营商</td>
+            </tr>
+            <tr>
+                <td><strong>Duke Energy (DUK)</strong></td>
+                <td>~$1,030亿</td>
+                <td>受监管公用事业</td>
+                <td>~55,000 MW</td>
+                <td>~11,000 MW</td>
+                <td>纯受监管公用事业；无竞争性发电/零售</td>
+            </tr>
+        </table>
+
+        <h3>4.2 市场份额</h3>
+        <table>
+            <tr>
+                <th>市场</th>
+                <th>VST地位</th>
+                <th>主要对手</th>
+            </tr>
+            <tr>
+                <td><strong>ERCOT零售</strong></td>
+                <td>最大零售商之一（~250万客户）</td>
+                <td>NRG Energy（Reliant）、Direct Energy</td>
+            </tr>
+            <tr>
+                <td><strong>美国核电</strong></td>
+                <td>第2大私人核电运营商（~6,400 MW）</td>
+                <td>Constellation Energy（~19,000 MW）</td>
+            </tr>
+            <tr>
+                <td><strong>竞争性发电</strong></td>
+                <td>全美最大之一（~41,000 MW）</td>
+                <td>Constellation、NRG、Talen</td>
+            </tr>
+            <tr>
+                <td><strong>数据中心PPA</strong></td>
+                <td>领先地位（AWS 1,200MW + Meta 2,600MW）</td>
+                <td>Constellation（微软PPA）、Talen</td>
+            </tr>
+        </table>
+
+        <h3>4.3 护城河分析</h3>
+
+        <h4>🟢 护城河一：一体化商业模式（Integrated Model）——天然对冲</h4>
+        <p>
+            VST最大的护城河是<strong>"发电+零售"一体化</strong>。纯发电公司（如Talen）完全依赖批发电力价格——电价涨就赚，电价跌就亏。纯零售公司则面临采购成本波动。VST两者兼有：电价涨时发电赚更多，电价跌时零售采购成本降低。这种天然对冲让VST的盈利波动远小于同行。
+        </p>
+        <p>
+            <strong>通俗比喻</strong>：想象一家面粉厂（发电）同时开了面包店（零售）。小麦涨价了，面粉厂多赚钱；小麦跌价了，面包店采购成本降低。无论哪种情况，这家"面粉+面包"一体化的公司都比只做面粉或只做面包的更稳。
+        </p>
+
+        <h4>🟢 护城河二：核电资产——零碳基荷的稀缺性</h4>
+        <p>
+            VST拥有约6,400 MW核电容量，包括Comanche Peak（2,425 MW）、Perry（1,243 MW）、Davis-Besse（908 MW）和Beaver Valley（1,770 MW）。核电的护城河在于：
+        </p>
+        <ul>
+            <li><strong>不可复制</strong>：美国自1979年三里岛事故后几乎不再新建核电站，现有核电资产是"绝版资产"</li>
+            <li><strong>零碳排放</strong>：AI数据中心巨头（AWS、Meta、微软）争相签署长期核电PPA，因为只有核电能同时满足"24/7不间断供电"和"零碳"两大要求</li>
+            <li><strong>容量因子>90%</strong>：核电几乎全年无休运行，远超风电（~35%）和太阳能（~25%）</li>
+            <li><strong>运营许可延至2050年代</strong>：NRC已批准Comanche Peak延至2050/2053年，Perry延至2046年，Beaver Valley延至2041/2046年</li>
+            <li><strong>IRA Section 45U核电PTC</strong>：通胀削减法案为现有核电站提供每兆瓦时$15的生产税收抵免（PTC），进一步增厚核电利润</li>
+        </ul>
+
+        <h4>🟢 护城河三：ERCOT零售霸主地位</h4>
+        <p>
+            在德州的ERCOT市场，VST通过TXU Energy等品牌服务约250万客户，是最大的零售电力供应商之一。ERCOT是全美唯一完全解除管制的电力市场——没有受监管的垄断公用事业，所有零售商必须竞争获客。VST凭借品牌认知度（TXU是德州最知名的电力品牌之一）、规模经济和客户粘性，在这个竞争激烈的市场中建立了领先地位。2025年TXU Energy被德州公用事业委员会评为最高评级的大型零售电力供应商。
+        </p>
+
+        <h4>🟡 护城河四：数据中心PPA先行者优势</h4>
+        <p>
+            VST已与AWS签署20年PPA（1,200 MW Comanche Peak核电）和与Meta签署20年PPA（2,600+ MW PJM核电），是AI数据中心供电领域的先行者。这些长期合同锁定了未来20年的稳定收入，同时提升了核电资产的经济价值。先行者优势在于——优质核电位置有限，先签先得。
+        </p>
+
+        <h4>🟡 护城河五：大规模对冲能力</h4>
+        <p>
+            VST拥有行业领先的对冲（hedging）能力，FY2025对冲了约98%的预期发电量，FY2026约96%，FY2027约64%。这种大规模、长期限的对冲策略让VST的未来收入具有高度可预测性，在电力价格波动时提供"安全垫"。
+        </p>
+
+        <h4>🔴 护城河弱点</h4>
+        <ul>
+            <li><strong>高负债</strong>：总债务$211亿，虽然获投资级评级，但利息负担重</li>
+            <li><strong>煤炭资产拖累</strong>：仍有~6,000 MW煤电容量面临退役压力和环保法规风险</li>
+            <li><strong>运营事故风险</strong>：2025年Moss Landing储能火灾（$5.55亿损失）和Martin Lake火灾（$3.84亿修复费用）暴露了运营风险</li>
+            <li><strong>监管风险</strong>：FERC否决Talen-AWS交易后，核电PPA的监管路径仍有不确定性</li>
+            <li><strong>天气依赖</strong>：ERCOT市场的极端天气（寒潮/热浪）可能造成巨大损失（如2021年Uri风暴）</li>
+        </ul>
+
+        <h3>4.4 护城河综合评估</h3>
+        <table>
+            <tr>
+                <th>护城河类型</th><th>强度</th><th>可持续性</th><th>说明</th>
+            </tr>
+            <tr>
+                <td>一体化模式</td><td><span class="tag tag-green">强</span></td><td>高</td><td>天然对冲，同行难以复制同等规模</td>
+            </tr>
+            <tr>
+                <td>核电稀缺性</td><td><span class="tag tag-green">强</span></td><td>极高</td><td>不可新建，运营许可延至2050年代</td>
+            </tr>
+            <tr>
+                <td>零售品牌</td><td><span class="tag tag-orange">中等</span></td><td>中</td><td>ERCOT竞争激烈，客户可随时切换</td>
+            </tr>
+            <tr>
+                <td>数据中心PPA</td><td><span class="tag tag-orange">中等</span></td><td>中高</td><td>先行者优势，但竞争对手也在追赶</td>
+            </tr>
+            <tr>
+                <td>对冲能力</td><td><span class="tag tag-orange">中等</span></td><td>中</td><td>规模优势，但非独特能力</td>
+            </tr>
+            <tr>
+                <td>成本优势</td><td><span class="tag tag-red">弱</span></td><td>低</td><td>核电边际成本低，但总成本无显著优势</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="info-box">
+        <h2>五、利润分配分析（过去十年）</h2>
+
+        <h3>5.1 资本回报概况</h3>
+        <table>
+            <tr>
+                <th>年份</th>
+                <th>GAAP净利润</th>
+                <th>股息支付</th>
+                <th>股票回购</th>
+                <th>资本支出</th>
+                <th>收购投资</th>
+                <th>债务净变化</th>
+                <th>留存收益</th>
+            </tr>
+            <tr>
+                <td>2016</td>
+                <td>$2.7亿</td>
+                <td>-</td>
+                <td>-</td>
+                <td>$7.0亿</td>
+                <td>-</td>
+                <td>净偿还</td>
+                <td>-$4.3亿</td>
+            </tr>
+            <tr>
+                <td>2017</td>
+                <td>-$2.4亿</td>
+                <td>-</td>
+                <td>-</td>
+                <td>$6.5亿</td>
+                <td>-</td>
+                <td>净偿还</td>
+                <td>-$8.9亿</td>
+            </tr>
+            <tr>
+                <td>2018</td>
+                <td>-$0.4亿</td>
+                <td>-</td>
+                <td>-</td>
+                <td>$6.8亿</td>
+                <td>$17亿（Dynegy）</td>
+                <td>+$30亿</td>
+                <td>-$54亿</td>
+            </tr>
+            <tr>
+                <td>2019</td>
+                <td>$9.1亿</td>
+                <td>-</td>
+                <td>-</td>
+                <td>$6.7亿</td>
+                <td>-</td>
+                <td>净偿还</td>
+                <td>$2.4亿</td>
+            </tr>
+            <tr>
+                <td>2020</td>
+                <td>$5.7亿</td>
+                <td>-</td>
+                <td>-</td>
+                <td>$6.5亿</td>
+                <td>-</td>
+                <td>净偿还</td>
+                <td>-$0.8亿</td>
+            </tr>
+            <tr>
+                <td>2021</td>
+                <td>-$13.7亿</td>
+                <td>$1.5亿</td>
+                <td>$2.0亿</td>
+                <td>$7.5亿</td>
+                <td>-</td>
+                <td>+$10亿</td>
+                <td>-$25亿</td>
+            </tr>
+            <tr>
+                <td>2022</td>
+                <td>-$13.8亿</td>
+                <td>$2.3亿</td>
+                <td>$8.0亿</td>
+                <td>$7.8亿</td>
+                <td>-</td>
+                <td>+$20亿</td>
+                <td>-$52亿</td>
+            </tr>
+            <tr>
+                <td>2023</td>
+                <td>$18.1亿</td>
+                <td>$2.6亿</td>
+                <td>$16.5亿</td>
+                <td>$8.5亿</td>
+                <td>$34亿（Energy Harbor）</td>
+                <td>+$35亿</td>
+                <td>-$64亿</td>
+            </tr>
+            <tr>
+                <td>2024</td>
+                <td>$28.1亿</td>
+                <td>$2.8亿</td>
+                <td>$22.5亿</td>
+                <td>$10.2亿</td>
+                <td>$31亿（Vistra Vision）</td>
+                <td>+$50亿</td>
+                <td>-$88亿</td>
+            </tr>
+            <tr>
+                <td>2025</td>
+                <td>$9.4亿</td>
+                <td>$3.1亿</td>
+                <td>$10.1亿</td>
+                <td>$11.0亿</td>
+                <td>$19亿（Lotus）</td>
+                <td>+$15亿</td>
+                <td>-$54亿</td>
+            </tr>
+        </table>
+
+        <h3>5.2 股票回购——VST资本配置的核心亮点</h3>
+        <div class="highlight">
+            <p><strong>核心数据</strong>：自2021年11月启动回购计划至2026年2月18日，VST已累计回购约1.67亿股，总金额约$59亿，<strong>将流通股缩减约30%</strong>（从约4.82亿股降至3.39亿股）。截至2026年2月，仍有$18亿回购授权可用。</p>
+        </div>
+        <table>
+            <tr>
+                <th>时间段</th>
+                <th>回购金额</th>
+                <th>回购股数</th>
+                <th>流通股变化</th>
+            </tr>
+            <tr>
+                <td>2021年11月-2022年12月</td>
+                <td>~$10亿</td>
+                <td>~4,500万股</td>
+                <td>4.82亿→4.37亿</td>
+            </tr>
+            <tr>
+                <td>2023年</td>
+                <td>~$16.5亿</td>
+                <td>~6,500万股</td>
+                <td>4.37亿→3.72亿</td>
+            </tr>
+            <tr>
+                <td>2024年</td>
+                <td>~$22.5亿</td>
+                <td>~3,500万股</td>
+                <td>3.72亿→3.40亿</td>
+            </tr>
+            <tr>
+                <td>2025年</td>
+                <td>~$10.1亿</td>
+                <td>655万股</td>
+                <td>3.40亿→3.39亿</td>
+            </tr>
+        </table>
+
+        <h3>5.3 股息政策</h3>
+        <table>
+            <tr>
+                <th>年份</th>
+                <th>年度股息/股</th>
+                <th>总股息支付</th>
+                <th>股息增长率</th>
+                <th>收益率</th>
+            </tr>
+            <tr><td>2020</td><td>$0.60</td><td>~$2.9亿</td><td>-</td><td>~3.3%</td></tr>
+            <tr><td>2021</td><td>$0.66</td><td>~$1.5亿</td><td>+10%</td><td>~3.0%</td></tr>
+            <tr><td>2022</td><td>$0.72</td><td>~$2.3亿</td><td>+9%</td><td>~3.1%</td></tr>
+            <tr><td>2023</td><td>$0.78</td><td>~$2.6亿</td><td>+8%</td><td>~2.3%</td></tr>
+            <tr><td>2024</td><td>$0.84</td><td>~$2.8亿</td><td>+8%</td><td>~0.6%</td></tr>
+            <tr><td>2025</td><td>$0.90</td><td>~$3.1亿</td><td>+7%</td><td>~0.6%</td></tr>
+        </table>
+        <div class="highlight">
+            <p><strong>股息分析</strong>：VST连续6年增加股息，5年年均增长率10.76%，但股息率仅0.62%——远低于传统公用事业公司3-5%的水平。这反映了VST的定位：它不是传统"收息型"公用事业，而是<strong>"增长型"能源公司</strong>，管理层更倾向于通过回购（而非高股息）回报股东——因为回购更灵活、税收效率更高，且能显著提升每股收益。自2021年以来，每股股息增长约51%，远超股息率暗示的回报水平。</p>
+        </div>
+
+        <h3>5.4 利润分配比例（FY2023-2025平均）</h3>
+        <div class="chart-container">
+            <canvas id="allocationChart"></canvas>
+        </div>
+        <table>
+            <tr>
+                <th>分配方向</th>
+                <th>3年平均金额</th>
+                <th>占Ongoing Adj. EBITDA比例</th>
+                <th>评价</th>
+            </tr>
+            <tr>
+                <td><strong>股票回购</strong></td>
+                <td>~$16.4亿</td>
+                <td>~29%</td>
+                <td><span class="tag tag-green">优秀</span> 30%流通股缩减是重大价值创造</td>
+            </tr>
+            <tr>
+                <td><strong>股息</strong></td>
+                <td>~$2.8亿</td>
+                <td>~5%</td>
+                <td><span class="tag tag-green">稳健</span> 连续增长，但占比低</td>
+            </tr>
+            <tr>
+                <td><strong>增长投资（CapEx+收购）</strong></td>
+                <td>~$37.7亿</td>
+                <td>~67%</td>
+                <td><span class="tag tag-orange">激进</span> 大规模收购（Energy Harbor、Vistra Vision、Lotus、Cogentrix）</td>
+            </tr>
+            <tr>
+                <td><strong>债务偿还</strong></td>
+                <td>净增加</td>
+                <td>-</td>
+                <td><span class="tag tag-red">关注</span> 债务持续增加，但获投资级评级</td>
+            </tr>
+        </table>
+
+        <h3>5.5 资本配置评价</h3>
+        <div class="highlight">
+            <p><strong>巴菲特式评价</strong>：VST管理层的资本配置能力在近年显著提升，但需要分两个阶段看：</p>
+            <p><strong>正面</strong>：1）2021-2026年回购$59亿、缩减30%流通股，是极其出色的股东回报——在股价低迷时大量回购，为长期股东创造了巨大价值；2）Energy Harbor核电收购（$34亿）是转折性交易，将VST从"天然气+煤炭"公司转型为"核电+天然气"公司，恰逢AI数据中心电力需求爆发；3）AWS和Meta的20年PPA锁定了长期收入，降低了盈利波动性。</p>
+            <p><strong>关注点</strong>：1）连续大规模收购导致债务从$108亿（FY2021）增至$211亿（FY2025），几乎翻倍；2）收购价格是否合理需要时间验证——特别是$31亿收购Vistra Vision少数股权和$23亿收购Cogentrix；3）Moss Landing火灾和Martin Lake火灾暴露了运营风险管理不足。</p>
+            <p><strong>总体评价</strong>：VST的资本配置策略是"进攻型"的——用债务融资收购优质资产（核电、天然气），同时用自由现金流大量回购股票。这种策略在利率低、资产价格合理时效果极佳，但在利率上升周期或收购价格过高时可能反噬。2025年获得投资级评级是重要里程碑，说明信用市场认可其策略。</p>
+        </div>
+    </div>
+
+    <div class="info-box">
+        <h2>六、投资总结</h2>
+
+        <h3>6.1 核心投资逻辑</h3>
+        <table>
+            <tr>
+                <th>维度</th>
+                <th>评估</th>
+                <th>评级</th>
+            </tr>
+            <tr>
+                <td>商业模式可理解性</td>
+                <td>发电+零售一体化，逻辑清晰</td>
+                <td><span class="tag tag-green">好</span></td>
+            </tr>
+            <tr>
+                <td>长期竞争优势</td>
+                <td>核电稀缺性+一体化对冲+ERCOT零售地位</td>
+                <td><span class="tag tag-green">强</span></td>
+            </tr>
+            <tr>
+                <td>管理层资本配置</td>
+                <td>回购积极+核电转型成功+但债务增长快</td>
+                <td><span class="tag tag-orange">中等偏好</span></td>
+            </tr>
+            <tr>
+                <td>盈利稳定性</td>
+                <td>GAAP盈利波动大，但Adj. EBITDA稳定增长</td>
+                <td><span class="tag tag-orange">中等</span></td>
+            </tr>
+            <tr>
+                <td>估值安全边际</td>
+                <td>Forward PE ~16x，对核电+AI叙事公司合理但不算便宜</td>
+                <td><span class="tag tag-orange">有限</span></td>
+            </tr>
+            <tr>
+                <td>资产负债表</td>
+                <td>高杠杆但获投资级，净杠杆~3x</td>
+                <td><span class="tag tag-orange">需关注</span></td>
+            </tr>
+        </table>
+
+        <h3>6.2 关键催化剂</h3>
+        <ul>
+            <li><strong>AI数据中心电力需求持续爆发</strong>：更多科技巨头签署长期核电/天然气PPA</li>
+            <li><strong>PJM容量拍卖价格继续上涨</strong>：2027/2028规划年拍卖价飙升至$333.44/MW-day</li>
+            <li><strong>IRA核电PTC延续</strong>：Section 45U为核电提供每MWh $15的税收抵免</li>
+            <li><strong>Cogentrix收购完成</strong>：增加5,500 MW天然气调峰能力</li>
+            <li><strong>投资级评级进一步上调</strong>：降低融资成本，扩大投资者基础</li>
+        </ul>
+
+        <h3>6.3 关键风险</h3>
+        <ul>
+            <li><strong>电力价格大幅下跌</strong>：如果天然气价格持续走低，批发电力价格可能下降</li>
+            <li><strong>监管干预</strong>：FERC对核电PPA的审批态度仍不确定</li>
+            <li><strong>运营事故</strong>：Moss Landing和Martin Lake火灾表明运营风险不可忽视</li>
+            <li><strong>债务负担</strong>：$211亿总债务，利率上升将增加利息支出</li>
+            <li><strong>煤炭退役成本</strong>：约6,000 MW煤电面临退役，可能产生额外成本</li>
+            <li><strong>极端天气</strong>：ERCOT市场寒潮/热浪可能造成巨额损失</li>
+        </ul>
+
+        <h3>6.4 估值参考</h3>
+        <table>
+            <tr>
+                <th>估值方法</th>
+                <th>数值</th>
+                <th>说明</th>
+            </tr>
+            <tr>
+                <td>当前股价</td>
+                <td>~$148</td>
+                <td>2026年5月</td>
+            </tr>
+            <tr>
+                <td>TTM GAAP PE</td>
+                <td>~70x</td>
+                <td>GAAP EPS被对冲损失和事故拖累</td>
+            </tr>
+            <tr>
+                <td>Forward PE（2026E）</td>
+                <td>~16x</td>
+                <td>基于2026E EPS约$9-10</td>
+            </tr>
+            <tr>
+                <td>EV/EBITDA（TTM）</td>
+                <td>~11x</td>
+                <td>基于EV ~$692亿，EBITDA ~$66亿</td>
+            </tr>
+            <tr>
+                <td>P/B</td>
+                <td>~9.7x</td>
+                <td>净资产较低（高杠杆）</td>
+            </tr>
+            <tr>
+                <td>2026E Adj. EBITDA指引</td>
+                <td>$68-76亿</td>
+                <td>中位数$72亿，同比增长~22%</td>
+            </tr>
+            <tr>
+                <td>2026E Adj. FCFbG指引</td>
+                <td>$39.25-47.25亿</td>
+                <td>中位数$43.25亿，自由现金流收益率~8.7%</td>
+            </tr>
+        </table>
+
+        <div class="highlight">
+            <p><strong>价值投资者视角</strong>：VST是一家"转型故事"公司——从破产重组到S&P 500年度最佳表现股仅用了4年。其核心投资逻辑是<strong>核电稀缺性+AI数据中心需求+一体化模式</strong>。Forward PE约16倍，对于一家EBITDA增速20%+、拥有不可复制的核电资产、与AWS/Meta签署20年PPA的公司来说，估值尚属合理。但投资者必须接受：1）GAAP盈利波动极大；2）高杠杆带来风险；3）运营事故可能随时发生。VST不适合追求稳定股息的"收息型"投资者，但适合看好AI电力需求长期趋势、能承受波动的"增长型"价值投资者。</p>
+        </div>
+    </div>
+
+    <div style="text-align: center; margin: 20px 0;">
+        <a href="index.html">返回索引页</a>
+    </div>
+
+    <script>
+        const chartFont = { size: 11 };
+
+        new Chart(document.getElementById('roeChart'), {
+            type: 'bar',
+            data: {
+                labels: ['2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025'],
+                datasets: [{
+                    label: 'ROE (%)',
+                    data: [344, -4.01, -0.71, 11.63, 7.46, -20.09, -41.47, 52.42, 90.51, 33],
+                    backgroundColor: function(context) {
+                        const value = context.raw;
+                        return value >= 0 ? 'rgba(76, 175, 80, 0.7)' : 'rgba(244, 67, 54, 0.7)';
+                    },
+                    borderColor: function(context) {
+                        const value = context.raw;
+                        return value >= 0 ? 'rgba(76, 175, 80, 1)' : 'rgba(244, 67, 54, 1)';
+                    },
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: { display: true, text: 'VST净资产收益率（ROE）年度趋势', font: { size: 14 } },
+                    legend: { display: false }
+                },
+                scales: {
+                    y: {
+                        title: { display: true, text: 'ROE (%)' },
+                        suggestedMin: -50,
+                        suggestedMax: 100
+                    }
+                }
+            }
+        });
+
+        new Chart(document.getElementById('debtChart'), {
+            type: 'line',
+            data: {
+                labels: ['2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025'],
+                datasets: [{
+                    label: '长期债务/资本',
+                    data: [0.41, 0.41, 0.58, 0.56, 0.52, 0.56, 0.71, 0.69, 0.73, 0.75],
+                    borderColor: 'rgba(33, 150, 243, 1)',
+                    backgroundColor: 'rgba(33, 150, 243, 0.1)',
+                    fill: true,
+                    yAxisID: 'y'
+                }, {
+                    label: '债务/权益比（D/E）',
+                    data: [0.70, 0.70, 1.41, 1.35, 1.12, 1.29, 2.57, 2.71, 2.92, 4.0],
+                    borderColor: 'rgba(255, 152, 0, 1)',
+                    backgroundColor: 'rgba(255, 152, 0, 0.1)',
+                    fill: true,
+                    yAxisID: 'y1'
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: { display: true, text: 'VST负债率指标趋势', font: { size: 14 } }
+                },
+                scales: {
+                    y: {
+                        type: 'linear',
+                        position: 'left',
+                        title: { display: true, text: '长期债务/资本' },
+                        min: 0,
+                        max: 1
+                    },
+                    y1: {
+                        type: 'linear',
+                        position: 'right',
+                        title: { display: true, text: 'D/E比' },
+                        min: 0,
+                        max: 5,
+                        grid: { drawOnChartArea: false }
+                    }
+                }
+            }
+        });
+
+        new Chart(document.getElementById('peChart'), {
+            type: 'bar',
+            data: {
+                labels: ['2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025'],
+                datasets: [{
+                    label: 'PE (TTM)',
+                    data: [0.29, -30.85, -214.04, 12.24, 15.11, -8.62, -7.99, 9.54, 17.88, 58.07],
+                    backgroundColor: function(context) {
+                        const value = context.raw;
+                        return value > 0 ? 'rgba(0, 59, 92, 0.7)' : 'rgba(244, 67, 54, 0.5)';
+                    },
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: { display: true, text: 'VST市盈率（PE）年度趋势', font: { size: 14 } },
+                    legend: { display: false }
+                },
+                scales: {
+                    y: {
+                        title: { display: true, text: 'PE' },
+                        suggestedMin: -50,
+                        suggestedMax: 70
+                    }
+                }
+            }
+        });
+
+        new Chart(document.getElementById('allocationChart'), {
+            type: 'doughnut',
+            data: {
+                labels: ['股票回购', '股息', '增长投资（CapEx+收购）'],
+                datasets: [{
+                    data: [29, 5, 67],
+                    backgroundColor: [
+                        'rgba(76, 175, 80, 0.8)',
+                        'rgba(33, 150, 243, 0.8)',
+                        'rgba(255, 152, 0, 0.8)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: { display: true, text: 'VST利润分配比例（FY2023-2025平均，占Adj. EBITDA）', font: { size: 14 } },
+                    legend: { position: 'bottom' }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

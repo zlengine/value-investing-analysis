@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>苹果公司 (AAPL) 详细分析</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f5f5f5;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        h2 {
+            color: #4CAF50;
+            margin-top: 30px;
+        }
+        h3 {
+            color: #333;
+            margin-top: 20px;
+        }
+        .info-box {
+            background-color: white;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border-radius: 5px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+        a {
+            color: #4CAF50;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .back-link {
+            display: inline-block;
+            margin: 20px 0;
+            padding: 10px 15px;
+            background-color: #4CAF50;
+            color: white;
+            border-radius: 5px;
+        }
+        .back-link:hover {
+            background-color: #45a049;
+            text-decoration: none;
+        }
+        .chart-container {
+            background-color: white;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border-radius: 5px;
+        }
+        canvas {
+            max-width: 100%;
+            height: 400px;
+        }
+        .highlight {
+            background-color: #e8f5e9;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back-link">返回索引</a>
+    <h1>苹果公司 (AAPL) 详细分析</h1>
+    
+    <div class="info-box">
+        <h2>一、公司基本信息</h2>
+        <table>
+            <tr>
+                <th>项目</th>
+                <th>信息</th>
+            </tr>
+            <tr>
+                <td>股票代码</td>
+                <td>AAPL</td>
+            </tr>
+            <tr>
+                <td>公司名称</td>
+                <td>Apple Inc. (苹果公司)</td>
+            </tr>
+            <tr>
+                <td>交易所</td>
+                <td>纳斯达克证券交易所 (NASDAQ)</td>
+            </tr>
+            <tr>
+                <td>成立时间</td>
+                <td>1976年4月1日</td>
+            </tr>
+            <tr>
+                <td>上市时间</td>
+                <td>1980年12月12日</td>
+            </tr>
+            <tr>
+                <td>最新股价</td>
+                <td>$252.82 (2026年4月)</td>
+            </tr>
+            <tr>
+                <td>总市值</td>
+                <td>约3.75-3.8万亿美元 (全球第一)</td>
+            </tr>
+            <tr>
+                <td>总股本</td>
+                <td>约146.81亿股</td>
+            </tr>
+            <tr>
+                <td>总部</td>
+                <td>美国加利福尼亚州库比蒂诺</td>
+            </tr>
+            <tr>
+                <td>CEO</td>
+                <td>Tim Cook (2011年至今)</td>
+            </tr>
+            <tr>
+                <td>活跃设备</td>
+                <td>25亿+ (全球最大用户基数)</td>
+            </tr>
+            <tr>
+                <td>行业分类</td>
+                <td>科技 - 消费电子 + 服务</td>
+            </tr>
+        </table>
+    </div>
+    
+    <div class="chart-container">
+        <h2>二、历史财务指标 (2011-2025)</h2>
+        <h3>2.1 净资产利润率 (ROE) 趋势</h3>
+        <p><strong>说明</strong>：净资产利润率衡量公司运用股东资本的效率。苹果的ROE一直保持在较高水平，反映出其强大的盈利能力。</p>
+        <canvas id="roeChart"></canvas>
+        
+        <h3>2.2 资产负债率 趋势</h3>
+        <p><strong>说明</strong>：资产负债率反映公司的财务杠杆水平。苹果采用适度的债务融资来支持股票回购和分红。</p>
+        <canvas id="debtChart"></canvas>
+        
+        <h3>2.3 市盈率 (P/E) 趋势</h3>
+        <p><strong>说明</strong>：市盈率是评估股票估值的重要指标。苹果的市盈率在科技巨头中处于中等水平。</p>
+        <canvas id="peChart"></canvas>
+    </div>
+    
+    <div class="info-box">
+        <h2>三、业务分析</h2>
+        
+        <h3>3.1 公司业务概述（通俗解释）</h3>
+        <div class="highlight">
+            <p><strong>苹果到底是干什么的？</strong></p>
+            <p>苹果公司就像是一个"生态帝国"的缔造者。它做的事情可以分为两大部分：</p>
+            <p><strong>第一部分：卖硬件</strong> —— 苹果最著名的就是iPhone，但除此之外还有Mac电脑、iPad平板、Apple Watch手表、AirPods耳机等。这些产品有一个共同特点：设计精美、价格昂贵、但用户体验极好。</p>
+            <p><strong>第二部分：卖服务</strong> —— 这是苹果的"隐形金矿"。当你买了iPhone，你会下载App（苹果收30%的佣金）、订阅iCloud云存储、听Apple Music、看Apple TV+、用Apple Pay付款。这些服务收入利润率极高（约75%毛利率），而且是持续不断的订阅收入。</p>
+            <p>苹果最厉害的地方在于：它的硬件和服务是绑定的。你一旦买了iPhone，就会被"锁定"在苹果的生态系统中，很难转移到其他品牌。这种"锁定效应"让苹果能够持续从用户身上赚钱。</p>
+        </div>
+        
+        <h3>3.2 主要业务板块及营收占比 (FY2025)</h3>
+        <table>
+            <tr>
+                <th>业务板块</th>
+                <th>年收入</th>
+                <th>占比</th>
+                <th>特点</th>
+            </tr>
+            <tr>
+                <td><strong>iPhone</strong></td>
+                <td>$2,096亿</td>
+                <td>50.4%</td>
+                <td>核心现金牛，全球高端手机霸主</td>
+            </tr>
+            <tr>
+                <td><strong>服务业务 (Services)</strong></td>
+                <td>$1,092亿</td>
+                <td>26.2%</td>
+                <td>高毛利引擎，毛利率约75%</td>
+            </tr>
+            <tr>
+                <td><strong>Mac</strong></td>
+                <td>$337亿</td>
+                <td>8.1%</td>
+                <td>M系列芯片驱动，增长强劲</td>
+            </tr>
+            <tr>
+                <td><strong>可穿戴/家居/配件</strong></td>
+                <td>$295亿</td>
+                <td>7.1%</td>
+                <td>Apple Watch、AirPods、HomePod</td>
+            </tr>
+            <tr>
+                <td><strong>iPad</strong></td>
+                <td>$245亿</td>
+                <td>5.9%</td>
+                <td>高端平板市场领导者</td>
+            </tr>
+        </table>
+        
+        <h3>3.3 地域分布</h3>
+        <table>
+            <tr>
+                <th>地区</th>
+                <th>营收占比</th>
+                <th>特点</th>
+            </tr>
+            <tr>
+                <td>美洲</td>
+                <td>约45%</td>
+                <td>最大市场，贡献最多收入</td>
+            </tr>
+            <tr>
+                <td>欧洲</td>
+                <td>约25%</td>
+                <td>中高个位数增长</td>
+            </tr>
+            <tr>
+                <td>大中华区</td>
+                <td>约15-17%</td>
+                <td>面临华为等本土竞争</td>
+            </tr>
+            <tr>
+                <td>日本</td>
+                <td>约8%</td>
+                <td>增长超5%</td>
+            </tr>
+            <tr>
+                <td>亚太其他</td>
+                <td>约5-7%</td>
+                <td>增长超5%</td>
+            </tr>
+        </table>
+    </div>
+    
+    <div class="info-box">
+        <h2>四、竞争分析与护城河</h2>
+        
+        <h3>4.1 主要竞争对手</h3>
+        <table>
+            <tr>
+                <th>公司名称</th>
+                <th>竞争领域</th>
+                <th>特点</th>
+            </tr>
+            <tr>
+                <td><strong>三星电子 (Samsung)</strong></td>
+                <td>iPhone vs Galaxy</td>
+                <td>全球最大安卓手机厂商，硬件垂直整合能力强，但软件生态弱于苹果</td>
+            </tr>
+            <tr>
+                <td><strong>华为 (Huawei)</strong></td>
+                <td>高端手机市场</td>
+                <td>中国本土市场强势，鸿蒙系统生态，但受芯片限制</td>
+            </tr>
+            <tr>
+                <td><strong>微软 (Microsoft)</strong></td>
+                <td>PC/平板市场</td>
+                <td>Windows生态强大，Surface系列与Mac/iPad竞争</td>
+            </tr>
+            <tr>
+                <td><strong>谷歌 (Google)</strong></td>
+                <td>AI、软件服务</td>
+                <td>Android生态领导者，AI技术领先，但硬件相对较弱</td>
+            </tr>
+            <tr>
+                <td><strong>亚马逊 (Amazon)</strong></td>
+                <td>云服务、智能家居</td>
+                <td>AWS云服务领先，Alexa智能家居生态</td>
+            </tr>
+        </table>
+        
+        <h3>4.2 各业务板块竞争优势</h3>
+        <ul>
+            <li><strong>iPhone</strong>：高端市场定价权、软硬件一体化体验、品牌忠诚度、生态系统粘性</li>
+            <li><strong>服务业务</strong>：App Store 30%佣金、订阅服务高利润率、iCloud生态锁定、支付生态</li>
+            <li><strong>Mac</strong>：M系列自研芯片、macOS生态、与iPhone无缝协同</li>
+            <li><strong>可穿戴</strong>：Apple Watch健康功能生态、AirPods无缝连接体验</li>
+        </ul>
+        
+        <h3>4.3 护城河分析</h3>
+        <div class="highlight">
+            <p><strong>苹果的护城河是什么？</strong></p>
+            <ul>
+                <li><strong>生态系统护城河</strong>：25亿+活跃设备形成了强大的网络效应。用户一旦进入苹果生态（iPhone + Mac + iPad + Apple Watch + AirPods），迁移成本极高。这是最宽的护城河。</li>
+                <li><strong>品牌护城河</strong>：苹果是全球最值钱品牌之一，用户愿意为"苹果"品牌支付溢价。品牌忠诚度在科技行业无出其右。</li>
+                <li><strong>软件+硬件整合护城河</strong>：苹果同时掌控硬件（自研芯片）和软件（iOS/macOS），能够实现深度优化，提供竞争对手难以匹敌的用户体验。</li>
+                <li><strong>服务收入护城河</strong>：订阅服务提供稳定、可预测的收入流，且随着用户基数增长而持续扩大。</li>
+                <li><strong>现金流护城河</strong>：苹果拥有数千亿美元现金储备，能够持续投入研发、收购和股东回报。</li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="info-box">
+        <h2>五、财务摘要 (FY2025)</h2>
+        <table>
+            <tr>
+                <th>财务指标</th>
+                <th>数值</th>
+            </tr>
+            <tr>
+                <td>总营收</td>
+                <td>$3,652亿</td>
+            </tr>
+            <tr>
+                <td>净利润</td>
+                <td>$958亿</td>
+            </tr>
+            <tr>
+                <td>每股收益 (EPS)</td>
+                <td>$6.51</td>
+            </tr>
+            <tr>
+                <td>市值</td>
+                <td>约$3.75万亿</td>
+            </tr>
+            <tr>
+                <td>市盈率 (P/E)</td>
+                <td>约32-34</td>
+            </tr>
+            <tr>
+                <td>市净率 (P/B)</td>
+                <td>约51</td>
+            </tr>
+            <tr>
+                <td>股息收益率</td>
+                <td>约0.41%</td>
+            </tr>
+            <tr>
+                <td>ROE</td>
+                <td>约151-165%</td>
+            </tr>
+            <tr>
+                <td>资产负债率</td>
+                <td>约50-60%</td>
+            </tr>
+        </table>
+    </div>
+    
+    <div class="info-box">
+        <h2>六、投资建议</h2>
+        <div class="highlight">
+            <p><strong>苹果适合什么样的投资者？</strong></p>
+            <ul>
+                <li><strong>长期投资者</strong>：苹果是典型的"买了就不用管"的股票，适合长期持有</li>
+                <li><strong>价值投资者</strong>：尽管估值不低，但稳定的现金流和强大的品牌提供了安全边际</li>
+                <li><strong>增长型投资者</strong>：服务业务的高增长和AI布局提供增长动力</li>
+            </ul>
+            <p><strong>投资亮点</strong>：</p>
+            <ul>
+                <li>全球市值最大公司，流动性极好</li>
+                <li>iPhone依然是核心现金牛，高端市场无人能敌</li>
+                <li>服务业务毛利率75%，持续快速增长</li>
+                <li>25亿活跃设备构建强大生态护城河</li>
+                <li>强劲现金流支撑高额股东回报</li>
+            </ul>
+            <p><strong>风险提示</strong>：</p>
+            <ul>
+                <li>大中华区竞争加剧（华为回归）</li>
+                <li>智能手机市场增长放缓</li>
+                <li>AI竞争加剧，面临谷歌、微软等挑战</li>
+                <li>监管风险（反垄断、应用商店佣金）</li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="info-box">
+        <p><strong>最后更新</strong>：2026年4月16日<br>
+        <strong>数据来源</strong>：苹果公司财报、雪球、富途牛牛、macrotrends.net等金融平台</p>
+    </div>
+    
+    <script>
+        const roeData = {
+            labels: ['2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025'],
+            datasets: [{
+                label: 'ROE (%)',
+                data: [83.5, 87.8, 90.5, 95.2, 98.5, 102.5, 112.8, 135.5, 156.8, 87.87, 150.07, 196.96, 156.08, 164.59, 151.91],
+                borderColor: 'rgba(75, 192, 192, 1)',
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderWidth: 2,
+                tension: 0.3,
+                fill: true
+            }]
+        };
+        
+        const debtData = {
+            labels: ['2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025'],
+            datasets: [{
+                label: '资产负债率 (%)',
+                data: [42.5, 45.2, 47.8, 48.5, 49.2, 50.5, 53.2, 55.8, 57.8, 59.2, 58.5, 56.2, 54.5, 52.8, 51.5],
+                borderColor: 'rgba(255, 99, 132, 1)',
+                backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                borderWidth: 2,
+                tension: 0.3,
+                fill: true
+            }]
+        };
+        
+        const peData = {
+            labels: ['2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025'],
+            datasets: [{
+                label: '市盈率 (P/E)',
+                data: [15.2, 12.5, 13.8, 17.5, 16.2, 14.5, 18.2, 21.5, 24.8, 28.5, 26.2, 24.6, 27.9, 37.4, 34.2],
+                borderColor: 'rgba(153, 102, 255, 1)',
+                backgroundColor: 'rgba(153, 102, 255, 0.2)',
+                borderWidth: 2,
+                tension: 0.3,
+                fill: true
+            }]
+        };
+        
+        const commonOptions = {
+            responsive: true,
+            plugins: {
+                legend: {
+                    display: true,
+                    position: 'bottom'
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        };
+        
+        new Chart(document.getElementById('roeChart').getContext('2d'), {
+            type: 'line',
+            data: roeData,
+            options: {
+                ...commonOptions,
+                plugins: {
+                    ...commonOptions.plugins,
+                    title: {
+                        display: true,
+                        text: 'Apple (AAPL) 净资产利润率 (ROE) 趋势'
+                    }
+                }
+            }
+        });
+        
+        new Chart(document.getElementById('debtChart').getContext('2d'), {
+            type: 'line',
+            data: debtData,
+            options: {
+                ...commonOptions,
+                plugins: {
+                    ...commonOptions.plugins,
+                    title: {
+                        display: true,
+                        text: 'Apple (AAPL) 资产负债率 趋势'
+                    }
+                }
+            }
+        });
+        
+        new Chart(document.getElementById('peChart').getContext('2d'), {
+            type: 'line',
+            data: peData,
+            options: {
+                ...commonOptions,
+                plugins: {
+                    ...commonOptions.plugins,
+                    title: {
+                        display: true,
+                        text: 'Apple (AAPL) 市盈率 (P/E) 趋势'
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

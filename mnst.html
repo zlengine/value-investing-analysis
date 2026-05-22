@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MNST (Monster Beverage) 详细分析</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f5f5f5;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        h2 {
+            color: #FFD700;
+            margin-top: 30px;
+        }
+        h3 {
+            color: #333;
+            margin-top: 20px;
+        }
+        .info-box {
+            background-color: white;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border-radius: 5px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #FFD700;
+            color: #333;
+        }
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+        a {
+            color: #4CAF50;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .highlight {
+            background-color: #f9f9f9;
+            border-left: 4px solid #FFD700;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        .chart-container {
+            background-color: white;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border-radius: 5px;
+        }
+        canvas {
+            max-height: 400px;
+        }
+        .tag {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 3px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        .tag-green {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .tag-orange {
+            background-color: #FF9800;
+            color: white;
+        }
+        .tag-red {
+            background-color: #f44336;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <h1>Monster Beverage (MNST) 价值投资分析</h1>
+
+    <div class="info-box">
+        <h2>一、公司基本信息</h2>
+        <table>
+            <tr><th>项目</th><th>详情</th></tr>
+            <tr><td>公司全称</td><td>Monster Beverage Corporation</td></tr>
+            <tr><td>股票代码</td><td>MNST</td></tr>
+            <tr><td>上市交易所</td><td>纳斯达克全球精选市场（NASDAQ GS）</td></tr>
+            <tr><td>成立时间</td><td>1935年（前身为Hansen Natural Corporation，2012年更名）</td></tr>
+            <tr><td>总部</td><td>美国加利福尼亚州科罗纳（1 Monster Way, Corona, CA 92879）</td></tr>
+            <tr><td>当前市值（2026年5月）</td><td>约$850亿美元</td></tr>
+            <tr><td>市值（美元）</td><td>~$85B USD</td></tr>
+            <tr><td>最新收盘价（2026年5月）</td><td>约$87</td></tr>
+            <tr><td>流通股数</td><td>约9.78亿股</td></tr>
+            <tr><td>CEO</td><td>Rodney C. Sacks（联合CEO，自1990年执掌公司）</td></tr>
+            <tr><td>联合CEO</td><td>Hilton H. Schlosberg</td></tr>
+            <tr><td>CFO</td><td>Thomas J. Kelly</td></tr>
+            <tr><td>行业</td><td>消费防御——非酒精饮料</td></tr>
+            <tr><td>员工数</td><td>约6,891人（FY2025）</td></tr>
+            <tr><td>52周范围</td><td>~$58 - $88</td></tr>
+            <tr><td>股息</td><td>无（公司从未支付股息）</td></tr>
+            <tr><td>可口可乐持股</td><td>约19.5%（最大股东）</td></tr>
+        </table>
+    </div>
+
+    <div class="info-box">
+        <h2>二、业务分析</h2>
+        <h3>2.1 通俗解释：Monster Beverage是干什么的？</h3>
+        <p>
+            用最简单的话说，<strong>Monster Beverage就是做能量饮料的</strong>。你走进任何一家便利店，看到货架上那个绿色大M标志、黑色罐子上印着爪痕的饮料——那就是Monster Energy。它是全球第二大能量饮料品牌，仅次于红牛。公司不自己生产饮料（生产外包给装瓶厂），而是专注于品牌营销、产品配方研发和全球分销。你可以把它理解为一个"品牌+配方+渠道"公司，把饮料设计出来，然后通过可口可乐的全球分销网络卖到全世界。
+        </p>
+
+        <h3>2.2 业务板块</h3>
+        <table>
+            <tr>
+                <th>业务板块</th>
+                <th>FY2025净销售额</th>
+                <th>占比</th>
+                <th>同比增长</th>
+                <th>说明</th>
+            </tr>
+            <tr>
+                <td><strong>Monster Energy Drinks</strong></td>
+                <td>$76.66亿</td>
+                <td>92.4%</td>
+                <td>+11.7%</td>
+                <td>核心能量饮料：Monster Energy、Reign Total Body Fuel、Reign Storm、Bang Energy、FLRT</td>
+            </tr>
+            <tr>
+                <td><strong>Strategic Brands</strong></td>
+                <td>$4.69亿</td>
+                <td>5.7%</td>
+                <td>+8.6%</td>
+                <td>从可口可乐收购的能量品牌（Full Throttle、NOS等）及平价品牌（Predator、Fury）</td>
+            </tr>
+            <tr>
+                <td><strong>Alcohol Brands</strong></td>
+                <td>$1.35亿</td>
+                <td>1.6%</td>
+                <td>-21.5%</td>
+                <td>精酿啤酒、调味麦芽饮料和硬苏打水（Canarchy Craft Brewery收购）</td>
+            </tr>
+            <tr>
+                <td><strong>Other</strong></td>
+                <td>$0.25亿</td>
+                <td>0.3%</td>
+                <td>+6.2%</td>
+                <td>American Fruits and Flavors向第三方销售的产品</td>
+            </tr>
+        </table>
+
+        <h3>2.3 地理分布</h3>
+        <table>
+            <tr>
+                <th>地区</th>
+                <th>FY2025净销售额</th>
+                <th>占比</th>
+                <th>同比增长</th>
+            </tr>
+            <tr>
+                <td>美国和加拿大</td>
+                <td>~$48.5亿</td>
+                <td>~59%</td>
+                <td>+7.5%</td>
+            </tr>
+            <tr>
+                <td>EMEA（欧洲、中东、非洲）</td>
+                <td>~$19.5亿</td>
+                <td>~23%</td>
+                <td>+21.5%</td>
+            </tr>
+            <tr>
+                <td>APAC（亚太地区）</td>
+                <td>~$8.0亿</td>
+                <td>~10%</td>
+                <td>+18%</td>
+            </tr>
+            <tr>
+                <td>拉丁美洲及加勒比</td>
+                <td>~$6.98亿</td>
+                <td>~8%</td>
+                <td>+4.8%</td>
+            </tr>
+        </table>
+        <div class="highlight">
+            <p><strong>关键趋势</strong>：国际业务占比从FY2024的40%提升至FY2025的41%，并在FY2026 Q1进一步跃升至45%。国际市场已成为Monster最重要的增长引擎——FY2026 Q1国际净销售额同比飙升44.9%至$10.6亿。EMEA和APAC是增长最快的地区，主要得益于可口可乐全球分销网络的持续渗透。</p>
+        </div>
+
+        <h3>2.4 商业模式</h3>
+        <div class="highlight">
+            <p><strong>Monster的商业模式可以用三个关键词概括：品牌、轻资产、分销</strong></p>
+            <ul>
+                <li><strong>品牌驱动</strong>：公司不自己生产饮料，而是将生产外包给装瓶厂和合同制造商。公司专注于品牌营销、产品配方和包装设计。这意味着公司资本开支极低（FY2025资本开支仅约$3亿），自由现金流转化率极高</li>
+                <li><strong>可口可乐分销网络</strong>：约90%的销量通过可口可乐的全球分销系统销售。可口可乐持有Monster约19.5%的股权，是Monster最重要的战略合作伙伴。这种"借船出海"模式让Monster无需自建全球分销体系</li>
+                <li><strong>高毛利</strong>：FY2025毛利率55.8%，运营利润率29.2%，净利率23.0%。在饮料行业中属于顶级水平，远超可口可乐（~60%毛利率但净利率仅~24%）和百事（~55%毛利率但净利率仅~10%）</li>
+                <li><strong>零负债</strong>：FY2025末现金$33亿，零长期债务。2025年4月偿还了最后一笔定期贷款，成为净现金公司</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="info-box">
+        <h2>三、关键财务指标（2000-2025）</h2>
+        <h3>3.1 净资产收益率（ROE）</h3>
+        <table>
+            <tr><th>年份</th><th>ROE (%)</th><th>说明</th></tr>
+            <tr><td>2000</td><td>5.2</td><td>果汁时代，ROE极低</td></tr>
+            <tr><td>2001</td><td>6.8</td><td>果汁业务为主</td></tr>
+            <tr><td>2002</td><td>8.5</td><td>开始转型能量饮料</td></tr>
+            <tr><td>2003</td><td>12.3</td><td>Monster Energy品牌推出（2002年4月）</td></tr>
+            <tr><td>2004</td><td>18.5</td><td>能量饮料高速增长</td></tr>
+            <tr><td>2005</td><td>22.0</td><td>能量饮料爆发</td></tr>
+            <tr><td>2006</td><td>28.5</td><td>品牌势能释放</td></tr>
+            <tr><td>2007</td><td>25.8</td><td>保持高ROE</td></tr>
+            <tr><td>2008</td><td>22.1</td><td>金融危机影响</td></tr>
+            <tr><td>2009</td><td>18.5</td><td>经济衰退拖累</td></tr>
+            <tr><td>2010</td><td>15.2</td><td>恢复期</td></tr>
+            <tr><td>2011</td><td>29.2</td><td>强劲反弹</td></tr>
+            <tr><td>2012</td><td>52.8</td><td>ROE巅峰——高利润+低权益基数</td></tr>
+            <tr><td>2013</td><td>34.1</td><td>权益增长拉低ROE</td></tr>
+            <tr><td>2014</td><td>31.9</td><td>保持优秀</td></tr>
+            <tr><td>2015</td><td>11.4</td><td>可口可乐交易导致权益大增</td></tr>
+            <tr><td>2016</td><td>21.4</td><td>调整后恢复</td></tr>
+            <tr><td>2017</td><td>21.1</td><td>稳定</td></tr>
+            <tr><td>2018</td><td>27.5</td><td>提价驱动利润增长</td></tr>
+            <tr><td>2019</td><td>26.6</td><td>持续优秀</td></tr>
+            <tr><td>2020</td><td>27.3</td><td>疫情下仍保持高ROE</td></tr>
+            <tr><td>2021</td><td>21.0</td><td>收购Canarchy稀释</td></tr>
+            <tr><td>2022</td><td>17.0</td><td>成本上升+收购稀释</td></tr>
+            <tr><td>2023</td><td>19.8</td><td>恢复中</td></tr>
+            <tr><td>2024</td><td>25.3</td><td>利润率恢复+回购增厚</td></tr>
+            <tr><td>2025</td><td>22.5</td><td>回购大幅减少权益基数</td></tr>
+        </table>
+        <div class="highlight">
+            <p><strong>ROE趋势分析</strong>：Monster的ROE在过去25年中经历了从低到高的巨大转变。2000年代初公司还是一家果汁公司时ROE仅5-8%，2002年推出Monster Energy后ROE一路攀升至2012年的52.8%巅峰。2015年可口可乐入股交易导致权益基数大增，ROE暂时下降至11.4%。近年来ROE稳定在20-28%区间，属于饮料行业顶级水平。13年ROE中位数为23.1%，当前26.8%（TTM）高于中位数。</p>
+        </div>
+
+        <h3>3.2 资产负债率</h3>
+        <table>
+            <tr><th>年份</th><th>资产负债率 (%)</th></tr>
+            <tr><td>2000</td><td>32</td></tr>
+            <tr><td>2005</td><td>28</td></tr>
+            <tr><td>2010</td><td>25</td></tr>
+            <tr><td>2015</td><td>18</td></tr>
+            <tr><td>2016</td><td>20</td></tr>
+            <tr><td>2017</td><td>22</td></tr>
+            <tr><td>2018</td><td>23</td></tr>
+            <tr><td>2019</td><td>24</td></tr>
+            <tr><td>2020</td><td>26</td></tr>
+            <tr><td>2021</td><td>30</td></tr>
+            <tr><td>2022</td><td>35</td></tr>
+            <tr><td>2023</td><td>38</td></tr>
+            <tr><td>2024</td><td>40</td></tr>
+            <tr><td>2025</td><td>35</td></tr>
+        </table>
+
+        <h3>3.3 产权比率（D/E）</h3>
+        <table>
+            <tr><th>年份</th><th>产权比率</th></tr>
+            <tr><td>2015</td><td>0.22</td></tr>
+            <tr><td>2016</td><td>0.25</td></tr>
+            <tr><td>2017</td><td>0.28</td></tr>
+            <tr><td>2018</td><td>0.30</td></tr>
+            <tr><td>2019</td><td>0.32</td></tr>
+            <tr><td>2020</td><td>0.35</td></tr>
+            <tr><td>2021</td><td>0.43</td></tr>
+            <tr><td>2022</td><td>0.54</td></tr>
+            <tr><td>2023</td><td>0.61</td></tr>
+            <tr><td>2024</td><td>0.06</td></tr>
+            <tr><td>2025</td><td>0.00</td></tr>
+        </table>
+        <div class="highlight">
+            <p><strong>负债趋势</strong>：Monster的资产负债表堪称"堡垒级别"。FY2024公司偿还了所有长期债务（$3.74亿），FY2025末现金储备高达$33亿，成为净现金公司。D/E比率从2023年的0.61骤降至2024年的0.06，再到2025年的0.00。这种零负债+巨额现金的组合在饮料行业极为罕见，赋予了公司极大的战略灵活性。</p>
+        </div>
+
+        <h3>3.4 市盈率（P/E）</h3>
+        <table>
+            <tr><th>年份</th><th>年末P/E</th><th>说明</th></tr>
+            <tr><td>2011</td><td>28.4</td><td>能量饮料高增长预期</td></tr>
+            <tr><td>2012</td><td>26.7</td><td>增长放缓</td></tr>
+            <tr><td>2013</td><td>33.2</td><td>市场重拾信心</td></tr>
+            <tr><td>2014</td><td>37.6</td><td>可口可乐交易预期</td></tr>
+            <tr><td>2015</td><td>50.7</td><td>可口可乐入股推高估值</td></tr>
+            <tr><td>2016</td><td>37.0</td><td>估值回归</td></tr>
+            <tr><td>2017</td><td>44.0</td><td>增长预期升温</td></tr>
+            <tr><td>2018</td><td>27.7</td><td>市场调整</td></tr>
+            <tr><td>2019</td><td>31.2</td><td>稳定估值</td></tr>
+            <tr><td>2020</td><td>34.8</td><td>疫情后反弹</td></tr>
+            <tr><td>2021</td><td>36.9</td><td>高增长期</td></tr>
+            <tr><td>2022</td><td>44.9</td><td>利润下滑推高P/E</td></tr>
+            <tr><td>2023</td><td>36.9</td><td>恢复中</td></tr>
+            <tr><td>2024</td><td>35.0</td><td>估值修复</td></tr>
+            <tr><td>2025</td><td>39.3</td><td>国际增长预期推高</td></tr>
+        </table>
+        <div class="highlight">
+            <p><strong>P/E趋势</strong>：Monster过去10年平均P/E约36倍，当前TTM P/E约41倍，高于历史均值14%。市场给予Monster高估值的原因是：(1) 能量饮料品类持续增长（全球增速8-10%）；(2) 国际市场渗透率低，增长空间大；(3) 轻资产模式带来极高现金流转化率；(4) 零负债+巨额现金。但需注意：41倍P/E意味着市场已经price in了大量增长预期，安全边际有限。</p>
+        </div>
+    </div>
+
+    <div class="chart-container">
+        <canvas id="roeChart"></canvas>
+    </div>
+    <div class="chart-container">
+        <canvas id="debtChart"></canvas>
+    </div>
+    <div class="chart-container">
+        <canvas id="deRatioChart"></canvas>
+    </div>
+    <div class="chart-container">
+        <canvas id="peChart"></canvas>
+    </div>
+
+    <div class="info-box">
+        <h2>四、竞争对手与护城河分析</h2>
+
+        <h3>4.1 能量饮料市场竞争格局</h3>
+        <table>
+            <tr>
+                <th>竞争对手</th>
+                <th>全球市场份额</th>
+                <th>美国市场份额</th>
+                <th>核心优势</th>
+            </tr>
+            <tr>
+                <td><strong>Red Bull（红牛）</strong></td>
+                <td>~39%</td>
+                <td>~36%</td>
+                <td>全球第一品牌；极致营销（极限运动、F1）；全球自建分销体系</td>
+            </tr>
+            <tr>
+                <td><strong>Monster Beverage</strong></td>
+                <td>~31%</td>
+                <td>~36%</td>
+                <td>美国并列第一；可口可乐分销网络；多品牌矩阵；高利润率</td>
+            </tr>
+            <tr>
+                <td><strong>Celsius Holdings</strong></td>
+                <td>~4%</td>
+                <td>~8%</td>
+                <td>"健身能量饮料"定位；快速增长；百事分销</td>
+            </tr>
+            <tr>
+                <td><strong>Ghost Lifestyle</strong></td>
+                <td>~2%</td>
+                <td>~3%</td>
+                <td>游戏/健身跨界；社交媒体营销；独特口味合作</td>
+            </tr>
+            <tr>
+                <td><strong>自有品牌/白标</strong></td>
+                <td>~5%</td>
+                <td>~3%</td>
+                <td>低价竞争；B2B白标占17%</td>
+            </tr>
+        </table>
+
+        <h3>4.2 Monster的竞争优势</h3>
+        <div class="highlight">
+            <p><strong>1. 可口可乐全球分销网络——最核心的护城河</strong></p>
+            <ul>
+                <li>可口可乐持有Monster约19.5%股权，是最大股东和战略合作伙伴</li>
+                <li>约90%的Monster产品通过可口可乐分销系统销售</li>
+                <li>这意味着Monster无需自建全球分销体系，就能进入200+国家的零售渠道</li>
+                <li>国际业务占比从40%提升至45%，正是可口可乐网络持续渗透的结果</li>
+                <li>任何竞争对手要复制这种分销能力，需要数十年的时间和数十亿美元的投资</li>
+            </ul>
+        </div>
+
+        <div class="highlight">
+            <p><strong>2. 品牌力量——"绿色爪痕"的全球认知度</strong></p>
+            <ul>
+                <li>Monster Energy是全球最具辨识度的饮料品牌之一</li>
+                <li>在美国便利渠道与红牛并列第一，市场份额约36%</li>
+                <li>品牌营销策略独特：极限运动赞助（MotoGP、UFC）、音乐活动、电竞</li>
+                <li>150+种口味和变体，覆盖从经典到零糖到高能量到健康等多重场景</li>
+                <li>Ultra零糖系列在美国增长29%（FY2025 Q3），证明品牌在健康趋势中的适应力</li>
+            </ul>
+        </div>
+
+        <div class="highlight">
+            <p><strong>3. 极致利润率——轻资产模式的威力</strong></p>
+            <ul>
+                <li>FY2025毛利率55.8%，运营利润率29.2%，净利率23.0%</li>
+                <li>资本开支极低（FY2025约$3亿），自由现金流转化率约85%</li>
+                <li>这种利润率水平在饮料行业中仅次于高端烈酒公司</li>
+                <li>高利润率意味着即使收入增长放缓，利润仍可通过提价和效率提升而增长</li>
+            </ul>
+        </div>
+
+        <div class="highlight">
+            <p><strong>4. 零负债+巨额现金——"堡垒"资产负债表</strong></p>
+            <ul>
+                <li>FY2025末现金$33亿，零长期债务</li>
+                <li>这种财务实力让公司可以：(a) 大规模回购股票；(b) 进行战略收购；(c) 抵御经济衰退</li>
+                <li>FY2024回购$37.7亿（占市值6.2%），FY2025回购约$1.04亿（仅员工期权回购）</li>
+            </ul>
+        </div>
+
+        <h3>4.3 护城河评估</h3>
+        <table>
+            <tr>
+                <th>护城河类型</th>
+                <th>强度</th>
+                <th>说明</th>
+            </tr>
+            <tr>
+                <td>品牌力量</td>
+                <td><span class="tag tag-green">强</span></td>
+                <td>Monster是全球最具辨识度的能量饮料品牌之一；在美国与红牛并列第一；品牌溢价能力显著（提价后销量未受明显影响）</td>
+            </tr>
+            <tr>
+                <td>分销网络</td>
+                <td><span class="tag tag-green">极强</span></td>
+                <td>可口可乐全球分销体系是Monster最核心的护城河；90%销量通过可口可乐渠道；竞争对手无法复制</td>
+            </tr>
+            <tr>
+                <td>成本优势</td>
+                <td><span class="tag tag-orange">中等</span></td>
+                <td>轻资产模式带来高利润率，但原材料（铝罐、咖啡因）成本受大宗商品价格影响；促销费用率上升（从14.7%升至16%）</td>
+            </tr>
+            <tr>
+                <td>转换成本</td>
+                <td><span class="tag tag-red">弱</span></td>
+                <td>消费者对能量饮料品牌忠诚度有限，容易尝试新品牌；Celsius和Ghost的崛起证明了这一点</td>
+            </tr>
+            <tr>
+                <td>网络效应</td>
+                <td><span class="tag tag-red">弱</span></td>
+                <td>饮料行业无网络效应</td>
+            </tr>
+        </table>
+
+        <div class="highlight">
+            <p><strong>护城河总结</strong>：Monster拥有<strong>中等偏强的经济护城河</strong>，核心来源是可口可乐全球分销网络形成的极高进入壁垒和强大的品牌认知度。但需注意两个弱点：(1) 消费者转换成本低，Celsius等新品牌正在蚕食市场份额；(2) 对可口可乐分销网络的依赖是双刃剑——如果可口可乐战略转向，Monster将面临巨大风险。</p>
+        </div>
+    </div>
+
+    <div class="chart-container">
+        <h2>五、利润分配去向 (2016-2025)</h2>
+        <h3>5.1 过去十年利润分配总览</h3>
+        <table>
+            <tr>
+                <th>财年</th>
+                <th>净利润(百万$)</th>
+                <th>派息(百万$)</th>
+                <th>股票回购(百万$)</th>
+                <th>资本开支(百万$)</th>
+                <th>偿还债务(百万$)</th>
+                <th>留存收益(百万$)</th>
+            </tr>
+            <tr>
+                <td>FY2016</td>
+                <td>636</td>
+                <td>0</td>
+                <td>2,250</td>
+                <td>136</td>
+                <td>0</td>
+                <td>-1,750</td>
+            </tr>
+            <tr>
+                <td>FY2017</td>
+                <td>821</td>
+                <td>0</td>
+                <td>449</td>
+                <td>152</td>
+                <td>0</td>
+                <td>220</td>
+            </tr>
+            <tr>
+                <td>FY2018</td>
+                <td>940</td>
+                <td>0</td>
+                <td>1,342</td>
+                <td>178</td>
+                <td>0</td>
+                <td>-580</td>
+            </tr>
+            <tr>
+                <td>FY2019</td>
+                <td>1,068</td>
+                <td>0</td>
+                <td>707</td>
+                <td>206</td>
+                <td>0</td>
+                <td>155</td>
+            </tr>
+            <tr>
+                <td>FY2020</td>
+                <td>1,382</td>
+                <td>0</td>
+                <td>593</td>
+                <td>231</td>
+                <td>0</td>
+                <td>558</td>
+            </tr>
+            <tr>
+                <td>FY2021</td>
+                <td>1,371</td>
+                <td>0</td>
+                <td>0.4</td>
+                <td>276</td>
+                <td>0</td>
+                <td>1,095</td>
+            </tr>
+            <tr>
+                <td>FY2022</td>
+                <td>1,017</td>
+                <td>0</td>
+                <td>771</td>
+                <td>336</td>
+                <td>0</td>
+                <td>-90</td>
+            </tr>
+            <tr>
+                <td>FY2023</td>
+                <td>1,631</td>
+                <td>0</td>
+                <td>443</td>
+                <td>297</td>
+                <td>0</td>
+                <td>891</td>
+            </tr>
+            <tr>
+                <td>FY2024</td>
+                <td>1,509</td>
+                <td>0</td>
+                <td>3,770</td>
+                <td>318</td>
+                <td>374</td>
+                <td>-4,953</td>
+            </tr>
+            <tr>
+                <td>FY2025</td>
+                <td>1,905</td>
+                <td>0</td>
+                <td>104</td>
+                <td>~300</td>
+                <td>0</td>
+                <td>1,501</td>
+            </tr>
+        </table>
+
+        <h3>5.2 利润分配分析</h3>
+        <div class="highlight">
+            <p><strong>Monster的利润分配策略非常清晰：零分红、激进回购、低资本开支</strong></p>
+            <ul>
+                <li><strong>零分红</strong>：公司从未支付过股息，所有利润要么用于回购，要么留存</li>
+                <li><strong>激进回购</strong>：过去10年累计回购约$9,430百万（$94.3亿），其中FY2024单年回购$37.7亿（占当年自由现金流的233%！）。FY2024的极端回购导致现金从$23亿降至$15亿</li>
+                <li><strong>低资本开支</strong>：轻资产模式使资本开支极低，FY2025约$3亿，仅占收入的3.6%</li>
+                <li><strong>FY2025回购骤降</strong>：从FY2024的$37.7亿降至FY2025的仅$1.04亿（仅员工期权回购），管理层保留了$5亿授权额度未使用。可能原因：(a) 股价已反弹至历史高位，回购性价比降低；(b) 管理层对宏观不确定性持谨慎态度</li>
+                <li><strong>FY2026 Q1重启回购</strong>：回购了约140万股，价值$1亿，均价$73.86/股。剩余授权额度约$4亿</li>
+            </ul>
+        </div>
+
+        <h3>5.3 资本配置质量评估</h3>
+        <div class="highlight">
+            <p><strong>巴菲特式评估</strong>：Monster的资本配置总体优秀，但FY2024的极端回购值得商榷。</p>
+            <ul>
+                <li>✅ <strong>零分红</strong>：对于高增长公司，保留利润用于再投资或回购比分红更有效率（避免双重征税）</li>
+                <li>✅ <strong>回购时机</strong>：FY2024在股价低迷时大量回购（均价约$51-53），是明智的逆周期操作</li>
+                <li>⚠️ <strong>FY2024回购过于激进</strong>：回购金额超过自由现金流的2倍，导致现金大幅下降。虽然公司仍有净现金，但这种"all-in"式回购在成本上升期存在风险</li>
+                <li>⚠️ <strong>Canarchy收购失败</strong>：2022年以$3.3亿收购的Canarchy Craft Brewery持续亏损，FY2025酒精板块收入下降21.5%，累计减值约$1.92亿。这是一次失败的多元化尝试</li>
+                <li>✅ <strong>偿还所有债务</strong>：FY2024-FY2025偿还了所有长期债务，成为零负债公司，增强了财务韧性</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="chart-container">
+        <canvas id="profitAllocationChart"></canvas>
+    </div>
+
+    <div class="info-box">
+        <h2>六、财务摘要 (FY2025)</h2>
+        <table>
+            <tr><td>总营收</td><td>$82.94亿</td></tr>
+            <tr><td>营收同比增长</td><td>+10.7%</td></tr>
+            <tr><td>净利润</td><td>$19.05亿</td></tr>
+            <tr><td>稀释EPS</td><td>$1.95</td></tr>
+            <tr><td>毛利率</td><td>55.8%</td></tr>
+            <tr><td>运营利润率</td><td>29.2%</td></tr>
+            <tr><td>净利率</td><td>23.0%</td></tr>
+            <tr><td>自由现金流</td><td>约$16亿</td></tr>
+            <tr><td>现金储备</td><td>$33亿</td></tr>
+            <tr><td>长期债务</td><td>$0</td></tr>
+            <tr><td>流动比率</td><td>3.70x</td></tr>
+            <tr><td>ROE</td><td>22.5%</td></tr>
+            <tr><td>ROA</td><td>17.6%</td></tr>
+            <tr><td>当前P/E (TTM)</td><td>约41倍</td></tr>
+            <tr><td>员工数</td><td>6,891人</td></tr>
+        </table>
+    </div>
+
+    <div class="info-box">
+        <h2>七、FY2026 Q1最新业绩亮点</h2>
+        <table>
+            <tr><th>指标</th><th>FY2026 Q1</th><th>同比变化</th></tr>
+            <tr><td>净销售额</td><td>$23.53亿</td><td>+26.9%</td></tr>
+            <tr><td>运营利润</td><td>$7.30亿</td><td>+28.1%</td></tr>
+            <tr><td>净利润</td><td>$5.70亿</td><td>+28.6%</td></tr>
+            <tr><td>稀释EPS</td><td>$0.58</td><td>+27.6%</td></tr>
+            <tr><td>毛利率</td><td>55.0%</td><td>-150bps</td></tr>
+            <tr><td>运营利润率</td><td>31.0%</td><td>+30bps</td></tr>
+            <tr><td>国际净销售额</td><td>$10.6亿</td><td>+44.9%</td></tr>
+            <tr><td>国际占比</td><td>45%</td><td>+5ppt</td></tr>
+            <tr><td>总销量</td><td>2.7亿箱</td><td>+28.8%</td></tr>
+            <tr><td>回购</td><td>~140万股/$1亿</td><td>均价$73.86</td></tr>
+        </table>
+        <div class="highlight">
+            <p><strong>关键解读</strong>：</p>
+            <ul>
+                <li><strong>增长引擎切换</strong>：从"提价驱动"转向"销量+国际双轮驱动"。销量同比飙升28.8%，而平均售价仅微降0.8%</li>
+                <li><strong>国际业务里程碑</strong>：国际净销售额占比首次达到45%，EMEA增长52.5%（FX中性36.5%），APAC增长39.7%（FX中性36.7%）</li>
+                <li><strong>毛利率承压但利润率提升</strong>：毛利率从56.5%降至55.0%（地理组合+铝罐/运费成本上升），但运营费用率从25.8%降至23.9%，运营利润率反而提升30bps至31.0%</li>
+                <li><strong>4月延续强势</strong>：管理层透露4月FX调整后销售仍增长21.6%，表明Q1并非单季度偶发</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="info-box">
+        <h2>八、投资建议</h2>
+        <div class="highlight">
+            <p><strong>Monster Beverage适合什么样的投资者？</strong></p>
+            <ul>
+                <li><strong>成长型价值投资者</strong>：公司兼具成长性（国际扩张+品类增长）和价值性（高利润率+零负债+回购），但当前41倍P/E估值不便宜</li>
+                <li><strong>长期持有者</strong>：能量饮料品类仍在全球扩张，Monster通过可口可乐网络持续渗透新市场，长期增长逻辑清晰</li>
+                <li><strong>关注回购的投资者</strong>：FY2024回购$37.7亿（占市值6.2%），FY2026 Q1已重启回购，剩余$4亿授权</li>
+            </ul>
+
+            <p><strong>主要风险</strong></p>
+            <ul>
+                <li><strong>估值风险</strong>：当前P/E约41倍，高于10年均值36倍。如果国际增长放缓或毛利率持续承压，估值可能回调</li>
+                <li><strong>可口可乐依赖风险</strong>：90%销量通过可口可乐分销，如果合作关系生变，将是灾难性的</li>
+                <li><strong>竞争加剧</strong>：Celsius（健身定位）、Ghost（游戏/社交定位）等新品牌正在蚕食市场份额；促销费用率从14.7%升至16%</li>
+                <li><strong>酒精业务失败</strong>：Canarchy收购已累计减值$1.92亿，酒精板块持续亏损，管理层可能需要彻底退出</li>
+                <li><strong>监管风险</strong>：多国加强对高咖啡因饮料的监管，可能限制Monster核心产品的销售</li>
+                <li><strong>成本压力</strong>：铝罐、运费、关税等成本上升可能持续压缩毛利率</li>
+                <li><strong>应收账款风险</strong>：FY2025应收账款增长32%至$16亿，远超收入增速11%，可能存在渠道压货</li>
+            </ul>
+
+            <p><strong>巴菲特式评估</strong></p>
+            <ul>
+                <li>✅ 业务易懂：做能量饮料，卖到全世界，商业模式简单清晰</li>
+                <li>✅ 持久竞争优势：可口可乐分销网络+品牌力量形成强护城河</li>
+                <li>✅ 管理层诚信：零分红+激进回购，与股东利益一致；Sacks和Schlosberg自1990年执掌公司，35年如一日</li>
+                <li>✅ 财务健康：零负债+$33亿现金，"堡垒"级资产负债表</li>
+                <li>⚠️ 价格不够合理：P/E约41倍，高于内在价值估算（GuruFocus GF Value $75.74 vs 当前$87）</li>
+                <li>⚠️ 多元化失败：酒精业务是管理层的一次判断失误，虽然金额不大但反映了战略盲点</li>
+                <li>⚠️ 品类集中风险：92%收入来自能量饮料，如果品类增速放缓或被替代，公司缺乏第二增长曲线</li>
+            </ul>
+        </div>
+
+        <div class="highlight">
+            <p><strong>芒格会说：</strong>"Monster是一家令人印象深刻的生意——高利润、轻资产、零负债、全球扩张。但41倍市盈率意味着你已经付了'完美执行'的价格。如果国际扩张遇到任何挫折——汇率波动、渠道冲突、本地竞争——你的安全边际在哪里？我喜欢这门生意，但我不喜欢这个价格。等待市场恐慌时再出手，才是明智之举。"</p>
+            <br>
+            <p><strong>巴菲特会说：</strong>"Monster让我想起早年的可口可乐——一个强大的品牌，通过全球分销网络渗透每一个角落。Sacks和Schlosberg做了非凡的工作，把一家果汁公司变成了全球能量饮料巨头。但好公司不等于好投资——41倍P/E意味着你需要未来很多年都完美执行才能获得合理回报。我更想关注这家公司，但会等待更好的价格。"</p>
+        </div>
+    </div>
+
+    <div class="info-box">
+        <p><strong>最后更新</strong>：2026年5月18日<br>
+        <strong>数据来源</strong>：Monster Beverage IR官网、SEC 10-K/10-Q年报、StockTitan、Macrotrends、GuruFocus、FullRatio、Investing.com、雪球、CompaniesMarketCap等金融平台</p>
+    </div>
+
+    <script>
+        const roeData = {
+            labels: ['2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025'],
+            datasets: [{
+                label: 'ROE (%)',
+                data: [5.2, 6.8, 8.5, 12.3, 18.5, 22.0, 28.5, 25.8, 22.1, 18.5, 15.2, 29.2, 52.8, 34.1, 31.9, 11.4, 21.4, 21.1, 27.5, 26.6, 27.3, 21.0, 17.0, 19.8, 25.3, 22.5],
+                borderColor: 'rgba(54, 162, 235, 1)',
+                backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                borderWidth: 2,
+                tension: 0.3,
+                fill: true
+            }]
+        };
+
+        const debtData = {
+            labels: ['2000', '2005', '2010', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025'],
+            datasets: [{
+                label: '资产负债率 (%)',
+                data: [32, 28, 25, 18, 20, 22, 23, 24, 26, 30, 35, 38, 40, 35],
+                borderColor: 'rgba(255, 99, 132, 1)',
+                backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                borderWidth: 2,
+                tension: 0.3,
+                fill: true
+            }]
+        };
+
+        const deRatioData = {
+            labels: ['2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025'],
+            datasets: [{
+                label: '产权比率 (D/E)',
+                data: [0.22, 0.25, 0.28, 0.30, 0.32, 0.35, 0.43, 0.54, 0.61, 0.06, 0.00],
+                borderColor: 'rgba(255, 159, 64, 1)',
+                backgroundColor: 'rgba(255, 159, 64, 0.2)',
+                borderWidth: 2,
+                tension: 0.3,
+                fill: true
+            }]
+        };
+
+        const peData = {
+            labels: ['2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025'],
+            datasets: [{
+                label: '市盈率 (P/E)',
+                data: [28.4, 26.7, 33.2, 37.6, 50.7, 37.0, 44.0, 27.7, 31.2, 34.8, 36.9, 44.9, 36.9, 35.0, 39.3],
+                borderColor: 'rgba(153, 102, 255, 1)',
+                backgroundColor: 'rgba(153, 102, 255, 0.2)',
+                borderWidth: 2,
+                tension: 0.3,
+                fill: true
+            }]
+        };
+
+        const commonOptions = {
+            responsive: true,
+            plugins: {
+                legend: {
+                    display: true,
+                    position: 'bottom'
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        };
+
+        new Chart(document.getElementById('roeChart').getContext('2d'), {
+            type: 'line',
+            data: roeData,
+            options: {
+                ...commonOptions,
+                plugins: {
+                    ...commonOptions.plugins,
+                    title: {
+                        display: true,
+                        text: 'Monster Beverage (MNST) 净资产利润率 (ROE) 趋势 (2000-2025)'
+                    }
+                }
+            }
+        });
+
+        new Chart(document.getElementById('debtChart').getContext('2d'), {
+            type: 'line',
+            data: debtData,
+            options: {
+                ...commonOptions,
+                plugins: {
+                    ...commonOptions.plugins,
+                    title: {
+                        display: true,
+                        text: 'Monster Beverage (MNST) 资产负债率 趋势 (2000-2025)'
+                    }
+                }
+            }
+        });
+
+        new Chart(document.getElementById('deRatioChart').getContext('2d'), {
+            type: 'line',
+            data: deRatioData,
+            options: {
+                ...commonOptions,
+                plugins: {
+                    ...commonOptions.plugins,
+                    title: {
+                        display: true,
+                        text: 'Monster Beverage (MNST) 产权比率 (D/E) 趋势 (2015-2025)'
+                    }
+                }
+            }
+        });
+
+        new Chart(document.getElementById('peChart').getContext('2d'), {
+            type: 'line',
+            data: peData,
+            options: {
+                ...commonOptions,
+                plugins: {
+                    ...commonOptions.plugins,
+                    title: {
+                        display: true,
+                        text: 'Monster Beverage (MNST) 市盈率 (P/E) 趋势 (2011-2025)'
+                    }
+                }
+            }
+        });
+
+        const profitAllocationData = {
+            labels: ['FY2016', 'FY2017', 'FY2018', 'FY2019', 'FY2020', 'FY2021', 'FY2022', 'FY2023', 'FY2024', 'FY2025'],
+            datasets: [{
+                label: '净利润 (百万$)',
+                data: [636, 821, 940, 1068, 1382, 1371, 1017, 1631, 1509, 1905],
+                backgroundColor: 'rgba(75, 192, 192, 0.7)',
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 1
+            }, {
+                label: '股票回购 (百万$)',
+                data: [2250, 449, 1342, 707, 593, 0.4, 771, 443, 3770, 104],
+                backgroundColor: 'rgba(54, 162, 235, 0.7)',
+                borderColor: 'rgba(54, 162, 235, 1)',
+                borderWidth: 1
+            }, {
+                label: '资本开支 (百万$)',
+                data: [136, 152, 178, 206, 231, 276, 336, 297, 318, 300],
+                backgroundColor: 'rgba(255, 159, 64, 0.7)',
+                borderColor: 'rgba(255, 159, 64, 1)',
+                borderWidth: 1
+            }]
+        };
+
+        new Chart(document.getElementById('profitAllocationChart').getContext('2d'), {
+            type: 'bar',
+            data: profitAllocationData,
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: 'bottom'
+                    },
+                    title: {
+                        display: true,
+                        text: 'Monster Beverage (MNST) 利润分配去向 (FY2016-FY2025)'
+                    }
+                },
+                scales: {
+                    y: {
+                        title: {
+                            display: true,
+                            text: '百万美元'
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

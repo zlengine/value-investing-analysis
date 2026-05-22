@@ -1,0 +1,1077 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SHW (Sherwin-Williams) 详细分析</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f5f5f5;
+        }
+        h1 {
+            text-align: center;
+            color: #1a237e;
+        }
+        h2 {
+            color: #1a237e;
+            margin-top: 30px;
+        }
+        h3 {
+            color: #333;
+            margin-top: 20px;
+        }
+        .info-box {
+            background-color: white;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border-radius: 5px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #1a237e;
+            color: white;
+        }
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+        a {
+            color: #4CAF50;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .highlight {
+            background-color: #f9f9f9;
+            border-left: 4px solid #1a237e;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        .chart-container {
+            background-color: white;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border-radius: 5px;
+        }
+        canvas {
+            max-height: 400px;
+        }
+        .tag {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 3px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        .tag-green {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .tag-orange {
+            background-color: #FF9800;
+            color: white;
+        }
+        .tag-red {
+            background-color: #f44336;
+            color: white;
+        }
+        .tag-blue {
+            background-color: #2196F3;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <h1>Sherwin-Williams (SHW) 价值投资分析</h1>
+
+    <div class="info-box">
+        <h2>一、公司基本信息</h2>
+        <table>
+            <tr><th>项目</th><th>详情</th></tr>
+            <tr><td>公司全称</td><td>The Sherwin-Williams Company（宣伟公司）</td></tr>
+            <tr><td>股票代码</td><td>SHW</td></tr>
+            <tr><td>上市交易所</td><td>纽约证券交易所（NYSE）</td></tr>
+            <tr><td>成立时间</td><td>1866年（Henry Sherwin和Edward Williams在俄亥俄州克利夫兰创立）</td></tr>
+            <tr><td>总部</td><td>美国俄亥俄州克利夫兰市（1 Sherwin Way, Cleveland, OH 44113）</td></tr>
+            <tr><td>当前市值（2026年5月）</td><td>约$762亿美元</td></tr>
+            <tr><td>市值（美元）</td><td>~$76.2B USD</td></tr>
+            <tr><td>最新收盘价（2026年5月19日）</td><td>$299.05</td></tr>
+            <tr><td>流通股数</td><td>约2.477亿股（FY2025末；持续回购缩减中）</td></tr>
+            <tr><td>CEO</td><td>Heidi G. Petz（董事长、总裁兼首席执行官，2024年1月就任CEO；Sherwin-Williams历史上首位女性CEO）</td></tr>
+            <tr><td>前任CEO</td><td>John Morikis（2016-2023；现任执行董事长）</td></tr>
+            <tr><td>CFO</td><td>Allen J. Mistysyn（高级副总裁-财务兼首席财务官）</td></tr>
+            <tr><td>行业</td><td>基础材料——特种化学品/涂料</td></tr>
+            <tr><td>员工数</td><td>约64,000人（FY2025）</td></tr>
+            <tr><td>52周范围</td><td>$301.58 - $379.65</td></tr>
+            <tr><td>股息</td><td>$3.18/年（季度$0.80），收益率约1.06%</td></tr>
+            <tr><td>股息连续增长</td><td>47年（自1979年起连续增加股息）</td></tr>
+            <tr><td>S&P 500成分股</td><td>是</td></tr>
+            <tr><td>全球排名</td><td>全球最大涂料生产商，连续8年全球建筑装饰涂料销量第一</td></tr>
+            <tr><td>门店数量</td><td>4,853家自营门店（美国4,504家+加拿大263家+加勒比86家）</td></tr>
+            <tr><td>业务覆盖</td><td>120+个国家</td></tr>
+        </table>
+    </div>
+
+    <div class="info-box">
+        <h2>二、业务分析</h2>
+        <h3>2.1 通俗解释：宣伟是干什么的？</h3>
+        <p>
+            用最简单的话说，<strong>宣伟是全世界最大的"卖油漆"的公司</strong>。想象一下，你家房子要重新刷漆，你叫了一个专业油漆工来干活。这个油漆工不会去家得宝（Home Depot）买漆——他会去宣伟的专卖店买。为什么？因为宣伟的专卖店就像油漆工的"大本营"：那里有他熟悉的品牌（Sherwin-Williams）、专业的颜色匹配系统、随时可以送货到工地的物流服务、还有能帮他解决技术问题的店员。
+        </p>
+        <p>
+            更具体地讲，宣伟做三件核心的事：
+        </p>
+        <p>
+            <strong>第一，油漆商店集团（Paint Stores Group，简称PSG）</strong>——这是宣伟的"皇冠明珠"，也是它最核心、最赚钱的业务。宣伟在美国、加拿大和加勒比地区拥有4,853家自营专卖店，这些店只卖Sherwin-Williams品牌的油漆和涂料。关键在于：这些店主要服务的是<strong>专业油漆承包商</strong>（Pro Painters），而不是普通消费者（DIY）。专业油漆工对油漆的品质、颜色一致性和送货速度有极高要求，而宣伟的专卖店网络恰好能完美满足这些需求。PSG的营业利润率高达24-25%，是三大板块中最高的。
+        </p>
+        <p>
+            <strong>第二，消费者品牌集团（Consumer Brands Group，简称CBG）</strong>——这是宣伟的"零售渠道"业务。CBG通过家得宝、Lowe's、Menards等大型家居零售商销售Valspar（威士伯）、Dutch Boy、Cabot等品牌的油漆和木器漆。CBG还负责运营宣伟的全球供应链（采购、制造、分销）。此外，CBG在拉丁美洲通过307家自营门店销售Suvinil等品牌。2025年，宣伟以$11.5亿收购了巴西涂料品牌Suvinil，大幅扩展了拉美市场。
+        </p>
+        <p>
+            <strong>第三，高性能涂料集团（Performance Coatings Group，简称PCG）</strong>——这是宣伟的"工业涂料"业务。PCG向全球120多个国家的工业客户销售各种专业涂料：包装涂料（食品饮料罐内壁涂层）、汽车修补漆、防护与船舶涂料（桥梁、石油平台、船体防腐）、卷材涂料（金属板材预涂装）等。PCG的客户是工业制造商，而非个人消费者。
+        </p>
+        <div class="highlight">
+            <p><strong>一句话总结</strong>：宣伟就像涂料行业的"苹果公司"——它拥有从研发、制造、分销到零售的完整垂直整合体系，4,853家自营专卖店就是它的"Apple Store"，专业油漆工就是它的"忠实用户"，而Sherwin-Williams品牌就是它的"iOS生态"。这种"控制分销"模式（Controlled Distribution）是宣伟最核心的竞争优势，也是它能够持续提价而不流失客户的根本原因。</p>
+        </div>
+
+        <h3>2.2 业务板块（FY2025）</h3>
+        <p>宣伟的运营分为三大业务板块，FY2025总收入$235.74亿：</p>
+        <table>
+            <tr>
+                <th>业务板块</th>
+                <th>FY2025收入</th>
+                <th>占比</th>
+                <th>同比增长</th>
+                <th>分部利润率</th>
+                <th>核心内容</th>
+            </tr>
+            <tr>
+                <td><strong>Paint Stores Group (PSG)</strong></td>
+                <td>$136.8亿</td>
+                <td>58.1%</td>
+                <td>+3.9%</td>
+                <td>~24.5%</td>
+                <td>4,853家自营专卖店；服务专业油漆承包商；Sherwin-Williams品牌独家销售</td>
+            </tr>
+            <tr>
+                <td><strong>Consumer Brands Group (CBG)</strong></td>
+                <td>$30.3亿</td>
+                <td>12.9%</td>
+                <td>-2.5%</td>
+                <td>~17.3%</td>
+                <td>Valspar/Dutch Boy等品牌通过零售商销售；全球供应链运营；拉美Suvinil门店</td>
+            </tr>
+            <tr>
+                <td><strong>Performance Coatings Group (PCG)</strong></td>
+                <td>$68.6亿</td>
+                <td>29.1%</td>
+                <td>+0.4%</td>
+                <td>~17.5%</td>
+                <td>工业涂料：包装、汽车修补、防护与船舶、卷材；120+国家</td>
+            </tr>
+            <tr style="font-weight:bold; background-color:#e8eaf6;">
+                <td>合计</td>
+                <td>$235.74亿</td>
+                <td>100%</td>
+                <td>+2.1%</td>
+                <td>~16.2%（营业利润率）</td>
+                <td></td>
+            </tr>
+        </table>
+
+        <h3>2.3 PSG——宣伟的"皇冠明珠"深度解析</h3>
+        <table>
+            <tr>
+                <th>PSG关键指标</th>
+                <th>FY2025</th>
+                <th>说明</th>
+            </tr>
+            <tr>
+                <td>门店数量</td>
+                <td>4,853家</td>
+                <td>美国4,504+加拿大263+加勒比86；FY2025净增80家</td>
+            </tr>
+            <tr>
+                <td>同店销售增长</td>
+                <td>+1.7%</td>
+                <td>连续30年平均5.1%同店增长</td>
+            </tr>
+            <tr>
+                <td>分部利润率</td>
+                <td>~24.5%</td>
+                <td>三大板块中最高；持续扩张</td>
+            </tr>
+            <tr>
+                <td>增长驱动力</td>
+                <td>防护与船舶（双位数增长）、住宅重涂（中个位数）、商业</td>
+                <td>所有终端市场均实现增长</td>
+            </tr>
+            <tr>
+                <td>定价权</td>
+                <td>2025年提价中个位数百分比</td>
+                <td>过去15个季度中14个季度毛利率同比扩张</td>
+            </tr>
+        </table>
+        <div class="highlight">
+            <p><strong>PSG的"控制分销"模式</strong>：宣伟是全球唯一一家拥有从研发→制造→分销→零售→送货全链条的涂料公司。竞争对手PPG、Benjamin Moore、Behr等要么通过第三方经销商销售，要么通过家得宝/Lowe's零售。宣伟的4,853家自营店+3,300辆自有送货卡车，意味着它能完全控制客户体验、定价和品牌形象。这种模式在疫情期间证明了巨大优势——当竞争对手因供应链断裂无法供货时，宣伟凭借垂直整合能力维持了生产和配送，趁机抢占了大量市场份额。</p>
+        </div>
+
+        <h3>2.4 地理分布（FY2025）</h3>
+        <table>
+            <tr>
+                <th>地区</th>
+                <th>收入占比</th>
+                <th>说明</th>
+            </tr>
+            <tr>
+                <td><strong>美国</strong></td>
+                <td>~80%</td>
+                <td>绝对核心市场；4,504家门店；住宅重涂+商业+防护船舶</td>
+            </tr>
+            <tr>
+                <td><strong>加拿大+加勒比</strong></td>
+                <td>~5%</td>
+                <td>349家门店；与美国共享供应链</td>
+            </tr>
+            <tr>
+                <td><strong>欧洲、中东和非洲（EMEAI）</strong></td>
+                <td>~7%</td>
+                <td>PCG工业涂料为主；Valspar品牌</td>
+            </tr>
+            <tr>
+                <td><strong>拉丁美洲</strong></td>
+                <td>~4%</td>
+                <td>Suvinil品牌（巴西）；307家门店；增长潜力大</td>
+            </tr>
+            <tr>
+                <td><strong>亚太</strong></td>
+                <td>~4%</td>
+                <td>PCG工业涂料为主；中国市场有限</td>
+            </tr>
+        </table>
+
+        <h3>2.5 核心战略里程碑</h3>
+        <table>
+            <tr>
+                <th>时间</th>
+                <th>事件</th>
+                <th>战略意义</th>
+            </tr>
+            <tr>
+                <td>1866年</td>
+                <td>Henry Sherwin和Edward Williams在克利夫兰创立公司</td>
+                <td>美国最古老的涂料公司之一</td>
+            </tr>
+            <tr>
+                <td>1950s-2000s</td>
+                <td>持续开设自营专卖店，建立"控制分销"模式</td>
+                <td>构建了全球涂料行业最独特的分销网络</td>
+            </tr>
+            <tr>
+                <td>2017年</td>
+                <td>以$113亿收购Valspar（威士伯）</td>
+                <td>宣伟历史上最大收购；超越PPG成为全球第一；获得工业涂料能力+家得宝渠道</td>
+            </tr>
+            <tr>
+                <td>2018-2020</td>
+                <td>整合Valspar；偿还收购债务</td>
+                <td>Valspar品牌在家得宝独家销售；工业涂料业务整合</td>
+            </tr>
+            <tr>
+                <td>2020年</td>
+                <td>疫情期间逆势扩张——竞争对手退缩时抢占市场份额</td>
+                <td>垂直整合模式在供应链危机中展现巨大优势</td>
+            </tr>
+            <tr>
+                <td>2021年</td>
+                <td>3:1拆股；股价突破$1,000（拆股前）</td>
+                <td>提高股票流动性</td>
+            </tr>
+            <tr>
+                <td>2024年</td>
+                <td>Heidi Petz成为CEO；收购SIC Holding GmbH（欧洲工业涂料）</td>
+                <td>首位女性CEO；加强欧洲工业涂料布局</td>
+            </tr>
+            <tr>
+                <td>2025年</td>
+                <td>以$11.5亿收购巴西Suvinil品牌</td>
+                <td>进入拉美最大涂料市场；FY2025 Q4已贡献$1.645亿收入</td>
+            </tr>
+            <tr>
+                <td>2025年</td>
+                <td>新全球总部和R&D大楼投入使用</td>
+                <td>支持长期增长和技术创新</td>
+            </tr>
+            <tr>
+                <td>2026年Q1</td>
+                <td>住宅重涂增长中个位数（高于持平的市场）；防护船舶连续7个季度双位数增长</td>
+                <td>"软需求环境"中逆势抢占市场份额</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="info-box">
+        <h2>三、历史财务指标</h2>
+
+        <h3>3.1 净资产收益率（ROE）</h3>
+        <div class="chart-container">
+            <canvas id="roeChart"></canvas>
+        </div>
+        <table>
+            <tr>
+                <th>年份</th><th>ROE</th><th>净利润</th><th>股东权益</th><th>说明</th>
+            </tr>
+            <tr><td>2005</td><td>26.8%</td><td>$4.63亿</td><td>$17.3亿</td><td>正常水平</td></tr>
+            <tr><td>2006</td><td>28.9%</td><td>$5.76亿</td><td>$19.9亿</td><td>稳健增长</td></tr>
+            <tr><td>2007</td><td>34.5%</td><td>$6.16亿</td><td>$17.9亿</td><td>ROE提升</td></tr>
+            <tr><td>2008</td><td>29.7%</td><td>$4.77亿</td><td>$16.1亿</td><td>金融危机冲击</td></tr>
+            <tr><td>2009</td><td>29.2%</td><td>$4.36亿</td><td>$14.9亿</td><td>衰退中仍维持高ROE</td></tr>
+            <tr><td>2010</td><td>28.7%</td><td>$4.62亿</td><td>$16.1亿</td><td>复苏初期</td></tr>
+            <tr><td>2011</td><td>29.1%</td><td>$4.42亿</td><td>$15.2亿</td><td>稳定</td></tr>
+            <tr><td>2012</td><td>35.2%</td><td>$6.31亿</td><td>$17.9亿</td><td>盈利加速</td></tr>
+            <tr><td>2013</td><td>42.4%</td><td>$7.53亿</td><td>$17.8亿</td><td>ROE显著提升</td></tr>
+            <tr><td>2014</td><td>86.9%</td><td>$8.66亿</td><td>$10.0亿</td><td>大额回购导致权益缩减，ROE飙升</td></tr>
+            <tr><td>2015</td><td>121.4%</td><td>$10.54亿</td><td>$8.68亿</td><td>权益进一步缩减，ROE失真</td></tr>
+            <tr><td>2016</td><td>60.3%</td><td>$11.33亿</td><td>$18.8亿</td><td>权益回升，ROE仍高</td></tr>
+            <tr><td>2017</td><td>48.0%</td><td>$17.72亿</td><td>$36.9亿</td><td>Valspar收购使权益大增</td></tr>
+            <tr><td>2018</td><td>29.7%</td><td>$11.09亿</td><td>$37.3亿</td><td>收购整合期，盈利承压</td></tr>
+            <tr><td>2019</td><td>37.4%</td><td>$15.41亿</td><td>$41.2亿</td><td>盈利恢复</td></tr>
+            <tr><td>2020</td><td>56.2%</td><td>$20.30亿</td><td>$36.1亿</td><td>疫情期间盈利大增</td></tr>
+            <tr><td>2021</td><td>76.5%</td><td>$18.64亿</td><td>$24.4亿</td><td>大额回购使权益缩减</td></tr>
+            <tr><td>2022</td><td>65.1%</td><td>$20.20亿</td><td>$31.0亿</td><td>原材料成本上涨</td></tr>
+            <tr><td>2023</td><td>64.3%</td><td>$23.89亿</td><td>$37.2亿</td><td>盈利强劲恢复</td></tr>
+            <tr><td>2024</td><td>66.2%</td><td>$26.81亿</td><td>$40.5亿</td><td>创纪录净利润</td></tr>
+            <tr><td>2025</td><td>55.9%</td><td>$25.69亿</td><td>$46.0亿</td><td>权益增长快于利润，ROE回落</td></tr>
+        </table>
+        <div class="highlight">
+            <p><strong>ROE分析</strong>：宣伟的ROE长期维持在30-65%区间，远超大多数制造业公司。这源于两个因素：1）<strong>高利润率</strong>——PSG分部利润率24.5%，合并营业利润率16.2%，净利率10.9%，在制造业中属于顶级水平；2）<strong>高杠杆</strong>——2017年收购Valspar导致长期债务从$17亿飙升至$90亿+，D/E比一度超过3.5倍，但近年来持续去杠杆至2.0倍。2014-2015年ROE超过80%甚至120%是失真的——大额股票回购使股东权益降至极低水平。2025年ROE从66.2%降至55.9%，主要因为Suvinil收购和新总部建设增加了权益基数。长期来看，宣伟的"正常化"ROE在40-60%区间，这反映了其<strong>定价权+垂直整合+品牌溢价</strong>的综合优势。</p>
+        </div>
+
+        <h3>3.2 负债率指标</h3>
+        <div class="chart-container">
+            <canvas id="debtChart"></canvas>
+        </div>
+        <table>
+            <tr>
+                <th>年份</th><th>资产负债率</th><th>债务/权益比（D/E）</th><th>长期债务</th><th>说明</th>
+            </tr>
+            <tr><td>2015</td><td>~43%</td><td>0.77</td><td>$17.2亿</td><td>收购Valspar前，负债率低</td></tr>
+            <tr><td>2016</td><td>~49%</td><td>0.97</td><td>$18.3亿</td><td>开始筹备收购融资</td></tr>
+            <tr><td>2017</td><td>~68%</td><td>2.13</td><td>$78.7亿</td><td>Valspar收购使长期债务暴增$60亿+</td></tr>
+            <tr><td>2018</td><td>~70%</td><td>2.37</td><td>$81.6亿</td><td>债务高峰期</td></tr>
+            <tr><td>2019</td><td>~66%</td><td>1.97</td><td>$79.3亿</td><td>开始去杠杆</td></tr>
+            <tr><td>2020</td><td>~62%</td><td>1.62</td><td>$76.5亿</td><td>持续去杠杆</td></tr>
+            <tr><td>2021</td><td>~68%</td><td>2.14</td><td>$82.0亿</td><td>低利率环境增加债务用于回购</td></tr>
+            <tr><td>2022</td><td>~69%</td><td>2.24</td><td>$84.3亿</td><td>利率上升期</td></tr>
+            <tr><td>2023</td><td>~67%</td><td>2.04</td><td>$85.7亿</td><td>稳步去杠杆</td></tr>
+            <tr><td>2024</td><td>~65%</td><td>1.87</td><td>$87.4亿</td><td>D/E降至2以下</td></tr>
+            <tr><td>2025</td><td>~64%</td><td>2.03</td><td>$93.2亿</td><td>Suvinil收购使债务小幅上升</td></tr>
+        </table>
+        <div class="highlight">
+            <p><strong>负债分析</strong>：宣伟的资产负债率约64%，D/E约2.0倍，看似偏高但需要理解其特殊性：1）<strong>债务来源主要是Valspar收购</strong>——2017年$113亿收购使长期债务从$18亿飙升至$79亿，此后一直在消化这笔债务；2）<strong>利息覆盖倍数约8倍</strong>——FY2025利息支出$4.65亿，而EBITDA约$40亿，偿债能力充足；3）<strong>经营现金流强劲</strong>——FY2025净经营现金流$34.5亿，远超利息支出；4）<strong>持续去杠杆</strong>——D/E从2022年的2.24倍降至2024年的1.87倍，2025年因Suvinil收购小幅回升至2.03倍。宣伟的目标是将D/E降至1.5倍以下，但管理层显然认为在当前利率环境下，适度杠杆+股票回购是更优的资本配置策略。</p>
+        </div>
+
+        <h3>3.3 市盈率（PE）</h3>
+        <div class="chart-container">
+            <canvas id="peChart"></canvas>
+        </div>
+        <table>
+            <tr>
+                <th>年份</th><th>年末股价（约）</th><th>年度EPS（稀释）</th><th>PE（年末）</th><th>说明</th>
+            </tr>
+            <tr><td>2008</td><td>$59.75</td><td>$4.30</td><td>13.9</td><td>金融危机低点，估值极低</td></tr>
+            <tr><td>2009</td><td>$61.65</td><td>$3.48</td><td>17.7</td><td>复苏初期</td></tr>
+            <tr><td>2010</td><td>$83.75</td><td>$3.81</td><td>22.0</td><td>估值修复</td></tr>
+            <tr><td>2011</td><td>$89.27</td><td>$4.11</td><td>21.7</td><td>稳定</td></tr>
+            <tr><td>2012</td><td>$153.82</td><td>$5.60</td><td>27.5</td><td>股价大涨，估值扩张</td></tr>
+            <tr><td>2013</td><td>$183.50</td><td>$6.20</td><td>29.6</td><td>持续扩张</td></tr>
+            <tr><td>2014</td><td>$263.04</td><td>$6.53</td><td>40.3</td><td>估值大幅扩张</td></tr>
+            <tr><td>2015</td><td>$259.60</td><td>$7.03</td><td>36.9</td><td>高位震荡</td></tr>
+            <tr><td>2016</td><td>$268.74</td><td>$7.36</td><td>36.5</td><td>Valspar收购预期</td></tr>
+            <tr><td>2017</td><td>$410.04</td><td>$3.97</td><td>103.3</td><td>拆股前；EPS受收购摊薄</td></tr>
+            <tr><td>2018</td><td>$131.15</td><td>$3.97</td><td>33.0</td><td>拆股后；EPS受收购影响</td></tr>
+            <tr><td>2019</td><td>$194.51</td><td>$5.60</td><td>34.7</td><td>盈利恢复</td></tr>
+            <tr><td>2020</td><td>$244.97</td><td>$7.48</td><td>32.7</td><td>疫情期间估值维持</td></tr>
+            <tr><td>2021</td><td>$352.16</td><td>$7.10</td><td>49.6</td><td>估值泡沫期，PE创历史新高</td></tr>
+            <tr><td>2022</td><td>$237.33</td><td>$7.83</td><td>30.3</td><td>估值回归</td></tr>
+            <tr><td>2023</td><td>$311.90</td><td>$9.35</td><td>33.4</td><td>盈利恢复驱动</td></tr>
+            <tr><td>2024</td><td>$339.93</td><td>$10.68</td><td>31.8</td><td>稳健</td></tr>
+            <tr><td>2025</td><td>$324.03</td><td>$10.37</td><td>31.2</td><td>EPS受一次性项目影响</td></tr>
+        </table>
+        <div class="highlight">
+            <p><strong>PE分析</strong>：宣伟的PE长期维持在25-35倍区间，10年平均约30.7倍。当前PE约29倍（基于TTM EPS $10.42），略低于10年平均水平，处于5年PE范围的第17百分位——这意味着当前估值比过去5年中83%的时间都便宜。市场给予宣伟高估值的原因：1）<strong>全球涂料行业龙头</strong>——连续8年全球第一，建筑装饰涂料市占率13.27%；2）<strong>极强的定价权</strong>——过去15个季度中14个季度毛利率同比扩张；3）<strong>垂直整合护城河</strong>——4,853家自营店+3,300辆送货卡车，竞争对手无法复制；4）<strong>持续回购</strong>——过去10年回购5,030万股，流通股缩减17%。Forward PE（基于2026E调整后EPS $11.70中位数）约26倍，对于这种质量的"涂料界苹果"来说尚属合理。</p>
+        </div>
+
+        <h3>3.4 关键盈利指标趋势</h3>
+        <table>
+            <tr>
+                <th>指标</th><th>FY2021</th><th>FY2022</th><th>FY2023</th><th>FY2024</th><th>FY2025</th>
+            </tr>
+            <tr>
+                <td>总收入</td><td>$199.5亿</td><td>$221.5亿</td><td>$230.5亿</td><td>$231.0亿</td><td>$235.7亿</td>
+            </tr>
+            <tr>
+                <td>GAAP净利润</td><td>$18.64亿</td><td>$20.20亿</td><td>$23.89亿</td><td>$26.81亿</td><td>$25.69亿</td>
+            </tr>
+            <tr>
+                <td>调整后稀释EPS</td><td>$8.14</td><td>$8.74</td><td>$10.34</td><td>$11.33</td><td>$11.43</td>
+            </tr>
+            <tr>
+                <td>毛利率</td><td>42.8%</td><td>42.1%</td><td>46.7%</td><td>48.5%</td><td>48.8%</td>
+            </tr>
+            <tr>
+                <td>营业利润率</td><td>12.8%</td><td>13.6%</td><td>15.5%</td><td>16.5%</td><td>16.2%</td>
+            </tr>
+            <tr>
+                <td>净利率</td><td>9.3%</td><td>9.1%</td><td>10.4%</td><td>11.6%</td><td>10.9%</td>
+            </tr>
+            <tr>
+                <td>净经营现金流</td><td>$26.6亿</td><td>$25.5亿</td><td>$30.5亿</td><td>$31.7亿</td><td>$34.5亿</td>
+            </tr>
+            <tr>
+                <td>自由现金流</td><td>$22.1亿</td><td>$20.9亿</td><td>$25.8亿</td><td>$26.5亿</td><td>$26.6亿</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="info-box">
+        <h2>四、竞争分析</h2>
+
+        <h3>4.1 主要竞争对手</h3>
+        <table>
+            <tr>
+                <th>竞争对手</th>
+                <th>市值</th>
+                <th>核心业务</th>
+                <th>全球涂料市占率</th>
+                <th>与SHW的差异</th>
+            </tr>
+            <tr>
+                <td><strong>PPG Industries (PPG)</strong></td>
+                <td>~$236亿</td>
+                <td>建筑+工业涂料</td>
+                <td>~7.3%</td>
+                <td>全球第二大涂料公司；但北美建筑涂料业务远小于SHW；依赖第三方分销而非自营店</td>
+            </tr>
+            <tr>
+                <td><strong>Akzo Nobel (AKZOF)</strong></td>
+                <td>~$170亿</td>
+                <td>Dulux等建筑涂料+工业涂料</td>
+                <td>~5.2%</td>
+                <td>欧洲市场领导者；北美存在感弱；2017年拒绝PPG收购要约</td>
+            </tr>
+            <tr>
+                <td><strong>Nippon Paint (立邦)</strong></td>
+                <td>未单独上市</td>
+                <td>建筑+工业涂料</td>
+                <td>~5.7%</td>
+                <td>亚洲市场领导者；通过Wuthelam控股；积极M&A扩张</td>
+            </tr>
+            <tr>
+                <td><strong>RPM International (RPM)</strong></td>
+                <td>~$124亿</td>
+                <td>特种涂料+密封剂</td>
+                <td>~3.4%</td>
+                <td>利基市场专家；收购The Pink Stuff品牌；规模远小于SHW</td>
+            </tr>
+            <tr>
+                <td><strong>Benjamin Moore</strong></td>
+                <td>未上市（伯克希尔子公司）</td>
+                <td>建筑涂料</td>
+                <td>~2-3%</td>
+                <td>高端专业品牌；同样采用自营店模式但规模仅SHW的1/7；巴菲特旗下</td>
+            </tr>
+            <tr>
+                <td><strong>Masco/Behr (MAS)</strong></td>
+                <td>~$137亿</td>
+                <td>Behr品牌涂料+家居产品</td>
+                <td>~3-4%</td>
+                <td>Behr Paints在家得宝独家销售；DIY市场为主；无自营店</td>
+            </tr>
+        </table>
+
+        <h3>4.2 市场份额</h3>
+        <table>
+            <tr>
+                <th>市场</th>
+                <th>宣伟地位</th>
+                <th>主要对手</th>
+            </tr>
+            <tr>
+                <td><strong>全球涂料</strong></td>
+                <td>~10.6%市场份额（全球第一）</td>
+                <td>PPG（7.3%）、Nippon Paint（5.7%）、Akzo Nobel（5.2%）</td>
+            </tr>
+            <tr>
+                <td><strong>全球建筑装饰涂料</strong></td>
+                <td>~13.3%市场份额（连续8年第一）</td>
+                <td>收入超过立邦+阿克苏诺贝尔之和</td>
+            </tr>
+            <tr>
+                <td><strong>北美建筑涂料</strong></td>
+                <td>~70%市场份额（PSG+CBG合计）</td>
+                <td>PPG、Benjamin Moore、Behr；SHW的PSG是Behr的4倍+</td>
+            </tr>
+            <tr>
+                <td><strong>美国专业油漆承包商渠道</strong></td>
+                <td>绝对主导（PSG占近60%行业销售额）</td>
+                <td>Benjamin Moore（~1/7规模）、PPG</td>
+            </tr>
+            <tr>
+                <td><strong>防护与船舶涂料</strong></td>
+                <td>全球领先</td>
+                <td>Jotun、Hempel、PPG</td>
+            </tr>
+        </table>
+
+        <h3>4.3 护城河分析</h3>
+
+        <h4>护城河一：控制分销模式——"涂料界的Apple Store"</h4>
+        <p>
+            这是宣伟最核心、最不可复制的护城河。宣伟是全球唯一一家拥有4,853家自营专卖店的涂料公司。竞争对手要么通过第三方经销商（PPG），要么通过家得宝/Lowe's零售（Behr），要么只有少量自营店（Benjamin Moore约1,500家）。<strong>自营店模式</strong>意味着宣伟完全控制：1）<strong>客户体验</strong>——专业油漆工在宣伟店获得定制化服务、颜色匹配、技术支持；2）<strong>定价权</strong>——没有中间商，宣伟可以直接控制终端售价；3）<strong>品牌形象</strong>——Sherwin-Williams品牌只在自己的店里卖，不会出现在家得宝的货架上与低价品牌竞争；4）<strong>客户关系</strong>——数千名训练有素的店员和销售代表与专业油漆工建立深度关系。要复制这个网络，竞争对手需要投入数十亿美元和数十年时间——这几乎不可能。
+        </p>
+        <p>
+            <strong>通俗比喻</strong>：想象苹果只在自己的Apple Store卖iPhone，而且Apple Store的员工不仅卖手机，还教你如何用手机赚钱。你作为专业用户，当然会一直去Apple Store买——因为那里最懂你的需求。宣伟的专卖店对专业油漆工来说就是这样的存在。
+        </p>
+
+        <h4>护城河二：定价权——"涨价不跑客户"的魔力</h4>
+        <p>
+            巴菲特说："评估一家企业最重要的单一决定因素就是定价权。如果你有能力提价而不把生意输给竞争对手，你就拥有了一家非常好的企业。"宣伟完美诠释了这句话。过去15个季度中，<strong>14个季度毛利率同比扩张</strong>——这意味着宣伟不仅能把原材料成本上涨转嫁给客户，还能在转嫁的同时多赚一点。FY2025 Q1，宣伟在PSG实施了7%的提价，管理层表示如果通胀持续还会继续提价。为什么客户不跑？因为对专业油漆工来说，<strong>油漆只占项目总成本的15-20%</strong>，但油漆质量直接影响最终效果和返工率——用便宜漆省下的钱，可能因为返工而亏得更多。而宣伟专卖店提供的送货上门、颜色匹配、技术支持等服务，更是家得宝无法提供的。
+        </p>
+
+        <h4>护城河三：垂直整合——从研发到送货的全链条控制</h4>
+        <p>
+            宣伟是全球唯一一家拥有<strong>从研发→全球采购→制造→分销→零售→送货</strong>全链条的涂料公司。3,300辆自有送货卡车每年完成数百万次配送——这意味着专业油漆工早上发现漆不够了，一个电话宣伟就能在几小时内送到工地。疫情期间，这个垂直整合体系展现了巨大优势：当竞争对手因供应链断裂无法供货时，宣伟凭借内部能力维持了生产和配送，趁机抢占了大量市场份额。这种端到端的控制力，竞争对手在短期内根本无法复制。
+        </p>
+
+        <h4>护城河四：专业客户粘性——"转换成本"的隐形力量</h4>
+        <p>
+            专业油漆工对宣伟的粘性极高，原因有三：1）<strong>颜色一致性</strong>——一个项目可能需要多批次油漆，宣伟的颜色匹配系统能确保每批次颜色完全一致，换品牌可能出现色差；2）<strong>信用关系</strong>——宣伟为专业客户提供的信用账户和批量折扣，换品牌需要重新建立信用；3）<strong>服务依赖</strong>——送货上门、现场技术支持、项目报价辅助等服务，换品牌意味着失去这些便利。这些"软性"转换成本虽然不像软件锁定那样明显，但对专业油漆工来说非常真实。
+        </p>
+
+        <h4>护城河五：品牌与规模——"百年老店"的信任</h4>
+        <p>
+            Sherwin-Williams品牌创立于1866年，是美国最知名的涂料品牌之一。在专业油漆工群体中，Sherwin-Williams几乎等同于"专业品质"的代名词。品牌力+规模优势（全球最大采购量→最低原材料成本+最强议价能力）构成了宣伟的第五道护城河。但品牌护城河的强度中等——因为涂料毕竟不是奢侈品，消费者对品牌的忠诚度不如可口可乐或苹果。
+        </p>
+
+        <h4>护城河弱点</h4>
+        <ul>
+            <li><strong>DIY市场弱势</strong>：宣伟在DIY（自己动手）市场存在感弱——CBG的Valspar品牌在家得宝销售，但DIY市场份额远不如Behr；北美DIY需求持续疲软</li>
+            <li><strong>高杠杆</strong>：D/E比2.0倍，长期债务$93亿；利率上升增加利息负担（FY2025利息支出$4.65亿）</li>
+            <li><strong>住宅市场周期性</strong>：收入高度依赖住宅重涂和新房建设；高利率环境下住房市场低迷直接影响需求</li>
+            <li><strong>原材料成本波动</strong>：钛白粉（TiO2）、环氧树脂、溶剂等关键原材料价格波动大；关税对中国进口TiO2加征34%关税</li>
+            <li><strong>地理集中</strong>：约80%收入来自美国，对单一市场依赖度高</li>
+        </ul>
+
+        <h3>4.4 护城河综合评估</h3>
+        <table>
+            <tr>
+                <th>护城河类型</th><th>强度</th><th>可持续性</th><th>说明</th>
+            </tr>
+            <tr>
+                <td>控制分销（自营店网络）</td><td><span class="tag tag-green">极强</span></td><td>极高</td><td>4,853家自营店+3,300辆送货卡车，竞争对手无法复制</td>
+            </tr>
+            <tr>
+                <td>定价权</td><td><span class="tag tag-green">极强</span></td><td>高</td><td>15个季度中14个季度毛利率扩张；7%提价不流失客户</td>
+            </tr>
+            <tr>
+                <td>垂直整合</td><td><span class="tag tag-green">强</span></td><td>高</td><td>研发→制造→分销→零售→送货全链条控制</td>
+            </tr>
+            <tr>
+                <td>客户粘性/转换成本</td><td><span class="tag tag-green">强</span></td><td>中高</td><td>颜色一致性+信用关系+服务依赖</td>
+            </tr>
+            <tr>
+                <td>品牌与规模</td><td><span class="tag tag-orange">中等偏强</span></td><td>中高</td><td>158年品牌；全球最大采购量；但涂料非奢侈品</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="info-box">
+        <h2>五、利润分配分析（过去十年）</h2>
+
+        <h3>5.1 资本回报概况</h3>
+        <table>
+            <tr>
+                <th>年份</th>
+                <th>GAAP净利润</th>
+                <th>股息支付</th>
+                <th>股票回购</th>
+                <th>资本支出</th>
+                <th>净经营现金流</th>
+                <th>自由现金流</th>
+            </tr>
+            <tr>
+                <td>2016</td>
+                <td>$11.33亿</td>
+                <td>$1.51亿</td>
+                <td>$5.26亿</td>
+                <td>$4.50亿</td>
+                <td>$16.6亿</td>
+                <td>$12.1亿</td>
+            </tr>
+            <tr>
+                <td>2017</td>
+                <td>$17.72亿</td>
+                <td>$1.13亿</td>
+                <td>$3.14亿</td>
+                <td>$5.02亿</td>
+                <td>$18.4亿</td>
+                <td>$13.4亿</td>
+            </tr>
+            <tr>
+                <td>2018</td>
+                <td>$11.09亿</td>
+                <td>$1.15亿</td>
+                <td>$4.03亿</td>
+                <td>$5.29亿</td>
+                <td>$20.0亿</td>
+                <td>$14.7亿</td>
+            </tr>
+            <tr>
+                <td>2019</td>
+                <td>$15.41亿</td>
+                <td>$1.51亿</td>
+                <td>$6.83亿</td>
+                <td>$5.31亿</td>
+                <td>$22.5亿</td>
+                <td>$17.2亿</td>
+            </tr>
+            <tr>
+                <td>2020</td>
+                <td>$20.30亿</td>
+                <td>$1.79亿</td>
+                <td>$7.43亿</td>
+                <td>$4.94亿</td>
+                <td>$26.7亿</td>
+                <td>$21.8亿</td>
+            </tr>
+            <tr>
+                <td>2021</td>
+                <td>$18.64亿</td>
+                <td>$2.20亿</td>
+                <td>$14.52亿</td>
+                <td>$4.49亿</td>
+                <td>$26.6亿</td>
+                <td>$22.1亿</td>
+            </tr>
+            <tr>
+                <td>2022</td>
+                <td>$20.20亿</td>
+                <td>$2.42亿</td>
+                <td>$9.07亿</td>
+                <td>$4.60亿</td>
+                <td>$25.5亿</td>
+                <td>$20.9亿</td>
+            </tr>
+            <tr>
+                <td>2023</td>
+                <td>$23.89亿</td>
+                <td>$2.86亿</td>
+                <td>$10.84亿</td>
+                <td>$4.73亿</td>
+                <td>$30.5亿</td>
+                <td>$25.8亿</td>
+            </tr>
+            <tr>
+                <td>2024</td>
+                <td>$26.81亿</td>
+                <td>$3.16亿</td>
+                <td>$12.49亿</td>
+                <td>$5.20亿</td>
+                <td>$31.7亿</td>
+                <td>$26.5亿</td>
+            </tr>
+            <tr>
+                <td>2025</td>
+                <td>$25.69亿</td>
+                <td>$3.18亿</td>
+                <td>$20.80亿</td>
+                <td>$7.90亿</td>
+                <td>$34.5亿</td>
+                <td>$26.6亿</td>
+            </tr>
+        </table>
+
+        <h3>5.2 股票回购——宣伟资本配置的核心引擎</h3>
+        <div class="highlight">
+            <p><strong>核心数据</strong>：过去10年，宣伟回购了约5,030万股股票，流通股从约2.94亿股缩减至约2.48亿股——<strong>10年间回购注销了约17%的流通股</strong>。FY2025全年回购约$20.8亿，创历史纪录。</p>
+        </div>
+        <table>
+            <tr>
+                <th>时间段</th>
+                <th>回购金额</th>
+                <th>流通股变化</th>
+                <th>说明</th>
+            </tr>
+            <tr>
+                <td>2016-2018</td>
+                <td>~$12.4亿</td>
+                <td>2.94亿→2.80亿</td>
+                <td>Valspar收购后债务高，回购克制</td>
+            </tr>
+            <tr>
+                <td>2019-2020</td>
+                <td>~$14.3亿</td>
+                <td>2.80亿→2.72亿</td>
+                <td>去杠杆进行中，回购逐步恢复</td>
+            </tr>
+            <tr>
+                <td>2021</td>
+                <td>~$14.5亿</td>
+                <td>2.72亿→2.63亿</td>
+                <td>低利率环境加大回购</td>
+            </tr>
+            <tr>
+                <td>2022-2023</td>
+                <td>~$19.9亿</td>
+                <td>2.63亿→2.55亿</td>
+                <td>盈利恢复后回购加速</td>
+            </tr>
+            <tr>
+                <td>2024</td>
+                <td>~$12.5亿</td>
+                <td>2.55亿→2.51亿</td>
+                <td>稳健回购</td>
+            </tr>
+            <tr>
+                <td>2025</td>
+                <td>~$20.8亿</td>
+                <td>2.51亿→2.48亿</td>
+                <td>创纪录回购规模；含Suvinil收购影响</td>
+            </tr>
+        </table>
+
+        <h3>5.3 股息政策</h3>
+        <table>
+            <tr>
+                <th>年份</th>
+                <th>年度股息/股</th>
+                <th>总股息支付</th>
+                <th>股息增长率</th>
+                <th>收益率</th>
+                <th>派息率</th>
+            </tr>
+            <tr><td>2016</td><td>$1.64</td><td>~$1.51亿</td><td>-</td><td>~0.6%</td><td>~13%</td></tr>
+            <tr><td>2017</td><td>$1.13</td><td>~$1.13亿</td><td>-31%</td><td>~0.3%</td><td>~6%</td></tr>
+            <tr><td>2018</td><td>$1.15</td><td>~$1.15亿</td><td>+2%</td><td>~0.9%</td><td>~10%</td></tr>
+            <tr><td>2019</td><td>$1.51</td><td>~$1.51亿</td><td>+31%</td><td>~0.8%</td><td>~10%</td></tr>
+            <tr><td>2020</td><td>$1.79</td><td>~$1.79亿</td><td>+19%</td><td>~0.7%</td><td>~9%</td></tr>
+            <tr><td>2021</td><td>$2.20</td><td>~$2.20亿</td><td>+23%</td><td>~0.6%</td><td>~12%</td></tr>
+            <tr><td>2022</td><td>$2.40</td><td>~$2.42亿</td><td>+9%</td><td>~1.0%</td><td>~12%</td></tr>
+            <tr><td>2023</td><td>$2.42</td><td>~$2.86亿</td><td>+1%</td><td>~0.8%</td><td>~12%</td></tr>
+            <tr><td>2024</td><td>$2.86</td><td>~$3.16亿</td><td>+18%</td><td>~0.8%</td><td>~12%</td></tr>
+            <tr><td>2025</td><td>$3.16</td><td>~$3.18亿</td><td>+10%</td><td>~1.0%</td><td>~12%</td></tr>
+            <tr><td>2026E</td><td>$3.20</td><td>~$3.20亿</td><td>+1%</td><td>~1.1%</td><td>~12%</td></tr>
+        </table>
+        <div class="highlight">
+            <p><strong>股息分析</strong>：宣伟连续47年增加股息，是名副其实的"股息贵族"（Dividend Aristocrat）。但股息率仅1.0%——远低于市场平均。这反映了宣伟的资本配置哲学：<strong>回购优先于股息</strong>，与穆迪（MCO）的策略一致。原因：1）回购税收效率更高；2）回购更灵活；3）回购直接提升每股收益。过去10年，宣伟通过回购+股息合计回报股东超过$120亿，其中回购约占80%，股息约占20%。值得注意的是，2017年股息/股从$1.64降至$1.13，是因为3:1拆股导致——拆股后每股股息相应调整，但总股息支付额仍在增长。</p>
+        </div>
+
+        <h3>5.4 利润分配比例（FY2023-2025平均）</h3>
+        <div class="chart-container">
+            <canvas id="allocationChart"></canvas>
+        </div>
+        <table>
+            <tr>
+                <th>分配方向</th>
+                <th>3年平均金额</th>
+                <th>占自由现金流比例</th>
+                <th>评价</th>
+            </tr>
+            <tr>
+                <td><strong>股票回购</strong></td>
+                <td>~$14.7亿</td>
+                <td>~57%</td>
+                <td><span class="tag tag-green">优秀</span> 持续缩减流通股，长期价值创造</td>
+            </tr>
+            <tr>
+                <td><strong>股息</strong></td>
+                <td>~$3.1亿</td>
+                <td>~12%</td>
+                <td><span class="tag tag-green">稳健</span> 连续47年增长，派息率适中</td>
+            </tr>
+            <tr>
+                <td><strong>增长投资（CapEx+收购）</strong></td>
+                <td>~$8.0亿</td>
+                <td>~31%</td>
+                <td><span class="tag tag-green">合理</span> 新门店扩张+Suvinil收购+新总部建设</td>
+            </tr>
+            <tr>
+                <td><strong>合计股东回报</strong></td>
+                <td>~$17.8亿</td>
+                <td>~69%</td>
+                <td><span class="tag tag-green">优秀</span> 自由现金流大部分回报股东</td>
+            </tr>
+        </table>
+
+        <h3>5.5 资本配置评价</h3>
+        <div class="highlight">
+            <p><strong>巴菲特式评价</strong>：宣伟的资本配置策略是"回购驱动+精准收购"的典范：</p>
+            <p><strong>正面</strong>：1）<strong>回购纪律性极强</strong>——10年回购5,030万股，流通股缩减17%，这是最"安静"但最有效的价值创造方式；2）<strong>收购策略精准</strong>——2017年$113亿收购Valspar使宣伟跃居全球第一，获得工业涂料能力和家得宝渠道；2025年$11.5亿收购Suvinil进入拉美最大市场；3）<strong>股息增长稳健</strong>——连续47年增加，但派息率仅12%，既回报股东又不影响增长投资；4）<strong>逆势投资</strong>——在需求疲软期反而加大门店扩张和销售团队投入，抢占竞争对手退缩留下的市场份额；5）<strong>自由现金流强劲</strong>——FY2025经营现金流$34.5亿，自由现金流$26.6亿，自由现金流利润率11.3%。</p>
+            <p><strong>关注点</strong>：1）FY2025回购$20.8亿，但自由现金流仅$26.6亿——回购+股息合计$24亿，几乎消耗了全部自由现金流，这意味着如果需求进一步恶化，回购可能需要减速；2）FY2025资本支出$7.9亿，远高于历史水平（$4-5亿），主要因为新总部和R&D大楼建设——这些是一次性投入还是持续性投入需要关注；3）Suvinil收购$11.5亿增加了债务负担，D/E从1.87回升至2.03；4）利息支出从FY2020的$3.40亿增至FY2025的$4.65亿，利率上升的负面影响正在显现。</p>
+            <p><strong>总体评价</strong>：宣伟的资本配置策略体现了"在护城河保护下大胆投资"的哲学——在竞争对手退缩时加大门店扩张和客户获取投入，同时通过持续回购提升每股价值。这种策略在涂料这种"慢变量"行业中效果极佳——市场份额一旦获取，就很难被夺回。管理层对"Success by Design"战略的执行力令人印象深刻。</p>
+        </div>
+    </div>
+
+    <div class="info-box">
+        <h2>六、投资总结</h2>
+
+        <h3>6.1 核心投资逻辑</h3>
+        <table>
+            <tr>
+                <th>维度</th>
+                <th>评估</th>
+                <th>评级</th>
+            </tr>
+            <tr>
+                <td>商业模式可理解性</td>
+                <td>卖油漆——简单易懂，"涂料界的苹果"</td>
+                <td><span class="tag tag-green">好</span></td>
+            </tr>
+            <tr>
+                <td>长期竞争优势</td>
+                <td>4,853家自营店+垂直整合+定价权+客户粘性</td>
+                <td><span class="tag tag-green">极强</span></td>
+            </tr>
+            <tr>
+                <td>管理层资本配置</td>
+                <td>回购纪律性强+收购精准+逆势投资抢占份额</td>
+                <td><span class="tag tag-green">优秀</span></td>
+            </tr>
+            <tr>
+                <td>盈利稳定性</td>
+                <td>住宅重涂需求相对稳定，但新房建设和DIY有周期性</td>
+                <td><span class="tag tag-orange">中等偏好</span></td>
+            </tr>
+            <tr>
+                <td>估值安全边际</td>
+                <td>Forward PE ~26倍，低于5年均值32倍，处于5年PE第17百分位</td>
+                <td><span class="tag tag-orange">有限</span></td>
+            </tr>
+            <tr>
+                <td>资产负债表</td>
+                <td>D/E 2.0倍，长期债务$93亿；利息覆盖8倍；持续去杠杆中</td>
+                <td><span class="tag tag-orange">中等</span></td>
+            </tr>
+        </table>
+
+        <h3>6.2 关键催化剂</h3>
+        <ul>
+            <li><strong>利率下降周期</strong>：降息→住房市场回暖→住宅重涂和新房需求回升→PSG收入加速增长</li>
+            <li><strong>DIY→Pro转换趋势</strong>：越来越多消费者从DIY转向雇佣专业油漆工，这一结构性趋势直接利好PSG</li>
+            <li><strong>逆势抢占市场份额</strong>：竞争对手在弱需求中退缩，宣伟反而扩张门店和销售团队</li>
+            <li><strong>Suvinil整合协同</strong>：巴西市场增长潜力大；FY2025 Q4已贡献$1.645亿收入</li>
+            <li><strong>持续回购</strong>：流通股持续缩减，每股收益自动增长</li>
+        </ul>
+
+        <h3>6.3 关键风险</h3>
+        <ul>
+            <li><strong>住房市场持续低迷</strong>：高利率→新房开工减少+二手房交易下降→住宅重涂需求疲软</li>
+            <li><strong>原材料成本上涨</strong>：钛白粉关税（中国进口34%）、环氧树脂25%关税；宣伟虽能转嫁但有时滞</li>
+            <li><strong>DIY需求持续疲软</strong>：CBG收入连续下滑，北美DIY市场结构性萎缩</li>
+            <li><strong>高杠杆风险</strong>：D/E 2.0倍，利率上升增加利息负担；经济衰退时偿债压力加大</li>
+            <li><strong>估值风险</strong>：PE 29倍意味着市场对增长预期较高，任何不达预期都可能导致回调</li>
+            <li><strong>地理集中风险</strong>：80%收入来自美国，美国经济衰退将严重影响业绩</li>
+        </ul>
+
+        <h3>6.4 估值参考</h3>
+        <table>
+            <tr>
+                <th>估值方法</th>
+                <th>数值</th>
+                <th>说明</th>
+            </tr>
+            <tr>
+                <td>当前股价</td>
+                <td>~$299</td>
+                <td>2026年5月19日</td>
+            </tr>
+            <tr>
+                <td>TTM GAAP PE</td>
+                <td>~29倍</td>
+                <td>基于TTM EPS $10.42</td>
+            </tr>
+            <tr>
+                <td>Forward PE（2026E调整后）</td>
+                <td>~26倍</td>
+                <td>基于2026E调整后EPS $11.50-$11.90中位数$11.70</td>
+            </tr>
+            <tr>
+                <td>EV/EBITDA（TTM）</td>
+                <td>~20倍</td>
+                <td>基于EV ~$877亿，EBITDA ~$44亿</td>
+            </tr>
+            <tr>
+                <td>P/S</td>
+                <td>~3.2倍</td>
+                <td>基于FY2025收入$236亿</td>
+            </tr>
+            <tr>
+                <td>P/B</td>
+                <td>~16.5倍</td>
+                <td>净资产较低（大额回购+高杠杆）</td>
+            </tr>
+            <tr>
+                <td>自由现金流收益率</td>
+                <td>~3.5%</td>
+                <td>基于TTM FCF ~$26.6亿</td>
+            </tr>
+            <tr>
+                <td>分析师目标价</td>
+                <td>$375.33（均值）</td>
+                <td>14位分析师；最高$450，最低$310</td>
+            </tr>
+            <tr>
+                <td>DCF公允价值</td>
+                <td>~$359</td>
+                <td>第三方DCF模型估算；当前价格折让约17%</td>
+            </tr>
+        </table>
+
+        <div class="highlight">
+            <p><strong>价值投资者视角</strong>：宣伟是巴菲特"定价权"理念的完美实践——"如果你有能力提价而不把生意输给竞争对手，你就拥有了一家非常好的企业。"宣伟的核心投资逻辑是<strong>"控制分销+定价权+垂直整合+回购驱动"</strong>。当前Forward PE约26倍，处于5年PE范围的第17百分位——这意味着当前估值比过去5年中83%的时间都便宜。股价从2024年9月的高点$381跌至2026年5月的$299（跌幅约22%），主要因为：1）住房市场持续低迷；2）DIY需求疲软拖累CBG；3）利率上升增加利息支出。但宣伟的护城河并未受损——PSG仍在增长，定价权依然强劲，逆势抢占市场份额的策略正在奏效。对于追求<strong>高质量、定价权驱动</strong>的价值投资者来说，当前价位提供了一个比近年来更有吸引力的入场机会。但投资者必须接受：1）住房市场复苏可能需要更长时间；2）D/E 2.0倍意味着经济衰退时风险较高；3）26倍Forward PE仍不算"便宜"，安全边际有限。宣伟适合长期持有、相信"涂料界苹果"能持续创造价值的投资者。</p>
+        </div>
+    </div>
+
+    <div style="text-align: center; margin: 20px 0;">
+        <a href="index.html">返回索引页</a>
+    </div>
+
+    <script>
+        new Chart(document.getElementById('roeChart'), {
+            type: 'bar',
+            data: {
+                labels: ['2005','2006','2007','2008','2009','2010','2011','2012','2013','2014','2015','2016','2017','2018','2019','2020','2021','2022','2023','2024','2025'],
+                datasets: [{
+                    label: 'ROE (%)',
+                    data: [26.8,28.9,34.5,29.7,29.2,28.7,29.1,35.2,42.4,86.9,121.4,60.3,48.0,29.7,37.4,56.2,76.5,65.1,64.3,66.2,55.9],
+                    backgroundColor: 'rgba(26, 35, 126, 0.7)',
+                    borderColor: 'rgba(26, 35, 126, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: { display: true, text: 'SHW净资产收益率（ROE）年度趋势（注：2014-2015因大额回购导致权益极低，ROE失真）', font: { size: 14 } },
+                    legend: { display: false }
+                },
+                scales: {
+                    y: {
+                        title: { display: true, text: 'ROE (%)' },
+                        suggestedMin: 0,
+                        suggestedMax: 80
+                    }
+                }
+            }
+        });
+
+        new Chart(document.getElementById('debtChart'), {
+            type: 'line',
+            data: {
+                labels: ['2015','2016','2017','2018','2019','2020','2021','2022','2023','2024','2025'],
+                datasets: [{
+                    label: '资产负债率 (%)',
+                    data: [43,49,68,70,66,62,68,69,67,65,64],
+                    borderColor: 'rgba(26, 35, 126, 1)',
+                    backgroundColor: 'rgba(26, 35, 126, 0.1)',
+                    fill: true,
+                    yAxisID: 'y'
+                }, {
+                    label: 'D/E比',
+                    data: [0.77,0.97,2.13,2.37,1.97,1.62,2.14,2.24,2.04,1.87,2.03],
+                    borderColor: 'rgba(244, 67, 54, 1)',
+                    backgroundColor: 'rgba(244, 67, 54, 0.1)',
+                    fill: false,
+                    yAxisID: 'y1'
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: { display: true, text: 'SHW负债率指标趋势（2015-2025）', font: { size: 14 } }
+                },
+                scales: {
+                    y: {
+                        type: 'linear',
+                        position: 'left',
+                        title: { display: true, text: '资产负债率 (%)' },
+                        min: 30,
+                        max: 80
+                    },
+                    y1: {
+                        type: 'linear',
+                        position: 'right',
+                        title: { display: true, text: 'D/E比' },
+                        min: 0,
+                        max: 3,
+                        grid: { drawOnChartArea: false }
+                    }
+                }
+            }
+        });
+
+        new Chart(document.getElementById('peChart'), {
+            type: 'line',
+            data: {
+                labels: ['2008','2009','2010','2011','2012','2013','2014','2015','2016','2018','2019','2020','2021','2022','2023','2024','2025'],
+                datasets: [{
+                    label: 'PE (年末)',
+                    data: [13.9,17.7,22.0,21.7,27.5,29.6,40.3,36.9,36.5,33.0,34.7,32.7,49.6,30.3,33.4,31.8,31.2],
+                    borderColor: 'rgba(26, 35, 126, 1)',
+                    backgroundColor: 'rgba(26, 35, 126, 0.1)',
+                    fill: true
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: { display: true, text: 'SHW市盈率（PE）年度趋势', font: { size: 14 } },
+                    legend: { display: false }
+                },
+                scales: {
+                    y: {
+                        title: { display: true, text: 'PE' },
+                        suggestedMin: 10,
+                        suggestedMax: 55
+                    }
+                }
+            }
+        });
+
+        new Chart(document.getElementById('allocationChart'), {
+            type: 'doughnut',
+            data: {
+                labels: ['股票回购 (57%)', '股息 (12%)', '增长投资 (31%)'],
+                datasets: [{
+                    data: [57, 12, 31],
+                    backgroundColor: ['rgba(26, 35, 126, 0.8)', 'rgba(76, 175, 80, 0.8)', 'rgba(255, 152, 0, 0.8)'],
+                    borderColor: ['rgba(26, 35, 126, 1)', 'rgba(76, 175, 80, 1)', 'rgba(255, 152, 0, 1)'],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: { display: true, text: 'SHW利润分配比例（FY2023-2025平均，占自由现金流）', font: { size: 14 } },
+                    legend: { position: 'bottom' }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

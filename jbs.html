@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JBS (JBS S.A.) 详细分析</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f5f5f5;
+        }
+        h1 {
+            text-align: center;
+            color: #1a237e;
+        }
+        h2 {
+            color: #1a237e;
+            margin-top: 30px;
+        }
+        h3 {
+            color: #333;
+            margin-top: 20px;
+        }
+        .info-box {
+            background-color: white;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border-radius: 5px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #1a237e;
+            color: white;
+        }
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+        a {
+            color: #1a237e;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .chart-container {
+            background-color: white;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border-radius: 5px;
+        }
+        .highlight {
+            background-color: #e8eaf6;
+            padding: 15px;
+            border-left: 4px solid #1a237e;
+            margin: 15px 0;
+        }
+        .risk-box {
+            background-color: #fff3e0;
+            padding: 15px;
+            border-left: 4px solid #e65100;
+            margin: 15px 0;
+        }
+        .moat-box {
+            background-color: #e8f5e9;
+            padding: 15px;
+            border-left: 4px solid #2e7d32;
+            margin: 15px 0;
+        }
+        .back-link {
+            text-align: center;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="back-link"><a href="index.html">← 返回美股分析索引</a></div>
+    <h1>JBS — JBS S.A.（JBS集团）价值投资分析</h1>
+
+    <div class="info-box">
+        <h2>一、公司基本信息</h2>
+        <table>
+            <tr><th>项目</th><th>详情</th></tr>
+            <tr><td>公司全称</td><td>JBS S.A.（现重组为JBS N.V.，荷兰控股公司）</td></tr>
+            <tr><td>股票代码</td><td>NYSE: JBS / B3: JBSS32（巴西圣保罗交易所）</td></tr>
+            <tr><td>上市交易所</td><td>纽约证券交易所（2025年6月13日双重上市）/ 巴西B3</td></tr>
+            <tr><td>成立时间</td><td>1953年（José Batista Sobrinho在巴西戈亚斯州阿纳波利斯创立小型屠宰场）</td></tr>
+            <tr><td>总部</td><td>运营总部：巴西圣保罗；法律总部：荷兰阿姆斯特尔芬（JBS N.V.）</td></tr>
+            <tr><td>当前市值（2026年5月）</td><td>约$105亿美元</td></tr>
+            <tr><td>市值（美元）</td><td>~$10.5B USD</td></tr>
+            <tr><td>企业价值（EV）</td><td>~$26.8B USD（含净债务$16.3B）</td></tr>
+            <tr><td>最新收盘价（2026年5月21日）</td><td>$12.90</td></tr>
+            <tr><td>流通股数</td><td>约22.18亿股（含巴西B3和NYSE双重上市）</td></tr>
+            <tr><td>CEO</td><td>Gilberto Tomazoni（2020年2月就任全球CEO）</td></tr>
+            <tr><td>CFO</td><td>Guilherme Perboyre Cavalcanti</td></tr>
+            <tr><td>控股股东</td><td>J&F Investimentos（Batista家族控股）</td></tr>
+            <tr><td>行业</td><td>食品加工——全球蛋白质/肉类加工</td></tr>
+            <tr><td>员工数</td><td>约280,000人</td></tr>
+            <tr><td>52周范围</td><td>$12.37 - $18.65</td></tr>
+            <tr><td>股息</td><td>$1.00/股（2026年6月支付），收益率约7.3%</td></tr>
+            <tr><td>股息历史</td><td>已连续13年+支付股息，但金额波动大</td></tr>
+            <tr><td>信用评级</td><td>AAA.br（穆迪巴西本地评级）；全球评级BB+</td></tr>
+            <tr><td>全球排名</td><td>全球最大蛋白质/肉类加工公司</td></tr>
+            <tr><td>生产设施</td><td>250+座加工厂，覆盖6大洲</td></tr>
+            <tr><td>业务覆盖</td><td>约200个国家，32万+客户</td></tr>
+            <tr><td>关键品牌</td><td>Swift, Friboi, Seara, Pilgrim's Pride, Moy Park, Primo, Just Bare, 1855, Mantiqueira</td></tr>
+            <tr><td>市场地位</td><td>#1全球牛肉、#1全球禽肉、#2全球猪肉、#1全球预制食品、#1南美鸡蛋、#2澳洲三文鱼</td></tr>
+        </table>
+    </div>
+
+    <div class="info-box">
+        <h2>二、业务分析</h2>
+
+        <h3>2.1 公司是做什么的？（通俗解释）</h3>
+        <div class="highlight">
+            <p>想象你每天吃的肉——牛肉、鸡肉、猪肉——从牧场到餐桌，中间需要一个庞大的"蛋白质工厂"来屠宰、加工、包装和配送。JBS就是全球最大的那个"蛋白质工厂"。</p>
+            <p>每天，JBS在全球250多座工厂里屠宰数以万计的牛、猪和鸡，把它们变成超市冷柜里的牛排、鸡肉块和培根，送到200多个国家的消费者餐桌上。它的规模大到什么程度？全球每吃15块牛肉，就有1块来自JBS。</p>
+            <p>但JBS不只是一个"杀牛的"——它已经进化成一个"全球蛋白质平台"：在巴西，Seara品牌卖冷冻鸡肉和速食餐；在美国，Pilgrim's Pride和Just Bare品牌卖高端鸡肉；在澳洲，它不仅加工牛肉，还养三文鱼；在欧洲，Moy Park做预制食品；它甚至还有植物蛋白业务（Vivera）和培养肉技术（BioTech Foods）。</p>
+            <p>简单说：JBS从"一头牛"起家，经过70年疯狂并购，变成了一个横跨6大洲、7大蛋白质品类的"蛋白质帝国"。营收$862亿，比麦当劳+星巴克+可口可乐加起来还多。</p>
+        </div>
+
+        <h3>2.2 业务板块（7大报告分部）</h3>
+        <table>
+            <tr><th>板块</th><th>简介</th><th>FY2025营收($B)</th><th>营收占比</th><th>EBITDA利润率</th><th>关键指标</th></tr>
+            <tr><td>JBS Beef North America</td><td>北美牛肉加工（9座美国+1座加拿大工厂，日产能32,598头牛）+欧洲植物蛋白</td><td>28.1</td><td>33%</td><td>~1%</td><td>创纪录营收但利润率极低；美国牛群75年最低+墨西哥活牛进口受限</td></tr>
+            <tr><td>Pilgrim's Pride (PPC)</td><td>全球禽肉加工（JBS持股83%），36座鲜鸡工厂+30座预制食品工厂</td><td>18.5</td><td>21%</td><td>15.2%</td><td>Just Bare品牌突破$10亿销售；美国+欧洲+墨西哥业务改善</td></tr>
+            <tr><td>JBS Brazil</td><td>巴西牛肉加工（35座工厂，日产能31,680头牛）+副产品（皮革、胶原蛋白）</td><td>15.3</td><td>18%</td><td>6.2%</td><td>Friboi品牌连续6年Top of Mind；史上最高屠宰量；出口市场扩张</td></tr>
+            <tr><td>Seara</td><td>巴西禽肉/猪肉/预制食品（速食餐、Air Fryer产品、Netflix联名零食）</td><td>9.2</td><td>11%</td><td>16.9%</td><td>史上最高出口量；Seara Protein新品线；品牌持续创新</td></tr>
+            <tr><td>JBS USA Pork</td><td>美国猪肉加工（预制培根+早餐肠产能扩张中）</td><td>8.4</td><td>10%</td><td>~8%</td><td>创纪录营收；爱荷华州新工厂建设中；品牌+预制产品增长</td></tr>
+            <tr><td>JBS Australia</td><td>澳洲牛肉+羊肉+三文鱼+猪肉加工</td><td>8.1</td><td>9%</td><td>11.3%</td><td>牛肉为主力；牛价涨20%仍保持利润；三文鱼+猪肉利润改善</td></tr>
+            <tr><td>Others</td><td>Moy Park（欧洲预制食品）、Mantiqueira（鸡蛋，全球#3）、Vivera（植物蛋白）、BioTech Foods（培养肉）</td><td>~1.5</td><td>~2%</td><td>混合</td><td>欧洲业务改善；Mantiqueira收购Hickman's成为全球#3鸡蛋生产商</td></tr>
+        </table>
+
+        <h3>2.3 收入构成（FY2025）</h3>
+        <table>
+            <tr><th>收入来源</th><th>金额（亿美元）</th><th>占比</th><th>说明</th></tr>
+            <tr><td>牛肉（北美+巴西+澳洲）</td><td>~515</td><td>~60%</td><td>核心但低利润率业务，受牛周期影响大</td></tr>
+            <tr><td>禽肉（Pilgrim's Pride + Seara）</td><td>~210</td><td>~24%</td><td>高利润率增长引擎，品牌化+预制化趋势</td></tr>
+            <tr><td>猪肉（USA Pork + Seara）</td><td>~100</td><td>~12%</td><td>中等利润率，受益于谷物成本下降</td></tr>
+            <tr><td>其他（三文鱼、鸡蛋、预制食品、植物蛋白等）</td><td>~37</td><td>~4%</td><td>多元化增长方向，利润率较高</td></tr>
+            <tr><td>合计</td><td>861.8</td><td>100%</td><td>同比增长12%（创纪录）</td></tr>
+        </table>
+
+        <h3>2.4 地理分布（LTM 1Q26，按生产）</h3>
+        <table>
+            <tr><th>地区</th><th>收入占比</th><th>说明</th></tr>
+            <tr><td>美国</td><td>51%</td><td>最大市场：Beef NA + PPC + Pork USA</td></tr>
+            <tr><td>巴西</td><td>26%</td><td>JBS Brazil + Seara + Mantiqueira</td></tr>
+            <tr><td>大洋洲（澳洲/新西兰）</td><td>10%</td><td>JBS Australia（牛肉+三文鱼+猪肉）</td></tr>
+            <tr><td>欧洲</td><td>6%</td><td>Moy Park（英国预制食品）+ Vivera（植物蛋白）</td></tr>
+            <tr><td>加拿大</td><td>5%</td><td>1座牛肉加工厂</td></tr>
+            <tr><td>墨西哥</td><td>2%</td><td>Pilgrim's Pride墨西哥业务</td></tr>
+        </table>
+
+        <h3>2.5 商业模式核心——"蛋白质周期"的驾驭者</h3>
+        <div class="highlight">
+            <p><strong>关键概念：肉类加工是"低利润率+高周期性"的大宗商品业务</strong></p>
+            <p>JBS的EBITDA利润率仅7.9%，远低于我们之前分析的AMP（27%）或SHW（18%）。这是因为肉类加工本质上是一个"中间商"——买活牛/活猪/活鸡，加工后卖肉，赚的是加工费。当牲畜价格上涨而肉价无法同步上涨时，利润就被挤压。</p>
+            <p>但JBS的聪明之处在于：<strong>多元化对冲</strong>。当北美牛肉利润率只有1%时，Seara的禽肉利润率是16.9%，Pilgrim's Pride是15.2%。不同蛋白质、不同地区处于不同的周期阶段——这就是"全球多蛋白质平台"的价值。</p>
+            <p>此外，JBS正在从"大宗商品加工商"向"品牌食品公司"转型。Just Bare（高端鸡肉）突破$10亿销售、Seara推出Air Fryer产品和Netflix联名零食、Friboi+增值产品——品牌化和预制化意味着更高的利润率和更低的周期波动。</p>
+        </div>
+    </div>
+
+    <div class="info-box">
+        <h2>三、历史财务指标</h2>
+
+        <h3>3.1 核心运营指标（2016-2025）</h3>
+        <table>
+            <tr><th>年度</th><th>营收($B)</th><th>净利润($B)</th><th>EPS($)</th><th>调整后EBITDA($B)</th><th>EBITDA利润率</th><th>ROE</th></tr>
+            <tr><td>2016</td><td>51.2</td><td>~0.3</td><td>~0.15</td><td>~5.0</td><td>~9.8%</td><td>~5%</td></tr>
+            <tr><td>2017</td><td>48.9</td><td>~0.4</td><td>~0.18</td><td>~5.6</td><td>~11.5%</td><td>~7%</td></tr>
+            <tr><td>2018</td><td>49.0</td><td>~0.6</td><td>~0.28</td><td>~5.0</td><td>~10.2%</td><td>~9%</td></tr>
+            <tr><td>2019</td><td>51.1</td><td>~1.5</td><td>~0.70</td><td>~6.7</td><td>~13.1%</td><td>~18%</td></tr>
+            <tr><td>2020</td><td>49.7</td><td>~0.3</td><td>~0.15</td><td>~4.0</td><td>~8.0%</td><td>~4%</td></tr>
+            <tr><td>2021</td><td>51.7</td><td>~3.1</td><td>~1.45</td><td>~8.5</td><td>~16.4%</td><td>~30%</td></tr>
+            <tr><td>2022</td><td>72.6</td><td>~3.1</td><td>~1.45</td><td>~6.7</td><td>~9.2%</td><td>~28%</td></tr>
+            <tr><td>2023</td><td>72.9</td><td>-0.1</td><td>~-0.05</td><td>~3.5</td><td>~4.8%</td><td>负值</td></tr>
+            <tr><td>2024</td><td>77.2</td><td>2.0</td><td>~1.65</td><td>7.2</td><td>9.3%</td><td>22.1%</td></tr>
+            <tr><td>2025</td><td>86.2</td><td>2.0</td><td>1.89</td><td>6.8</td><td>7.9%</td><td>25.3%</td></tr>
+        </table>
+
+        <h3>3.2 ROE与资产负债率</h3>
+        <table>
+            <tr><th>年度</th><th>ROE</th><th>净债务/EBITDA</th><th>利息覆盖率</th><th>净债务($B)</th><th>自由现金流($B)</th></tr>
+            <tr><td>2016</td><td>~5%</td><td>~4.5x</td><td>~2.0x</td><td>~15</td><td>~1.5</td></tr>
+            <tr><td>2017</td><td>~7%</td><td>~4.0x</td><td>~2.5x</td><td>~16</td><td>~1.8</td></tr>
+            <tr><td>2018</td><td>~9%</td><td>~3.5x</td><td>~3.0x</td><td>~14</td><td>~2.0</td></tr>
+            <tr><td>2019</td><td>~18%</td><td>~3.0x</td><td>~4.0x</td><td>~13</td><td>~2.5</td></tr>
+            <tr><td>2020</td><td>~4%</td><td>~4.0x</td><td>~2.0x</td><td>~14</td><td>~1.0</td></tr>
+            <tr><td>2021</td><td>~30%</td><td>~2.5x</td><td>~5.0x</td><td>~13</td><td>~3.5</td></tr>
+            <tr><td>2022</td><td>~28%</td><td>~2.8x</td><td>~3.8x</td><td>~14</td><td>~2.0</td></tr>
+            <tr><td>2023</td><td>负值</td><td>~6.0x</td><td>~0.8x</td><td>~15</td><td>~-1.5</td></tr>
+            <tr><td>2024</td><td>22.1%</td><td>1.9x</td><td>7.4x</td><td>~13</td><td>2.3</td></tr>
+            <tr><td>2025</td><td>25.3%</td><td>2.4x</td><td>6.5x</td><td>16.3</td><td>0.4</td></tr>
+        </table>
+
+        <h3>3.3 PE比历史</h3>
+        <table>
+            <tr><th>年度</th><th>年末股价(ADR)</th><th>PE</th><th>备注</th></tr>
+            <tr><td>2016</td><td>$5.03</td><td>~34x</td><td>Batista家族腐败丑闻后低谷</td></tr>
+            <tr><td>2017</td><td>$6.94</td><td>~39x</td><td>缓慢恢复</td></tr>
+            <tr><td>2018</td><td>$4.96</td><td>~18x</td><td>牛周期下行</td></tr>
+            <tr><td>2019</td><td>$10.34</td><td>~15x</td><td>业绩改善</td></tr>
+            <tr><td>2020</td><td>$8.26</td><td>~55x</td><td>COVID冲击利润</td></tr>
+            <tr><td>2021</td><td>$12.37</td><td>~8.5x</td><td>创纪录利润</td></tr>
+            <tr><td>2022</td><td>$14.38</td><td>~10x</td><td>高利润延续</td></tr>
+            <tr><td>2023</td><td>$9.06</td><td>N/A（亏损）</td><td>牛周期低谷，净亏损</td></tr>
+            <tr><td>2024</td><td>$14.42</td><td>~8.7x</td><td>强劲复苏</td></tr>
+            <tr><td>2025</td><td>$14.42</td><td>~7.6x</td><td>NYSE双重上市年</td></tr>
+            <tr><td>2026E（当前）</td><td>$12.90</td><td>~6.8x</td><td>Q1 2026业绩不及预期后回调</td></tr>
+        </table>
+
+        <div class="chart-container">
+            <canvas id="revenueChart" height="100"></canvas>
+        </div>
+        <div class="chart-container">
+            <canvas id="ebitdaChart" height="100"></canvas>
+        </div>
+        <div class="chart-container">
+            <canvas id="roeChart" height="100"></canvas>
+        </div>
+    </div>
+
+    <div class="info-box">
+        <h2>四、竞争分析</h2>
+
+        <h3>4.1 主要竞争对手</h3>
+        <table>
+            <tr><th>竞争对手</th><th>总部</th><th>FY营收</th><th>全球份额</th><th>核心优势</th><th>对比JBS</th></tr>
+            <tr><td>Tyson Foods (TSN)</td><td>美国阿肯色州</td><td>~$53B</td><td>3.2%</td><td>美国最大肉类加工商；垂直整合；品牌力强（Jimmy Dean, Hillshire Farm）</td><td>JBS规模更大且更全球化；Tyson品牌更强但美国集中度更高</td></tr>
+            <tr><td>Cargill（嘉吉）</td><td>美国明尼苏达州</td><td>~$177B（全部）</td><td>~8%（牛肉）</td><td>全球最大私人公司；饲料-养殖-加工全链条；贸易网络</td><td>未上市；牛肉业务规模接近JBS但更多元化</td></tr>
+            <tr><td>WH Group/Smithfield</td><td>中国/美国</td><td>~$28B</td><td>1.6%</td><td>全球最大猪肉公司；中美双平台</td><td>JBS猪肉规模相当但更全球化</td></tr>
+            <tr><td>Marfrig</td><td>巴西圣保罗</td><td>~$15B</td><td>0.7%</td><td>巴西第二大牛肉加工商；南美+北美双平台</td><td>JBS规模约6倍；Marfrig更聚焦牛肉</td></tr>
+            <tr><td>BRF</td><td>巴西</td><td>~$12B</td><td>0.6%</td><td>巴西最大禽肉出口商；Sadia/Perdigão品牌</td><td>JBS Seara直接竞争；JBS规模约7倍</td></tr>
+            <tr><td>Hormel Foods (HRL)</td><td>美国明尼苏达州</td><td>~$12B</td><td>0.2%</td><td>高利润率品牌食品（SPAM, Skippy）；预制食品专家</td><td>不同赛道——Hormel是品牌食品公司，JBS是大宗加工商</td></tr>
+        </table>
+
+        <h3>4.2 市场份额</h3>
+        <table>
+            <tr><th>细分市场</th><th>JBS份额</th><th>主要竞争者份额</th><th>说明</th></tr>
+            <tr><td>全球肉类加工（总）</td><td>4.4%</td><td>Tyson 3.2%, WH Group 1.6%</td><td>极度分散的行业，#1也仅4.4%</td></tr>
+            <tr><td>全球牛肉加工</td><td>~15%</td><td>Tyson ~8%, Cargill ~8%, Marfrig ~7%</td><td>JBS绝对领先，日屠宰13万头牛</td></tr>
+            <tr><td>全球禽肉加工</td><td>~10%</td><td>Tyson ~12%, BRF ~5%</td><td>通过Pilgrim's Pride领先</td></tr>
+            <tr><td>全球猪肉加工</td><td>~8%</td><td>WH Group ~10%, Tyson ~7%</td><td>#2位置</td></tr>
+            <tr><td>美国牛肉加工</td><td>~25%</td><td>Tyson ~22%, Cargill ~20%</td><td>四大寡头垄断（CR4 ~85%）</td></tr>
+        </table>
+
+        <h3>4.3 护城河评估</h3>
+        <div class="moat-box">
+            <h3>🏰 护城河总评：窄护城河（Narrow Moat）</h3>
+
+            <p><strong>1. 规模优势（中等偏强）</strong></p>
+            <p>JBS是全球最大蛋白质公司，$862亿营收是Tyson的1.6倍。规模带来采购优势（全球最大的活牛/活猪/活鸡买家之一）、加工效率（250+工厂的运营经验）和分销网络（200国/32万客户）。但肉类加工的规模经济有限——一头牛的屠宰成本不会因为规模大而降低太多。</p>
+
+            <p><strong>2. 地理与蛋白质多元化（强）</strong></p>
+            <p>这是JBS最独特的优势。6大洲、7大蛋白质品类的多元化意味着：当北美牛肉利润率只有1%时，巴西Seara的禽肉利润率是16.9%；当巴西牛价上涨时，澳洲牛肉可能正受益。这种"蛋白质周期对冲"是JBS区别于Tyson（90%美国）和Marfrig（纯牛肉）的核心竞争力。</p>
+
+            <p><strong>3. 垂直整合（中等）</strong></p>
+            <p>JBS正在从"屠宰场"向"全链条蛋白质公司"转型：饲料→养殖→屠宰→加工→品牌→零售。Pilgrim's Pride的垂直整合（从种鸡到零售鸡肉）是行业标杆。但牛肉业务仍以"买活牛→卖肉"模式为主，整合度较低。</p>
+
+            <p><strong>4. 品牌组合（中等偏弱）</strong></p>
+            <p>Just Bare（$10亿）、Friboi（巴西Top of Mind）、Seara（巴西国民品牌）是亮点，但JBS整体仍以大宗商品加工为主，品牌溢价有限。与Tyson的Jimmy Dean/Hillshire Farm或Hormel的SPAM相比，JBS的品牌力明显不足。</p>
+
+            <p><strong>5. 成本优势（中等）</strong></p>
+            <p>巴西和澳洲的低成本生产基础（草饲牛、低劳动力成本）是JBS的成本优势来源。但北美业务面临高劳动力成本和工会压力（2026年4月Greeley工厂罢工）。</p>
+        </div>
+
+        <h3>4.4 护城河的可持续性</h3>
+        <div class="highlight">
+            <p><strong>正面因素：</strong></p>
+            <ul>
+                <li>全球蛋白质需求持续增长——人口增长+发展中国家蛋白质消费升级</li>
+                <li>多元化对冲能力是同行无法复制的——需要数十年并购积累</li>
+                <li>品牌化+预制化转型正在提升利润率和客户粘性</li>
+                <li>NYSE双重上市降低了资本成本，增强了融资能力</li>
+                <li>250+工厂和32万客户构成的分销网络极难复制</li>
+            </ul>
+            <p><strong>负面因素：</strong></p>
+            <ul>
+                <li>核心业务（牛肉加工）本质上是低利润率大宗商品业务，护城河浅</li>
+                <li>ESG争议严重——亚马逊森林砍伐、劳工 abuses 诉讼持续</li>
+                <li>治理风险——Batista家族控制（J&F Investimentos），历史上多次腐败丑闻</li>
+                <li>行业进入壁垒不高——区域竞争者可以建立局部优势</li>
+                <li>替代蛋白（植物基、培养肉）长期威胁——虽然JBS已布局Vivera和BioTech Foods</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="info-box">
+        <h2>五、利润分配分析（2016-2025）</h2>
+
+        <h3>5.1 十年利润分配表</h3>
+        <table>
+            <tr><th>年度</th><th>净利润($B)</th><th>股息($B)</th><th>回购($B)</th><th>扩张CapEx($B)</th><th>M&A($B)</th><th>FCF($B)</th></tr>
+            <tr><td>2016</td><td>0.3</td><td>0.3</td><td>-</td><td>~0.8</td><td>~0.5</td><td>~1.5</td></tr>
+            <tr><td>2017</td><td>0.4</td><td>0.3</td><td>-</td><td>~0.9</td><td>~0.3</td><td>~1.8</td></tr>
+            <tr><td>2018</td><td>0.6</td><td>0.3</td><td>-</td><td>~1.0</td><td>~0.2</td><td>~2.0</td></tr>
+            <tr><td>2019</td><td>1.5</td><td>0.5</td><td>-</td><td>~1.1</td><td>~0.3</td><td>~2.5</td></tr>
+            <tr><td>2020</td><td>0.3</td><td>0.2</td><td>-</td><td>~0.8</td><td>~0.2</td><td>~1.0</td></tr>
+            <tr><td>2021</td><td>3.1</td><td>0.7</td><td>-</td><td>~1.2</td><td>~0.5</td><td>~3.5</td></tr>
+            <tr><td>2022</td><td>3.1</td><td>0.8</td><td>-</td><td>~1.5</td><td>~0.5</td><td>~2.0</td></tr>
+            <tr><td>2023</td><td>-0.1</td><td>0.4</td><td>-</td><td>~1.3</td><td>~0.3</td><td>~-1.5</td></tr>
+            <tr><td>2024</td><td>2.0</td><td>0.8</td><td>0.3</td><td>~1.5</td><td>~0.5</td><td>~2.3</td></tr>
+            <tr><td>2025</td><td>2.0</td><td>0.6</td><td>0.3</td><td>~1.0</td><td>~0.2</td><td>~0.4</td></tr>
+        </table>
+
+        <h3>5.2 2019-2025资本配置汇总</h3>
+        <div class="highlight">
+            <p>根据JBS官方披露，2019-2025年期间：</p>
+            <ul>
+                <li><strong>自由现金流（不含扩张CapEx）：</strong>$157亿</li>
+                <li><strong>扩张投资：</strong>$57亿（36%）</li>
+                <li><strong>并购：</strong>$35亿（22%）</li>
+                <li><strong>股息：</strong>$53亿（34%）</li>
+                <li><strong>股票回购：</strong>$34亿（22%）</li>
+            </ul>
+            <p>注意：以上各项之和超过100%，因为部分资金来自债务融资和营运资金变动。</p>
+        </div>
+
+        <h3>5.3 股息历史</h3>
+        <table>
+            <tr><th>年度</th><th>股息总额($B)</th><th>每股股息(ADR)</th><th>股息率</th><th>备注</th></tr>
+            <tr><td>2016</td><td>0.3</td><td>$0.23</td><td>~4.6%</td><td>丑闻后维持</td></tr>
+            <tr><td>2017</td><td>0.3</td><td>$0.02</td><td>~0.3%</td><td>大幅削减</td></tr>
+            <tr><td>2018</td><td>0.3</td><td>$0.03</td><td>~0.5%</td><td>缓慢恢复</td></tr>
+            <tr><td>2019</td><td>0.5</td><td>$0.001</td><td>~0.01%</td><td>几乎不派息</td></tr>
+            <tr><td>2020</td><td>0.2</td><td>$0.20</td><td>~2.4%</td><td>COVID年</td></tr>
+            <tr><td>2021</td><td>0.7</td><td>$0.58</td><td>~4.7%</td><td>创纪录利润</td></tr>
+            <tr><td>2022</td><td>0.8</td><td>$0.76</td><td>~5.3%</td><td>高利润延续</td></tr>
+            <tr><td>2023</td><td>0.4</td><td>$0.42</td><td>~4.6%</td><td>亏损年仍派息</td></tr>
+            <tr><td>2024</td><td>0.8</td><td>$1.04</td><td>~7.2%</td><td>强劲复苏</td></tr>
+            <tr><td>2025</td><td>0.6</td><td>$0.98</td><td>~6.8%</td><td>含$1.00/股特别股息（2026年6月支付）</td></tr>
+        </table>
+
+        <h3>5.4 资本配置评价</h3>
+        <div class="highlight">
+            <p><strong>管理层资本配置能力：中等偏上</strong></p>
+            <ul>
+                <li><strong>股息政策：</strong>波动较大——好的年份慷慨派息（2024年$10亿+），差的年份几乎不派（2019年$0.001/ADR）。这反映了大宗商品业务的周期性——利润波动大，股息自然不稳定。2026年宣布$1.00/股股息，收益率约7.3%，但可持续性存疑。</li>
+                <li><strong>股票回购：</strong>2024年9月重启回购计划（约10%流通股），但回购力度远不如AMP等公司。NYSE上市后可能加速回购。</li>
+                <li><strong>并购纪律：</strong>历史上JBS是"并购狂魔"——从2007年收购Swift到2015年收购Pilgrim's Pride，再到近年Mantiqueira（鸡蛋）和Vivera（植物蛋白）的补强收购。大部分收购创造了价值（尤其是Pilgrim's Pride和Seara），但2009年收购Pilgrim's Pride时出价过高曾一度陷入困境。</li>
+                <li><strong>再投资：</strong>FY2025 CapEx $21亿（营收的2.4%），2026E指引$24亿（$13亿扩张+$11亿维护）。扩张投资聚焦于高回报项目：预制食品产能、品牌产品线和新市场进入。</li>
+                <li><strong>债务管理：</strong>净债务/EBITDA从2023年的6.0x降至2024年的1.9x，2025年因营运资金消耗升至2.4x。债务期限极长——无重大到期日至2031年，部分债券票息低于美国国债利率。这是JBS债务管理的亮点。</li>
+            </ul>
+        </div>
+
+        <div class="chart-container">
+            <canvas id="allocationChart" height="100"></canvas>
+        </div>
+    </div>
+
+    <div class="info-box">
+        <h2>六、投资总结</h2>
+
+        <h3>6.1 核心投资逻辑</h3>
+        <div class="moat-box">
+            <p><strong>JBS是"蛋白质周期"的驾驭者——通过全球6大洲、7大蛋白质品类的多元化布局，在低利润率的大宗商品业务中创造了持续的盈利能力。</strong></p>
+            <ul>
+                <li><strong>规模无人能及：</strong>$862亿营收，全球#1蛋白质公司，4.4%全球份额</li>
+                <li><strong>多元化对冲：</strong>北美牛肉差→巴西禽肉好；澳洲牛价涨→美国猪肉稳。这是JBS最独特的价值</li>
+                <li><strong>品牌化转型：</strong>Just Bare $10亿、Seara创新产品、Friboi+增值——从"杀牛的"变成"卖品牌的"</li>
+                <li><strong>极低估值：</strong>PE仅6.8x，远低于Tyson的15x+和全球食品公司均值18x+</li>
+                <li><strong>NYSE双重上市：</strong>2025年6月上市，可能被纳入S&P 500等指数，释放价值</li>
+            </ul>
+        </div>
+
+        <h3>6.2 关键催化剂</h3>
+        <ul>
+            <li>美国牛群重建周期——2025-2027年牛群触底回升→北美牛肉利润率从1%恢复至5-8%</li>
+            <li>S&P 500指数纳入预期——NYSE上市满1年后可能被纳入，带来被动资金流入</li>
+            <li>品牌化+预制化加速——Just Bare、Seara Protein等高利润率产品持续增长</li>
+            <li>利率下行→债务成本降低（JBS有$163亿净债务）</li>
+            <li>中国需求恢复→巴西和澳洲出口增长</li>
+        </ul>
+
+        <h3>6.3 主要风险</h3>
+        <div class="risk-box">
+            <ul>
+                <li><strong>ESG/治理风险（高）：</strong>亚马逊森林砍伐关联、劳工 abuses 诉讼（2026年4月巴西检方起诉）、Batista家族控制的历史腐败丑闻（2017年J&F Investimentos认罪支付$3.4B罚款）。这是JBS最大的"折扣"来源——许多机构投资者因ESG政策无法持有。</li>
+                <li><strong>周期性风险（高）：</strong>2023年净亏损$1亿就是例证。牛周期、猪周期、禽周期交替出现，利润波动极大。EBITDA利润率在4.8%（2023）到16.4%（2021）之间剧烈波动。</li>
+                <li><strong>自由现金流风险（中高）：</strong>FY2025 FCF仅$4亿（vs 2024年$23亿），主要因营运资金消耗和CapEx增加。FCF/净利润比率仅20%，远低于AMP的90%。</li>
+                <li><strong>高杠杆（中）：</strong>净债务$163亿，D/E 2.42x。虽然债务期限长且利率低，但高杠杆放大了下行风险。</li>
+                <li><strong>地缘政治/贸易风险（中）：</strong>出口占收入约50%，贸易限制和卫生禁运（如中国暂停巴西牛肉进口）可能冲击收入。</li>
+                <li><strong>劳动力风险（中低）：</strong>2026年4月Greeley工厂罢工；行业面临劳动力短缺和工资上涨压力。</li>
+            </ul>
+        </div>
+
+        <h3>6.4 估值分析</h3>
+        <table>
+            <tr><th>估值指标</th><th>当前值</th><th>Tyson (TSN)</th><th>全球食品均值</th><th>评估</th></tr>
+            <tr><td>PE（TTM）</td><td>~6.8x</td><td>~15x</td><td>~18x</td><td>显著低于同行</td></tr>
+            <tr><td>EV/EBITDA</td><td>~3.9x</td><td>~8x</td><td>~12x</td><td>极低</td></tr>
+            <tr><td>P/B</td><td>~1.7x</td><td>~2.0x</td><td>~3.5x</td><td>低于同行</td></tr>
+            <tr><td>股息率</td><td>~7.3%</td><td>~3.5%</td><td>~2.5%</td><td>极高但不可持续</td></tr>
+            <tr><td>FCF Yield</td><td>~3.8%</td><td>~5%</td><td>~4%</td><td>中等（FCF波动大）</td></tr>
+        </table>
+
+        <div class="highlight">
+            <p><strong>估值判断：</strong>JBS当前PE仅6.8x，EV/EBITDA仅3.9x，显著低于同行Tyson（15x/8x）和全球食品公司均值（18x/12x）。这个"折扣"主要来自三个因素：①ESG/治理折价（估计30-40%）；②周期性折价（估计15-20%）；③新兴市场/巴西折价（估计10-15%）。</p>
+            <p><strong>安全边际：</strong>若JBS获得与Tyson相同的估值（PE 15x），股价应为$28+。但考虑到ESG/治理风险，给予50%折价，合理PE约7.5-8.5x，对应股价$14-$16。当前$12.90处于合理偏低区间，但安全边际有限。</p>
+            <p><strong>乐观情景：</strong>美国牛周期回暖+S&P 500纳入+ESG改善→PE 10-12x × EPS $2.10 = $21-$25目标价。</p>
+            <p><strong>保守情景：</strong>牛周期持续低迷+ESG恶化+FCF继续恶化→PE 5-6x × EPS $1.50 = $7.5-$9.0目标价。</p>
+        </div>
+
+        <h3>6.5 巴菲特-芒格视角</h3>
+        <div class="moat-box">
+            <p><strong>"在商业中，我寻找有持久竞争优势的经济城堡，由诚实能干的人管理，并以合理价格购买。"——巴菲特</strong></p>
+            <p>JBS的"经济城堡"规模庞大但护城河偏窄。肉类加工是大宗商品业务，利润率低（7.9% EBITDA margin），周期性强，定价权有限。JBS的多元化是差异化优势，但本质上仍是一个"价格接受者"而非"价格制定者"。</p>
+            <p>芒格会关注JBS的"lollapalooza效应"——6大洲+7大蛋白质+品牌化转型的多因素叠加。当北美牛肉、巴西禽肉和澳洲三文鱼同时处于有利周期时，JBS的利润可以爆发式增长（如2021年EBITDA $85亿）。但反之亦然（如2023年亏损）。</p>
+            <p>巴菲特最担心的会是<strong>治理风险</strong>。Batista家族通过J&F Investimentos控制公司，2017年认罪支付$34亿罚款——这在巴菲特的投资哲学中是"一票否决"的红线。他常说："我们不会与缺乏诚信的管理层做生意，无论价格多便宜。"</p>
+            <p><strong>结论：</strong>JBS是一家拥有全球最大蛋白质平台的公司，当前估值极低（PE 6.8x），但存在三大"折扣"：ESG/治理、周期性和新兴市场。对于能容忍ESG风险和周期波动的价值投资者，JBS提供了一个"深度价值"机会——如果美国牛周期回暖+S&P 500纳入，上行空间可达50-80%。但巴菲特式投资者可能因治理疑虑而回避。这是一只"高风险+高回报"的深度价值股，而非"低风险+稳健回报"的巴菲特式标的。</p>
+        </div>
+    </div>
+
+    <div class="back-link"><a href="index.html">← 返回美股分析索引</a></div>
+
+    <script>
+        new Chart(document.getElementById('revenueChart'), {
+            type: 'line',
+            data: {
+                labels: ['2016','2017','2018','2019','2020','2021','2022','2023','2024','2025'],
+                datasets: [{
+                    label: '营收 ($B)',
+                    data: [51.2,48.9,49.0,51.1,49.7,51.7,72.6,72.9,77.2,86.2],
+                    borderColor: 'rgba(26, 35, 126, 1)',
+                    backgroundColor: 'rgba(26, 35, 126, 0.1)',
+                    fill: true
+                }, {
+                    label: '净利润 ($B)',
+                    data: [0.3,0.4,0.6,1.5,0.3,3.1,3.1,-0.1,2.0,2.0],
+                    borderColor: 'rgba(244, 67, 54, 1)',
+                    backgroundColor: 'rgba(244, 67, 54, 0.1)',
+                    fill: false,
+                    yAxisID: 'y1'
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: { display: true, text: 'JBS营收与净利润趋势（2016-2025）', font: { size: 14 } }
+                },
+                scales: {
+                    y: {
+                        type: 'linear',
+                        position: 'left',
+                        title: { display: true, text: '营收 ($B)' },
+                        min: 40,
+                        max: 95
+                    },
+                    y1: {
+                        type: 'linear',
+                        position: 'right',
+                        title: { display: true, text: '净利润 ($B)' },
+                        min: -1,
+                        max: 4,
+                        grid: { drawOnChartArea: false }
+                    }
+                }
+            }
+        });
+
+        new Chart(document.getElementById('ebitdaChart'), {
+            type: 'bar',
+            data: {
+                labels: ['2016','2017','2018','2019','2020','2021','2022','2023','2024','2025'],
+                datasets: [{
+                    label: '调整后EBITDA ($B)',
+                    data: [5.0,5.6,5.0,6.7,4.0,8.5,6.7,3.5,7.2,6.8],
+                    backgroundColor: 'rgba(26, 35, 126, 0.7)',
+                    borderColor: 'rgba(26, 35, 126, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: { display: true, text: 'JBS调整后EBITDA趋势（2016-2025）', font: { size: 14 } },
+                    legend: { display: false }
+                },
+                scales: {
+                    y: {
+                        title: { display: true, text: 'EBITDA ($B)' },
+                        min: 0,
+                        max: 10
+                    }
+                }
+            }
+        });
+
+        new Chart(document.getElementById('roeChart'), {
+            type: 'line',
+            data: {
+                labels: ['2016','2017','2018','2019','2020','2021','2022','2023','2024','2025'],
+                datasets: [{
+                    label: 'ROE (%)',
+                    data: [5,7,9,18,4,30,28,-1,22.1,25.3],
+                    borderColor: 'rgba(26, 35, 126, 1)',
+                    backgroundColor: 'rgba(26, 35, 126, 0.1)',
+                    fill: true
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: { display: true, text: 'JBS净资产收益率（ROE）趋势（2016-2025）', font: { size: 14 } },
+                    legend: { display: false }
+                },
+                scales: {
+                    y: {
+                        title: { display: true, text: 'ROE (%)' },
+                        min: -10,
+                        max: 35
+                    }
+                }
+            }
+        });
+
+        new Chart(document.getElementById('allocationChart'), {
+            type: 'doughnut',
+            data: {
+                labels: ['扩张投资 (36%)', '股息 (34%)', '并购 (22%)', '股票回购 (22%)'],
+                datasets: [{
+                    data: [36, 34, 22, 22],
+                    backgroundColor: ['rgba(26, 35, 126, 0.8)', 'rgba(76, 175, 80, 0.8)', 'rgba(255, 152, 0, 0.8)', 'rgba(244, 67, 54, 0.8)'],
+                    borderColor: ['rgba(26, 35, 126, 1)', 'rgba(76, 175, 80, 1)', 'rgba(255, 152, 0, 1)', 'rgba(244, 67, 54, 1)'],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: { display: true, text: 'JBS资本配置比例（2019-2025累计，占自由现金流）', font: { size: 14 } },
+                    legend: { position: 'bottom' }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

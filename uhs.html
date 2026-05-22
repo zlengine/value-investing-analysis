@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UHS (Universal Health Services) 详细分析</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f5f5f5;
+        }
+        h1 {
+            text-align: center;
+            color: #1a237e;
+        }
+        h2 {
+            color: #1a237e;
+            margin-top: 30px;
+        }
+        h3 {
+            color: #333;
+            margin-top: 20px;
+        }
+        .info-box {
+            background-color: white;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border-radius: 5px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #1a237e;
+            color: white;
+        }
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+        a {
+            color: #1a237e;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .chart-container {
+            background-color: white;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border-radius: 5px;
+        }
+        .highlight {
+            background-color: #e8eaf6;
+            padding: 15px;
+            border-left: 4px solid #1a237e;
+            margin: 15px 0;
+        }
+        .risk-box {
+            background-color: #fff3e0;
+            padding: 15px;
+            border-left: 4px solid #e65100;
+            margin: 15px 0;
+        }
+        .moat-box {
+            background-color: #e8f5e9;
+            padding: 15px;
+            border-left: 4px solid #2e7d32;
+            margin: 15px 0;
+        }
+        .back-link {
+            text-align: center;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="back-link"><a href="index.html">← 返回美股分析索引</a></div>
+    <h1>UHS — Universal Health Services（环球健康服务）价值投资分析</h1>
+
+    <div class="info-box">
+        <h2>一、公司基本信息</h2>
+        <table>
+            <tr><th>项目</th><th>详情</th></tr>
+            <tr><td>公司全称</td><td>Universal Health Services, Inc.</td></tr>
+            <tr><td>股票代码</td><td>NYSE: UHS</td></tr>
+            <tr><td>上市交易所</td><td>纽约证券交易所（1981年7月上市）</td></tr>
+            <tr><td>成立时间</td><td>1978年（由Alan B. Miller创立）</td></tr>
+            <tr><td>总部</td><td>宾夕法尼亚州King of Prussia</td></tr>
+            <tr><td>当前市值（2026年5月）</td><td>约$100亿美元</td></tr>
+            <tr><td>企业价值（EV）</td><td>约$149亿美元（含净债务$50亿）</td></tr>
+            <tr><td>最新收盘价（2026年5月21日）</td><td>$164.32</td></tr>
+            <tr><td>流通股数</td><td>约6,054万股</td></tr>
+            <tr><td>创始人/执行董事长</td><td>Alan B. Miller（87岁，仍活跃于公司治理）</td></tr>
+            <tr><td>CEO</td><td>Marc D. Miller（2021年接任，创始人之子）</td></tr>
+            <tr><td>CFO</td><td>Steve G. Filton</td></tr>
+            <tr><td>行业</td><td>医疗保健——医院与医疗服务</td></tr>
+            <tr><td>员工数</td><td>约101,500人</td></tr>
+            <tr><td>52周范围</td><td>$152.33 - $246.33</td></tr>
+            <tr><td>股息</td><td>$0.20/股/季度（年化$0.80），收益率约0.49%</td></tr>
+            <tr><td>机构持股</td><td>约85%</td></tr>
+            <tr><td>内部人持股</td><td>约14.2%（Miller家族为主要内部股东）</td></tr>
+            <tr><td>信用评级</td><td>BB+（标普）/ Ba1（穆迪）</td></tr>
+            <tr><td>全球排名</td><td>美国最大营利性医院管理公司之一；全美最大行为健康（精神卫生）服务提供商</td></tr>
+            <tr><td>运营设施</td><td>375个住院设施 + 168个门诊/日间手术中心</td></tr>
+            <tr><td>地理覆盖</td><td>39个州 + 华盛顿D.C. + 波多黎各 + 英国</td></tr>
+            <tr><td>许可床位</td><td>31,415张（平均）</td></tr>
+            <tr><td>年患者就诊</td><td>580万人次</td></tr>
+            <tr><td>荣誉</td><td>连续16年入选《财富》"全球最受尊敬公司"</td></tr>
+        </table>
+    </div>
+
+    <div class="info-box">
+        <h2>二、业务分析</h2>
+
+        <h3>2.1 公司是做什么的？（通俗解释）</h3>
+        <div class="highlight">
+            <p>想象你生病了需要住院——无论是急症手术还是精神健康治疗——总需要一家医院来接收你。UHS就是那个"开医院"的公司。它不卖药、不造设备，它做的就是运营医院：雇佣医生护士、管理病房、对接保险公司收款。</p>
+            <p>UHS的独特之处在于它同时运营两种完全不同类型的医院：<strong>急性期医院</strong>（Acute Care）和<strong>行为健康医院</strong>（Behavioral Health）。前者是你印象中的"综合医院"——急诊室、手术室、ICU；后者是专门治疗抑郁症、焦虑症、药物成瘾、进食障碍等精神疾病的专科医院。</p>
+            <p>在美国，行为健康是一个被严重忽视的领域——约1/5的美国成年人有精神疾病，但超过一半的人得不到治疗。UHS是全美最大的行为健康服务提供商，拥有约15.9%的市场份额。当社会对心理健康的重视度越来越高（尤其是疫情后），UHS的行为健康业务正处于一个长期增长的赛道上。</p>
+            <p>简单说：UHS是一个"双引擎"医疗平台——急性期医院提供稳定现金流，行为健康医院提供增长动力。它由Miller家族创立并经营了47年，是美国营利性医疗行业的"常青树"。</p>
+        </div>
+
+        <h3>2.2 业务板块（2大报告分部）</h3>
+        <table>
+            <tr><th>板块</th><th>简介</th><th>FY2025营收($B)</th><th>营收占比</th><th>EBITDA利润率</th><th>关键指标</th></tr>
+            <tr><td>急性期医院服务<br>(Acute Care)</td><td>27家综合医院，提供急诊、手术、内科、产科、肿瘤等全方位医疗服务；含门诊手术中心、影像中心等</td><td>~10.1</td><td>~58%</td><td>~16%</td><td>Q1 2026同店营收+8.2%；同店调整入院量持平；每入院收入+6.3%</td></tr>
+            <tr><td>行为健康服务<br>(Behavioral Health)</td><td>348家精神卫生/药物成瘾治疗设施（含英国）；全美最大行为健康网络；2026年3月收购Talkspace（虚拟行为健康平台）</td><td>~7.3</td><td>~42%</td><td>~19%</td><td>Q1 2026同店营收+7.3%；同店调整入院+1.2%；每入院收入+6.2%</td></tr>
+        </table>
+
+        <h3>2.3 收入构成（FY2025）</h3>
+        <table>
+            <tr><th>收入来源</th><th>金额（亿美元）</th><th>占比</th><th>说明</th></tr>
+            <tr><td>急性期医院</td><td>~101</td><td>~58%</td><td>综合医院收入，受Medicare/Medicaid报销率影响大</td></tr>
+            <tr><td>行为健康</td><td>~73</td><td>~42%</td><td>精神卫生/成瘾治疗，利润率更高，增长更快</td></tr>
+            <tr><td>合计</td><td>173.6</td><td>100%</td><td>同比增长9.7%（创纪录）</td></tr>
+        </table>
+
+        <h3>2.4 按付款方构成</h3>
+        <table>
+            <tr><th>付款方</th><th>急性期占比</th><th>行为健康占比</th><th>说明</th></tr>
+            <tr><td>Medicare（联邦老年医保）</td><td>~40%</td><td>~25%</td><td>政府固定费率，无议价空间</td></tr>
+            <tr><td>Medicaid（联邦/州低收入医保）</td><td>~12%</td><td>~30%</td><td>州政府管理，费率较低；补充支付项目可增厚收入</td></tr>
+            <tr><td>商业保险</td><td>~38%</td><td>~35%</td><td>可议价，利润率最高</td></tr>
+            <tr><td>其他（自费、TRICARE等）</td><td>~10%</td><td>~10%</td><td>混合</td></tr>
+        </table>
+
+        <h3>2.5 地理分布</h3>
+        <table>
+            <tr><th>地区</th><th>设施数</th><th>收入占比</th><th>说明</th></tr>
+            <tr><td>美国39州+华盛顿D.C.+波多黎各</td><td>375住院+168门诊</td><td>~96%</td><td>核心市场；重点布局内华达、德克萨斯、佛罗里达</td></tr>
+            <tr><td>英国</td><td>~10家行为健康设施</td><td>~4%</td><td>英国行为健康市场，增长潜力大</td></tr>
+        </table>
+
+        <h3>2.6 商业模式核心——"双引擎"医疗平台</h3>
+        <div class="highlight">
+            <p><strong>关键概念：医院是"重资产+强监管"的现金牛业务</strong></p>
+            <p>UHS的商业模式可以概括为：<strong>买/建医院→雇佣医生护士→治疗患者→向保险公司/政府收款</strong>。听起来简单，但运营一家医院的复杂度极高——需要管理数千名员工、应对复杂的医保报销规则、维持医疗质量、处理法律诉讼。</p>
+            <p>UHS的核心竞争力在于"规模化运营能力"：它不是运营1-2家医院，而是运营543个设施。这种规模带来：①采购议价权（药品、设备、耗材）；②管理经验复制（把成功医院的管理模式复制到新收购的医院）；③人才储备（内部培养和调配管理团队）；④与保险公司的议价能力。</p>
+            <p>但医院业务有一个根本性的限制：<strong>定价权有限</strong>。Medicare/Medicaid报销率由政府决定，UHS无法谈判；商业保险虽然可以谈判，但议价空间也受市场竞争约束。这意味着UHS的利润率提升主要靠运营效率而非提价。</p>
+            <p>行为健康是UHS的"增长引擎"：美国行为健康市场预计从$800亿增长到2028年的$1050亿以上，而UHS拥有15.9%的市场份额——远超竞争对手Acadia Healthcare。2026年3月收购Talkspace（虚拟行为健康平台）标志着UHS正在从"住院治疗"向"全渠道行为健康"转型。</p>
+        </div>
+    </div>
+
+    <div class="info-box">
+        <h2>三、历史财务指标</h2>
+
+        <h3>3.1 核心运营指标（2015-2025）</h3>
+        <table>
+            <tr><th>年度</th><th>营收($B)</th><th>净利润($M)</th><th>EPS($)</th><th>调整后EBITDA($B)</th><th>EBITDA利润率</th><th>ROE</th></tr>
+            <tr><td>2015</td><td>9.8</td><td>739</td><td>6.89</td><td>1.64</td><td>18.2%</td><td>15.9%</td></tr>
+            <tr><td>2016</td><td>10.1</td><td>727</td><td>7.22</td><td>1.69</td><td>17.3%</td><td>14.9%</td></tr>
+            <tr><td>2017</td><td>10.9</td><td>789</td><td>7.86</td><td>1.73</td><td>16.6%</td><td>14.7%</td></tr>
+            <tr><td>2018</td><td>11.5</td><td>833</td><td>8.35</td><td>1.62</td><td>15.1%</td><td>14.0%</td></tr>
+            <tr><td>2019</td><td>12.8</td><td>917</td><td>9.16</td><td>1.70</td><td>15.0%</td><td>14.8%</td></tr>
+            <tr><td>2020</td><td>13.6</td><td>1,106</td><td>11.06</td><td>1.87</td><td>16.2%</td><td>14.9%</td></tr>
+            <tr><td>2021</td><td>12.6</td><td>990</td><td>11.99</td><td>1.90</td><td>15.0%</td><td>16.3%</td></tr>
+            <tr><td>2022</td><td>13.4</td><td>675</td><td>9.23</td><td>1.59</td><td>11.8%</td><td>11.4%</td></tr>
+            <tr><td>2023</td><td>14.3</td><td>718</td><td>10.35</td><td>1.74</td><td>12.2%</td><td>11.7%</td></tr>
+            <tr><td>2024</td><td>15.8</td><td>1,142</td><td>16.82</td><td>2.25</td><td>14.3%</td><td>17.1%</td></tr>
+            <tr><td>2025</td><td>17.4</td><td>1,489</td><td>23.42</td><td>2.61</td><td>15.1%</td><td>20.5%</td></tr>
+        </table>
+
+        <h3>3.2 ROE与资产负债率</h3>
+        <table>
+            <tr><th>年度</th><th>ROE</th><th>总债务/EBITDA</th><th>利息覆盖率</th><th>总债务($B)</th><th>自由现金流($B)</th></tr>
+            <tr><td>2015</td><td>15.9%</td><td>2.1x</td><td>17.0x</td><td>3.4</td><td>~0.7</td></tr>
+            <tr><td>2016</td><td>14.9%</td><td>2.4x</td><td>15.6x</td><td>4.1</td><td>~0.6</td></tr>
+            <tr><td>2017</td><td>14.7%</td><td>2.3x</td><td>12.9x</td><td>4.0</td><td>~0.6</td></tr>
+            <tr><td>2018</td><td>14.0%</td><td>2.5x</td><td>11.1x</td><td>4.0</td><td>~0.5</td></tr>
+            <tr><td>2019</td><td>14.8%</td><td>2.5x</td><td>10.5x</td><td>4.3</td><td>~0.6</td></tr>
+            <tr><td>2020</td><td>14.9%</td><td>2.2x</td><td>17.6x</td><td>4.2</td><td>~0.8</td></tr>
+            <tr><td>2021</td><td>16.3%</td><td>2.4x</td><td>22.7x</td><td>4.6</td><td>~0.8</td></tr>
+            <tr><td>2022</td><td>11.4%</td><td>3.3x</td><td>12.5x</td><td>5.3</td><td>~0.3</td></tr>
+            <tr><td>2023</td><td>11.7%</td><td>3.1x</td><td>8.4x</td><td>5.4</td><td>~0.5</td></tr>
+            <tr><td>2024</td><td>17.1%</td><td>2.2x</td><td>12.4x</td><td>5.0</td><td>~0.9</td></tr>
+            <tr><td>2025</td><td>20.5%</td><td>2.0x</td><td>17.2x</td><td>5.2</td><td>~0.9</td></tr>
+        </table>
+
+        <h3>3.3 PE比历史</h3>
+        <table>
+            <tr><th>年度</th><th>年末股价</th><th>EPS($)</th><th>PE</th><th>备注</th></tr>
+            <tr><td>2015</td><td>$119.49</td><td>6.89</td><td>17.3x</td><td>行业高估值期</td></tr>
+            <tr><td>2016</td><td>$106.38</td><td>7.22</td><td>14.7x</td><td>估值回调</td></tr>
+            <tr><td>2017</td><td>$113.35</td><td>7.86</td><td>14.4x</td><td>稳定</td></tr>
+            <tr><td>2018</td><td>$116.56</td><td>8.35</td><td>14.0x</td><td>稳定</td></tr>
+            <tr><td>2019</td><td>$143.46</td><td>9.16</td><td>15.7x</td><td>市场回暖</td></tr>
+            <tr><td>2020</td><td>$137.50</td><td>11.06</td><td>12.4x</td><td>COVID年——利润反而增长（政府补贴）</td></tr>
+            <tr><td>2021</td><td>$129.66</td><td>11.99</td><td>10.8x</td><td>疫情后利润下滑</td></tr>
+            <tr><td>2022</td><td>$140.89</td><td>9.23</td><td>15.3x</td><td>利润低谷，PE虚高</td></tr>
+            <tr><td>2023</td><td>$152.44</td><td>10.35</td><td>14.7x</td><td>缓慢复苏</td></tr>
+            <tr><td>2024</td><td>$179.42</td><td>17.16</td><td>10.5x</td><td>强劲复苏，利润大幅增长</td></tr>
+            <tr><td>2025</td><td>$218.02</td><td>23.42</td><td>9.3x</td><td>创纪录利润</td></tr>
+            <tr><td>2026E（当前）</td><td>$164.32</td><td>24.27(TTM)</td><td>6.8x</td><td>Q1业绩后股价大跌，估值极低</td></tr>
+        </table>
+
+        <div class="chart-container">
+            <canvas id="revenueChart" height="100"></canvas>
+        </div>
+        <div class="chart-container">
+            <canvas id="ebitdaChart" height="100"></canvas>
+        </div>
+        <div class="chart-container">
+            <canvas id="roeChart" height="100"></canvas>
+        </div>
+    </div>
+
+    <div class="info-box">
+        <h2>四、竞争分析</h2>
+
+        <h3>4.1 主要竞争对手</h3>
+        <table>
+            <tr><th>竞争对手</th><th>总部</th><th>FY营收</th><th>市值</th><th>核心优势</th><th>对比UHS</th></tr>
+            <tr><td>HCA Healthcare (HCA)</td><td>田纳西州纳什维尔</td><td>~$700亿</td><td>~$950亿</td><td>美国最大营利性医院系统；180+医院/2400+站点；规模经济无人能及；佛罗里达/德克萨斯核心市场</td><td>HCA规模约4倍于UHS，但无行为健康专长；UHS在行为健康领域领先HCA</td></tr>
+            <tr><td>Tenet Healthcare (THC)</td><td>德克萨斯州达拉斯</td><td>~$200亿</td><td>~$170亿</td><td>门诊手术中心(ASC)数量领先；Conifer收入周期管理业务</td><td>Tenet更聚焦门诊；UHS更聚焦行为健康</td></tr>
+            <tr><td>Acadia Healthcare (ACHC)</td><td>田纳西州富兰克林</td><td>~$30亿</td><td>~$24亿</td><td>纯行为健康公司；250+设施</td><td>UHS行为健康规模约2.5倍于ACHC；ACHC近期深陷法律诉讼和亏损</td></tr>
+            <tr><td>Community Health Systems (CYH)</td><td>田纳西州富兰克林</td><td>~$120亿</td><td>~$4亿</td><td>曾是美国最大营利性医院公司；持续剥离资产</td><td>CYH正在收缩；UHS在增长——截然不同的方向</td></tr>
+            <tr><td>Encompass Health (EHC)</td><td>阿拉巴马州伯明翰</td><td>~$55亿</td><td>~$120亿</td><td>康复医院龙头；164家康复医院</td><td>不同细分市场——EHC做康复，UHS做急性期+行为健康</td></tr>
+            <tr><td>非营利性医院系统<br>(Ascension, CommonSpirit等)</td><td>各地</td><td>数百亿级</td><td>N/A</td><td>免税地位；社区信任度高；学术医疗中心</td><td>间接竞争者——在同一地理市场争夺患者和医生</td></tr>
+        </table>
+
+        <h3>4.2 市场份额</h3>
+        <table>
+            <tr><th>细分市场</th><th>UHS份额</th><th>主要竞争者份额</th><th>说明</th></tr>
+            <tr><td>美国精神卫生医院</td><td>~15.9%</td><td>Acadia ~8%</td><td>UHS绝对领先，份额约为#2的两倍</td></tr>
+            <tr><td>美国营利性急性期医院</td><td>~5%</td><td>HCA ~25%, Tenet ~8%</td><td>中等规模参与者</td></tr>
+            <tr><td>美国行为健康市场（总）</td><td>~2%</td><td>极度分散</td><td>$800亿+市场，UHS是最大单一参与者但份额仍低</td></tr>
+            <tr><td>英国行为健康</td><td>~3%</td><td>极度分散</td><td>新兴市场，增长潜力大</td></tr>
+        </table>
+
+        <h3>4.3 护城河评估</h3>
+        <div class="moat-box">
+            <h3>🏰 护城河总评：窄护城河（Narrow Moat）</h3>
+
+            <p><strong>1. 行为健康市场领导地位（中等偏强）</strong></p>
+            <p>UHS拥有全美最大的行为健康网络（348家设施），15.9%的市场份额远超竞争对手Acadia（~8%）。行为健康是一个"供给不足"的市场——美国需要更多精神科床位而非更少。这种供需失衡赋予了UHS定价权和增长空间。此外，行为健康医院的监管壁垒较高（需要州政府颁发CON——需求证书），新进入者难以快速扩张。</p>
+
+            <p><strong>2. 规模优势（中等）</strong></p>
+            <p>543个设施的运营规模带来采购议价权、管理经验复制和人才储备。但与HCA（180+医院/$700亿营收）相比，UHS的规模优势有限。在局部市场，UHS可能只有1-2家医院，无法像HCA那样实现区域垄断。</p>
+
+            <p><strong>3. 双引擎多元化（中等）</strong></p>
+            <p>急性期+行为健康的双引擎模式提供了收入多元化——当急性期医院面临压力时（如COVID期间择期手术取消），行为健康业务仍保持稳定。但这种多元化也意味着UHS在两个领域都不是绝对龙头——急性期远不如HCA，行为健康虽然领先但面临ACHC等竞争。</p>
+
+            <p><strong>4. 管理层连续性（中等偏强）</strong></p>
+            <p>Miller家族47年的持续经营是UHS的独特优势。Alan B. Miller从1978年创立公司至今仍担任执行董事长，儿子Marc D. Miller于2021年接任CEO。这种家族企业的长期视角和稳定性在医疗行业极为罕见。但家族控制也带来治理风险——双重股权结构（Class A/B/C/D）让Miller家族拥有超比例的投票权。</p>
+
+            <p><strong>5. 转换成本（弱）</strong></p>
+            <p>患者对医院的"忠诚度"主要来自地理便利性和保险网络——而非品牌。UHS的品牌认知度远不如梅奥诊所或克利夫兰诊所。行为健康领域有一定转换成本（患者与治疗师的关系），但不足以构成强护城河。</p>
+        </div>
+
+        <h3>4.4 护城河的可持续性</h3>
+        <div class="highlight">
+            <p><strong>正面因素：</strong></p>
+            <ul>
+                <li>行为健康需求持续增长——疫情后心理健康意识提升+药物成瘾危机+老龄化</li>
+                <li>CON（需求证书）监管壁垒保护现有医院免受新竞争</li>
+                <li>Medicaid补充支付项目（Tennessee、D.C.等）增厚收入</li>
+                <li>Talkspace收购开启"虚拟+实体"全渠道行为健康新模式</li>
+                <li>Miller家族长期经营带来战略一致性</li>
+            </ul>
+            <p><strong>负面因素：</strong></p>
+            <ul>
+                <li>政府付款方（Medicare/Medicaid）占收入~60%，定价权极弱</li>
+                <li>Medicaid削减风险——共和党倾向削减Medicaid支出</li>
+                <li>劳动力成本持续上升——护士工资7%+年增长</li>
+                <li>法律诉讼风险——2025年内华达$5亿惩罚性赔偿案（后获新审判）</li>
+                <li>非营利性医院在局部市场的竞争压力</li>
+                <li>零售/科技进入者（CVS、Amazon）正在颠覆初级/紧急护理</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="info-box">
+        <h2>五、利润分配分析（2015-2025）</h2>
+
+        <h3>5.1 十年利润分配表</h3>
+        <table>
+            <tr><th>年度</th><th>净利润($M)</th><th>股息($M)</th><th>回购($M)</th><th>扩张CapEx($M)</th><th>自由现金流($M)</th></tr>
+            <tr><td>2015</td><td>739</td><td>28</td><td>~100</td><td>~550</td><td>~700</td></tr>
+            <tr><td>2016</td><td>727</td><td>29</td><td>~150</td><td>~580</td><td>~600</td></tr>
+            <tr><td>2017</td><td>789</td><td>30</td><td>~200</td><td>~620</td><td>~600</td></tr>
+            <tr><td>2018</td><td>833</td><td>31</td><td>~200</td><td>~650</td><td>~500</td></tr>
+            <tr><td>2019</td><td>917</td><td>35</td><td>~150</td><td>~700</td><td>~600</td></tr>
+            <tr><td>2020</td><td>1,106</td><td>20</td><td>~50</td><td>~650</td><td>~800</td></tr>
+            <tr><td>2021</td><td>990</td><td>66</td><td>~300</td><td>~700</td><td>~800</td></tr>
+            <tr><td>2022</td><td>675</td><td>62</td><td>~200</td><td>~800</td><td>~300</td></tr>
+            <tr><td>2023</td><td>718</td><td>55</td><td>~100</td><td>~850</td><td>~500</td></tr>
+            <tr><td>2024</td><td>1,142</td><td>51</td><td>599</td><td>~900</td><td>~900</td></tr>
+            <tr><td>2025</td><td>1,489</td><td>~48</td><td>~750</td><td>~1,000</td><td>~900</td></tr>
+        </table>
+
+        <h3>5.2 股息历史</h3>
+        <table>
+            <tr><th>年度</th><th>每股年股息</th><th>股息率</th><th>派息比率</th><th>备注</th></tr>
+            <tr><td>2015</td><td>$0.40</td><td>~0.3%</td><td>~4.8%</td><td>4次×$0.10</td></tr>
+            <tr><td>2016</td><td>$0.40</td><td>~0.4%</td><td>~4.9%</td><td>4次×$0.10</td></tr>
+            <tr><td>2017</td><td>$0.40</td><td>~0.4%</td><td>~4.8%</td><td>4次×$0.10</td></tr>
+            <tr><td>2018</td><td>$0.40</td><td>~0.3%</td><td>~4.6%</td><td>4次×$0.10</td></tr>
+            <tr><td>2019</td><td>$0.30→$0.40</td><td>~0.3%</td><td>~6.3%</td><td>上半年$0.10/季→下半年$0.10/季</td></tr>
+            <tr><td>2020</td><td>$0.20</td><td>~0.1%</td><td>~1.8%</td><td>仅1次$0.20（COVID削减）</td></tr>
+            <tr><td>2021</td><td>$0.80</td><td>~0.6%</td><td>~6.7%</td><td>4次×$0.20（恢复并翻倍）</td></tr>
+            <tr><td>2022</td><td>$0.80</td><td>~0.6%</td><td>~9.2%</td><td>4次×$0.20</td></tr>
+            <tr><td>2023</td><td>$0.80</td><td>~0.5%</td><td>~7.7%</td><td>4次×$0.20</td></tr>
+            <tr><td>2024</td><td>$0.80</td><td>~0.4%</td><td>~4.5%</td><td>4次×$0.20</td></tr>
+            <tr><td>2025</td><td>$0.80</td><td>~0.4%</td><td>~3.3%</td><td>4次×$0.20</td></tr>
+            <tr><td>2026E</td><td>$0.80</td><td>~0.5%</td><td>~3.3%</td><td>已宣布Q1 $0.20</td></tr>
+        </table>
+
+        <h3>5.3 股票回购历史</h3>
+        <table>
+            <tr><th>年度</th><th>回购金额($M)</th><th>回购股数</th><th>均价</th><th>备注</th></tr>
+            <tr><td>2024</td><td>598.5</td><td>~298万股</td><td>~$201</td><td>大幅加速回购</td></tr>
+            <tr><td>2025 Q1-Q3</td><td>565.8</td><td>~319万股</td><td>~$177</td><td>Q3新增$15亿授权</td></tr>
+            <tr><td>2025 Q4</td><td>~180</td><td>~100万股</td><td>~$180</td><td>估算</td></tr>
+            <tr><td>2025全年</td><td>~750</td><td>~420万股</td><td>~$178</td><td>创纪录回购</td></tr>
+        </table>
+
+        <h3>5.4 资本配置评价</h3>
+        <div class="highlight">
+            <p><strong>管理层资本配置能力：中等偏上</strong></p>
+            <ul>
+                <li><strong>股息政策：</strong>极度保守——股息率仅0.5%，派息比率仅3-7%。UHS显然更偏好回购而非股息，这与巴菲特的偏好一致（回购比股息更灵活，且避免了股息税）。但0.5%的股息率对收入型投资者毫无吸引力。</li>
+                <li><strong>股票回购：</strong>2024-2025年大幅加速——2024年回购$5.99亿（均价$201），2025年前9个月回购$5.66亿（均价$177），2025年Q3新增$15亿回购授权。当前PE仅6.8x，回购非常划算——每回购1美元可创造约$3的内在价值。</li>
+                <li><strong>并购纪律：</strong>历史上UHS是审慎的收购者。2010年以$31亿收购Psychiatric Solutions是转折点——奠定了行为健康领导地位。2026年3月收购Talkspace（虚拟行为健康平台）是战略延伸。总体而言，UHS的收购估值合理，未出现重大减值。</li>
+                <li><strong>再投资：</strong>FY2025 CapEx约$10亿（营收的5.8%），其中约$10亿用于设备升级和设施扩张（新增170张住院床位+华盛顿D.C.新医院）。再投资回报率可观——同店营收增长8%+。</li>
+                <li><strong>债务管理：</strong>总债务$52亿，D/E 0.67x，D/EBITDA 2.0x——处于行业健康水平。利息覆盖率17.2x非常安全。债务期限结构良好，无近期大规模到期。</li>
+            </ul>
+        </div>
+
+        <div class="chart-container">
+            <canvas id="allocationChart" height="100"></canvas>
+        </div>
+    </div>
+
+    <div class="info-box">
+        <h2>六、投资总结</h2>
+
+        <h3>6.1 核心投资逻辑</h3>
+        <div class="moat-box">
+            <p><strong>UHS是"行为健康赛道"的最大受益者——拥有全美最大的精神卫生治疗网络，正处于一个长期增长的赛道上，同时以极低估值交易。</strong></p>
+            <ul>
+                <li><strong>行为健康领导地位：</strong>15.9%市场份额，348家设施，约为#2竞争对手Acadia的两倍规模</li>
+                <li><strong>长期增长赛道：</strong>美国行为健康市场从$800亿增长至$1050亿+；1/5成年人有精神疾病，超半数未获治疗</li>
+                <li><strong>极低估值：</strong>PE仅6.8x，远低于10年平均13.2x，也低于HCA（14.5x）和Tenet（10.2x）</li>
+                <li><strong>强劲盈利趋势：</strong>FY2025净利润$14.9亿创纪录，ROE 20.5%为10年最高</li>
+                <li><strong>大规模回购：</strong>2024-2025年回购超$13亿，在当前低估值下极为划算</li>
+                <li><strong>Talkspace收购：</strong>开启"虚拟+实体"全渠道行为健康模式，扩展可触达患者群体</li>
+            </ul>
+        </div>
+
+        <h3>6.2 关键催化剂</h3>
+        <ul>
+            <li>行为健康需求持续增长——疫情后遗症+药物成瘾危机+老龄化社会</li>
+            <li>Medicaid补充支付项目扩展——Tennessee和D.C.项目已带来数亿美元增量收入</li>
+            <li>价值导向医疗（Value-Based Care）推进——UHS的ACO已实现$1亿+医疗费用节约</li>
+            <li>Talkspace整合成功——虚拟行为健康打开新增长曲线</li>
+            <li>估值修复——PE从6.8x回归10年平均13.2x意味着近100%上行空间</li>
+        </ul>
+
+        <h3>6.3 主要风险</h3>
+        <div class="risk-box">
+            <ul>
+                <li><strong>Medicaid削减风险（高）：</strong>共和党控制国会倾向削减Medicaid支出，这直接影响UHS约30-40%的收入。2025年11月以来股价下跌约30%，部分反映了这一担忧。但Medicaid削减需要国会立法，且行为健康是两党共识的优先领域，完全削减的可能性较低。</li>
+                <li><strong>劳动力成本上升（高）：</strong>护士工资持续7%+年增长，是UHS最大的运营成本压力。2022年利润大幅下滑的主要原因就是劳动力短缺和工资上涨。虽然2024-2025年有所缓解，但结构性短缺仍在。</li>
+                <li><strong>法律诉讼风险（中高）：</strong>2025年9月内华达州陪审团判决$5亿惩罚性赔偿（后被法官以陪审团不当行为为由批准新审判）。即使最终赔偿额大幅降低，这类诉讼仍可能持续发生。</li>
+                <li><strong>政府定价权限制（中）：</strong>Medicare/Medicaid占收入~60%，UHS无法与政府谈判费率。任何报销率下调都直接冲击利润。</li>
+                <li><strong>双重股权结构（中低）：</strong>Miller家族通过Class A/C/D股拥有超比例投票权，小股东话语权有限。</li>
+                <li><strong>周期性风险（中低）：</strong>2022年利润从$9.9亿骤降至$6.8亿就是例证。但行为健康业务相对抗周期。</li>
+            </ul>
+        </div>
+
+        <h3>6.4 估值分析</h3>
+        <table>
+            <tr><th>估值指标</th><th>当前值</th><th>HCA</th><th>Tenet</th><th>行业均值</th><th>评估</th></tr>
+            <tr><td>PE（TTM）</td><td>6.8x</td><td>14.5x</td><td>10.2x</td><td>~18x</td><td>显著低于同行</td></tr>
+            <tr><td>EV/EBITDA</td><td>5.6x</td><td>~10x</td><td>~8x</td><td>~12x</td><td>极低</td></tr>
+            <tr><td>P/B</td><td>1.5x</td><td>负值</td><td>~3x</td><td>~3.5x</td><td>低于同行</td></tr>
+            <tr><td>P/S</td><td>0.56x</td><td>~1.4x</td><td>~0.8x</td><td>~1.5x</td><td>极低</td></tr>
+            <tr><td>股息率</td><td>0.49%</td><td>~0.8%</td><td>N/A</td><td>~1.5%</td><td>极低</td></tr>
+            <tr><td>FCF Yield</td><td>~9%</td><td>~5%</td><td>~6%</td><td>~4%</td><td>极高</td></tr>
+        </table>
+
+        <div class="highlight">
+            <p><strong>估值判断：</strong>UHS当前PE仅6.8x，EV/EBITDA仅5.6x，P/S仅0.56x——几乎每一个估值指标都处于历史最低水平，也显著低于同行HCA（14.5x/10x）和Tenet（10.2x/8x）。这个"折扣"主要来自两个因素：①Medicaid削减恐惧（估计30-40%折价）；②2025年11月以来股价下跌30%的恐慌性抛售。</p>
+            <p><strong>安全边际：</strong>若UHS获得与Tenet相同的估值（PE 10x），股价应为$243。若回归自身10年平均PE（13.2x），股价应为$320。即使给予保守的PE 9-10x（考虑Medicaid风险），合理股价也在$218-$243区间。当前$164有30-50%的安全边际。</p>
+            <p><strong>乐观情景：</strong>Medicaid削减幅度小于预期+行为健康需求加速+Talkspace整合成功→PE 10-12x × EPS $25 = $250-$300目标价。</p>
+            <p><strong>保守情景：</strong>Medicaid大幅削减+劳动力成本持续上升+法律诉讼恶化→PE 5-6x × EPS $18 = $90-$108目标价。</p>
+        </div>
+
+        <h3>6.5 巴菲特-芒格视角</h3>
+        <div class="moat-box">
+            <p><strong>"以合理价格买入一家好公司，远胜于以好价格买入一家平庸公司。"——巴菲特</strong></p>
+            <p>UHS是否是一家"好公司"？从ROE角度看——10年平均14.7%，2025年达20.5%——是的，它持续高效地运用股东资本创造利润。从商业模式角度看——医院是"刚需"业务，行为健康是"供给不足"的赛道——是的，它有长期存在的理由。</p>
+            <p>但UHS有一个巴菲特不会喜欢的特征：<strong>定价权有限</strong>。60%+收入来自政府付款方，UHS无法与Medicare/Medicaid谈判费率。这与巴菲特偏好的"定价权"公司（如可口可乐、See's Candies）截然不同。巴菲特常说："在商业中，我寻找有定价权的公司。如果你在提价前要向竞争对手祈祷，那你做的是一门糟糕的生意。"</p>
+            <p>芒格会关注UHS的"lollapalooza效应"——行为健康需求增长+供给不足+UHS规模优势+Talkspace虚拟扩展。当这些因素同时正向叠加时，UHS的利润可以快速增长（如2024-2025年净利润从$11亿增至$15亿）。但反向叠加也同样危险（如2022年劳动力短缺+成本上升导致利润骤降30%）。</p>
+            <p><strong>结论：</strong>UHS是一家拥有行为健康领导地位和双引擎多元化的医疗公司，当前估值极低（PE 6.8x），提供了30-50%的安全边际。Medicaid削减恐惧是当前低估值的主要原因——如果这种恐惧被证明过度，UHS有50-80%的上行空间。但巴菲特式投资者可能因定价权有限而犹豫。这是一只"中等质量+极低价格"的价值股——不是"高质量+合理价格"的巴菲特式标的，但对于能容忍政策风险的价值投资者，当前价格提供了足够的安全边际。</p>
+        </div>
+    </div>
+
+    <div class="back-link"><a href="index.html">← 返回美股分析索引</a></div>
+
+    <script>
+        new Chart(document.getElementById('revenueChart'), {
+            type: 'line',
+            data: {
+                labels: ['2015','2016','2017','2018','2019','2020','2021','2022','2023','2024','2025'],
+                datasets: [{
+                    label: '营收 ($B)',
+                    data: [9.8,10.1,10.9,11.5,12.8,13.6,12.6,13.4,14.3,15.8,17.4],
+                    borderColor: 'rgba(26, 35, 126, 1)',
+                    backgroundColor: 'rgba(26, 35, 126, 0.1)',
+                    fill: true
+                }, {
+                    label: '净利润 ($B)',
+                    data: [0.74,0.73,0.79,0.83,0.92,1.11,0.99,0.68,0.72,1.14,1.49],
+                    borderColor: 'rgba(244, 67, 54, 1)',
+                    backgroundColor: 'rgba(244, 67, 54, 0.1)',
+                    fill: false,
+                    yAxisID: 'y1'
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: { display: true, text: 'UHS营收与净利润趋势（2015-2025）', font: { size: 14 } }
+                },
+                scales: {
+                    y: {
+                        type: 'linear',
+                        position: 'left',
+                        title: { display: true, text: '营收 ($B)' },
+                        min: 8,
+                        max: 19
+                    },
+                    y1: {
+                        type: 'linear',
+                        position: 'right',
+                        title: { display: true, text: '净利润 ($B)' },
+                        min: 0,
+                        max: 1.8,
+                        grid: { drawOnChartArea: false }
+                    }
+                }
+            }
+        });
+
+        new Chart(document.getElementById('ebitdaChart'), {
+            type: 'bar',
+            data: {
+                labels: ['2015','2016','2017','2018','2019','2020','2021','2022','2023','2024','2025'],
+                datasets: [{
+                    label: '调整后EBITDA ($B)',
+                    data: [1.64,1.69,1.73,1.62,1.70,1.87,1.90,1.59,1.74,2.25,2.61],
+                    backgroundColor: 'rgba(26, 35, 126, 0.7)',
+                    borderColor: 'rgba(26, 35, 126, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: { display: true, text: 'UHS调整后EBITDA趋势（2015-2025）', font: { size: 14 } },
+                    legend: { display: false }
+                },
+                scales: {
+                    y: {
+                        title: { display: true, text: 'EBITDA ($B)' },
+                        min: 0,
+                        max: 3
+                    }
+                }
+            }
+        });
+
+        new Chart(document.getElementById('roeChart'), {
+            type: 'line',
+            data: {
+                labels: ['2015','2016','2017','2018','2019','2020','2021','2022','2023','2024','2025'],
+                datasets: [{
+                    label: 'ROE (%)',
+                    data: [15.9,14.9,14.7,14.0,14.8,14.9,16.3,11.4,11.7,17.1,20.5],
+                    borderColor: 'rgba(26, 35, 126, 1)',
+                    backgroundColor: 'rgba(26, 35, 126, 0.1)',
+                    fill: true
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: { display: true, text: 'UHS净资产收益率（ROE）趋势（2015-2025）', font: { size: 14 } },
+                    legend: { display: false }
+                },
+                scales: {
+                    y: {
+                        title: { display: true, text: 'ROE (%)' },
+                        min: 8,
+                        max: 24
+                    }
+                }
+            }
+        });
+
+        new Chart(document.getElementById('allocationChart'), {
+            type: 'doughnut',
+            data: {
+                labels: ['扩张CapEx (45%)', '股票回购 (30%)', '股息 (3%)', '债务偿还/其他 (22%)'],
+                datasets: [{
+                    data: [45, 30, 3, 22],
+                    backgroundColor: ['rgba(26, 35, 126, 0.8)', 'rgba(244, 67, 54, 0.8)', 'rgba(76, 175, 80, 0.8)', 'rgba(255, 152, 0, 0.8)'],
+                    borderColor: ['rgba(26, 35, 126, 1)', 'rgba(244, 67, 54, 1)', 'rgba(76, 175, 80, 1)', 'rgba(255, 152, 0, 1)'],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: { display: true, text: 'UHS资本配置比例（FY2025估算）', font: { size: 14 } },
+                    legend: { position: 'bottom' }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

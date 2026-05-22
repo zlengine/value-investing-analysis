@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AMP (Ameriprise Financial) 详细分析</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f5f5f5;
+        }
+        h1 {
+            text-align: center;
+            color: #1a237e;
+        }
+        h2 {
+            color: #1a237e;
+            margin-top: 30px;
+        }
+        h3 {
+            color: #333;
+            margin-top: 20px;
+        }
+        .info-box {
+            background-color: white;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border-radius: 5px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #1a237e;
+            color: white;
+        }
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+        a {
+            color: #1a237e;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .chart-container {
+            background-color: white;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border-radius: 5px;
+        }
+        .highlight {
+            background-color: #e8eaf6;
+            padding: 15px;
+            border-left: 4px solid #1a237e;
+            margin: 15px 0;
+        }
+        .risk-box {
+            background-color: #fff3e0;
+            padding: 15px;
+            border-left: 4px solid #e65100;
+            margin: 15px 0;
+        }
+        .moat-box {
+            background-color: #e8f5e9;
+            padding: 15px;
+            border-left: 4px solid #2e7d32;
+            margin: 15px 0;
+        }
+        .back-link {
+            text-align: center;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="back-link"><a href="index.html">← 返回美股分析索引</a></div>
+    <h1>AMP — Ameriprise Financial（阿默普莱斯金融）价值投资分析</h1>
+
+    <div class="info-box">
+        <h2>一、公司基本信息</h2>
+        <table>
+            <tr><th>项目</th><th>详情</th></tr>
+            <tr><td>公司全称</td><td>Ameriprise Financial, Inc.（阿默普莱斯金融）</td></tr>
+            <tr><td>股票代码</td><td>AMP</td></tr>
+            <tr><td>上市交易所</td><td>纽约证券交易所（NYSE）</td></tr>
+            <tr><td>成立时间</td><td>1894年（前身Investors Syndicate，明尼阿波利斯）</td></tr>
+            <tr><td>独立上市时间</td><td>2005年9月（从美国运通分拆上市，NYSE: AMP）</td></tr>
+            <tr><td>总部</td><td>美国明尼苏达州明尼阿波利斯市</td></tr>
+            <tr><td>当前市值（2026年5月）</td><td>约$423亿美元</td></tr>
+            <tr><td>市值（美元）</td><td>~$42.3B USD</td></tr>
+            <tr><td>企业价值（EV）</td><td>~$36.4B USD（净现金头寸：现金$10.1B > 债务$5.9B）</td></tr>
+            <tr><td>最新收盘价（2026年5月21日）</td><td>$453.15</td></tr>
+            <tr><td>流通股数</td><td>约8,990万股（FY2025末9,820万股；持续回购缩减中）</td></tr>
+            <tr><td>CEO</td><td>James M. Cracchiolo（自2005年分拆上市起担任董事长兼CEO）</td></tr>
+            <tr><td>行业</td><td>金融服务——财富管理/资产管理/保险</td></tr>
+            <tr><td>员工数</td><td>约13,000人</td></tr>
+            <tr><td>52周范围</td><td>$422.37 - $550.18</td></tr>
+            <tr><td>股息</td><td>$6.80/年（季度$1.70），收益率约1.46%</td></tr>
+            <tr><td>股息连续增长</td><td>连续20年增长（自2005年独立上市以来每年增息）</td></tr>
+            <tr><td>S&P 500成分股</td><td>是</td></tr>
+            <tr><td>信用评级</td><td>AA-（投资组合质量评级）；控股公司债务评级A-</td></tr>
+            <tr><td>管理资产规模（AUMA）</td><td>$1.7万亿（2025年末创纪录）</td></tr>
+            <tr><td>顾问数量</td><td>10,000+名品牌顾问（全美最大独立顾问网络之一）</td></tr>
+            <tr><td>客户数量</td><td>350万+个人、机构和小企业客户</td></tr>
+            <tr><td>超额资本</td><td>$22亿（超出业务、监管和评级机构要求）</td></tr>
+            <tr><td>控股公司流动性</td><td>$23亿</td></tr>
+            <tr><td>历史荣誉</td><td>TIME 2026"美国最具标志性公司"Top 50；《华尔街日报》2025最佳管理公司Top 250</td></tr>
+        </table>
+    </div>
+
+    <div class="info-box">
+        <h2>二、业务分析</h2>
+
+        <h3>2.1 公司是做什么的？（通俗解释）</h3>
+        <div class="highlight">
+            <p>想象你是一个"超级理财管家"——你手下有1万多名理财顾问，他们每人管理着数百个家庭的全部财务：从投资组合、退休规划、保险保障到银行存款。客户把钱交给你，你帮他们打理一辈子。</p>
+            <p>这就是Ameriprise。它拥有全美最大的独立理财顾问网络之一（10,000+顾问），管理着$1.7万亿的客户资产。它的顾问不像摩根士丹利那样坐在华尔街的办公室里，而是遍布全美各地的社区，与客户面对面建立长期信任关系。</p>
+            <p>它的商业模式是"三位一体"：①财富管理（顾问帮客户理财，收咨询费和佣金）→ ②资产管理（Columbia Threadneedle基金公司帮客户投资，收管理费）→ ③退休与保险（RiverSource提供年金和保险，收保费）。三个业务互相导流、互相增强——顾问推荐自家基金和保险，基金和保险又增强客户粘性。</p>
+        </div>
+
+        <h3>2.2 业务板块</h3>
+        <table>
+            <tr><th>板块</th><th>简介</th><th>营收占比</th><th>税前利润率</th><th>关键指标</th></tr>
+            <tr><td>Advice & Wealth Management（咨询与财富管理）</td><td>10,000+顾问为350万客户提供个性化理财规划、投资咨询和银行服务</td><td>~65%</td><td>29.5%</td><td>客户资产$1.2万亿；顾问人均产出$110万；96%客户留存率；$300亿+年度客户净流入</td></tr>
+            <tr><td>Asset Management（资产管理）</td><td>Columbia Threadneedle Investments——全球第25大资产管理公司，管理共同基金、ETF、机构账户</td><td>~20%</td><td>42.1%</td><td>AUM $706B；65%基金1年期跑赢基准；80%+基金10年期跑赢基准；美国Top 15长期共同基金</td></tr>
+            <tr><td>Retirement & Protection Solutions（退休与保障）</td><td>RiverSource品牌——提供变额年金、固定年金、人寿保险</td><td>~15%</td><td>~25%</td><td>$1970亿有效寿险；$880亿变额年金账户价值；RBC资本比率533%</td></tr>
+        </table>
+
+        <h3>2.3 收入构成（FY2025）</h3>
+        <table>
+            <tr><th>收入来源</th><th>金额（亿美元）</th><th>占比</th><th>说明</th></tr>
+            <tr><td>咨询与财富管理</td><td>119.9</td><td>64.9%</td><td>咨询费（wrap平台$670B）+佣金+银行净利息收入</td></tr>
+            <tr><td>资产管理</td><td>36.2</td><td>19.6%</td><td>管理费（46bps综合费率）+业绩报酬</td></tr>
+            <tr><td>退休与保障</td><td>28.7</td><td>15.5%</td><td>年金保费+保险保费+净投资收益</td></tr>
+            <tr><td>合计</td><td>184.8</td><td>100%</td><td>同比增长6.7%（GAAP）</td></tr>
+        </table>
+
+        <h3>2.4 地理分布</h3>
+        <table>
+            <tr><th>地区</th><th>收入占比</th><th>说明</th></tr>
+            <tr><td>美国</td><td>~85%</td><td>核心市场：10,000+顾问覆盖全美，财富管理+保险主要在美国</td></tr>
+            <tr><td>欧洲</td><td>~10%</td><td>Columbia Threadneedle欧洲业务（伦敦、卢森堡），管理欧洲机构客户资产</td></tr>
+            <tr><td>亚太及其他</td><td>~5%</td><td>Columbia Threadneedle亚太业务（香港、新加坡、日本、澳大利亚）</td></tr>
+        </table>
+
+        <h3>2.5 商业模式核心——为什么AMP的ROE能超过50%？</h3>
+        <div class="highlight">
+            <p><strong>关键概念：金融服务的"轻资产"杠杆</strong></p>
+            <p>AMP的ROE高达53%（调整后），但这需要拆解来看：</p>
+            <p><strong>ROA仅1.9%</strong>——因为金融服务公司资产负债表上堆满了投资资产（保险浮存金、客户存款等），总资产$1,870亿。但权益仅$67亿，D/E比高达28x。这是金融服务的典型特征——用极小的权益基数撬动庞大的资产。</p>
+            <p>真正衡量AMP盈利能力的是：<strong>调整后运营ROE 53%</strong>（剔除AOCI和unlocking影响）+ <strong>自由现金流转化率90%</strong> + <strong>税前利润率27%</strong>。这三个指标在同行中都是顶尖水平。</p>
+            <p>简单说：AMP不靠重资产赚钱，而是靠"人"（顾问）和"品牌"（信任）赚钱。每增加一个顾问，就能带来$110万的收入和极高的边际利润。</p>
+        </div>
+    </div>
+
+    <div class="info-box">
+        <h2>三、历史财务指标</h2>
+
+        <h3>3.1 核心运营指标（2016-2025）</h3>
+        <table>
+            <tr><th>年度</th><th>营收($B)</th><th>调整后EPS</th><th>GAAP EPS</th><th>调整后ROE</th><th>AUMA($T)</th><th>税前利润率</th></tr>
+            <tr><td>2016</td><td>11.0</td><td>$7.90</td><td>$7.90</td><td>~22%</td><td>0.81</td><td>~18%</td></tr>
+            <tr><td>2017</td><td>12.1</td><td>$9.60</td><td>$9.60</td><td>~27%</td><td>0.97</td><td>~20%</td></tr>
+            <tr><td>2018</td><td>12.8</td><td>$14.41</td><td>$14.41</td><td>~35%</td><td>0.84</td><td>~21%</td></tr>
+            <tr><td>2019</td><td>12.8</td><td>$14.12</td><td>$14.12</td><td>~34%</td><td>1.04</td><td>~21%</td></tr>
+            <tr><td>2020</td><td>12.4</td><td>$12.39</td><td>$12.39</td><td>~30%</td><td>1.07</td><td>~19%</td></tr>
+            <tr><td>2021</td><td>13.9</td><td>$29.13</td><td>$29.13</td><td>~44%</td><td>1.39</td><td>~24%</td></tr>
+            <tr><td>2022</td><td>13.6</td><td>$28.29</td><td>$28.29</td><td>~46%</td><td>1.16</td><td>~24%</td></tr>
+            <tr><td>2023</td><td>15.5</td><td>$29.58</td><td>$23.71</td><td>49.7%</td><td>1.39</td><td>~25%</td></tr>
+            <tr><td>2024</td><td>17.3</td><td>$35.07</td><td>$33.05</td><td>52.7%</td><td>1.52</td><td>26.5%</td></tr>
+            <tr><td>2025</td><td>18.3</td><td>$39.29</td><td>$36.28</td><td>53.2%</td><td>1.69</td><td>27.0%</td></tr>
+        </table>
+
+        <h3>3.2 ROE与资产负债率</h3>
+        <div class="highlight">
+            <p><strong>注意：金融服务公司的ROE极高且需要特殊解读</strong>——因为金融服务公司使用大量杠杆（AMP的D/E比约28x），权益基数极小，导致ROE动辄40-60%。但AMP的控股公司层面D/E仅0.86x，远低于同行，说明母公司财务极为保守。高杠杆主要来自保险子公司的浮存金和银行存款——这些是"好杠杆"，成本极低甚至为负。</p>
+        </div>
+        <table>
+            <tr><th>年度</th><th>调整后ROE</th><th>ROA</th><th>控股公司D/E</th><th>净债务/EBITDA</th><th>超额资本($B)</th></tr>
+            <tr><td>2016</td><td>~22%</td><td>~1.2%</td><td>~0.8x</td><td>~1.2x</td><td>~1.0</td></tr>
+            <tr><td>2017</td><td>~27%</td><td>~1.4%</td><td>~0.8x</td><td>~1.1x</td><td>~1.2</td></tr>
+            <tr><td>2018</td><td>~35%</td><td>~1.6%</td><td>~0.7x</td><td>~0.9x</td><td>~1.5</td></tr>
+            <tr><td>2019</td><td>~34%</td><td>~1.5%</td><td>~0.7x</td><td>~0.8x</td><td>~1.8</td></tr>
+            <tr><td>2020</td><td>~30%</td><td>~1.3%</td><td>~0.8x</td><td>~1.0x</td><td>~1.5</td></tr>
+            <tr><td>2021</td><td>~44%</td><td>~1.8%</td><td>~0.7x</td><td>~0.6x</td><td>~2.0</td></tr>
+            <tr><td>2022</td><td>~46%</td><td>~1.7%</td><td>~0.8x</td><td>~0.7x</td><td>~1.8</td></tr>
+            <tr><td>2023</td><td>49.7%</td><td>~1.7%</td><td>~0.9x</td><td>~0.7x</td><td>~2.0</td></tr>
+            <tr><td>2024</td><td>52.7%</td><td>~1.8%</td><td>~0.9x</td><td>~0.6x</td><td>~2.2</td></tr>
+            <tr><td>2025</td><td>53.2%</td><td>~1.9%</td><td>~0.9x</td><td>~0.5x</td><td>~2.2</td></tr>
+        </table>
+
+        <h3>3.3 PE比历史</h3>
+        <table>
+            <tr><th>年度</th><th>年末股价</th><th>PE（GAAP）</th><th>年末市值($B)</th><th>EPS</th></tr>
+            <tr><td>2011</td><td>$49.64</td><td>10.7</td><td>11.2</td><td>$4.62</td></tr>
+            <tr><td>2012</td><td>$62.63</td><td>13.3</td><td>12.8</td><td>$4.70</td></tr>
+            <tr><td>2013</td><td>$115.05</td><td>17.5</td><td>22.1</td><td>$6.56</td></tr>
+            <tr><td>2014</td><td>$132.25</td><td>15.7</td><td>24.2</td><td>$8.45</td></tr>
+            <tr><td>2015</td><td>$106.42</td><td>12.4</td><td>18.2</td><td>$8.60</td></tr>
+            <tr><td>2016</td><td>$110.94</td><td>14.0</td><td>17.5</td><td>$7.90</td></tr>
+            <tr><td>2017</td><td>$169.47</td><td>17.7</td><td>25.1</td><td>$9.60</td></tr>
+            <tr><td>2018</td><td>$104.37</td><td>7.2</td><td>14.2</td><td>$14.41</td></tr>
+            <tr><td>2019</td><td>$166.58</td><td>11.8</td><td>20.6</td><td>$14.12</td></tr>
+            <tr><td>2020</td><td>$194.33</td><td>15.7</td><td>22.9</td><td>$12.39</td></tr>
+            <tr><td>2021</td><td>$301.66</td><td>10.4</td><td>33.5</td><td>$29.13</td></tr>
+            <tr><td>2022</td><td>$311.37</td><td>11.0</td><td>33.1</td><td>$28.29</td></tr>
+            <tr><td>2023</td><td>$379.83</td><td>15.7</td><td>38.4</td><td>$24.18</td></tr>
+            <tr><td>2024</td><td>$532.43</td><td>15.8</td><td>52.0</td><td>$33.67</td></tr>
+            <tr><td>2025</td><td>$490.34</td><td>13.3</td><td>47.3</td><td>$36.85</td></tr>
+        </table>
+
+        <div class="chart-container">
+            <canvas id="epsChart" height="100"></canvas>
+        </div>
+        <div class="chart-container">
+            <canvas id="roeChart" height="100"></canvas>
+        </div>
+        <div class="chart-container">
+            <canvas id="peChart" height="100"></canvas>
+        </div>
+    </div>
+
+    <div class="info-box">
+        <h2>四、竞争分析</h2>
+
+        <h3>4.1 主要竞争对手</h3>
+        <table>
+            <tr><th>竞争对手</th><th>类型</th><th>市值</th><th>顾问数</th><th>AUM/A</th><th>对比AMP</th></tr>
+            <tr><td>Morgan Stanley (MS)</td><td>全能型投行/财富管理</td><td>~$170B</td><td>~16,000</td><td>~$5T</td><td>规模更大，但顾问模式不同（雇员制vs独立制）</td></tr>
+            <tr><td>Bank of America/Merrill (BAC)</td><td>银行系财富管理</td><td>~$340B</td><td>~19,000</td><td>~$4T</td><td>银行交叉销售优势，但顾问自主性低</td></tr>
+            <tr><td>Charles Schwab (SCHW)</td><td>折扣经纪/RIA托管</td><td>~$130B</td><td>~8,000</td><td>~$7T</td><td>更偏向自助和RIA托管，非顾问模式</td></tr>
+            <tr><td>Raymond James (RJF)</td><td>独立经纪商</td><td>~$31B</td><td>~8,500</td><td>~$1.3T</td><td>最接近AMP的竞争对手，但规模更小</td></tr>
+            <tr><td>LPL Financial (LPLA)</td><td>独立经纪商/托管</td><td>~$22B</td><td>~22,000</td><td>~$1.5T</td><td>顾问最多但人均产出低（~$65万 vs AMP $110万）</td></tr>
+            <tr><td>Edward Jones</td><td>合伙制经纪商</td><td>私有</td><td>~20,000</td><td>~$2T</td><td>社区模式类似，但合伙制不透明</td></tr>
+        </table>
+
+        <h3>4.2 市场份额</h3>
+        <table>
+            <tr><th>细分市场</th><th>AMP份额</th><th>主要竞争者份额</th><th>说明</th></tr>
+            <tr><td>美国独立顾问网络（按AUMA）</td><td>~8%</td><td>LPL ~7%，RJF ~6%</td><td>AMP人均产出最高，质量>数量</td></tr>
+            <tr><td>全球资产管理（按AUM）</td><td>#25</td><td>BLK #1，VG #2</td><td>Columbia Threadneedle是中型全球资产管理公司</td></tr>
+            <tr><td>美国变额年金</td><td>~5%</td><td>MetLife ~12%，Prudential ~10%</td><td>非核心业务，但与财富管理形成协同</td></tr>
+        </table>
+
+        <h3>4.3 护城河评估</h3>
+        <div class="moat-box">
+            <h3>🏰 护城河总评：中等偏宽（Narrow-to-Wide Moat）</h3>
+
+            <p><strong>1. 顾问网络与客户粘性（极强）</strong></p>
+            <p>10,000+顾问与350万客户建立了深度的个人信任关系。96%的客户留存率意味着客户一旦进入AMP生态系统就极难离开——因为更换理财顾问意味着重新建立信任、重新规划财务、转移所有账户。这种"关系锁定"是AMP最核心的护城河。拥有RiverSource保险产品的客户留存率是普通客户的3.3倍。</p>
+
+            <p><strong>2. 三位一体协同效应（强）</strong></p>
+            <p>财富管理→资产管理→保险保障形成闭环：顾问推荐Columbia Threadneedle基金（$145B通过AWM分销），CTI管理RiverSource分离账户资产（$65B），RiverSource保险增强客户粘性。这种内部导流创造了一个"自循环"生态系统，竞争对手难以复制。</p>
+
+            <p><strong>3. 顾问生产力与品牌（强）</strong></p>
+            <p>顾问人均产出$110万，远超LPL的$65万和行业均值。高生产力意味着AMP能支付更高的顾问薪酬，吸引更优秀的顾问，形成正循环。130年品牌+TIME"最具标志性公司"认证增强了顾问和客户的信任。</p>
+
+            <p><strong>4. 规模经济与运营效率（中等偏强）</strong></p>
+            <p>$1.7万亿AUMA带来运营杠杆——管理费收入随AUM增长但运营成本相对固定。FY2025运营费用仅增长3%而收入增长7%，利润率从26.5%提升至27%。Columbia Threadneedle的42%税前利润率体现了资产管理规模经济。</p>
+
+            <p><strong>5. 财务实力（强）</strong></p>
+            <p>$22亿超额资本、$23亿控股公司流动性、控股公司D/E仅0.86x、从未接受政府救助。在金融危机和市场动荡中，AMP的财务实力使其能继续投资和回购，而竞争对手可能被迫收缩。</p>
+
+            <p><strong>6. 银行整合防御（中等）</strong></p>
+            <p>Ameriprise Bank（$260亿资产）通过发行CD、HELOC和支票账户对冲利率下行风险，2025年成功抵消了225bps的降息影响。这种"银行+财富管理"的混合模式增强了抗周期性。</p>
+        </div>
+
+        <h3>4.4 护城河的可持续性</h3>
+        <div class="highlight">
+            <p><strong>正面因素：</strong></p>
+            <ul>
+                <li>财富管理行业最大的护城河是"信任"——需要数十年建立，无法被技术颠覆</li>
+                <li>$84万亿代际财富转移即将到来，AMP的顾问模式天然受益</li>
+                <li>客户年龄偏大（高净值人群），但财富转移时下一代通常保留原有顾问</li>
+                <li>持续的技术投资（Signature Wealth UMA平台）增强顾问工具</li>
+                <li>自由现金流转化率90%——极轻的资本需求</li>
+            </ul>
+            <p><strong>负面因素：</strong></p>
+            <ul>
+                <li>费率压缩——被动投资和机器人顾问持续侵蚀主动管理费率</li>
+                <li>客户群体偏老龄化——吸引千禧一代和Z世代面临挑战</li>
+                <li>顾问招募竞争白热化——竞争对手开出"天价签约金"挖角</li>
+                <li>收入高度依赖市场表现——熊市时AUM缩水直接冲击收入</li>
+                <li>数字化工具落后于纯科技公司——客户体验有提升空间</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="info-box">
+        <h2>五、利润分配分析（2016-2025）</h2>
+
+        <h3>5.1 十年利润分配表</h3>
+        <table>
+            <tr><th>年度</th><th>调整后净利润($B)</th><th>股息($B)</th><th>回购($B)</th><th>总回报($B)</th><th>回报/利润</th></tr>
+            <tr><td>2016</td><td>1.72</td><td>0.43</td><td>0.47</td><td>0.90</td><td>52%</td></tr>
+            <tr><td>2017</td><td>1.89</td><td>0.46</td><td>0.72</td><td>1.18</td><td>62%</td></tr>
+            <tr><td>2018</td><td>2.07</td><td>0.49</td><td>0.87</td><td>1.36</td><td>66%</td></tr>
+            <tr><td>2019</td><td>2.14</td><td>0.52</td><td>0.80</td><td>1.32</td><td>62%</td></tr>
+            <tr><td>2020</td><td>1.95</td><td>0.55</td><td>0.40</td><td>0.95</td><td>49%</td></tr>
+            <tr><td>2021</td><td>2.87</td><td>0.55</td><td>1.38</td><td>1.93</td><td>67%</td></tr>
+            <tr><td>2022</td><td>3.11</td><td>0.57</td><td>1.43</td><td>2.00</td><td>64%</td></tr>
+            <tr><td>2023</td><td>3.19</td><td>0.59</td><td>1.91</td><td>2.50</td><td>78%</td></tr>
+            <tr><td>2024</td><td>3.61</td><td>0.62</td><td>2.18</td><td>2.80</td><td>78%</td></tr>
+            <tr><td>2025</td><td>3.86</td><td>0.60</td><td>2.80</td><td>3.40</td><td>88%</td></tr>
+        </table>
+
+        <h3>5.2 股息历史</h3>
+        <table>
+            <tr><th>年度</th><th>年度股息/股</th><th>季度股息</th><th>同比变化</th><th>股息率</th></tr>
+            <tr><td>2016</td><td>$2.92</td><td>$0.67-$0.75</td><td>+8%</td><td>~2.6%</td></tr>
+            <tr><td>2017</td><td>$3.16</td><td>$0.75-$0.83</td><td>+8%</td><td>~1.9%</td></tr>
+            <tr><td>2018</td><td>$3.40</td><td>$0.83-$0.90</td><td>+8%</td><td>~3.3%</td></tr>
+            <tr><td>2019</td><td>$3.60</td><td>$0.90</td><td>+6%</td><td>~2.2%</td></tr>
+            <tr><td>2020</td><td>$3.72</td><td>$0.90-$0.97</td><td>+3%</td><td>~1.9%</td></tr>
+            <tr><td>2021</td><td>$4.04</td><td>$0.97-$1.04</td><td>+9%</td><td>~1.3%</td></tr>
+            <tr><td>2022</td><td>$4.52</td><td>$1.04-$1.21</td><td>+12%</td><td>~1.5%</td></tr>
+            <tr><td>2023</td><td>$5.20</td><td>$1.21-$1.35</td><td>+15%</td><td>~1.4%</td></tr>
+            <tr><td>2024</td><td>$5.80</td><td>$1.35-$1.48</td><td>+12%</td><td>~1.1%</td></tr>
+            <tr><td>2025</td><td>$6.40</td><td>$1.48-$1.60</td><td>+10%</td><td>~1.3%</td></tr>
+            <tr><td>2026E</td><td>$6.80</td><td>$1.70</td><td>+6%</td><td>~1.5%</td></tr>
+        </table>
+
+        <h3>5.3 资本配置评价</h3>
+        <div class="highlight">
+            <p><strong>管理层资本配置能力：优秀</strong></p>
+            <ul>
+                <li><strong>股息政策：</strong>自2005年独立上市以来连续20年增息，从未削减。近年增速加快（2023年+15%，2022年+12%），但股息率仅1.5%——管理层更倾向于回购而非高股息，因为回购的税务效率更高且更灵活。</li>
+                <li><strong>股票回购：</strong>过去5年回购约$70亿，流通股从1.078亿股缩减至8,990万股（-17%）。2025年Q4回购力度达到调整后利润的101%。以P/E 12-13x回购，相当于以8%+的收益率回购——远高于资本成本。</li>
+                <li><strong>收购纪律：</strong>2015年以约$10亿收购BMO海外资产管理业务（后整合为Columbia Threadneedle），这是AMP最成功的收购——将资产管理业务从美国扩展到全球，目前管理$706B资产，税前利润率42%。此后鲜有大型收购，管理层更倾向于有机增长和小型补强。</li>
+                <li><strong>再投资：</strong>资本支出极轻（FY2025仅$1.62亿，占收入0.9%），大部分投资用于技术平台升级和顾问工具开发。轻资本模式意味着几乎全部自由现金流可回馈股东。</li>
+                <li><strong>债务管理：</strong>控股公司D/E仅0.86x，净债务/EBITDA远低于1x。从未接受政府救助。2026年4月发行4.444%利率3年期票据，融资成本合理。</li>
+            </ul>
+        </div>
+
+        <div class="chart-container">
+            <canvas id="allocationChart" height="100"></canvas>
+        </div>
+    </div>
+
+    <div class="info-box">
+        <h2>六、投资总结</h2>
+
+        <h3>6.1 核心投资逻辑</h3>
+        <div class="moat-box">
+            <p><strong>AMP是"信任的复利机器"——1万顾问与350万客户之间的深度信任关系，每年产生$1.7万亿资产的管理费，并像复利一样持续增长。</strong></p>
+            <ul>
+                <li><strong>信任锁定：</strong>96%客户留存率+3.3倍保险增强留存——客户一旦进入AMP生态就极难离开</li>
+                <li><strong>三位一体协同：</strong>顾问→基金→保险闭环导流，每个环节都增强其他环节的粘性</li>
+                <li><strong>轻资产现金牛：</strong>90%自由现金流转化率，几乎不需要资本支出，$83亿经营现金流 vs $1.6亿资本支出</li>
+                <li><strong>持续回购：</strong>5年缩减17%股本，EPS增速远超净利润增速——这是"看不见的复利"</li>
+                <li><strong>代际财富转移受益者：</strong>$84万亿财富从婴儿潮一代转移给下一代，AMP的顾问模式天然受益</li>
+            </ul>
+        </div>
+
+        <h3>6.2 关键催化剂</h3>
+        <ul>
+            <li>AUM持续增长（$1.7万亿，+11% YoY）→ 管理费收入自然增长</li>
+            <li>顾问生产力持续提升（$110万/人，+10% YoY）→ 运营杠杆释放</li>
+            <li>利率企稳或回升 → 银行净利息收入改善</li>
+            <li>Signature Wealth UMA平台推广 → wrap资产增长加速</li>
+            <li>持续回购缩减股本（2026年2月授权$20亿新回购）</li>
+        </ul>
+
+        <h3>6.3 主要风险</h3>
+        <div class="risk-box">
+            <ul>
+                <li><strong>市场风险（高）：</strong>收入高度依赖AUM规模，熊市时AUM缩水直接冲击收入和利润。2022年S&P 500下跌19%，AMP收入下降2.9%——但利润仅降2.7%，体现了一定的抗跌性。</li>
+                <li><strong>费率压缩（中高）：</strong>被动投资和零佣金趋势持续侵蚀主动管理费率。Columbia Threadneedle综合费率46bps，面临下行压力。但AMP的咨询费模式（wrap账户）比纯管理费更有粘性。</li>
+                <li><strong>顾问招募竞争（中）：</strong>竞争对手开出天价签约金挖角顾问。AMP坚持"质量>数量"策略，但可能错失部分增长机会。</li>
+                <li><strong>客户老龄化（中）：</strong>客户群体偏大，吸引年轻客户面临挑战。但财富转移时下一代通常保留顾问。</li>
+                <li><strong>利率下行（中低）：</strong>降息压缩银行净利息收入。但AMP已通过银行产品创新（CD、HELOC）部分对冲。</li>
+                <li><strong>监管风险（低中）：</strong>SEC对咨询费透明度的要求可能影响定价。DOL受托人规则可能增加合规成本。</li>
+            </ul>
+        </div>
+
+        <h3>6.4 估值分析</h3>
+        <table>
+            <tr><th>估值指标</th><th>当前值</th><th>5年均值</th><th>10年均值</th><th>评估</th></tr>
+            <tr><td>PE（GAAP TTM）</td><td>~11.5x</td><td>~13.0x</td><td>~12.8x</td><td>低于均值</td></tr>
+            <tr><td>PE（2026E调整后）</td><td>~10.2x</td><td>-</td><td>-</td><td>基于$44.29 EPS预估</td></tr>
+            <tr><td>P/FCF</td><td>~5.1x</td><td>~7.0x</td><td>-</td><td>显著低于均值</td></tr>
+            <tr><td>P/B</td><td>~6.8x</td><td>~5.5x</td><td>-</td><td>高于均值（但ROE极高）</td></tr>
+            <tr><td>股息率</td><td>~1.5%</td><td>~2.0%</td><td>~2.5%</td><td>低于均值（因股价上涨+回购优先）</td></tr>
+            <tr><td>EV/EBITDA</td><td>N/A</td><td>-</td><td>-</td><td>金融服务不适用此指标</td></tr>
+        </table>
+
+        <div class="highlight">
+            <p><strong>估值判断：</strong>当前PE约11.5x，低于5年均值13.0x和10年均值12.8x。P/FCF仅5.1x，意味着以当前自由现金流水平，约5年即可"回本"。考虑到53%的ROE和90%的FCF转化率，AMP当前估值处于合理偏低区间。</p>
+            <p><strong>安全边际：</strong>若要求15%安全边际，合理买入PE约10-11x（基于5年均值13x打85折），对应股价约$410-$450。当前$453附近接近合理买入区间。</p>
+            <p><strong>乐观情景：</strong>若市场回暖+AUM持续增长+利率企稳，2027E调整后EPS $50+/股 × 14x PE = $700+目标价。</p>
+            <p><strong>保守情景：</strong>若经济衰退+市场下跌20%，2027E调整后EPS $35/股 × 10x PE = $350目标价。</p>
+        </div>
+
+        <h3>6.5 巴菲特-芒格视角</h3>
+        <div class="moat-box">
+            <p><strong>"一家真正伟大的公司必须拥有持久的'护城河'来保护其高投资回报。"——巴菲特</strong></p>
+            <p>AMP的护城河是"信任"——10,000顾问与350万客户之间的深度信任关系。这种信任需要数十年建立，但一旦建立就极难被颠覆。96%的客户留存率就是护城河的量化证明。</p>
+            <p>芒格会特别欣赏AMP的"三位一体"协同模式——财富管理、资产管理和保险保障互相增强，形成了一个"lollapalooza效应"（多因素叠加的超级效应）。拥有RiverSource保险的客户留存率是普通客户的3.3倍，这就是协同的力量。</p>
+            <p>但巴菲特可能对两点保持警惕：①金融服务公司的高杠杆（D/E 28x）——虽然大部分是"好杠杆"（保险浮存金），但在极端情景下仍有风险；②收入对市场表现的依赖——AMP无法控制市场涨跌，这与其偏好"可预测性"的原则有冲突。</p>
+            <p><strong>结论：</strong>AMP是一家拥有宽阔护城河的优秀金融服务公司，当前估值处于合理偏低区间（PE 11.5x vs 均值13x）。90%的FCF转化率和持续回购提供了强大的股东回报引擎。适合作为价值投资组合的核心持仓，但需注意市场下行时的收入波动风险。1.5%的股息率虽低，但结合回购后的总股东回报率超过8%。</p>
+        </div>
+    </div>
+
+    <div class="back-link"><a href="index.html">← 返回美股分析索引</a></div>
+
+    <script>
+        new Chart(document.getElementById('epsChart'), {
+            type: 'line',
+            data: {
+                labels: ['2016','2017','2018','2019','2020','2021','2022','2023','2024','2025'],
+                datasets: [{
+                    label: '调整后EPS ($)',
+                    data: [7.90,9.60,14.41,14.12,12.39,29.13,28.29,29.58,35.07,39.29],
+                    borderColor: 'rgba(26, 35, 126, 1)',
+                    backgroundColor: 'rgba(26, 35, 126, 0.1)',
+                    fill: true
+                }, {
+                    label: '营收 ($B)',
+                    data: [11.0,12.1,12.8,12.8,12.4,13.9,13.6,15.5,17.3,18.3],
+                    borderColor: 'rgba(244, 67, 54, 1)',
+                    backgroundColor: 'rgba(244, 67, 54, 0.1)',
+                    fill: false,
+                    yAxisID: 'y1'
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: { display: true, text: 'AMP营收与调整后EPS趋势（2016-2025）', font: { size: 14 } }
+                },
+                scales: {
+                    y: {
+                        type: 'linear',
+                        position: 'left',
+                        title: { display: true, text: '调整后EPS ($)' },
+                        min: 5,
+                        max: 45
+                    },
+                    y1: {
+                        type: 'linear',
+                        position: 'right',
+                        title: { display: true, text: '营收 ($B)' },
+                        min: 10,
+                        max: 20,
+                        grid: { drawOnChartArea: false }
+                    }
+                }
+            }
+        });
+
+        new Chart(document.getElementById('roeChart'), {
+            type: 'line',
+            data: {
+                labels: ['2016','2017','2018','2019','2020','2021','2022','2023','2024','2025'],
+                datasets: [{
+                    label: '调整后ROE (%)',
+                    data: [22,27,35,34,30,44,46,49.7,52.7,53.2],
+                    borderColor: 'rgba(26, 35, 126, 1)',
+                    backgroundColor: 'rgba(26, 35, 126, 0.1)',
+                    fill: true
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: { display: true, text: 'AMP调整后ROE趋势（2016-2025）', font: { size: 14 } },
+                    legend: { display: false }
+                },
+                scales: {
+                    y: {
+                        title: { display: true, text: 'ROE (%)' },
+                        min: 15,
+                        max: 60
+                    }
+                }
+            }
+        });
+
+        new Chart(document.getElementById('peChart'), {
+            type: 'line',
+            data: {
+                labels: ['2011','2012','2013','2014','2015','2016','2017','2018','2019','2020','2021','2022','2023','2024','2025'],
+                datasets: [{
+                    label: 'PE (x)',
+                    data: [10.7,13.3,17.5,15.7,12.4,14.0,17.7,7.2,11.8,15.7,10.4,11.0,15.7,15.8,13.3],
+                    borderColor: 'rgba(26, 35, 126, 1)',
+                    backgroundColor: 'rgba(26, 35, 126, 0.1)',
+                    fill: true
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: { display: true, text: 'AMP市盈率（PE）年度趋势', font: { size: 14 } },
+                    legend: { display: false }
+                },
+                scales: {
+                    y: {
+                        title: { display: true, text: 'PE (x)' },
+                        suggestedMin: 5,
+                        suggestedMax: 20
+                    }
+                }
+            }
+        });
+
+        new Chart(document.getElementById('allocationChart'), {
+            type: 'doughnut',
+            data: {
+                labels: ['股票回购 (55%)', '股息 (15%)', '再投资/业务增长 (20%)', '债务偿还/储备 (10%)'],
+                datasets: [{
+                    data: [55, 15, 20, 10],
+                    backgroundColor: ['rgba(26, 35, 126, 0.8)', 'rgba(76, 175, 80, 0.8)', 'rgba(255, 152, 0, 0.8)', 'rgba(244, 67, 54, 0.8)'],
+                    borderColor: ['rgba(26, 35, 126, 1)', 'rgba(76, 175, 80, 1)', 'rgba(255, 152, 0, 1)', 'rgba(244, 67, 54, 1)'],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: { display: true, text: 'AMP利润分配比例（FY2023-2025平均，占调整后净利润）', font: { size: 14 } },
+                    legend: { position: 'bottom' }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

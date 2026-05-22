@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>H&R Block (HRB) 价值投资分析</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f2f5;
+            color: #333;
+        }
+        h1 {
+            text-align: center;
+            color: #1a5276;
+            font-size: 2.2em;
+            margin-bottom: 5px;
+        }
+        h2 {
+            color: #1a5276;
+            border-bottom: 2px solid #2e86c1;
+            padding-bottom: 8px;
+            margin-top: 30px;
+        }
+        h3 {
+            color: #2c3e50;
+            margin-top: 20px;
+        }
+        h4 {
+            color: #34495e;
+            margin-top: 15px;
+        }
+        .subtitle {
+            text-align: center;
+            color: #7f8c8d;
+            font-size: 1.1em;
+            margin-bottom: 30px;
+        }
+        .info-box {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            background-color: white;
+        }
+        th, td {
+            padding: 10px 14px;
+            text-align: left;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        th {
+            background-color: #1a5276;
+            color: white;
+            font-weight: bold;
+        }
+        tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        tr:hover {
+            background-color: #eaf2f8;
+        }
+        .highlight {
+            background: #fef9e7;
+            border-left: 4px solid #2e86c1;
+            padding: 15px 20px;
+            margin: 15px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .chart-container {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+        .moat-item {
+            background: #eaf2f8;
+            border-left: 4px solid #2e86c1;
+            padding: 12px 18px;
+            margin: 10px 0;
+            border-radius: 0 6px 6px 0;
+        }
+        .warning {
+            background: #fdedec;
+            border-left: 4px solid #e74c3c;
+            padding: 12px 18px;
+            margin: 10px 0;
+            border-radius: 0 6px 6px 0;
+        }
+        .positive {
+            color: #27ae60;
+            font-weight: bold;
+        }
+        .negative {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: #2e86c1;
+            text-decoration: none;
+            font-size: 1.1em;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+        canvas {
+            max-width: 100%;
+            height: 400px;
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back-link">← 返回索引</a>
+
+    <h1>H&R Block, Inc.</h1>
+    <p class="subtitle">NYSE: HRB | 价值投资基本面分析 | 更新日期：2026年5月11日</p>
+
+    <div class="info-box">
+        <h2>一、公司基本信息</h2>
+        <table>
+            <tr><th>项目</th><th>详情</th></tr>
+            <tr><td>公司名称</td><td>H&R Block, Inc.（H&R布洛克）</td></tr>
+            <tr><td>股票代码</td><td>NYSE: HRB</td></tr>
+            <tr><td>成立时间</td><td>1955年</td></tr>
+            <tr><td>总部</td><td>美国密苏里州堪萨斯城（Kansas City, MO）</td></tr>
+            <tr><td>创始人</td><td>Henry Bloch, Richard Bloch</td></tr>
+            <tr><td>上市时间</td><td>1962年（纽约证券交易所）</td></tr>
+            <tr><td>现任CEO</td><td>Curtis A. Campbell（2026年1月1日接任，前任Jeff Jones于2025年底退休）</td></tr>
+            <tr><td>最新收盘价</td><td>约$37（2026年5月）</td></tr>
+            <tr><td>市值</td><td>约$47亿美元（约¥340亿人民币）</td></tr>
+            <tr><td>市值（USD）</td><td>$4.7 Billion</td></tr>
+            <tr><td>流通股数</td><td>约1.27亿股</td></tr>
+            <tr><td>52周区间</td><td>$29.95 - $63.55</td></tr>
+            <tr><td>市盈率（TTM）</td><td>约8.4x</td></tr>
+            <tr><td>市净率</td><td>N/A（股东权益为负）</td></tr>
+            <tr><td>市销率</td><td>约1.25x</td></tr>
+            <tr><td>企业价值（EV）</td><td>约$65亿美元</td></tr>
+            <tr><td>股息率</td><td>约4.5%</td></tr>
+            <tr><td>员工人数</td><td>约4,300人（全职），报税季临时员工超6万人</td></tr>
+            <tr><td>行业分类</td><td>消费服务 - 个人服务（税务准备）</td></tr>
+        </table>
+    </div>
+
+    <div class="info-box">
+        <h2>二、业务分析</h2>
+
+        <h3>2.1 公司是做什么的？</h3>
+        <p>用最简单的话说：<strong>H&R Block就是那个帮你报税的公司</strong>。每年报税季（1-4月），数百万美国人走进H&R Block的门店，或者使用它的在线软件，让专业人士帮自己填写和提交税务申报表。如果你在美国工作过，你大概率见过H&R Block的绿色招牌——它在美国有约10,300家门店，比星巴克还多。</p>
+        <p>H&R Block的核心价值主张很简单：<strong>报税很复杂，我们帮你搞定</strong>。美国税法极其复杂，每年都有变化，普通人很难自己准确申报。H&R Block提供从"面对面专家服务"到"自己用软件报税"的多种选择，满足不同需求层次的客户。</p>
+
+        <h3>2.2 业务板块</h3>
+        <p>H&R Block按服务类型划分为以下主要板块：</p>
+        <table>
+            <tr><th>业务板块</th><th>FY2025营收</th><th>占总营收比例</th><th>增长趋势</th></tr>
+            <tr><td><strong>美国协助报税（Assisted）</strong></td><td>约$18.5亿</td><td>约49%</td><td class="positive">增长6.1%，NAC提升+量增</td></tr>
+            <tr><td><strong>美国自助报税（DIY）</strong></td><td>约$2.4亿</td><td>约6%</td><td class="positive">增长9.7%，AI助手驱动转化</td></tr>
+            <tr><td><strong>美国特许权使用费</strong></td><td>约$1.4亿</td><td>约4%</td><td>稳定</td></tr>
+            <tr><td><strong>国际业务</strong></td><td>约$1.7亿</td><td>约5%</td><td>稳定（加拿大、澳大利亚）</td></tr>
+            <tr><td><strong>Wave（小企业SaaS）</strong></td><td>约$0.9亿</td><td>约2%</td><td class="positive">增长13%，Pro Tier贡献显著</td></tr>
+            <tr><td><strong>退款转账等金融服务</strong></td><td>约$1.2亿</td><td>约3%</td><td>下降（Emerald Advance利息收入减少）</td></tr>
+            <tr><td><strong>翡翠卡（Emerald Card）</strong></td><td>约$0.6亿</td><td>约2%</td><td>稳定</td></tr>
+            <tr><td><strong>Peace of Mind等服务</strong></td><td>约$0.5亿</td><td>约1%</td><td>稳定</td></tr>
+            <tr><td><strong>其他</strong></td><td>约$0.4亿</td><td>约1%</td><td>—</td></tr>
+        </table>
+        <div class="highlight">
+            <p><strong>关键洞察</strong>：H&R Block的收入高度集中于美国协助报税业务（约49%），这是公司的核心现金牛。自助报税和Wave小企业服务是增长最快的板块，但目前体量较小。金融服务（退款转账、翡翠卡等）是重要的利润补充。</p>
+        </div>
+
+        <h3>2.3 地域分布</h3>
+        <table>
+            <tr><th>地区</th><th>营收占比</th><th>特点</th></tr>
+            <tr><td>美国</td><td>约88%</td><td>核心市场，约10,300家门店</td></tr>
+            <tr><td>加拿大</td><td>约7%</td><td>第二大市场</td></tr>
+            <tr><td>澳大利亚</td><td>约5%</td><td>国际扩张重点</td></tr>
+        </table>
+
+        <h3>2.4 商业模式</h3>
+        <div class="highlight">
+            <p><strong>H&R Block怎么赚钱？</strong></p>
+            <p><strong>1. 协助报税服务费</strong>：客户到门店或线上找税务专家报税，按服务复杂度收费。平均每单收费（NAC）约$230-280，这是最大的收入来源。</p>
+            <p><strong>2. 自助报税软件费</strong>：客户使用H&R Block的在线软件自己报税，按版本收费（免费版到高级版$0-$110+）。</p>
+            <p><strong>3. 金融服务收入</strong>：包括退款转账费、翡翠预付卡费、Emerald Advance信用额度利息等。客户报税时顺便使用这些金融产品。</p>
+            <p><strong>4. Wave SaaS订阅</strong>：小企业会计和发票软件的订阅收入。</p>
+            <p><strong>5. 加盟店特许权使用费</strong>：约4,000家加盟店支付的品牌使用费。</p>
+            <p><strong>季节性特征</strong>：H&R Block的收入高度集中于1-4月的报税季。全年约85%的收入在1-4月实现，其余季度通常亏损。这是典型的季节性业务。</p>
+        </div>
+    </div>
+
+    <div class="info-box">
+        <h2>三、历史财务指标</h2>
+
+        <h3>3.1 净资产收益率（ROE）趋势</h3>
+        <div class="warning">
+            <p><strong>重要说明</strong>：H&R Block自2016年以来大量回购股票，导致股东权益在2016-2023年间多次为负值。当股东权益为负时，ROE指标失去传统意义，会出现极端正值或负值。因此，ROE对H&R Block不是一个有意义的指标。建议关注<strong>ROA（总资产收益率）</strong>和<strong>ROIC（投入资本回报率）</strong>作为替代。</p>
+        </div>
+        <table>
+            <tr><th>财年</th><th>ROE</th><th>ROA</th><th>说明</th></tr>
+            <tr><td>2025</td><td class="negative">N/A</td><td class="positive">18.7%</td><td>股东权益仅$0.09B，ROE失真</td></tr>
+            <tr><td>2024</td><td class="negative">N/A</td><td class="positive">18.9%</td><td>股东权益$0.09B，ROE失真</td></tr>
+            <tr><td>2023</td><td class="negative">N/A</td><td class="positive">17.5%</td><td>股东权益$0.03B，ROE失真</td></tr>
+            <tr><td>2022</td><td class="negative">N/A</td><td class="positive">16.0%</td><td>股东权益$0.21B，ROE失真</td></tr>
+            <tr><td>2021</td><td>394.6%</td><td class="positive">13.3%</td><td>含Sand Canyon出售收益</td></tr>
+            <tr><td>2020</td><td class="negative">-2.8%</td><td class="negative">-0.2%</td><td>COVID冲击，报税季延期</td></tr>
+            <tr><td>2019</td><td>97.4%</td><td class="positive">13.1%</td><td>股东权益低，ROE偏高</td></tr>
+            <tr><td>2018</td><td>N/A</td><td class="positive">21.0%</td><td>含减税与就业法案一次性收益</td></tr>
+            <tr><td>2017</td><td>N/A</td><td class="positive">14.8%</td><td>股东权益为负</td></tr>
+            <tr><td>2016</td><td>39.8%</td><td class="positive">10.2%</td><td>正常水平</td></tr>
+            <tr><td>2015</td><td>27.6%</td><td class="positive">10.3%</td><td>正常水平</td></tr>
+            <tr><td>2014</td><td>32.4%</td><td class="positive">10.3%</td><td>正常水平</td></tr>
+            <tr><td>2013</td><td>22.5%</td><td class="positive">9.5%</td><td>正常水平</td></tr>
+            <tr><td>2012</td><td>10.3%</td><td class="positive">5.4%</td><td>较低水平</td></tr>
+            <tr><td>2011</td><td>15.3%</td><td class="positive">7.8%</td><td>正常水平</td></tr>
+            <tr><td>2010</td><td>43.1%</td><td class="positive">9.2%</td><td>含一次性收益</td></tr>
+        </table>
+        <div class="chart-container">
+            <canvas id="roaChart"></canvas>
+        </div>
+
+        <h3>3.2 资产负债率趋势</h3>
+        <table>
+            <tr><th>财年</th><th>总资产（$M）</th><th>总负债（$M）</th><th>股东权益（$M）</th><th>资产负债率</th></tr>
+            <tr><td>2025</td><td>3,258</td><td>3,168</td><td>90</td><td>97.2%</td></tr>
+            <tr><td>2024</td><td>3,072</td><td>3,005</td><td>67</td><td>97.8%</td></tr>
+            <tr><td>2023</td><td>3,072</td><td>3,042</td><td>30</td><td>99.0%</td></tr>
+            <tr><td>2022</td><td>3,269</td><td>3,147</td><td>122</td><td>96.3%</td></tr>
+            <tr><td>2021</td><td>3,654</td><td>3,424</td><td>230</td><td>93.7%</td></tr>
+            <tr><td>2020</td><td>5,112</td><td>5,042</td><td>70</td><td>98.6%</td></tr>
+            <tr><td>2019</td><td>3,300</td><td>2,958</td><td>342</td><td>89.6%</td></tr>
+            <tr><td>2018</td><td>3,141</td><td>2,841</td><td>300</td><td>90.4%</td></tr>
+            <tr><td>2017</td><td>2,694</td><td>2,740</td><td>-46</td><td>101.7%</td></tr>
+            <tr><td>2016</td><td>2,847</td><td>2,827</td><td>20</td><td>99.3%</td></tr>
+            <tr><td>2015</td><td>4,515</td><td>2,698</td><td>1,817</td><td>59.8%</td></tr>
+            <tr><td>2014</td><td>4,694</td><td>2,849</td><td>1,845</td><td>60.7%</td></tr>
+            <tr><td>2013</td><td>4,538</td><td>2,843</td><td>1,695</td><td>62.6%</td></tr>
+            <tr><td>2012</td><td>4,650</td><td>2,911</td><td>1,739</td><td>62.6%</td></tr>
+            <tr><td>2011</td><td>5,289</td><td>3,428</td><td>1,861</td><td>64.8%</td></tr>
+            <tr><td>2010</td><td>5,234</td><td>3,538</td><td>1,696</td><td>67.6%</td></tr>
+        </table>
+        <div class="chart-container">
+            <canvas id="debtChart"></canvas>
+        </div>
+        <div class="warning">
+            <p><strong>关键风险</strong>：H&R Block的资产负债率从2015年的59.8%飙升至2023年的99.0%，股东权益在2017年首次转负。这不是因为经营亏损，而是因为<strong>大规模股票回购</strong>消耗了留存收益。公司通过债务融资回购股票，将股东权益压至接近零甚至负值。这种资本结构虽然提升了EPS，但也增加了财务风险。</p>
+        </div>
+
+        <h3>3.3 市盈率（PE）趋势</h3>
+        <table>
+            <tr><th>财年</th><th>年末股价</th><th>EPS</th><th>PE比率</th></tr>
+            <tr><td>2025</td><td>$54.89</td><td>$4.45</td><td>12.3x</td></tr>
+            <tr><td>2024</td><td>$54.23</td><td>$4.18</td><td>13.0x</td></tr>
+            <tr><td>2023</td><td>$31.87</td><td>$3.58</td><td>8.9x</td></tr>
+            <tr><td>2022</td><td>$35.32</td><td>$3.27</td><td>10.8x</td></tr>
+            <tr><td>2021</td><td>$22.26</td><td>$3.11</td><td>7.2x</td></tr>
+            <tr><td>2020</td><td>$16.65</td><td>-$0.04</td><td>N/A</td></tr>
+            <tr><td>2019</td><td>$27.21</td><td>$2.05</td><td>13.3x</td></tr>
+            <tr><td>2018</td><td>$27.65</td><td>$2.93</td><td>9.4x</td></tr>
+            <tr><td>2017</td><td>$24.79</td><td>$1.92</td><td>12.9x</td></tr>
+            <tr><td>2016</td><td>$20.24</td><td>$1.50</td><td>13.5x</td></tr>
+            <tr><td>2015</td><td>$30.24</td><td>$1.72</td><td>17.6x</td></tr>
+            <tr><td>2014</td><td>$28.42</td><td>$1.73</td><td>16.4x</td></tr>
+            <tr><td>2013</td><td>$27.74</td><td>$1.59</td><td>17.5x</td></tr>
+            <tr><td>2012</td><td>$14.70</td><td>$0.89</td><td>16.5x</td></tr>
+            <tr><td>2011</td><td>$17.29</td><td>$1.31</td><td>13.2x</td></tr>
+        </table>
+        <div class="chart-container">
+            <canvas id="peChart"></canvas>
+        </div>
+        <div class="highlight">
+            <p><strong>估值分析</strong>：HRB过去10年平均PE约13.4x。当前PE约8-10x，低于历史均值，反映市场对税务服务行业长期增长的担忧（如IRS免费报税试点、AI自动化冲击等）。但考虑到公司稳定的现金流和持续增长的EPS，当前估值具有一定吸引力。</p>
+        </div>
+
+        <h3>3.4 产权比率（总资产/股东权益）趋势</h3>
+        <table>
+            <tr><th>财年</th><th>产权比率</th><th>说明</th></tr>
+            <tr><td>2025</td><td>36.2x</td><td>股东权益极低，比率失真</td></tr>
+            <tr><td>2024</td><td>45.9x</td><td>股东权益极低，比率失真</td></tr>
+            <tr><td>2023</td><td>102.4x</td><td>股东权益接近零，比率失真</td></tr>
+            <tr><td>2022</td><td>26.8x</td><td>股东权益极低</td></tr>
+            <tr><td>2021</td><td>15.9x</td><td>股东权益较低</td></tr>
+            <tr><td>2020</td><td>73.0x</td><td>股东权益极低</td></tr>
+            <tr><td>2019</td><td>9.6x</td><td>偏高</td></tr>
+            <tr><td>2018</td><td>10.5x</td><td>偏高</td></tr>
+            <tr><td>2017</td><td>N/A</td><td>股东权益为负</td></tr>
+            <tr><td>2016</td><td>142.4x</td><td>股东权益接近零</td></tr>
+            <tr><td>2015</td><td>2.5x</td><td>正常水平</td></tr>
+            <tr><td>2014</td><td>2.5x</td><td>正常水平</td></tr>
+            <tr><td>2013</td><td>2.7x</td><td>正常水平</td></tr>
+            <tr><td>2012</td><td>2.7x</td><td>正常水平</td></tr>
+            <tr><td>2011</td><td>2.8x</td><td>正常水平</td></tr>
+        </table>
+        <div class="chart-container">
+            <canvas id="equityRatioChart"></canvas>
+        </div>
+
+        <h3>3.5 营收与净利润趋势</h3>
+        <table>
+            <tr><th>财年</th><th>营收（$M）</th><th>同比增长</th><th>净利润（$M）</th><th>净利润率</th><th>EPS</th></tr>
+            <tr><td>2025</td><td>3,761</td><td class="positive">+4.2%</td><td>606</td><td>16.1%</td><td>$4.42</td></tr>
+            <tr><td>2024</td><td>3,610</td><td class="positive">+4.0%</td><td>596</td><td>16.5%</td><td>$4.14</td></tr>
+            <tr><td>2023</td><td>3,472</td><td class="positive">+0.3%</td><td>560</td><td>16.1%</td><td>$3.57</td></tr>
+            <tr><td>2022</td><td>3,463</td><td class="positive">+1.4%</td><td>551</td><td>15.9%</td><td>$3.22</td></tr>
+            <tr><td>2021</td><td>3,414</td><td class="positive">+29.3%</td><td>581</td><td>17.0%</td><td>$3.08</td></tr>
+            <tr><td>2020</td><td>2,640</td><td class="negative">-14.7%</td><td>-8</td><td class="negative">-0.3%</td><td>-$0.04</td></tr>
+            <tr><td>2019</td><td>3,095</td><td class="negative">-2.1%</td><td>423</td><td>13.7%</td><td>$2.04</td></tr>
+            <tr><td>2018</td><td>3,160</td><td class="positive">+4.1%</td><td>613</td><td>19.4%</td><td>$2.91</td></tr>
+            <tr><td>2017</td><td>3,036</td><td class="negative">-0.1%</td><td>409</td><td>13.5%</td><td>$1.91</td></tr>
+            <tr><td>2016</td><td>3,038</td><td class="negative">-1.3%</td><td>383</td><td>12.6%</td><td>$1.76</td></tr>
+            <tr><td>2015</td><td>3,079</td><td class="positive">+1.8%</td><td>486</td><td>15.8%</td><td>$1.77</td></tr>
+            <tr><td>2014</td><td>3,024</td><td class="positive">+4.1%</td><td>469</td><td>15.5%</td><td>$1.73</td></tr>
+            <tr><td>2013</td><td>2,906</td><td class="positive">+0.4%</td><td>276</td><td>9.5%</td><td>$1.01</td></tr>
+            <tr><td>2012</td><td>2,893</td><td class="negative">-1.7%</td><td>254</td><td>8.8%</td><td>$0.89</td></tr>
+            <tr><td>2011</td><td>2,942</td><td class="negative">-2.3%</td><td>384</td><td>13.1%</td><td>$1.31</td></tr>
+        </table>
+        <div class="chart-container">
+            <canvas id="revenueChart"></canvas>
+        </div>
+        <div class="highlight">
+            <p><strong>营收趋势分析</strong>：HRB过去15年营收基本在$29-38亿之间波动，年复合增长率仅约1.5%。这是一个典型的<strong>低增长成熟业务</strong>。2020年因COVID-19导致报税季延期，营收大幅下降14.7%。2021年因延期效应恢复增长29.3%，但之后增速回归低个位数。公司主要通过提价（NAC增长）而非量增来驱动收入增长。</p>
+        </div>
+    </div>
+
+    <div class="info-box">
+        <h2>四、竞争分析与护城河</h2>
+
+        <h3>4.1 主要竞争对手</h3>
+        <table>
+            <tr><th>竞争对手</th><th>竞争领域</th><th>市场份额</th><th>优势</th></tr>
+            <tr><td><strong>Intuit (TurboTax)</strong></td><td>DIY税务软件</td><td>约36%（DIY市场）</td><td>品牌最强，技术领先，AI投入大</td></tr>
+            <tr><td><strong>H&R Block</strong></td><td>协助+DIY税务服务</td><td>约28%（DIY），约35%（协助）</td><td>唯一全渠道覆盖</td></tr>
+            <tr><td><strong>TaxAct</strong></td><td>DIY税务软件</td><td>约13%（DIY市场）</td><td>价格最低</td></tr>
+            <tr><td><strong>Jackson Hewitt</strong></td><td>协助报税</td><td>约5-8%</td><td>沃尔玛内门店</td></tr>
+            <tr><td><strong>Liberty Tax</strong></td><td>协助报税</td><td>约3-5%</td><td>加盟模式</td></tr>
+            <tr><td><strong>CPA/EA专业人士</strong></td><td>高端税务服务</td><td>分散</td><td>专业度最高</td></tr>
+            <tr><td><strong>IRS Free File</strong></td><td>免费报税</td><td>增长中</td><td>政府背书，完全免费</td></tr>
+        </table>
+
+        <h3>4.2 竞争优势分析</h3>
+        <div class="moat-item">
+            <h4>1. 全渠道服务模式（核心优势）</h4>
+            <p>H&R Block是唯一同时拥有<strong>线下门店网络+在线DIY软件+虚拟专家服务</strong>的税务公司。TurboTax只有DIY，Jackson Hewitt只有线下。这种全渠道能力让H&R Block能服务从简单到复杂的所有客户需求。</p>
+        </div>
+        <div class="moat-item">
+            <h4>2. 规模与品牌</h4>
+            <p>约10,300家门店（含加盟），每年服务约2,000万客户。70年的品牌历史建立了深厚的客户信任。在美国税务服务市场，H&R Block的品牌认知度仅次于TurboTax。</p>
+        </div>
+        <div class="moat-item">
+            <h4>3. 客户粘性与转换成本</h4>
+            <p>税务服务具有天然的粘性——客户倾向于每年回到同一个报税服务商，因为服务商已经了解他们的税务历史和状况。H&R Block的客户留存率估计在70-80%。</p>
+        </div>
+        <div class="moat-item">
+            <h4>4. 加盟网络</h4>
+            <p>约4,000家加盟店构成了轻资产的扩张模式，加盟商承担运营风险，H&R Block收取特许权使用费。</p>
+        </div>
+
+        <h3>4.3 护城河评估</h3>
+        <table>
+            <tr><th>护城河类型</th><th>强度</th><th>评估</th></tr>
+            <tr><td><strong>品牌护城河</strong></td><td>★★★☆☆</td><td>品牌知名度高，但TurboTax在DIY领域品牌更强</td></tr>
+            <tr><td><strong>成本优势</strong></td><td>★★☆☆☆</td><td>规模带来一定成本优势，但门店网络也是成本负担</td></tr>
+            <tr><td><strong>网络效应</strong></td><td>★☆☆☆☆</td><td>税务服务几乎没有网络效应</td></tr>
+            <tr><td><strong>转换成本</strong></td><td>★★★☆☆</td><td>中等转换成本，客户倾向于留存，但DIY用户容易切换</td></tr>
+            <tr><td><strong>规模优势</strong></td><td>★★★☆☆</td><td>最大门店网络和客户基础带来规模效应</td></tr>
+            <tr><td><strong>监管护城河</strong></td><td>★★☆☆☆</td><td>税务法规复杂度是壁垒，但IRS免费报税试点正在削弱</td></tr>
+        </table>
+        <div class="warning">
+            <p><strong>护城河总体评估：窄护城河</strong></p>
+            <p>H&R Block的护城河主要来自品牌认知和全渠道服务模式，但这些优势并非不可逾越。TurboTax在DIY市场持续领先，IRS免费报税试点可能侵蚀低端市场，AI技术可能降低对人工税务专家的需求。护城河的可持续性面临挑战。</p>
+        </div>
+
+        <h3>4.4 行业威胁</h3>
+        <div class="warning">
+            <h4>1. IRS Direct File试点</h4>
+            <p>美国国税局从2024年开始试点Direct File项目，允许纳税人直接在IRS网站免费报税。如果该项目全面推广，将直接威胁H&R Block的低端客户群。</p>
+            <h4>2. AI自动化冲击</h4>
+            <p>AI技术正在简化报税流程，可能减少对人工税务专家的需求。TurboTax已推出AI驱动的报税助手，H&R Block也在跟进，但AI可能降低整个行业的收费水平。</p>
+            <h4>3. 税法简化风险</h4>
+            <p>如果美国税法大幅简化（如推行统一税率），报税需求将大幅减少。虽然短期内不太可能，但这是长期结构性风险。</p>
+        </div>
+    </div>
+
+    <div class="info-box">
+        <h2>五、利润分配分析（过去十年）</h2>
+
+        <h3>5.1 资本配置总览</h3>
+        <table>
+            <tr><th>财年</th><th>净利润($M)</th><th>股息($M)</th><th>回购($M)</th><th>加盟店收购($M)</th><th>资本开支($M)</th><th>股东回报率</th></tr>
+            <tr><td>2025</td><td>606</td><td>~200</td><td>400</td><td>~100</td><td>~50</td><td>99%</td></tr>
+            <tr><td>2024</td><td>596</td><td>~190</td><td>~350</td><td>~80</td><td>~50</td><td>91%</td></tr>
+            <tr><td>2023</td><td>560</td><td>~180</td><td>~250</td><td>~60</td><td>~50</td><td>77%</td></tr>
+            <tr><td>2022</td><td>551</td><td>~170</td><td>~250</td><td>~50</td><td>~50</td><td>76%</td></tr>
+            <tr><td>2021</td><td>581</td><td>~160</td><td>~200</td><td>~30</td><td>~50</td><td>62%</td></tr>
+            <tr><td>2020</td><td>-8</td><td>~160</td><td>~0</td><td>~0</td><td>~50</td><td>N/A</td></tr>
+            <tr><td>2019</td><td>423</td><td>~160</td><td>~350</td><td>~20</td><td>~50</td><td>121%</td></tr>
+            <tr><td>2018</td><td>613</td><td>~150</td><td>~600</td><td>~20</td><td>~50</td><td>123%</td></tr>
+            <tr><td>2017</td><td>409</td><td>~150</td><td>~500</td><td>~10</td><td>~50</td><td>159%</td></tr>
+            <tr><td>2016</td><td>383</td><td>~140</td><td>~800</td><td>~10</td><td>~50</td><td>245%</td></tr>
+        </table>
+        <div class="highlight">
+            <p><strong>关键发现</strong>：自2016年以来，H&R Block已向股东返还超过<strong>$45亿美元</strong>（股息+回购），回购了超过<strong>43%</strong>的流通股。股息连续8年增长，2025年季度股息上调12%至$0.42/股。公司采用"借债回购"策略，通过发行债券融资回购股票，导致股东权益从2015年的$18亿降至2023年的接近零。</p>
+        </div>
+
+        <h3>5.2 股息历史</h3>
+        <table>
+            <tr><th>财年</th><th>年度每股股息</th><th>股息支付率</th><th>股息同比增长</th></tr>
+            <tr><td>2025</td><td>$1.56</td><td>~35%</td><td class="positive">+12%</td></tr>
+            <tr><td>2024</td><td>$1.40</td><td>~34%</td><td class="positive">+7%</td></tr>
+            <tr><td>2023</td><td>$1.31</td><td>~37%</td><td class="positive">+3%</td></tr>
+            <tr><td>2022</td><td>$1.27</td><td>~39%</td><td class="positive">+4%</td></tr>
+            <tr><td>2021</td><td>$1.22</td><td>~39%</td><td class="positive">+2%</td></tr>
+            <tr><td>2020</td><td>$1.20</td><td>N/A</td><td>0%</td></tr>
+            <tr><td>2019</td><td>$1.20</td><td>~59%</td><td>+4%</td></tr>
+            <tr><td>2018</td><td>$1.16</td><td>~40%</td><td>+5%</td></tr>
+            <tr><td>2017</td><td>$1.10</td><td>~58%</td><td>+10%</td></tr>
+            <tr><td>2016</td><td>$1.00</td><td>~57%</td><td>0%</td></tr>
+        </table>
+
+        <h3>5.3 股票回购历史</h3>
+        <table>
+            <tr><th>财年</th><th>回购金额($M)</th><th>回购股数(M)</th><th>占流通股比</th><th>均价</th></tr>
+            <tr><td>2025</td><td>400</td><td>6.5</td><td>4.7%</td><td>$61.10</td></tr>
+            <tr><td>2024</td><td>~350</td><td>~6</td><td>~4%</td><td>~$58</td></tr>
+            <tr><td>2023</td><td>~250</td><td>~5</td><td>~3%</td><td>~$50</td></tr>
+            <tr><td>2022</td><td>~250</td><td>~6</td><td>~3.5%</td><td>~$42</td></tr>
+            <tr><td>2021</td><td>~200</td><td>~8</td><td>~4%</td><td>~$25</td></tr>
+            <tr><td>2020</td><td>~0</td><td>—</td><td>—</td><td>—</td></tr>
+            <tr><td>2019</td><td>~350</td><td>~15</td><td>~7%</td><td>~$23</td></tr>
+            <tr><td>2018</td><td>~600</td><td>~25</td><td>~12%</td><td>~$24</td></tr>
+            <tr><td>2017</td><td>~500</td><td>~22</td><td>~10%</td><td>~$23</td></tr>
+            <tr><td>2016</td><td>~800</td><td>~35</td><td>~16%</td><td>~$23</td></tr>
+        </table>
+        <div class="highlight">
+            <p><strong>资本配置评价</strong>：</p>
+            <p><strong class="positive">优点</strong>：管理层在资本配置上表现出高度纪律性。自2016年以来，以均价约$30-35回购了43%的流通股，远低于当前股价（$37-55），说明回购时机选择较好。股息连续8年增长，支付率维持在30-40%的健康水平。</p>
+            <p><strong class="negative">风险</strong>：公司通过借债回购股票，将股东权益压至接近零。虽然这提升了EPS和ROE，但也使公司在经济下行时缺乏缓冲。2020年COVID期间净利润几乎为零，如果持续更久可能面临偿债压力。此外，加盟店收购是近年新增的资本配置方向，回报率尚待验证。</p>
+        </div>
+    </div>
+
+    <div class="info-box">
+        <h2>六、投资结论</h2>
+
+        <h3>6.1 价值投资评估</h3>
+        <table>
+            <tr><th>评估维度</th><th>评分</th><th>说明</th></tr>
+            <tr><td>业务可理解性</td><td>★★★★★</td><td>税务服务业务模式简单易懂</td></tr>
+            <tr><td>竞争优势持久性</td><td>★★★☆☆</td><td>窄护城河，面临AI和免费报税威胁</td></tr>
+            <tr><td>管理层资本配置</td><td>★★★★☆</td><td>回购时机好，股息持续增长，但杠杆偏高</td></tr>
+            <tr><td>财务稳健性</td><td>★★☆☆☆</td><td>股东权益接近零，杠杆极高</td></tr>
+            <tr><td>增长前景</td><td>★★☆☆☆</td><td>低个位数增长，依赖提价驱动</td></tr>
+            <tr><td>估值吸引力</td><td>★★★★☆</td><td>PE约8-10x，低于历史均值，股息率4.5%</td></tr>
+        </table>
+
+        <h3>6.2 投资亮点</h3>
+        <div class="moat-item">
+            <p><strong class="positive">1. 低估值</strong>：PE约8-10x，低于10年平均值13.4x，也低于竞争对手Intuit的70x+。</p>
+        </div>
+        <div class="moat-item">
+            <p><strong class="positive">2. 高股息</strong>：4.5%的股息率，连续8年增长，自2016年以来累计增幅超100%。</p>
+        </div>
+        <div class="moat-item">
+            <p><strong class="positive">3. 刚需业务</strong>：美国人每年必须报税，这是法律义务，不受经济周期影响。</p>
+        </div>
+        <div class="moat-item">
+            <p><strong class="positive">4. 持续回购</strong>：自2016年以来回购43%的流通股，EPS增速远超净利润增速。</p>
+        </div>
+        <div class="moat-item">
+            <p><strong class="positive">5. 小企业服务增长</strong>：Wave和Block Advisors提供新的增长引擎。</p>
+        </div>
+
+        <h3>6.3 投资风险</h3>
+        <div class="warning">
+            <p><strong class="negative">1. IRS Direct File威胁</strong>：政府免费报税试点可能侵蚀低端市场。</p>
+        </div>
+        <div class="warning">
+            <p><strong class="negative">2. AI自动化冲击</strong>：AI可能降低报税复杂度和对人工服务的需求。</p>
+        </div>
+        <div class="warning">
+            <p><strong class="negative">3. 极高杠杆</strong>：股东权益接近零，财务弹性极差。</p>
+        </div>
+        <div class="warning">
+            <p><strong class="negative">4. 低增长</strong>：营收年增长仅1-4%，缺乏增长催化剂。</p>
+        </div>
+        <div class="warning">
+            <p><strong class="negative">5. 季节性风险</strong>：85%收入集中在1-4月，其余季度亏损。</p>
+        </div>
+
+        <h3>6.4 安全边际分析</h3>
+        <div class="highlight">
+            <p><strong>内在价值估算</strong>：</p>
+            <p>假设FY2026调整后EPS为$4.85（公司指引中值），给予12x PE（略低于历史均值），合理价值约$58。当前股价约$37，存在约<strong>57%的安全边际</strong>。</p>
+            <p>但需注意：12x PE假设需要公司维持当前盈利水平并实现温和增长。如果IRS Direct File全面推广或AI大幅降低报税需求，EPS可能下降，安全边际将缩小。</p>
+            <p><strong>结论</strong>：H&R Block是一个典型的<strong>低估值、高股息、低增长</strong>的价值股。适合追求稳定现金流的收益型投资者，但不适合追求资本增值的成长型投资者。投资者需密切关注IRS免费报税政策和AI技术对行业的长期影响。</p>
+        </div>
+    </div>
+
+    <div class="info-box">
+        <h2>七、数据来源</h2>
+        <ul>
+            <li>H&R Block FY2025年度报告（2025年8月12日发布）</li>
+            <li>H&R Block FY2025 Q4业绩电话会议纪要</li>
+            <li>MacroTrends - 历史财务数据</li>
+            <li>ValueInvesting.io - ROE数据</li>
+            <li>Roic.ai - 盈利能力与信用指标</li>
+            <li>FullRatio.com - PE比率历史</li>
+            <li>CompaniesMarketCap.com - PE比率对比</li>
+            <li>同花顺/东方财富 - 分红派息数据</li>
+            <li>DCF Modeling - BCG矩阵分析</li>
+            <li>Simply Wall St - 盈利增长趋势</li>
+        </ul>
+    </div>
+
+    <div class="info-box">
+        <p><strong>最后更新</strong>：2026年5月11日<br>
+        <strong>数据来源</strong>：H&R Block官方财报、MacroTrends、Roic.ai、FullRatio等金融平台</p>
+    </div>
+
+    <script>
+        const commonOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    position: 'top',
+                },
+                tooltip: {
+                    mode: 'index',
+                    intersect: false,
+                }
+            }
+        };
+
+        const roaData = {
+            labels: ['2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025'],
+            datasets: [{
+                label: 'ROA (%)',
+                data: [7.8, 5.4, 9.5, 10.3, 10.3, 10.2, 14.8, 21.0, 13.1, -0.2, 13.3, 16.0, 17.5, 18.9, 18.7],
+                borderColor: 'rgba(75, 192, 192, 1)',
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderWidth: 2,
+                tension: 0.3,
+                fill: true
+            }]
+        };
+
+        const debtData = {
+            labels: ['2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025'],
+            datasets: [{
+                label: '资产负债率 (%)',
+                data: [64.8, 62.6, 62.6, 60.7, 59.8, 99.3, 101.7, 90.4, 89.6, 98.6, 93.7, 96.3, 99.0, 97.8, 97.2],
+                borderColor: 'rgba(255, 99, 132, 1)',
+                backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                borderWidth: 2,
+                tension: 0.3,
+                fill: true
+            }]
+        };
+
+        const peData = {
+            labels: ['2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025'],
+            datasets: [{
+                label: 'PE比率',
+                data: [13.2, 16.5, 17.5, 16.4, 17.6, 13.5, 12.9, 9.4, 13.3, null, 7.2, 10.8, 8.9, 13.0, 12.3],
+                borderColor: 'rgba(54, 162, 235, 1)',
+                backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                borderWidth: 2,
+                tension: 0.3,
+                fill: true
+            }]
+        };
+
+        const equityRatioData = {
+            labels: ['2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025'],
+            datasets: [{
+                label: '产权比率 (总资产/股东权益)',
+                data: [2.8, 2.7, 2.7, 2.5, 2.5, 142.4, null, 10.5, 9.6, 73.0, 15.9, 26.8, 102.4, 45.9, 36.2],
+                borderColor: 'rgba(255, 159, 64, 1)',
+                backgroundColor: 'rgba(255, 159, 64, 0.2)',
+                borderWidth: 2,
+                tension: 0.3,
+                fill: true
+            }]
+        };
+
+        const revenueData = {
+            labels: ['2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025'],
+            datasets: [{
+                label: '营收 (亿美元)',
+                data: [29.42, 28.93, 29.06, 30.24, 30.79, 30.38, 30.36, 31.60, 30.95, 26.40, 34.14, 34.63, 34.72, 36.10, 37.61],
+                borderColor: 'rgba(153, 102, 255, 1)',
+                backgroundColor: 'rgba(153, 102, 255, 0.2)',
+                borderWidth: 2,
+                tension: 0.3,
+                fill: true
+            }, {
+                label: '净利润 (亿美元)',
+                data: [3.84, 2.54, 2.76, 4.69, 4.86, 3.83, 4.09, 6.13, 4.23, -0.08, 5.81, 5.51, 5.60, 5.96, 6.06],
+                borderColor: 'rgba(75, 192, 192, 1)',
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderWidth: 2,
+                tension: 0.3,
+                fill: true
+            }]
+        };
+
+        new Chart(document.getElementById('roaChart').getContext('2d'), {
+            type: 'line',
+            data: roaData,
+            options: {
+                ...commonOptions,
+                scales: {
+                    y: { beginAtZero: true }
+                },
+                plugins: {
+                    ...commonOptions.plugins,
+                    title: { display: true, text: 'H&R Block (HRB) ROA 趋势 (2011-2025)' }
+                }
+            }
+        });
+
+        new Chart(document.getElementById('debtChart').getContext('2d'), {
+            type: 'line',
+            data: debtData,
+            options: {
+                ...commonOptions,
+                scales: {
+                    y: { beginAtZero: true, max: 110 }
+                },
+                plugins: {
+                    ...commonOptions.plugins,
+                    title: { display: true, text: 'H&R Block (HRB) 资产负债率 趋势 (2011-2025)' }
+                }
+            }
+        });
+
+        new Chart(document.getElementById('peChart').getContext('2d'), {
+            type: 'line',
+            data: peData,
+            options: {
+                ...commonOptions,
+                scales: {
+                    y: { beginAtZero: true }
+                },
+                plugins: {
+                    ...commonOptions.plugins,
+                    title: { display: true, text: 'H&R Block (HRB) 市盈率 趋势 (2011-2025)' }
+                }
+            }
+        });
+
+        new Chart(document.getElementById('equityRatioChart').getContext('2d'), {
+            type: 'line',
+            data: equityRatioData,
+            options: {
+                ...commonOptions,
+                scales: {
+                    y: { beginAtZero: true, max: 50 }
+                },
+                plugins: {
+                    ...commonOptions.plugins,
+                    title: { display: true, text: 'H&R Block (HRB) 产权比率 趋势 (2011-2025，极值已截断)' }
+                }
+            }
+        });
+
+        new Chart(document.getElementById('revenueChart').getContext('2d'), {
+            type: 'line',
+            data: revenueData,
+            options: {
+                ...commonOptions,
+                scales: {
+                    y: { beginAtZero: true }
+                },
+                plugins: {
+                    ...commonOptions.plugins,
+                    title: { display: true, text: 'H&R Block (HRB) 营收与净利润 趋势 (2011-2025)' }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

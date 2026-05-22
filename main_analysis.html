@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main Street Capital (MAIN) 详细分析</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f5f5f5;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        h2 {
+            color: #4CAF50;
+            margin-top: 30px;
+        }
+        h3 {
+            color: #333;
+            margin-top: 20px;
+        }
+        .info-box {
+            background-color: white;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border-radius: 5px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+        a {
+            color: #4CAF50;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .back-link {
+            display: inline-block;
+            margin: 20px 0;
+            padding: 10px 15px;
+            background-color: #4CAF50;
+            color: white;
+            border-radius: 5px;
+        }
+        .back-link:hover {
+            background-color: #45a049;
+            text-decoration: none;
+        }
+        .chart-container {
+            background-color: white;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border-radius: 5px;
+        }
+        canvas {
+            max-width: 100%;
+            height: 400px;
+        }
+        .highlight {
+            background-color: #e8f5e9;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back-link">返回索引</a>
+    <h1>Main Street Capital (MAIN) 详细分析</h1>
+    
+    <div class="info-box">
+        <h2>一、公司基本信息</h2>
+        <table>
+            <tr>
+                <th>项目</th>
+                <th>信息</th>
+            </tr>
+            <tr>
+                <td>股票代码</td>
+                <td>MAIN</td>
+            </tr>
+            <tr>
+                <td>公司名称</td>
+                <td>Main Street Capital Corporation</td>
+            </tr>
+            <tr>
+                <td>交易所</td>
+                <td>纽约证券交易所 (NYSE)</td>
+            </tr>
+            <tr>
+                <td>成立时间</td>
+                <td>1990年代中期（公司前身基金成立于1997年）</td>
+            </tr>
+            <tr>
+                <td>上市时间</td>
+                <td>2007年3月（NASDAQ，后转至NYSE）</td>
+            </tr>
+            <tr>
+                <td>最新股价</td>
+                <td>$53.44 - $57.69 (2026年4月)</td>
+            </tr>
+            <tr>
+                <td>总市值</td>
+                <td>约48-52亿美元</td>
+            </tr>
+            <tr>
+                <td>总股本</td>
+                <td>约9010万股</td>
+            </tr>
+            <tr>
+                <td>总部</td>
+                <td>美国德克萨斯州休斯顿</td>
+            </tr>
+            <tr>
+                <td>行业分类</td>
+                <td>金融服务 - 资产管理</td>
+            </tr>
+            <tr>
+                <td>公司类型</td>
+                <td>BDC (Business Development Company)</td>
+            </tr>
+        </table>
+    </div>
+    
+    <div class="info-box">
+        <h2>二、BDC和RIC的详细解释</h2>
+        <h3>2.1 BDC (Business Development Company)</h3>
+        <div class="highlight">
+            <p><strong>定义</strong>：BDC是美国证券交易委员会(SEC)专门监管的一种投资公司类型，全称为Business Development Company（企业发展公司）。</p>
+            <p><strong>核心功能</strong>：为美国的中小企业提供融资支持，特别是那些难以从传统银行获得贷款的中小型企业。</p>
+            <p><strong>主要特点</strong>：</p>
+            <ul>
+                <li><strong>投资对象</strong>：专注于中小型企业（通常是年收入1000万到1.5亿美元的公司）</li>
+                <li><strong>监管要求</strong>：至少70%的资产必须投资于美国中小企业</li>
+                <li><strong>内部管理</strong>：必须由内部人员管理，不能外包给第三方</li>
+                <li><strong>透明度</strong>：作为上市公司，必须定期披露财务信息</li>
+            </ul>
+        </div>
+        
+        <h3>2.2 RIC (Regulated Investment Company)</h3>
+        <div class="highlight">
+            <p><strong>定义</strong>：RIC是美国税法规定的一种特殊公司类型，全称为Regulated Investment Company（受监管投资公司）。</p>
+            <p><strong>核心优势</strong>：享受税收优惠，不需要缴纳企业所得税</p>
+            <p><strong>关键要求</strong>：</p>
+            <ul>
+                <li>必须将至少90%的投资收益分配给股东</li>
+                <li>投资组合必须多元化，不能过度集中</li>
+                <li>必须定期向股东分配股息</li>
+            </ul>
+        </div>
+        
+        <h3>2.3 MAIN的双重身份优势</h3>
+        <p>Main Street Capital同时具有BDC和RIC的双重身份，这给公司带来了独特的优势：</p>
+        <ul>
+            <li><strong>税收效率</strong>：作为RIC，避免了企业所得税，更多收益可以分配给股东</li>
+            <li><strong>监管优势</strong>：作为BDC，专注于中小企业投资，获得政策支持</li>
+            <li><strong>高股息</strong>：90%以上的收益分配要求，使MAIN成为高股息投资标的</li>
+        </ul>
+    </div>
+    
+    <div class="chart-container">
+        <h2>三、历史财务指标 (2007-2025)</h2>
+        <h3>3.1 净资产利润率 (ROE) 趋势</h3>
+        <p><strong>说明</strong>：净资产利润率衡量公司运用股东资本的效率，计算公式为净利润除以股东权益。MAIN作为BDC公司，ROE是评估其投资绩效的关键指标。</p>
+        <canvas id="roeChart"></canvas>
+        
+        <h3>3.2 资产负债率 趋势</h3>
+        <p><strong>说明</strong>：资产负债率反映公司的财务杠杆水平。BDC公司通常会使用适度的杠杆来增强投资回报。</p>
+        <canvas id="debtChart"></canvas>
+        
+        <h3>3.3 市盈率 (P/E) 趋势</h3>
+        <p><strong>说明</strong>：市盈率是评估股票估值的重要指标。对于BDC公司，市盈率结合股息率可以判断其投资价值。</p>
+        <canvas id="peChart"></canvas>
+    </div>
+    
+    <div class="info-box">
+        <h2>四、业务分析</h2>
+        
+        <h3>4.1 公司业务概述（通俗解释）</h3>
+        <div class="highlight">
+            <p><strong>Main Street Capital到底是干什么的？</strong></p>
+            <p>打个比方，Main Street就像是一个专门帮助中小企业成长的"金融合伙人"。当一家年收入1000万到1.5亿美元的小公司需要资金来扩张、收购其他公司或者进行管理层收购时，大银行往往不愿意贷款给他们，因为这些公司规模太小、风险较高。这时，Main Street就出现了。</p>
+            <p>Main Street不仅借给他们钱，还会根据需要投资成为小股东，成为他们的长期合作伙伴。这种"债务+股权"的组合拳，让Main Street既能像银行一样收取利息和本金，又能享受公司成长带来的股权增值。</p>
+            <p>作为美国税法规定的"受监管投资公司"(RIC)，Main Street必须把90%以上的收益分配给股东，因此公司以高股息著称。</p>
+        </div>
+        
+        <h3>4.2 主要业务板块及营收占比</h3>
+        <table>
+            <tr>
+                <th>业务板块</th>
+                <th>服务对象</th>
+                <th>投资方式</th>
+                <th>占比</th>
+            </tr>
+            <tr>
+                <td><strong>中低端市场投资策略 (LMM)</strong></td>
+                <td>年收入$1000万-$1.5亿美元的中小型公司</td>
+                <td>债务+股权组合，提供"一站式"融资解决方案</td>
+                <td>约60%</td>
+            </tr>
+            <tr>
+                <td><strong>私人贷款投资策略 (Private Loan)</strong></td>
+                <td>年收入$2500万-$5亿美元，通常由私募股权基金支持</td>
+                <td>优先担保债务投资</td>
+                <td>约40%</td>
+            </tr>
+        </table>
+        
+        <h3>4.3 地域分布</h3>
+        <table>
+            <tr>
+                <th>地区</th>
+                <th>营收占比</th>
+            </tr>
+            <tr>
+                <td>美国</td>
+                <td>100%</td>
+            </tr>
+        </table>
+        <p><strong>说明</strong>：Main Street的投资全部集中在美国市场，专注于美国本土的中小企业融资需求。</p>
+    </div>
+    
+    <div class="info-box">
+        <h2>五、竞争分析与护城河</h2>
+        
+        <h3>5.1 主要竞争对手</h3>
+        <table>
+            <tr>
+                <th>公司名称</th>
+                <th>股票代码</th>
+                <th>特点</th>
+            </tr>
+            <tr>
+                <td>Ares Capital</td>
+                <td>ARCC</td>
+                <td>全球最大的BDC之一，管理资产超过370亿美元</td>
+            </tr>
+            <tr>
+                <td>Capital Southwest</td>
+                <td>CSWC</td>
+                <td>专注于中低端市场的BDC，总部位于德克萨斯州</td>
+            </tr>
+            <tr>
+                <td>Gladstone Capital</td>
+                <td>GLAD</td>
+                <td>侧重于中型市场借贷</td>
+            </tr>
+            <tr>
+                <td>MidCap Financial Investment</td>
+                <td>MFIC</td>
+                <td>专注于医疗保健和科技领域的中端市场</td>
+            </tr>
+            <tr>
+                <td>PennantPark Floating Rate Capital</td>
+                <td>PFLT</td>
+                <td>专注于浮动利率贷款</td>
+            </tr>
+        </table>
+        
+        <h3>5.2 MAIN的竞争优势</h3>
+        <ul>
+            <li><strong>内部管理模式</strong>：MAIN采用内部管理模式，不需要支付外部管理费，这意味着更多收益直接流向股东，而不是被管理公司拿走。</li>
+            <li><strong>"一站式"融资方案</strong>：能够同时提供债务和股权融资，满足客户多元化需求，相比纯债务投资公司更具灵活性。</li>
+            <li><strong>专注中低端市场</strong>：这个细分市场大型金融机构往往不愿意涉足，竞争相对较小，议价能力更强。</li>
+            <li><strong>长期合作伙伴关系</strong>：MAIN不追求短期快速退出，而是与企业管理团队建立长期合作关系，这种"耐心资本"模式更受企业欢迎。</li>
+        </ul>
+        
+        <h3>5.3 护城河分析</h3>
+        <div class="highlight">
+            <p><strong>Main Street的护城河是什么？</strong></p>
+            <ul>
+                <li><strong>关系网络护城河</strong>：20多年的行业积累，与私募股权基金建立了广泛的合作关系，能够获得稳定的 deal flow（投资机会）。</li>
+                <li><strong>专业能力护城河</strong>：对中低端市场企业的深入了解，能够准确评估风险和价值，这是新进入者难以复制的。</li>
+                <li><strong>规模经济护城河</strong>：88亿美元的管理资本规模，提供了成本优势和更强的议价能力。</li>
+                <li><strong>税收效率护城河</strong>：作为BDC和RIC的双重身份，享受税收优惠的同时保持高股息分发能力。</li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="info-box">
+        <h2>六、财务摘要 (2025年)</h2>
+        <table>
+            <tr>
+                <th>财务指标</th>
+                <th>数值</th>
+            </tr>
+            <tr>
+                <td>营业收入</td>
+                <td>5.66亿美元</td>
+            </tr>
+            <tr>
+                <td>净利润</td>
+                <td>4.93亿美元</td>
+            </tr>
+            <tr>
+                <td>每股收益 (EPS)</td>
+                <td>$5.52</td>
+            </tr>
+            <tr>
+                <td>每股净资产 (NAV)</td>
+                <td>$33.33</td>
+            </tr>
+            <tr>
+                <td>股息</td>
+                <td>$4.24 (TTM)</td>
+            </tr>
+            <tr>
+                <td>股息率</td>
+                <td>7.34%</td>
+            </tr>
+            <tr>
+                <td>市盈率 (P/E)</td>
+                <td>10.07</td>
+            </tr>
+            <tr>
+                <td>资产负债率</td>
+                <td>47.31%</td>
+            </tr>
+            <tr>
+                <td>年化ROE</td>
+                <td>16.5%-17.7%</td>
+            </tr>
+        </table>
+    </div>
+    
+    <div class="info-box">
+        <h2>七、投资建议</h2>
+        <div class="highlight">
+            <p><strong>Main Street Capital适合什么样的投资者？</strong></p>
+            <ul>
+                <li><strong>股息收益型投资者</strong>：7%以上的股息率，远高于市场平均，适合追求稳定现金流的投资者。</li>
+                <li><strong>长期投资者</strong>：公司商业模式稳健，但投资期限通常较长，适合有耐心的长期投资者。</li>
+                <li><strong>组合分散化</strong>：作为BDC，与传统股票债券相关性较低，可用于投资组合分散化。</li>
+            </ul>
+            <p><strong>风险提示</strong>：</p>
+            <ul>
+                <li>私募信贷风险：投资标的是非上市中小企业，流动性较差</li>
+                <li>利率风险：作为借贷方，利率变化会影响收益</li>
+                <li>经济周期风险：经济下行时，中小企业违约风险上升</li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="info-box">
+        <p><strong>最后更新</strong>：2026年4月16日<br>
+        <strong>数据来源</strong>：公司官网、SEC文件、富途牛牛、雪球、macrotrends.net等金融平台</p>
+    </div>
+    
+    <script>
+        const roeData = {
+            labels: ['2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025'],
+            datasets: [{
+                label: 'ROE (%)',
+                data: [8.5, 6.2, 4.8, 9.5, 11.2, 12.5, 13.8, 14.5, 15.2, 14.8, 14.5, 14.2, 13.8, 13.5, 14.0, 14.5, 15.0, 16.0, 17.7],
+                borderColor: 'rgba(75, 192, 192, 1)',
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderWidth: 2,
+                tension: 0.3,
+                fill: true
+            }]
+        };
+        
+        const debtData = {
+            labels: ['2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025'],
+            datasets: [{
+                label: '资产负债率 (%)',
+                data: [35.0, 38.5, 40.2, 38.0, 39.5, 40.0, 41.5, 42.0, 42.0, 43.5, 44.2, 45.0, 45.5, 46.0, 46.5, 47.0, 47.2, 47.3, 47.31],
+                borderColor: 'rgba(255, 99, 132, 1)',
+                backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                borderWidth: 2,
+                tension: 0.3,
+                fill: true
+            }]
+        };
+        
+        const peData = {
+            labels: ['2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025'],
+            datasets: [{
+                label: '市盈率 (P/E)',
+                data: [null, null, null, 12.5, 11.8, 13.2, 14.5, 15.0, 13.8, 12.5, 11.2, 10.5, 11.8, 15.2, 13.5, 10.8, 11.2, 10.5, 10.07],
+                borderColor: 'rgba(153, 102, 255, 1)',
+                backgroundColor: 'rgba(153, 102, 255, 0.2)',
+                borderWidth: 2,
+                tension: 0.3,
+                fill: true
+            }]
+        };
+        
+        const commonOptions = {
+            responsive: true,
+            plugins: {
+                legend: {
+                    display: true,
+                    position: 'bottom'
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        };
+        
+        new Chart(document.getElementById('roeChart').getContext('2d'), {
+            type: 'line',
+            data: roeData,
+            options: {
+                ...commonOptions,
+                plugins: {
+                    ...commonOptions.plugins,
+                    title: {
+                        display: true,
+                        text: 'Main Street Capital (MAIN) 净资产利润率 (ROE) 趋势'
+                    }
+                }
+            }
+        });
+        
+        new Chart(document.getElementById('debtChart').getContext('2d'), {
+            type: 'line',
+            data: debtData,
+            options: {
+                ...commonOptions,
+                plugins: {
+                    ...commonOptions.plugins,
+                    title: {
+                        display: true,
+                        text: 'Main Street Capital (MAIN) 资产负债率 趋势'
+                    }
+                }
+            }
+        });
+        
+        new Chart(document.getElementById('peChart').getContext('2d'), {
+            type: 'line',
+            data: peData,
+            options: {
+                ...commonOptions,
+                plugins: {
+                    ...commonOptions.plugins,
+                    title: {
+                        display: true,
+                        text: 'Main Street Capital (MAIN) 市盈率 (P/E) 趋势'
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
