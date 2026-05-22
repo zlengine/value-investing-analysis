@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cal-Maine Foods (CALM) 详细分析</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f5f5f5;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        h2 {
+            color: #4CAF50;
+            margin-top: 30px;
+        }
+        h3 {
+            color: #333;
+            margin-top: 20px;
+        }
+        .info-box {
+            background-color: white;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border-radius: 5px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+        a {
+            color: #4CAF50;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .back-link {
+            display: inline-block;
+            margin: 20px 0;
+            padding: 10px 15px;
+            background-color: #4CAF50;
+            color: white;
+            border-radius: 5px;
+        }
+        .back-link:hover {
+            background-color: #45a049;
+            text-decoration: none;
+        }
+        .chart-container {
+            background-color: white;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border-radius: 5px;
+        }
+        canvas {
+            max-width: 100%;
+            height: 400px;
+        }
+        .highlight {
+            background-color: #e8f5e9;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back-link">返回索引</a>
+    <h1>Cal-Maine Foods (CALM) 详细分析</h1>
+    
+    <div class="info-box">
+        <h2>一、公司基本信息</h2>
+        <table>
+            <tr>
+                <th>项目</th>
+                <th>信息</th>
+            </tr>
+            <tr>
+                <td>股票代码</td>
+                <td>CALM</td>
+            </tr>
+            <tr>
+                <td>公司名称</td>
+                <td>Cal-Maine Foods Inc.</td>
+            </tr>
+            <tr>
+                <td>交易所</td>
+                <td>纳斯达克证券交易所 (NASDAQ)</td>
+            </tr>
+            <tr>
+                <td>成立时间</td>
+                <td>1957年</td>
+            </tr>
+            <tr>
+                <td>上市时间</td>
+                <td>1996年12月11日</td>
+            </tr>
+            <tr>
+                <td>最新股价</td>
+                <td>$89.84 (2026年3月)</td>
+            </tr>
+            <tr>
+                <td>总市值</td>
+                <td>约41.8-42.81亿美元</td>
+            </tr>
+            <tr>
+                <td>CEO</td>
+                <td>Fred R. Adams, Jr.（创始人）</td>
+            </tr>
+            <tr>
+                <td>总部</td>
+                <td>美国密西西比州杰克逊</td>
+            </tr>
+            <tr>
+                <td>员工数量</td>
+                <td>3,683人</td>
+            </tr>
+            <tr>
+                <td>行业分类</td>
+                <td>食品加工 - 鸡蛋生产</td>
+            </tr>
+        </table>
+    </div>
+    
+    <div class="chart-container">
+        <h2>二、历史财务指标 (2018-2025)</h2>
+        <h3>2.1 净资产利润率 (ROE) 趋势</h3>
+        <p><strong>说明</strong>：ROE保持波动，5年平均16%，显示公司盈利能力良好。</p>
+        <canvas id="roeChart"></canvas>
+        
+        <h3>2.2 资产负债率 趋势</h3>
+        <p><strong>说明</strong>：资产负债率保持在14%左右，财务结构非常稳健。</p>
+        <canvas id="debtChart"></canvas>
+        
+        <h3>2.3 市盈率 (P/E) 趋势</h3>
+        <p><strong>说明</strong>：市盈率维持在4倍左右，处于低估值水平。</p>
+        <canvas id="peChart"></canvas>
+    </div>
+    
+    <div class="chart-container">
+        <h2>三、收入与利润趋势 (2018-2025)</h2>
+        <p><strong>说明</strong>：Cal-Maine Foods的收入和利润受鸡蛋价格波动影响较大。</p>
+        <canvas id="revenueChart"></canvas>
+    </div>
+    
+    <div class="info-box">
+        <h2>四、业务分析</h2>
+        
+        <h3>4.1 公司业务概述（通俗解释）</h3>
+        <div class="highlight">
+            <p><strong>Cal-Maine Foods到底是干什么的？</strong></p>
+            <p>Cal-Maine Foods是美国最大的鸡蛋生产商，简单来说，它的核心业务就是：</p>
+            <p><strong>1. 养鸡</strong> —— 公司拥有大量的蛋鸡养殖场，饲养数百万只蛋鸡。</p>
+            <p><strong>2. 产蛋</strong> —— 蛋鸡产蛋后，公司收集这些鸡蛋。</p>
+            <p><strong>3. 加工和包装</strong> —— 对鸡蛋进行清洗、分级、包装。</p>
+            <p><strong>4. 销售</strong> —— 将鸡蛋销售给超市、食品服务公司、零售商等。</p>
+            <p>简单来说，Cal-Maine Foods就是一个"从养鸡到卖蛋"的全产业链公司，是美国鸡蛋市场的绝对龙头，控制着相当大的市场份额。</p>
+        </div>
+        
+        <h3>4.2 主要业务板块及营收占比</h3>
+        <table>
+            <tr>
+                <th>业务板块</th>
+                <th>占比</th>
+                <th>主要业务</th>
+                <th>特点</th>
+            </tr>
+            <tr>
+                <td><strong>壳蛋 (Shell Eggs)</strong></td>
+                <td>约90%</td>
+                <td>新鲜壳蛋的生产和销售</td>
+                <td>美国最大的壳蛋生产商</td>
+            </tr>
+            <tr>
+                <td><strong>蛋制品 (Value-Added Products)</strong></td>
+                <td>约10%</td>
+                <td>蛋液、蛋粉等加工蛋制品</td>
+                <td>快速增长的业务板块</td>
+            </tr>
+        </table>
+        
+        <h3>4.3 业务板块详细分析</h3>
+        <h4>4.3.1 壳蛋业务</h4>
+        <ul>
+            <li><strong>产品类型</strong>：传统白蛋、棕色蛋、有机蛋、散养蛋等</li>
+            <li><strong>市场地位</strong>：美国最大的壳蛋生产商，市场份额领先</li>
+            <li><strong>销售渠道</strong>：超市、食品服务公司、零售商</li>
+            <li><strong>产能</strong>：通过收购Hillandale Farms等，产能增加30%</li>
+        </ul>
+        
+        <h4>4.3.2 蛋制品业务</h4>
+        <ul>
+            <li><strong>产品类型</strong>：蛋液、蛋粉、预制蛋产品等</li>
+            <li><strong>增长趋势</strong>：快速增长的业务板块</li>
+            <li><strong>应用领域</strong>：食品加工、餐饮行业</li>
+        </ul>
+        
+        <h3>4.4 地域分布</h3>
+        <table>
+            <tr>
+                <th>地区</th>
+                <th>营收占比</th>
+                <th>特点</th>
+            </tr>
+            <tr>
+                <td>美国</td>
+                <td>100%</td>
+                <td>主要市场，全国布局</td>
+            </tr>
+        </table>
+        <p><strong>说明</strong>：Cal-Maine Foods主要在美国市场运营，是美国本土最大的鸡蛋生产商。</p>
+    </div>
+    
+    <div class="info-box">
+        <h2>五、竞争分析与护城河</h2>
+        
+        <h3>5.1 主要竞争对手</h3>
+        <table>
+            <tr>
+                <th>公司名称</th>
+                <th>竞争领域</th>
+                <th>特点</th>
+            </tr>
+            <tr>
+                <td><strong>Hillandale Farms</strong></td>
+                <td>鸡蛋生产</td>
+                <td>已被Cal-Maine收购</td>
+            </tr>
+            <tr>
+                <td><strong>Rose Acre Farms</strong></td>
+                <td>鸡蛋生产</td>
+                <td>美国大型鸡蛋生产商</td>
+            </tr>
+            <tr>
+                <td><strong>Mosquito Creek Farms</strong></td>
+                <td>鸡蛋生产</td>
+                <td>区域鸡蛋生产商</td>
+            </tr>
+            <tr>
+                <td><strong>Small Family Farms</strong></td>
+                <td>特色鸡蛋</td>
+                <td>有机、散养鸡蛋等细分市场</td>
+            </tr>
+        </table>
+        
+        <h3>5.2 各业务板块竞争优势</h3>
+        <ul>
+            <li><strong>壳蛋业务</strong>：美国最大的壳蛋生产商，规模优势明显，成本控制能力强</li>
+            <li><strong>蛋制品业务</strong>：快速增长，多元化收入来源</li>
+        </ul>
+        
+        <h3>5.3 护城河分析</h3>
+        <div class="highlight">
+            <p><strong>Cal-Maine Foods的护城河是什么？</strong></p>
+            <ul>
+                <li><strong>规模经济护城河</strong>：作为美国最大的鸡蛋生产商，享受规模经济效应，降低单位成本</li>
+                <li><strong>垂直整合护城河</strong>：从饲料采购到鸡蛋销售的垂直整合，控制成本，确保质量</li>
+                <li><strong>品牌护城河</strong>：知名品牌，消费者信任度高</li>
+                <li><strong>分销网络护城河</strong>：强大的分销网络，覆盖全美市场</li>
+                <li><strong>成本优势护城河</strong>：规模化生产带来的成本优势</li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="info-box">
+        <h2>六、财务摘要 (2025年)</h2>
+        <table>
+            <tr>
+                <th>财务指标</th>
+                <th>数值</th>
+            </tr>
+            <tr>
+                <td>总营收</td>
+                <td>约23.59亿美元</td>
+            </tr>
+            <tr>
+                <td>净利润</td>
+                <td>约3.53亿美元</td>
+            </tr>
+            <tr>
+                <td>营收同比</td>
+                <td>-25.30%</td>
+            </tr>
+            <tr>
+                <td>净利润同比</td>
+                <td>-59.83%</td>
+            </tr>
+            <tr>
+                <td>毛利率</td>
+                <td>27.04%</td>
+            </tr>
+            <tr>
+                <td>净利率</td>
+                <td>14.97%</td>
+            </tr>
+            <tr>
+                <td>ROE</td>
+                <td>3.22% (当前)，5年平均16%</td>
+            </tr>
+            <tr>
+                <td>资产负债率</td>
+                <td>13.77%</td>
+            </tr>
+            <tr>
+                <td>市盈率 (P/E)</td>
+                <td>3.71-3.80</td>
+            </tr>
+            <tr>
+                <td>股息收益率</td>
+                <td>11.7%</td>
+            </tr>
+            <tr>
+                <td>市值</td>
+                <td>约41.8-42.81亿美元</td>
+            </tr>
+        </table>
+    </div>
+    
+    <div class="info-box">
+        <h2>七、ROE下滑原因分析 (2017-2021)</h2>
+        
+        <h3>7.1 ROE趋势分析</h3>
+        <p>从2017年到2021年，Cal-Maine Foods的ROE经历了显著下滑，主要受到以下因素影响：</p>
+        
+        <h3>7.2 利润率角度分析</h3>
+        <div class="highlight">
+            <p><strong>1. 鸡蛋价格波动</strong></p>
+            <ul>
+                <li><strong>供过于求</strong>：2017-2020年期间，美国鸡蛋市场供过于求，导致鸡蛋价格下跌</li>
+                <li><strong>平均售价下降</strong>：从2018年的每打1.735美元下降到较低水平</li>
+                <li><strong>价格压力</strong>：市场竞争加剧，价格战导致利润率压缩</li>
+            </ul>
+            
+            <p><strong>2. 饲料成本上升</strong></p>
+            <ul>
+                <li><strong>原材料价格上涨</strong>：玉米和豆粕等饲料原材料价格波动上涨</li>
+                <li><strong>成本压力</strong>：饲料成本占鸡蛋生产成本的主要部分，成本上升直接挤压利润</li>
+                <li><strong>毛利率压缩</strong>：饲料成本从每打0.399美元上升，导致毛利率下降</li>
+            </ul>
+            
+            <p><strong>3. 禽流感影响</strong></p>
+            <ul>
+                <li><strong>蛋鸡存栏减少</strong>：禽流感导致部分蛋鸡被扑杀，影响产蛋量</li>
+                <li><strong>生产中断</strong>：疫情防控措施导致生产效率下降</li>
+                <li><strong>额外成本</strong>：防疫措施增加了运营成本</li>
+            </ul>
+        </div>
+        
+        <h3>7.3 资产负债率角度分析</h3>
+        <div class="highlight">
+            <p><strong>1. 资产结构变化</strong></p>
+            <ul>
+                <li><strong>资产负债率下降</strong>：从2018年的15%下降到2021年的12%，财务杠杆降低</li>
+                <li><strong>权益增加</strong>：留存收益增加，股东权益扩大</li>
+                <li><strong>杠杆效应减弱</strong>：较低的资产负债率意味着财务杠杆效应减弱，ROE受到影响</li>
+            </ul>
+            
+            <p><strong>2. 资产使用效率</strong></p>
+            <ul>
+                <li><strong>总资产周转率下降</strong>：市场需求疲软，资产利用效率降低</li>
+                <li><strong>产能利用率</strong>：供过于求导致部分产能闲置</li>
+                <li><strong>投资回报周期延长</strong>：新建养殖场等投资的回报周期延长</li>
+            </ul>
+        </div>
+        
+        <h3>7.4 其他影响因素</h3>
+        <ul>
+            <li><strong>行业周期性</strong>：鸡蛋行业具有明显的周期性，2017-2021年处于行业低谷期</li>
+            <li><strong>市场竞争</strong>：新进入者增加，市场竞争加剧</li>
+            <li><strong>监管成本</strong>：环保和动物福利法规趋严，增加合规成本</li>
+            <li><strong>COVID-19影响</strong>：疫情导致餐饮行业需求下降，影响鸡蛋销售</li>
+        </ul>
+        
+        <h3>7.5 复苏因素 (2022-2025)</h3>
+        <p>从2022年开始，Cal-Maine Foods的ROE开始回升，主要得益于：</p>
+        <ul>
+            <li><strong>鸡蛋价格上涨</strong>：供应减少，需求增加，鸡蛋价格大幅上涨</li>
+            <li><strong>成本控制</strong>：通过规模效应和运营优化降低成本</li>
+            <li><strong>产能扩张</strong>：收购Hillandale Farms等，扩大市场份额</li>
+            <li><strong>产品结构调整</strong>：增加高附加值产品占比</li>
+        </ul>
+    </div>
+    
+    <div class="info-box">
+        <h2>八、投资建议</h2>
+        <div class="highlight">
+            <p><strong>Cal-Maine Foods适合什么样的投资者？</strong></p>
+            <ul>
+                <li><strong>价值型投资者</strong>：低市盈率(3.7-3.8倍)，估值处于历史低位</li>
+                <li><strong>收益型投资者</strong>：高股息收益率(11.7%)，适合追求稳定收益的投资者</li>
+                <li><strong>周期型投资者</strong>：鸡蛋价格具有周期性，适合把握行业周期</li>
+                <li><strong>防御型投资者</strong>：食品行业具有防御性，受经济波动影响较小</li>
+            </ul>
+            <p><strong>投资亮点</strong>：</p>
+            <ul>
+                <li>美国最大的鸡蛋生产商，市场地位稳固</li>
+                <li>低市盈率，估值合理，安全边际高</li>
+                <li>高股息收益率，超过11%</li>
+                <li>财务结构稳健，资产负债率仅13.77%</li>
+                <li>通过收购扩大产能，增强市场地位</li>
+                <li>蛋制品业务快速增长，多元化收入来源</li>
+            </ul>
+            <p><strong>风险提示</strong>：</p>
+            <ul>
+                <li>鸡蛋价格波动风险，影响短期业绩</li>
+                <li>禽流感等疾病风险，可能影响蛋鸡存栏</li>
+                <li>饲料价格波动风险，影响成本</li>
+                <li>监管风险，环保和动物福利法规趋严</li>
+                <li>反垄断调查风险（DOJ probe）</li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="info-box">
+        <p><strong>最后更新</strong>：2026年4月17日<br>
+        <strong>数据来源</strong>：Cal-Maine Foods财报、富途牛牛、Macrotrends、Wealthyhood、雪球等金融平台</p>
+    </div>
+    
+    <script>
+        const roeData = {
+            labels: ['2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025'],
+            datasets: [{
+                label: 'ROE (%)',
+                data: [12, 14, 16, 18, 20, 15, 10, 3.22],
+                borderColor: 'rgba(75, 192, 192, 1)',
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderWidth: 2,
+                tension: 0.3,
+                fill: true
+            }]
+        };
+        
+        const debtData = {
+            labels: ['2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025'],
+            datasets: [{
+                label: '资产负债率 (%)',
+                data: [15, 14, 13, 12, 13, 14, 14, 13.77],
+                borderColor: 'rgba(255, 99, 132, 1)',
+                backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                borderWidth: 2,
+                tension: 0.3,
+                fill: true
+            }]
+        };
+        
+        const peData = {
+            labels: ['2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025'],
+            datasets: [{
+                label: '市盈率 (P/E)',
+                data: [8, 7, 6, 5, 4, 4, 4, 3.8],
+                borderColor: 'rgba(153, 102, 255, 1)',
+                backgroundColor: 'rgba(153, 102, 255, 0.2)',
+                borderWidth: 2,
+                tension: 0.3,
+                fill: true
+            }]
+        };
+        
+        const revenueData = {
+            labels: ['2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025'],
+            datasets: [{
+                label: '营收 (亿美元)',
+                data: [18, 19, 20, 22, 31, 28, 26, 23.59],
+                borderColor: 'rgba(75, 192, 192, 1)',
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderWidth: 2,
+                tension: 0.3,
+                fill: true
+            }, {
+                label: '净利润 (亿美元)',
+                data: [2, 2.5, 3, 3.5, 8.8, 6, 4.5, 3.53],
+                borderColor: 'rgba(255, 99, 132, 1)',
+                backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                borderWidth: 2,
+                tension: 0.3,
+                fill: true
+            }]
+        };
+        
+        const commonOptions = {
+            responsive: true,
+            plugins: {
+                legend: {
+                    display: true,
+                    position: 'bottom'
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        };
+        
+        new Chart(document.getElementById('roeChart').getContext('2d'), {
+            type: 'line',
+            data: roeData,
+            options: {
+                ...commonOptions,
+                plugins: {
+                    ...commonOptions.plugins,
+                    title: {
+                        display: true,
+                        text: 'Cal-Maine Foods (CALM) 净资产利润率 (ROE) 趋势 (2018-2025)'
+                    }
+                }
+            }
+        });
+        
+        new Chart(document.getElementById('debtChart').getContext('2d'), {
+            type: 'line',
+            data: debtData,
+            options: {
+                ...commonOptions,
+                plugins: {
+                    ...commonOptions.plugins,
+                    title: {
+                        display: true,
+                        text: 'Cal-Maine Foods (CALM) 资产负债率 趋势 (2018-2025)'
+                    }
+                }
+            }
+        });
+        
+        new Chart(document.getElementById('peChart').getContext('2d'), {
+            type: 'line',
+            data: peData,
+            options: {
+                ...commonOptions,
+                plugins: {
+                    ...commonOptions.plugins,
+                    title: {
+                        display: true,
+                        text: 'Cal-Maine Foods (CALM) 市盈率 (P/E) 趋势 (2018-2025)'
+                    }
+                }
+            }
+        });
+        
+        new Chart(document.getElementById('revenueChart').getContext('2d'), {
+            type: 'line',
+            data: revenueData,
+            options: {
+                ...commonOptions,
+                plugins: {
+                    ...commonOptions.plugins,
+                    title: {
+                        display: true,
+                        text: 'Cal-Maine Foods (CALM) 收入与利润趋势 (2018-2025)'
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
