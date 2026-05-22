@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ingredion (INGR) 价值投资分析</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f2f5;
+            color: #333;
+        }
+        h1 {
+            text-align: center;
+            color: #1a5276;
+            font-size: 2.2em;
+            margin-bottom: 5px;
+        }
+        h2 {
+            color: #1a5276;
+            border-bottom: 2px solid #2e86c1;
+            padding-bottom: 8px;
+            margin-top: 30px;
+        }
+        h3 {
+            color: #2c3e50;
+            margin-top: 20px;
+        }
+        h4 {
+            color: #34495e;
+            margin-top: 15px;
+        }
+        .subtitle {
+            text-align: center;
+            color: #7f8c8d;
+            font-size: 1.1em;
+            margin-bottom: 30px;
+        }
+        .info-box {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            background-color: white;
+        }
+        th, td {
+            padding: 10px 14px;
+            text-align: left;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        th {
+            background-color: #1a5276;
+            color: white;
+            font-weight: bold;
+        }
+        tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        tr:hover {
+            background-color: #eaf2f8;
+        }
+        .highlight {
+            background: #fef9e7;
+            border-left: 4px solid #2e86c1;
+            padding: 15px 20px;
+            margin: 15px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .chart-container {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+        .moat-item {
+            background: #eaf2f8;
+            border-left: 4px solid #2e86c1;
+            padding: 12px 18px;
+            margin: 10px 0;
+            border-radius: 0 6px 6px 0;
+        }
+        .warning {
+            background: #fdedec;
+            border-left: 4px solid #e74c3c;
+            padding: 12px 18px;
+            margin: 10px 0;
+            border-radius: 0 6px 6px 0;
+        }
+        .positive {
+            color: #27ae60;
+            font-weight: bold;
+        }
+        .negative {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: #2e86c1;
+            text-decoration: none;
+            font-size: 1.1em;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+        canvas {
+            max-width: 100%;
+            height: 400px;
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back-link">← 返回索引</a>
+
+    <h1>Ingredion Incorporated</h1>
+    <p class="subtitle">NYSE: INGR | 价值投资基本面分析 | 更新日期：2026年5月11日</p>
+
+    <div class="info-box">
+        <h2>一、公司基本信息</h2>
+        <table>
+            <tr><th>项目</th><th>详情</th></tr>
+            <tr><td>公司名称</td><td>Ingredion Incorporated（宜瑞安）</td></tr>
+            <tr><td>股票代码</td><td>NYSE: INGR</td></tr>
+            <tr><td>成立时间</td><td>1906年（前身为Corn Products International）</td></tr>
+            <tr><td>总部</td><td>美国伊利诺伊州韦斯特切斯特（Westchester, IL）</td></tr>
+            <tr><td>创始人</td><td>起源于玉米加工业务，历经多次重组更名</td></tr>
+            <tr><td>上市时间</td><td>纽约证券交易所上市</td></tr>
+            <tr><td>现任CEO</td><td>Jim Zallie（董事长兼首席执行官）</td></tr>
+            <tr><td>最新收盘价</td><td>约$107.39（2026年5月8日）</td></tr>
+            <tr><td>市值</td><td>约$67.7亿美元（约¥490亿人民币）</td></tr>
+            <tr><td>市值（USD）</td><td>$6.77 Billion</td></tr>
+            <tr><td>流通股数</td><td>约6,300万股</td></tr>
+            <tr><td>52周区间</td><td>$100.71 - $138.52</td></tr>
+            <tr><td>市盈率（TTM）</td><td>约10.2x</td></tr>
+            <tr><td>市净率</td><td>约1.54x</td></tr>
+            <tr><td>市销率</td><td>约0.94x</td></tr>
+            <tr><td>企业价值（EV）</td><td>约$85亿美元</td></tr>
+            <tr><td>股息率</td><td>约3.0%</td></tr>
+            <tr><td>员工人数</td><td>约11,000人</td></tr>
+            <tr><td>行业分类</td><td>消费必需品 - 食品配料（特种淀粉与甜味剂）</td></tr>
+        </table>
+    </div>
+
+    <div class="info-box">
+        <h2>二、业务分析</h2>
+
+        <h3>2.1 公司是做什么的？</h3>
+        <p>用最简单的话说：<strong>Ingredion就是把玉米、木薯、土豆等农作物变成食品配料的公司</strong>。你吃的酸奶为什么那么丝滑？你喝的无糖饮料为什么是甜的？你吃的薯片为什么那么脆？这些口感和味道，很可能都来自Ingredion生产的淀粉、甜味剂和质构解决方案。</p>
+        <p>Ingredion的核心价值主张是：<strong>我们让食物更好吃、更健康、更有质感</strong>。公司把玉米磨成淀粉，再通过化学和物理加工，变成上千种不同的食品配料——从让汤变浓稠的改性淀粉，到让饮料变甜的天然甜味剂，再到让冰淇淋口感更顺滑的质构剂。全球超过18,000家食品饮料公司使用Ingredion的配料，覆盖120多个国家。</p>
+
+        <h3>2.2 业务板块</h3>
+        <p>Ingredion在2024年进行了业务重组（resegmentation），目前划分为以下三大板块：</p>
+        <table>
+            <tr><th>业务板块</th><th>2025年营收</th><th>占总营收比例</th><th>营业利润</th><th>营业利润率</th><th>增长趋势</th></tr>
+            <tr><td><strong>质构与健康解决方案（T&HS）</strong></td><td>约$23.4亿</td><td>约32%</td><td>$4.05亿</td><td>16.9%</td><td class="positive">营业利润增长16%，连续7个季度销量增长</td></tr>
+            <tr><td><strong>食品与工业配料—美国/加拿大</strong></td><td>约$24.5亿</td><td>约34%</td><td>$3.15亿</td><td>15.6%</td><td class="negative">营收下降7%，Argo工厂运营问题拖累</td></tr>
+            <tr><td><strong>食品与工业配料—拉美</strong></td><td>约$24.3亿</td><td>约34%</td><td>$4.93亿</td><td>21.1%</td><td class="positive">营业利润创纪录，利润率提升140bps</td></tr>
+        </table>
+        <div class="highlight">
+            <p><strong>关键洞察</strong>：Ingredion的三大板块各有特色。T&HS是增长引擎，专注于高附加值的清洁标签、植物蛋白和质构解决方案；F&II—拉美是利润冠军，利润率超过21%；F&II—美国/加拿大体量最大但正面临Argo工厂运营挑战。公司的战略方向是持续向高附加值的特种配料转型。</p>
+        </div>
+
+        <h3>2.3 地域分布</h3>
+        <table>
+            <tr><th>地区</th><th>营收占比</th><th>特点</th></tr>
+            <tr><td>北美（美国/加拿大）</td><td>约50%</td><td>最大市场，含T&HS和F&II—U.S./CAN两部分业务</td></tr>
+            <tr><td>拉丁美洲</td><td>约34%</td><td>利润率最高地区，墨西哥、巴西、阿根廷等</td></tr>
+            <tr><td>亚太地区</td><td>约10%</td><td>增长最快地区，清洁标签需求旺盛</td></tr>
+            <tr><td>欧洲/中东/非洲</td><td>约6%</td><td>新兴市场，持续拓展中</td></tr>
+        </table>
+
+        <h3>2.4 商业模式</h3>
+        <div class="highlight">
+            <p><strong>Ingredion怎么赚钱？</strong></p>
+            <p><strong>1. 特种配料销售</strong>：向食品饮料公司销售高附加值的特种淀粉、清洁标签质构剂、植物蛋白等。这些产品利润率高，客户粘性强，因为替换供应商需要重新配方和测试。</p>
+            <p><strong>2. 大宗配料销售</strong>：销售高果糖玉米糖浆（HFCS）、葡萄糖、大宗淀粉等基础配料。这部分利润率较低，但体量大，提供稳定的现金流。</p>
+            <p><strong>3. 解决方案销售</strong>：不仅卖配料，还提供配方开发、技术支持等增值服务。公司拥有30个Idea Labs创新中心，与客户共同开发新产品。</p>
+            <p><strong>4. 本地生产—本地销售模式</strong>：在全球拥有约46个生产基地，采用"当地生产、当地销售"策略，减少运输成本和供应链风险，同时快速响应客户需求。</p>
+            <p><strong>定价机制</strong>：大部分合同采用"成本加成"定价模式，即原材料成本上涨可以转嫁给客户，保护毛利率相对稳定。</p>
+        </div>
+    </div>
+
+    <div class="info-box">
+        <h2>三、历史财务指标</h2>
+
+        <h3>3.1 净资产收益率（ROE）趋势</h3>
+        <table>
+            <tr><th>年度</th><th>净利润（$M）</th><th>股东权益（$M）</th><th>ROE</th><th>说明</th></tr>
+            <tr><td>2025</td><td>729</td><td>约4,400</td><td class="positive">约17.3%</td><td>创纪录净利润</td></tr>
+            <tr><td>2024</td><td>647</td><td>3,804</td><td class="positive">17.6%</td><td>稳健增长</td></tr>
+            <tr><td>2023</td><td>643</td><td>3,538</td><td class="positive">19.2%</td><td>权益较低推高ROE</td></tr>
+            <tr><td>2022</td><td>492</td><td>3,147</td><td class="positive">15.7%</td><td>原材料成本上升</td></tr>
+            <tr><td>2021</td><td>117</td><td>3,100</td><td class="negative">3.9%</td><td>大规模重组和减值费用</td></tr>
+            <tr><td>2020</td><td>348</td><td>2,951</td><td>12.3%</td><td>COVID影响需求</td></tr>
+            <tr><td>2019</td><td>413</td><td>2,720</td><td class="positive">15.2%</td><td>正常水平</td></tr>
+            <tr><td>2018</td><td>443</td><td>约2,500</td><td>约17.7%</td><td>含减税法案影响</td></tr>
+            <tr><td>2017</td><td>519</td><td>约2,300</td><td class="positive">约22.6%</td><td>高利润率年份</td></tr>
+            <tr><td>2016</td><td>485</td><td>约2,200</td><td class="positive">约22.0%</td><td>高利润率年份</td></tr>
+            <tr><td>2015</td><td>402</td><td>约2,100</td><td>约19.1%</td><td>正常水平</td></tr>
+        </table>
+        <div class="chart-container">
+            <canvas id="roeChart"></canvas>
+        </div>
+        <div class="highlight">
+            <p><strong>ROE分析</strong>：Ingredion过去10年平均ROE约16%，表现稳健。2021年ROE骤降至3.9%，主要因为大规模重组和减值费用（$3.87亿）导致净利润大幅下降。2022-2025年ROE持续回升，2023年达到19.2%的高点。公司ROE水平在食品配料行业中属于中上水平，体现了良好的资本运用效率。</p>
+        </div>
+
+        <h3>3.2 资产负债率趋势</h3>
+        <table>
+            <tr><th>年度</th><th>总资产（$M）</th><th>总负债（$M）</th><th>股东权益（$M）</th><th>资产负债率</th></tr>
+            <tr><td>2024</td><td>7,444</td><td>3,640</td><td>3,804</td><td>48.9%</td></tr>
+            <tr><td>2023</td><td>7,642</td><td>4,104</td><td>3,538</td><td>53.7%</td></tr>
+            <tr><td>2022</td><td>7,561</td><td>4,414</td><td>3,147</td><td>58.4%</td></tr>
+            <tr><td>2021</td><td>6,999</td><td>3,899</td><td>3,100</td><td>55.7%</td></tr>
+            <tr><td>2020</td><td>6,858</td><td>3,907</td><td>2,951</td><td>57.0%</td></tr>
+            <tr><td>2019</td><td>6,040</td><td>3,320</td><td>2,720</td><td>55.0%</td></tr>
+        </table>
+        <div class="chart-container">
+            <canvas id="debtChart"></canvas>
+        </div>
+        <div class="highlight">
+            <p><strong>资产负债率分析</strong>：Ingredion的资产负债率长期维持在48%-58%之间，处于健康水平。2024年降至48.9%，为近年最低，主要因为公司偿还了部分长期债务（从2023年的$22.4亿降至$18.9亿）同时留存收益增长。公司的财务杠杆适度，利息覆盖倍数充足，财务风险较低。</p>
+        </div>
+
+        <h3>3.3 市盈率（PE）趋势</h3>
+        <table>
+            <tr><th>年度</th><th>年末股价</th><th>EPS</th><th>PE比率</th></tr>
+            <tr><td>2025</td><td>约$113</td><td>$11.18</td><td>约10.1x</td></tr>
+            <tr><td>2024</td><td>约$116</td><td>$9.71</td><td>约11.9x</td></tr>
+            <tr><td>2023</td><td>约$115</td><td>$9.60</td><td>约12.0x</td></tr>
+            <tr><td>2022</td><td>约$95</td><td>$7.34</td><td>约12.9x</td></tr>
+            <tr><td>2021</td><td>约$85</td><td>$1.73</td><td>约49.1x</td></tr>
+            <tr><td>2020</td><td>约$82</td><td>$5.15</td><td>约15.9x</td></tr>
+            <tr><td>2019</td><td>约$90</td><td>$6.13</td><td>约14.7x</td></tr>
+            <tr><td>2018</td><td>约$105</td><td>$6.17</td><td>约17.0x</td></tr>
+            <tr><td>2017</td><td>约$130</td><td>$7.06</td><td>约18.4x</td></tr>
+            <tr><td>2016</td><td>约$120</td><td>$6.55</td><td>约18.3x</td></tr>
+            <tr><td>2015</td><td>约$85</td><td>$5.51</td><td>约15.4x</td></tr>
+        </table>
+        <div class="chart-container">
+            <canvas id="peChart"></canvas>
+        </div>
+        <div class="highlight">
+            <p><strong>估值分析</strong>：INGR过去10年平均PE约17x（剔除2021年异常值后约14.5x）。当前PE约10x，显著低于历史均值，处于近10年最低水平。这主要反映市场对以下担忧：(1) Argo工厂运营问题的持续影响；(2) 大宗配料需求走弱；(3) 2026年Q1业绩不及预期导致股价跌至52周低点。但考虑到公司稳健的现金流、持续增长的特种配料业务和合理的股息率，当前估值具有吸引力。</p>
+        </div>
+
+        <h3>3.4 产权比率（总资产/股东权益）趋势</h3>
+        <table>
+            <tr><th>年度</th><th>产权比率</th><th>说明</th></tr>
+            <tr><td>2024</td><td>1.96x</td><td>健康水平</td></tr>
+            <tr><td>2023</td><td>2.16x</td><td>健康水平</td></tr>
+            <tr><td>2022</td><td>2.40x</td><td>适中</td></tr>
+            <tr><td>2021</td><td>2.26x</td><td>适中</td></tr>
+            <tr><td>2020</td><td>2.32x</td><td>适中</td></tr>
+            <tr><td>2019</td><td>2.22x</td><td>适中</td></tr>
+        </table>
+        <div class="chart-container">
+            <canvas id="equityRatioChart"></canvas>
+        </div>
+
+        <h3>3.5 营收与净利润趋势</h3>
+        <table>
+            <tr><th>年度</th><th>营收（$M）</th><th>同比增长</th><th>净利润（$M）</th><th>净利润率</th><th>EPS</th></tr>
+            <tr><td>2025</td><td>7,219</td><td class="negative">-2.8%</td><td>729</td><td class="positive">10.1%</td><td>$11.18</td></tr>
+            <tr><td>2024</td><td>7,430</td><td class="negative">-9.0%</td><td>647</td><td>8.7%</td><td>$9.71</td></tr>
+            <tr><td>2023</td><td>8,160</td><td class="positive">+2.7%</td><td>643</td><td>7.9%</td><td>$9.60</td></tr>
+            <tr><td>2022</td><td>7,946</td><td class="positive">+15.3%</td><td>492</td><td>6.2%</td><td>$7.34</td></tr>
+            <tr><td>2021</td><td>6,894</td><td class="positive">+15.2%</td><td>117</td><td class="negative">1.7%</td><td>$1.73</td></tr>
+            <tr><td>2020</td><td>5,987</td><td class="negative">-3.6%</td><td>348</td><td>5.8%</td><td>$5.15</td></tr>
+            <tr><td>2019</td><td>6,209</td><td class="negative">-1.3%</td><td>413</td><td>6.7%</td><td>$6.13</td></tr>
+            <tr><td>2018</td><td>6,289</td><td class="positive">+0.7%</td><td>443</td><td>7.0%</td><td>$6.17</td></tr>
+            <tr><td>2017</td><td>6,244</td><td class="positive">+9.5%</td><td>519</td><td>8.3%</td><td>$7.06</td></tr>
+            <tr><td>2016</td><td>5,704</td><td class="positive">+1.5%</td><td>485</td><td>8.5%</td><td>$6.55</td></tr>
+            <tr><td>2015</td><td>5,621</td><td class="negative">-0.8%</td><td>402</td><td>7.2%</td><td>$5.51</td></tr>
+        </table>
+        <div class="chart-container">
+            <canvas id="revenueChart"></canvas>
+        </div>
+        <div class="highlight">
+            <p><strong>营收趋势分析</strong>：Ingredion过去10年营收从$56亿增长至$72亿，年复合增长率约2.5%，属于低增长特征。营收波动主要受原材料价格传导影响——2021-2022年营收大幅增长（+15%）主要因为玉米等原材料涨价推高了产品售价，而非真实需求增长。2023-2025年原材料价格回落，营收相应下降。剔除价格因素后，公司实际销量增长更为温和。值得注意的是，净利润率从2021年的1.7%大幅提升至2025年的10.1%，体现了公司向高附加值产品转型的成效。</p>
+        </div>
+    </div>
+
+    <div class="info-box">
+        <h2>四、竞争分析与护城河</h2>
+
+        <h3>4.1 主要竞争对手</h3>
+        <table>
+            <tr><th>竞争对手</th><th>竞争领域</th><th>特种配料市场份额</th><th>优势</th></tr>
+            <tr><td><strong>ADM（阿彻丹尼尔斯米德兰）</strong></td><td>植物蛋白、甜味剂、淀粉</td><td>约10.5%</td><td>全球最大农产品加工商，垂直整合，规模优势显著</td></tr>
+            <tr><td><strong>Cargill（嘉吉）</strong></td><td>质构剂、甜味剂、特种油脂</td><td>约9.2%</td><td>全球最大私人公司，供应链网络庞大</td></tr>
+            <tr><td><strong>Ingredion（宜瑞安）</strong></td><td>清洁标签淀粉、特种甜味剂</td><td>约6.7%</td><td>清洁标签领域领先，客户粘性强</td></tr>
+            <tr><td><strong>Tate & Lyle（泰特利尔）</strong></td><td>高强度甜味剂、膳食纤维</td><td>约5.3%</td><td>甜味剂技术领先，专注特种配料</td></tr>
+            <tr><td><strong>Kerry Group（凯爱瑞）</strong></td><td>口味系统、质构解决方案</td><td>约4.6%</td><td>全球口味解决方案领导者</td></tr>
+            <tr><td><strong>Roquette（罗盖特）</strong></td><td>植物蛋白、淀粉</td><td>约3%</td><td>欧洲领先的植物蛋白供应商</td></tr>
+        </table>
+
+        <h3>4.2 竞争优势分析</h3>
+        <div class="moat-item">
+            <p><strong>1. 清洁标签领域的绝对领先地位</strong>：Ingredion在清洁标签质构剂市场的规模约为最接近竞争对手的3倍。消费者对"标签上看得懂的配料"需求持续增长，这是一个价值$1,450亿且快速扩张的市场。Ingredion拥有专有技术、专利和多年配方经验构筑的竞争壁垒。</p>
+        </div>
+        <div class="moat-item">
+            <p><strong>2. 本地生产—本地销售网络</strong>：全球约46个生产基地分布在各大洲，采用"当地生产、当地销售"模式。这减少了运输成本和供应链风险，同时能快速响应客户需求。这种模式也降低了关税和贸易壁垒的影响。</p>
+        </div>
+        <div class="moat-item">
+            <p><strong>3. 客户粘性与转换成本</strong>：食品配方的更换是一个复杂且昂贵的过程。客户一旦选择了Ingredion的配料方案，更换供应商需要重新配方、重新测试、重新获得监管审批，转换成本很高。公司拥有30个Idea Labs与客户共同开发产品，进一步加深了合作关系。</p>
+        </div>
+        <div class="moat-item">
+            <p><strong>4. 产品组合广度</strong>：拥有超过1,000种解决方案和1,800项活跃专利，覆盖淀粉、甜味剂、质构剂、植物蛋白等多个品类。这种广度使Ingredion能提供"一站式"配料解决方案，而竞争对手往往只专注某一品类。</p>
+        </div>
+        <div class="moat-item">
+            <p><strong>5. 规模经济与成本优势</strong>：作为全球最大的特种淀粉生产商之一，Ingredion在原材料采购、生产效率和物流方面享有规模优势。Cost2Compete计划在2025年实现了$5,900万的运行率节约，超过$5,000万目标。</p>
+        </div>
+
+        <h3>4.3 护城河评估</h3>
+        <table>
+            <tr><th>护城河类型</th><th>强度</th><th>评估</th></tr>
+            <tr><td>品牌力</td><td>★★★☆☆</td><td>B2B品牌，终端消费者认知度低，但在食品行业内享有良好声誉</td></tr>
+            <tr><td>成本优势</td><td>★★★★☆</td><td>本地生产模式+规模采购+成本节约计划，毛利率25%高于ADM的约14%</td></tr>
+            <tr><td>网络效应</td><td>★★☆☆☆</td><td>不明显，但Idea Labs网络增强了客户粘性</td></tr>
+            <tr><td>专利/知识产权</td><td>★★★★☆</td><td>1,800项活跃专利，清洁标签技术壁垒高</td></tr>
+            <tr><td>转换成本</td><td>★★★★☆</td><td>食品配方更换成本高，客户关系长期稳定</td></tr>
+            <tr><td>规模优势</td><td>★★★★☆</td><td>46个全球工厂，服务18,000+客户，120+国家覆盖</td></tr>
+        </table>
+        <div class="highlight">
+            <p><strong>护城河总结</strong>：Ingredion拥有中等偏强的经济护城河，主要体现在转换成本、专利/知识产权和规模优势三个方面。清洁标签领域的领先地位是公司最核心的竞争优势。与ADM和Cargill等大宗商品型竞争对手相比，Ingredion更专注于特种配料，毛利率和营业利润率显著更高（营业利润率14% vs ADM约3%），业务模式更加稳定。</p>
+        </div>
+
+        <h3>4.4 竞争风险</h3>
+        <div class="warning">
+            <p><strong>主要竞争风险</strong>：</p>
+            <p><strong>1. 大宗商品价格波动</strong>：玉米是主要原材料，价格受天气、政策、能源价格等多重因素影响。虽然公司采用成本加成定价模式可以部分转嫁，但短期内仍可能影响利润率。</p>
+            <p><strong>2. 大客户议价能力</strong>：食品饮料行业集中度高，大客户（如雀巢、可口可乐）具有较强的议价能力，可能压缩Ingredion的利润空间。</p>
+            <p><strong>3. 替代技术威胁</strong>：精密发酵、细胞培养等新技术可能在未来提供替代方案，降低对传统植物提取配料的依赖。</p>
+            <p><strong>4. 运营风险</strong>：Argo工厂火灾及持续运营问题在2025年造成约$4,000万的负面影响，暴露了单一工厂依赖的风险。</p>
+        </div>
+    </div>
+
+    <div class="info-box">
+        <h2>五、利润分配分析（近十年）</h2>
+
+        <h3>5.1 利润分配明细</h3>
+        <table>
+            <tr><th>年度</th><th>净利润（$M）</th><th>股息（$M）</th><th>股息支付率</th><th>回购（$M）</th><th>资本支出（$M）</th><th>债务变化（$M）</th><th>留存收益（$M）</th></tr>
+            <tr><td>2025</td><td>729</td><td>约211</td><td>29.0%</td><td>224</td><td>约400</td><td>约-350</td><td>约294</td></tr>
+            <tr><td>2024</td><td>647</td><td>约207</td><td>32.0%</td><td>约0</td><td>约350</td><td>约-350</td><td>约440</td></tr>
+            <tr><td>2023</td><td>643</td><td>约196</td><td>30.5%</td><td>约0</td><td>约300</td><td>约-290</td><td>约347</td></tr>
+            <tr><td>2022</td><td>492</td><td>约178</td><td>36.2%</td><td>149</td><td>约280</td><td>约440</td><td>约165</td></tr>
+            <tr><td>2021</td><td>117</td><td>约172</td><td class="negative">149.1%</td><td>49</td><td>约250</td><td>约-140</td><td class="negative">约-254</td></tr>
+            <tr><td>2020</td><td>348</td><td>约170</td><td>48.8%</td><td>0</td><td>约230</td><td>约340</td><td>约-392</td></tr>
+            <tr><td>2019</td><td>413</td><td>约167</td><td>40.4%</td><td>0</td><td>约220</td><td>约-340</td><td>约246</td></tr>
+            <tr><td>2018</td><td>443</td><td>约164</td><td>37.0%</td><td>656</td><td>约210</td><td>约-200</td><td class="negative">约-787</td></tr>
+            <tr><td>2017</td><td>519</td><td>约158</td><td>30.4%</td><td>114</td><td>约200</td><td>约350</td><td>约-303</td></tr>
+            <tr><td>2016</td><td>485</td><td>约137</td><td>28.2%</td><td>0</td><td>约190</td><td>约-100</td><td>约158</td></tr>
+        </table>
+        <div class="chart-container">
+            <canvas id="profitAllocationChart"></canvas>
+        </div>
+
+        <h3>5.2 股息历史</h3>
+        <table>
+            <tr><th>年度</th><th>每股股息</th><th>同比增长</th><th>股息率</th></tr>
+            <tr><td>2025</td><td>$3.24</td><td class="positive">+2.5%</td><td>约3.0%</td></tr>
+            <tr><td>2024</td><td>$3.16</td><td class="positive">+6.0%</td><td>约2.7%</td></tr>
+            <tr><td>2023</td><td>$2.98</td><td class="positive">+9.6%</td><td>约2.6%</td></tr>
+            <tr><td>2022</td><td>$2.72</td><td class="positive">+5.4%</td><td>约2.9%</td></tr>
+            <tr><td>2021</td><td>$2.58</td><td class="positive">+1.6%</td><td>约3.0%</td></tr>
+            <tr><td>2020</td><td>$2.54</td><td class="positive">+1.2%</td><td>约3.1%</td></tr>
+            <tr><td>2019</td><td>$2.51</td><td class="positive">+2.4%</td><td>约2.8%</td></tr>
+            <tr><td>2018</td><td>$2.45</td><td class="positive">+11.4%</td><td>约2.3%</td></tr>
+            <tr><td>2017</td><td>$2.20</td><td class="positive">+15.8%</td><td>约1.7%</td></tr>
+            <tr><td>2016</td><td>$1.90</td><td class="positive">+9.2%</td><td>约1.6%</td></tr>
+        </table>
+        <div class="highlight">
+            <p><strong>股息分析</strong>：Ingredion连续10年以上持续增加股息，每股股息从2016年的$1.90增长至2025年的$3.24，年复合增长率约6.1%。股息支付率通常维持在28%-40%的健康区间（2021年因净利润异常低而飙升至149%除外）。当前股息率约3.0%，在消费必需品板块中属于中等水平。公司对股东回报的态度积极且可持续。</p>
+        </div>
+
+        <h3>5.3 资本配置评估</h3>
+        <div class="highlight">
+            <p><strong>管理层资本配置评价</strong>：</p>
+            <p><strong>优点</strong>：</p>
+            <p>1. <strong>股息持续增长</strong>：连续10年+提升股息，支付率控制在合理范围。</p>
+            <p>2. <strong>审慎的回购策略</strong>：不像某些公司激进回购，Ingredion在股价低估时才加大回购力度（如2018年回购$6.56亿），2025年回购$2.24亿。</p>
+            <p>3. <strong>战略性资本支出</strong>：持续投资特种配料产能扩张（如印第安纳波利斯工厂现代化、Belcamp设施扩建），支持长期增长。</p>
+            <p>4. <strong>债务管理审慎</strong>：2024-2025年持续偿还债务，总债务从2022年的$25.3亿降至2025年的$18亿，资产负债率降至48.9%。</p>
+            <p><strong>不足</strong>：</p>
+            <p>1. <strong>2018年大规模回购时机欠佳</strong>：当年回购$6.56亿，但股价处于相对高位，随后2019-2020年股价下跌。</p>
+            <p>2. <strong>2021年净利润不足以覆盖股息</strong>：当年净利润仅$1.17亿，但支付了$1.72亿股息，动用了留存收益。</p>
+        </div>
+    </div>
+
+    <div class="info-box">
+        <h2>六、投资结论</h2>
+
+        <h3>6.1 估值分析</h3>
+        <table>
+            <tr><th>估值指标</th><th>当前值</th><th>5年均值</th><th>评估</th></tr>
+            <tr><td>PE（TTM）</td><td>约10.2x</td><td>约14.5x</td><td class="positive">显著低于均值</td></tr>
+            <tr><td>PB</td><td>约1.54x</td><td>约2.0x</td><td class="positive">低于均值</td></tr>
+            <tr><td>PS</td><td>约0.94x</td><td>约1.1x</td><td class="positive">低于均值</td></tr>
+            <tr><td>EV/EBITDA</td><td>约7.2x</td><td>约9.5x</td><td class="positive">低于均值</td></tr>
+            <tr><td>股息率</td><td>约3.0%</td><td>约2.5%</td><td class="positive">高于均值</td></tr>
+            <tr><td>自由现金流收益率</td><td>约8.5%</td><td>约5.5%</td><td class="positive">显著高于均值</td></tr>
+        </table>
+
+        <h3>6.2 内在价值估算</h3>
+        <div class="highlight">
+            <p><strong>基于多种方法的估值</strong>：</p>
+            <p><strong>1. PE估值法</strong>：2025年调整后EPS $11.13，给予行业合理PE 13-15x，内在价值约$145-$167。</p>
+            <p><strong>2. DCF估值法</strong>：假设未来5年自由现金流年均增长3-5%，终端增长率2.5%，折现率9%，内在价值约$130-$155。</p>
+            <p><strong>3. 股息折现模型</strong>：当前股息$3.28，假设5%长期增长率，10%要求回报率，内在价值约$65。但考虑到公司持续提升股息和回购，实际股东回报远高于股息。</p>
+            <p><strong>综合内在价值区间：$130-$155</strong>，当前股价$107存在约20-40%的安全边际。</p>
+        </div>
+
+        <h3>6.3 投资评级</h3>
+        <div class="moat-item">
+            <p><strong>评级：买入（谨慎）</strong></p>
+            <p><strong>理由</strong>：</p>
+            <p>1. <strong>估值具有吸引力</strong>：PE约10x处于近10年最低水平，自由现金流收益率超过8%。</p>
+            <p>2. <strong>护城河稳固</strong>：清洁标签领域的绝对领先地位、高客户转换成本、1,800项专利构成坚实壁垒。</p>
+            <p>3. <strong>业务转型见效</strong>：从大宗配料向特种配料转型，毛利率从2020年的21.2%提升至2025年的25.3%。</p>
+            <p>4. <strong>现金流强劲</strong>：2025年经营现金流$9.44亿，支持股息增长、适度回购和产能投资。</p>
+            <p>5. <strong>资产负债表健康</strong>：资产负债率降至48.9%，债务持续减少。</p>
+        </div>
+        <div class="warning">
+            <p><strong>风险提示</strong>：</p>
+            <p>1. <strong>Argo工厂运营风险</strong>：2025年造成$4,000万负面影响，2026年Q1继续拖累业绩，恢复时间不确定。</p>
+            <p>2. <strong>大宗配料需求走弱</strong>：罐装饮料零售价格上涨导致甜味剂需求下降，可能持续。</p>
+            <p>3. <strong>拉美宏观经济风险</strong>：巴西、墨西哥通胀和利率高企，消费者支出疲软。</p>
+            <p>4. <strong>原材料价格波动</strong>：玉米价格受天气和政策影响，可能压缩利润率。</p>
+            <p>5. <strong>2026年指引下调</strong>：公司已将2026年调整后EPS指引下调至$10.45-$11.15，反映短期压力。</p>
+        </div>
+
+        <h3>6.4 适合的投资者类型</h3>
+        <div class="highlight">
+            <p>Ingredion适合追求<strong>稳定收益+适度增长</strong>的价值投资者。公司不是高增长股票，但提供了合理的股息收益率（3%）、稳健的现金流和明确的竞争优势。如果你认同巴菲特"以合理价格买入优秀公司"的理念，Ingredion在当前估值水平下值得考虑。关键催化剂包括Argo工厂运营恢复、清洁标签需求持续增长、以及2026年下半年业绩改善。</p>
+        </div>
+    </div>
+
+    <script>
+        const chartDefaults = {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    display: false
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: false,
+                    grid: {
+                        color: '#e0e0e0'
+                    }
+                },
+                x: {
+                    grid: {
+                        display: false
+                    }
+                }
+            }
+        };
+
+        new Chart(document.getElementById('roeChart'), {
+            type: 'line',
+            data: {
+                labels: ['2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025'],
+                datasets: [{
+                    label: 'ROE (%)',
+                    data: [19.1, 22.0, 22.6, 17.7, 15.2, 12.3, 3.9, 15.7, 19.2, 17.6, 17.3],
+                    borderColor: '#2e86c1',
+                    backgroundColor: 'rgba(46, 134, 193, 0.1)',
+                    fill: true,
+                    tension: 0.3,
+                    pointRadius: 5,
+                    pointBackgroundColor: '#2e86c1'
+                }]
+            },
+            options: {
+                ...chartDefaults,
+                plugins: {
+                    ...chartDefaults.plugins,
+                    title: {
+                        display: true,
+                        text: '净资产收益率（ROE）趋势',
+                        font: { size: 16 }
+                    }
+                }
+            }
+        });
+
+        new Chart(document.getElementById('debtChart'), {
+            type: 'bar',
+            data: {
+                labels: ['2019', '2020', '2021', '2022', '2023', '2024'],
+                datasets: [{
+                    label: '资产负债率 (%)',
+                    data: [55.0, 57.0, 55.7, 58.4, 53.7, 48.9],
+                    backgroundColor: 'rgba(231, 76, 60, 0.7)',
+                    borderColor: '#e74c3c',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                ...chartDefaults,
+                plugins: {
+                    ...chartDefaults.plugins,
+                    title: {
+                        display: true,
+                        text: '资产负债率趋势',
+                        font: { size: 16 }
+                    }
+                }
+            }
+        });
+
+        new Chart(document.getElementById('peChart'), {
+            type: 'line',
+            data: {
+                labels: ['2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025'],
+                datasets: [{
+                    label: 'PE比率',
+                    data: [15.4, 18.3, 18.4, 17.0, 14.7, 15.9, 49.1, 12.9, 12.0, 11.9, 10.1],
+                    borderColor: '#27ae60',
+                    backgroundColor: 'rgba(39, 174, 96, 0.1)',
+                    fill: true,
+                    tension: 0.3,
+                    pointRadius: 5,
+                    pointBackgroundColor: '#27ae60'
+                }]
+            },
+            options: {
+                ...chartDefaults,
+                plugins: {
+                    ...chartDefaults.plugins,
+                    title: {
+                        display: true,
+                        text: '市盈率（PE）趋势（注：2021年因低净利润PE异常偏高）',
+                        font: { size: 16 }
+                    }
+                }
+            }
+        });
+
+        new Chart(document.getElementById('equityRatioChart'), {
+            type: 'bar',
+            data: {
+                labels: ['2019', '2020', '2021', '2022', '2023', '2024'],
+                datasets: [{
+                    label: '产权比率 (x)',
+                    data: [2.22, 2.32, 2.26, 2.40, 2.16, 1.96],
+                    backgroundColor: 'rgba(142, 68, 173, 0.7)',
+                    borderColor: '#8e44ad',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                ...chartDefaults,
+                plugins: {
+                    ...chartDefaults.plugins,
+                    title: {
+                        display: true,
+                        text: '产权比率（总资产/股东权益）趋势',
+                        font: { size: 16 }
+                    }
+                }
+            }
+        });
+
+        new Chart(document.getElementById('revenueChart'), {
+            type: 'bar',
+            data: {
+                labels: ['2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025'],
+                datasets: [
+                    {
+                        label: '营收 ($M)',
+                        data: [5621, 5704, 6244, 6289, 6209, 5987, 6894, 7946, 8160, 7430, 7219],
+                        backgroundColor: 'rgba(46, 134, 193, 0.7)',
+                        borderColor: '#2e86c1',
+                        borderWidth: 1,
+                        yAxisID: 'y'
+                    },
+                    {
+                        label: '净利润 ($M)',
+                        data: [402, 485, 519, 443, 413, 348, 117, 492, 643, 647, 729],
+                        type: 'line',
+                        borderColor: '#e74c3c',
+                        backgroundColor: 'rgba(231, 76, 60, 0.1)',
+                        fill: true,
+                        tension: 0.3,
+                        pointRadius: 5,
+                        pointBackgroundColor: '#e74c3c',
+                        yAxisID: 'y1'
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: '营收与净利润趋势',
+                        font: { size: 16 }
+                    },
+                    legend: {
+                        display: true
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        position: 'left',
+                        title: {
+                            display: true,
+                            text: '营收 ($M)'
+                        },
+                        grid: { color: '#e0e0e0' }
+                    },
+                    y1: {
+                        beginAtZero: true,
+                        position: 'right',
+                        title: {
+                            display: true,
+                            text: '净利润 ($M)'
+                        },
+                        grid: { display: false }
+                    },
+                    x: {
+                        grid: { display: false }
+                    }
+                }
+            }
+        });
+
+        new Chart(document.getElementById('profitAllocationChart'), {
+            type: 'bar',
+            data: {
+                labels: ['2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025'],
+                datasets: [
+                    {
+                        label: '股息',
+                        data: [137, 158, 164, 167, 170, 172, 178, 196, 207, 211],
+                        backgroundColor: '#2e86c1',
+                        stack: 'allocation'
+                    },
+                    {
+                        label: '回购',
+                        data: [0, 114, 656, 0, 0, 49, 149, 0, 0, 224],
+                        backgroundColor: '#27ae60',
+                        stack: 'allocation'
+                    },
+                    {
+                        label: '资本支出',
+                        data: [190, 200, 210, 220, 230, 250, 280, 300, 350, 400],
+                        backgroundColor: '#f39c12',
+                        stack: 'allocation'
+                    },
+                    {
+                        label: '债务偿还(净)',
+                        data: [100, -350, 200, 340, -340, 140, -440, 290, 350, 350],
+                        backgroundColor: '#e74c3c',
+                        stack: 'allocation'
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: '利润分配分析（近十年）',
+                        font: { size: 16 }
+                    },
+                    legend: {
+                        display: true
+                    }
+                },
+                scales: {
+                    y: {
+                        stacked: false,
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: '金额 ($M)'
+                        },
+                        grid: { color: '#e0e0e0' }
+                    },
+                    x: {
+                        grid: { display: false }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
