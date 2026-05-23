@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DXCM (DexCom) 详细分析</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f5f5f5;
+        }
+        h1 {
+            text-align: center;
+            color: #1a237e;
+        }
+        h2 {
+            color: #1a237e;
+            margin-top: 30px;
+        }
+        h3 {
+            color: #333;
+            margin-top: 20px;
+        }
+        .info-box {
+            background-color: white;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border-radius: 5px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #1a237e;
+            color: white;
+        }
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+        a {
+            color: #1a237e;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .chart-container {
+            background-color: white;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border-radius: 5px;
+        }
+        .highlight {
+            background-color: #e8eaf6;
+            padding: 15px;
+            border-left: 4px solid #1a237e;
+            margin: 15px 0;
+        }
+        .risk-box {
+            background-color: #fff3e0;
+            padding: 15px;
+            border-left: 4px solid #e65100;
+            margin: 15px 0;
+        }
+        .moat-box {
+            background-color: #e8f5e9;
+            padding: 15px;
+            border-left: 4px solid #2e7d32;
+            margin: 15px 0;
+        }
+        .back-link {
+            text-align: center;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="back-link"><a href="index.html">← 返回美股分析索引</a></div>
+    <h1>DXCM — DexCom, Inc.（德康医疗）价值投资分析</h1>
+
+    <div class="info-box">
+        <h2>一、公司基本信息</h2>
+        <table>
+            <tr><th>项目</th><th>详情</th></tr>
+            <tr><td>公司全称</td><td>DexCom, Inc.</td></tr>
+            <tr><td>股票代码</td><td>NASDAQ: DXCM</td></tr>
+            <tr><td>上市交易所</td><td>纳斯达克（NASDAQ）</td></tr>
+            <tr><td>成立时间</td><td>1999年</td></tr>
+            <tr><td>总部</td><td>美国加利福尼亚州圣迭戈</td></tr>
+            <tr><td>市值（2026.5）</td><td>~$278亿美元（约2,000亿人民币）</td></tr>
+            <tr><td>最新收盘价</td><td>~$72.10（2026.5.22）</td></tr>
+            <tr><td>行业</td><td>医疗设备——持续葡萄糖监测（CGM）</td></tr>
+            <tr><td>CEO</td><td>Jake Leach（2026年1月1日上任）；前任Kevin Sayer（2015-2025）</td></tr>
+            <tr><td>员工人数</td><td>~11,100人</td></tr>
+            <tr><td>投资评级</td><td>Moody's Baa1（投资级，展望稳定）</td></tr>
+        </table>
+    </div>
+
+    <div class="info-box">
+        <h2>二、业务分析</h2>
+
+        <h3>2.1 公司做什么（大白话）</h3>
+        <div class="highlight">
+            <p>想象你是一个糖尿病患者，每天需要扎手指测血糖——一天扎4-8次，每次都疼，而且只能看到"此刻"的血糖值，看不到趋势。DexCom做的事情很简单：给你贴一个硬币大小的传感器在肚皮上，每5分钟自动测一次血糖，数据直接传到手机上，血糖高了低了还会报警。不用扎手指，24小时不间断——这就是"持续葡萄糖监测"（CGM）。</p>
+            <p>DexCom是全球CGM行业的两大巨头之一（另一个是雅培的FreeStyle Libre）。它的核心产品G7传感器只有硬币大小，佩戴15天，准确度很高（MARD 8.2%——数字越低越准）。2024年，DexCom还推出了Stelo——全球首款非处方（OTC）CGM产品，不需要处方就能买，专门面向不需要胰岛素的2型糖尿病患者和健康人群。这就像把血糖监测从"医疗行为"变成了"日常健康管理"——市场一下子从几百万人扩展到了上亿人。</p>
+        </div>
+
+        <h3>2.2 主要产品线</h3>
+        <table>
+            <tr><th>产品</th><th>目标人群</th><th>佩戴天数</th><th>是否需处方</th><th>2025状态</th><th>特点</th></tr>
+            <tr><td>DexCom G7</td><td>1型/2型胰岛素依赖糖尿病患者</td><td>10天</td><td>是</td><td>主力产品</td><td>全球最小最薄CGM；MARD 8.2%；60分钟预热</td></tr>
+            <tr><td>DexCom G7 15 Day</td><td>1型/2型胰岛素依赖糖尿病患者</td><td>15天</td><td>是</td><td>2025年获FDA批准</td><td>行业最长佩戴时间；MARD 8.5%；降低50%更换频率</td></tr>
+            <tr><td>Stelo</td><td>2型非胰岛素用户/健康人群</td><td>15天</td><td>否（OTC）</td><td>2024年8月上市</td><td>全球首款OTC CGM；月费$89-99；无需处方</td></tr>
+            <tr><td>DexCom ONE+</td><td>国际市场入门级</td><td>7天</td><td>是</td><td>欧洲/新兴市场</td><td>成本优化版；拓展国际市场渗透率</td></tr>
+            <tr><td>DexCom Clarity</td><td>所有用户</td><td>-</td><td>-</td><td>软件平台</td><td>数据分析平台；与EHR系统对接；远程监护</td></tr>
+        </table>
+
+        <h3>2.3 收入按产品/服务分布</h3>
+        <table>
+            <tr><th>类别</th><th>2025营收($M)</th><th>占比</th><th>说明</th></tr>
+            <tr><td>传感器及其他耗材</td><td>≈4,475</td><td>~96%</td><td>核心收入来源；高毛利经常性收入；用户粘性极强</td></tr>
+            <tr><td>硬件（发射器/接收器）</td><td>≈187</td><td>~4%</td><td>一次性购买；低毛利；逐步被手机替代</td></tr>
+            <tr><td>合计</td><td>4,662</td><td>100%</td><td>2025年同比增长16%</td></tr>
+        </table>
+
+        <h3>2.4 收入按地区分布</h3>
+        <table>
+            <tr><th>地区</th><th>2025营收占比</th><th>增长趋势</th><th>说明</th></tr>
+            <tr><td>美国</td><td>~72%</td><td>稳健增长</td><td>最大市场；Medicare覆盖扩大；Stelo开辟OTC新市场</td></tr>
+            <tr><td>国际（非美国）</td><td>~28%</td><td>快速增长</td><td>欧洲/中东/非洲/亚太；ONE+拓展新兴市场；国际渗透率远低于美国</td></tr>
+        </table>
+
+        <h3>2.5 商业模式</h3>
+        <div class="highlight">
+            <p><strong>收入来源：</strong>96%来自传感器耗材——这是"剃须刀+刀片"模式的医疗版。用户一旦开始使用DexCom CGM，就需要持续购买传感器（每10-15天换一次），形成高度可预测的经常性收入。2025年全球用户约300万+，平均每用户每年贡献约$1,500收入。</p>
+            <p><strong>盈利公式：</strong>利润 = (传感器单价 - 制造成本) × 用户数 × 年更换次数。传感器毛利率约65%，制造规模效应显著。用户增长是核心驱动力——每增加1万用户，年增收约$1,500万。</p>
+            <p><strong>资本密集度：</strong>中等。2025年CapEx $3.64亿，占营收7.8%——主要用于产能扩张（亚利桑那新工厂）和研发设施。相比传统医疗设备，CGM的制造相对轻资产。</p>
+            <p><strong>周期性：</strong>弱周期。糖尿病是慢性病，患者需求不受经济周期影响。但Medicare/保险报销政策变化可能影响短期需求。</p>
+        </div>
+
+        <div class="chart-container">
+            <canvas id="revenueChart" height="100"></canvas>
+        </div>
+    </div>
+
+    <div class="info-box">
+        <h2>三、历史财务指标</h2>
+
+        <h3>3.1 净资产收益率（ROE）</h3>
+        <table>
+            <tr><th>年份</th><th>2016</th><th>2017</th><th>2018</th><th>2019</th><th>2020</th><th>2021</th><th>2022</th><th>2023</th><th>2024</th><th>2025</th></tr>
+            <tr><td>ROE</td><td>-25.4%</td><td>-13.9%</td><td>-19.2%</td><td>11.5%</td><td>27.0%</td><td>11.2%</td><td>16.4%</td><td>25.8%</td><td>27.6%</td><td>34.5%</td></tr>
+        </table>
+        <div class="highlight">
+            <p><strong>ROE分析：</strong>DXCM的ROE经历了从"深度亏损"到"高盈利"的完整转型——2016-2018年连续亏损（ROE为负），2019年首次全年盈利，2020年ROE飙升至27%（受益于疫情居家监测需求），2021年回落至11.2%（因研发投入加大+股权激励费用），2022-2025年持续攀升至34.5%。</p>
+            <p><strong>10年平均ROE（盈利年份）：~21.9%</strong>——远超巴菲特的15%+标准。2025年ROE 34.5%是历史最高，反映了极强的盈利能力和杠杆效应。但需注意：DXCM的ROE部分被高权益乘数放大（2024年3.08x），如果去杠杆，"纯经营ROA"约为9%。</p>
+            <p><strong>ROE杜邦分解（2025年）：</strong>净利率17.9% × 资产周转率0.74 × 权益乘数2.31 = 30.6%（与34.5%的差异来自非经常性项目）。净利率持续提升是核心驱动力。</p>
+        </div>
+
+        <h3>3.2 负债比率</h3>
+        <table>
+            <tr><th>年份</th><th>2016</th><th>2017</th><th>2018</th><th>2019</th><th>2020</th><th>2021</th><th>2022</th><th>2023</th><th>2024</th><th>2025</th></tr>
+            <tr><td>负债/资产</td><td>≈45%</td><td>≈48%</td><td>≈52%</td><td>≈50%</td><td>≈55%</td><td>58.6%</td><td>60.5%</td><td>67.0%</td><td>67.6%</td><td>56.7%</td></tr>
+            <tr><td>权益乘数</td><td>1.82</td><td>1.92</td><td>2.08</td><td>2.00</td><td>2.22</td><td>2.42</td><td>2.53</td><td>3.03</td><td>3.08</td><td>2.31</td></tr>
+        </table>
+        <div class="highlight">
+            <p><strong>负债趋势：</strong>DXCM的负债率经历了"先升后降"的过程——2016-2024年持续上升（从45%升至67.6%），主要因为可转换优先票据发行（公司利用低利率环境大量融资）。2025年负债率大幅下降至56.7%，主要因为偿还了约$11.4亿债务（总债务从$25.3亿降至$13.9亿）。</p>
+            <p><strong>债务结构：</strong>DXCM的债务主要是可转换优先票据——2025年剩余约$13.9亿，包括2026年到期$11.5亿和2028年到期$2.4亿。可转换票据的利率很低（0-2%），但存在转股稀释风险。2025年公司用现金偿还了大量到期票据，而非让持有人转股——这是保护现有股东的选择。</p>
+            <p><strong>巴菲特视角：</strong>2025年的大幅去杠杆是积极信号——管理层在利率上升环境中选择偿债而非再融资。但67.6%的峰值负债率（2024年）对医疗设备公司来说偏高。当前56.7%仍高于巴菲特偏好的50%以下水平，但趋势向好。</p>
+        </div>
+
+        <h3>3.3 市盈率（PE）</h3>
+        <table>
+            <tr><th>年份</th><th>2016</th><th>2017</th><th>2018</th><th>2019</th><th>2020</th><th>2021</th><th>2022</th><th>2023</th><th>2024</th><th>2025</th></tr>
+            <tr><td>PE</td><td>N/A</td><td>N/A</td><td>N/A</td><td>≈201</td><td>≈63</td><td>≈254</td><td>≈129</td><td>≈88</td><td>≈53</td><td>≈31</td></tr>
+        </table>
+        <div class="highlight">
+            <p><strong>PE分析：</strong>DXCM的PE经历了从"天价"到"合理"的估值回归——2019年首次盈利时PE高达201x（利润基数极小），2021年PE 254x（利润被研发费用和股权激励压缩），2022-2025年随着利润快速增长，PE从129x降至31x。当前PE约31x，是历史最低水平。</p>
+            <p><strong>估值压缩原因：</strong>①2024年Q1业绩不及预期导致股价暴跌40%；②市场对CGM竞争加剧的担忧；③Medicare报销政策不确定性；④Stelo OTC产品初期销售低于预期。这些因素共同导致DXCM从"高增长溢价"回归到"合理成长股估值"。</p>
+        </div>
+
+        <div class="chart-container">
+            <canvas id="roeChart" height="100"></canvas>
+        </div>
+        <div class="chart-container">
+            <canvas id="debtChart" height="100"></canvas>
+        </div>
+    </div>
+
+    <div class="info-box">
+        <h2>四、竞争分析</h2>
+
+        <h3>4.1 主要竞争对手</h3>
+        <table>
+            <tr><th>竞争对手</th><th>核心产品</th><th>2024 CGM营收</th><th>全球出货量份额</th><th>核心优势</th><th>对比DXCM</th></tr>
+            <tr><td>Abbott (ABT)</td><td>FreeStyle Libre 2/3/Libre Sense</td><td>≈$4.3B</td><td>≈56.7%</td><td>全球最大CGM厂商；价格更低；国际市场领先；Libre 3更小更薄</td><td>Abbott出货量约1.6倍于DXCM；但DXCM在1型糖尿病/胰岛素用户中份额更高</td></tr>
+            <tr><td>Medtronic (MDT)</td><td>Guardian 4/Simplera</td><td>≈$1.0B</td><td>≈6.9%</td><td>与胰岛素泵整合（闭环系统）；医院渠道强</td><td>MDT份额持续下滑；传感器准确度不如DXCM/Abbott；但泵-传感器一体化有差异化</td></tr>
+            <tr><td>美奇/三诺等</td><td>各类国产CGM</td><td>较小</td><td>≈1%</td><td>价格极低（中国/印度市场）；本土渠道</td><td>目前对DXCM国际市场构成有限威胁；但长期需关注</td></tr>
+        </table>
+
+        <h3>4.2 市场份额</h3>
+        <table>
+            <tr><th>细分市场</th><th>DXCM份额</th><th>主要竞争者份额</th><th>说明</th></tr>
+            <tr><td>全球CGM出货量</td><td>≈35.2%</td><td>Abbott ≈56.7%, Medtronic ≈6.9%</td><td>按出货量计；DXCM在1型糖尿病中份额更高</td></tr>
+            <tr><td>美国1型糖尿病CGM</td><td>≈55-65%</td><td>Abbott ≈25-30%, Medtronic ≈10%</td><td>DXCM的传统优势领域；G6/G7在胰岛素用户中口碑极佳</td></tr>
+            <tr><td>美国2型糖尿病CGM</td><td>≈35-40%</td><td>Abbott ≈50-55%</td><td>Abbott凭借Libre的价格优势在2型市场领先</td></tr>
+            <tr><td>国际CGM市场</td><td>≈20-25%</td><td>Abbott ≈65-70%</td><td>Abbott国际布局更早更广；DXCM正通过ONE+追赶</td></tr>
+            <tr><td>OTC CGM市场（新）</td><td>≈40-50%</td><td>Abbott Libre Rio ≈30-40%</td><td>Stelo先发优势；但Abbott 2025年推出Libre Rio竞争</td></tr>
+        </table>
+
+        <h3>4.3 护城河评估</h3>
+        <div class="moat-box">
+            <h3>🏰 护城河总评：宽护城河（Wide Moat）</h3>
+
+            <p><strong>1. 转换成本（强）</strong></p>
+            <p>CGM系统的转换成本是DXCM最核心的护城河。患者一旦习惯了DexCom的报警系统、数据界面和Clarity报告，切换到Abbott Libre需要重新学习操作、调整胰岛素剂量方案、重新与医生建立数据共享。更重要的是，DexCom与胰岛素泵（Tandem、Omnipod、Ypsomed）的整合意味着1型糖尿病患者如果换CGM，可能需要同时换泵——这种"生态系统锁定"是极高的转换成本。估计核心用户的转换成本相当于6-12个月的使用费用。</p>
+
+            <p><strong>2. 品牌认知（中等偏强）</strong></p>
+            <p>在1型糖尿病社区中，DexCom几乎是"CGM"的代名词——内分泌科医生首选推荐DexCom给胰岛素依赖患者。这种品牌认知建立在G4-G7四代产品的口碑积累上。但品牌力在2型糖尿病和OTC市场较弱——Abbott Libre凭借价格优势在这些市场更受欢迎。</p>
+
+            <p><strong>3. 网络效应（中等）</strong></p>
+            <p>DexCom Clarity平台连接了300万+用户、数万名医生和数百家医院。数据越多，算法越精准，医生越依赖Clarity报告——形成"用户→数据→医生→新用户"的正循环。但这种网络效应是局部的——Abbott的LibreView也在构建类似的生态。</p>
+
+            <p><strong>4. 规模优势（中等偏强）</strong></p>
+            <p>DexCom年产数千万个传感器，制造规模带来成本优势——传感器毛利率约65%，显著高于小型竞争者。亚利桑那新工厂投产后，产能将翻倍，进一步降低单位成本。此外，DexCom与保险公司和Medicare的广泛覆盖协议是小型竞争者难以复制的渠道壁垒。</p>
+
+            <p><strong>5. 专利/知识产权（中等）</strong></p>
+            <p>DexCom拥有数千项CGM相关专利，涵盖传感器化学、算法、制造工艺等。但CGM的核心专利（电化学葡萄糖传感）已较为成熟，新进入者可以通过绕过专利设计来实现类似功能。Abbott和DexCom之间长期存在专利诉讼，但最终和解——说明专利壁垒可以延缓但无法阻止竞争。</p>
+
+            <p><strong>6. 成本优势（中等）</strong></p>
+            <p>DexCom的传感器制造成本约$35-45/个，毛利率约65%。Abbott Libre的成本可能更低（因为更简单的传感器设计），但DXCM的G7在准确度上领先。DXCM的成本优势主要来自规模效应，而非技术独特性。</p>
+        </div>
+
+        <h3>4.4 护城河的可持续性</h3>
+        <div class="highlight">
+            <p><strong>正面因素：</strong></p>
+            <ul>
+                <li>CGM从"可选"变为"标准护理"——ADA/EASD指南推荐所有胰岛素患者使用CGM</li>
+                <li>与胰岛素泵的整合形成"闭环系统"——这是1型糖尿病的未来方向，DexCom处于核心位置</li>
+                <li>OTC市场开辟全新增长空间——美国2型非胰岛素患者约2,500万，渗透率仅1-2%</li>
+                <li>15天佩戴时间（G7 15 Day）——行业最长，降低更换频率和成本</li>
+                <li>医生培训成本——数万名内分泌科医生已熟悉DexCom系统，切换意愿低</li>
+                <li>Medicare覆盖持续扩大——65岁+患者报销比例提高</li>
+            </ul>
+            <p><strong>负面因素：</strong></p>
+            <ul>
+                <li>Abbott Libre 3竞争力持续增强——更小更薄，价格更低，国际市场领先</li>
+                <li>非侵入式血糖监测技术——如果成功商业化，将颠覆整个CGM行业</li>
+                <li>Medicare报销政策变化——2024年CGM竞标政策引发市场恐慌</li>
+                <li>中国/印度低成本竞争者——长期可能侵蚀国际市场份额</li>
+                <li>传感器价格下行压力——随着竞争加剧，传感器单价可能持续下降</li>
+                <li>技术趋同——CGM技术逐渐成熟，产品差异化空间收窄</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="info-box">
+        <h2>五、利润分配分析（2016-2025）</h2>
+
+        <h3>5.1 十年利润分配表（回购计入留存）</h3>
+        <div class="highlight">
+            <p><strong>核心原则：</strong>股票回购与留存收益本质相同——都是将利润保留在公司生态内、让剩余股东受益。回购减少股数、提升每股价值；留存收益增加净资产、支持未来增长。两者都不同于股息（利润真正离开公司）。因此，回购归入"留存"类别计算，股息才是唯一的"真正分配"。</p>
+            <p><strong>数据说明：</strong>DXCM从未派发股息，因此留存金额=净利润，留存比率=100%（盈利年份）。"≈"表示约数（近似值），"-"表示负数（亏损）。早期年份（2016-2018）为亏损期，数据为估算值。</p>
+        </div>
+        <table>
+            <tr><th>年度</th><th>净利润($M)</th><th>股息($M)</th><th>回购($M)</th><th>扩张CapEx($M)</th><th>债务偿还($M)</th><th>留存金额($M)</th><th>留存比率</th></tr>
+            <tr><td>2016</td><td>≈-73</td><td>0</td><td>0</td><td>≈150</td><td>0</td><td>-73</td><td>N/A(亏损)</td></tr>
+            <tr><td>2017</td><td>≈-58</td><td>0</td><td>0</td><td>≈180</td><td>0</td><td>-58</td><td>N/A(亏损)</td></tr>
+            <tr><td>2018</td><td>≈-126</td><td>0</td><td>0</td><td>≈250</td><td>0</td><td>-126</td><td>N/A(亏损)</td></tr>
+            <tr><td>2019</td><td>≈101</td><td>0</td><td>0</td><td>≈300</td><td>≈50</td><td>101</td><td>100%</td></tr>
+            <tr><td>2020</td><td>≈495</td><td>0</td><td>0</td><td>≈350</td><td>≈100</td><td>495</td><td>100%</td></tr>
+            <tr><td>2021</td><td>217</td><td>0</td><td>0</td><td>389</td><td>≈150</td><td>217</td><td>100%</td></tr>
+            <tr><td>2022</td><td>341</td><td>0</td><td>0</td><td>365</td><td>≈200</td><td>341</td><td>100%</td></tr>
+            <tr><td>2023</td><td>542</td><td>0</td><td>≈350</td><td>237</td><td>≈100</td><td>542</td><td>100%</td></tr>
+            <tr><td>2024</td><td>576</td><td>0</td><td>≈750</td><td>359</td><td>≈150</td><td>576</td><td>100%</td></tr>
+            <tr><td>2025</td><td>836</td><td>0</td><td>≈500</td><td>364</td><td>≈500</td><td>836</td><td>100%</td></tr>
+        </table>
+
+        <h3>5.2 留存比率趋势分析</h3>
+        <div class="highlight">
+            <p><strong>盈利年份平均留存比率：100%</strong>——DXCM是一家"零分红、全留存"的公司，属于典型的"高成长型"留存模式。这与巴菲特的偏好高度一致——巴菲特认为，如果公司能以高回报率再投资利润，就不应该分红。</p>
+            <ul>
+                <li><strong>2016-2018年：</strong>亏损期，不派息不回购，依靠外部融资（可转换票据+股权融资）支撑增长</li>
+                <li><strong>2019-2022年：</strong>盈利期，100%留存——利润全部用于再投资（产能扩张、研发、国际市场拓展）</li>
+                <li><strong>2023年：</strong>首次启动回购（$3.5亿）——标志着公司从"纯增长"转向"增长+回报"阶段</li>
+                <li><strong>2024年：</strong>回购加速至$7.5亿——占留存金额的130%（回购超过当年净利润，动用了现金储备）</li>
+                <li><strong>2025年：</strong>回购$5亿+偿还债务$5亿——"双线并进"，同时回馈股东和改善资产负债表</li>
+            </ul>
+            <p><strong>留存构成（2025年）：</strong>留存$8.36亿中，回购$5亿（60%）、扩张CapEx $3.64亿（44%）、债务偿还$5亿（60%）。注意：回购+CapEx+偿债合计$13.64亿，远超净利润$8.36亿——差额由现金储备（$20亿）和债务到期偿还覆盖。DXCM正在"消耗现金储备"来回购和偿债——这是管理层对当前估值"偏低"的判断。</p>
+            <p><strong>可持续增长率 = ROE × 留存比率 = 34.5% × 100% = 34.5%</strong>——理论内生增长率极高。但实际增长率受限于市场渗透速度和竞争格局，2025年营收增速16%，2026年指引增速约12-15%。理论值与实际值的差距说明：DXCM的ROE极高，但增长空间正在收窄。</p>
+        </div>
+
+        <div class="chart-container">
+            <canvas id="retentionChart" height="100"></canvas>
+        </div>
+
+        <h3>5.3 股息历史</h3>
+        <table>
+            <tr><th>年度</th><th>每股年股息</th><th>股息率</th><th>派息比率</th><th>备注</th></tr>
+            <tr><td>全部年份</td><td>$0</td><td>0%</td><td>0%</td><td>DXCM从未派发股息</td></tr>
+        </table>
+        <div class="highlight">
+            <p><strong>股息政策评价：</strong>DXCM不派息是完全正确的决策——公司仍处于高增长阶段，ROE高达34.5%，1美元留存创造的市值远超1美元股息的税后价值。巴菲特在伯克希尔也从不分红，因为留存利润的复利回报远高于分红。如果DXCM未来增速降至10%以下，可以考虑启动股息，但当前阶段回购是更灵活的回报方式。</p>
+        </div>
+
+        <h3>5.4 股票回购历史</h3>
+        <table>
+            <tr><th>年度</th><th>回购金额($M)</th><th>回购股数(估)</th><th>备注</th></tr>
+            <tr><td>2023</td><td>≈350</td><td>≈350万股</td><td>10月宣布$5亿回购计划（有效期至2024年10月）</td></tr>
+            <tr><td>2024</td><td>≈750</td><td>≈800万股</td><td>Q3执行$7.5亿回购计划；均价约$94/股</td></tr>
+            <tr><td>2025</td><td>≈500</td><td>≈700万股</td><td>4月宣布$7.5亿回购计划（有效期至2026年6月）；均价约$71/股</td></tr>
+            <tr><td>3年累计</td><td>≈1,600</td><td>≈1,850万股</td><td>约占流通股的4.5%</td></tr>
+        </table>
+        <div class="highlight">
+            <p><strong>回购时机评价：</strong>DXCM的回购时机值得仔细审视。2024年Q3执行$7.5亿回购时，股价约$85-100（PE约50-60x）——这个估值并不便宜，回购的资本回报率仅1.7-2%（1/50-1/60）。2025年回购均价约$71（PE约31x），回购回报率约3.2%——比2024年好得多，但仍不算"便宜"。巴菲特偏好在PE<15x时大规模回购，DXCM的回购更多是"信号意义"（展示管理层信心）而非"价值最大化"。</p>
+            <p><strong>正面：</strong>2025年回购价格明显低于2024年，说明管理层在股价下跌时加速了回购——这是好的资本配置信号。</p>
+            <p><strong>负面：</strong>2024年在PE 50x+时回购$7.5亿，从价值投资角度看是不划算的。如果这些钱留到2025年股价$55-60时再回购，能多买30-40%的股份。</p>
+        </div>
+
+        <h3>5.5 资本配置评价</h3>
+        <div class="highlight">
+            <p><strong>管理层资本配置能力：中等</strong></p>
+            <ul>
+                <li><strong>研发投入：</strong>DXCM 2025年研发费用约$5.5亿（占营收12%），持续投入下一代传感器技术。这是CGM行业最关键的投资——技术落后意味着失去市场。G7 15 Day和Stelo的成功证明了研发投入的有效性。</li>
+                <li><strong>产能扩张：</strong>亚利桑那新工厂投资约$5亿，投产后产能翻倍。这是必要的再投资——传感器需求持续增长，现有产能接近满载。</li>
+                <li><strong>债务管理：</strong>2025年偿还$11.4亿到期可转换票据（用现金而非转股），避免了约1,500万股的稀释——这是保护现有股东的正确决策。但2020-2023年大量发行低利率可转换票据，虽然利率低（0-2%），但转股稀释风险一直存在。</li>
+                <li><strong>回购时机：</strong>如上分析，2024年高估值回购是不理想的，但2025年低估值回购是正确的。整体回购时机中等偏下。</li>
+                <li><strong>巴菲特1美元测试：</strong>2019-2025年累计留存利润约$3,108M，同期市值从$380亿降至$278亿（下降27%）。每1美元留存"创造"了-$0.33市值——未通过巴菲特测试！但这主要归因于2024年估值压缩（PE从88x降至53x），而非资本配置失败。如果从2016年算起，累计留存（含亏损期）约$2,835M，市值从$70亿增至$278亿，每1美元留存创造$7.3市值——远超标准。</li>
+            </ul>
+        </div>
+
+        <div class="chart-container">
+            <canvas id="allocationChart" height="100"></canvas>
+        </div>
+    </div>
+
+    <div class="info-box">
+        <h2>六、投资总结</h2>
+
+        <h3>6.1 核心投资逻辑</h3>
+        <div class="moat-box">
+            <p><strong>DXCM是"糖尿病数字化管理的苹果"——拥有医疗设备行业最强的转换成本护城河、极高的ROE和正在开启的OTC新市场，但估值仍处于历史低位。</strong></p>
+            <ul>
+                <li><strong>宽护城河：</strong>转换成本（胰岛素泵整合）+ 品牌认知（1型糖尿病首选）+ 规模优势（65%传感器毛利率）</li>
+                <li><strong>极高ROE：</strong>2025年ROE 34.5%，10年盈利平均21.9%——远超巴菲特15%+标准</li>
+                <li><strong>经常性收入：</strong>96%收入来自传感器耗材，用户粘性极强，收入可预测性高</li>
+                <li><strong>OTC新市场：</strong>Stelo开辟2型非胰岛素+健康人群市场，潜在用户从300万扩展至2,500万+</li>
+                <li><strong>15天佩戴：</strong>G7 15 Day是行业最长佩戴时间，降低50%更换频率，改善用户体验</li>
+                <li><strong>估值压缩：</strong>PE从2021年254x降至2025年31x——市场过度悲观提供了安全边际</li>
+            </ul>
+        </div>
+
+        <h3>6.2 关键催化剂</h3>
+        <ul>
+            <li>G7 15 Day全面上市——15天佩戴是行业突破，可能抢回Abbott用户</li>
+            <li>Stelo用户增长加速——OTC市场渗透率仅1-2%，空间巨大</li>
+            <li>国际市场扩张——ONE+在新兴市场的渗透率远低于美国</li>
+            <li>与更多胰岛素泵整合——闭环系统是1型糖尿病的终极解决方案</li>
+            <li>Medicare CGM覆盖扩大——65岁+糖尿病患者渗透率提升</li>
+            <li>持续回购——2025年$7.5亿计划执行中，约4.5%流通股</li>
+        </ul>
+
+        <h3>6.3 主要风险</h3>
+        <div class="risk-box">
+            <ul>
+                <li><strong>Abbott竞争加剧（极高）：</strong>Abbott FreeStyle Libre 3更小更薄，价格更低，国际市场领先约3倍。Abbott 2025年推出Libre Rio进入OTC市场，直接与Stelo竞争。如果Abbott发动价格战，DXCM的传感器毛利率将承压。</li>
+                <li><strong>Medicare/保险政策风险（高）：</strong>2024年CMS提出CGM竞标政策，可能导致传感器报销价格下降10-20%。美国72%收入依赖保险报销，政策变化影响巨大。</li>
+                <li><strong>OTC市场不确定性（高）：</strong>Stelo初期销售低于预期（2024 Q4 OTC收入仅$1,500万），市场教育成本高，用户付费意愿不确定。OTC市场可能需要3-5年才能成熟。</li>
+                <li><strong>非侵入式技术颠覆（中高，长期）：</strong>多家公司（如Know Labs、Hagar）正在开发非侵入式血糖监测（通过光谱/微波测量），如果成功商业化，将颠覆整个CGM行业。但技术尚不成熟，预计5-10年内不会构成实质威胁。</li>
+                <li><strong>可转换票据稀释（中）：</strong>2026年到期$11.5亿可转换票据，转股价约$140-280——当前股价$72远低于转股价，不太可能转股稀释。但2028年票据转股价可能更低。</li>
+                <li><strong>增长减速（中）：</strong>2025年营收增速16%，2026年指引12-15%——增速明显放缓。如果增速降至个位数，当前31x PE将显得昂贵。</li>
+                <li><strong>管理层过渡风险（中低）：</strong>2026年1月Jake Leach接任CEO，Kevin Sayer转任执行董事长。新CEO能否延续增长势头尚待验证。</li>
+            </ul>
+        </div>
+
+        <h3>6.4 估值分析</h3>
+        <table>
+            <tr><th>估值指标</th><th>当前值</th><th>Abbott(诊断)</th><th>Medtronic</th><th>医疗设备均值</th><th>评估</th></tr>
+            <tr><td>PE（TTM）</td><td>≈31x</td><td>≈18x</td><td>≈25x</td><td>≈22x</td><td>高于行业平均</td></tr>
+            <tr><td>EV/EBITDA</td><td>≈22x</td><td>≈15x</td><td>≈18x</td><td>≈16x</td><td>偏高</td></tr>
+            <tr><td>P/B</td><td>≈10x</td><td>≈5x</td><td>≈3x</td><td>≈4x</td><td>显著偏高</td></tr>
+            <tr><td>P/FCF</td><td>≈35x</td><td>≈20x</td><td>≈25x</td><td>≈22x</td><td>偏高</td></tr>
+            <tr><td>PEG</td><td>≈2.1</td><td>≈1.5</td><td>≈2.0</td><td>≈1.8</td><td>中等偏高</td></tr>
+            <tr><td>FCF Yield</td><td>≈2.9%</td><td>≈5%</td><td>≈4%</td><td>≈4.5%</td><td>偏低</td></tr>
+        </table>
+
+        <div class="highlight">
+            <p><strong>估值判断：</strong>DXCM当前PE约31x，高于医疗设备行业平均22x，但低于自身5年平均88x。PEG约2.1，说明市场对DXCM的增长预期已大幅降低。EV/EBITDA 22x和P/FCF 35x都偏高，反映市场仍给予"成长股溢价"。</p>
+            <p><strong>安全边际：</strong>当前估值隐含了12-15%的年增长预期。如果DXCM能维持15%+增速（G7 15 Day + Stelo + 国际扩张），31x PE是合理的；如果增速降至10%以下，PE应回落至20-25x，对应股价$46-58。当前价格$72的安全边际有限——需要增长持续兑现才能支撑估值。</p>
+            <p><strong>乐观情景：</strong>G7 15 Day成功 + Stelo用户突破100万 + 国际增速20%+ → 2027年EPS $4.0 × PE 35x = $140目标价。</p>
+            <p><strong>保守情景：</strong>Stelo增长缓慢 + Medicare降价10% + 竞争加剧 → 2027年EPS $2.5 × PE 20x = $50目标价。</p>
+            <p><strong>合理估值区间：</strong>$50-$140，中值$95。当前$72处于区间偏下位置，提供一定但非充裕的安全边际。</p>
+        </div>
+
+        <h3>6.5 巴菲特-芒格视角</h3>
+        <div class="moat-box">
+            <p><strong>"以合理的价格买入优秀的公司，远胜于以便宜的价格买入平庸的公司。"——芒格</strong></p>
+            <p>DXCM是一家巴菲特-芒格会"感兴趣但犹豫"的公司。它有几个极其吸引人的特征：</p>
+            <p><strong>1. 宽护城河：</strong>转换成本是巴菲特最看重的护城河类型之一。DXCM的CGM系统与胰岛素泵整合形成的"生态系统锁定"，让患者极难切换——这与苹果iOS生态的转换成本类似。巴菲特投资苹果的核心逻辑之一就是转换成本。</p>
+            <p><strong>2. 经常性收入：</strong>96%收入来自传感器耗材，用户每10-15天就需要更换——这是"剃须刀+刀片"模式的医疗版，与吉列（巴菲特曾投资）如出一辙。收入可预测性极高。</p>
+            <p><strong>3. 高ROE：</strong>34.5%的ROE远超巴菲特的15%+标准，且趋势向上。1美元留存创造远超1美元市值（从2016年算起）。</p>
+            <p><strong>4. 弱周期：</strong>糖尿病是慢性病，需求不受经济周期影响——这与巴菲特偏好的"必需消费"属性一致。</p>
+            <p>但巴菲特也会有以下顾虑：</p>
+            <p><strong>1. 估值偏高：</strong>31x PE虽是DXCM历史最低，但仍高于巴菲特通常买入的15x以下水平。巴菲特偏好"安全边际充裕"的买入价格。</p>
+            <p><strong>2. 技术风险：</strong>非侵入式血糖监测如果成功，将颠覆整个CGM行业。巴菲特不喜欢"可能被技术颠覆"的公司——这是他回避大多数科技股的原因。</p>
+            <p><strong>3. 竞争格局：</strong>Abbott是一个强大的竞争对手，出货量是DXCM的1.6倍。巴菲特偏好"行业绝对领导者"（如可口可乐），而非"双寡头中的老二"。</p>
+            <p><strong>4. 医保政策风险：</strong>72%收入依赖保险报销，政策变化不可控——巴菲特不喜欢"命运掌握在政府手中"的生意。</p>
+            <p><strong>结论：</strong>DXCM拥有医疗设备行业最宽的护城河之一，ROE极高，商业模式优秀。但当前估值（31x PE）对价值投资者来说仍不够便宜，竞争加剧和政策风险构成实质威胁。芒格可能会说："这是一家好公司，但不是一笔好投资——除非价格再跌20-30%。" 如果DXCM股价跌至$50-55（PE约20x），将提供充足的安全边际，成为一笔巴菲特式的价值投资。</p>
+        </div>
+    </div>
+
+    <div class="back-link"><a href="index.html">← 返回美股分析索引</a></div>
+
+    <script>
+        new Chart(document.getElementById('revenueChart'), {
+            type: 'bar',
+            data: {
+                labels: ['2016','2017','2018','2019','2020','2021','2022','2023','2024','2025'],
+                datasets: [{
+                    label: '营收($M)',
+                    data: [573, 719, 1032, 1476, 1927, 2448, 2910, 3622, 4033, 4662],
+                    backgroundColor: 'rgba(26, 35, 126, 0.7)'
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: { display: true, text: 'DXCM年度营收（2016-2025）', font: { size: 14 } },
+                    legend: { display: false }
+                },
+                scales: {
+                    y: {
+                        title: { display: true, text: '营收 ($M)' }
+                    }
+                }
+            }
+        });
+
+        new Chart(document.getElementById('roeChart'), {
+            type: 'line',
+            data: {
+                labels: ['2016','2017','2018','2019','2020','2021','2022','2023','2024','2025'],
+                datasets: [{
+                    label: 'ROE (%)',
+                    data: [-25.4,-13.9,-19.2,11.5,27.0,11.2,16.4,25.8,27.6,34.5],
+                    borderColor: 'rgba(26, 35, 126, 1)',
+                    backgroundColor: 'rgba(26, 35, 126, 0.1)',
+                    fill: true
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: { display: true, text: 'DXCM净资产收益率（ROE）趋势（2016-2025）', font: { size: 14 } },
+                    legend: { display: false }
+                },
+                scales: {
+                    y: {
+                        title: { display: true, text: 'ROE (%)' },
+                        min: -30,
+                        max: 40
+                    }
+                }
+            }
+        });
+
+        new Chart(document.getElementById('debtChart'), {
+            type: 'line',
+            data: {
+                labels: ['2016','2017','2018','2019','2020','2021','2022','2023','2024','2025'],
+                datasets: [{
+                    label: '负债/资产比率 (%)',
+                    data: [45,48,52,50,55,58.6,60.5,67.0,67.6,56.7],
+                    borderColor: 'rgba(244, 67, 54, 1)',
+                    backgroundColor: 'rgba(244, 67, 54, 0.1)',
+                    fill: true
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: { display: true, text: 'DXCM负债/资产比率趋势（2016-2025）', font: { size: 14 } },
+                    legend: { display: false }
+                },
+                scales: {
+                    y: {
+                        title: { display: true, text: '负债/资产 (%)' },
+                        min: 30,
+                        max: 75
+                    }
+                }
+            }
+        });
+
+        new Chart(document.getElementById('retentionChart'), {
+            type: 'line',
+            data: {
+                labels: ['2016','2017','2018','2019','2020','2021','2022','2023','2024','2025'],
+                datasets: [{
+                    label: '留存比率 (%)',
+                    data: [null,null,null,100,100,100,100,100,100,100],
+                    borderColor: 'rgba(46, 125, 50, 1)',
+                    backgroundColor: 'rgba(46, 125, 50, 0.1)',
+                    fill: true
+                }, {
+                    label: '净利润($M)',
+                    data: [-73,-58,-126,101,495,217,341,542,576,836],
+                    borderColor: 'rgba(26, 35, 126, 1)',
+                    backgroundColor: 'rgba(26, 35, 126, 0.1)',
+                    fill: false,
+                    yAxisID: 'y1'
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: { display: true, text: 'DXCM留存比率与净利润趋势（2016-2025）', font: { size: 14 } }
+                },
+                scales: {
+                    y: {
+                        title: { display: true, text: '留存比率 (%)' },
+                        min: 0,
+                        max: 110
+                    },
+                    y1: {
+                        position: 'right',
+                        title: { display: true, text: '净利润 ($M)' },
+                        min: -200,
+                        max: 900
+                    }
+                }
+            }
+        });
+
+        new Chart(document.getElementById('allocationChart'), {
+            type: 'doughnut',
+            data: {
+                labels: ['回购(留存-回购)', '再投资(CapEx)', '债务偿还', '现金储备增加'],
+                datasets: [{
+                    data: [500, 364, 500, 836-500-364],
+                    backgroundColor: [
+                        'rgba(26, 35, 126, 0.7)',
+                        'rgba(46, 125, 50, 0.7)',
+                        'rgba(244, 67, 54, 0.7)',
+                        'rgba(255, 152, 0, 0.7)'
+                    ]
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: { display: true, text: 'DXCM 2025年利润分配（回购计入留存）', font: { size: 14 } },
+                    legend: { position: 'bottom' }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
