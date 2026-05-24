@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cal-Maine Foods (CALM) 详细分析</title>
+    <title>CALM (Cal-Maine Foods) 价值投资分析</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         body {
@@ -13,10 +13,10 @@
         }
         h1 {
             text-align: center;
-            color: #333;
+            color: #1a237e;
         }
         h2 {
-            color: #4CAF50;
+            color: #1a237e;
             margin-top: 30px;
         }
         h3 {
@@ -41,30 +41,18 @@
             border-bottom: 1px solid #ddd;
         }
         th {
-            background-color: #4CAF50;
+            background-color: #1a237e;
             color: white;
         }
         tr:hover {
             background-color: #f5f5f5;
         }
         a {
-            color: #4CAF50;
+            color: #1a237e;
             text-decoration: none;
         }
         a:hover {
             text-decoration: underline;
-        }
-        .back-link {
-            display: inline-block;
-            margin: 20px 0;
-            padding: 10px 15px;
-            background-color: #4CAF50;
-            color: white;
-            border-radius: 5px;
-        }
-        .back-link:hover {
-            background-color: #45a049;
-            text-decoration: none;
         }
         .chart-container {
             background-color: white;
@@ -73,502 +61,523 @@
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
             border-radius: 5px;
         }
-        canvas {
-            max-width: 100%;
-            height: 400px;
-        }
         .highlight {
+            background-color: #e8eaf6;
+            padding: 15px;
+            border-left: 4px solid #1a237e;
+            margin: 15px 0;
+        }
+        .risk-box {
+            background-color: #fff3e0;
+            padding: 15px;
+            border-left: 4px solid #e65100;
+            margin: 15px 0;
+        }
+        .moat-box {
             background-color: #e8f5e9;
             padding: 15px;
-            border-radius: 5px;
-            margin: 10px 0;
+            border-left: 4px solid #2e7d32;
+            margin: 15px 0;
+        }
+        .back-link {
+            text-align: center;
+            margin: 20px 0;
         }
     </style>
 </head>
 <body>
-    <a href="index.html" class="back-link">返回索引</a>
-    <h1>Cal-Maine Foods (CALM) 详细分析</h1>
-    
+    <div class="back-link"><a href="index.html">← 返回美股分析索引</a></div>
+    <h1>CALM — Cal-Maine Foods（卡尔梅恩食品）价值投资分析</h1>
+
     <div class="info-box">
         <h2>一、公司基本信息</h2>
         <table>
-            <tr>
-                <th>项目</th>
-                <th>信息</th>
-            </tr>
-            <tr>
-                <td>股票代码</td>
-                <td>CALM</td>
-            </tr>
-            <tr>
-                <td>公司名称</td>
-                <td>Cal-Maine Foods Inc.</td>
-            </tr>
-            <tr>
-                <td>交易所</td>
-                <td>纳斯达克证券交易所 (NASDAQ)</td>
-            </tr>
-            <tr>
-                <td>成立时间</td>
-                <td>1957年</td>
-            </tr>
-            <tr>
-                <td>上市时间</td>
-                <td>1996年12月11日</td>
-            </tr>
-            <tr>
-                <td>最新股价</td>
-                <td>$89.84 (2026年3月)</td>
-            </tr>
-            <tr>
-                <td>总市值</td>
-                <td>约41.8-42.81亿美元</td>
-            </tr>
-            <tr>
-                <td>CEO</td>
-                <td>Fred R. Adams, Jr.（创始人）</td>
-            </tr>
-            <tr>
-                <td>总部</td>
-                <td>美国密西西比州杰克逊</td>
-            </tr>
-            <tr>
-                <td>员工数量</td>
-                <td>3,683人</td>
-            </tr>
-            <tr>
-                <td>行业分类</td>
-                <td>食品加工 - 鸡蛋生产</td>
-            </tr>
+            <tr><th>项目</th><th>详情</th></tr>
+            <tr><td>公司全称</td><td>Cal-Maine Foods, Inc.</td></tr>
+            <tr><td>股票代码</td><td>NASDAQ: CALM</td></tr>
+            <tr><td>上市交易所</td><td>纳斯达克全球精选市场</td></tr>
+            <tr><td>成立时间</td><td>1957年</td></tr>
+            <tr><td>总部</td><td>美国密西西比州里奇兰（Ridgeland, MS）</td></tr>
+            <tr><td>市值（2026.5）</td><td>~$36.5亿美元（约260亿人民币）</td></tr>
+            <tr><td>最新收盘价</td><td>~$77.01（2026.5.22）</td></tr>
+            <tr><td>总股本</td><td>~4,738万股</td></tr>
+            <tr><td>行业</td><td>农产品——鸡蛋生产与分销</td></tr>
+            <tr><td>CEO</td><td>Sherman Miller（2022年上任；1996年加入公司）</td></tr>
+            <tr><td>员工人数</td><td>~3,828人</td></tr>
+            <tr><td>财务年度</td><td>5月底（FY2025 = 2024.6-2025.5）</td></tr>
+            <tr><td>创始人</td><td>Fred R. Adams Jr.</td></tr>
         </table>
     </div>
-    
-    <div class="chart-container">
-        <h2>二、历史财务指标 (2018-2025)</h2>
-        <h3>2.1 净资产利润率 (ROE) 趋势</h3>
-        <p><strong>说明</strong>：ROE保持波动，5年平均16%，显示公司盈利能力良好。</p>
-        <canvas id="roeChart"></canvas>
-        
-        <h3>2.2 资产负债率 趋势</h3>
-        <p><strong>说明</strong>：资产负债率保持在14%左右，财务结构非常稳健。</p>
-        <canvas id="debtChart"></canvas>
-        
-        <h3>2.3 市盈率 (P/E) 趋势</h3>
-        <p><strong>说明</strong>：市盈率维持在4倍左右，处于低估值水平。</p>
-        <canvas id="peChart"></canvas>
-    </div>
-    
-    <div class="chart-container">
-        <h2>三、收入与利润趋势 (2018-2025)</h2>
-        <p><strong>说明</strong>：Cal-Maine Foods的收入和利润受鸡蛋价格波动影响较大。</p>
-        <canvas id="revenueChart"></canvas>
-    </div>
-    
+
     <div class="info-box">
-        <h2>四、业务分析</h2>
-        
-        <h3>4.1 公司业务概述（通俗解释）</h3>
+        <h2>二、业务分析</h2>
+
+        <h3>2.1 公司做什么（大白话）</h3>
         <div class="highlight">
-            <p><strong>Cal-Maine Foods到底是干什么的？</strong></p>
-            <p>Cal-Maine Foods是美国最大的鸡蛋生产商，简单来说，它的核心业务就是：</p>
-            <p><strong>1. 养鸡</strong> —— 公司拥有大量的蛋鸡养殖场，饲养数百万只蛋鸡。</p>
-            <p><strong>2. 产蛋</strong> —— 蛋鸡产蛋后，公司收集这些鸡蛋。</p>
-            <p><strong>3. 加工和包装</strong> —— 对鸡蛋进行清洗、分级、包装。</p>
-            <p><strong>4. 销售</strong> —— 将鸡蛋销售给超市、食品服务公司、零售商等。</p>
-            <p>简单来说，Cal-Maine Foods就是一个"从养鸡到卖蛋"的全产业链公司，是美国鸡蛋市场的绝对龙头，控制着相当大的市场份额。</p>
+            <p>想象你每天早餐吃的鸡蛋——从母鸡下蛋到超市货架，中间需要孵化小鸡、养小母鸡长大、喂饲料、收蛋、清洗、分级、包装、冷链运输。Cal-Maine Foods就是全美国最大的"鸡蛋一条龙"公司，它把从孵化到上架的每一个环节都自己做了。</p>
+            <p>Cal-Maine拥有约5,060万只蛋鸡（2024年末数据），占全美蛋鸡总数的约16%，供应全美约21-24%的壳蛋消费。它的鸡蛋在沃尔玛、Costco、Kroger等超市里随处可见——只不过你可能不知道，因为很多鸡蛋贴的是超市自有品牌或Egg-Land's Best、Land O'Lakes等授权品牌。</p>
+            <p>鸡蛋价格像过山车：禽流感来了，几百万只鸡被扑杀，蛋价暴涨；禽流感走了，鸡群恢复，蛋价暴跌。Cal-Maine就是靠这个周期赚钱——在蛋价高时赚大钱，在蛋价低时靠规模和低成本撑过去。2025财年（FY2025）就是典型的"大年"：禽流感导致全美蛋价飙升，Cal-Maine净利润翻了4倍多。</p>
         </div>
-        
-        <h3>4.2 主要业务板块及营收占比</h3>
+
+        <h3>2.2 主要业务板块</h3>
         <table>
-            <tr>
-                <th>业务板块</th>
-                <th>占比</th>
-                <th>主要业务</th>
-                <th>特点</th>
-            </tr>
-            <tr>
-                <td><strong>壳蛋 (Shell Eggs)</strong></td>
-                <td>约90%</td>
-                <td>新鲜壳蛋的生产和销售</td>
-                <td>美国最大的壳蛋生产商</td>
-            </tr>
-            <tr>
-                <td><strong>蛋制品 (Value-Added Products)</strong></td>
-                <td>约10%</td>
-                <td>蛋液、蛋粉等加工蛋制品</td>
-                <td>快速增长的业务板块</td>
-            </tr>
+            <tr><th>业务板块</th><th>FY2025营收($M)</th><th>占比</th><th>FY2024营收($M)</th><th>同比变化</th><th>说明</th></tr>
+            <tr><td>常规壳蛋</td><td>≈2,685</td><td>≈63%</td><td>≈1,510</td><td>+77.8%</td><td>白壳/棕壳笼养蛋；价格受HPAI影响最大</td></tr>
+            <tr><td>特种壳蛋</td><td>≈1,577</td><td>≈37%</td><td>≈816</td><td>+93.3%</td><td>无笼/有机/散养/营养强化蛋；增长更快</td></tr>
+            <tr><td>合计</td><td>4,262</td><td>100%</td><td>2,326</td><td>+83.2%</td><td>FY2025为创纪录年份</td></tr>
         </table>
-        
-        <h3>4.3 业务板块详细分析</h3>
-        <h4>4.3.1 壳蛋业务</h4>
-        <ul>
-            <li><strong>产品类型</strong>：传统白蛋、棕色蛋、有机蛋、散养蛋等</li>
-            <li><strong>市场地位</strong>：美国最大的壳蛋生产商，市场份额领先</li>
-            <li><strong>销售渠道</strong>：超市、食品服务公司、零售商</li>
-            <li><strong>产能</strong>：通过收购Hillandale Farms等，产能增加30%</li>
-        </ul>
-        
-        <h4>4.3.2 蛋制品业务</h4>
-        <ul>
-            <li><strong>产品类型</strong>：蛋液、蛋粉、预制蛋产品等</li>
-            <li><strong>增长趋势</strong>：快速增长的业务板块</li>
-            <li><strong>应用领域</strong>：食品加工、餐饮行业</li>
-        </ul>
-        
-        <h3>4.4 地域分布</h3>
+        <div class="highlight">
+            <p><strong>产品结构变化：</strong>特种蛋（无笼/有机/散养）占比从FY2020的约25%提升至FY2025的37%，反映消费者对动物福利和健康饮食的偏好转变。特种蛋的毛利率通常高于常规蛋5-10个百分点。</p>
+            <p><strong>FY2025关键运营数据：</strong></p>
+            <ul>
+                <li>总销售量：12.83亿打鸡蛋（同比+11.8%）</li>
+                <li>平均售价：$3.134/打（FY2024：$1.932/打，+62.2%）</li>
+                <li>蛋鸡数量：约5,060万只（年末）</li>
+                <li>90.8%的鸡蛋来自自有鸡群，9.2%来自合同生产商</li>
+            </ul>
+        </div>
+
+        <h3>2.3 收入按地区分布</h3>
         <table>
-            <tr>
-                <th>地区</th>
-                <th>营收占比</th>
-                <th>特点</th>
-            </tr>
-            <tr>
-                <td>美国</td>
-                <td>100%</td>
-                <td>主要市场，全国布局</td>
-            </tr>
+            <tr><th>地区</th><th>营收占比</th><th>说明</th></tr>
+            <tr><td>美国东南部</td><td>~25-30%</td><td>总部所在区域；传统强势市场</td></tr>
+            <tr><td>美国中西部</td><td>~20-25%</td><td>玉米/大豆主产区；饲料成本优势</td></tr>
+            <tr><td>美国中南部</td><td>~15-20%</td><td>德克萨斯/路易斯安那等</td></tr>
+            <tr><td>美国中大西洋/东北部</td><td>~15-20%</td><td>ISE America收购后强化</td></tr>
+            <tr><td>美国西部/其他</td><td>~10-15%</td><td>Fassio Egg Farms（犹他）扩展西部</td></tr>
         </table>
-        <p><strong>说明</strong>：Cal-Maine Foods主要在美国市场运营，是美国本土最大的鸡蛋生产商。</p>
+        <div class="highlight">
+            <p><strong>地域特征：</strong>Cal-Maine几乎100%的收入来自美国本土，在约40个州和波多黎各销售。这与大多数食品公司不同——没有国际业务意味着没有汇率风险，但也缺乏海外增长机会。2024年收购ISE America后，中大西洋和东北部市场份额显著提升。</p>
+        </div>
+
+        <h3>2.4 商业模式</h3>
+        <div class="highlight">
+            <p><strong>收入来源：</strong>①壳蛋销售（常规+特种）——约占95%；②蛋制品（液蛋/蛋粉）——约占3-4%；③饲料/其他——约占1-2%。</p>
+            <p><strong>盈利公式：</strong>利润 = (鸡蛋售价 - 饲料成本 - 生产成本) × 销售量。饲料成本占总成本的约53.4%，是最重要的变量。鸡蛋售价由市场供需决定，公司是价格接受者而非价格制定者。</p>
+            <p><strong>垂直整合：</strong>Cal-Maine拥有29个饲料厂、2个种鸡场、2个孵化场、37个育雏场、49个蛋鸡场、5个蛋制品加工厂、49个加工包装设施——从孵化到上架的每一个环节都自己控制。这是其核心竞争优势。</p>
+            <p><strong>周期性：</strong>极强。鸡蛋价格受禽流感（HPAI）和饲料成本（玉米/大豆）双重影响，波动剧烈。FY2023净利润$7.58亿 vs FY2021净利润$200万——利润波动近400倍。</p>
+            <p><strong>可变股息政策：</strong>Cal-Maine采用独特的可变股息政策——只在有净利润的季度才派息，股息金额与当季利润挂钩。这意味着在亏损季度（如FY2017、FY2021），公司不派息。这是非常保守和负责任的资本配置方式。</p>
+        </div>
+
+        <div class="chart-container">
+            <canvas id="revenueChart" height="100"></canvas>
+        </div>
     </div>
-    
+
     <div class="info-box">
-        <h2>五、竞争分析与护城河</h2>
-        
-        <h3>5.1 主要竞争对手</h3>
+        <h2>三、历史财务指标</h2>
+
+        <h3>3.1 净资产收益率（ROE）</h3>
         <table>
-            <tr>
-                <th>公司名称</th>
-                <th>竞争领域</th>
-                <th>特点</th>
-            </tr>
-            <tr>
-                <td><strong>Hillandale Farms</strong></td>
-                <td>鸡蛋生产</td>
-                <td>已被Cal-Maine收购</td>
-            </tr>
-            <tr>
-                <td><strong>Rose Acre Farms</strong></td>
-                <td>鸡蛋生产</td>
-                <td>美国大型鸡蛋生产商</td>
-            </tr>
-            <tr>
-                <td><strong>Mosquito Creek Farms</strong></td>
-                <td>鸡蛋生产</td>
-                <td>区域鸡蛋生产商</td>
-            </tr>
-            <tr>
-                <td><strong>Small Family Farms</strong></td>
-                <td>特色鸡蛋</td>
-                <td>有机、散养鸡蛋等细分市场</td>
-            </tr>
+            <tr><th>年份</th><th>2015</th><th>2016</th><th>2017</th><th>2018</th><th>2019</th><th>2020</th><th>2021</th><th>2022</th><th>2023</th><th>2024</th><th>2025</th></tr>
+            <tr><td>ROE</td><td>25.72%</td><td>40.21%</td><td>-8.70%</td><td>14.45%</td><td>5.77%</td><td>1.90%</td><td>0.21%</td><td>12.98%</td><td>57.46%</td><td>16.69%</td><td>56.43%</td></tr>
         </table>
-        
-        <h3>5.2 各业务板块竞争优势</h3>
-        <ul>
-            <li><strong>壳蛋业务</strong>：美国最大的壳蛋生产商，规模优势明显，成本控制能力强</li>
-            <li><strong>蛋制品业务</strong>：快速增长，多元化收入来源</li>
-        </ul>
-        
-        <h3>5.3 护城河分析</h3>
         <div class="highlight">
-            <p><strong>Cal-Maine Foods的护城河是什么？</strong></p>
-            <ul>
-                <li><strong>规模经济护城河</strong>：作为美国最大的鸡蛋生产商，享受规模经济效应，降低单位成本</li>
-                <li><strong>垂直整合护城河</strong>：从饲料采购到鸡蛋销售的垂直整合，控制成本，确保质量</li>
-                <li><strong>品牌护城河</strong>：知名品牌，消费者信任度高</li>
-                <li><strong>分销网络护城河</strong>：强大的分销网络，覆盖全美市场</li>
-                <li><strong>成本优势护城河</strong>：规模化生产带来的成本优势</li>
-            </ul>
+            <p><strong>ROE分析：</strong>Cal-Maine的ROE波动极大——从-8.70%（2017年禽流感+低蛋价）到57.46%（2023年禽流感后蛋价飙升），振幅超过66个百分点。这完美诠释了"周期性商品企业"的特征：利润完全由外部因素（蛋价）决定，管理层几乎无法控制。</p>
+            <p><strong>10年平均ROE：约22.2%</strong>——看似优秀，但中位数仅约14.2%，说明平均数被极端高值（2023年57.46%、2025年56.43%）拉高。剔除极端值后，"正常化"ROE约12-15%。</p>
+            <p><strong>巴菲特视角：</strong>巴菲特偏好ROE稳定在15%+的公司。Cal-Maine的ROE在好年份远超15%，但在差年份可能为负——这种不可预测性是巴菲特最不喜欢的。芒格可能会说："一个利润波动400倍的企业，本质上是在赌天气和病毒，而不是在经营生意。"</p>
         </div>
-    </div>
-    
-    <div class="info-box">
-        <h2>六、财务摘要 (2025年)</h2>
+
+        <h3>3.2 负债比率</h3>
         <table>
-            <tr>
-                <th>财务指标</th>
-                <th>数值</th>
-            </tr>
-            <tr>
-                <td>总营收</td>
-                <td>约23.59亿美元</td>
-            </tr>
-            <tr>
-                <td>净利润</td>
-                <td>约3.53亿美元</td>
-            </tr>
-            <tr>
-                <td>营收同比</td>
-                <td>-25.30%</td>
-            </tr>
-            <tr>
-                <td>净利润同比</td>
-                <td>-59.83%</td>
-            </tr>
-            <tr>
-                <td>毛利率</td>
-                <td>27.04%</td>
-            </tr>
-            <tr>
-                <td>净利率</td>
-                <td>14.97%</td>
-            </tr>
-            <tr>
-                <td>ROE</td>
-                <td>3.22% (当前)，5年平均16%</td>
-            </tr>
-            <tr>
-                <td>资产负债率</td>
-                <td>13.77%</td>
-            </tr>
-            <tr>
-                <td>市盈率 (P/E)</td>
-                <td>3.71-3.80</td>
-            </tr>
-            <tr>
-                <td>股息收益率</td>
-                <td>11.7%</td>
-            </tr>
-            <tr>
-                <td>市值</td>
-                <td>约41.8-42.81亿美元</td>
-            </tr>
+            <tr><th>年份</th><th>2015</th><th>2016</th><th>2017</th><th>2018</th><th>2019</th><th>2020</th><th>2021</th><th>2022</th><th>2023</th><th>2024</th><th>2025</th></tr>
+            <tr><td>负债/权益</td><td>0.09</td><td>0.06</td><td>0.09</td><td>0.05</td><td>0.02</td><td>0.03</td><td>0.01</td><td>0.01</td><td>0.01</td><td>0.00</td><td>0.00</td></tr>
+            <tr><td>长期债务($M)</td><td>41</td><td>9</td><td>6</td><td>3</td><td>1</td><td>2</td><td>1</td><td>1</td><td>0</td><td>0</td><td>0</td></tr>
+            <tr><td>净现金($M)</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>168</td><td>174</td><td>648</td><td>812</td><td>1,392</td></tr>
         </table>
+        <div class="highlight">
+            <p><strong>负债趋势：</strong>Cal-Maine几乎是一家"零负债"公司——长期债务从2015年的$41M持续降至2023年后的$0。FY2025末现金及等价物高达$13.92亿，而总负债仅$5.19亿，净现金约$8.73亿。这是极其罕见的财务强度——在周期低谷也不会因债务违约而破产。</p>
+            <p><strong>巴菲特视角：</strong>零负债+大量净现金是巴菲特最喜欢的资产负债表类型。Cal-Maine在行业低谷期（如2017年亏损$74M、2021年净利润仅$2M）仍能保持零负债运营，说明管理层非常保守和自律。但大量现金也引发疑问：是否应该更积极地回购股票或扩大产能？</p>
+        </div>
+
+        <h3>3.3 市盈率（PE）</h3>
+        <table>
+            <tr><th>年份</th><th>2015</th><th>2016</th><th>2017</th><th>2018</th><th>2019</th><th>2020</th><th>2021</th><th>2022</th><th>2023</th><th>2024</th><th>2025</th></tr>
+            <tr><td>PE</td><td>≈12.1</td><td>≈7.5</td><td>N/A</td><td>≈14.2</td><td>≈32.4</td><td>≈183</td><td>N/A</td><td>≈18.5</td><td>≈4.3</td><td>≈14.2</td><td>≈3.1</td></tr>
+        </table>
+        <div class="highlight">
+            <p><strong>PE分析：</strong>Cal-Maine的PE在亏损年份无意义。在盈利年份，PE波动极大（3.1x-183x），反映市场对鸡蛋周期的不确定预期。FY2025 PE仅3.1x看似极便宜，但这是因为净利润$12.2亿是"异常高值"——市场预期未来利润将大幅回落。</p>
+            <p><strong>当前PE（TTM，2026年5月）：约5.4x</strong>——看似便宜，但TTM净利润已从FY2025的$12.2亿降至约$6.95亿（蛋价回落），Forward PE约15-20x。按"正常化"净利润$2-4亿计算，正常化PE约9-18x。</p>
+            <p><strong>周期股估值法则：</strong>对于强周期股，PE低点往往是卖出信号（利润高点），PE高点反而是买入信号（利润低点）。Cal-Maine的PE 3.1x出现在FY2025利润高点，可能正是"周期顶部"的标志。</p>
+        </div>
+
+        <div class="chart-container">
+            <canvas id="roeChart" height="100"></canvas>
+        </div>
+        <div class="chart-container">
+            <canvas id="debtChart" height="100"></canvas>
+        </div>
     </div>
-    
+
     <div class="info-box">
-        <h2>七、ROE下滑原因分析 (2017-2021)</h2>
-        
-        <h3>7.1 ROE趋势分析</h3>
-        <p>从2017年到2021年，Cal-Maine Foods的ROE经历了显著下滑，主要受到以下因素影响：</p>
-        
-        <h3>7.2 利润率角度分析</h3>
+        <h2>四、竞争分析</h2>
+
+        <h3>4.1 主要竞争对手</h3>
+        <table>
+            <tr><th>竞争对手</th><th>总部</th><th>蛋鸡数量(百万)</th><th>市场份额</th><th>上市状态</th><th>核心特点</th></tr>
+            <tr><td>Cal-Maine Foods</td><td>密西西比</td><td>50.61</td><td>~16%</td><td>上市(NASDAQ)</td><td>全美最大；垂直整合；唯一大型上市蛋企</td></tr>
+            <tr><td>Rose Acre Farms</td><td>印第安纳</td><td>25.50</td><td>~8%</td><td>私有</td><td>全美第二；液蛋/蛋粉业务强</td></tr>
+            <tr><td>Daybreak Foods</td><td>威斯康星</td><td>23.30</td><td>~7%</td><td>私有</td><td>中西部强势；2023年收购Hen Haven</td></tr>
+            <tr><td>Hillandale Farms</td><td>宾夕法尼亚</td><td>18.34</td><td>~6%</td><td>私有</td><td>东北部/中西部；多品牌策略</td></tr>
+            <tr><td>Versova Holdings</td><td>爱荷华</td><td>18.45</td><td>~6%</td><td>私有</td><td>中西部大型蛋企；出口业务</td></tr>
+            <tr><td>Vital Farms (VITL)</td><td>德克萨斯</td><td>5.70</td><td>~2%</td><td>上市(NASDAQ)</td><td>散养/草饲蛋高端品牌；品牌溢价高</td></tr>
+        </table>
+
+        <h3>4.2 市场份额</h3>
+        <table>
+            <tr><th>细分市场</th><th>CALM份额</th><th>说明</th></tr>
+            <tr><td>全美壳蛋消费量</td><td>~21-24%</td><td>按销售量计算；远超第二名Rose Acre的~8%</td></tr>
+            <tr><td>全美蛋鸡存栏</td><td>~16%</td><td>50.61M只/约320M总存栏</td></tr>
+            <tr><td>特种蛋市场</td><td>~15-20%</td><td>无笼/有机/散养蛋；增长最快的细分</td></tr>
+            <tr><td>液蛋/蛋制品</td><td>~5-8%</td><td>相对较小；Echo Lake收购后扩展</td></tr>
+        </table>
+
+        <h3>4.3 护城河评估</h3>
+        <div class="moat-box">
+            <h3>🏰 护城河总评：窄护城河（Narrow Moat）</h3>
+
+            <p><strong>1. 规模优势（中等偏强）</strong></p>
+            <p>Cal-Maine拥有5,060万只蛋鸡，是第二名Rose Acre的两倍。规模带来：①饲料采购议价权（玉米/大豆大宗采购折扣）；②运输成本分摊（全国49个加工设施就近配送）；③客户覆盖广度（沃尔玛/Costco等大客户需要全国性供应商）。但鸡蛋是高度商品化的产品——消费者很少关心鸡蛋是谁生产的，规模无法转化为定价权。</p>
+
+            <p><strong>2. 垂直整合（中等偏强）</strong></p>
+            <p>从孵化到包装的全链条自控意味着：①成本可控（饲料自产，不受外部加工商加价）；②质量可追溯（食品安全事件风险低）；③供应稳定性高（禽流感期间可更快恢复产能）。但垂直整合也是双刃剑——资本开支高（每个新设施$2,000-5,000万），资产重，灵活性低。</p>
+
+            <p><strong>3. 生物安全壁垒（中等）</strong></p>
+            <p>Cal-Maine在2014年组建了专业生物安全团队，在历次HPAI爆发中的感染率远低于行业平均。2022-2025年全美因HPAI扑杀超1亿只蛋鸡，Cal-Maine的损失比例显著低于同行。这种"抗病毒能力"是一种难以量化的竞争优势——在禽流感期间，Cal-Maine能维持生产并享受高蛋价，而竞争对手则在扑杀鸡群。</p>
+
+            <p><strong>4. 收购整合能力（中等）</strong></p>
+            <p>自1989年以来完成26次收购，Cal-Maine已证明其整合能力。最近的ISE America（$110M）、Echo Lake Foods（$258M）、Van's Foods品牌收购，都在扩展产品线和地域覆盖。但收购价格是否合理、整合是否顺利，仍需时间验证。</p>
+
+            <p><strong>5. 品牌力（弱）</strong></p>
+            <p>Cal-Maine几乎没有消费者品牌认知——它主要做B2B（超市自有品牌）和授权品牌（Egg-Land's Best、Land O'Lakes）。消费者买蛋时看的是价格和新鲜度，不是品牌。这与Vital Farms的高端品牌策略形成对比。</p>
+
+            <p><strong>6. 定价权（无）</strong></p>
+            <p>鸡蛋是典型的商品化产品——Cal-Maine是价格接受者。蛋价由芝加哥商品交易所（CME）的鸡蛋期货和USDA报告决定，公司无法提价。这是Cal-Maine最致命的弱点——没有定价权意味着利润完全由外部因素决定。</p>
+        </div>
+
+        <h3>4.4 护城河的可持续性</h3>
         <div class="highlight">
-            <p><strong>1. 鸡蛋价格波动</strong></p>
+            <p><strong>正面因素：</strong></p>
             <ul>
-                <li><strong>供过于求</strong>：2017-2020年期间，美国鸡蛋市场供过于求，导致鸡蛋价格下跌</li>
-                <li><strong>平均售价下降</strong>：从2018年的每打1.735美元下降到较低水平</li>
-                <li><strong>价格压力</strong>：市场竞争加剧，价格战导致利润率压缩</li>
+                <li>规模优势持续扩大——ISE America/Echo Lake等收购增加蛋鸡数量</li>
+                <li>生物安全团队经验积累——每次HPAI爆发都强化了公司的"抗病毒"能力</li>
+                <li>特种蛋占比提升——无笼/有机蛋的利润率更高，且受法规推动（加州/麻省等已禁止笼养蛋）</li>
+                <li>零负债+大量现金——在行业低谷期可低价收购竞争对手资产</li>
+                <li>法规壁垒——各州动物福利法规提高了行业准入门槛</li>
             </ul>
-            
-            <p><strong>2. 饲料成本上升</strong></p>
+            <p><strong>负面因素：</strong></p>
             <ul>
-                <li><strong>原材料价格上涨</strong>：玉米和豆粕等饲料原材料价格波动上涨</li>
-                <li><strong>成本压力</strong>：饲料成本占鸡蛋生产成本的主要部分，成本上升直接挤压利润</li>
-                <li><strong>毛利率压缩</strong>：饲料成本从每打0.399美元上升，导致毛利率下降</li>
-            </ul>
-            
-            <p><strong>3. 禽流感影响</strong></p>
-            <ul>
-                <li><strong>蛋鸡存栏减少</strong>：禽流感导致部分蛋鸡被扑杀，影响产蛋量</li>
-                <li><strong>生产中断</strong>：疫情防控措施导致生产效率下降</li>
-                <li><strong>额外成本</strong>：防疫措施增加了运营成本</li>
+                <li>没有定价权——利润完全由蛋价决定，管理层无法控制</li>
+                <li>鸡蛋商品化——消费者不关心品牌，忠诚度为零</li>
+                <li>HPAI风险——即便生物安全做得再好，也无法100%避免感染</li>
+                <li>替代蛋白威胁——植物基蛋（JUST Egg）和细胞培养蛋长期可能分流需求</li>
+                <li>反垄断调查——美国司法部正在调查蛋企是否存在价格操纵行为</li>
+                <li>笼养禁令——虽然推动特种蛋增长，但也要求大量资本开支改造设施</li>
             </ul>
         </div>
-        
-        <h3>7.3 资产负债率角度分析</h3>
+    </div>
+
+    <div class="info-box">
+        <h2>五、利润分配分析（2016-2025）</h2>
+
+        <h3>5.1 十年利润分配表（回购计入留存）</h3>
         <div class="highlight">
-            <p><strong>1. 资产结构变化</strong></p>
+            <p><strong>核心原则：</strong>股票回购与留存收益本质相同——都是将利润保留在公司生态内、让剩余股东受益。回购减少股数、提升每股价值；留存收益增加净资产、支持未来增长。两者都不同于股息（利润真正离开公司）。因此，回购归入"留存"类别计算，股息才是唯一的"真正分配"。</p>
+            <p><strong>数据说明：</strong>Cal-Maine采用可变股息政策——只在有净利润的季度派息，亏损季度不派息。FY2017和FY2021全年无股息。2025年2月公司宣布$5亿回购计划，FY2025回购约$50M。"≈"表示约数，"-"表示亏损/无派息。</p>
+        </div>
+        <table>
+            <tr><th>年度</th><th>净利润($M)</th><th>股息($M)</th><th>回购($M)</th><th>扩张CapEx($M)</th><th>债务偿还($M)</th><th>留存金额($M)</th><th>留存比率</th></tr>
+            <tr><td>2016</td><td>316</td><td>≈121</td><td>0</td><td>≈80</td><td>≈32</td><td>195</td><td>61.7%</td></tr>
+            <tr><td>2017</td><td>-74</td><td>0</td><td>0</td><td>≈70</td><td>≈3</td><td>-74</td><td>N/A(亏损)</td></tr>
+            <tr><td>2018</td><td>126</td><td>≈44</td><td>0</td><td>≈75</td><td>≈3</td><td>82</td><td>65.1%</td></tr>
+            <tr><td>2019</td><td>54</td><td>≈42</td><td>0</td><td>≈70</td><td>≈0</td><td>12</td><td>22.2%</td></tr>
+            <tr><td>2020</td><td>18</td><td>0</td><td>0</td><td>≈65</td><td>≈1</td><td>18</td><td>100%</td></tr>
+            <tr><td>2021</td><td>2</td><td>≈1</td><td>0</td><td>≈55</td><td>≈1</td><td>1</td><td>50%</td></tr>
+            <tr><td>2022</td><td>133</td><td>≈6</td><td>0</td><td>≈90</td><td>≈0</td><td>127</td><td>95.5%</td></tr>
+            <tr><td>2023</td><td>758</td><td>≈254</td><td>0</td><td>≈210</td><td>≈0</td><td>504</td><td>66.5%</td></tr>
+            <tr><td>2024</td><td>278</td><td>≈190</td><td>0</td><td>≈260</td><td>≈0</td><td>88</td><td>31.7%</td></tr>
+            <tr><td>2025</td><td>1,220</td><td>≈330</td><td>≈50</td><td>≈350</td><td>≈0</td><td>890</td><td>73.0%</td></tr>
+        </table>
+
+        <h3>5.2 留存比率趋势分析</h3>
+        <div class="highlight">
+            <p><strong>盈利年份平均留存比率：约58.2%</strong>——Cal-Maine属于"平衡分配型"公司，但在高利润年份留存比率显著上升。</p>
             <ul>
-                <li><strong>资产负债率下降</strong>：从2018年的15%下降到2021年的12%，财务杠杆降低</li>
-                <li><strong>权益增加</strong>：留存收益增加，股东权益扩大</li>
-                <li><strong>杠杆效应减弱</strong>：较低的资产负债率意味着财务杠杆效应减弱，ROE受到影响</li>
+                <li><strong>2016年：</strong>ROE 40.21%，留存61.7%——高利润年份适度分红</li>
+                <li><strong>2017年：</strong>亏损，零股息——正确的决定（不借钱分红）</li>
+                <li><strong>2018-2021年：</strong>低利润/亏损期，股息极少或为零——可变股息政策的优势</li>
+                <li><strong>2022年：</strong>利润恢复，留存95.5%——几乎全部留存用于再投资</li>
+                <li><strong>2023年：</strong>超级大年（ROE 57.46%），股息$254M，留存66.5%——合理分配</li>
+                <li><strong>2025年：</strong>创纪录年（净利润$12.2亿），股息$330M+回购$50M，留存73%——大量利润留存用于收购和扩产</li>
             </ul>
-            
-            <p><strong>2. 资产使用效率</strong></p>
+            <p><strong>留存构成（2025年）：</strong>留存$890M中，回购$50M（占留存5.6%）、扩张CapEx约$350M（占留存39.3%）、其余约$490M增加现金储备。公司正在"囤积弹药"用于未来收购和产能扩张。</p>
+            <p><strong>可持续增长率 = ROE × 留存比率 = 56.43% × 73% = 41.2%</strong>——但这是FY2025的异常高值。正常化可持续增长率 = 15% × 60% = 9%——更合理的估计。</p>
+        </div>
+
+        <div class="chart-container">
+            <canvas id="retentionChart" height="100"></canvas>
+        </div>
+
+        <h3>5.3 股息历史</h3>
+        <table>
+            <tr><th>年度</th><th>每股年股息($)</th><th>股息率</th><th>派息比率</th><th>备注</th></tr>
+            <tr><td>2016</td><td>$2.51</td><td>~6.3%</td><td>38.3%</td><td>高利润年；4次派息</td></tr>
+            <tr><td>2017</td><td>$0</td><td>0%</td><td>N/A(亏损)</td><td>全年亏损，零股息</td></tr>
+            <tr><td>2018</td><td>$0.44</td><td>~1.5%</td><td>16.9%</td><td>利润微薄，少量派息</td></tr>
+            <tr><td>2019</td><td>$0.86</td><td>~3.1%</td><td>77.8%</td><td>仅部分季度盈利</td></tr>
+            <tr><td>2020</td><td>$0</td><td>0%</td><td>0%</td><td>COVID影响；零股息</td></tr>
+            <tr><td>2021</td><td>$0.03</td><td>~0.1%</td><td>≈50%</td><td>仅1次微薄派息</td></tr>
+            <tr><td>2022</td><td>$0.13</td><td>~0.3%</td><td>4.8%</td><td>利润恢复初期；保守派息</td></tr>
+            <tr><td>2023</td><td>$5.19</td><td>~8.0%</td><td>33.5%</td><td>超级大年；高额可变股息</td></tr>
+            <tr><td>2024</td><td>$1.89</td><td>~4.0%</td><td>33.2%</td><td>利润回落；股息相应减少</td></tr>
+            <tr><td>2025</td><td>$6.78</td><td>~8.8%</td><td>27.1%</td><td>创纪录年；高额可变股息</td></tr>
+        </table>
+        <div class="highlight">
+            <p><strong>可变股息政策评价：</strong>Cal-Maine的可变股息政策是极其优秀的资本配置方式——在亏损时不派息（避免"借钱分红"的愚蠢行为），在高利润时大比例派息（让股东分享丰收）。这与大多数公司"稳定但不可持续"的固定股息政策形成鲜明对比。巴菲特会赞赏这种"利润驱动"的派息方式——它确保了公司永远不会为了维持股息而牺牲财务安全。</p>
+            <p><strong>TTM股息率约6.25%</strong>——看似很高，但需注意：①股息金额随利润大幅波动；②当前TTM包含FY2025的高额派息，未来可能大幅下降。</p>
+        </div>
+
+        <h3>5.4 股票回购历史</h3>
+        <table>
+            <tr><th>年度</th><th>回购金额($M)</th><th>回购股数</th><th>备注</th></tr>
+            <tr><td>2016-2024</td><td>0</td><td>0</td><td>公司历史上从未进行股票回购</td></tr>
+            <tr><td>2025</td><td>≈50</td><td>≈551,876</td><td>首次回购；$5亿计划的第一笔（均价≈$90.6）</td></tr>
+        </table>
+        <div class="highlight">
+            <p><strong>回购时机评价：</strong>Cal-Maine在2025年2月宣布$5亿回购计划，这是公司历史上首次回购。FY2025回购约$50M（均价约$90.6/股），当时PE约3-5x——回购时机尚可。但FY2026 Q1（2025年6-8月）蛋价开始回落，股价从$126跌至$77，公司是否加速回购将是观察管理层资本配置能力的关键。</p>
+            <p><strong>创始人家族减持：</strong>FY2025 Q4，创始人Adams家族完成了承销公开发行出售股份，同时将A类超级投票权股转换为普通股，Cal-Maine不再是一家"受控公司"。家族减持可能对股价形成短期压力，但也增加了流动性。</p>
+        </div>
+
+        <h3>5.5 资本配置评价</h3>
+        <div class="highlight">
+            <p><strong>管理层资本配置能力：中等偏上</strong></p>
             <ul>
-                <li><strong>总资产周转率下降</strong>：市场需求疲软，资产利用效率降低</li>
-                <li><strong>产能利用率</strong>：供过于求导致部分产能闲置</li>
-                <li><strong>投资回报周期延长</strong>：新建养殖场等投资的回报周期延长</li>
+                <li><strong>可变股息政策（优秀）：</strong>亏损时不派息，盈利时大比例派息——这是最理性的资本配置方式。与那些"借钱也要维持股息"的公司形成鲜明对比。</li>
+                <li><strong>零负债运营（优秀）：</strong>10年来几乎零长期债务，在周期低谷也不会因债务违约而破产。这是极其保守但正确的策略。</li>
+                <li><strong>收购整合（良好）：</strong>26次收购历史证明整合能力，ISE America和Echo Lake的收购扩展了地域和产品线。但收购价格是否合理仍需验证。</li>
+                <li><strong>现金囤积（中等）：</strong>FY2025末现金$13.92亿，占市值的约38%。大量现金提供了安全边际和收购能力，但也意味着资本效率不高——现金的回报率远低于业务ROE。</li>
+                <li><strong>回购启动（待观察）：</strong>$5亿回购计划是正面信号，但执行力度和时机选择仍需观察。</li>
+                <li><strong>巴菲特1美元测试：</strong>2016-2025年累计留存利润约$1,785M，同期市值从约$9.5亿增至$36.5亿（增长$27亿）。每1美元留存创造约$15.1市值——看似优秀，但主要归功于FY2023和FY2025的异常利润推高估值。</li>
             </ul>
         </div>
-        
-        <h3>7.4 其他影响因素</h3>
+
+        <div class="chart-container">
+            <canvas id="allocationChart" height="100"></canvas>
+        </div>
+    </div>
+
+    <div class="info-box">
+        <h2>六、投资总结</h2>
+
+        <h3>6.1 核心投资逻辑</h3>
+        <div class="moat-box">
+            <p><strong>CALM是"美国鸡蛋之王"——拥有无可匹敌的规模和垂直整合优势，但利润完全由蛋价周期决定，没有定价权是致命弱点。当前估值看似便宜（PE 5.4x），但处于周期顶部区域。</strong></p>
+            <ul>
+                <li><strong>规模王者：</strong>5,060万只蛋鸡，全美第二名的两倍；供应全美21-24%壳蛋消费</li>
+                <li><strong>零负债+净现金：</strong>$8.73亿净现金提供极端安全边际</li>
+                <li><strong>可变股息：</strong>最理性的派息政策——亏损时不派息，盈利时慷慨分红</li>
+                <li><strong>生物安全优势：</strong>专业团队使HPAI损失率低于行业平均</li>
+                <li><strong>特种蛋转型：</strong>无笼/有机蛋占比从25%提升至37%，利润率更高</li>
+            </ul>
+        </div>
+
+        <h3>6.2 关键催化剂</h3>
         <ul>
-            <li><strong>行业周期性</strong>：鸡蛋行业具有明显的周期性，2017-2021年处于行业低谷期</li>
-            <li><strong>市场竞争</strong>：新进入者增加，市场竞争加剧</li>
-            <li><strong>监管成本</strong>：环保和动物福利法规趋严，增加合规成本</li>
-            <li><strong>COVID-19影响</strong>：疫情导致餐饮行业需求下降，影响鸡蛋销售</li>
+            <li>HPAI爆发——蛋价飙升的直接催化剂（讽刺的是，这对Cal-Maine是利好）</li>
+            <li>各州笼养禁令——法规推动特种蛋需求，Cal-Maine的产能转型领先</li>
+            <li>收购整合——ISE America/Echo Lake/Van's Foods的协同效应释放</li>
+            <li>$5亿回购执行——如果加速回购，将显著提升每股价值</li>
+            <li>预制食品扩展——Echo Lake和Van's Foods打开新增长曲线</li>
         </ul>
-        
-        <h3>7.5 复苏因素 (2022-2025)</h3>
-        <p>从2022年开始，Cal-Maine Foods的ROE开始回升，主要得益于：</p>
-        <ul>
-            <li><strong>鸡蛋价格上涨</strong>：供应减少，需求增加，鸡蛋价格大幅上涨</li>
-            <li><strong>成本控制</strong>：通过规模效应和运营优化降低成本</li>
-            <li><strong>产能扩张</strong>：收购Hillandale Farms等，扩大市场份额</li>
-            <li><strong>产品结构调整</strong>：增加高附加值产品占比</li>
-        </ul>
-    </div>
-    
-    <div class="info-box">
-        <h2>八、投资建议</h2>
-        <div class="highlight">
-            <p><strong>Cal-Maine Foods适合什么样的投资者？</strong></p>
+
+        <h3>6.3 主要风险</h3>
+        <div class="risk-box">
             <ul>
-                <li><strong>价值型投资者</strong>：低市盈率(3.7-3.8倍)，估值处于历史低位</li>
-                <li><strong>收益型投资者</strong>：高股息收益率(11.7%)，适合追求稳定收益的投资者</li>
-                <li><strong>周期型投资者</strong>：鸡蛋价格具有周期性，适合把握行业周期</li>
-                <li><strong>防御型投资者</strong>：食品行业具有防御性，受经济波动影响较小</li>
-            </ul>
-            <p><strong>投资亮点</strong>：</p>
-            <ul>
-                <li>美国最大的鸡蛋生产商，市场地位稳固</li>
-                <li>低市盈率，估值合理，安全边际高</li>
-                <li>高股息收益率，超过11%</li>
-                <li>财务结构稳健，资产负债率仅13.77%</li>
-                <li>通过收购扩大产能，增强市场地位</li>
-                <li>蛋制品业务快速增长，多元化收入来源</li>
-            </ul>
-            <p><strong>风险提示</strong>：</p>
-            <ul>
-                <li>鸡蛋价格波动风险，影响短期业绩</li>
-                <li>禽流感等疾病风险，可能影响蛋鸡存栏</li>
-                <li>饲料价格波动风险，影响成本</li>
-                <li>监管风险，环保和动物福利法规趋严</li>
-                <li>反垄断调查风险（DOJ probe）</li>
+                <li><strong>周期性风险（极高）：</strong>Cal-Maine的利润完全由蛋价决定，而蛋价受HPAI、饲料成本、季节性需求等多重因素影响。FY2025净利润$12.2亿 vs FY2021净利润$200万——利润波动6,000倍。当前蛋价已从FY2025高点回落，FY2026利润可能大幅下降。</li>
+                <li><strong>无定价权（极高）：</strong>鸡蛋是高度商品化的产品，Cal-Maine是价格接受者。公司无法通过提价来抵消成本上升或需求下降。这与巴菲特偏好的"有定价权的企业"完全相反。</li>
+                <li><strong>HPAI风险（高）：</strong>虽然Cal-Maine的生物安全优于同行，但HPAI是"黑天鹅"事件——一旦大规模感染，可能扑杀数百万只蛋鸡，造成巨额损失。</li>
+                <li><strong>反垄断调查（中高）：</strong>美国司法部正在调查蛋企是否存在价格操纵行为。如果被认定有罪，可能面临巨额罚款和声誉损失。</li>
+                <li><strong>替代蛋白威胁（中长期）：</strong>植物基蛋（JUST Egg）和细胞培养蛋技术持续进步，长期可能分流鸡蛋需求。但短期内，鸡蛋的价格优势（$0.20-0.30/个 vs JUST Egg $0.80+/个）使其难以被替代。</li>
+                <li><strong>饲料成本波动（中）：</strong>玉米/大豆占成本的53.4%，价格受天气/贸易政策影响。公司通过期货对冲部分风险，但无法完全消除。</li>
+                <li><strong>创始人家族减持（中）：</strong>Adams家族完成股份出售并放弃控制权，可能影响长期战略稳定性。</li>
             </ul>
         </div>
+
+        <h3>6.4 估值分析</h3>
+        <table>
+            <tr><th>估值指标</th><th>当前值</th><th>行业均值</th><th>评估</th></tr>
+            <tr><td>PE（TTM）</td><td>~5.4x</td><td>~20x</td><td>看似极便宜，但TTM利润包含异常高值</td></tr>
+            <tr><td>Forward PE</td><td>~15-20x</td><td>~18x</td><td>中等偏贵</td></tr>
+            <tr><td>正常化PE（$3亿净利润）</td><td>~12x</td><td>~18x</td><td>合理偏低</td></tr>
+            <tr><td>P/B</td><td>~1.35x</td><td>~3.5x</td><td>便宜</td></tr>
+            <tr><td>P/S</td><td>~1.1x</td><td>~1.5x</td><td>合理偏低</td></tr>
+            <tr><td>EV/EBITDA</td><td>~2.0x</td><td>~12x</td><td>极便宜（但EBITDA处于周期高点）</td></tr>
+            <tr><td>股息率（TTM）</td><td>~6.25%</td><td>~2.5%</td><td>极高但不可持续</td></tr>
+            <tr><td>FCF Yield</td><td>~20%</td><td>~5%</td><td>极高但处于周期高点</td></tr>
+        </table>
+
+        <div class="highlight">
+            <p><strong>估值判断：</strong>Cal-Maine的估值看似极便宜（PE 5.4x、EV/EBITDA 2.0x），但这是典型的"周期股估值陷阱"——低PE往往出现在利润高点，而非利润低点。按正常化净利润$2-4亿计算，正常化PE约9-18x，P/B约1.35x——这是更合理的估值区间。</p>
+            <p><strong>资产价值底线：</strong>FY2025末每股账面价值约$52.68，当前股价$77，P/B 1.35x。考虑到公司零负债+净现金$8.73亿，资产价值提供了约$52-55的下行保护。如果蛋价暴跌至成本线附近，股价可能跌至$50-55（P/B约1.0x）。</p>
+            <p><strong>乐观情景：</strong>HPAI持续爆发 + 特种蛋占比提升至50% + 预制食品成功 → FY2028正常化净利润$5亿 × PE 12x = $60亿市值 → 约$127/股</p>
+            <p><strong>保守情景：</strong>蛋价回归正常 + 无重大HPAI + 收购整合不顺利 → FY2028正常化净利润$2亿 × PE 10x = $20亿市值 → 约$42/股</p>
+            <p><strong>基准情景：</strong>蛋价温和波动 + 特种蛋稳步增长 + 适度收购 → FY2028正常化净利润$3亿 × PE 11x = $33亿市值 → 约$70/股</p>
+        </div>
+
+        <h3>6.5 巴菲特-芒格视角</h3>
+        <div class="moat-box">
+            <p><strong>"在商业中，我寻找的是有持久竞争优势的经济城堡，由值得信赖的城堡守护者管理，并以合理价格购买。"——巴菲特</strong></p>
+            <p>从巴菲特的视角看，Cal-Maine有几个严重问题：</p>
+            <p><strong>1. 无定价权：</strong>巴菲特最看重的是"能提价而不失去客户"的能力。Cal-Maine完全不具备这一点——蛋价由市场决定，公司只能被动接受。巴菲特会说："如果你不能控制价格，你就不是在做生意，你是在赌博。"</p>
+            <p><strong>2. 利润不可预测：</strong>巴菲特偏好"利润可预测"的企业——他需要能合理估计未来5-10年的盈利。Cal-Maine的利润波动6,000倍，完全不可预测。</p>
+            <p><strong>3. 商品化产品：</strong>鸡蛋是最商品化的食品之一——消费者买蛋时看的是价格和新鲜度，不是品牌。巴菲特偏好有品牌溢价的消费品（如可口可乐、See's Candies）。</p>
+            <p>但芒格可能会看到另一面：</p>
+            <p><strong>4. 最低成本生产者：</strong>在商品化行业中，最低成本生产者最终会赢。Cal-Maine的垂直整合和规模优势使其成为全美成本最低的大型蛋企。芒格会说："在商品业务中，你不需要是最聪明的，只需要是最便宜的。"</p>
+            <p><strong>5. 零负债+净现金：</strong>这是巴菲特最喜欢的资产负债表类型。Cal-Maine在行业最差时期也不会破产——这提供了巨大的安全边际。</p>
+            <p><strong>6. 可变股息：</strong>巴菲特会赞赏这种"利润驱动"的派息方式——它确保了公司永远不会为了维持股息而牺牲财务安全。</p>
+            <p><strong>7. 行业整合者：</strong>Cal-Maine是全美唯一的大型上市蛋企，在行业低谷期可以低价收购私有竞争对手的资产——这是一种"反周期"的资本配置策略。</p>
+        </div>
+
+        <h3>6.6 投资结论</h3>
+        <div class="risk-box">
+            <p><strong>评级：关注（等待周期低谷买入）</strong></p>
+            <p>Cal-Maine是一家"好公司但坏时机"的典型周期股。规模优势、垂直整合、零负债和可变股息政策都是真实的竞争优势，但当前处于蛋价周期的高位回落阶段，PE看似便宜实则是"周期陷阱"。</p>
+            <p><strong>合理买入区间：</strong>如果股价回调至$50-55（P/B约1.0x，正常化PE约8-9x），Cal-Maine将提供足够的安全边际。在这个价位，资产价值提供了下行保护，而蛋价回升周期将带来显著的上行空间。</p>
+            <p><strong>关键观察指标：</strong>①USDA鸡蛋价格走势（芝加哥 Midwest 大蛋白壳批发价）；②HPAI爆发情况及全美蛋鸡存栏数；③玉米/大豆期货价格（饲料成本）；④季度净利润和股息变化趋势；⑤$5亿回购计划的执行进度；⑥反垄断调查进展。</p>
+            <p><strong>周期股投资法则：</strong>"在PE最高时买入（利润低谷），在PE最低时卖出（利润高峰）。"Cal-Maine的PE从FY2025的3.1x开始上升，正是"周期顶部"的信号。耐心等待下一个利润低谷期（PE 30-50x），才是价值投资者的入场时机。</p>
+        </div>
     </div>
-    
-    <div class="info-box">
-        <p><strong>最后更新</strong>：2026年4月17日<br>
-        <strong>数据来源</strong>：Cal-Maine Foods财报、富途牛牛、Macrotrends、Wealthyhood、雪球等金融平台</p>
-    </div>
-    
+
+    <div class="back-link"><a href="index.html">← 返回美股分析索引</a></div>
+
     <script>
-        const roeData = {
-            labels: ['2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025'],
-            datasets: [{
-                label: 'ROE (%)',
-                data: [12, 14, 16, 18, 20, 15, 10, 3.22],
-                borderColor: 'rgba(75, 192, 192, 1)',
-                backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                borderWidth: 2,
-                tension: 0.3,
-                fill: true
-            }]
-        };
-        
-        const debtData = {
-            labels: ['2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025'],
-            datasets: [{
-                label: '资产负债率 (%)',
-                data: [15, 14, 13, 12, 13, 14, 14, 13.77],
-                borderColor: 'rgba(255, 99, 132, 1)',
-                backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                borderWidth: 2,
-                tension: 0.3,
-                fill: true
-            }]
-        };
-        
-        const peData = {
-            labels: ['2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025'],
-            datasets: [{
-                label: '市盈率 (P/E)',
-                data: [8, 7, 6, 5, 4, 4, 4, 3.8],
-                borderColor: 'rgba(153, 102, 255, 1)',
-                backgroundColor: 'rgba(153, 102, 255, 0.2)',
-                borderWidth: 2,
-                tension: 0.3,
-                fill: true
-            }]
-        };
-        
-        const revenueData = {
-            labels: ['2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025'],
-            datasets: [{
-                label: '营收 (亿美元)',
-                data: [18, 19, 20, 22, 31, 28, 26, 23.59],
-                borderColor: 'rgba(75, 192, 192, 1)',
-                backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                borderWidth: 2,
-                tension: 0.3,
-                fill: true
-            }, {
-                label: '净利润 (亿美元)',
-                data: [2, 2.5, 3, 3.5, 8.8, 6, 4.5, 3.53],
-                borderColor: 'rgba(255, 99, 132, 1)',
-                backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                borderWidth: 2,
-                tension: 0.3,
-                fill: true
-            }]
-        };
-        
-        const commonOptions = {
-            responsive: true,
-            plugins: {
-                legend: {
-                    display: true,
-                    position: 'bottom'
-                }
+        const ctx1 = document.getElementById('revenueChart').getContext('2d');
+        new Chart(ctx1, {
+            type: 'bar',
+            data: {
+                labels: ['FY2021','FY2022','FY2023','FY2024','FY2025'],
+                datasets: [{
+                    label: '营收($M)',
+                    data: [1349, 1777, 3146, 2326, 4262],
+                    backgroundColor: 'rgba(26,35,126,0.7)',
+                    borderColor: 'rgba(26,35,126,1)',
+                    borderWidth: 1
+                }, {
+                    label: '净利润($M)',
+                    data: [2, 133, 758, 278, 1220],
+                    backgroundColor: 'rgba(76,175,80,0.7)',
+                    borderColor: 'rgba(76,175,80,1)',
+                    borderWidth: 1
+                }]
             },
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
-            }
-        };
-        
-        new Chart(document.getElementById('roeChart').getContext('2d'), {
-            type: 'line',
-            data: roeData,
             options: {
-                ...commonOptions,
-                plugins: {
-                    ...commonOptions.plugins,
-                    title: {
-                        display: true,
-                        text: 'Cal-Maine Foods (CALM) 净资产利润率 (ROE) 趋势 (2018-2025)'
-                    }
-                }
+                responsive: true,
+                plugins: { title: { display: true, text: 'Cal-Maine Foods营收与净利润（$M）' } },
+                scales: { y: { beginAtZero: true } }
             }
         });
-        
-        new Chart(document.getElementById('debtChart').getContext('2d'), {
-            type: 'line',
-            data: debtData,
+
+        const ctx2 = document.getElementById('roeChart').getContext('2d');
+        new Chart(ctx2, {
+            type: 'bar',
+            data: {
+                labels: ['2015','2016','2017','2018','2019','2020','2021','2022','2023','2024','2025'],
+                datasets: [{
+                    label: 'ROE(%)',
+                    data: [25.72,40.21,-8.70,14.45,5.77,1.90,0.21,12.98,57.46,16.69,56.43],
+                    backgroundColor: function(context) {
+                        var value = context.raw;
+                        return value >= 0 ? 'rgba(76,175,80,0.7)' : 'rgba(244,67,54,0.7)';
+                    },
+                    borderColor: function(context) {
+                        var value = context.raw;
+                        return value >= 0 ? 'rgba(76,175,80,1)' : 'rgba(244,67,54,1)';
+                    },
+                    borderWidth: 1
+                }]
+            },
             options: {
-                ...commonOptions,
-                plugins: {
-                    ...commonOptions.plugins,
-                    title: {
-                        display: true,
-                        text: 'Cal-Maine Foods (CALM) 资产负债率 趋势 (2018-2025)'
-                    }
-                }
+                responsive: true,
+                plugins: { title: { display: true, text: 'Cal-Maine Foods ROE历史走势（%）' } },
+                scales: { y: { beginAtZero: false } }
             }
         });
-        
-        new Chart(document.getElementById('peChart').getContext('2d'), {
+
+        const ctx3 = document.getElementById('debtChart').getContext('2d');
+        new Chart(ctx3, {
             type: 'line',
-            data: peData,
+            data: {
+                labels: ['2015','2016','2017','2018','2019','2020','2021','2022','2023','2024','2025'],
+                datasets: [{
+                    label: '净现金($M)',
+                    data: [null,null,null,null,null,null,168,174,648,812,1392],
+                    borderColor: 'rgba(26,35,126,1)',
+                    backgroundColor: 'rgba(26,35,126,0.1)',
+                    fill: true,
+                    tension: 0.3
+                }, {
+                    label: '长期债务($M)',
+                    data: [41,9,6,3,1,2,1,1,0,0,0],
+                    borderColor: 'rgba(244,67,54,1)',
+                    backgroundColor: 'rgba(244,67,54,0.1)',
+                    fill: true,
+                    tension: 0.3
+                }]
+            },
             options: {
-                ...commonOptions,
-                plugins: {
-                    ...commonOptions.plugins,
-                    title: {
-                        display: true,
-                        text: 'Cal-Maine Foods (CALM) 市盈率 (P/E) 趋势 (2018-2025)'
-                    }
-                }
+                responsive: true,
+                plugins: { title: { display: true, text: 'Cal-Maine Foods净现金与长期债务（$M）' } },
+                scales: { y: { beginAtZero: true } }
             }
         });
-        
-        new Chart(document.getElementById('revenueChart').getContext('2d'), {
-            type: 'line',
-            data: revenueData,
+
+        const ctx4 = document.getElementById('retentionChart').getContext('2d');
+        new Chart(ctx4, {
+            type: 'bar',
+            data: {
+                labels: ['2016','2018','2019','2020','2021','2022','2023','2024','2025'],
+                datasets: [{
+                    label: '留存比率(%)',
+                    data: [61.7,65.1,22.2,100,50,95.5,66.5,31.7,73.0],
+                    backgroundColor: 'rgba(26,35,126,0.7)',
+                    borderColor: 'rgba(26,35,126,1)',
+                    borderWidth: 1
+                }]
+            },
             options: {
-                ...commonOptions,
+                responsive: true,
+                plugins: { title: { display: true, text: 'Cal-Maine Foods盈利年份留存比率趋势（%）' } },
+                scales: { y: { beginAtZero: true, max: 110 } }
+            }
+        });
+
+        const ctx5 = document.getElementById('allocationChart').getContext('2d');
+        new Chart(ctx5, {
+            type: 'doughnut',
+            data: {
+                labels: ['股息（真正分配）', '回购（留存-回购部分）', '再投资（留存-CapEx/收购）', '增加现金储备'],
+                datasets: [{
+                    data: [330, 50, 350, 490],
+                    backgroundColor: [
+                        'rgba(244,67,54,0.7)',
+                        'rgba(33,150,243,0.7)',
+                        'rgba(76,175,80,0.7)',
+                        'rgba(255,152,0,0.7)'
+                    ],
+                    borderColor: [
+                        'rgba(244,67,54,1)',
+                        'rgba(33,150,243,1)',
+                        'rgba(76,175,80,1)',
+                        'rgba(255,152,0,1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
                 plugins: {
-                    ...commonOptions.plugins,
-                    title: {
-                        display: true,
-                        text: 'Cal-Maine Foods (CALM) 收入与利润趋势 (2018-2025)'
-                    }
+                    title: { display: true, text: 'FY2025利润分配（回购计入留存，$M）' },
+                    legend: { position: 'bottom' }
                 }
             }
         });
