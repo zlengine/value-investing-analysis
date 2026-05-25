@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Charter Communications (CHTR) 价值投资分析</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f2f5;
+            color: #333;
+        }
+        h1 {
+            text-align: center;
+            color: #1a5276;
+            font-size: 2.2em;
+            margin-bottom: 5px;
+        }
+        h2 {
+            color: #1a5276;
+            border-bottom: 2px solid #2e86c1;
+            padding-bottom: 8px;
+            margin-top: 30px;
+        }
+        h3 {
+            color: #2c3e50;
+            margin-top: 20px;
+        }
+        .subtitle {
+            text-align: center;
+            color: #7f8c8d;
+            font-size: 1.1em;
+            margin-bottom: 30px;
+        }
+        .info-box {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            background-color: white;
+        }
+        th, td {
+            padding: 10px 14px;
+            text-align: left;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        th {
+            background-color: #1a5276;
+            color: white;
+            font-weight: bold;
+        }
+        tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        tr:hover {
+            background-color: #eaf2f8;
+        }
+        .highlight {
+            background: #fef9e7;
+            border-left: 4px solid #2e86c1;
+            padding: 15px 20px;
+            margin: 15px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .chart-container {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+        canvas {
+            max-height: 400px;
+        }
+        .tag {
+            display: inline-block;
+            background: #1a5276;
+            color: white;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.85em;
+            margin: 2px;
+        }
+        .tag-green {
+            background: #27ae60;
+        }
+        .tag-orange {
+            background: #e67e22;
+        }
+        .tag-red {
+            background: #c0392b;
+        }
+        a {
+            color: #1a5276;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            font-size: 1em;
+        }
+        .moat-item {
+            background: white;
+            border-radius: 8px;
+            padding: 15px 20px;
+            margin: 10px 0;
+            box-shadow: 0 1px 5px rgba(0,0,0,0.05);
+            border-left: 4px solid #2e86c1;
+        }
+        .moat-item strong {
+            color: #1a5276;
+        }
+        .risk-item {
+            background: white;
+            border-radius: 8px;
+            padding: 15px 20px;
+            margin: 10px 0;
+            box-shadow: 0 1px 5px rgba(0,0,0,0.05);
+            border-left: 4px solid #c0392b;
+        }
+        .risk-item strong {
+            color: #c0392b;
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back-link">← 返回索引</a>
+
+    <h1>Charter Communications (NASDAQ: CHTR)</h1>
+    <p class="subtitle">巴菲特/芒格式价值投资基本面分析 | 更新日期：2026年5月</p>
+
+    <!-- 一、公司基本信息 -->
+    <div class="info-box">
+        <h2>一、公司基本信息</h2>
+        <table>
+            <tr><td>公司全称</td><td>Charter Communications, Inc.</td></tr>
+            <tr><td>股票代码</td><td>NASDAQ: CHTR</td></tr>
+            <tr><td>市值</td><td>约179亿美元（2026年5月）</td></tr>
+            <tr><td>市值（美元）</td><td>≈ $17.9B USD</td></tr>
+            <tr><td>成立时间</td><td>1993年</td></tr>
+            <tr><td>公司总部</td><td>美国康涅狄格州斯坦福（Stamford, CT）</td></tr>
+            <tr><td>最新收盘价</td><td>约$145（2026年5月22日）</td></tr>
+            <tr><td>财年截止</td><td>12月31日</td></tr>
+            <tr><td>CEO</td><td>Chris Winfrey（2022年12月就任）</td></tr>
+            <tr><td>员工人数</td><td>约94,500人</td></tr>
+            <tr><td>行业</td><td>通信服务 / 有线宽带运营商</td></tr>
+            <tr><td>股息记录</td><td>从未支付现金股息</td></tr>
+            <tr><td>S&P 500成分股</td><td>是</td></tr>
+            <tr><td>流通股数</td><td>约1.27亿股（Class A）</td></tr>
+            <tr><td>品牌</td><td>Spectrum（宽带、视频、语音、移动）</td></tr>
+            <tr><td>企业价值（EV）</td><td>约$1,150亿美元（含净债务~$970亿）</td></tr>
+        </table>
+    </div>
+
+    <!-- 二、业务分析 -->
+    <div class="info-box">
+        <h2>二、业务分析</h2>
+
+        <h3>2.1 通俗解释：Charter是干什么的？</h3>
+        <p>用最简单的话说，<strong>Charter就是美国第二大有线电视和宽带公司</strong>，以"Spectrum"品牌运营。当你住在美国的41个州，想要上网、看电视、打电话，Charter可能就是你的选择之一。它通过地底下或电线杆上的同轴电缆/光纤网络，把互联网信号、电视节目和电话服务送进千家万户。</p>
+        <p>Charter的商业模式可以概括为：<strong>铺设和维护大规模通信网络 → 向家庭和企业出售订阅服务 → 每月收取固定费用</strong>。这是一种典型的"管道"生意——前期需要巨额投资铺设网络（就像修高速公路），但一旦建成，每增加一个用户的边际成本极低，用户每月缴费就像"过路费"一样持续流入。宽带业务的月费约$70-80，视频约$100+，移动约$30-50，一个三合一用户每月可为Charter贡献$200+收入。</p>
+        <p>近年来，Charter的战略重心发生了重大转变：<strong>从传统的有线电视业务转向宽带+移动的"融合连接"战略</strong>。随着用户"剪线"（取消有线电视），视频收入持续下滑，但宽带需求依然强劲。同时，Charter通过MVNO模式（租用Verizon的无线网络）推出Spectrum Mobile移动服务，成为增长最快的业务板块。2025年5月，Charter宣布与Cox Communications合并（企业价值$345亿），若完成将创造美国最大的私有宽带运营商。</p>
+
+        <h3>2.2 业务板块及营收（FY2025，截至2025年12月31日）</h3>
+        <table>
+            <tr>
+                <th>业务板块</th>
+                <th>年营收（估算）</th>
+                <th>占总营收比例</th>
+                <th>关键指标</th>
+                <th>增长趋势</th>
+            </tr>
+            <tr>
+                <td>住宅宽带 (Residential Internet)</td>
+                <td>约$252亿</td>
+                <td>约46%</td>
+                <td>2,856万用户，ARPU ~$70.5/月</td>
+                <td><span class="tag tag-orange">放缓</span> 用户小幅流失，ARPU稳增</td>
+            </tr>
+            <tr>
+                <td>住宅移动 (Residential Mobile)</td>
+                <td>约$54亿</td>
+                <td>约10%</td>
+                <td>1,101万条线路，+21.6% YoY</td>
+                <td><span class="tag tag-green">高增长</span> 用户快速增长，交叉销售驱动</td>
+            </tr>
+            <tr>
+                <td>住宅视频 (Residential Video)</td>
+                <td>约$116亿</td>
+                <td>约21%</td>
+                <td>1,202万用户，持续流失</td>
+                <td><span class="tag tag-red">衰退</span> 剪线趋势不可逆，用户年降3-5%</td>
+            </tr>
+            <tr>
+                <td>住宅语音 (Residential Voice)</td>
+                <td>约$22亿</td>
+                <td>约4%</td>
+                <td>约500万用户</td>
+                <td><span class="tag tag-red">衰退</span> 传统电话被移动替代</td>
+            </tr>
+            <tr>
+                <td>小企业服务 (Small Business)</td>
+                <td>约$43亿</td>
+                <td>约8%</td>
+                <td>223万客户关系</td>
+                <td><span class="tag tag-orange">平稳</span> 宽带稳定，语音下滑</td>
+            </tr>
+            <tr>
+                <td>广告 (Spectrum Reach)</td>
+                <td>约$30亿</td>
+                <td>约5%</td>
+                <td>本地/区域/全国广告</td>
+                <td><span class="tag tag-orange">波动</span> 受政治周期和宏观经济影响</td>
+            </tr>
+            <tr>
+                <td>企业服务 (Enterprise)</td>
+                <td>约$32亿</td>
+                <td>约6%</td>
+                <td>光纤连接、托管IT</td>
+                <td><span class="tag tag-green">增长</span> 光纤到企业需求旺盛</td>
+            </tr>
+        </table>
+        <p><strong>注：</strong>FY2025总营收$547.7亿，同比下降0.6%。住宅连接收入（宽带+移动+语音）增长2.3%，但被视频和广告收入下滑所抵消。</p>
+
+        <h3>2.3 地域分布</h3>
+        <table>
+            <tr>
+                <th>地区</th>
+                <th>营收占比</th>
+                <th>说明</th>
+            </tr>
+            <tr>
+                <td>美国</td>
+                <td>100%</td>
+                <td>Charter仅在美国运营，覆盖41个州</td>
+            </tr>
+        </table>
+        <div class="highlight">
+            <strong>芒格视角：</strong>Charter是一家纯美国国内公司，100%营收来自美国。这意味着没有汇率风险，但也没有国际多元化。其网络覆盖约5,840万家庭（passings），主要集中在郊区和中型城市，与Comcast（偏大城市）和AT&T/Verizon（偏全国/无线）形成差异化覆盖。Charter的"农村扩张"战略（rural buildout）正在将网络延伸至此前未覆盖的地区，这既是增长机会，也意味着更高的资本支出。
+        </div>
+
+        <h3>2.4 商业模式总结</h3>
+        <p>Charter的盈利模式可以概括为：<strong>巨额前期网络投资 → 订阅制月费收入 → 高经营杠杆 → 自由现金流</strong>。Adjusted EBITDA利润率约41%，净利率约9%。但公司背负约$970亿净债务，每年利息支出约$52亿，严重侵蚀净利润。自由现金流（FCF）常年保持在$40-50亿水平，主要用于股票回购和债务偿还。公司从不支付股息，所有股东回报通过回购实现。</p>
+        <p>关键运营指标：每月每住宅用户收入（ARPU）约$117，客户渗透率约54.5%，客户流失率（churn）约1.5%。移动业务交叉销售是当前最重要的增长杠杆——宽带用户中仅约38%同时使用移动服务，提升空间巨大。</p>
+    </div>
+
+    <!-- 三、历史财务指标 -->
+    <div class="info-box">
+        <h2>三、历史财务指标（2016-2025）</h2>
+
+        <h3>3.1 净资产收益率 (ROE) 趋势</h3>
+        <div class="chart-container">
+            <canvas id="roeChart"></canvas>
+        </div>
+        <table>
+            <tr>
+                <th>财年</th><th>ROE</th><th>净利润($B)</th><th>股东权益($B)</th><th>备注</th>
+            </tr>
+            <tr><td>2016</td><td>8.8%</td><td>$3.75</td><td>~$25.2</td><td>含TWC收购一次性税收益</td></tr>
+            <tr><td>2017</td><td>25.3%</td><td>$10.12</td><td>~$22.6</td><td>含一次性收益，ROE虚高</td></tr>
+            <tr><td>2018</td><td>3.4%</td><td>$1.51</td><td>~$20.8</td><td>正常化盈利，税改影响</td></tr>
+            <tr><td>2019</td><td>5.3%</td><td>$1.99</td><td>~$19.4</td><td>盈利能力逐步恢复</td></tr>
+            <tr><td>2020</td><td>13.5%</td><td>$3.68</td><td>~$16.1</td><td>疫情推动宽带需求</td></tr>
+            <tr><td>2021</td><td>33.1%</td><td>$4.65</td><td>~$18.2</td><td>盈利大幅改善+回购减少权益</td></tr>
+            <tr><td>2022</td><td>55.4%</td><td>$5.06</td><td>~$12.5</td><td>巨额回购导致权益大幅缩减</td></tr>
+            <tr><td>2023</td><td>41.1%</td><td>$4.56</td><td>~$14.7</td><td>权益部分恢复</td></tr>
+            <tr><td>2024</td><td>32.6%</td><td>$5.08</td><td>~$19.7</td><td>权益因会计调整增加</td></tr>
+            <tr><td>2025</td><td>31.1%</td><td>$4.99</td><td>~$16.1</td><td>ROE维持高位但权益波动大</td></tr>
+        </table>
+        <div class="highlight">
+            <strong>巴菲特视角：</strong>CHTR的ROE从2018年的3.4%飙升至2022年的55.4%，表面看极为亮眼，但必须穿透表象。2022年55.4%的ROE并非因为盈利暴增，而是因为股东权益从$18.2B缩水至$12.5B——公司通过$119亿巨额回购"消灭"了大量权益。这是典型的"高ROE幻觉"：分母变小导致比率变大。巴菲特偏好的是在低杠杆下由经营效率驱动的高ROE，而非由财务工程推高的ROE。2018-2025年平均ROE约27%，但波动极大（3.4%-55.4%），说明ROE质量不高。
+        </div>
+
+        <h3>3.2 资产负债率 (Debt-to-Asset) 趋势</h3>
+        <div class="chart-container">
+            <canvas id="debtChart"></canvas>
+        </div>
+        <table>
+            <tr>
+                <th>财年</th><th>总债务($B)</th><th>总资产($B)</th><th>资产负债率</th><th>净债务/EBITDA</th>
+            </tr>
+            <tr><td>2016</td><td>~$70.0</td><td>$149.1</td><td>~47%</td><td>~4.8x</td></tr>
+            <tr><td>2017</td><td>~$72.0</td><td>$146.6</td><td>~49%</td><td>~4.2x</td></tr>
+            <tr><td>2018</td><td>~$74.0</td><td>$146.1</td><td>~51%</td><td>~4.6x</td></tr>
+            <tr><td>2019</td><td>~$76.0</td><td>$148.2</td><td>~51%</td><td>~4.5x</td></tr>
+            <tr><td>2020</td><td>~$87.0</td><td>$144.2</td><td>~60%</td><td>~5.0x</td></tr>
+            <tr><td>2021</td><td>~$89.0</td><td>$142.5</td><td>~62%</td><td>~4.6x</td></tr>
+            <tr><td>2022</td><td>~$90.0</td><td>$144.5</td><td>~62%</td><td>~4.5x</td></tr>
+            <tr><td>2023</td><td>~$90.0</td><td>$147.2</td><td>~61%</td><td>~4.7x</td></tr>
+            <tr><td>2024</td><td>~$93.9</td><td>$150.0</td><td>~63%</td><td>~4.6x</td></tr>
+            <tr><td>2025</td><td>~$97.1</td><td>$154.2</td><td>~63%</td><td>~4.4x</td></tr>
+        </table>
+        <div class="highlight">
+            <strong>芒格视角：</strong>Charter的净债务约$970亿，资产负债率约63%，净债务/EBITDA约4.4x。这是一个令人警惕的杠杆水平。芒格曾说过："好生意不需要借很多钱。"Charter的高杠杆是其最大的财务风险——每年$52亿利息支出相当于净利润的100%以上。如果利率上升或EBITDA下滑，偿债压力将急剧增大。不过，有线宽带业务的稳定现金流（经营现金流$161亿/年）为偿债提供了缓冲。净债务/EBITDA从2020年的5.0x降至2025年的4.4x，说明去杠杆在缓慢进行。
+        </div>
+
+        <h3>3.3 市盈率 (PE) 趋势</h3>
+        <div class="chart-container">
+            <canvas id="peChart"></canvas>
+        </div>
+        <table>
+            <tr>
+                <th>财年</th><th>PE Ratio</th><th>股价($)</th><th>EPS($)</th><th>备注</th>
+            </tr>
+            <tr><td>2016</td><td>16.7x</td><td>~$288</td><td>$17.05</td><td>收购整合期</td></tr>
+            <tr><td>2017</td><td>8.2x</td><td>~$336</td><td>$38.55</td><td>含一次性收益，PE失真</td></tr>
+            <tr><td>2018</td><td>53.5x</td><td>~$285</td><td>$5.29</td><td>正常化后EPS低，PE虚高</td></tr>
+            <tr><td>2019</td><td>63.2x</td><td>~$485</td><td>$7.60</td><td>市场给予增长预期</td></tr>
+            <tr><td>2020</td><td>41.4x</td><td>~$662</td><td>$15.85</td><td>疫情推高估值</td></tr>
+            <tr><td>2021</td><td>25.5x</td><td>~$652</td><td>$25.34</td><td>盈利追赶估值</td></tr>
+            <tr><td>2022</td><td>10.8x</td><td>~$339</td><td>$31.30</td><td>估值大幅回调</td></tr>
+            <tr><td>2023</td><td>12.7x</td><td>~$389</td><td>$30.54</td><td>估值修复</td></tr>
+            <tr><td>2024</td><td>9.6x</td><td>~$343</td><td>$35.53</td><td>低估值持续</td></tr>
+            <tr><td>2025</td><td>5.7x</td><td>~$209</td><td>$36.90</td><td>股价暴跌，PE创历史新低</td></tr>
+        </table>
+        <div class="highlight">
+            <strong>巴菲特视角：</strong>CHTR当前PE仅3.8x（TTM），远低于10年平均31.6x。股价从2021年高点$825跌至2026年5月的$145，跌幅超80%。表面看PE极低似乎"便宜"，但需考虑：(1) 公司背负$970亿净债务，企业价值/EBITDA约5.0x，并非真正"便宜"；(2) 宽带用户开始流失，增长前景恶化；(3) Cox合并带来不确定性。巴菲特会问：这是"价值陷阱"还是"被错杀的优质资产"？关键在于宽带用户流失是否可逆，以及移动业务能否弥补。
+        </div>
+
+        <h3>3.4 产权比率 (Assets/Equity) 趋势</h3>
+        <div class="chart-container">
+            <canvas id="equityRatioChart"></canvas>
+        </div>
+        <table>
+            <tr>
+                <th>财年</th><th>总资产($B)</th><th>股东权益($B)</th><th>产权比率(资产/权益)</th><th>含义</th>
+            </tr>
+            <tr><td>2016</td><td>$149.1</td><td>~$25.2</td><td>~5.9x</td><td>高杠杆，收购TWC后</td></tr>
+            <tr><td>2017</td><td>$146.6</td><td>~$22.6</td><td>~6.5x</td><td>回购减少权益</td></tr>
+            <tr><td>2018</td><td>$146.1</td><td>~$20.8</td><td>~7.0x</td><td>杠杆持续升高</td></tr>
+            <tr><td>2019</td><td>$148.2</td><td>~$19.4</td><td>~7.6x</td><td>权益被回购侵蚀</td></tr>
+            <tr><td>2020</td><td>$144.2</td><td>~$16.1</td><td>~9.0x</td><td>巨额回购+债务增加</td></tr>
+            <tr><td>2021</td><td>$142.5</td><td>~$18.2</td><td>~7.8x</td><td>盈利增加权益</td></tr>
+            <tr><td>2022</td><td>$144.5</td><td>~$12.5</td><td>~11.6x</td><td>回购致权益极度缩减</td></tr>
+            <tr><td>2023</td><td>$147.2</td><td>~$14.7</td><td>~10.0x</td><td>权益部分恢复</td></tr>
+            <tr><td>2024</td><td>$150.0</td><td>~$19.7</td><td>~7.6x</td><td>会计调整增加权益</td></tr>
+            <tr><td>2025</td><td>$154.2</td><td>~$16.1</td><td>~9.6x</td><td>回购+债务增加</td></tr>
+        </table>
+        <div class="highlight">
+            <strong>芒格视角：</strong>产权比率在2022年达到11.6x的极端水平——每1美元股东权益对应11.6美元资产，其余10.6美元全部来自负债。这是巨额回购的后果：公司用借来的钱回购股票，权益越来越少，杠杆越来越高。芒格会对此非常警惕——这种"用债务回购股票"的做法在顺境时推高ROE，但在逆境时可能引发危机。2024年产权比率回落至7.6x，但2025年又升至9.6x，说明去杠杆并不稳定。
+        </div>
+    </div>
+
+    <!-- 四、竞争分析 -->
+    <div class="info-box">
+        <h2>四、竞争分析</h2>
+
+        <h3>4.1 美国有线宽带市场竞争格局</h3>
+        <table>
+            <tr>
+                <th>公司</th><th>宽带用户(万)</th><th>市场份额</th><th>网络类型</th><th>核心优势</th>
+            </tr>
+            <tr>
+                <td>Comcast (CMCSA)</td>
+                <td>~3,200</td>
+                <td>~22%</td>
+                <td>HFC/光纤</td>
+                <td>最大有线运营商，NBC环球内容协同</td>
+            </tr>
+            <tr>
+                <td><strong>Charter (CHTR)</strong></td>
+                <td><strong>~2,970</strong></td>
+                <td><strong>~20%</strong></td>
+                <td><strong>HFC/光纤</strong></td>
+                <td><strong>纯运营效率高，移动增长快</strong></td>
+            </tr>
+            <tr>
+                <td>AT&T (T)</td>
+                <td>~1,420</td>
+                <td>~10%</td>
+                <td>光纤</td>
+                <td>光纤增长最快，+58万/年</td>
+            </tr>
+            <tr>
+                <td>Verizon (VZ)</td>
+                <td>~1,086</td>
+                <td>~7%</td>
+                <td>光纤/FWA</td>
+                <td>5G FWA替代方案，高端用户</td>
+            </tr>
+            <tr>
+                <td>T-Mobile (TMUS)</td>
+                <td>~500+</td>
+                <td>~3%</td>
+                <td>FWA</td>
+                <td>5G FWA快速增长，价格低</td>
+            </tr>
+        </table>
+
+        <h3>4.2 竞争优势与护城河评估</h3>
+
+        <div class="moat-item">
+            <strong>🏰 规模优势（强）</strong><br>
+            Charter覆盖5,840万家庭passings，拥有2,970万宽带用户，是美国第二大有线运营商。规模带来采购优势（机顶盒、路由器等设备采购成本低于小运营商）和营销效率。与Cox合并后规模将进一步扩大，但合并仍待监管审批。
+        </div>
+
+        <div class="moat-item">
+            <strong>🏰 网络基础设施壁垒（强）</strong><br>
+            有线宽带网络是"自然垄断"型基础设施——一个地区通常只有1-2家有线运营商。复制Charter的网络需要数百亿美元投资和数年时间，新进入者几乎不可能。HFC网络通过DOCSIS 3.1/4.0升级可提供1Gbps-10Gbps速度，与光纤的差距在缩小。
+        </div>
+
+        <div class="moat-item">
+            <strong>🏰 转换成本（中等）</strong><br>
+            宽带用户的转换成本中等——更换运营商需要预约安装、更改邮箱、重新设置Wi-Fi等，但并非不可逾越。Charter通过"融合捆绑"（宽带+移动+视频）提高转换成本：用户使用的服务越多，转换越麻烦。目前约52%的住宅用户使用2个以上产品。
+        </div>
+
+        <div class="moat-item">
+            <strong>🏰 移动业务交叉销售（潜在强项）</strong><br>
+            Spectrum Mobile以MVNO模式运营（租用Verizon网络），成本结构轻，定价有竞争力。2,970万宽带用户中仅约38%使用移动服务，交叉销售空间巨大。移动业务增长+21.6% YoY，是当前最重要的增长引擎。
+        </div>
+
+        <div class="moat-item">
+            <strong>⚠️ 品牌力（弱）</strong><br>
+            "Spectrum"品牌认知度不如"Verizon"或"AT&T"，消费者对有线运营商普遍缺乏好感（客户服务差、费用高）。Charter正在改善服务质量（全美员工、24/7服务），但品牌溢价有限。
+        </div>
+
+        <h3>4.3 主要竞争威胁</h3>
+
+        <div class="risk-item">
+            <strong>🔴 光纤过度建设（Fiber Overbuild）</strong><br>
+            AT&T和Verizon正在大规模铺设光纤到户（FTTH），AT&T 2025年光纤净增58万用户。光纤在速度和可靠性上优于HFC，是Charter宽带业务最大的长期威胁。Charter的应对策略是网络升级（DOCSIS 4.0可提供对称10Gbps速度），但需要大量资本支出。
+        </div>
+
+        <div class="risk-item">
+            <strong>🔴 5G固定无线接入（FWA）</strong><br>
+            T-Mobile和Verizon的5G FWA服务正在蚕食有线宽带市场，特别是在价格敏感的用户群体中。T-Mobile FWA用户已超500万，价格低于有线宽带。FWA的速度和容量虽不及有线，但对轻度用户已足够。
+        </div>
+
+        <div class="risk-item">
+            <strong>🟡 视频剪线（Cord Cutting）</strong><br>
+            传统有线电视用户持续流失（Charter 2025年视频用户减少约80万/年），视频收入占比从高峰期的50%+降至21%。虽然宽带收入可以部分弥补，但视频业务的衰退是不可逆的结构性趋势。
+        </div>
+
+        <div class="risk-item">
+            <strong>🟡 Starlink卫星宽带</strong><br>
+            SpaceX的Starlink在偏远地区提供卫星宽带服务，可能威胁Charter的农村扩张战略。但Starlink价格较高（$120/月）、速度有限，短期内对城市/郊区市场影响不大。
+        </div>
+
+        <h3>4.4 Cox Communications合并</h3>
+        <p>2025年5月，Charter宣布与Cox Communications合并，交易企业价值约$345亿。Cox是美国第三大有线运营商，拥有约650万宽带用户。合并后的新公司将成为美国最大的私有宽带运营商，覆盖超过6,400万家庭。预期协同效应包括：采购成本节约、网络共享、移动业务规模扩大等。但合并仍需监管审批，可能面临反垄断审查。若完成，预计2026年完成交割。</p>
+    </div>
+
+    <!-- 五、利润分配分析 -->
+    <div class="info-box">
+        <h2>五、利润分配分析（2016-2025）</h2>
+
+        <h3>5.1 利润分配总览</h3>
+        <p><strong>核心原则：回购计入留存</strong>。股票回购与留存收益本质相同——都是将利润保留在公司生态内、让剩余股东受益的资本配置方式。因此，在利润分配分析中，股票回购归入"留存"类别计算，而非与股息并列。</p>
+
+        <table>
+            <tr>
+                <th>年度</th><th>净利润($B)</th><th>股息($B)</th><th>回购($B)</th><th>扩张CapEx($B)</th><th>债务净变动($B)</th><th>留存金额($B)</th><th>留存比率</th>
+            </tr>
+            <tr><td>2016</td><td>$3.75</td><td>$0</td><td>~$1.5</td><td>~$6.5</td><td>+~$5.0</td><td>$3.75</td><td>100%</td></tr>
+            <tr><td>2017</td><td>$10.12</td><td>$0</td><td>~$13.3</td><td>~$7.0</td><td>+~$2.0</td><td>$10.12</td><td>100%</td></tr>
+            <tr><td>2018</td><td>$1.51</td><td>$0</td><td>~$5.0</td><td>~$7.5</td><td>+~$2.0</td><td>$1.51</td><td>100%</td></tr>
+            <tr><td>2019</td><td>$1.99</td><td>$0</td><td>~$7.6</td><td>~$8.0</td><td>+~$2.0</td><td>$1.99</td><td>100%</td></tr>
+            <tr><td>2020</td><td>$3.68</td><td>$0</td><td>~$12.5</td><td>~$8.3</td><td>+~$10.0</td><td>$3.68</td><td>100%</td></tr>
+            <tr><td>2021</td><td>$4.65</td><td>$0</td><td>~$17.6</td><td>~$8.4</td><td>+~$2.0</td><td>$4.65</td><td>100%</td></tr>
+            <tr><td>2022</td><td>$5.06</td><td>$0</td><td>~$11.9</td><td>~$9.5</td><td>+~$1.0</td><td>$5.06</td><td>100%</td></tr>
+            <tr><td>2023</td><td>$4.56</td><td>$0</td><td>~$3.6</td><td>~$10.8</td><td>~$0</td><td>$4.56</td><td>100%</td></tr>
+            <tr><td>2024</td><td>$5.08</td><td>$0</td><td>~$1.4</td><td>~$11.3</td><td>+~$3.9</td><td>$5.08</td><td>100%</td></tr>
+            <tr><td>2025</td><td>$4.99</td><td>$0</td><td>~$5.4</td><td>~$11.7</td><td>+~$3.2</td><td>$4.99</td><td>100%</td></tr>
+        </table>
+
+        <div class="chart-container">
+            <canvas id="profitChart"></canvas>
+        </div>
+
+        <h3>5.2 留存构成分析</h3>
+        <table>
+            <tr>
+                <th>年度</th><th>留存金额($B)</th><th>回购占比</th><th>再投资(CapEx)占比</th><th>债务净增加($B)</th>
+            </tr>
+            <tr><td>2016</td><td>$3.75</td><td>40%</td><td>173%</td><td>+~$5.0</td></tr>
+            <tr><td>2017</td><td>$10.12</td><td>131%</td><td>69%</td><td>+~$2.0</td></tr>
+            <tr><td>2018</td><td>$1.51</td><td>331%</td><td>497%</td><td>+~$2.0</td></tr>
+            <tr><td>2019</td><td>$1.99</td><td>382%</td><td>402%</td><td>+~$2.0</td></tr>
+            <tr><td>2020</td><td>$3.68</td><td>340%</td><td>226%</td><td>+~$10.0</td></tr>
+            <tr><td>2021</td><td>$4.65</td><td>378%</td><td>181%</td><td>+~$2.0</td></tr>
+            <tr><td>2022</td><td>$5.06</td><td>235%</td><td>188%</td><td>+~$1.0</td></tr>
+            <tr><td>2023</td><td>$4.56</td><td>79%</td><td>237%</td><td>~$0</td></tr>
+            <tr><td>2024</td><td>$5.08</td><td>28%</td><td>222%</td><td>+~$3.9</td></tr>
+            <tr><td>2025</td><td>$4.99</td><td>108%</td><td>234%</td><td>+~$3.2</td></tr>
+        </table>
+
+        <div class="highlight">
+            <strong>巴菲特视角：</strong>Charter的留存比率为100%（从不分红），但这并不意味着留存质量高。关键问题在于：<br>
+            (1) <strong>回购远超净利润</strong>：2017-2022年，公司回购总额约$686亿，远超同期净利润$274亿。差额部分通过增加债务融资——这是"借钱回购"的危险做法。<br>
+            (2) <strong>回购时机不佳</strong>：2020-2021年股价$500-800时大举回购（$300亿+），2024年股价$300-370时反而放缓回购至$14亿。这违背了巴菲特"低估值时加速回购"的原则。<br>
+            (3) <strong>CapEx持续攀升</strong>：资本支出从2018年的$75亿增至2025年的$117亿，主要用于网络升级和农村扩张。这是必要的战略投资，但短期内压制自由现金流。<br>
+            (4) <strong>可持续增长率</strong> = ROE × 留存比率 = 31.1% × 100% = 31.1%。但这是理论值，实际增长远低于此——2025年营收下降0.6%，说明高ROE并未转化为实际增长。
+        </div>
+
+        <h3>5.3 利润分配饼图（2016-2025十年累计）</h3>
+        <div class="chart-container">
+            <canvas id="pieChart"></canvas>
+        </div>
+        <p><strong>注：</strong>回购计入留存。十年累计净利润约$449亿，累计回购约$796亿，累计CapEx约$890亿。回购+CapEx远超净利润，差额通过增加约$320亿债务弥补。</p>
+    </div>
+
+    <!-- 六、投资总结 -->
+    <div class="info-box">
+        <h2>六、投资总结</h2>
+
+        <h3>6.1 核心投资论点</h3>
+        <table>
+            <tr><th>维度</th><th>评估</th><th>评分</th></tr>
+            <tr><td>商业模式可理解性</td><td>订阅制宽带/移动业务，模式简单清晰</td><td>⭐⭐⭐⭐⭐</td></tr>
+            <tr><td>竞争护城河</td><td>网络基础设施壁垒强，但面临光纤/FWA侵蚀</td><td>⭐⭐⭐</td></tr>
+            <tr><td>管理层资本配置</td><td>回购时机差，债务过高，但运营效率优秀</td><td>⭐⭐</td></tr>
+            <tr><td>财务安全边际</td><td>净债务$970亿，利息/净利润>100%，风险极高</td><td>⭐</td></tr>
+            <tr><td>增长前景</td><td>移动业务高增长，宽带承压，视频衰退</td><td>⭐⭐⭐</td></tr>
+            <tr><td>估值吸引力</td><td>PE 3.8x看似极低，但EV/EBITDA 5.0x不算便宜</td><td>⭐⭐⭐</td></tr>
+        </table>
+
+        <h3>6.2 价值投资评级</h3>
+        <div class="highlight">
+            <strong>综合评级：谨慎观望 ⚠️</strong><br><br>
+            Charter是一家拥有强大基础设施壁垒的公司，宽带业务产生稳定的现金流，移动业务提供增长动力。但以巴菲特/芒格的价值投资标准衡量，存在三个核心问题：<br><br>
+            <strong>1. 债务过高</strong>：净债务$970亿，芒格会说"这不是好生意的特征"。如果EBITDA下滑10%，偿债覆盖率将急剧恶化。<br>
+            <strong>2. 管理层资本配置存疑</strong>：在高股价时大举回购（2020-2021年$300亿+），在低股价时反而放缓——这恰恰与巴菲特的原则相反。借钱回购更是雪上加霜。<br>
+            <strong>3. 宽带用户开始流失</strong>：2025年Q4净流失11.9万宽带用户，这是结构性问题还是周期性波动？如果光纤/FWA持续蚕食市场份额，Charter的增长故事将终结。<br><br>
+            <strong>安全边际评估</strong>：当前股价$145对应PE 3.8x，看似极低。但考虑到$970亿净债务，企业价值约$1,150亿，对应EV/EBITDA约5.0x。对于一家增长停滞、用户流失的公司来说，这个估值并不算特别便宜。巴菲特要求"以合理价格买入优秀公司"，Charter目前更像"以低价买入一家尚可但有重大风险的公司"——这不符合巴菲特的投资哲学。<br><br>
+            <strong>关键观察点</strong>：(1) 2026年宽带用户是否能恢复净增长；(2) Cox合并是否获批及协同效应；(3) 移动业务能否持续20%+增长；(4) 债务水平是否开始实质性下降。如果以上四点都向正面发展，Charter可能成为一只被严重低估的股票。
+        </div>
+
+        <h3>6.3 同业估值对比</h3>
+        <table>
+            <tr>
+                <th>公司</th><th>PE(TTM)</th><th>EV/EBITDA</th><th>净债务/EBITDA</th><th>股息率</th><th>宽带用户增长</th>
+            </tr>
+            <tr>
+                <td><strong>CHTR</strong></td>
+                <td><strong>3.8x</strong></td>
+                <td><strong>~5.0x</strong></td>
+                <td><strong>~4.4x</strong></td>
+                <td><strong>0%</strong></td>
+                <td><strong>-0.4%</strong></td>
+            </tr>
+            <tr>
+                <td>CMCSA</td>
+                <td>4.9x</td>
+                <td>~5.5x</td>
+                <td>~2.8x</td>
+                <td>2.8%</td>
+                <td>+0.3%</td>
+            </tr>
+            <tr>
+                <td>VZ</td>
+                <td>11.8x</td>
+                <td>~7.0x</td>
+                <td>~2.5x</td>
+                <td>5.5%</td>
+                <td>+1.9%</td>
+            </tr>
+            <tr>
+                <td>T</td>
+                <td>8.3x</td>
+                <td>~6.5x</td>
+                <td>~3.0x</td>
+                <td>5.3%</td>
+                <td>+4.1%</td>
+            </tr>
+        </table>
+        <p>CHTR的PE最低，但净债务/EBITDA最高（4.4x vs. CMCSA 2.8x），且是唯一宽带用户负增长的公司。市场给予低估值有其合理性。</p>
+    </div>
+
+    <script>
+        var ctx1 = document.getElementById('roeChart').getContext('2d');
+        new Chart(ctx1, {
+            type: 'line',
+            data: {
+                labels: ['2016','2017','2018','2019','2020','2021','2022','2023','2024','2025'],
+                datasets: [{
+                    label: 'ROE (%)',
+                    data: [8.8, 25.3, 3.4, 5.3, 13.5, 33.1, 55.4, 41.1, 32.6, 31.1],
+                    borderColor: '#2e86c1',
+                    backgroundColor: 'rgba(46,134,193,0.1)',
+                    fill: true,
+                    tension: 0.3
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: { display: true, text: 'Charter Communications ROE趋势 (2016-2025)' }
+                },
+                scales: {
+                    y: { title: { display: true, text: 'ROE (%)' } }
+                }
+            }
+        });
+
+        var ctx2 = document.getElementById('debtChart').getContext('2d');
+        new Chart(ctx2, {
+            type: 'bar',
+            data: {
+                labels: ['2016','2017','2018','2019','2020','2021','2022','2023','2024','2025'],
+                datasets: [{
+                    label: '资产负债率 (%)',
+                    data: [47, 49, 51, 51, 60, 62, 62, 61, 63, 63],
+                    backgroundColor: 'rgba(231,76,60,0.7)',
+                    borderColor: '#c0392b',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: { display: true, text: 'Charter Communications 资产负债率趋势 (2016-2025)' }
+                },
+                scales: {
+                    y: { title: { display: true, text: '资产负债率 (%)' }, min: 40, max: 70 }
+                }
+            }
+        });
+
+        var ctx3 = document.getElementById('peChart').getContext('2d');
+        new Chart(ctx3, {
+            type: 'line',
+            data: {
+                labels: ['2016','2017','2018','2019','2020','2021','2022','2023','2024','2025'],
+                datasets: [{
+                    label: 'PE Ratio',
+                    data: [16.7, 8.2, 53.5, 63.2, 41.4, 25.5, 10.8, 12.7, 9.6, 5.7],
+                    borderColor: '#27ae60',
+                    backgroundColor: 'rgba(39,174,96,0.1)',
+                    fill: true,
+                    tension: 0.3
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: { display: true, text: 'Charter Communications PE Ratio趋势 (2016-2025)' }
+                },
+                scales: {
+                    y: { title: { display: true, text: 'PE Ratio' } }
+                }
+            }
+        });
+
+        var ctx4 = document.getElementById('equityRatioChart').getContext('2d');
+        new Chart(ctx4, {
+            type: 'line',
+            data: {
+                labels: ['2016','2017','2018','2019','2020','2021','2022','2023','2024','2025'],
+                datasets: [{
+                    label: '产权比率 (资产/权益)',
+                    data: [5.9, 6.5, 7.0, 7.6, 9.0, 7.8, 11.6, 10.0, 7.6, 9.6],
+                    borderColor: '#e67e22',
+                    backgroundColor: 'rgba(230,126,34,0.1)',
+                    fill: true,
+                    tension: 0.3
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: { display: true, text: 'Charter Communications 产权比率趋势 (2016-2025)' }
+                },
+                scales: {
+                    y: { title: { display: true, text: '资产/权益 (x)' } }
+                }
+            }
+        });
+
+        var ctx5 = document.getElementById('profitChart').getContext('2d');
+        new Chart(ctx5, {
+            type: 'bar',
+            data: {
+                labels: ['2016','2017','2018','2019','2020','2021','2022','2023','2024','2025'],
+                datasets: [
+                    {
+                        label: '净利润 ($B)',
+                        data: [3.75, 10.12, 1.51, 1.99, 3.68, 4.65, 5.06, 4.56, 5.08, 4.99],
+                        backgroundColor: 'rgba(46,134,193,0.8)'
+                    },
+                    {
+                        label: '回购 ($B)',
+                        data: [1.5, 13.3, 5.0, 7.6, 12.5, 17.6, 11.9, 3.6, 1.4, 5.4],
+                        backgroundColor: 'rgba(39,174,96,0.8)'
+                    },
+                    {
+                        label: '扩张CapEx ($B)',
+                        data: [6.5, 7.0, 7.5, 8.0, 8.3, 8.4, 9.5, 10.8, 11.3, 11.7],
+                        backgroundColor: 'rgba(230,126,34,0.8)'
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: { display: true, text: 'Charter Communications 利润分配趋势 (2016-2025)' }
+                },
+                scales: {
+                    y: { title: { display: true, text: '金额 ($B)' } }
+                }
+            }
+        });
+
+        var ctx6 = document.getElementById('pieChart').getContext('2d');
+        new Chart(ctx6, {
+            type: 'doughnut',
+            data: {
+                labels: ['回购（留存-回购部分）', '再投资（留存-CapEx部分）', '债务偿还/其他'],
+                datasets: [{
+                    data: [79.6, 89.0, 31.4],
+                    backgroundColor: ['#27ae60', '#e67e22', '#2e86c1'],
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: { display: true, text: 'Charter Communications 十年利润分配（回购计入留存，2016-2025累计）' },
+                    legend: { position: 'bottom' }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
