@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ten-League International (TLIH) 价值投资分析</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f2f5;
+            color: #333;
+        }
+        h1 {
+            text-align: center;
+            color: #1a5276;
+            font-size: 2.2em;
+            margin-bottom: 5px;
+        }
+        h2 {
+            color: #1a5276;
+            border-bottom: 2px solid #2e86c1;
+            padding-bottom: 8px;
+            margin-top: 30px;
+        }
+        h3 {
+            color: #2c3e50;
+            margin-top: 20px;
+        }
+        h4 {
+            color: #34495e;
+            margin-top: 15px;
+        }
+        .subtitle {
+            text-align: center;
+            color: #7f8c8d;
+            font-size: 1.1em;
+            margin-bottom: 30px;
+        }
+        .info-box {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            background-color: white;
+        }
+        th, td {
+            padding: 10px 14px;
+            text-align: left;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        th {
+            background-color: #1a5276;
+            color: white;
+            font-weight: bold;
+        }
+        tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        tr:hover {
+            background-color: #eaf2f8;
+        }
+        .highlight {
+            background: #fef9e7;
+            border-left: 4px solid #2e86c1;
+            padding: 15px 20px;
+            margin: 15px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .highlight-red {
+            background: #fdedec;
+            border-left: 4px solid #c0392b;
+            padding: 15px 20px;
+            margin: 15px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .chart-container {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+        canvas {
+            max-height: 400px;
+        }
+        .tag {
+            display: inline-block;
+            background: #1a5276;
+            color: white;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.85em;
+            margin: 2px;
+        }
+        .tag-green {
+            background: #27ae60;
+        }
+        .tag-orange {
+            background: #e67e22;
+        }
+        .tag-red {
+            background: #c0392b;
+        }
+        a {
+            color: #1a5276;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            font-size: 1em;
+        }
+        .moat-item {
+            background: white;
+            border-radius: 8px;
+            padding: 15px 20px;
+            margin: 10px 0;
+            box-shadow: 0 1px 5px rgba(0,0,0,0.05);
+            border-left: 4px solid #2e86c1;
+        }
+        .moat-item strong {
+            color: #1a5276;
+        }
+        .risk-item {
+            background: white;
+            border-radius: 8px;
+            padding: 15px 20px;
+            margin: 10px 0;
+            box-shadow: 0 1px 5px rgba(0,0,0,0.05);
+            border-left: 4px solid #c0392b;
+        }
+        .risk-item strong {
+            color: #c0392b;
+        }
+        .competitiveness-box {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 15px 0;
+            box-shadow: 0 1px 5px rgba(0,0,0,0.05);
+            border: 1px solid #d5dbdb;
+        }
+        .competitiveness-box h4 {
+            margin-top: 0;
+            color: #1a5276;
+            border-bottom: 1px solid #e0e0e0;
+            padding-bottom: 8px;
+        }
+        .dim-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+        }
+        .dim-table td {
+            padding: 8px 12px;
+            border-bottom: 1px solid #eee;
+        }
+        .dim-table td:first-child {
+            font-weight: bold;
+            width: 140px;
+            color: #2c3e50;
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back-link">← 返回索引</a>
+
+    <h1>Ten-League International Holdings (NASDAQ: TLIH)</h1>
+    <p class="subtitle">巴菲特/芒格式价值投资基本面分析 | 更新日期：2026年5月</p>
+
+    <!-- 一、公司基本信息 -->
+    <div class="info-box">
+        <h2>一、公司基本信息</h2>
+        <table>
+            <tr><td>公司全称</td><td>Ten-League International Holdings Limited</td></tr>
+            <tr><td>股票代码</td><td>NASDAQ: TLIH</td></tr>
+            <tr><td>市值</td><td>约890万美元（2026年5月）</td></tr>
+            <tr><td>市值（美元）</td><td>≈ $8.9M USD</td></tr>
+            <tr><td>成立时间</td><td>1998年</td></tr>
+            <tr><td>公司总部</td><td>新加坡 Tuas Avenue 2</td></tr>
+            <tr><td>最新收盘价</td><td>约$3.02（2026年5月22日，1:10并股后）</td></tr>
+            <tr><td>财年截止</td><td>12月31日</td></tr>
+            <tr><td>CEO/董事长</td><td>Jison Lim（创始人）</td></tr>
+            <tr><td>员工人数</td><td>约64人</td></tr>
+            <tr><td>行业</td><td>工业/重型设备分销与租赁</td></tr>
+            <tr><td>股息记录</td><td>从未支付现金股息</td></tr>
+            <tr><td>IPO日期</td><td>2025年7月8日（IPO价格$4.00/股）</td></tr>
+            <tr><td>流通股数</td><td>约294万股（1:10并股后）</td></tr>
+            <tr><td>企业价值（EV）</td><td>约$2,460万（含净债务~$1,590万）</td></tr>
+            <tr><td>报告货币</td><td>新加坡元（SGD）</td></tr>
+            <tr><td>并股记录</td><td>2026年5月1日实施1:10并股（为满足纳斯达克最低股价要求）</td></tr>
+        </table>
+        <div class="highlight-red">
+            <strong>⚠️ 重大风险提示：</strong>TLIH于2025年7月以$4.00/股IPO上市，股价随后暴跌至$0.25（跌93%），因无法维持纳斯达克$1.00最低买价要求而收到退市通知。2026年5月1日实施1:10并股后股价约$3.02，但仍面临退市听证会。市值仅$890万，属于超微型股（Micro-cap），流动性极差。巴菲特/芒格绝不会投资此类公司。
+        </div>
+    </div>
+
+    <!-- 二、业务分析 -->
+    <div class="info-box">
+        <h2>二、业务分析</h2>
+
+        <h3>2.1 通俗解释：Ten-League是干什么的？</h3>
+        <p>用最简单的话说，<strong>Ten-League就是新加坡的一家"重型设备中间商+租赁商+工程顾问"</strong>。当新加坡要建地铁、扩建机场、改造港口的时候，需要大型机械——起重机、挖掘机、打桩机、集装箱搬运车等。Ten-League不生产这些机器，而是从制造商（如Konecranes、Liebherr等）采购，然后卖给或租给建筑公司和港口运营商。同时，它还提供工程咨询服务，帮客户改装、升级和维护这些设备。</p>
+        <p>你可以把它想象成一个"重型机械的4S店"——卖车（设备销售）、租车（设备租赁）、修车（工程咨询），三位一体。但与汽车4S店不同的是，它的客户不是个人消费者，而是大型基建项目承包商和港口运营商。</p>
+        <p>近年来，Ten-League的战略亮点是<strong>港口电气化</strong>——为新加坡港提供电动集装箱牵引车、电池更换站等绿色设备。这是它试图从传统设备中间商转型为"绿色港口解决方案提供商"的方向。</p>
+
+        <h3>2.2 业务板块及营收（FY2025，截至2025年12月31日）</h3>
+        <table>
+            <tr>
+                <th>业务板块</th><th>年营收(S$M)</th><th>占总营收比例</th><th>毛利率</th><th>增长趋势</th>
+            </tr>
+            <tr>
+                <td>重型设备及零部件销售</td>
+                <td>S$61.2M</td>
+                <td>约80%</td>
+                <td>约14.8%</td>
+                <td><span class="tag tag-green">+33.8% YoY</span> 受樟宜机场T5等大项目驱动</td>
+            </tr>
+            <tr>
+                <td>设备租赁</td>
+                <td>S$12.8M</td>
+                <td>约17%</td>
+                <td>约60.8%</td>
+                <td><span class="tag tag-green">+21.1% YoY</span> 自有设备利用率提升</td>
+            </tr>
+            <tr>
+                <td>工程咨询服务</td>
+                <td>S$2.2M</td>
+                <td>约3%</td>
+                <td>约75%+</td>
+                <td><span class="tag tag-orange">波动</span> 项目制收入，不稳定</td>
+            </tr>
+        </table>
+        <p><strong>注：</strong>FY2025总营收S$76.18M（约US$59.2M），同比增长30.2%。净利润S$5.59M（约US$4.3M），同比增长196.5%。但FY2024营收曾同比下降19.6%，说明业绩波动性极大。</p>
+
+        <h3>2.3 地域分布</h3>
+        <table>
+            <tr><th>地区</th><th>营收占比</th><th>说明</th></tr>
+            <tr><td>新加坡</td><td>约85-90%</td><td>核心市场，依赖新加坡基建项目</td></tr>
+            <tr><td>其他国际市场</td><td>约10-15%</td><td>东南亚等地区，规模有限</td></tr>
+        </table>
+        <div class="highlight">
+            <strong>芒格视角：</strong>Ten-League几乎完全依赖新加坡市场。新加坡是一个小国（人口约590万），基建项目数量有限且周期性强。一旦樟宜机场T5、滨海湾金沙扩建等大项目完工，营收可能大幅下滑。这种高度集中的地域风险是芒格最不喜欢的——"把所有鸡蛋放在一个小篮子里"。
+        </div>
+
+        <h3>2.4 商业模式总结</h3>
+        <p>Ten-League的盈利模式可以概括为：<strong>设备采购 → 加价销售/出租 → 工程咨询增值服务</strong>。设备销售毛利率仅14.8%，是典型的低利润率中间商生意；租赁毛利率60.8%较高，但规模仅占17%；工程咨询毛利率最高但占比仅3%。整体毛利率24.4%，净利率7.3%，在工业分销领域属于中等偏低水平。</p>
+        <p>关键运营指标：FY2025 EBITDA利润率17.1%，自由现金流S$9.03M（首次转正），但FY2022-2024连续三年FCF为负。公司高度依赖银行借款运营，净债务约S$2,043万，债务/权益比1.86x（FY2024曾高达6.05x）。</p>
+    </div>
+
+    <!-- 三、业务板块产品竞争力分析 -->
+    <div class="info-box">
+        <h2>三、业务板块产品竞争力分析</h2>
+
+        <div class="competitiveness-box">
+            <h4>3.1 重型设备及零部件销售 — 产品竞争力分析</h4>
+            <table class="dim-table">
+                <tr><td>可替代性</td><td><span class="tag tag-red">高</span></td></tr>
+                <tr><td>主要替代品</td><td>其他重型设备经销商（如Tractors Singapore、Shin Yang等）、设备制造商直销、二手设备市场</td></tr>
+                <tr><td>替代品体验差距</td><td>差距小——同品牌同型号设备从任何经销商购买体验一致，客户主要比价格和交期</td></tr>
+                <tr><td>替代趋势</td><td>加速——制造商越来越多地尝试直销模式，电商化趋势使价格透明度提高</td></tr>
+            </table>
+            <table class="dim-table">
+                <tr><td>客户转换成本</td><td><span class="tag tag-red">低</span></td></tr>
+                <tr><td>财务转换成本</td><td>极低——设备采购是一次性交易，无解约费，客户可自由选择供应商</td></tr>
+                <tr><td>时间转换成本</td><td>低——获取其他经销商报价仅需数天，设备交付周期差异不大</td></tr>
+                <tr><td>捆绑转换成本</td><td>低——虽然Ten-League也提供租赁和咨询，但客户通常分别采购</td></tr>
+                <tr><td>综合评估</td><td>设备销售是典型的"一次性交易"，客户忠诚度低，主要靠价格和关系竞争</td></tr>
+            </table>
+            <table class="dim-table">
+                <tr><td>定价权</td><td><span class="tag tag-red">极弱</span></td></tr>
+                <tr><td>历史提价记录</td><td>无法主动提价——设备售价由制造商定价和市场供需决定，经销商利润空间被压缩</td></tr>
+                <tr><td>提价vs通胀</td><td>设备售价涨幅通常跟不上通胀，因为客户可以轻易比价</td></tr>
+                <tr><td>定价权来源</td><td>几乎无定价权——14.8%的毛利率说明公司只是价格接受者</td></tr>
+                <tr><td>定价权趋势</td><td>削弱——信息透明度提高，客户议价能力增强</td></tr>
+                <tr><td>巴菲特测试</td><td>如果Ten-League将设备售价提高10%，客户会立即转向其他经销商——定价权为零</td></tr>
+            </table>
+            <p><strong>综合竞争力评级：⭐（1/5星）</strong> — 典型的低利润率中间商生意，无护城河</p>
+        </div>
+
+        <div class="competitiveness-box">
+            <h4>3.2 设备租赁 — 产品竞争力分析</h4>
+            <table class="dim-table">
+                <tr><td>可替代性</td><td><span class="tag tag-orange">中等</span></td></tr>
+                <tr><td>主要替代品</td><td>其他设备租赁公司、客户自行购买设备、融资租赁公司</td></tr>
+                <tr><td>替代品体验差距</td><td>中等——租赁服务差异主要体现在设备可用性、维护响应速度和灵活性上</td></tr>
+                <tr><td>替代趋势</td><td>稳定——租赁需求随基建项目周期波动，但长期趋势稳定</td></tr>
+            </table>
+            <table class="dim-table">
+                <tr><td>客户转换成本</td><td><span class="tag tag-orange">中等</span></td></tr>
+                <tr><td>财务转换成本</td><td>中等——租赁合同通常有最低租期要求，提前解约可能产生费用</td></tr>
+                <tr><td>时间转换成本</td><td>中等——更换租赁商需要设备退场/进场，可能影响项目进度</td></tr>
+                <tr><td>捆绑转换成本</td><td>中等——如果客户同时使用Ten-League的销售和租赁服务，转换成本增加</td></tr>
+                <tr><td>综合评估</td><td>租赁比销售有更高的转换成本，但仍然不高——项目结束后客户可自由更换</td></tr>
+            </table>
+            <table class="dim-table">
+                <tr><td>定价权</td><td><span class="tag tag-orange">弱</span></td></tr>
+                <tr><td>历史提价记录</td><td>租赁费率随市场供需波动，公司难以主动提价</td></tr>
+                <tr><td>提价vs通胀</td><td>租赁费率大致跟随市场水平，难以跑赢通胀</td></tr>
+                <tr><td>定价权来源</td><td>有限——主要来自设备可用性和服务响应速度，而非品牌或技术壁垒</td></tr>
+                <tr><td>定价权趋势</td><td>稳定——新加坡租赁市场竞争者有限，但规模小意味着议价能力弱</td></tr>
+                <tr><td>巴菲特测试</td><td>如果租赁费率提高10%，部分客户会考虑自行购买设备或寻找其他租赁商</td></tr>
+            </table>
+            <p><strong>综合竞争力评级：⭐⭐（2/5星）</strong> — 租赁比销售有更好的经济特征（60.8%毛利率），但规模太小，定价权有限</p>
+        </div>
+
+        <div class="competitiveness-box">
+            <h4>3.3 工程咨询服务 — 产品竞争力分析</h4>
+            <table class="dim-table">
+                <tr><td>可替代性</td><td><span class="tag tag-orange">中等</span></td></tr>
+                <tr><td>主要替代品</td><td>设备制造商自有服务团队、独立工程咨询公司、客户内部工程团队</td></tr>
+                <tr><td>替代品体验差距</td><td>中等——Ten-League的差异化在于对所售设备的深度了解，但制造商自有团队同样具备</td></tr>
+                <tr><td>替代趋势</td><td>稳定——专业工程咨询在复杂项目中有持续需求</td></tr>
+            </table>
+            <table class="dim-table">
+                <tr><td>客户转换成本</td><td><span class="tag tag-orange">中等</span></td></tr>
+                <tr><td>财务转换成本</td><td>低——咨询合同通常按项目签订，项目间可自由更换</td></tr>
+                <tr><td>时间转换成本</td><td>中等——新咨询团队需要时间了解项目背景和设备状况</td></tr>
+                <tr><td>捆绑转换成本</td><td>中等——如果客户同时使用Ten-League的设备和咨询服务，转换成本增加</td></tr>
+                <tr><td>综合评估</td><td>项目制咨询的转换成本有限，但与设备销售的捆绑可提供一定粘性</td></tr>
+            </table>
+            <table class="dim-table">
+                <tr><td>定价权</td><td><span class="tag tag-orange">中等</span></td></tr>
+                <tr><td>历史提价记录</td><td>咨询费率可随项目复杂度调整，但受市场竞争约束</td></tr>
+                <tr><td>提价vs通胀</td><td>专业服务费率通常能跑赢通胀</td></tr>
+                <tr><td>定价权来源</td><td>专业知识和经验——特别是在港口电气化等新兴领域</td></tr>
+                <tr><td>定价权趋势</td><td>增强——港口电气化是新兴领域，具备该经验的咨询商较少</td></tr>
+                <tr><td>巴菲特测试</td><td>如果咨询费率提高10%，客户可能犹豫，但若Ten-League是唯一具备特定经验的供应商，则可能接受</td></tr>
+            </table>
+            <p><strong>综合竞争力评级：⭐⭐⭐（3/5星）</strong> — 毛利率最高（75%+），港口电气化经验是差异化优势，但规模太小（仅占3%营收）</p>
+        </div>
+
+        <div class="highlight">
+            <strong>巴菲特视角：</strong>Ten-League的三个业务板块中，工程咨询是最具"护城河潜力"的——高毛利率、专业知识壁垒、港口电气化先发优势。但问题是：它仅占总营收的3%，S$2.2M的规模几乎可以忽略不计。占80%营收的设备销售是典型的"无护城河"生意——低利润率、高可替代性、零定价权。这就像一家餐厅，80%的收入来自卖矿泉水（低利润），3%来自招牌菜（高利润但量小）——整体商业模式缺乏吸引力。巴菲特会问："为什么我要投资一个主要靠低利润中间商生意赚钱的公司？"
+        </div>
+    </div>
+
+    <!-- 四、历史财务指标 -->
+    <div class="info-box">
+        <h2>四、历史财务指标（FY2021-2025）</h2>
+
+        <h3>4.1 净资产收益率 (ROE) 趋势</h3>
+        <div class="chart-container">
+            <canvas id="roeChart"></canvas>
+        </div>
+        <table>
+            <tr>
+                <th>财年</th><th>ROE</th><th>净利润(S$M)</th><th>股东权益(S$M)</th><th>备注</th>
+            </tr>
+            <tr><td>FY2021</td><td>14.6%</td><td>S$1.79</td><td>S$12.26</td><td>正常化水平</td></tr>
+            <tr><td>FY2022</td><td>153.5%</td><td>S$4.99</td><td>S$3.25</td><td>权益极低导致ROE虚高</td></tr>
+            <tr><td>FY2023</td><td>163.5%</td><td>S$7.08</td><td>S$4.33</td><td>权益极低导致ROE虚高</td></tr>
+            <tr><td>FY2024</td><td>30.2%</td><td>S$1.88</td><td>S$6.22</td><td>利润大幅下滑</td></tr>
+            <tr><td>FY2025</td><td>33.5%</td><td>S$5.59</td><td>S$16.70</td><td>IPO后权益增加，ROE回归合理</td></tr>
+        </table>
+        <div class="highlight">
+            <strong>巴菲特视角：</strong>FY2022-2023年ROE超过150%，这绝对不是"好生意"的标志，而是危险信号——股东权益仅S$3.25-4.33M，而总资产S$57-66M，意味着公司几乎全靠债务运营。FY2025年IPO后权益增至S$16.70M，ROE回归33.5%，但这仍然需要仔细审视：净利润S$5.59M中，有多少是可持续的？FY2024年净利润仅S$1.88M，说明盈利波动极大。巴菲特偏好的是稳定的高ROE，而非大起大落。
+        </div>
+
+        <h3>4.2 资产负债率 (Debt-to-Asset) 趋势</h3>
+        <div class="chart-container">
+            <canvas id="debtChart"></canvas>
+        </div>
+        <table>
+            <tr>
+                <th>财年</th><th>总债务(S$M)</th><th>总资产(S$M)</th><th>资产负债率</th><th>净债务/权益</th>
+            </tr>
+            <tr><td>FY2021</td><td>S$30.03</td><td>S$53.76</td><td>77.2%</td><td>1.71x</td></tr>
+            <tr><td>FY2022</td><td>S$26.87</td><td>S$57.68</td><td>94.4%</td><td>6.41x</td></tr>
+            <tr><td>FY2023</td><td>S$32.76</td><td>S$65.74</td><td>93.4%</td><td>7.04x</td></tr>
+            <tr><td>FY2024</td><td>S$37.62</td><td>S$71.05</td><td>91.3%</td><td>6.05x</td></tr>
+            <tr><td>FY2025</td><td>S$31.12</td><td>S$77.38</td><td>78.4%</td><td>1.22x</td></tr>
+        </table>
+        <div class="highlight-red">
+            <strong>芒格视角：</strong>FY2022-2024年资产负债率超过90%——这意味着每S$100资产中，超过S$90来自负债，股东权益仅S$10。芒格会直接说："这不是做生意，这是在走钢丝。"FY2025年IPO后资产负债率降至78.4%，但仍然很高。总债务S$31.12M vs. 现金S$10.68M，净债务S$20.43M，而市值仅US$8.9M（约S$11.7M）。<strong>净债务超过市值</strong>——这是一个非常危险的信号。
+        </div>
+
+        <h3>4.3 市盈率 (PE) 趋势</h3>
+        <div class="chart-container">
+            <canvas id="peChart"></canvas>
+        </div>
+        <table>
+            <tr>
+                <th>时间点</th><th>股价(并股前)</th><th>股价(并股后等效)</th><th>EPS(并股后)</th><th>PE</th><th>备注</th>
+            </tr>
+            <tr><td>IPO(2025.7)</td><td>$4.00</td><td>$40.00</td><td>~$1.90</td><td>~21x</td><td>IPO定价</td></tr>
+            <tr><td>2025.9</td><td>~$0.46</td><td>~$4.60</td><td>~$1.90</td><td>~2.4x</td><td>暴跌后</td></tr>
+            <tr><td>2026.3</td><td>~$0.25</td><td>~$2.50</td><td>~$1.90</td><td>~1.3x</td><td>退市通知后</td></tr>
+            <tr><td>2026.5(并股后)</td><td>$3.02</td><td>$3.02</td><td>~$1.90</td><td>~1.6x</td><td>当前</td></tr>
+        </table>
+        <div class="highlight">
+            <strong>巴菲特视角：</strong>PE仅1.6x，看似"极度便宜"。但巴菲特会问三个问题：(1) 这个盈利是否可持续？FY2024年净利润仅S$1.88M，FY2025年S$5.59M——波动巨大，FY2025的高利润可能来自几个大项目的一次性贡献。(2) 考虑净债务S$20.43M后，EV/EBITDA约2.4x，看似便宜但风险极高。(3) 公司面临纳斯达克退市风险，如果退市流动性将更差。巴菲特的原则是"以合理价格买入优秀公司"，而不是"以低价买入有问题的公司"。
+        </div>
+
+        <h3>4.4 产权比率 (Assets/Equity) 趋势</h3>
+        <div class="chart-container">
+            <canvas id="equityRatioChart"></canvas>
+        </div>
+        <table>
+            <tr>
+                <th>财年</th><th>总资产(S$M)</th><th>股东权益(S$M)</th><th>产权比率(资产/权益)</th><th>含义</th>
+            </tr>
+            <tr><td>FY2021</td><td>S$53.76</td><td>S$12.26</td><td>4.4x</td><td>高杠杆</td></tr>
+            <tr><td>FY2022</td><td>S$57.68</td><td>S$3.25</td><td>17.8x</td><td>极度高杠杆，权益几乎归零</td></tr>
+            <tr><td>FY2023</td><td>S$65.74</td><td>S$4.33</td><td>15.2x</td><td>极度高杠杆</td></tr>
+            <tr><td>FY2024</td><td>S$71.05</td><td>S$6.22</td><td>11.4x</td><td>极高杠杆</td></tr>
+            <tr><td>FY2025</td><td>S$77.38</td><td>S$16.70</td><td>4.6x</td><td>IPO后改善，但仍高</td></tr>
+        </table>
+        <div class="highlight">
+            <strong>芒格视角：</strong>FY2022-2023年产权比率15-18x，意味着每S$1股东权益对应S$15-18资产，其余全部来自负债。这是"刀尖上跳舞"的财务结构——任何营收下滑都可能导致资不抵债。FY2025年IPO后改善至4.6x，但仍远高于健康水平（通常<3x为安全）。
+        </div>
+    </div>
+
+    <!-- 五、竞争分析 -->
+    <div class="info-box">
+        <h2>五、竞争分析</h2>
+
+        <h3>5.1 新加坡重型设备市场竞争格局</h3>
+        <table>
+            <tr>
+                <th>公司</th><th>类型</th><th>核心优势</th><th>规模对比</th>
+            </tr>
+            <tr>
+                <td><strong>Ten-League (TLIH)</strong></td>
+                <td>设备分销+租赁+咨询</td>
+                <td>港口电气化先发优势、本地关系</td>
+                <td>营收~S$76M，64人</td>
+            </tr>
+            <tr>
+                <td>Tractors Singapore (CAT代理)</td>
+                <td>设备分销+租赁</td>
+                <td>CAT品牌背书、规模更大</td>
+                <td>营收估计>S$200M</td>
+            </tr>
+            <tr>
+                <td>MYR Group (MYRG)</td>
+                <td>电气工程承包</td>
+                <td>北美最大电气承包商之一</td>
+                <td>营收~$3.5B</td>
+            </tr>
+            <tr>
+                <td>Quanta Services (PWR)</td>
+                <td>基础设施服务</td>
+                <td>全球领先、多元化</td>
+                <td>营收~$23B</td>
+            </tr>
+            <tr>
+                <td>Fluor (FLR)</td>
+                <td>工程总承包</td>
+                <td>全球工程巨头</td>
+                <td>营收~$15B</td>
+            </tr>
+        </table>
+
+        <h3>5.2 竞争优势与护城河评估</h3>
+
+        <div class="moat-item">
+            <strong>🏰 港口电气化先发优势（中等）</strong><br>
+            Ten-League自2021年起为新加坡港提供电动设备，是PSA港口电池更换站（BCSS）的承建商。在新加坡港口电气化领域具备先发优势和项目经验。但这一优势是否可持续取决于能否持续获得新订单——港口电气化是一个全球趋势，大型设备制造商（如Konecranes、Volvo CE）正在直接进入这个市场。
+        </div>
+
+        <div class="moat-item">
+            <strong>🏰 本地关系网络（弱-中等）</strong><br>
+            在新加坡经营27年，与PSA、Bachy Soletanche等客户建立了长期关系。但新加坡市场规模有限，且关系网络不是可量化的护城河——竞争对手同样可以建立关系。
+        </div>
+
+        <div class="risk-item">
+            <strong>🔴 规模劣势（严重）</strong><br>
+            64名员工、S$76M营收——这是一个极小的公司。在设备采购中，规模决定议价能力：大经销商可以获得更低的进货价格和更好的付款条件，Ten-League的采购成本可能高于大型竞争对手。14.8%的设备销售毛利率反映了这一劣势。
+        </div>
+
+        <div class="risk-item">
+            <strong>🔴 品牌力缺失（严重）</strong><br>
+            Ten-League不是设备制造商，没有自有品牌产品。它销售的是其他品牌（Konecranes、Liebherr等）的设备，客户认的是设备品牌而非经销商品牌。这意味着Ten-League无法通过品牌溢价获得额外利润。
+        </div>
+
+        <h3>5.3 主要竞争威胁</h3>
+
+        <div class="risk-item">
+            <strong>🔴 设备制造商直销</strong><br>
+            大型设备制造商越来越倾向于直接销售给终端客户，绕过经销商。如果Konecranes决定在新加坡设立直销团队，Ten-League的设备销售业务将受到严重冲击。
+        </div>
+
+        <div class="risk-item">
+            <strong>🔴 新加坡基建周期下行</strong><br>
+            樟宜机场T5、滨海湾金沙扩建等大项目完成后，新加坡的基建投资可能进入低谷。Ten-League的营收高度依赖这些项目，项目完工后营收可能大幅下滑——FY2024年营收同比下降19.6%就是前车之鉴。
+        </div>
+
+        <div class="risk-item">
+            <strong>🟡 纳斯达克退市风险</strong><br>
+            公司已收到纳斯达克退市通知，虽然申请了听证会并实施了1:10并股，但退市风险仍未完全消除。如果退市，股票流动性将急剧恶化，融资能力将进一步受限。
+        </div>
+    </div>
+
+    <!-- 六、利润分配分析 -->
+    <div class="info-box">
+        <h2>六、利润分配分析（FY2021-2025）</h2>
+
+        <h3>6.1 利润分配总览</h3>
+        <p><strong>核心原则：回购计入留存</strong>。TLIH从未支付股息，也从未进行股票回购。所有利润均留存于公司。</p>
+
+        <table>
+            <tr>
+                <th>年度</th><th>净利润(S$M)</th><th>股息(S$M)</th><th>回购(S$M)</th><th>扩张CapEx(S$M)</th><th>债务净变动(S$M)</th><th>留存金额(S$M)</th><th>留存比率</th>
+            </tr>
+            <tr><td>FY2021</td><td>S$1.79</td><td>S$0</td><td>S$0</td><td>~S$8.5</td><td>+S$0</td><td>S$1.79</td><td>100%</td></tr>
+            <tr><td>FY2022</td><td>S$4.99</td><td>S$0</td><td>S$0</td><td>~S$9.5</td><td>-S$3.2</td><td>S$4.99</td><td>100%</td></tr>
+            <tr><td>FY2023</td><td>S$7.08</td><td>S$0</td><td>S$0</td><td>~S$10.2</td><td>+S$5.9</td><td>S$7.08</td><td>100%</td></tr>
+            <tr><td>FY2024</td><td>S$1.88</td><td>S$0</td><td>S$0</td><td>~S$8.6</td><td>+S$4.9</td><td>S$1.88</td><td>100%</td></tr>
+            <tr><td>FY2025</td><td>S$5.59</td><td>S$0</td><td>S$0</td><td>~S$9.0</td><td>-S$6.5</td><td>S$5.59</td><td>100%</td></tr>
+        </table>
+
+        <div class="chart-container">
+            <canvas id="profitChart"></canvas>
+        </div>
+
+        <h3>6.2 留存质量分析</h3>
+        <table>
+            <tr>
+                <th>年度</th><th>留存金额(S$M)</th><th>CapEx占比</th><th>债务净变动</th><th>FCF(S$M)</th>
+            </tr>
+            <tr><td>FY2021</td><td>S$1.79</td><td>475%</td><td>~S$0</td><td>-S$7.77</td></tr>
+            <tr><td>FY2022</td><td>S$4.99</td><td>190%</td><td>-S$3.2M（还债）</td><td>S$4.54</td></tr>
+            <tr><td>FY2023</td><td>S$7.08</td><td>144%</td><td>+S$5.9M（借债）</td><td>-S$18.20</td></tr>
+            <tr><td>FY2024</td><td>S$1.88</td><td>457%</td><td>+S$4.9M（借债）</td><td>-S$7.81</td></tr>
+            <tr><td>FY2025</td><td>S$5.59</td><td>161%</td><td>-S$6.5M（还债）</td><td>S$9.03</td></tr>
+        </table>
+
+        <div class="highlight">
+            <strong>巴菲特视角：</strong>TLIH留存比率100%（从不分红），但留存质量极差：<br>
+            (1) <strong>CapEx远超净利润</strong>：5年累计净利润S$21.33M，而CapEx估计约S$45.8M——CapEx是净利润的2倍以上，差额通过增加债务弥补。<br>
+            (2) <strong>FCF常年为负</strong>：5年中3年FCF为负（FY2021: -S$7.77M, FY2023: -S$18.20M, FY2024: -S$7.81M），说明公司需要不断投入资本才能维持运营。<br>
+            (3) <strong>留存未创造价值</strong>：IPO价格$4.00，当前并股后等效价$3.02——1美元留存不仅没有创造1美元市值，反而毁灭了股东价值。<br>
+            (4) <strong>可持续增长率</strong> = ROE × 留存比率 = 33.5% × 100% = 33.5%。但实际营收增长波动极大（-19.6%到+30.2%），说明理论值毫无意义。
+        </div>
+
+        <h3>6.3 利润分配饼图（FY2021-2025五年累计）</h3>
+        <div class="chart-container">
+            <canvas id="pieChart"></canvas>
+        </div>
+        <p><strong>注：</strong>回购计入留存。五年累计净利润约S$21.33M，全部留存。但CapEx约S$45.8M远超净利润，差额通过债务融资弥补。五年累计净增债务约S$1.1M。</p>
+    </div>
+
+    <!-- 七、投资总结 -->
+    <div class="info-box">
+        <h2>七、投资总结</h2>
+
+        <h3>7.1 核心投资论点</h3>
+        <table>
+            <tr><th>维度</th><th>评估</th><th>评分</th></tr>
+            <tr><td>商业模式可理解性</td><td>设备中间商+租赁+咨询，模式简单但缺乏吸引力</td><td>⭐⭐⭐</td></tr>
+            <tr><td>竞争护城河</td><td>几乎无护城河，80%营收来自低利润中间商业务</td><td>⭐</td></tr>
+            <tr><td>管理层资本配置</td><td>高杠杆运营，IPO后改善但仍差，无股东回报记录</td><td>⭐</td></tr>
+            <tr><td>财务安全边际</td><td>净债务超市值，资产负债率78%，退市风险</td><td>⭐</td></tr>
+            <tr><td>增长前景</td><td>高度依赖新加坡基建周期，项目制收入不稳定</td><td>⭐⭐</td></tr>
+            <tr><td>估值吸引力</td><td>PE 1.6x看似极低，但盈利不可持续，EV/EBITDA 2.4x</td><td>⭐⭐</td></tr>
+        </table>
+
+        <h3>7.2 价值投资评级</h3>
+        <div class="highlight-red">
+            <strong>综合评级：强烈回避 🚫</strong><br><br>
+            以巴菲特/芒格的价值投资标准，TLIH在几乎所有维度都不合格：<br><br>
+            <strong>1. 无护城河</strong>：80%营收来自设备销售——典型的低利润中间商生意，14.8%毛利率、零定价权、高可替代性。巴菲特说："一个好的生意应该有护城河保护。"Ten-League的设备销售业务没有任何护城河。<br><br>
+            <strong>2. 财务结构危险</strong>：净债务S$20.43M超过市值S$11.7M。FY2022-2024年资产负债率超过90%，公司几乎全靠债务运营。芒格会说："如果一门生意需要借这么多钱才能运转，那它可能不是好生意。"<br><br>
+            <strong>3. 退市风险</strong>：IPO仅10个月就收到纳斯达克退市通知，股价从$4.00跌至$0.25（跌93%），被迫实施1:10并股。如果退市，股东将面临流动性枯竭。<br><br>
+            <strong>4. 盈利不可持续</strong>：FY2024净利润S$1.88M vs. FY2025 S$5.59M——波动3倍。营收高度依赖几个大项目（樟宜机场T5、滨海湾金沙扩建），项目完工后营收可能断崖式下跌。<br><br>
+            <strong>5. 规模太小</strong>：64名员工、S$76M营收、US$8.9M市值——这是一个"微型企业"，不是巴菲特/芒格会关注的投资标的。巴菲特偏好的是"大象级"公司，具备规模优势和持久竞争力。<br><br>
+            <strong>安全边际评估</strong>：PE 1.6x看似极度便宜，但这可能是"价值陷阱"的典型特征。考虑以下因素：(1) 盈利可能不可持续；(2) 净债务超过市值；(3) 退市风险；(4) 流动性极差。巴菲特要求"以合理价格买入优秀公司"，TLIH是"以看似低价买入有严重问题的公司"——这恰恰是巴菲特最反对的投资方式。<br><br>
+            <strong>唯一亮点</strong>：港口电气化是一个真实增长趋势，Ten-League在新加坡港口有先发优势。如果公司能将工程咨询业务从3%扩大到20%+，并降低杠杆，可能在未来成为一个有吸引力的标的。但目前来看，这只是一个遥远的可能性，而非现实。
+        </div>
+
+        <h3>7.3 同业估值对比</h3>
+        <table>
+            <tr>
+                <th>公司</th><th>PE</th><th>EV/EBITDA</th><th>净债务/权益</th><th>毛利率</th><th>市值</th>
+            </tr>
+            <tr>
+                <td><strong>TLIH</strong></td>
+                <td><strong>~1.6x</strong></td>
+                <td><strong>~2.4x</strong></td>
+                <td><strong>1.22x</strong></td>
+                <td><strong>24.4%</strong></td>
+                <td><strong>$8.9M</strong></td>
+            </tr>
+            <tr>
+                <td>MYRG</td>
+                <td>~18x</td>
+                <td>~11x</td>
+                <td>~0.3x</td>
+                <td>~15%</td>
+                <td>$2.5B</td>
+            </tr>
+            <tr>
+                <td>PWR</td>
+                <td>~35x</td>
+                <td>~18x</td>
+                <td>~0.7x</td>
+                <td>~18%</td>
+                <td>$55B</td>
+            </tr>
+            <tr>
+                <td>FLR</td>
+                <td>~16x</td>
+                <td>~10x</td>
+                <td>~0.5x</td>
+                <td>~10%</td>
+                <td>$7B</td>
+            </tr>
+        </table>
+        <p>TLIH的PE和EV/EBITDA远低于同行，但这反映了市场对其退市风险、盈利不可持续和极小规模的折价。同行的估值溢价来自规模优势、多元化业务和可持续的盈利能力——这些都是TLIH所缺乏的。</p>
+    </div>
+
+    <script>
+        var ctx1 = document.getElementById('roeChart').getContext('2d');
+        new Chart(ctx1, {
+            type: 'line',
+            data: {
+                labels: ['FY2021','FY2022','FY2023','FY2024','FY2025'],
+                datasets: [{
+                    label: 'ROE (%)',
+                    data: [14.6, 153.5, 163.5, 30.2, 33.5],
+                    borderColor: '#2e86c1',
+                    backgroundColor: 'rgba(46,134,193,0.1)',
+                    fill: true,
+                    tension: 0.3
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: { display: true, text: 'Ten-League International ROE趋势 (FY2021-2025)' }
+                },
+                scales: {
+                    y: { title: { display: true, text: 'ROE (%)' } }
+                }
+            }
+        });
+
+        var ctx2 = document.getElementById('debtChart').getContext('2d');
+        new Chart(ctx2, {
+            type: 'bar',
+            data: {
+                labels: ['FY2021','FY2022','FY2023','FY2024','FY2025'],
+                datasets: [{
+                    label: '资产负债率 (%)',
+                    data: [77.2, 94.4, 93.4, 91.3, 78.4],
+                    backgroundColor: 'rgba(231,76,60,0.7)',
+                    borderColor: '#c0392b',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: { display: true, text: 'Ten-League International 资产负债率趋势 (FY2021-2025)' }
+                },
+                scales: {
+                    y: { title: { display: true, text: '资产负债率 (%)' }, min: 60, max: 100 }
+                }
+            }
+        });
+
+        var ctx3 = document.getElementById('peChart').getContext('2d');
+        new Chart(ctx3, {
+            type: 'line',
+            data: {
+                labels: ['IPO(2025.7)','2025.9','2026.3','2026.5(并股后)'],
+                datasets: [{
+                    label: 'PE Ratio (并股后等效)',
+                    data: [21, 2.4, 1.3, 1.6],
+                    borderColor: '#27ae60',
+                    backgroundColor: 'rgba(39,174,96,0.1)',
+                    fill: true,
+                    tension: 0.3
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: { display: true, text: 'Ten-League International PE Ratio趋势' }
+                },
+                scales: {
+                    y: { title: { display: true, text: 'PE Ratio' } }
+                }
+            }
+        });
+
+        var ctx4 = document.getElementById('equityRatioChart').getContext('2d');
+        new Chart(ctx4, {
+            type: 'line',
+            data: {
+                labels: ['FY2021','FY2022','FY2023','FY2024','FY2025'],
+                datasets: [{
+                    label: '产权比率 (资产/权益)',
+                    data: [4.4, 17.8, 15.2, 11.4, 4.6],
+                    borderColor: '#e67e22',
+                    backgroundColor: 'rgba(230,126,34,0.1)',
+                    fill: true,
+                    tension: 0.3
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: { display: true, text: 'Ten-League International 产权比率趋势 (FY2021-2025)' }
+                },
+                scales: {
+                    y: { title: { display: true, text: '资产/权益 (x)' } }
+                }
+            }
+        });
+
+        var ctx5 = document.getElementById('profitChart').getContext('2d');
+        new Chart(ctx5, {
+            type: 'bar',
+            data: {
+                labels: ['FY2021','FY2022','FY2023','FY2024','FY2025'],
+                datasets: [
+                    {
+                        label: '净利润 (S$M)',
+                        data: [1.79, 4.99, 7.08, 1.88, 5.59],
+                        backgroundColor: 'rgba(46,134,193,0.8)'
+                    },
+                    {
+                        label: '扩张CapEx (S$M)',
+                        data: [8.5, 9.5, 10.2, 8.6, 9.0],
+                        backgroundColor: 'rgba(230,126,34,0.8)'
+                    },
+                    {
+                        label: 'FCF (S$M)',
+                        data: [-7.77, 4.54, -18.20, -7.81, 9.03],
+                        backgroundColor: 'rgba(39,174,96,0.8)'
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: { display: true, text: 'Ten-League International 利润与现金流趋势 (FY2021-2025)' }
+                },
+                scales: {
+                    y: { title: { display: true, text: '金额 (S$M)' } }
+                }
+            }
+        });
+
+        var ctx6 = document.getElementById('pieChart').getContext('2d');
+        new Chart(ctx6, {
+            type: 'doughnut',
+            data: {
+                labels: ['再投资（CapEx/设备采购）', '债务偿还', '现金储备增加'],
+                datasets: [{
+                    data: [45.8, 9.7, 10.0],
+                    backgroundColor: ['#e67e22', '#2e86c1', '#27ae60'],
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: { display: true, text: 'Ten-League International 五年利润分配（回购计入留存，FY2021-2025累计）' },
+                    legend: { position: 'bottom' }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
