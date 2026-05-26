@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leidos Holdings (LDOS) 价值投资分析</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f2f5;
+            color: #333;
+        }
+        h1 {
+            text-align: center;
+            color: #1a5276;
+            font-size: 2.2em;
+            margin-bottom: 5px;
+        }
+        h2 {
+            color: #1a5276;
+            border-bottom: 2px solid #2e86c1;
+            padding-bottom: 8px;
+            margin-top: 30px;
+        }
+        h3 {
+            color: #2c3e50;
+            margin-top: 20px;
+        }
+        h4 {
+            color: #2c3e50;
+            margin-top: 15px;
+        }
+        .subtitle {
+            text-align: center;
+            color: #7f8c8d;
+            font-size: 1.1em;
+            margin-bottom: 30px;
+        }
+        .info-box {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            background-color: white;
+        }
+        th, td {
+            padding: 10px 14px;
+            text-align: left;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        th {
+            background-color: #1a5276;
+            color: white;
+            font-weight: bold;
+        }
+        tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        tr:hover {
+            background-color: #eaf2f8;
+        }
+        .highlight {
+            background: #fef9e7;
+            border-left: 4px solid #2e86c1;
+            padding: 15px 20px;
+            margin: 15px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .chart-container {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+        canvas {
+            max-height: 400px;
+        }
+        .tag {
+            display: inline-block;
+            background: #1a5276;
+            color: white;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.85em;
+            margin: 2px;
+        }
+        .tag-green {
+            background: #27ae60;
+        }
+        .tag-orange {
+            background: #e67e22;
+        }
+        .tag-red {
+            background: #c0392b;
+        }
+        a {
+            color: #1a5276;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            font-size: 1em;
+        }
+        .moat-item {
+            background: white;
+            border-radius: 8px;
+            padding: 15px 20px;
+            margin: 10px 0;
+            box-shadow: 0 1px 5px rgba(0,0,0,0.05);
+            border-left: 4px solid #2e86c1;
+        }
+        .moat-item strong {
+            color: #1a5276;
+        }
+        .risk-item {
+            background: white;
+            border-radius: 8px;
+            padding: 15px 20px;
+            margin: 10px 0;
+            box-shadow: 0 1px 5px rgba(0,0,0,0.05);
+            border-left: 4px solid #c0392b;
+        }
+        .competitiveness-box {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            border: 1px solid #d5dbdb;
+        }
+        .competitiveness-box h3 {
+            color: #1a5276;
+            border-bottom: 1px solid #e0e0e0;
+            padding-bottom: 8px;
+        }
+        .rating-stars {
+            color: #f39c12;
+            font-size: 1.2em;
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back-link">← 返回索引</a>
+    
+    <h1>Leidos Holdings (NYSE: LDOS)</h1>
+    <p class="subtitle">巴菲特/芒格式价值投资基本面分析 | 更新日期：2026年5月</p>
+
+    <!-- 一、公司基本信息 -->
+    <div class="info-box">
+        <h2>一、公司基本信息</h2>
+        <table>
+            <tr><td>公司全称</td><td>Leidos Holdings, Inc.</td></tr>
+            <tr><td>股票代码</td><td>NYSE: LDOS</td></tr>
+            <tr><td>市值</td><td>约160亿美元（2026年5月）</td></tr>
+            <tr><td>市值（美元）</td><td>≈ $16.0B USD</td></tr>
+            <tr><td>成立时间</td><td>1969年（由J. Robert Beyster博士创立，原名Science Applications International Corporation）</td></tr>
+            <tr><td>公司总部</td><td>美国弗吉尼亚州雷斯顿（Reston, Virginia）</td></tr>
+            <tr><td>最新收盘价</td><td>约$126（2026年5月）</td></tr>
+            <tr><td>财年截止</td><td>每年1月初（52/53周财年）</td></tr>
+            <tr><td>CEO</td><td>Tom Bell（2023年7月上任）</td></tr>
+            <tr><td>员工人数</td><td>约47,000人</td></tr>
+            <tr><td>行业</td><td>信息技术服务 / 国防与政府承包商</td></tr>
+            <tr><td>S&P 500成分股</td><td>是</td></tr>
+            <tr><td>流通股数</td><td>约1.26亿股</td></tr>
+            <tr><td>联邦合同义务</td><td>$114亿（FY2024），全美第9大政府承包商</td></tr>
+        </table>
+    </div>
+
+    <!-- 二、业务分析 -->
+    <div class="info-box">
+        <h2>二、业务分析</h2>
+        
+        <h3>2.1 通俗解释：Leidos是干什么的？</h3>
+        <p>用最简单的话说，<strong>Leidos就是美国政府的"技术外包管家"</strong>。当你想到美国国防部的网络安全、退伍军人医院的医疗系统、机场的安检扫描仪、海军的无人船、陆军的超音速导弹——这些背后很可能都有Leidos的身影。作为全美最大的政府技术服务承包商之一，Leidos为美国政府提供从IT现代化到情报分析、从网络安全到武器系统的全方位服务。</p>
+        <p>Leidos的商业模式非常清晰：<strong>通过竞标获得政府长期合同，提供技术服务和解决方案，按项目进度或服务时长收费</strong>。它的核心赚钱逻辑是——<strong>安全许可壁垒+规模效应</strong>。为政府处理机密信息需要员工拥有最高级别的安全许可（TS/SCI），而获得这种许可的成本和时间使得新竞争者很难进入。同时，Leidos凭借$490亿积压订单和90%以上的续约胜率，形成了"赢者通吃"的正循环。</p>
+        <p>近年来，公司推行<strong>NorthStar 2030战略</strong>，剥离非核心资产（如Varec），收购高增长能力（网络安全公司Kudu Dynamics、能源基础设施公司ENTRUST），并将AI深度融入业务——Skywire平台实现30%成本削减，LAVA平台实现60%生产力提升。</p>
+
+        <h3>2.2 业务板块及营收（FY2025，截至2026年1月2日）</h3>
+        <table>
+            <tr>
+                <th>业务板块</th>
+                <th>年营收</th>
+                <th>占总营收比例</th>
+                <th>调整后营业利润率</th>
+                <th>增长趋势</th>
+            </tr>
+            <tr>
+                <td>国家安全与数字化 (National Security & Digital)</td>
+                <td>$76亿</td>
+                <td>约44%</td>
+                <td>10.6%</td>
+                <td><span class="tag tag-green">增长</span> 网络安全、情报分析需求旺盛</td>
+            </tr>
+            <tr>
+                <td>健康与民用 (Health & Civil)</td>
+                <td>$50.7亿</td>
+                <td>约29%</td>
+                <td>21.9%</td>
+                <td><span class="tag tag-orange">稳定</span> VA/CMS合同稳定，利润率最高</td>
+            </tr>
+            <tr>
+                <td>商业与国际 (Commercial & International)</td>
+                <td>$25亿</td>
+                <td>约15%</td>
+                <td>8.4%</td>
+                <td><span class="tag tag-green">增长</span> ENTRUST收购推动能源基建</td>
+            </tr>
+            <tr>
+                <td>国防系统 (Defense Systems)</td>
+                <td>$20亿</td>
+                <td>约12%</td>
+                <td>8.1%</td>
+                <td><span class="tag tag-green">增长</span> 超音速武器、防空系统需求强劲</td>
+            </tr>
+        </table>
+        <p><strong>注：</strong>FY2025总营收$171.7亿，同比增长3%。调整后EBITDA利润率14.1%，较FY2024的12.9%显著提升。积压订单$490亿，其中$97亿已获资金。</p>
+
+        <h3>2.3 地域分布</h3>
+        <table>
+            <tr>
+                <th>地区</th>
+                <th>营收占比</th>
+                <th>说明</th>
+            </tr>
+            <tr>
+                <td>美国</td>
+                <td>约92%</td>
+                <td>核心市场，国防部、情报机构、VA等联邦客户</td>
+            </tr>
+            <tr>
+                <td>英国</td>
+                <td>约3%</td>
+                <td>国防部及情报合作</td>
+            </tr>
+            <tr>
+                <td>中东</td>
+                <td>约2%</td>
+                <td>沙特、阿联酋防务合同</td>
+            </tr>
+            <tr>
+                <td>澳大利亚</td>
+                <td>约2%</td>
+                <td>国防及情报合作</td>
+            </tr>
+            <tr>
+                <td>其他</td>
+                <td>约1%</td>
+                <td>零星国际业务</td>
+            </tr>
+        </table>
+        <div class="highlight">
+            <strong>芒格视角：</strong>Leidos约92%的营收来自美国政府，这既是优势也是风险。优势在于美国政府是世界上最可靠的付款方——只要国家安全需求存在，预算就不会消失。风险在于单一客户依赖——如果政府削减某领域开支（如DOGE效率改革），Leidos将首当其冲。2025年政府停摆6周就导致Q4营收同比下降4%，这充分暴露了客户集中风险。
+        </div>
+
+        <h3>2.4 商业模式总结</h3>
+        <p>Leidos的盈利模式可以概括为：<strong>竞标政府合同 → 组建安全许可团队 → 提供技术服务/解决方案 → 按成本加成或固定价格收费</strong>。毛利率约18%，净利率约8.5%，在政府承包商中属于较高水平。公司的核心竞争优势在于：<strong>（1）约47,000名持有安全许可的员工构成的人才壁垒；（2）$490亿积压订单提供的收入可见性；（3）90%+的合同续约胜率</strong>。自由现金流FY2025达$18亿，为收购和股东回报提供支撑。</p>
+    </div>
+
+    <!-- 三、业务板块产品竞争力分析 -->
+    <div class="info-box">
+        <h2>三、业务板块产品竞争力分析</h2>
+
+        <div class="competitiveness-box">
+            <h3>3.1 国家安全与数字化 (National Security & Digital) 产品竞争力分析</h3>
+            <p><strong>核心业务：</strong>网络安全、情报分析、数字现代化、C4ISR（指挥、控制、通信、计算机、情报、监视与侦察）、AI赋能网络能力（Kudu Dynamics）</p>
+            
+            <h4>1. 可替代性：<span class="tag tag-green">低</span></h4>
+            <ul>
+                <li><strong>主要替代品：</strong>BAH（Booz Allen Hamilton）咨询模式、SAIC/CACI的同类服务、商业网络安全平台（Palo Alto Networks等）</li>
+                <li><strong>替代品体验差距：</strong>商业网络安全平台无法处理机密级别信息；BAH偏重咨询而非系统集成；SAIC/CACI规模较小，难以承接超大型项目</li>
+                <li><strong>替代趋势：</strong>稳定——机密环境下的网络安全需求几乎不可能被商业方案替代</li>
+            </ul>
+
+            <h4>2. 客户转换成本：<span class="tag tag-green">极高</span></h4>
+            <ul>
+                <li><strong>财务转换成本：</strong>更换承包商需重新招标（12-18个月）、重新安全审查、系统迁移，成本可达合同价值的20-30%</li>
+                <li><strong>时间转换成本：</strong>新承包商获取安全许可需6-12个月，系统交接期间存在安全漏洞风险</li>
+                <li><strong>捆绑转换成本：</strong>Leidos通常同时提供IT基础设施+安全运营+情报分析，形成多服务捆绑</li>
+                <li><strong>综合评估：</strong>政府机构在机密项目上更换承包商的代价极高，约80%的续约合同由在位者赢得</li>
+            </ul>
+
+            <h4>3. 定价权：<span class="tag tag-green">强</span></h4>
+            <ul>
+                <li><strong>历史提价记录：</strong>成本加成合同自动传递成本上升；固定价格合同通过效率提升实现隐性提价</li>
+                <li><strong>提价vs通胀：</strong>调整后EBITDA利润率从10.8%（FY2023）提升至14.1%（FY2025），跑赢通胀</li>
+                <li><strong>定价权来源：</strong>安全许可壁垒+在位者优势+机密环境不可替代性</li>
+                <li><strong>定价权趋势：</strong>增强——AI赋能（Skywire/LAVA）提升效率，使Leidos在固定价格合同中获取更多利润</li>
+                <li><strong>巴菲特测试：</strong>如果Leidos提价10%，客户（政府机构）几乎无法离开——因为替代供应商同样需要安全许可，且切换成本极高</li>
+            </ul>
+
+            <p><strong>综合竞争力评级：<span class="rating-stars">⭐⭐⭐⭐⭐</span></strong></p>
+        </div>
+
+        <div class="competitiveness-box">
+            <h3>3.2 健康与民用 (Health & Civil) 产品竞争力分析</h3>
+            <p><strong>核心业务：</strong>退伍军人事务部（VA）医疗系统运营、医疗保险和医疗补助服务中心（CMS）数据处理、联邦航空管理局（FAA）空管系统、生物识别边境安检</p>
+            
+            <h4>1. 可替代性：<span class="tag tag-orange">中等</span></h4>
+            <ul>
+                <li><strong>主要替代品：</strong>其他政府承包商（Maximus、DLH Holdings）、商业医疗IT供应商（Epic、Cerner）、政府内部自建</li>
+                <li><strong>替代品体验差距：</strong>商业医疗IT供应商缺乏政府合规经验；小型承包商无法处理VA规模的超大型系统</li>
+                <li><strong>替代趋势：</strong>稳定——VA/CMS等超大型系统外包是长期趋势，但部分州级项目可能被小型承包商抢夺</li>
+            </ul>
+
+            <h4>2. 客户转换成本：<span class="tag tag-green">高</span></h4>
+            <ul>
+                <li><strong>财务转换成本：</strong>VA医疗系统涉及数百万退伍军人数据，迁移风险极高；CMS系统切换可能导致医保支付中断</li>
+                <li><strong>时间转换成本：</strong>大型医疗IT系统迁移通常需要2-3年过渡期</li>
+                <li><strong>捆绑转换成本：</strong>Leidos同时运营VA的多个区域系统，形成规模捆绑</li>
+                <li><strong>综合评估：</strong>医疗和民用系统的转换成本很高，但低于机密国防项目</li>
+            </ul>
+
+            <h4>3. 定价权：<span class="tag tag-green">强</span></h4>
+            <ul>
+                <li><strong>历史提价记录：</strong>该板块调整后营业利润率21.9%，是公司利润率最高的板块</li>
+                <li><strong>提价vs通胀：</strong>通过长期合同锁定价格，同时通过效率提升扩大利润率</li>
+                <li><strong>定价权来源：</strong>规模优势+系统深度嵌入+合规壁垒</li>
+                <li><strong>定价权趋势：</strong>稳定——高利润率可能面临政府审计压力</li>
+                <li><strong>巴菲特测试：</strong>如果Leidos提价10%，VA等客户在短期内几乎无法切换——但长期可能推动政府考虑内建能力</li>
+            </ul>
+
+            <p><strong>综合竞争力评级：<span class="rating-stars">⭐⭐⭐⭐</span></strong></p>
+        </div>
+
+        <div class="competitiveness-box">
+            <h3>3.3 商业与国际 (Commercial & International) 产品竞争力分析</h3>
+            <p><strong>核心业务：</strong>外国政府防务合同（英国、中东、澳洲）、能源基础设施（ENTRUST收购）、商业网络安全服务</p>
+            
+            <h4>1. 可替代性：<span class="tag tag-red">高</span></h4>
+            <ul>
+                <li><strong>主要替代品：</strong>BAE Systems、QinetiQ（英国）、Thales（欧洲）、本地承包商、商业能源服务公司</li>
+                <li><strong>替代品体验差距：</strong>替代品众多且各有优势——BAE Systems在英国有更强的本土优势，Thales在欧洲更受青睐</li>
+                <li><strong>替代趋势：</strong>加速——各国推动防务本土化，外国承包商面临更多限制</li>
+            </ul>
+
+            <h4>2. 客户转换成本：<span class="tag tag-orange">中等</span></h4>
+            <ul>
+                <li><strong>财务转换成本：</strong>国际合同竞标更开放，转换成本低于美国国内机密项目</li>
+                <li><strong>时间转换成本：</strong>中等——国际项目安全审查要求较低</li>
+                <li><strong>捆绑转换成本：</strong>较弱——国际客户通常分项目招标</li>
+                <li><strong>综合评估：</strong>国际市场的转换成本显著低于美国国内机密项目</li>
+            </ul>
+
+            <h4>3. 定价权：<span class="tag tag-orange">中等</span></h4>
+            <ul>
+                <li><strong>历史提价记录：</strong>调整后营业利润率8.4%，为四个板块中最低</li>
+                <li><strong>提价vs通胀：</strong>利润率较低，提价空间有限</li>
+                <li><strong>定价权来源：</strong>技术差异化（ENTRUST的能源基础设施能力）</li>
+                <li><strong>定价权趋势：</strong>增强——ENTRUST收购带来能源基础设施专业能力，差异化提升</li>
+                <li><strong>巴菲特测试：</strong>如果Leidos提价10%，国际客户可能转向BAE Systems或本地供应商</li>
+            </ul>
+
+            <p><strong>综合竞争力评级：<span class="rating-stars">⭐⭐⭐</span></strong></p>
+        </div>
+
+        <div class="competitiveness-box">
+            <h3>3.4 国防系统 (Defense Systems) 产品竞争力分析</h3>
+            <p><strong>核心业务：</strong>超音速武器生产（$27亿陆军合同）、低低成本容器化弹药（$156亿框架协议）、综合防空反导、海上自主系统（LAVA）、定向能武器</p>
+            
+            <h4>1. 可替代性：<span class="tag tag-green">低</span></h4>
+            <ul>
+                <li><strong>主要替代品：</strong>Lockheed Martin（LMT）、Raytheon（RTX）、Northrop Grumman（NOC）等传统军工巨头</li>
+                <li><strong>替代品体验差距：</strong>传统军工巨头在武器系统领域更强，但Leidos在低成本弹药和自主系统领域有独特定位</li>
+                <li><strong>替代趋势：</strong>稳定——超音速武器和自主系统是新兴领域，竞争格局尚未固化</li>
+            </ul>
+
+            <h4>2. 客户转换成本：<span class="tag tag-green">极高</span></h4>
+            <ul>
+                <li><strong>财务转换成本：</strong>武器系统一旦进入生产阶段，更换供应商意味着重新设计、测试、认证，成本可达数十亿美元</li>
+                <li><strong>时间转换成本：</strong>武器系统从设计到量产通常需要5-10年，中途更换供应商几乎不可能</li>
+                <li><strong>捆绑转换成本：</strong>Leidos同时提供武器系统+维护+训练，形成深度捆绑</li>
+                <li><strong>综合评估：</strong>武器系统一旦选定供应商，几乎不可能更换</li>
+            </ul>
+
+            <h4>3. 定价权：<span class="tag tag-green">强</span></h4>
+            <ul>
+                <li><strong>历史提价记录：</strong>从FY2024的调整后营业利润率接近0%跃升至FY2025的8.1%，说明从研发阶段进入量产阶段后利润率大幅改善</li>
+                <li><strong>提价vs通胀：</strong>国防合同通常包含通胀调整条款</li>
+                <li><strong>定价权来源：</strong>技术独特性+在位者优势+武器系统不可替代性</li>
+                <li><strong>定价权趋势：</strong>增强——随着更多项目从研发转入量产，利润率将持续提升</li>
+                <li><strong>巴菲特测试：</strong>如果Leidos提价10%，陆军不可能在超音速武器生产中途更换供应商</li>
+            </ul>
+
+            <p><strong>综合竞争力评级：<span class="rating-stars">⭐⭐⭐⭐</span></strong></p>
+        </div>
+
+        <div class="highlight">
+            <strong>综合竞争力评估：</strong>Leidos四个业务板块的竞争力呈现"两强两中"格局。国家安全与数字化板块拥有最强的护城河（安全许可+在位者优势+机密环境不可替代性），国防系统板块随着武器项目进入量产阶段竞争力快速提升。健康与民用板块利润率最高但面临政府审计压力，商业与国际板块竞争力最弱但ENTRUST收购带来新的增长点。整体来看，Leidos的竞争力核心在于<strong>安全许可壁垒和在位者优势</strong>，这是商业公司无法复制的结构性护城河。
+        </div>
+    </div>
+
+    <!-- 四、历史财务指标 -->
+    <div class="info-box">
+        <h2>四、历史财务指标（2016-2025）</h2>
+        
+        <h3>4.1 净资产收益率 (ROE) 趋势</h3>
+        <div class="chart-container">
+            <canvas id="roeChart"></canvas>
+        </div>
+        <table>
+            <tr>
+                <th>财年</th><th>ROE</th><th>净利润($M)</th><th>股东权益($B)</th><th>备注</th>
+            </tr>
+            <tr><td>2016</td><td>11.5%</td><td>$243</td><td>$3.15</td><td>SAIC分拆后重建期</td></tr>
+            <tr><td>2017</td><td>11.2%</td><td>$373</td><td>$3.38</td><td>盈利改善</td></tr>
+            <tr><td>2018</td><td>17.1%</td><td>$580</td><td>$3.31</td><td>税改利好</td></tr>
+            <tr><td>2019</td><td>20.0%</td><td>$673</td><td>$3.42</td><td>L3Harris合并推动</td></tr>
+            <tr><td>2020</td><td>17.3%</td><td>$634</td><td>$3.87</td><td>疫情初期影响</td></tr>
+            <tr><td>2021</td><td>18.1%</td><td>$750</td><td>$4.34</td><td>联邦IT支出增加</td></tr>
+            <tr><td>2022</td><td>16.6%</td><td>$689</td><td>$4.35</td><td>法律费用增加</td></tr>
+            <tr><td>2023</td><td>4.5%</td><td>$208</td><td>$4.26</td><td>⚠️ 法律和解费用大幅侵蚀利润</td></tr>
+            <tr><td>2024</td><td>27.9%</td><td>$1,251</td><td>$4.46</td><td>利润恢复正常+效率提升</td></tr>
+            <tr><td>2025</td><td>30.6%</td><td>$1,462</td><td>$4.96</td><td>利润率持续改善</td></tr>
+        </table>
+        <div class="highlight">
+            <strong>巴菲特视角：</strong>ROE从2023年的4.5%低谷反弹至2025年的30.6%，表面看非常亮眼。但需要注意：（1）2023年的低ROE是法律和解费用造成的一次性异常，而非经营恶化；（2）2024-2025年的高ROE部分由杠杆驱动（产权比率2.74x），而非完全来自经营效率提升；（3）剔除2023年异常值后，5年平均ROE约19%，在政府承包商中属于优秀水平。巴菲特偏好高ROE+低杠杆的公司，Leidos的高杠杆值得警惕。
+        </div>
+
+        <h3>4.2 资产负债率与产权比率趋势</h3>
+        <div class="chart-container">
+            <canvas id="debtChart"></canvas>
+        </div>
+        <table>
+            <tr>
+                <th>财年</th><th>总负债($B)</th><th>总资产($B)</th><th>资产负债率</th><th>产权比率(资产/权益)</th><th>债务/权益</th>
+            </tr>
+            <tr><td>2016</td><td>$7.5</td><td>$8.6</td><td>87%</td><td>2.91x</td><td>1.91x</td></tr>
+            <tr><td>2017</td><td>$7.8</td><td>$8.9</td><td>88%</td><td>2.67x</td><td>1.67x</td></tr>
+            <tr><td>2018</td><td>$8.1</td><td>$9.2</td><td>88%</td><td>2.65x</td><td>1.65x</td></tr>
+            <tr><td>2019</td><td>$8.5</td><td>$9.4</td><td>90%</td><td>2.74x</td><td>1.74x</td></tr>
+            <tr><td>2020</td><td>$11.5</td><td>$12.8</td><td>90%</td><td>3.24x</td><td>2.24x</td></tr>
+            <tr><td>2021</td><td>$11.7</td><td>$13.5</td><td>87%</td><td>3.09x</td><td>2.09x</td></tr>
+            <tr><td>2022</td><td>$11.5</td><td>$13.2</td><td>87%</td><td>3.04x</td><td>2.04x</td></tr>
+            <tr><td>2023</td><td>$11.2</td><td>$12.9</td><td>87%</td><td>3.02x</td><td>2.02x</td></tr>
+            <tr><td>2024</td><td>$11.8</td><td>$13.9</td><td>85%</td><td>2.95x</td><td>1.95x</td></tr>
+            <tr><td>2025</td><td>$10.5</td><td>$14.4</td><td>73%</td><td>2.74x</td><td>1.09x</td></tr>
+        </table>
+        <div class="highlight">
+            <strong>芒格视角：</strong>产权比率从2020年的3.24x降至2025年的2.74x，杠杆在逐步降低，这是积极信号。但2.74x仍然意味着每1美元股东权益对应2.74美元资产，其中1.74美元来自负债。总债务/EBITDA从2020年的4.25x降至2025年的2.19x，偿债能力明显改善。对于一家现金流稳定的政府承包商来说，当前杠杆水平尚可接受，但巴菲特会更偏好低于2x的产权比率。
+        </div>
+
+        <h3>4.3 市盈率 (PE) 趋势</h3>
+        <div class="chart-container">
+            <canvas id="peChart"></canvas>
+        </div>
+        <table>
+            <tr>
+                <th>财年</th><th>PE Ratio (年末)</th><th>年末股价</th><th>EPS</th><th>备注</th>
+            </tr>
+            <tr><td>2016</td><td>17.5x</td><td>$52.5</td><td>$3.00</td><td>市场给予稳定估值</td></tr>
+            <tr><td>2017</td><td>18.9x</td><td>$65.8</td><td>$3.48</td><td>盈利恢复推动</td></tr>
+            <tr><td>2018</td><td>14.2x</td><td>$62.3</td><td>$4.40</td><td>税改后盈利跳升</td></tr>
+            <tr><td>2019</td><td>20.4x</td><td>$123.2</td><td>$6.04</td><td>市场溢价</td></tr>
+            <tr><td>2020</td><td>14.3x</td><td>$93.5</td><td>$6.52</td><td>疫情调整</td></tr>
+            <tr><td>2021</td><td>13.5x</td><td>$84.5</td><td>$6.24</td><td>估值回落</td></tr>
+            <tr><td>2022</td><td>13.0x</td><td>$95.3</td><td>$7.32</td><td>利率上升压制</td></tr>
+            <tr><td>2023</td><td>15.2x</td><td>$121.3</td><td>$7.96</td><td>法律和解后恢复</td></tr>
+            <tr><td>2024</td><td>14.5x</td><td>$137.6</td><td>$9.48</td><td>利润大幅改善</td></tr>
+            <tr><td>2025</td><td>14.6x</td><td>$161.5</td><td>$11.04</td><td>持续增长</td></tr>
+            <tr><td>当前(2026.5)</td><td>~11.4x</td><td>~$126</td><td>~$11.12</td><td>股价回调，PE创近年新低</td></tr>
+        </table>
+        <div class="highlight">
+            <strong>巴菲特视角：</strong>当前PE约11.4x，显著低于5年平均15.0x和10年平均16.0x。在政府承包商同行中，LDOS的PE低于BAH（18.1x）、KBR（18.0x），与SAIC（15.8x）接近。考虑到Leidos的ROE（30.6%）远高于同行，当前估值可能存在安全边际。但需注意：2023年的法律和解费用导致PE一度飙升至74.7x，这扭曲了历史平均值。
+        </div>
+    </div>
+
+    <!-- 五、竞争分析 -->
+    <div class="info-box">
+        <h2>五、竞争分析</h2>
+        
+        <h3>5.1 主要竞争对手</h3>
+        <table>
+            <tr>
+                <th>竞争对手</th>
+                <th>市值($B)</th>
+                <th>核心竞争领域</th>
+                <th>市场份额对比</th>
+            </tr>
+            <tr>
+                <td>General Dynamics (GD)</td>
+                <td>~$92</td>
+                <td>国防系统、IT服务（GDIT）</td>
+                <td>GD IT服务营收~$13B，规模大于LDOS但利润率较低</td>
+            </tr>
+            <tr>
+                <td>Booz Allen Hamilton (BAH)</td>
+                <td>~$18</td>
+                <td>咨询+网络安全+情报</td>
+                <td>BAH营收~$12B，EBITDA利润率10-12%，低于LDOS的14%</td>
+            </tr>
+            <tr>
+                <td>SAIC (SAIC)</td>
+                <td>~$4.5</td>
+                <td>政府IT服务、系统集成</td>
+                <td>SAIC营收~$7.5B，规模远小于LDOS</td>
+            </tr>
+            <tr>
+                <td>CACI International (CACI)</td>
+                <td>~$11</td>
+                <td>情报、网络、企业IT</td>
+                <td>CACI营收~$7B，聚焦情报市场</td>
+            </tr>
+            <tr>
+                <td>KBR (KBR)</td>
+                <td>~$8</td>
+                <td>政府服务、能源技术</td>
+                <td>KBR营收~$7B，政府服务利润率较低</td></tr>
+            <tr>
+                <td>Lockheed Martin (LMT)</td>
+                <td>~$121</td>
+                <td>武器系统、航空航天</td>
+                <td>在国防系统板块直接竞争，但LMT更偏硬件</td>
+            </tr>
+            <tr>
+                <td>Northrop Grumman (NOC)</td>
+                <td>~$78</td>
+                <td>导弹防御、太空系统</td>
+                <td>在防空反导领域竞争</td>
+            </tr>
+        </table>
+
+        <h3>5.2 各领域市场份额</h3>
+        <table>
+            <tr>
+                <th>领域</th>
+                <th>Leidos份额</th>
+                <th>主要竞争者份额</th>
+            </tr>
+            <tr>
+                <td>联邦IT服务</td>
+                <td>Top 3</td>
+                <td>GDIT #1, BAH #2, LDOS #3</td>
+            </tr>
+            <tr>
+                <td>网络安全（联邦）</td>
+                <td>~15%</td>
+                <td>BAH ~20%, CACI ~10%</td>
+            </tr>
+            <tr>
+                <td>VA医疗IT</td>
+                <td>~30%</td>
+                <td>最大VA承包商</td>
+            </tr>
+            <tr>
+                <td>云与数据分析</td>
+                <td>43.2%</td>
+                <td>行业领先</td>
+            </tr>
+            <tr>
+                <td>超音速武器</td>
+                <td>新兴</td>
+                <td>LMT、RTX为主，LDOS凭借$27亿合同切入</td>
+            </tr>
+        </table>
+
+        <h3>5.3 经济护城河评估</h3>
+        
+        <div class="moat-item">
+            <strong>🏰 安全许可壁垒（Security Clearance Moat）— 宽护城河</strong><br>
+            Leidos约47,000名员工中，大量持有TS/SCI（最高机密/敏感分隔信息）安全许可。获取TS/SCI许可通常需要6-18个月，成本约$5,000-$15,000/人。这意味着新竞争者要进入机密项目市场，必须先投入数亿美元和数年时间建立安全许可团队。Leidos的许可员工池是其最核心的护城河。<br>
+            <strong>评级：★★★★★（5/5）</strong> — 这是政府承包商最强大的结构性壁垒，商业公司无法复制。
+        </div>
+
+        <div class="moat-item">
+            <strong>🔄 在位者优势（Incumbency Advantage）— 宽护城河</strong><br>
+            政府合同续约中，在位承包商的胜率约80-90%。原因包括：（1）在位者已熟悉客户流程和系统；（2）切换成本极高（数据迁移、安全审查、培训）；（3）采购官员倾向于"不换不坏"策略。Leidos的$490亿积压订单中，大部分是多年期合同，提供了极强的收入可见性。<br>
+            <strong>评级：★★★★★（5/5）</strong> — 在位者优势是政府承包商的第二大护城河。
+        </div>
+
+        <div class="moat-item">
+            <strong>💰 规模优势（Scale Advantages）— 中等护城河</strong><br>
+            Leidos年营收$172亿，是仅次于GDIT的美国第二大政府IT承包商。规模带来：（1）竞标超大型合同的能力（$10亿+级别）；（2）人才储备深度（47,000员工）；（3）多元化收入来源降低风险。但规模也带来管理复杂度和官僚成本。<br>
+            <strong>评级：★★★★☆（4/5）</strong> — 规模优势明显，但并非不可逾越。
+        </div>
+
+        <div class="moat-item">
+            <strong>📋 专有技术/知识产权（Proprietary Technology）— 窄护城河</strong><br>
+            Leidos拥有Skywire（能源优化AI平台）和LAVA（海上自主系统）等专有平台，实现30%成本削减和60%生产力提升。但这些技术优势并非不可复制——竞争对手也在开发类似AI能力。Kudu Dynamics收购增强了网络AI能力，但技术护城河的持久性有待观察。<br>
+            <strong>评级：★★★☆☆（3/5）</strong> — 技术差异化存在但可持续性待验证。
+        </div>
+
+        <div class="moat-item">
+            <strong>🔒 转换成本（Switching Costs）— 宽护城河</strong><br>
+            政府客户从Leidos切换到其他承包商的成本极高：（1）系统迁移需12-18个月；（2）安全审查需6-12个月；（3）数据迁移风险极高；（4）合同重新竞标流程漫长。这些转换成本确保了Leidos在现有合同上的高续约率。<br>
+            <strong>评级：★★★★★（5/5）</strong> — 政府IT系统的转换成本是所有行业中最高的之一。
+        </div>
+
+        <div class="moat-item">
+            <strong>🔄 网络效应（Network Effects）— 无护城河</strong><br>
+            政府承包服务本质上不具备网络效应。一个机构使用Leidos的服务不会因为其他机构也使用而获得更多价值。<br>
+            <strong>评级：★☆☆☆☆（1/5）</strong> — 不适用。
+        </div>
+
+        <div class="highlight">
+            <strong>综合护城河评级：宽护城河</strong><br>
+            Leidos拥有政府承包商中最强的护城河组合：<strong>安全许可壁垒 + 在位者优势 + 高转换成本</strong>。这三重壁垒构成了"铁三角"，使新竞争者几乎不可能在机密项目市场挑战Leidos的地位。与BAH的咨询模式相比，Leidos的系统集成模式具有更高的转换成本；与GD的硬件集成模式相比，Leidos的软件+AI能力具有更高的利润率。但需警惕：（1）DOGE等政府效率改革可能压缩合同规模；（2）AI可能改变政府IT服务的交付方式；（3）客户集中度（92%美国政府）是系统性风险。
+        </div>
+
+        <h3>5.4 深度专题：DOGE与政府效率改革对Leidos的影响</h3>
+        
+        <h4>什么是DOGE？</h4>
+        <p><strong>DOGE（Department of Government Efficiency）</strong>是2025年特朗普政府设立的政府效率部门，由Elon Musk领导，旨在削减联邦政府浪费性支出。DOGE的目标是通过AI和自动化减少联邦合同数量，精简政府机构。</p>
+        
+        <table>
+            <tr><th>影响维度</th><th>短期影响</th><th>长期影响</th></tr>
+            <tr><td>合同削减</td><td>部分非核心合同被取消，Q4 2025政府停摆6周</td><td>核心国家安全合同不受影响</td></tr>
+            <tr><td>采购流程</td><td>新合同授予延迟，竞标周期延长</td><td>可能加速AI驱动的采购改革</td></tr>
+            <tr><td>AI替代</td><td>Leidos的AI能力（Skywire/LAVA）反而受益</td><td>AI可能使部分低级服务商品化</td></tr>
+            <tr><td>竞争格局</td><td>小型承包商受冲击更大</td><td>行业整合加速，利好大型承包商</td></tr>
+        </table>
+
+        <div class="highlight">
+            <strong>巴菲特视角：</strong>DOGE对Leidos的影响是"短空长多"。短期来看，政府停摆和合同审查导致营收增速放缓；长期来看，政府效率改革反而可能利好Leidos——因为政府需要更多AI和自动化能力来替代人工流程，而这正是Leidos的核心优势。2025年Leidos在政府停摆6周的情况下仍实现3%营收增长和14.1% EBITDA利润率，证明了其业务的韧性。
+        </div>
+    </div>
+
+    <!-- 六、利润分配分析 -->
+    <div class="info-box">
+        <h2>六、利润分配分析（2016-2025）</h2>
+
+        <h3>6.1 利润分配表</h3>
+        <p><em>注：按照巴菲特/芒格框架，股票回购计入留存而非与股息并列作为"回报股东"项目。</em></p>
+        <table>
+            <tr>
+                <th>年度</th><th>净利润($M)</th><th>股息($M)</th><th>回购($M)</th><th>扩张CapEx($M)</th><th>债务偿还($M)</th><th>留存金额($M)</th><th>留存比率</th>
+            </tr>
+            <tr><td>2016</td><td>$243</td><td>$48</td><td>$3</td><td>$150</td><td>$200</td><td>$195</td><td>80%</td></tr>
+            <tr><td>2017</td><td>$373</td><td>$50</td><td>$1</td><td>$160</td><td>$250</td><td>$323</td><td>87%</td></tr>
+            <tr><td>2018</td><td>$580</td><td>$51</td><td>$420</td><td>$170</td><td>$300</td><td>$529</td><td>91%</td></tr>
+            <tr><td>2019</td><td>$673</td><td>$53</td><td>$402</td><td>$180</td><td>$350</td><td>$620</td><td>92%</td></tr>
+            <tr><td>2020</td><td>$634</td><td>$55</td><td>$67</td><td>$160</td><td>$400</td><td>$579</td><td>91%</td></tr>
+            <tr><td>2021</td><td>$750</td><td>$56</td><td>$238</td><td>$170</td><td>$350</td><td>$694</td><td>93%</td></tr>
+            <tr><td>2022</td><td>$689</td><td>$58</td><td>$432</td><td>$180</td><td>$300</td><td>$631</td><td>92%</td></tr>
+            <tr><td>2023</td><td>$208</td><td>$59</td><td>$225</td><td>$170</td><td>$250</td><td>$149</td><td>72%</td></tr>
+            <tr><td>2024</td><td>$1,251</td><td>$62</td><td>$821</td><td>$190</td><td>$300</td><td>$1,189</td><td>95%</td></tr>
+            <tr><td>2025</td><td>$1,462</td><td>$64</td><td>$885</td><td>$200</td><td>$450</td><td>$1,398</td><td>96%</td></tr>
+        </table>
+
+        <h3>6.2 利润分配饼图（FY2025）</h3>
+        <div class="chart-container">
+            <canvas id="profitChart"></canvas>
+        </div>
+
+        <h3>6.3 利润分配分析要点</h3>
+        
+        <div class="moat-item">
+            <strong>1. 留存比率趋势：从"增长期"向"加速回购期"过渡</strong><br>
+            10年平均留存比率约89%，属于"大部分利润留存，适度回报股东"的成熟增长型公司。2023年因法律和解费用导致净利润骤降，留存比率降至72%，但2024-2025年迅速恢复至95-96%。高留存比率意味着管理层对公司再投资回报率有信心。
+        </div>
+
+        <div class="moat-item">
+            <strong>2. 留存质量：回购占比高，再投资相对克制</strong><br>
+            留存利润中，回购占比约60-65%，CapEx/收购占比约15-20%，其余用于营运资金和债务偿还。回购占比较高说明管理层认为股票被低估，而非找不到好的投资机会。FY2025的Kudu Dynamics（$291M）和ENTRUST（$2.4B）收购是近年最大的再投资动作。
+        </div>
+
+        <div class="moat-item">
+            <strong>3. 回购时机：管理层展现了良好的资本配置能力</strong><br>
+            2022年Q1回购$400M（股价约$80-100，PE约13x），2024年Q4回购$400M（股价约$138，PE约14.5x），2025年Q1回购$400M（股价约$133，PE约13x）。管理层倾向于在股价回调时加速回购，这符合巴菲特的"在低估时回购"原则。2023年法律和解后股价低迷时，回购力度反而较小（全年$225M），这是一个瑕疵。
+        </div>
+
+        <div class="moat-item">
+            <strong>4. 巴菲特视角：1美元留存创造多少市值？</strong><br>
+            2016-2025年累计留存利润约$5,907M，市值从约$42亿增长至约$160亿，增加约$118亿。每1美元留存创造了约$2.0市值，远超巴菲特的1美元标准。这表明管理层的资本配置效率优秀。
+        </div>
+
+        <div class="moat-item">
+            <strong>5. 可持续增长率 = ROE × 留存比率</strong><br>
+            FY2025: 30.6% × 96% = 29.4%——这是不靠外部融资的理论内生增长极限。实际营收增长仅3%，说明Leidos远未达到其理论增长极限，主要受制于政府预算增速而非公司能力。利润增速（21% EPS增长）远超营收增速，说明增长质量在改善。
+        </div>
+
+        <div class="highlight">
+            <strong>股息政策评估：</strong>Leidos的股息率仅1.36%，派息率约14.3%，属于"象征性分红"——股息存在但不是回报股东的主要方式。这符合巴菲特的偏好：<strong>如果管理层能以高回报率再投资利润，低分红比高分红更好</strong>。股息连续增长（从2016年的$1.20/股增至2025年的$1.63/股），年复合增长率约3.5%，略低于通胀但稳定可预期。
+        </div>
+    </div>
+
+    <!-- 七、投资总结 -->
+    <div class="info-box">
+        <h2>七、投资总结</h2>
+
+        <h3>7.1 核心投资论点</h3>
+        
+        <div class="moat-item">
+            <strong>✅ 优势：结构性护城河难以逾越</strong><br>
+            Leidos拥有政府承包商中最强的"铁三角"护城河——安全许可壁垒+在位者优势+高转换成本。92%的营收来自美国政府（世界上最可靠的付款方），$490亿积压订单提供3年收入可见性，90%+续约胜率确保收入持续性。这种结构性优势是商业公司无法复制的。
+        </div>
+
+        <div class="moat-item">
+            <strong>✅ 优势：利润率持续改善</strong><br>
+            调整后EBITDA利润率从FY2023的10.8%提升至FY2025的14.1%，净利率从1.3%提升至8.5%。AI赋能（Skywire/LAVA）是利润率提升的关键驱动力——30%成本削减和60%生产力提升直接转化为利润。随着更多项目从研发转入量产（如超音速武器），利润率有望继续扩张。
+        </div>
+
+        <div class="moat-item">
+            <strong>✅ 优势：估值具备安全边际</strong><br>
+            当前PE约11.4x，低于5年平均15.0x和同行BAH（18.1x）。P/FCF约8.5x，自由现金流收益率约11.8%。ROE 30.6%远高于同行中位数17%。在政府承包商中，LDOS的"质量-估值"比最具吸引力。
+        </div>
+
+        <div class="risk-item">
+            <strong>⚠️ 风险：客户集中度极高</strong><br>
+            92%营收来自美国政府，单一客户依赖是最大风险。政府停摆、预算削减、效率改革都可能影响营收。2025年政府停摆6周导致Q4营收同比下降4%就是明证。虽然核心国安合同不太可能被削减，但民用和健康领域面临更大压力。
+        </div>
+
+        <div class="risk-item">
+            <strong>⚠️ 风险：杠杆水平偏高</strong><br>
+            产权比率2.74x，总债务/权益比108.7%。虽然债务/EBITDA已从2020年的4.25x降至2.19x，但ENTRUST收购（$24亿）可能推高杠杆。高杠杆在经济下行或政府预算削减时放大风险。
+        </div>
+
+        <div class="risk-item">
+            <strong>⚠️ 风险：法律与合规风险</strong><br>
+            2023年法律和解费用导致净利润暴跌至$2.08亿（正常年份约$7亿），ROE降至4.5%。虽然这是一次性事件，但政府承包商面临持续的法律和合规风险——虚假申报法（False Claims Act）、成本会计标准违规等都可能带来巨额罚款。
+        </div>
+
+        <div class="risk-item">
+            <strong>⚠️ 风险：AI颠覆风险</strong><br>
+            虽然Leidos目前将AI作为"力量倍增器"，但AI的长期影响可能是双面的。如果AI使政府IT服务商品化（如自动化代码生成减少对人工程序员的需求），Leidos的劳动力密集型商业模式可能受到冲击。同时，商业AI公司（如Palantir）正在进入政府市场，可能侵蚀Leidos的市场份额。
+        </div>
+
+        <h3>7.2 估值评估</h3>
+        <table>
+            <tr>
+                <th>估值指标</th><th>当前值</th><th>5年平均</th><th>同行中位数</th><th>评估</th>
+            </tr>
+            <tr><td>PE (TTM)</td><td>11.4x</td><td>15.0x</td><td>17.0x</td><td><span class="tag tag-green">低估</span></td></tr>
+            <tr><td>P/S</td><td>0.91x</td><td>1.05x</td><td>1.2x</td><td><span class="tag tag-green">低估</span></td></tr>
+            <tr><td>P/FCF</td><td>8.5x</td><td>12.0x</td><td>15.0x</td><td><span class="tag tag-green">低估</span></td></tr>
+            <tr><td>P/B</td><td>3.2x</td><td>4.5x</td><td>5.0x</td><td><span class="tag tag-green">低估</span></td></tr>
+            <tr><td>EV/EBITDA</td><td>11.7x</td><td>13.0x</td><td>14.0x</td><td><span class="tag tag-green">合理偏低</span></td></tr>
+            <tr><td>股息率</td><td>1.36%</td><td>1.5%</td><td>1.8%</td><td><span class="tag tag-orange">偏低</span></td></tr>
+            <tr><td>FCF收益率</td><td>11.8%</td><td>8.0%</td><td>6.5%</td><td><span class="tag tag-green">优异</span></td></tr>
+        </table>
+
+        <h3>7.3 巴菲特/芒格最终评估</h3>
+        <div class="highlight">
+            <strong>业务可理解性：★★★★☆（4/5）</strong> — 政府承包业务模式清晰可理解，但机密项目细节不透明。<br><br>
+            <strong>可持续竞争优势：★★★★★（5/5）</strong> — 安全许可壁垒+在位者优势+高转换成本构成"铁三角"宽护城河。<br><br>
+            <strong>管理层资本配置能力：★★★★☆（4/5）</strong> — 回购时机良好，NorthStar 2030战略方向正确，但ENTRUST收购杠杆风险需关注。<br><br>
+            <strong>安全边际：★★★★☆（4/5）</strong> — 当前PE 11.4x低于历史平均和同行，FCF收益率11.8%提供显著安全边际。<br><br>
+            <strong>综合评级：买入（谨慎乐观）</strong><br><br>
+            Leidos是一家拥有宽护城河的政府承包商，当前估值提供了较好的安全边际。核心投资逻辑是：美国政府国家安全支出具有刚性，Leidos的安全许可壁垒和在位者优势确保了收入的持续性，AI赋能正在提升利润率。主要风险是客户集中度和杠杆水平。对于追求稳定现金流的长期投资者，LDOS在当前价位具有吸引力。
+        </div>
+    </div>
+
+    <script>
+        // ROE Chart
+        const roeCtx = document.getElementById('roeChart').getContext('2d');
+        new Chart(roeCtx, {
+            type: 'line',
+            data: {
+                labels: ['2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025'],
+                datasets: [{
+                    label: 'ROE (%)',
+                    data: [11.5, 11.2, 17.1, 20.0, 17.3, 18.1, 16.6, 4.5, 27.9, 30.6],
+                    borderColor: '#2e86c1',
+                    backgroundColor: 'rgba(46, 134, 193, 0.1)',
+                    fill: true,
+                    tension: 0.3
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: { beginAtZero: true, title: { display: true, text: 'ROE (%)' } }
+                }
+            }
+        });
+
+        // Debt Chart
+        const debtCtx = document.getElementById('debtChart').getContext('2d');
+        new Chart(debtCtx, {
+            type: 'bar',
+            data: {
+                labels: ['2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025'],
+                datasets: [{
+                    label: '资产负债率 (%)',
+                    data: [87, 88, 88, 90, 90, 87, 87, 87, 85, 73],
+                    backgroundColor: 'rgba(231, 76, 60, 0.7)',
+                    yAxisID: 'y'
+                }, {
+                    label: '产权比率 (x)',
+                    data: [2.91, 2.67, 2.65, 2.74, 3.24, 3.09, 3.04, 3.02, 2.95, 2.74],
+                    type: 'line',
+                    borderColor: '#2e86c1',
+                    backgroundColor: 'rgba(46, 134, 193, 0.1)',
+                    fill: false,
+                    tension: 0.3,
+                    yAxisID: 'y1'
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: { beginAtZero: true, title: { display: true, text: '资产负债率 (%)' }, max: 100 },
+                    y1: { position: 'right', beginAtZero: true, title: { display: true, text: '产权比率 (x)' }, max: 4 }
+                }
+            }
+        });
+
+        // PE Chart
+        const peCtx = document.getElementById('peChart').getContext('2d');
+        new Chart(peCtx, {
+            type: 'line',
+            data: {
+                labels: ['2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025', '当前'],
+                datasets: [{
+                    label: 'PE Ratio (x)',
+                    data: [17.5, 18.9, 14.2, 20.4, 14.3, 13.5, 13.0, 15.2, 14.5, 14.6, 11.4],
+                    borderColor: '#27ae60',
+                    backgroundColor: 'rgba(39, 174, 96, 0.1)',
+                    fill: true,
+                    tension: 0.3
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: { beginAtZero: true, title: { display: true, text: 'PE Ratio (x)' } }
+                }
+            }
+        });
+
+        // Profit Allocation Pie Chart
+        const profitCtx = document.getElementById('profitChart').getContext('2d');
+        new Chart(profitCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['股息 ($64M, 4.4%)', '回购-留存 ($885M, 60.5%)', '再投资-CapEx ($200M, 13.7%)', '债务偿还 ($450M, 30.8%)', '其他留存 ($263M, 18.0%)'],
+                datasets: [{
+                    data: [64, 885, 200, 450, 263],
+                    backgroundColor: ['#e74c3c', '#3498db', '#27ae60', '#f39c12', '#9b59b6']
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: { display: true, text: 'FY2025利润分配（回购计入留存）', font: { size: 16 } },
+                    legend: { position: 'bottom' }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
