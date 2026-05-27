@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mueller Industries (MLI) 价值投资分析</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f2f5;
+            color: #333;
+        }
+        h1 {
+            text-align: center;
+            color: #1a5276;
+            font-size: 2.2em;
+            margin-bottom: 5px;
+        }
+        h2 {
+            color: #1a5276;
+            border-bottom: 2px solid #2e86c1;
+            padding-bottom: 8px;
+            margin-top: 30px;
+        }
+        h3 {
+            color: #2c3e50;
+            margin-top: 20px;
+        }
+        h4 {
+            color: #2c3e50;
+            margin-top: 15px;
+        }
+        .subtitle {
+            text-align: center;
+            color: #7f8c8d;
+            font-size: 1.1em;
+            margin-bottom: 30px;
+        }
+        .info-box {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            background-color: white;
+        }
+        th, td {
+            padding: 10px 14px;
+            text-align: left;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        th {
+            background-color: #1a5276;
+            color: white;
+            font-weight: bold;
+        }
+        tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        tr:hover {
+            background-color: #eaf2f8;
+        }
+        .highlight {
+            background: #fef9e7;
+            border-left: 4px solid #2e86c1;
+            padding: 15px 20px;
+            margin: 15px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .chart-container {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+        .moat-item {
+            background: #eafaf1;
+            border-left: 4px solid #27ae60;
+            padding: 12px 18px;
+            margin: 10px 0;
+            border-radius: 0 6px 6px 0;
+        }
+        .risk-item {
+            background: #fdedec;
+            border-left: 4px solid #e74c3c;
+            padding: 12px 18px;
+            margin: 10px 0;
+            border-radius: 0 6px 6px 0;
+        }
+        .tag {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.85em;
+            font-weight: bold;
+            color: white;
+        }
+        .tag-green { background-color: #27ae60; }
+        .tag-orange { background-color: #e67e22; }
+        .tag-red { background-color: #e74c3c; }
+        .competitiveness-box {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            border: 1px solid #d5dbdb;
+        }
+        .rating-stars {
+            color: #f39c12;
+            font-size: 1.2em;
+        }
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .summary-card {
+            background: white;
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+        .summary-card .value {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #1a5276;
+        }
+        .summary-card .label {
+            color: #7f8c8d;
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
+        .section-nav {
+            background: white;
+            border-radius: 10px;
+            padding: 15px 25px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+        .section-nav a {
+            display: inline-block;
+            margin: 5px 10px;
+            padding: 6px 14px;
+            background: #eaf2f8;
+            color: #1a5276;
+            text-decoration: none;
+            border-radius: 15px;
+            font-size: 0.9em;
+        }
+        .section-nav a:hover {
+            background: #2e86c1;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Mueller Industries, Inc. (MLI)</h1>
+<p class="subtitle">沃伦·巴菲特/查理·芒格风格价值投资基本面分析 | 更新日期：2026年5月26日</p>
+
+<div class="section-nav">
+    <a href="#section1">公司基本信息</a>
+    <a href="#section2">业务分析</a>
+    <a href="#section3">产品竞争力分析</a>
+    <a href="#section4">历史财务指标</a>
+    <a href="#section5">竞争分析</a>
+    <a href="#section6">利润分配分析</a>
+    <a href="#section7">投资总结</a>
+</div>
+
+<div class="summary-grid">
+    <div class="summary-card">
+        <div class="value">$147亿</div>
+        <div class="label">市值</div>
+    </div>
+    <div class="summary-card">
+        <div class="value">$133.39</div>
+        <div class="label">最新股价</div>
+    </div>
+    <div class="summary-card">
+        <div class="value">17.5x</div>
+        <div class="label">PE (TTM)</div>
+    </div>
+    <div class="summary-card">
+        <div class="value">28.3%</div>
+        <div class="label">ROE</div>
+    </div>
+    <div class="summary-card">
+        <div class="value">0.01</div>
+        <div class="label">负债/权益比</div>
+    </div>
+    <div class="summary-card">
+        <div class="value">1.1%</div>
+        <div class="label">股息率</div>
+    </div>
+</div>
+
+<h2 id="section1">一、公司基本信息</h2>
+<div class="info-box">
+    <table>
+        <tr><th>项目</th><th>详情</th></tr>
+        <tr><td>公司名称</td><td>Mueller Industries, Inc.（穆勒工业）</td></tr>
+        <tr><td>股票代码</td><td>NYSE: MLI</td></tr>
+        <tr><td>市值</td><td>$147亿（约¥1,060亿）</td></tr>
+        <tr><td>企业价值(EV)</td><td>$134亿</td></tr>
+        <tr><td>最新股价</td><td>$133.39（2026年5月22日）</td></tr>
+        <tr><td>成立年份</td><td>1917年</td></tr>
+        <tr><td>总部</td><td>Collierville, Tennessee, USA</td></tr>
+        <tr><td>CEO</td><td>Gregory L. Christopher（2005年至今）</td></tr>
+        <tr><td>员工人数</td><td>约4,832人</td></tr>
+        <tr><td>行业</td><td>工业机械与金属制造</td></tr>
+        <tr><td>52周范围</td><td>$72.16 - $141.51</td></tr>
+        <tr><td>流通股数</td><td>1.106亿股</td></tr>
+        <tr><td>机构持股</td><td>92.1%</td></tr>
+        <tr><td>内部人持股</td><td>2.1%</td></tr>
+    </table>
+    <div class="highlight">
+        <strong>巴菲特视角：</strong>Mueller Industries是一家百年历史的工业公司，1917年成立，是北美唯一一家铜管、铜棒和锻件的垂直一体化制造商。零负债、$14亿现金、流动比率5.35x——这是巴菲特梦寐以求的"堡垒式"资产负债表。但需要警惕：当前利润率（18-19%）远高于历史均值（8-10%），铜价上涨的顺风一旦逆转，利润将面临显著压缩。
+    </div>
+</div>
+
+<h2 id="section2">二、业务分析</h2>
+<div class="info-box">
+    <h3>公司做什么（用120岁老人也能听懂的话说）</h3>
+    <p>Mueller Industries就是一家做铜管子、铜棒和空调零件的公司。你家里水龙头流出的水，大概率是通过Mueller做的铜管输送的；你办公室的空调系统，里面也有Mueller做的阀门和管件。他们从铜原料开始，自己熔炼、挤压、加工，做成各种管子、接头、阀门，然后卖给建筑商、空调厂商和水暖批发商。简单说，Mueller就是"铜管界的可口可乐"——产品不起眼，但无处不在。</p>
+
+    <h3>三大业务板块</h3>
+    <table>
+        <tr><th>业务板块</th><th>FY2025收入</th><th>占比</th><th>关键增长趋势</th></tr>
+        <tr><td>管道系统 (Piping Systems)</td><td>~$27亿</td><td>~65%</td><td>铜价上涨推动收入增长，但住宅建筑需求疲软拖累销量；PEX管道系统增长迅速</td></tr>
+        <tr><td>工业金属 (Industrial Metals)</td><td>~$9亿</td><td>~22%</td><td>2024年收购Nehring Electrical Works（$5.69亿）切入电力传输领域，增长潜力大</td></tr>
+        <tr><td>气候控制 (Climate)</td><td>~$5亿</td><td>~13%</td><td>热泵和高效HVAC需求增长；制冷阀门和热交换器技术领先</td></tr>
+    </table>
+
+    <h3>收入地域分布（FY2024）</h3>
+    <table>
+        <tr><th>地区</th><th>收入</th><th>占比</th></tr>
+        <tr><td>美国</td><td>$28.62亿</td><td>76%</td></tr>
+        <tr><td>加拿大</td><td>$3.44亿</td><td>9%</td></tr>
+        <tr><td>英国</td><td>$2.80亿</td><td>7%</td></tr>
+        <tr><td>亚洲及中东</td><td>$2.31亿</td><td>6%</td></tr>
+        <tr><td>墨西哥</td><td>$0.85亿</td><td>2%</td></tr>
+    </table>
+
+    <h3>商业模式</h3>
+    <p>Mueller的商业模式核心是<strong>垂直一体化制造+原材料成本转嫁</strong>：</p>
+    <ul>
+        <li><strong>垂直一体化</strong>：从铜废料/精炼铜到成品管件，全流程自主生产，北美唯一具备此能力的公司</li>
+        <li><strong>成本转嫁机制</strong>：产品定价与COMEX铜价挂钩，铜价上涨时售价同步上调，保护毛利率</li>
+        <li><strong>回收铜利用</strong>：2022年制造过程中使用了58%的回收废料，降低原材料成本波动风险</li>
+        <li><strong>收购驱动增长</strong>：2024年收购Nehring（电力传输铜棒）和EPC（管道接头），拓展至电力基础设施</li>
+    </ul>
+
+    <div class="highlight">
+        <strong>关键洞察：</strong>Mueller的收入高度依赖美国住宅建筑市场（76%收入来自美国）。2025年美国新屋开工约131万户/年，远低于满足积压需求所需的150万户。CEO明确表示"需求将在降息时释放"——这意味着Mueller的盈利对利率周期极为敏感。当前的高利润率部分来自铜价上涨（COMEX铜价从2020年$2.90/lb涨至2025Q4 $5.13/lb），一旦铜价回落，利润率将显著压缩。
+    </div>
+</div>
+
+<h2 id="section3">三、业务板块产品竞争力分析</h2>
+
+<div class="competitiveness-box">
+    <h3>3.1 管道系统 (Piping Systems) 产品竞争力分析</h3>
+    <p><strong>核心业务：</strong>铜管、铜接头、PEX管道系统、钢接头、管道配件，主要服务住宅和商业建筑的给排水及暖通空调市场。全球铜管市场份额约15%，美国市场份额约30-35%。</p>
+
+    <h4>1. 可替代性：<span class="tag tag-orange">中等</span></h4>
+    <ul>
+        <li><strong>主要替代品：</strong>PEX交联聚乙烯管（塑料管）、CPVC管、不锈钢管、镀锌钢管</li>
+        <li><strong>替代品体验差距：</strong>PEX安装更快更便宜（安装效率高20-30%），但铜管在耐久性、抗菌性、可回收性上远优于PEX；铜管寿命50-70年，PEX约25-40年；铜管可100%回收，PEX不可</li>
+        <li><strong>替代趋势：</strong>稳定偏加速——PEX在住宅新建市场持续蚕食铜管份额，但商业建筑和高端住宅仍偏好铜管；铜管的抗菌特性在医疗和饮用水领域不可替代</li>
+    </ul>
+
+    <h4>2. 客户转换成本：<span class="tag tag-orange">中等</span></h4>
+    <ul>
+        <li><strong>财务转换成本：</strong>铜管和PEX管材价格差异不大，但安装人工成本不同（PEX安装更便宜）</li>
+        <li><strong>时间转换成本：</strong>建筑项目一旦确定管材方案，中途更换需重新设计、审批，成本较高</li>
+        <li><strong>捆绑转换成本：</strong>铜管系统与Mueller的接头、阀门形成配套，切换品牌需更换整套配件</li>
+        <li><strong>综合评估：</strong>终端用户（建筑商/水暖工）对品牌忠诚度不高，但对管材类型（铜vs PEX）有路径依赖；Mueller作为最大供应商，规模和配送网络是隐性转换成本</li>
+    </ul>
+
+    <h4>3. 定价权：<span class="tag tag-orange">中等</span></h4>
+    <ul>
+        <li><strong>历史提价记录：</strong>铜管定价与COMEX铜价联动，铜价上涨时自动提价；加工费/溢价部分相对稳定</li>
+        <li><strong>提价vs通胀：</strong>铜价长期增速跑赢CPI（2020-2025年铜价涨77%），但加工费溢价增长缓慢</li>
+        <li><strong>定价权来源：</strong>规模优势（美国30-35%市占率）+垂直一体化+配送网络+品牌认知</li>
+        <li><strong>定价权趋势：</strong>稳定——铜管是标准化商品，定价权主要来自成本转嫁而非品牌溢价；PEX竞争限制了铜管的溢价空间</li>
+        <li><strong>巴菲特测试：</strong>如果Mueller提价10%（加工费部分），部分价格敏感客户会转向Wieland或Cerro Flow等竞争对手，但Mueller的配送速度和库存深度可能留住大部分客户</li>
+    </ul>
+
+    <p><strong>综合竞争力评级：<span class="rating-stars">⭐⭐⭐</span></strong></p>
+</div>
+
+<div class="competitiveness-box">
+    <h3>3.2 工业金属 (Industrial Metals) 产品竞争力分析</h3>
+    <p><strong>核心业务：</strong>黄铜棒、铝挤压件、铜锻件、精密管材、Nehring电力传输铜棒和铜线。服务汽车、军工、电力传输、工业设备等OEM客户。</p>
+
+    <h4>1. 可替代性：<span class="tag tag-orange">中等</span></h4>
+    <ul>
+        <li><strong>主要替代品：</strong>铝合金（轻量化趋势）、不锈钢、工程塑料、碳纤维复合材料</li>
+        <li><strong>替代品体验差距：</strong>铝合金更轻但导电性和耐腐蚀性不如铜合金；工程塑料便宜但强度和耐温性差；铜合金在导电、导热、抗菌方面有不可替代的优势</li>
+        <li><strong>替代趋势：</strong>稳定——在电力传输领域铜合金几乎不可替代（导电率要求），但在汽车轻量化趋势下铝合金正在部分替代黄铜件</li>
+    </ul>
+
+    <h4>2. 客户转换成本：<span class="tag tag-green">高</span></h4>
+    <ul>
+        <li><strong>财务转换成本：</strong>OEM客户更换合金供应商需重新认证材料、测试产品、修改模具，成本可达数十万美元</li>
+        <li><strong>时间转换成本：</strong>材料认证周期6-18个月，汽车行业更长达2-3年</li>
+        <li><strong>捆绑转换成本：</strong>Nehring的电力传输铜棒与客户电网规格深度绑定，更换供应商需重新设计整个电气系统</li>
+        <li><strong>综合评估：</strong>OEM客户一旦选定合金供应商，更换成本极高，形成强锁定效应</li>
+    </ul>
+
+    <h4>3. 定价权：<span class="tag tag-orange">中等</span></h4>
+    <ul>
+        <li><strong>历史提价记录：</strong>与铜价联动，加工费溢价相对稳定；精密管材和锻件有5-10%的品牌溢价</li>
+        <li><strong>提价vs通胀：</strong>加工费溢价增速略高于CPI，但大宗商品属性限制了绝对定价权</li>
+        <li><strong>定价权来源：</strong>垂直一体化（成本优势）+OEM认证壁垒+精密加工能力</li>
+        <li><strong>定价权趋势：</strong>增强——Nehring收购后进入电力传输领域，该领域铜棒需求受数据中心和电网升级驱动，定价权更强</li>
+        <li><strong>巴菲特测试：</strong>如果Mueller提价10%，OEM客户短期内难以切换（认证周期长），但长期可能寻找替代供应商</li>
+    </ul>
+
+    <p><strong>综合竞争力评级：<span class="rating-stars">⭐⭐⭐⭐</span></strong></p>
+</div>
+
+<div class="competitiveness-box">
+    <h3>3.3 气候控制 (Climate) 产品竞争力分析</h3>
+    <p><strong>核心业务：</strong>制冷阀门、热交换器、同轴热交换器、柔性风管、管线集，主要服务商业HVAC/R（暖通空调/制冷）OEM市场。</p>
+
+    <h4>1. 可替代性：<span class="tag tag-green">低</span></h4>
+    <ul>
+        <li><strong>主要替代品：</strong>电子膨胀阀（替代部分热力膨胀阀）、铝制热交换器（替代铜制）、微通道热交换器</li>
+        <li><strong>替代品体验差距：</strong>电子膨胀阀更精确但成本高3-5倍，主要用于高端系统；Mueller的同轴热交换器在热泵和地源热泵领域有独特效率优势（15%节能），替代品难以匹敌</li>
+        <li><strong>替代趋势：</strong>缓慢——热泵和高效制冷系统需求增长反而增强了Mueller产品的不可替代性；微通道热交换器在汽车空调领域有替代趋势，但商业HVAC领域渗透缓慢</li>
+    </ul>
+
+    <h4>2. 客户转换成本：<span class="tag tag-green">高</span></h4>
+    <ul>
+        <li><strong>财务转换成本：</strong>HVAC OEM更换阀门供应商需重新设计制冷系统、通过UL/ASHRAE认证，成本$50-200万</li>
+        <li><strong>时间转换成本：</strong>新阀门认证和系统测试需12-24个月</li>
+        <li><strong>捆绑转换成本：</strong>阀门、热交换器、管线集形成系统级配套，单一组件更换可能影响整体系统性能</li>
+        <li><strong>综合评估：</strong>HVAC/R系统对组件可靠性要求极高，OEM客户极少更换已验证的供应商</li>
+    </ul>
+
+    <h4>3. 定价权：<span class="tag tag-green">强</span></h4>
+    <ul>
+        <li><strong>历史提价记录：</strong>制冷阀门和热交换器每年提价2-4%，跑赢CPI；高效节能产品有5-15%的溢价空间</li>
+        <li><strong>提价vs通胀：</strong>提价幅度持续跑赢CPI，因为产品技术含量高、认证壁垒深</li>
+        <li><strong>定价权来源：</strong>技术壁垒（同轴热交换器专利设计）+认证壁垒（UL/ASHRAE）+OEM锁定效应</li>
+        <li><strong>定价权趋势：</strong>增强——热泵和高效HVAC需求增长使Mueller的节能产品更具定价权</li>
+        <li><strong>巴菲特测试：</strong>如果Mueller提价10%，HVAC OEM客户不会轻易离开——重新认证和系统重新设计的成本远超10%的价格增加</li>
+    </ul>
+
+    <p><strong>综合竞争力评级：<span class="rating-stars">⭐⭐⭐⭐</span></strong></p>
+</div>
+
+<h2 id="section4">四、历史财务指标</h2>
+<div class="info-box">
+    <h3>ROE、负债率、产权比率、PE比率（2016-2025）</h3>
+    <table>
+        <tr><th>年份</th><th>ROE</th><th>负债/资产</th><th>产权比率</th><th>PE (年末)</th></tr>
+        <tr><td>2016</td><td>12.5%</td><td>22.0%</td><td>1.28x</td><td>18.5x</td></tr>
+        <tr><td>2017</td><td>14.2%</td><td>20.5%</td><td>1.26x</td><td>21.0x</td></tr>
+        <tr><td>2018</td><td>15.8%</td><td>18.3%</td><td>1.22x</td><td>11.6x</td></tr>
+        <tr><td>2019</td><td>13.6%</td><td>16.8%</td><td>1.20x</td><td>16.3x</td></tr>
+        <tr><td>2020</td><td>9.8%</td><td>14.2%</td><td>1.17x</td><td>13.2x</td></tr>
+        <tr><td>2021</td><td>37.3%</td><td>27.3%</td><td>1.38x</td><td>6.7x</td></tr>
+        <tr><td>2022</td><td>36.3%</td><td>19.1%</td><td>1.24x</td><td>4.8x</td></tr>
+        <tr><td>2023</td><td>25.6%</td><td>14.5%</td><td>1.17x</td><td>8.5x</td></tr>
+        <tr><td>2024</td><td>21.6%</td><td>14.8%</td><td>1.17x</td><td>14.5x</td></tr>
+        <tr><td>2025</td><td>28.3%</td><td>13.3%</td><td>1.15x</td><td>16.4x</td></tr>
+    </table>
+
+    <div class="chart-container">
+        <canvas id="roeChart"></canvas>
+    </div>
+    <div class="chart-container">
+        <canvas id="debtChart"></canvas>
+    </div>
+    <div class="chart-container">
+        <canvas id="peChart"></canvas>
+    </div>
+
+    <div class="highlight">
+        <strong>巴菲特视角：</strong>Mueller的ROE在2021-2022年飙升至36-37%，这并非来自经营效率的永久性提升，而是铜价飙升+库存会计（FIFO在通胀环境下的利润放大效应）的叠加结果。2016-2020年ROE均值仅13%，更接近"正常化"水平。2025年ROE 28.3%看似优秀，但剔除铜价顺风后的正常化ROE约15-18%。好消息是：零负债意味着ROE完全由经营驱动，没有财务杠杆的水分。巴菲特偏好低杠杆+稳定高ROE的公司，Mueller的杠杆为零但ROE的周期性波动是其短板。
+    </div>
+</div>
+
+<h2 id="section5">五、竞争分析</h2>
+<div class="info-box">
+    <h3>主要竞争对手</h3>
+    <table>
+        <tr><th>竞争对手</th><th>业务重叠</th><th>市场份额</th><th>对比</th></tr>
+        <tr><td>Wieland Group（德国）</td><td>铜管、铜合金</td><td>全球铜管~8%</td><td>全球最大铜合金制造商，2025年投资$5亿扩建伊利诺伊工厂；产品线更广但美国配送网络不如Mueller</td></tr>
+        <tr><td>KME Group（德国）</td><td>铜管、铜板</td><td>全球铜管~5%</td><td>欧洲市场领导者，美国存在感弱；专注建筑和工业应用</td></tr>
+        <tr><td>Cerro Flow Products（美国）</td><td>铜管</td><td>美国铜管~10%</td><td>美国第二大铜管制造商，产品线较窄（仅铜管），无垂直一体化</td></tr>
+        <tr><td>Kobe Steel（日本）</td><td>铜管、铜合金</td><td>全球铜管~4%</td><td>亚洲市场为主，北美份额极小；2017年数据造假丑闻影响声誉</td></tr>
+        <tr><td>海亮股份（中国）</td><td>铜管、铜棒</td><td>全球铜管~6%</td><td>中国最大铜管制造商，成本极低但主要服务中国市场；美国关税壁垒限制其进入</td></tr>
+    </table>
+
+    <h3>经济护城河评估</h3>
+    <div class="moat-item">
+        <strong>规模优势 ⭐⭐⭐⭐</strong>：美国铜管市场30-35%份额，全球15%份额。垂直一体化制造使单位成本比竞争对手低10-15%。4,832名员工创造$42亿收入，人均收入$90万，远超行业均值。
+    </div>
+    <div class="moat-item">
+        <strong>成本优势 ⭐⭐⭐⭐</strong>：北美唯一垂直一体化铜管/铜棒/锻件制造商。58%回收铜利用率降低原材料成本波动。零负债+14亿现金使融资成本接近零。
+    </div>
+    <div class="moat-item">
+        <strong>品牌认知 ⭐⭐⭐</strong>：Mueller品牌在建筑和HVAC行业有百年声誉，但铜管是半标准化产品，品牌溢价有限。
+    </div>
+    <div class="moat-item">
+        <strong>转换成本 ⭐⭐⭐</strong>：OEM客户认证壁垒提供中等转换成本，但批发商和建筑商对品牌忠诚度较低。
+    </div>
+    <div class="moat-item">
+        <strong>网络效应 ⭐</strong>：无显著网络效应。
+    </div>
+    <div class="moat-item">
+        <strong>专利/知识产权 ⭐⭐</strong>：同轴热交换器和高效阀门有一定技术壁垒，但铜管制造本身专利保护弱。
+    </div>
+
+    <h3>护城河综合评级：<span class="rating-stars">⭐⭐⭐</span>（中等护城河）</h3>
+
+    <h3>关键风险</h3>
+    <div class="risk-item">
+        <strong>铜价周期性回落风险</strong>：当前利润率（18-19%）远高于历史均值（8-10%），铜价从$5/lb回落至$3.5/lb将压缩利润率30-40%。FIFO会计在通缩环境下会反向压缩利润。
+    </div>
+    <div class="risk-item">
+        <strong>PEX替代风险</strong>：PEX管在住宅新建市场持续替代铜管，美国新建住宅PEX渗透率已超60%。铜管市场长期增长率仅1-2%。
+    </div>
+    <div class="risk-item">
+        <strong>住宅建筑周期性</strong>：76%收入来自美国，高度依赖住宅建筑市场。高利率环境下新屋开工低迷，降息时间不确定。
+    </div>
+    <div class="risk-item">
+        <strong>收购整合风险</strong>：Nehring（$5.69亿）是公司史上最大收购，整合风险存在。2024年收购产生$1,070万非现金费用。
+    </div>
+    <div class="risk-item">
+        <strong>关税不确定性</strong>：CEO表示关税"最终将有利于大多数业务"，但短期造成供应链扰动和成本上升。
+    </div>
+</div>
+
+<h2 id="section6">六、利润分配分析</h2>
+<div class="info-box">
+    <h3>利润分配表（2016-2025，单位：百万美元）</h3>
+    <p><em>注：回购计入留存，留存金额 = 净利润 - 股息</em></p>
+    <table>
+        <tr><th>年度</th><th>净利润</th><th>股息</th><th>回购</th><th>扩张CapEx</th><th>债务偿还</th><th>留存金额</th><th>留存比率</th></tr>
+        <tr><td>2016</td><td>$126</td><td>$23</td><td>$6</td><td>$45</td><td>净零</td><td>$103</td><td>81.7%</td></tr>
+        <tr><td>2017</td><td>$151</td><td>$24</td><td>$7</td><td>$48</td><td>净零</td><td>$127</td><td>84.1%</td></tr>
+        <tr><td>2018</td><td>$123</td><td>$46</td><td>$37</td><td>$52</td><td>净零</td><td>$77</td><td>62.6%</td></tr>
+        <tr><td>2019</td><td>$113</td><td>$23</td><td>$2</td><td>$42</td><td>净零</td><td>$90</td><td>79.6%</td></tr>
+        <tr><td>2020</td><td>$100</td><td>$23</td><td>$10</td><td>$38</td><td>净零</td><td>$77</td><td>77.0%</td></tr>
+        <tr><td>2021</td><td>$469</td><td>$30</td><td>$7</td><td>$50</td><td>净零</td><td>$439</td><td>93.6%</td></tr>
+        <tr><td>2022</td><td>$658</td><td>$47</td><td>$44</td><td>$65</td><td>净零</td><td>$611</td><td>92.9%</td></tr>
+        <tr><td>2023</td><td>$603</td><td>$49</td><td>$32</td><td>$55</td><td>净零</td><td>$554</td><td>91.9%</td></tr>
+        <tr><td>2024</td><td>$605</td><td>$87</td><td>$74</td><td>$65</td><td>净零</td><td>$518</td><td>85.6%</td></tr>
+        <tr><td>2025</td><td>$765</td><td>$124</td><td>~$200</td><td>$70</td><td>净零</td><td>$641</td><td>83.8%</td></tr>
+    </table>
+
+    <div class="chart-container">
+        <canvas id="profitAllocationChart"></canvas>
+    </div>
+
+    <h3>利润分配分析要点</h3>
+    <ul>
+        <li><strong>留存比率趋势</strong>：10年平均留存比率约83%，属于"大部分利润留存，适度回报股东"的成熟增长型公司。2021-2023年铜价飙升期留存比率高达92-94%，说明管理层在利润高峰期选择囤积现金而非大手笔回报股东——这是明智之举</li>
+        <li><strong>留存质量</strong>：留存利润主要用于（1）积累$14亿现金储备（2）战略收购（Nehring $5.69亿、EPC）（3）适度回购。现金储备质量极高——零负债+巨额现金=极端财务安全</li>
+        <li><strong>回购时机</strong>：2018年回购370万股，均价$12.17（极低估值），至今回报432%——这是教科书级的低买。2024年回购130万股，均价$56.03（估值已不便宜），回购时机明显不如2018年</li>
+        <li><strong>股息增长</strong>：季度股息从2020年$0.05增至2026年$0.35，5年增长600%，但绝对股息率仅1.1%。股息支付率仅18%，留存空间巨大</li>
+        <li><strong>巴菲特视角</strong>：1美元留存创造市值——2016-2025年累计留存约$32亿，市值从$15亿增至$147亿，增加$132亿。每1美元留存创造约$4.1市值，远超巴菲特的1美元标准。但需注意：市值增长中相当部分来自PE倍数扩张（从4.8x到16.4x），而非纯经营价值创造</li>
+        <li><strong>可持续增长率</strong> = ROE × 留存比率 = 28.3% × 83.8% = 23.7%。但正常化ROE约15-18%，正常化可持续增长率约12-15%</li>
+    </ul>
+
+    <div class="highlight">
+        <strong>巴菲特视角：</strong>Mueller的资本配置记录堪称优秀——零负债、巨额现金、在低估值时大笔回购（2018年）、在战略方向上精准收购（Nehring切入电力传输）。但需要警惕两个问题：（1）2024-2025年在估值已不便宜时加速回购，时机不如以前精准；（2）$14亿现金储备占总资产37%，巴菲特会问"这些现金为什么不返还给股东或用于更高回报的再投资？"——过高的现金储备可能意味着管理层找不到足够好的投资机会。
+    </div>
+</div>
+
+<h2 id="section7">七、投资总结</h2>
+<div class="info-box">
+    <h3>各维度评级</h3>
+    <table>
+        <tr><th>维度</th><th>评级</th><th>说明</th></tr>
+        <tr><td>业务可理解性</td><td>⭐⭐⭐⭐⭐</td><td>铜管、铜棒、空调零件——简单易懂的制造业务，巴菲特"能力圈"内的典型公司</td></tr>
+        <tr><td>经济护城河</td><td>⭐⭐⭐</td><td>垂直一体化+规模优势形成中等护城河，但铜管是半标准化商品，护城河宽度有限</td></tr>
+        <tr><td>资本配置</td><td>⭐⭐⭐⭐</td><td>零负债、精准收购、低估值回购——管理层资本配置能力优秀，但近期回购时机有所退步</td></tr>
+        <tr><td>财务安全</td><td>⭐⭐⭐⭐⭐</td><td>零负债、$14亿现金、流动比率5.35x——工业公司中罕见的"堡垒式"资产负债表</td></tr>
+        <tr><td>增长前景</td><td>⭐⭐⭐</td><td>铜管市场长期增长1-2%；Nehring切入电力传输和数据中心是增长亮点，但整体增长受限于住宅建筑周期</td></tr>
+        <tr><td>估值吸引力</td><td>⭐⭐⭐</td><td>PE 17.5x低于5年中位数22x，但正常化PE约25-30x（基于正常化利润），安全边际有限</td></tr>
+    </table>
+
+    <h3>估值分析</h3>
+    <table>
+        <tr><th>估值方法</th><th>数值</th><th>说明</th></tr>
+        <tr><td>当前PE (TTM)</td><td>17.5x</td><td>低于5年中位数22x，但基于周期性高利润</td></tr>
+        <tr><td>正常化PE</td><td>~27x</td><td>基于正常化EPS ~$5.0（铜价回落至$3.5-4.0/lb）</td></tr>
+        <tr><td>EV/EBITDA</td><td>12.8x</td><td>略高于工业制造行业均值11x</td></tr>
+        <tr><td>P/FCF</td><td>22.6x</td><td>基于TTM FCF $6.5亿</td></tr>
+        <tr><td>股息率</td><td>1.1%</td><td>低股息率，但5年增长600%</td></tr>
+        <tr><td>净现金/股</td><td>$12.48</td><td>占股价9.4%</td></tr>
+    </table>
+
+    <h3>投资评级：<span class="tag tag-orange">观望</span></h3>
+
+    <h3>核心逻辑</h3>
+    <p><strong>看多因素：</strong></p>
+    <ul>
+        <li>零负债+$14亿现金=极端财务安全，即使铜价腰斩也不会有生存危机</li>
+        <li>垂直一体化制造形成成本优势，北美唯一具备此能力的公司</li>
+        <li>Nehring收购打开电力传输/数据中心增长通道，长期受益于电气化趋势</li>
+        <li>美国住宅建筑积压需求巨大，降息后需求释放将显著提振销量</li>
+        <li>管理层资本配置能力优秀，1美元留存创造4.1美元市值</li>
+    </ul>
+
+    <p><strong>看空因素：</strong></p>
+    <ul>
+        <li>当前利润率（18-19%）远高于历史均值（8-10%），铜价回落将压缩利润30-40%</li>
+        <li>正常化PE约27x，安全边际不足——巴菲特要求至少20%折扣</li>
+        <li>PEX管持续替代铜管，铜管市场长期增长率仅1-2%</li>
+        <li>76%收入来自美国，集中度风险高</li>
+        <li>$14亿现金占总资产37%，资本效率偏低</li>
+    </ul>
+
+    <h3>关键催化剂</h3>
+    <ul>
+        <li>美联储降息 → 住宅建筑复苏 → 销量回升</li>
+        <li>铜价持续高位 → 利润率维持</li>
+        <li>数据中心/电网升级 → Nehring收入加速增长</li>
+        <li>关税保护 → 限制中国铜管进口，提升美国制造商份额</li>
+    </ul>
+
+    <h3>北极星指标</h3>
+    <p><strong>COMEX铜价 + 美国新屋开工数</strong>——这两个指标决定了Mueller的收入规模和利润率水平。铜价每变动$1/lb，影响净利润约$1-1.5亿；新屋开工每变动10万户，影响管道系统收入约$2-3亿。</p>
+
+    <div class="highlight">
+        <strong>最终判断：</strong>Mueller Industries是一家"好公司但不是好价格"的典型案例。巴菲特说过："以合理的价格买入优秀的公司，远胜于以便宜的价格买入平庸的公司。"Mueller确实是优秀的公司——零负债、垂直一体化、百年声誉。但当前17.5x的PE基于周期性高利润，正常化PE约27x，缺乏安全边际。理想的买入时机是铜价回落+住宅建筑低迷的双重打击期（如2020年PE 13x时），那时市场会给出足够的安全边际。耐心等待，好公司终会出现好价格。
+    </div>
+</div>
+
+<script>
+const years = ['2016','2017','2018','2019','2020','2021','2022','2023','2024','2025'];
+const roeData = [12.5, 14.2, 15.8, 13.6, 9.8, 37.3, 36.3, 25.6, 21.6, 28.3];
+const debtData = [22.0, 20.5, 18.3, 16.8, 14.2, 27.3, 19.1, 14.5, 14.8, 13.3];
+const peData = [18.5, 21.0, 11.6, 16.3, 13.2, 6.7, 4.8, 8.5, 14.5, 16.4];
+
+new Chart(document.getElementById('roeChart'), {
+    type: 'line',
+    data: {
+        labels: years,
+        datasets: [{
+            label: 'ROE (%)',
+            data: roeData,
+            borderColor: '#2e86c1',
+            backgroundColor: 'rgba(46,134,193,0.1)',
+            fill: true,
+            tension: 0.3
+        }]
+    },
+    options: {
+        responsive: true,
+        plugins: { title: { display: true, text: 'Mueller Industries ROE (2016-2025)' } },
+        scales: { y: { beginAtZero: true, title: { display: true, text: '%' } } }
+    }
+});
+
+new Chart(document.getElementById('debtChart'), {
+    type: 'bar',
+    data: {
+        labels: years,
+        datasets: [{
+            label: '负债/资产比率 (%)',
+            data: debtData,
+            backgroundColor: 'rgba(231,76,60,0.6)',
+            borderColor: '#e74c3c',
+            borderWidth: 1
+        }]
+    },
+    options: {
+        responsive: true,
+        plugins: { title: { display: true, text: 'Mueller Industries 负债/资产比率 (2016-2025)' } },
+        scales: { y: { beginAtZero: true, title: { display: true, text: '%' } } }
+    }
+});
+
+new Chart(document.getElementById('peChart'), {
+    type: 'line',
+    data: {
+        labels: years,
+        datasets: [{
+            label: 'PE比率',
+            data: peData,
+            borderColor: '#27ae60',
+            backgroundColor: 'rgba(39,174,96,0.1)',
+            fill: true,
+            tension: 0.3
+        }]
+    },
+    options: {
+        responsive: true,
+        plugins: { title: { display: true, text: 'Mueller Industries PE比率 (2016-2025)' } },
+        scales: { y: { beginAtZero: true, title: { display: true, text: 'x' } } }
+    }
+});
+
+new Chart(document.getElementById('profitAllocationChart'), {
+    type: 'bar',
+    data: {
+        labels: ['2016','2017','2018','2019','2020','2021','2022','2023','2024','2025'],
+        datasets: [
+            { label: '股息', data: [23,24,46,23,23,30,47,49,87,124], backgroundColor: '#e74c3c' },
+            { label: '回购(留存)', data: [6,7,37,2,10,7,44,32,74,200], backgroundColor: '#3498db' },
+            { label: '再投资(留存)', data: [45,48,52,42,38,50,65,55,65,70], backgroundColor: '#27ae60' },
+            { label: '现金储备(留存)', data: [52,72,-58,46,29,382,502,467,379,371], backgroundColor: '#f39c12' }
+        ]
+    },
+    options: {
+        responsive: true,
+        plugins: { title: { display: true, text: 'Mueller Industries 利润分配 (百万美元，回购计入留存)' } },
+        scales: { x: { stacked: true }, y: { stacked: true, title: { display: true, text: '百万美元' } } }
+    }
+});
+</script>
+
+</body>
+</html>
