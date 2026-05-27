@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artisan Partners Asset Management (APAM) 价值投资分析</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f2f5;
+            color: #333;
+        }
+        h1 {
+            text-align: center;
+            color: #1a5276;
+            font-size: 2.2em;
+            margin-bottom: 5px;
+        }
+        h2 {
+            color: #1a5276;
+            border-bottom: 2px solid #2e86c1;
+            padding-bottom: 8px;
+            margin-top: 30px;
+        }
+        h3 {
+            color: #2c3e50;
+            margin-top: 20px;
+        }
+        h4 {
+            color: #2c3e50;
+            margin-top: 15px;
+        }
+        .subtitle {
+            text-align: center;
+            color: #7f8c8d;
+            font-size: 1.1em;
+            margin-bottom: 30px;
+        }
+        .info-box {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            background-color: white;
+        }
+        th, td {
+            padding: 10px 14px;
+            text-align: left;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        th {
+            background-color: #1a5276;
+            color: white;
+            font-weight: bold;
+        }
+        tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        tr:hover {
+            background-color: #eaf2f8;
+        }
+        .highlight {
+            background: #fef9e7;
+            border-left: 4px solid #2e86c1;
+            padding: 15px 20px;
+            margin: 15px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .chart-container {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+        .moat-item {
+            background: #eafaf1;
+            border-left: 4px solid #27ae60;
+            padding: 12px 18px;
+            margin: 10px 0;
+            border-radius: 0 6px 6px 0;
+        }
+        .risk-item {
+            background: #fdedec;
+            border-left: 4px solid #e74c3c;
+            padding: 12px 18px;
+            margin: 10px 0;
+            border-radius: 0 6px 6px 0;
+        }
+        .tag {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.85em;
+            font-weight: bold;
+            color: white;
+        }
+        .tag-green { background-color: #27ae60; }
+        .tag-orange { background-color: #e67e22; }
+        .tag-red { background-color: #e74c3c; }
+        .competitiveness-box {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            border: 1px solid #d5dbdb;
+        }
+        .rating-stars {
+            color: #f39c12;
+            font-size: 1.2em;
+        }
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .summary-card {
+            background: white;
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+        .summary-card .value {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #1a5276;
+        }
+        .summary-card .label {
+            color: #7f8c8d;
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
+        .section-nav {
+            background: white;
+            border-radius: 10px;
+            padding: 15px 25px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+        .section-nav a {
+            display: inline-block;
+            margin: 5px 10px;
+            padding: 6px 14px;
+            background: #eaf2f8;
+            color: #1a5276;
+            text-decoration: none;
+            border-radius: 15px;
+            font-size: 0.9em;
+        }
+        .section-nav a:hover {
+            background: #2e86c1;
+            color: white;
+        }
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: #2e86c1;
+            text-decoration: none;
+            font-size: 1em;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+        ul {
+            line-height: 1.8;
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back-link">← 返回公司索引</a>
+
+    <h1>Artisan Partners Asset Management (APAM)</h1>
+    <p class="subtitle">沃伦·巴菲特/查理·芒格风格 · 价值投资基本面分析</p>
+
+    <div class="section-nav">
+        <a href="#chapter1">公司基本信息</a>
+        <a href="#chapter2">业务分析</a>
+        <a href="#chapter3">产品竞争力分析</a>
+        <a href="#chapter4">历史财务指标</a>
+        <a href="#chapter5">竞争分析</a>
+        <a href="#chapter6">利润分配分析</a>
+        <a href="#chapter7">投资总结</a>
+    </div>
+
+    <h2 id="chapter1">一、公司基本信息</h2>
+    <div class="info-box">
+        <table>
+            <tr><td style="width:30%;font-weight:bold;">公司全称</td><td>Artisan Partners Asset Management Inc.</td></tr>
+            <tr><td style="font-weight:bold;">股票代码</td><td>APAM（NYSE）</td></tr>
+            <tr><td style="font-weight:bold;">成立时间</td><td>1994年</td></tr>
+            <tr><td style="font-weight:bold;">总部</td><td>美国威斯康星州密尔沃基</td></tr>
+            <tr><td style="font-weight:bold;">市值（2026年5月）</td><td>约$26亿（约188亿人民币）</td></tr>
+            <tr><td style="font-weight:bold;">最新收盘价</td><td>约$37.5</td></tr>
+            <tr><td style="font-weight:bold;">AUM（2025年12月）</td><td>$1,799亿</td></tr>
+            <tr><td style="font-weight:bold;">FY2025营收</td><td>$12亿（+7.6%）</td></tr>
+            <tr><td style="font-weight:bold;">FY2025净利润</td><td>$2.903亿（+12%）</td></tr>
+            <tr><td style="font-weight:bold;">FY2025调整EPS</td><td>$3.93（+11%）</td></tr>
+            <tr><td style="font-weight:bold;">企业价值（EV）</td><td>约$25.7亿（含$1.9亿债务，减$2.14亿现金）</td></tr>
+            <tr><td style="font-weight:bold;">股息率（TTM）</td><td>约8.8%</td></tr>
+            <tr><td style="font-weight:bold;">PE（TTM）</td><td>约9.5x</td></tr>
+        </table>
+    </div>
+
+    <h2 id="chapter2">二、业务分析</h2>
+    <div class="info-box">
+        <h3>公司简介——用最简单的话说</h3>
+        <p>Artisan Partners是一家帮别人管钱的公司。你把钱交给它，它的专业投资团队帮你买股票、买债券，赚了钱按比例收管理费。就像你请了一个专业园丁帮你打理花园，园丁不拥有花园，但按花园大小每月收服务费。花园越大，收费越多；花园缩小，收费也减少。Artisan的特殊之处在于：它不是一个统一的团队，而是由多个独立的"精品投资团队"组成，每个团队像独立工作室一样运作，有自己的投资风格和决策权。</p>
+
+        <h3>商业模式</h3>
+        <p>Artisan的收入几乎完全来自<strong>管理费</strong>——按AUM（管理资产规模）的百分比收取。加权平均费率约69个基点（0.69%），远高于行业多元化资管公司的平均水平。小部分收入来自<strong>业绩报酬</strong>（FY2025为$2,910万，仅占营收2.4%）。这意味着：</p>
+        <ul>
+            <li>收入与AUM规模直接挂钩——市场涨、客户资金流入，收入增加；反之减少</li>
+            <li>成本结构高度可变——约48.6%的收入用于员工激励薪酬，随收入浮动</li>
+            <li>资本需求极低——无需工厂、库存或大量资本开支，几乎100%利润转化为自由现金流</li>
+        </ul>
+
+        <h3>业务板块</h3>
+        <table>
+            <tr>
+                <th>投资板块</th>
+                <th>AUM（2025.10.31）</th>
+                <th>占比</th>
+                <th>核心策略</th>
+                <th>增长趋势</th>
+            </tr>
+            <tr>
+                <td><strong>价值/国际价值</strong></td>
+                <td>$962亿</td>
+                <td>52.7%</td>
+                <td>International Value、Global Value、Value Equity等</td>
+                <td>净流出压力大</td>
+            </tr>
+            <tr>
+                <td><strong>成长/全球股票</strong></td>
+                <td>$576亿</td>
+                <td>31.6%</td>
+                <td>Global Opportunities、Mid-Cap Growth、Non-U.S. Growth等</td>
+                <td>旗舰策略容量受限</td>
+            </tr>
+            <tr>
+                <td><strong>信贷</strong></td>
+                <td>$176亿</td>
+                <td>9.7%</td>
+                <td>High Income、Credit Opportunities、Custom Credit等</td>
+                <td>连续13个季度净流入</td>
+            </tr>
+            <tr>
+                <td><strong>另类/新兴市场</strong></td>
+                <td>$111亿</td>
+                <td>6.1%</td>
+                <td>Developing World、EMsights、Antero Peak等</td>
+                <td>快速扩张中</td>
+            </tr>
+        </table>
+
+        <h3>渠道结构</h3>
+        <table>
+            <tr><th>渠道</th><th>占比</th><th>特点</th></tr>
+            <tr><td>中介化财富渠道</td><td>约60%</td><td>通过券商/财富平台分销，粘性较低</td></tr>
+            <tr><td>机构客户</td><td>约40%</td><td>养老金、捐赠基金，决策周期长但粘性较高</td></tr>
+        </table>
+
+        <h3>载体结构</h3>
+        <table>
+            <tr><th>载体</th><th>占比</th><th>特点</th></tr>
+            <tr><td>Artisan基金/全球基金</td><td>约49%</td><td>零售+机构，费率较高</td></tr>
+            <tr><td>独立账户及其他</td><td>约51%</td><td>机构定制化，费率略低</td></tr>
+        </table>
+
+        <h3>地理分布</h3>
+        <p>Artisan以美国市场为核心，但国际业务占比显著。Non-U.S. Growth策略AUM达$154亿，International Value策略AUM达$525亿，国际投资能力是差异化优势。</p>
+    </div>
+
+    <h2 id="chapter3">三、业务板块产品竞争力分析</h2>
+
+    <div class="competitiveness-box">
+        <h3>1. 价值/国际价值策略 产品竞争力分析</h3>
+        <p><strong>1. 可替代性：<span class="tag tag-orange">中等</span></strong></p>
+        <ul>
+            <li>主要替代品：被动指数基金（Vanguard International Value ETF、iShares MSCI EAFE ETF）、其他主动价值基金（TROW、Dodge & Cox）、量化策略</li>
+            <li>替代品体验差距：Artisan International Value策略10年年化超额收益243bps，长期显著跑赢基准，被动产品无法复制这种alpha</li>
+            <li>替代品价格差距：被动基金费率5-15bps vs Artisan约65-70bps，价差50-60bps</li>
+            <li>替代趋势：<strong>加速</strong>——主动管理行业整体持续被被动替代，APAM连续8个季度净流出</li>
+        </ul>
+        <p><strong>2. 客户转换成本：<span class="tag tag-orange">中等</span></strong></p>
+        <ul>
+            <li>财务转换成本：机构客户可能面临税务影响（资本利得实现），但共同基金赎回通常无罚金</li>
+            <li>时间转换成本：机构客户更换管理人需经过投资委员会审批、咨询顾问评估，流程2-3个月</li>
+            <li>捆绑转换成本：单一策略独立运作，无多策略捆绑锁定</li>
+            <li>综合评估：机构客户有一定摩擦，但中介渠道（占60%）几乎零摩擦</li>
+        </ul>
+        <p><strong>3. 定价权：<span class="tag tag-orange">中等</span></strong></p>
+        <ul>
+            <li>历史提价记录：加权平均费率从2018年约62bps逐步提升至2025年69bps，但主要来自策略组合变化而非直接提价</li>
+            <li>提价vs通胀：费率提升跑赢CPI，但面临行业下行压力</li>
+            <li>定价权来源：长期超额收益记录（99%策略自成立以来跑赢基准）</li>
+            <li>定价权趋势：<strong>削弱</strong>——被动投资持续挤压主动管理费率</li>
+            <li>巴菲特测试：若管理费提价10%（从69bps到76bps），大量价格敏感的中介渠道客户会加速流出</li>
+        </ul>
+        <p><strong>综合竞争力评级：<span class="rating-stars">⭐⭐⭐</span></strong></p>
+    </div>
+
+    <div class="competitiveness-box">
+        <h3>2. 成长/全球股票策略 产品竞争力分析</h3>
+        <p><strong>1. 可替代性：<span class="tag tag-orange">中等</span></strong></p>
+        <ul>
+            <li>主要替代品：成长型ETF（QQQ、VGT）、其他主动成长基金（TROW、Janus Henderson）</li>
+            <li>替代品体验差距：Global Opportunities等旗舰策略长期跑赢，但近期1年表现落后</li>
+            <li>替代趋势：<strong>加速</strong>——成长股ETF尤其受被动化冲击</li>
+        </ul>
+        <p><strong>2. 客户转换成本：<span class="tag tag-orange">中等</span></strong></p>
+        <ul>
+            <li>与价值策略类似，机构客户有一定摩擦，中介渠道几乎零摩擦</li>
+            <li>旗舰策略Global Opportunities已关闭新投资者——容量管理保护alpha但限制增长</li>
+        </ul>
+        <p><strong>3. 定价权：<span class="tag tag-orange">中等</span></strong></p>
+        <ul>
+            <li>旗舰策略关闭新资金是定价权的一种体现——供不应求</li>
+            <li>但成长策略整体面临更大被动替代压力</li>
+            <li>定价权趋势：<strong>稳定</strong>——容量关闭策略维持了费率纪律</li>
+            <li>巴菲特测试：提价10%可能加速部分客户转向被动替代品</li>
+        </ul>
+        <p><strong>综合竞争力评级：<span class="rating-stars">⭐⭐⭐</span></strong></p>
+    </div>
+
+    <div class="competitiveness-box">
+        <h3>3. 信贷策略 产品竞争力分析</h3>
+        <p><strong>1. 可替代性：<span class="tag tag-green">低</span></strong></p>
+        <ul>
+            <li>主要替代品：高收益债ETF（HYG、JNK）、其他信贷基金、直接贷款基金</li>
+            <li>替代品体验差距：Artisan信贷团队100%策略在所有期间跑赢基准，主动信贷alpha比股票alpha更难被动复制</li>
+            <li>替代趋势：<strong>稳定</strong>——信贷市场效率较低，主动管理仍有明显优势</li>
+        </ul>
+        <p><strong>2. 客户转换成本：<span class="tag tag-orange">中等</span></strong></p>
+        <ul>
+            <li>信贷策略流动性较低，转换可能面临赎回限制</li>
+            <li>机构客户对信贷管理人选择更谨慎，评估周期更长</li>
+        </ul>
+        <p><strong>3. 定价权：<span class="tag tag-green">强</span></strong></p>
+        <ul>
+            <li>信贷策略费率较高（High Income策略约80-90bps），且客户对费率敏感度低于股票策略</li>
+            <li>100%策略跑赢基准的记录赋予强定价权</li>
+            <li>定价权趋势：<strong>增强</strong>——连续13个季度净流入证明客户认可</li>
+            <li>巴菲特测试：提价10%不太可能导致大量客户流失，因为alpha远超费率</li>
+        </ul>
+        <p><strong>综合竞争力评级：<span class="rating-stars">⭐⭐⭐⭐</span></strong></p>
+    </div>
+
+    <div class="competitiveness-box">
+        <h3>4. 另类/新兴市场策略 产品竞争力分析</h3>
+        <p><strong>1. 可替代性：<span class="tag tag-green">低</span></strong></p>
+        <ul>
+            <li>主要替代品：新兴市场ETF（EEM、VWO）、其他EM主动基金</li>
+            <li>替代品体验差距：EM市场效率低，主动管理超额收益空间大；Sustainable EM策略1年回报43.9%</li>
+            <li>替代趋势：<strong>稳定</strong>——EM主动管理仍有生存空间</li>
+        </ul>
+        <p><strong>2. 客户转换成本：<span class="tag tag-orange">中等</span></strong></p>
+        <ul>
+            <li>EM策略波动大，客户切换意愿受短期业绩影响显著</li>
+            <li>Antero Peak等对冲策略有锁定期</li>
+        </ul>
+        <p><strong>3. 定价权：<span class="tag tag-green">强</span></strong></p>
+        <ul>
+            <li>EM和另类策略费率较高（含业绩报酬），且超额收益显著</li>
+            <li>定价权趋势：<strong>增强</strong>——EMsights和Antero Peak等新团队正在获得市场认可</li>
+            <li>巴菲特测试：EM策略的alpha远超费率，提价10%不会导致客户流失</li>
+        </ul>
+        <p><strong>综合竞争力评级：<span class="rating-stars">⭐⭐⭐⭐</span></strong></p>
+    </div>
+
+    <h2 id="chapter4">四、历史财务指标</h2>
+    <div class="info-box">
+        <h3>关键财务指标（FY2016-FY2025）</h3>
+        <table>
+            <tr>
+                <th>年度</th>
+                <th>营收($M)</th>
+                <th>净利润($M)</th>
+                <th>EPS($)</th>
+                <th>营业利润率</th>
+                <th>调整营业利润率</th>
+                <th>PE(年末)</th>
+                <th>ROE(%)</th>
+                <th>负债/总资产</th>
+                <th>权益乘数</th>
+            </tr>
+            <tr><td>FY2016</td><td>790</td><td>80</td><td>1.74</td><td>32.5%</td><td>33.2%</td><td>13.8x</td><td>~520*</td><td>~98.5%</td><td>~67</td></tr>
+            <tr><td>FY2017</td><td>814</td><td>51</td><td>1.10</td><td>36.0%</td><td>36.7%</td><td>15.1x</td><td>N/A**</td><td>~104%</td><td>N/A</td></tr>
+            <tr><td>FY2018</td><td>876</td><td>167</td><td>3.08</td><td>36.8%</td><td>37.5%</td><td>8.1x</td><td>N/A**</td><td>~95%</td><td>N/A</td></tr>
+            <tr><td>FY2019</td><td>923</td><td>181</td><td>3.50</td><td>35.5%</td><td>36.3%</td><td>12.9x</td><td>370</td><td>~95%</td><td>~21</td></tr>
+            <tr><td>FY2020</td><td>878</td><td>208</td><td>3.65</td><td>39.8%</td><td>40.5%</td><td>15.3x</td><td>357</td><td>~94%</td><td>~17</td></tr>
+            <tr><td>FY2021</td><td>1,187</td><td>326</td><td>5.35</td><td>44.0%</td><td>44.6%</td><td>8.6x</td><td>321</td><td>~91%</td><td>~11</td></tr>
+            <tr><td>FY2022</td><td>1,078</td><td>224</td><td>3.56</td><td>34.6%</td><td>35.4%</td><td>11.8x</td><td>180</td><td>~90%</td><td>~10</td></tr>
+            <tr><td>FY2023</td><td>940</td><td>214</td><td>3.37</td><td>31.1%</td><td>32.1%</td><td>12.0x</td><td>196</td><td>~88%</td><td>~8</td></tr>
+            <tr><td>FY2024</td><td>1,116</td><td>261</td><td>3.55</td><td>33.0%</td><td>33.8%</td><td>12.6x</td><td>171</td><td>~87%</td><td>~7.5</td></tr>
+            <tr><td>FY2025</td><td>1,200</td><td>290</td><td>4.05</td><td>33.4%</td><td>35.3%</td><td>11.3x</td><td>155</td><td>~86%</td><td>~7</td></tr>
+        </table>
+        <p style="font-size:0.85em;color:#7f8c8d;">*FY2016-2018年ROE异常高（>300%）是因为股东权益极低甚至为负（受税收应收协议负债影响），不具可比性。FY2019后权益转正，ROE开始正常化。</p>
+        <p style="font-size:0.85em;color:#7f8c8d;">**FY2017-2018年因股东权益为负，ROE无意义。</p>
+
+        <div class="highlight">
+            <strong>关键趋势解读：</strong><br>
+            1. <strong>ROE从异常高值逐步正常化</strong>：FY2019的370%降至FY2025的155%，原因是股东权益从负值/极低值逐步增长至正常水平。155%的ROE在资管行业中仍属顶尖水平。<br>
+            2. <strong>营业利润率高度稳定</strong>：调整后营业利润率在32%-45%之间波动，FY2021牛市时达45%峰值，FY2023市场低迷时降至32%。FY2025回升至35.3%。<br>
+            3. <strong>收入高度周期性</strong>：营收从FY2020的$8.78亿→FY2021的$11.87亿（+35%）→FY2023的$9.40亿（-21%）→FY2025的$12亿（+28%），与市场走势高度相关。<br>
+            4. <strong>负债率极高但无实质风险</strong>：负债/总资产~86-98%，但负债主要是TRA（税收应收协议）负债$3.03亿和少量债务$1.9亿，无实质性偿债风险。<br>
+            5. <strong>PE估值持续偏低</strong>：历史PE在8-15x之间，当前~9.5x处于历史低位，反映市场对主动管理行业结构性风险的定价。
+        </div>
+
+        <div class="chart-container">
+            <canvas id="roeChart" height="300"></canvas>
+        </div>
+        <div class="chart-container">
+            <canvas id="marginChart" height="300"></canvas>
+        </div>
+    </div>
+
+    <h2 id="chapter5">五、竞争分析</h2>
+    <div class="info-box">
+        <h3>行业竞争格局</h3>
+        <p>Artisan处于主动资产管理行业，面临双重竞争压力：一是来自同行的主动管理竞争，二是来自被动投资的生存性威胁。</p>
+
+        <h3>主要竞争对手</h3>
+        <table>
+            <tr>
+                <th>竞争对手</th>
+                <th>AUM</th>
+                <th>市值</th>
+                <th>营业利润率</th>
+                <th>PE</th>
+                <th>对比APAM</th>
+            </tr>
+            <tr>
+                <td>T. Rowe Price (TROW)</td>
+                <td>$1.55万亿</td>
+                <td>$233亿</td>
+                <td>~32%</td>
+                <td>~14x</td>
+                <td>规模大100倍，但同样面临被动化压力</td>
+            </tr>
+            <tr>
+                <td>Franklin Resources (BEN)</td>
+                <td>$1.55万亿</td>
+                <td>$102亿</td>
+                <td>~25%</td>
+                <td>~12x</td>
+                <td>通过收购Legg Mason多元化，但alpha记录不如APAM</td>
+            </tr>
+            <tr>
+                <td>Cohen & Steers (CNS)</td>
+                <td>$970亿</td>
+                <td>$39亿</td>
+                <td>~35%</td>
+                <td>~16x</td>
+                <td>利基市场（REIT/基础设施），估值更高</td>
+            </tr>
+            <tr>
+                <td>BlackRock (BLK)</td>
+                <td>$10.5万亿</td>
+                <td>$1,530亿</td>
+                <td>~40%</td>
+                <td>~22x</td>
+                <td>iShares被动帝国+Aladdin科技平台，完全不同赛道</td>
+            </tr>
+            <tr>
+                <td>被动投资（Vanguard等）</td>
+                <td>—</td>
+                <td>—</td>
+                <td>—</td>
+                <td>—</td>
+                <td>最大威胁：过去10年被动基金净流入$6万亿，主动基金净流出$3万亿</td>
+            </tr>
+        </table>
+
+        <h3>经济护城河评估</h3>
+
+        <div class="moat-item">
+            <strong>品牌力/投资业绩记录</strong>：99%策略自成立以来跑赢基准，10年期92%AUM跑赢基准。这是Artisan最核心的护城河——长期alpha记录在行业中极为稀缺。但这是"软护城河"，过去业绩不代表未来。
+        </div>
+
+        <div class="moat-item">
+            <strong>精品团队模式</strong>：自主投资团队结构吸引了顶尖投资人才，过去10年零投资团队离职。这种文化难以复制，但也导致薪酬成本占比高达48.6%，限制了利润率扩张空间。
+        </div>
+
+        <div class="moat-item">
+            <strong>机构客户转换成本</strong>：养老金和捐赠基金更换管理人需经过投资委员会和咨询顾问评估，流程2-3个月。但这只是"摩擦"而非"壁垒"——APAM连续8个季度净流出证明客户仍在离开。
+        </div>
+
+        <div class="risk-item">
+            <strong>被动投资替代</strong>：这是最大的结构性风险。主动管理行业整体在萎缩，Artisan即使业绩优秀也无法独善其身。FY2025股票策略净流出$156亿，仅部分被信贷和另类流入$29亿抵消。
+        </div>
+
+        <div class="risk-item">
+            <strong>关键人风险</strong>：每个投资团队由少数几位基金经理主导，若核心人物离职（虽然10年未发生），对应策略AUM可能迅速流出。
+        </div>
+
+        <div class="risk-item">
+            <strong>规模劣势</strong>：相比BlackRock、TROW等巨头，Artisan缺乏科技平台（如Aladdin）、ETF分销能力和全球品牌影响力，在争夺机构委托时处于劣势。
+        </div>
+
+        <h3>护城河综合评级</h3>
+        <p><strong>窄护城河</strong>——投资业绩记录和团队文化构成差异化优势，但在被动投资大潮下护城河正在被侵蚀。这不是"无法被颠覆"的护城河，而是"在特定细分市场有竞争力"的窄护城河。</p>
+    </div>
+
+    <h2 id="chapter6">六、利润分配分析</h2>
+    <div class="info-box">
+        <h3>利润分配表（FY2016-FY2025，单位：百万美元）</h3>
+        <table>
+            <tr>
+                <th>年度</th>
+                <th>净利润</th>
+                <th>股息</th>
+                <th>回购</th>
+                <th>扩张CapEx</th>
+                <th>债务偿还</th>
+                <th>留存金额</th>
+                <th>留存比率</th>
+            </tr>
+            <tr><td>FY2016</td><td>80</td><td>34</td><td>0</td><td>~5</td><td>0</td><td>46</td><td>57.5%</td></tr>
+            <tr><td>FY2017</td><td>51</td><td>27</td><td>0</td><td>~5</td><td>0</td><td>24</td><td>47.1%</td></tr>
+            <tr><td>FY2018</td><td>167</td><td>80</td><td>0</td><td>~5</td><td>0</td><td>87</td><td>52.1%</td></tr>
+            <tr><td>FY2019</td><td>181</td><td>104</td><td>0</td><td>~5</td><td>0</td><td>77</td><td>42.5%</td></tr>
+            <tr><td>FY2020</td><td>208</td><td>104</td><td>0</td><td>~5</td><td>0</td><td>104</td><td>50.0%</td></tr>
+            <tr><td>FY2021</td><td>326</td><td>162</td><td>0</td><td>~5</td><td>0</td><td>164</td><td>50.3%</td></tr>
+            <tr><td>FY2022</td><td>224</td><td>192</td><td>0</td><td>~5</td><td>0</td><td>32</td><td>14.3%</td></tr>
+            <tr><td>FY2023</td><td>214</td><td>98</td><td>0</td><td>~5</td><td>0</td><td>116</td><td>54.2%</td></tr>
+            <tr><td>FY2024</td><td>261</td><td>132</td><td>0</td><td>~5</td><td>0</td><td>129</td><td>49.4%</td></tr>
+            <tr><td>FY2025</td><td>290</td><td>160</td><td>0</td><td>~5</td><td>~10</td><td>120</td><td>41.4%</td></tr>
+        </table>
+
+        <div class="highlight">
+            <strong>说明：</strong>Artisan Partners不进行股票回购，利润分配主要通过股息完成。股息包括季度常规股息+年度特别股息。FY2025全年股息$3.63/股（含特别股息），FY2026Q1季度股息提升至$1.01/股+特别股息$0.57/股。回购仅限于员工股权激励的净股份结算（非公开市场回购），金额较小不计入。
+        </div>
+
+        <h3>股息历史</h3>
+        <table>
+            <tr>
+                <th>年度</th>
+                <th>季度股息(/股)</th>
+                <th>特别股息(/股)</th>
+                <th>全年股息(/股)</th>
+                <th>股息支付率</th>
+            </tr>
+            <tr><td>FY2020</td><td>$0.65×4=$2.60</td><td>$0.75</td><td>$3.35</td><td>50.2%</td></tr>
+            <tr><td>FY2021</td><td>$0.80×4=$3.20</td><td>$1.00</td><td>$4.20</td><td>49.7%</td></tr>
+            <tr><td>FY2022</td><td>$0.85→$0.90</td><td>$2.50</td><td>$5.90</td><td>85.8%</td></tr>
+            <tr><td>FY2023</td><td>$0.55→$0.60</td><td>$0.75</td><td>$2.95</td><td>45.7%</td></tr>
+            <tr><td>FY2024</td><td>$0.65→$0.75</td><td>$1.02</td><td>$3.63</td><td>50.5%</td></tr>
+            <tr><td>FY2025</td><td>$0.75→$1.01</td><td>$0.57</td><td>$3.63</td><td>55.2%</td></tr>
+        </table>
+
+        <h3>利润分配分析要点</h3>
+
+        <div class="moat-item">
+            <strong>高股息回报策略</strong>：Artisan将约50-55%的净利润以股息形式分配给股东，加上特别股息，实际回报率更高。当前TTM股息率约8.8%，在低利率环境下极具吸引力。
+        </div>
+
+        <div class="moat-item">
+            <strong>资本轻模式下的合理分配</strong>：资管公司几乎不需要资本再投入（无CapEx、无库存），因此高比例分红是合理的资本配置。留存利润主要用于种子投资（$1.4亿）、新团队孵化和TRA付款。
+        </div>
+
+        <div class="risk-item">
+            <strong>股息可持续性风险</strong>：FY2022年股息支付率高达85.8%，当年净利润$2.24亿但派息$1.92亿。若市场大幅下跌导致AUM缩水，净利润可能不足以维持当前股息水平。
+        </div>
+
+        <div class="moat-item">
+            <strong>特别股息的灵活性</strong>：Artisan通过特别股息在好年景多分配、差年景少分配，比固定高股息更灵活。FY2022特别股息$2.50/股（牛市尾声），FY2023降至$0.75（市场低迷），体现了管理层的审慎。
+        </div>
+
+        <h3>可持续增长率</h3>
+        <p>可持续增长率 = ROE × 留存比率 = 155% × 41.4% ≈ <strong>64%</strong></p>
+        <p>这个数字看似极高，但需要注意：Artisan的ROE被低权益基数放大，实际内生增长取决于AUM增长（市场表现+净流入）。当前净流出意味着实际增长低于可持续增长率。</p>
+
+        <div class="chart-container">
+            <canvas id="profitChart" height="300"></canvas>
+        </div>
+    </div>
+
+    <h2 id="chapter7">七、投资总结</h2>
+    <div class="info-box">
+        <h3>各维度评分</h3>
+        <div class="summary-grid">
+            <div class="summary-card">
+                <div class="value">⭐⭐⭐⭐⭐</div>
+                <div class="label">业务可理解性</div>
+            </div>
+            <div class="summary-card">
+                <div class="value">⭐⭐⭐</div>
+                <div class="label">护城河宽度</div>
+            </div>
+            <div class="summary-card">
+                <div class="value">⭐⭐⭐⭐</div>
+                <div class="label">资本配置</div>
+            </div>
+            <div class="summary-card">
+                <div class="value">⭐⭐⭐⭐⭐</div>
+                <div class="label">财务安全</div>
+            </div>
+            <div class="summary-card">
+                <div class="value">⭐⭐</div>
+                <div class="label">增长前景</div>
+            </div>
+            <div class="summary-card">
+                <div class="value">⭐⭐⭐⭐</div>
+                <div class="label">估值吸引力</div>
+            </div>
+        </div>
+
+        <h3>估值分析</h3>
+        <table>
+            <tr><th>估值方法</th><th>假设</th><th>内在价值/股</th></tr>
+            <tr><td>PE估值</td><td>正常化EPS $3.80 × 合理PE 12-14x</td><td>$46-$53</td></tr>
+            <tr><td>股息折现</td><td>股息$3.63 + 2%永续增长 + 12%折现率</td><td>$37</td></tr>
+            <tr><td>EV/EBITDA</td><td>EV/EBITDA 10-12x（行业均值）</td><td>$44-$54</td></tr>
+            <tr><td>同行比较</td><td>TROW 14x, BEN 12x, CNS 16x → APAM 11-13x</td><td>$42-$49</td></tr>
+        </table>
+        <p><strong>综合内在价值区间：$42-$53/股</strong></p>
+        <p>当前股价约$37.5，相对内在价值有<strong>12-41%的安全边际</strong>。</p>
+
+        <h3>关键风险</h3>
+        <div class="risk-item">
+            <strong>1. 主动管理结构性萎缩</strong>：过去10年主动基金净流出$3万亿，被动基金净流入$6万亿。即使Artisan业绩优秀，行业趋势不可逆。连续8个季度净流出是这一风险的直接体现。
+        </div>
+        <div class="risk-item">
+            <strong>2. 业绩反转风险</strong>：投资业绩是Artisan的生命线。若核心策略（International Value、Global Opportunities）持续跑输基准2-3年，AUM可能加速流出，形成"业绩差→流出→收入降→人才流失→业绩更差"的恶性循环。
+        </div>
+        <div class="risk-item">
+            <strong>3. 关键人风险</strong>：虽然10年零团队离职，但每个策略高度依赖少数基金经理。核心人物离职可能导致对应策略AUM大幅流出。
+        </div>
+        <div class="risk-item">
+            <strong>4. 股息可持续性</strong>：8.8%的TTM股息率看似诱人，但在市场大幅下跌时可能被迫削减。FY2022年85.8%的支付率已敲响警钟。
+        </div>
+
+        <h3>关键催化剂</h3>
+        <div class="moat-item">
+            <strong>1. 信贷/另类策略加速增长</strong>：信贷团队连续13个季度净流入，若信贷+另类AUM占比从16%提升至25%+，可对冲股票流出并提升整体费率。
+        </div>
+        <div class="moat-item">
+            <strong>2. 新团队孵化成功</strong>：Grandview房地产PE、EMsights等新团队若成功募资，可打开新增长曲线。
+        </div>
+        <div class="moat-item">
+            <strong>3. 市场回暖驱动AUM增长</strong>：AUM每增长10%，营收增加约$8,300万，净利润增加约$2,800万（35%利润率×税率）。
+        </div>
+        <div class="moat-item">
+            <strong>4. ETF/新载体扩张</strong>：公司开始提供ETF、SMA等新载体形式，可能吸引新一代投资者。
+        </div>
+
+        <h3>巴菲特/芒格视角</h3>
+        <div class="highlight">
+            <strong>芒格会怎么说？</strong><br><br>
+            "这是一家用人才代替资本的公司，赚的是脑力钱而非机器钱。99%策略跑赢基准的记录令人印象深刻，但主动管理正在被指数基金吞噬——这是不可逆的结构性趋势。Artisan就像一位优秀的马车制造商，马车做得再好，也挡不住汽车时代的到来。8.8%的股息率很有吸引力，但你要问自己：这匹马还能跑多久？如果信贷和另类策略能成功转型，这可能是一只能持续下金蛋的鹅；如果不能，这就是一根还剩几口的雪茄烟蒂。"
+        </div>
+
+        <h3>投资评级</h3>
+        <p style="font-size:1.3em;text-align:center;font-weight:bold;color:#e67e22;">谨慎买入</p>
+        <p><strong>理由</strong>：PE 9.5x + 股息率8.8%提供了足够的安全边际，即使AUM零增长，当前估值也较为合理。信贷/另类策略的增长是关键变量——若成功转型，估值有50%+上行空间；若股票流出加速且新策略增长不及预期，下行风险约20%。适合能承受周期性波动、追求高股息收入的投资者。</p>
+    </div>
+
+    <script>
+        var ctx1 = document.getElementById('roeChart').getContext('2d');
+        new Chart(ctx1, {
+            type: 'line',
+            data: {
+                labels: ['FY2019', 'FY2020', 'FY2021', 'FY2022', 'FY2023', 'FY2024', 'FY2025'],
+                datasets: [{
+                    label: 'ROE (%)',
+                    data: [370, 357, 321, 180, 196, 171, 155],
+                    borderColor: '#2e86c1',
+                    backgroundColor: 'rgba(46,134,193,0.1)',
+                    fill: true,
+                    tension: 0.3,
+                    yAxisID: 'y'
+                }, {
+                    label: '权益乘数',
+                    data: [21, 17, 11, 10, 8, 7.5, 7],
+                    borderColor: '#e74c3c',
+                    backgroundColor: 'rgba(231,76,60,0.1)',
+                    fill: true,
+                    tension: 0.3,
+                    yAxisID: 'y1'
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: { title: { display: true, text: 'ROE与权益乘数趋势（FY2019-FY2025）' } },
+                scales: {
+                    y: { type: 'linear', position: 'left', title: { display: true, text: 'ROE (%)' } },
+                    y1: { type: 'linear', position: 'right', title: { display: true, text: '权益乘数' }, grid: { drawOnChartArea: false } }
+                }
+            }
+        });
+
+        var ctx2 = document.getElementById('marginChart').getContext('2d');
+        new Chart(ctx2, {
+            type: 'line',
+            data: {
+                labels: ['FY2016', 'FY2017', 'FY2018', 'FY2019', 'FY2020', 'FY2021', 'FY2022', 'FY2023', 'FY2024', 'FY2025'],
+                datasets: [{
+                    label: '调整营业利润率 (%)',
+                    data: [33.2, 36.7, 37.5, 36.3, 40.5, 44.6, 35.4, 32.1, 33.8, 35.3],
+                    borderColor: '#27ae60',
+                    backgroundColor: 'rgba(39,174,96,0.1)',
+                    fill: true,
+                    tension: 0.3
+                }, {
+                    label: '营收 ($M)',
+                    data: [790, 814, 876, 923, 878, 1187, 1078, 940, 1116, 1200],
+                    borderColor: '#f39c12',
+                    backgroundColor: 'rgba(243,156,18,0.1)',
+                    fill: true,
+                    tension: 0.3,
+                    yAxisID: 'y1'
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: { title: { display: true, text: '营业利润率与营收趋势（FY2016-FY2025）' } },
+                scales: {
+                    y: { type: 'linear', position: 'left', title: { display: true, text: '调整营业利润率 (%)' }, min: 25, max: 50 },
+                    y1: { type: 'linear', position: 'right', title: { display: true, text: '营收 ($M)' }, grid: { drawOnChartArea: false } }
+                }
+            }
+        });
+
+        var ctx3 = document.getElementById('profitChart').getContext('2d');
+        new Chart(ctx3, {
+            type: 'bar',
+            data: {
+                labels: ['FY2016', 'FY2017', 'FY2018', 'FY2019', 'FY2020', 'FY2021', 'FY2022', 'FY2023', 'FY2024', 'FY2025'],
+                datasets: [{
+                    label: '股息',
+                    data: [34, 27, 80, 104, 104, 162, 192, 98, 132, 160],
+                    backgroundColor: '#2e86c1'
+                }, {
+                    label: '留存（含回购）',
+                    data: [46, 24, 87, 77, 104, 164, 32, 116, 129, 120],
+                    backgroundColor: '#27ae60'
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: { title: { display: true, text: '利润分配：股息 vs 留存（百万美元，回购计入留存）' } },
+                scales: {
+                    x: { stacked: true },
+                    y: { stacked: true, title: { display: true, text: '金额 ($M)' } }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
