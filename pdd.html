@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDD Holdings (PDD) 价值投资分析</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f2f5;
+            color: #333;
+        }
+        h1 {
+            text-align: center;
+            color: #1a5276;
+            font-size: 2.2em;
+            margin-bottom: 5px;
+        }
+        h2 {
+            color: #1a5276;
+            border-bottom: 2px solid #2e86c1;
+            padding-bottom: 8px;
+            margin-top: 30px;
+        }
+        h3 {
+            color: #2c3e50;
+            margin-top: 20px;
+        }
+        h4 {
+            color: #2c3e50;
+            margin-top: 15px;
+        }
+        .subtitle {
+            text-align: center;
+            color: #7f8c8d;
+            font-size: 1.1em;
+            margin-bottom: 30px;
+        }
+        .info-box {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            background-color: white;
+        }
+        th, td {
+            padding: 10px 14px;
+            text-align: left;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        th {
+            background-color: #1a5276;
+            color: white;
+            font-weight: bold;
+        }
+        tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        tr:hover {
+            background-color: #eaf2f8;
+        }
+        .highlight {
+            background: #fef9e7;
+            border-left: 4px solid #2e86c1;
+            padding: 15px 20px;
+            margin: 15px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .chart-container {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+        .moat-item {
+            background: #eafaf1;
+            border-left: 4px solid #27ae60;
+            padding: 12px 18px;
+            margin: 10px 0;
+            border-radius: 0 6px 6px 0;
+        }
+        .risk-item {
+            background: #fdedec;
+            border-left: 4px solid #e74c3c;
+            padding: 12px 18px;
+            margin: 10px 0;
+            border-radius: 0 6px 6px 0;
+        }
+        .tag {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.85em;
+            font-weight: bold;
+            color: white;
+        }
+        .tag-green { background-color: #27ae60; }
+        .tag-orange { background-color: #e67e22; }
+        .tag-red { background-color: #e74c3c; }
+        .competitiveness-box {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            border: 1px solid #d5dbdb;
+        }
+        .rating-stars {
+            color: #f39c12;
+            font-size: 1.2em;
+        }
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .summary-card {
+            background: white;
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+        .summary-card .value {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #1a5276;
+        }
+        .summary-card .label {
+            color: #7f8c8d;
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
+        .section-nav {
+            background: white;
+            border-radius: 10px;
+            padding: 15px 25px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+        .section-nav a {
+            display: inline-block;
+            margin: 5px 10px;
+            padding: 6px 14px;
+            background: #eaf2f8;
+            color: #1a5276;
+            text-decoration: none;
+            border-radius: 15px;
+            font-size: 0.9em;
+        }
+        .section-nav a:hover {
+            background: #2e86c1;
+            color: white;
+        }
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: #2e86c1;
+            text-decoration: none;
+            font-size: 1em;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+        ul {
+            line-height: 1.8;
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back-link">← 返回公司索引</a>
+
+    <h1>PDD Holdings Inc. (PDD)</h1>
+    <p class="subtitle">沃伦·巴菲特/查理·芒格风格 · 价值投资基本面分析</p>
+
+    <div class="section-nav">
+        <a href="#chapter1">公司基本信息</a>
+        <a href="#chapter2">业务分析</a>
+        <a href="#chapter3">产品竞争力分析</a>
+        <a href="#chapter4">历史财务指标</a>
+        <a href="#chapter5">竞争分析</a>
+        <a href="#chapter6">利润分配分析</a>
+        <a href="#chapter7">投资总结</a>
+    </div>
+
+    <h2 id="chapter1">一、公司基本信息</h2>
+    <div class="info-box">
+        <table>
+            <tr><td style="width:30%;font-weight:bold;">公司全称</td><td>PDD Holdings Inc.（拼多多控股）</td></tr>
+            <tr><td style="font-weight:bold;">股票代码</td><td>PDD（NASDAQ）</td></tr>
+            <tr><td style="font-weight:bold;">成立时间</td><td>2015年</td></tr>
+            <tr><td style="font-weight:bold;">总部</td><td>爱尔兰都柏林（注册）/ 中国上海（运营）</td></tr>
+            <tr><td style="font-weight:bold;">市值（2026年5月）</td><td>约$1,400亿（约1万亿人民币）</td></tr>
+            <tr><td style="font-weight:bold;">最新收盘价</td><td>约$98</td></tr>
+            <tr><td style="font-weight:bold;">FY2025营收</td><td>RMB 4,318亿（$618亿，+10%）</td></tr>
+            <tr><td style="font-weight:bold;">FY2025净利润</td><td>RMB 978亿（$140亿，-13%）</td></tr>
+            <tr><td style="font-weight:bold;">FY2025 EPS</td><td>RMB 70.00（$10.02）</td></tr>
+            <tr><td style="font-weight:bold;">现金及短期投资</td><td>RMB 4,223亿（$604亿）——占总资产近80%</td></tr>
+            <tr><td style="font-weight:bold;">企业价值（EV）</td><td>约$796亿（市值$1,400亿 - 净现金$604亿）</td></tr>
+            <tr><td style="font-weight:bold;">PE（TTM）</td><td>约10x</td></tr>
+            <tr><td style="font-weight:bold;">EV/EBITDA</td><td>约5.8x</td></tr>
+            <tr><td style="font-weight:bold;">股息率</td><td>0%（不派息、不回购）</td></tr>
+            <tr><td style="font-weight:bold;">创始人</td><td>黄峥（Colin Huang），持股约27.9%</td></tr>
+        </table>
+    </div>
+
+    <h2 id="chapter2">二、业务分析</h2>
+    <div class="info-box">
+        <h3>公司简介——用最简单的话说</h3>
+        <p>PDD是一家帮人"拼着买更便宜"的公司。想象你去菜市场，一个人买一颗白菜要5块，但如果10个人一起买，老板愿意3块一颗卖。PDD就是那个帮你凑齐10个人的"拼单组织者"——它不种菜、不运菜、不存菜，只做一件事：把想买同一样东西的人凑在一起，让工厂直接发货，省掉中间商赚的差价。你省了钱，工厂多了订单，PDD从每笔交易中收取"介绍费"（广告费+佣金）。</p>
+        <p>现在PDD有两张"拼单桌"：一张叫<strong>拼多多</strong>，摆在中国，9亿人在上面拼；另一张叫<strong>Temu</strong>，摆在海外50多个国家，1亿多外国人在上面拼。两张桌子的玩法一样——越多人拼，越便宜。</p>
+
+        <h3>商业模式</h3>
+        <p>PDD是纯第三方平台（marketplace），自己不进货、不存货、不发货。收入来自两类费用：</p>
+        <ul>
+            <li><strong>在线营销服务</strong>：商家为获得更多曝光向PDD支付的广告费（类似淘宝直通车），按点击/展示付费</li>
+            <li><strong>交易服务</strong>：从每笔成交订单中收取的佣金（0.6%-3%不等），以及支付处理费</li>
+        </ul>
+        <p>这意味着PDD的商业模式是<strong>资本极轻</strong>的——无需仓库、无需库存、无需物流车队。几乎每一分利润都能转化为自由现金流。</p>
+
+        <h3>业务板块</h3>
+        <table>
+            <tr>
+                <th>业务板块</th>
+                <th>定位</th>
+                <th>GMV规模</th>
+                <th>增长趋势</th>
+            </tr>
+            <tr>
+                <td><strong>拼多多</strong>（国内电商）</td>
+                <td>中国最大社交电商平台，9亿+活跃买家，覆盖下沉市场到一二线城市</td>
+                <td>约RMB 5万亿+</td>
+                <td>增速放缓至10-15%，进入高质量增长阶段</td>
+            </tr>
+            <tr>
+                <td><strong>Temu</strong>（跨境电商）</td>
+                <td>面向50+国家的低价电商平台，1.1亿海外MAU</td>
+                <td>约$420亿（FY2025）</td>
+                <td>从爆发式增长转向稳健增长，面临关税压力</td>
+            </tr>
+            <tr>
+                <td><strong>多多买菜</strong>（社区团购）</td>
+                <td>次日自提社区团购，覆盖70%行政村</td>
+                <td>未单独披露</td>
+                <td>已实现盈利，农业供应链核心基础设施</td>
+            </tr>
+        </table>
+
+        <h3>收入结构（FY2025）</h3>
+        <table>
+            <tr><th>收入类型</th><th>金额（RMB亿）</th><th>占比</th><th>同比增速</th></tr>
+            <tr><td>在线营销服务</td><td>2,135</td><td>49.5%</td><td>+10%</td></tr>
+            <tr><td>交易服务</td><td>2,183</td><td>50.5%</td><td>+11%</td></tr>
+            <tr><td><strong>合计</strong></td><td><strong>4,318</strong></td><td><strong>100%</strong></td><td><strong>+10%</strong></td></tr>
+        </table>
+
+        <h3>地理分布（估算）</h3>
+        <table>
+            <tr><th>地区</th><th>收入占比</th><th>特点</th></tr>
+            <tr><td>中国（拼多多+多多买菜）</td><td>约52%</td><td>成熟市场，增速放缓，利润率高</td></tr>
+            <tr><td>海外（Temu）</td><td>约48%</td><td>快速扩张，利润率较低，关税风险大</td></tr>
+        </table>
+
+        <h3>成本结构（FY2025）</h3>
+        <table>
+            <tr><th>项目</th><th>金额（RMB亿）</th><th>占收入比</th></tr>
+            <tr><td>营业成本（履约+支付+服务器）</td><td>1,890</td><td>43.8%</td></tr>
+            <tr><td>销售与营销费用</td><td>1,253</td><td>29.0%</td></tr>
+            <tr><td>研发费用</td><td>163</td><td>3.8%</td></tr>
+            <tr><td>管理费用</td><td>72</td><td>1.7%</td></tr>
+            <tr><td><strong>营业利润</strong></td><td><strong>931</strong></td><td><strong>21.6%</strong></td></tr>
+        </table>
+    </div>
+
+    <h2 id="chapter3">三、业务板块产品竞争力分析</h2>
+
+    <div class="competitiveness-box">
+        <h3>1. 拼多多（国内电商）产品竞争力分析</h3>
+        <p><strong>1. 可替代性：<span class="tag tag-orange">中等</span></strong></p>
+        <ul>
+            <li>主要替代品：淘宝/天猫（搜索型电商）、京东（品质电商）、抖音电商（兴趣电商）、快手电商、微信小程序商城</li>
+            <li>替代品体验差距：拼多多在"绝对低价"维度仍有30-50%的价格优势，但淘宝/抖音在品牌丰富度和内容体验上更强</li>
+            <li>替代品价格差距：同款商品拼多多通常比淘宝低20-30%，比京东低30-50%</li>
+            <li>替代趋势：<strong>加速</strong>——抖音电商2024年GMV超3万亿，"国补"政策使京东/天猫价格竞争力回升，拼多多价格优势被蚕食</li>
+        </ul>
+        <p><strong>2. 客户转换成本：<span class="tag tag-red">极低</span></strong></p>
+        <ul>
+            <li>财务转换成本：零——用户可同时在多个电商平台购物，无解约费</li>
+            <li>时间转换成本：极低——下载淘宝/抖音APP即可，5分钟完成</li>
+            <li>心理转换成本：低——虽然"拼单"有社交属性，但用户对平台忠诚度极低，谁便宜去谁</li>
+            <li>捆绑转换成本：低——拼多多无会员体系（不像京东Plus/淘宝88VIP），无捆绑锁定</li>
+            <li>综合评估：电商是转换成本最低的行业之一，用户完全按价格流动</li>
+        </ul>
+        <p><strong>3. 定价权：<span class="tag tag-red">极弱</span></strong></p>
+        <ul>
+            <li>历史提价记录：PDD对商家端费率在提升（从早期0.6%佣金逐步提升至3%+），但这是对商家的定价，对消费者端PDD无法提价</li>
+            <li>提价vs通胀：消费者端价格持续下行（PDD的核心价值就是"更便宜"），完全无法跑赢通胀</li>
+            <li>定价权来源：PDD的定价权仅存在于对商家的"流量费"层面——商家离不开PDD的9亿用户；对消费者完全没有定价权</li>
+            <li>定价权趋势：<strong>削弱</strong>——"国补"政策使竞争对手价格下降，PDD被迫加大补贴维持价差</li>
+            <li>巴菲特测试：如果PDD商品价格提价10%，用户会立刻流向淘宝/抖音——这是"价格接受者"的典型特征</li>
+        </ul>
+        <p><strong>综合竞争力评级：<span class="rating-stars">⭐⭐</span></strong></p>
+    </div>
+
+    <div class="competitiveness-box">
+        <h3>2. Temu（跨境电商）产品竞争力分析</h3>
+        <p><strong>1. 可替代性：<span class="tag tag-orange">中等</span></strong></p>
+        <ul>
+            <li>主要替代品：Amazon（品质/速度）、AliExpress（同源中国供应链）、SHEIN（快时尚）、本地折扣零售（Dollar Tree等）</li>
+            <li>替代品体验差距：Temu在"极致低价+丰富SKU"维度有优势，但Amazon在物流速度（1天vs 7-14天）和品质保障上远胜</li>
+            <li>替代品价格差距：Temu价格通常比Amazon低50-70%，比SHEIN低20-30%</li>
+            <li>替代趋势：<strong>加速</strong>——美国取消de minimis免税门槛后，Temu价格优势被大幅削弱；Amazon推出Haul低价专区直接对标</li>
+        </ul>
+        <p><strong>2. 客户转换成本：<span class="tag tag-red">极低</span></strong></p>
+        <ul>
+            <li>财务转换成本：零——无会员费、无订阅</li>
+            <li>时间转换成本：极低——一键切换到Amazon/AliExpress</li>
+            <li>捆绑转换成本：零——无捆绑服务</li>
+            <li>综合评估：海外用户对Temu忠诚度极低，86%美国成年人知道Temu，但复购率远低于Amazon</li>
+        </ul>
+        <p><strong>3. 定价权：<span class="tag tag-red">极弱</span></strong></p>
+        <ul>
+            <li>历史提价记录：Temu从未提价，持续以补贴维持低价。2025年5月美国关税上调后，Temu被迫涨价而非主动提价</li>
+            <li>提价vs通胀：完全无法跑赢通胀——Temu的存在就是为了"比谁都便宜"</li>
+            <li>定价权来源：无——Temu完全依赖"最低价"获客，没有品牌溢价</li>
+            <li>定价权趋势：<strong>削弱</strong>——关税壁垒使Temu被迫涨价，同时Amazon Haul等竞品压价</li>
+            <li>巴菲特测试：Temu提价10%将导致大量用户流失到Amazon或AliExpress</li>
+        </ul>
+        <p><strong>综合竞争力评级：<span class="rating-stars">⭐⭐</span></strong></p>
+    </div>
+
+    <div class="competitiveness-box">
+        <h3>3. 多多买菜（社区团购）产品竞争力分析</h3>
+        <p><strong>1. 可替代性：<span class="tag tag-orange">中等</span></strong></p>
+        <ul>
+            <li>主要替代品：美团优选、淘宝买菜、传统菜市场、社区生鲜店、盒马/叮咚买菜</li>
+            <li>替代品体验差距：多多买菜在"次日自提+低价"维度有优势，但在即时配送（叮咚/盒马30分钟达）上不如竞品</li>
+            <li>替代趋势：<strong>稳定</strong>——社区团购格局已基本稳定，美团和多多买菜双寡头</li>
+        </ul>
+        <p><strong>2. 客户转换成本：<span class="tag tag-red">低</span></strong></p>
+        <ul>
+            <li>财务转换成本：零——无预付卡、无会员费</li>
+            <li>时间转换成本：低——切换到美团优选只需换一个APP</li>
+            <li>捆绑转换成本：低——团长（自提点）可能同时服务多个平台</li>
+        </ul>
+        <p><strong>3. 定价权：<span class="tag tag-red">弱</span></strong></p>
+        <ul>
+            <li>历史提价记录：社区团购行业整体处于补贴后逐步提价阶段，但提价空间有限</li>
+            <li>定价权来源：规模优势带来的供应链议价权——多多买菜覆盖70%行政村，采购量大</li>
+            <li>定价权趋势：<strong>稳定</strong>——双寡头格局下，价格战趋缓</li>
+            <li>巴菲特测试：提价10%会导致价格敏感的下沉市场用户转向美团优选</li>
+        </ul>
+        <p><strong>综合竞争力评级：<span class="rating-stars">⭐⭐⭐</span></strong></p>
+    </div>
+
+    <h2 id="chapter4">四、历史财务指标</h2>
+    <div class="info-box">
+        <h3>关键财务指标（FY2018-FY2025）</h3>
+        <table>
+            <tr>
+                <th>年度</th>
+                <th>营收(RMB亿)</th>
+                <th>净利润(RMB亿)</th>
+                <th>EPS(RMB)</th>
+                <th>营业利润率</th>
+                <th>净利率</th>
+                <th>PE(年末)</th>
+                <th>ROE(%)</th>
+                <th>负债/总资产</th>
+            </tr>
+            <tr><td>FY2018</td><td>131</td><td>-102</td><td>-13.88</td><td>-82.3%</td><td>-77.9%</td><td>N/A</td><td>N/A</td><td>~60%</td></tr>
+            <tr><td>FY2019</td><td>301</td><td>-70</td><td>-6.02</td><td>-28.3%</td><td>-23.1%</td><td>N/A</td><td>N/A</td><td>~55%</td></tr>
+            <tr><td>FY2020</td><td>595</td><td>-72</td><td>-6.02</td><td>-15.8%</td><td>-12.1%</td><td>N/A</td><td>N/A</td><td>~52%</td></tr>
+            <tr><td>FY2021</td><td>940</td><td>78</td><td>6.20</td><td>7.3%</td><td>8.3%</td><td>69.4x</td><td>11.1</td><td>~48%</td></tr>
+            <tr><td>FY2022</td><td>1,306</td><td>315</td><td>24.94</td><td>23.3%</td><td>24.2%</td><td>25.8x</td><td>32.9</td><td>~42%</td></tr>
+            <tr><td>FY2023</td><td>2,476</td><td>600</td><td>44.33</td><td>23.7%</td><td>24.2%</td><td>25.2x</td><td>39.4</td><td>~38%</td></tr>
+            <tr><td>FY2024</td><td>3,938</td><td>1,124</td><td>81.24</td><td>27.5%</td><td>28.6%</td><td>9.3x</td><td>44.9</td><td>~35%</td></tr>
+            <tr><td>FY2025</td><td>4,318</td><td>978</td><td>70.00</td><td>21.6%</td><td>22.7%</td><td>12.0x</td><td>26.9</td><td>~34%</td></tr>
+        </table>
+
+        <div class="highlight">
+            <strong>关键趋势解读：</strong><br>
+            1. <strong>从亏损到暴利再到利润率收缩</strong>：FY2018-2020年巨额亏损烧钱获客→FY2022-2024年利润率飙升至28%→FY2025年利润率回落至22.7%，反映"高质量发展"战略下的主动投资和竞争加剧。<br>
+            2. <strong>收入增速断崖式放缓</strong>：FY2023 +90% → FY2024 +59% → FY2025 +10%。Temu从爆发期进入平稳期，国内电商增速见顶。<br>
+            3. <strong>ROE从高位回落</strong>：FY2024的44.9%降至FY2025的26.9%，主要因为净利润下降+权益基数增长（留存收益积累）。<br>
+            4. <strong>负债率持续改善</strong>：从FY2018的~60%降至FY2025的~34%，公司几乎没有有息负债（仅RMB 29亿融资租赁），负债主要是商家应付款和预收款。<br>
+            5. <strong>PE估值从泡沫到价值</strong>：FY2021年69x → FY2024年9.3x → FY2025年12x。当前估值处于历史低位区间。<br>
+            6. <strong>现金山持续膨胀</strong>：FY2025年末现金+短期投资RMB 4,223亿（$604亿），占总资产近80%，这是PDD最独特的财务特征。
+        </div>
+
+        <div class="chart-container">
+            <canvas id="roeChart" height="300"></canvas>
+        </div>
+        <div class="chart-container">
+            <canvas id="marginChart" height="300"></canvas>
+        </div>
+    </div>
+
+    <h2 id="chapter5">五、竞争分析</h2>
+    <div class="info-box">
+        <h3>行业竞争格局</h3>
+        <p>PDD在中国电商市场与阿里巴巴、京东形成三足鼎立，同时通过Temu在全球市场与Amazon、SHEIN等竞争。电商行业是竞争最激烈的行业之一——没有切换成本、没有技术壁垒、价格透明。</p>
+
+        <h3>主要竞争对手</h3>
+        <table>
+            <tr>
+                <th>竞争对手</th>
+                <th>市值</th>
+                <th>GMV</th>
+                <th>PE</th>
+                <th>对比PDD</th>
+            </tr>
+            <tr>
+                <td>阿里巴巴 (BABA)</td>
+                <td>$3,718亿</td>
+                <td>~RMB 8万亿</td>
+                <td>~23x</td>
+                <td>规模大2倍+，但增长慢、利润率低，云业务拖累</td>
+            </tr>
+            <tr>
+                <td>京东 (JD)</td>
+                <td>$389亿</td>
+                <td>~RMB 3.5万亿</td>
+                <td>~9x</td>
+                <td>重资产物流模式，"国补"受益者，利润率远低于PDD</td>
+            </tr>
+            <tr>
+                <td>Amazon (AMZN)</td>
+                <td>$2.1万亿</td>
+                <td>~$6,380亿</td>
+                <td>~28x</td>
+                <td>全球电商+云巨头，推出Haul低价区直接对标Temu</td>
+            </tr>
+            <tr>
+                <td>SHEIN</td>
+                <td>未上市</td>
+                <td>~$450亿</td>
+                <td>—</td>
+                <td>快时尚跨境，与Temu正面竞争，品牌化程度更高</td>
+            </tr>
+            <tr>
+                <td>抖音电商</td>
+                <td>未上市</td>
+                <td>~RMB 3万亿</td>
+                <td>—</td>
+                <td>兴趣电商颠覆者，直播带货模式分流PDD用户</td>
+            </tr>
+        </table>
+
+        <h3>经济护城河评估</h3>
+
+        <div class="moat-item">
+            <strong>C2M供应链优势（成本护城河）</strong>：PDD通过"拼单"聚合需求，将消费数据直接反馈给工厂，实现"以销定产"。这使PDD能提供比传统零售低30-50%的价格。但这个优势正在被抖音电商和淘宝学习复制。
+        </div>
+
+        <div class="moat-item">
+            <strong>社交裂变获客（网络效应）</strong>：拼单模式通过微信社交链实现零成本获客，用户拉用户。但微信流量红利已见顶，PDD的获客成本从早期的几元/人上升至百元/人级别。
+        </div>
+
+        <div class="moat-item">
+            <strong>农业供应链基础设施</strong>：多多买菜覆盖70%行政村，建立了从农田到餐桌的直连体系。这是最"实"的护城河，但社区团购整体盈利能力有限。
+        </div>
+
+        <div class="risk-item">
+            <strong>无消费者端转换成本</strong>：电商行业最大的结构性弱点——用户可以在5秒内切换到竞品APP。PDD没有京东Plus式的会员锁定，没有Apple式的生态绑定。
+        </div>
+
+        <div class="risk-item">
+            <strong>无品牌溢价</strong>：PDD/Temu的品牌形象是"便宜"而非"品质"。这意味着PDD永远无法像Apple或Nike那样通过品牌提价，只能通过规模和效率赚钱。
+        </div>
+
+        <div class="risk-item">
+            <strong>地缘政治风险</strong>：Temu面临美国取消de minimis免税、欧盟《数字服务法》审查、多国数据安全审查。2025年5月美国关税上调后Temu美国日活用户暴跌58%。
+        </div>
+
+        <div class="risk-item">
+            <strong>VIE架构风险</strong>：PDD通过VIE（可变利益实体）架构控制中国运营实体，投资者持有的是开曼公司股份，而非中国运营实体的直接股权。这是所有中概股的系统性风险。
+        </div>
+
+        <h3>护城河综合评级</h3>
+        <p><strong>窄护城河，且在变窄</strong>——C2M供应链和社交裂变构成差异化优势，但在抖音电商崛起、"国补"政策、关税壁垒三重压力下，PDD的护城河正在被侵蚀。这不是"无法被跨越"的护城河，而是"在特定价格带和下沉市场有竞争力"的窄护城河。</p>
+    </div>
+
+    <h2 id="chapter6">六、利润分配分析</h2>
+    <div class="info-box">
+        <h3>利润分配表（FY2018-FY2025，单位：RMB亿）</h3>
+        <table>
+            <tr>
+                <th>年度</th>
+                <th>净利润</th>
+                <th>股息</th>
+                <th>回购</th>
+                <th>扩张CapEx</th>
+                <th>债务偿还</th>
+                <th>留存金额</th>
+                <th>留存比率</th>
+            </tr>
+            <tr><td>FY2018</td><td>-102</td><td>0</td><td>0</td><td>~5</td><td>0</td><td>-102</td><td>N/A</td></tr>
+            <tr><td>FY2019</td><td>-70</td><td>0</td><td>0</td><td>~5</td><td>0</td><td>-70</td><td>N/A</td></tr>
+            <tr><td>FY2020</td><td>-72</td><td>0</td><td>0</td><td>~5</td><td>0</td><td>-72</td><td>N/A</td></tr>
+            <tr><td>FY2021</td><td>78</td><td>0</td><td>0</td><td>~10</td><td>0</td><td>78</td><td>100%</td></tr>
+            <tr><td>FY2022</td><td>315</td><td>0</td><td>0</td><td>~15</td><td>~10</td><td>315</td><td>100%</td></tr>
+            <tr><td>FY2023</td><td>600</td><td>0</td><td>0</td><td>~20</td><td>~5</td><td>600</td><td>100%</td></tr>
+            <tr><td>FY2024</td><td>1,124</td><td>0</td><td>0</td><td>~30</td><td>~5</td><td>1,124</td><td>100%</td></tr>
+            <tr><td>FY2025</td><td>978</td><td>0</td><td>0</td><td>~30</td><td>~3</td><td>978</td><td>100%</td></tr>
+        </table>
+
+        <div class="highlight">
+            <strong>说明：</strong>PDD Holdings自上市以来<strong>从未派发股息，也从未进行股票回购</strong>。5年累计净利润RMB 3,096亿，5年累计自由现金流RMB 3,937亿，全部留存于公司。此外，PDD在FY2021-2025年间还通过股权激励稀释了约2-3%的股份。这意味着股东不仅没有获得现金回报，还承受了轻微的稀释。
+        </div>
+
+        <h3>留存利润去向分析</h3>
+        <table>
+            <tr><th>项目</th><th>金额（RMB亿）</th><th>说明</th></tr>
+            <tr><td>现金及短期投资增加</td><td>~3,500</td><td>从FY2020末~600亿增至FY2025末4,223亿，大部分利润变成了金融资产</td></tr>
+            <tr><td>CapEx（服务器/办公/物流设施）</td><td>~100</td><td>轻资产模式，资本开支极低</td></tr>
+            <tr><td>商家补贴/生态投资</td><td>~1,000+</td><td>"千亿扶持计划"等商家支持项目，从利润中扣除</td></tr>
+            <tr><td>股权激励</td><td>~200</td><td>稀释股东权益</td></tr>
+        </table>
+
+        <h3>利润分配分析要点</h3>
+
+        <div class="moat-item">
+            <strong>100%留存比率的合理性</strong>：PDD仍处于高速增长期（Temu全球化、供应链深耕），留存利润用于生态投资是合理的。但问题在于——大量利润变成了"现金山"而非再投资。
+        </div>
+
+        <div class="risk-item">
+            <strong>现金囤积问题</strong>：FY2025末现金+短期投资$604亿，而年化CapEx仅约$5亿。公司囤积了大量远超运营需要的现金，既不分配给股东，也未找到高效再投资渠道。这反映了管理层对未来的不确定性和保守态度，但也意味着资本效率低下。
+        </div>
+
+        <div class="risk-item">
+            <strong>零回购+稀释 = 股东净损失</strong>：PDD不回购股票，但每年通过股权激励增发约1%的股份。FY2021-2025年间，总股本从12.53亿增至13.98亿ADS，稀释约11.6%。这意味着每股收益被稀释了约10%。
+        </div>
+
+        <div class="moat-item">
+            <strong>"千亿扶持计划"是隐性分红</strong>：FY2025年PDD推出RMB 1,000亿商家扶持计划，本质上是将利润"分配"给商家生态而非股东。如果这些投资能转化为长期竞争优势，则对股东有利；如果只是补贴换增长，则对股东不利。
+        </div>
+
+        <h3>可持续增长率</h3>
+        <p>可持续增长率 = ROE × 留存比率 = 26.9% × 100% = <strong>26.9%</strong></p>
+        <p>理论增长率很高，但实际FY2025营收增速仅10%，远低于可持续增长率。原因是大量利润变成了现金囤积而非再投资。</p>
+
+        <div class="chart-container">
+            <canvas id="profitChart" height="300"></canvas>
+        </div>
+    </div>
+
+    <h2 id="chapter7">七、投资总结</h2>
+    <div class="info-box">
+        <h3>各维度评分</h3>
+        <div class="summary-grid">
+            <div class="summary-card">
+                <div class="value">⭐⭐⭐⭐</div>
+                <div class="label">业务可理解性</div>
+            </div>
+            <div class="summary-card">
+                <div class="value">⭐⭐</div>
+                <div class="label">护城河宽度</div>
+            </div>
+            <div class="summary-card">
+                <div class="value">⭐⭐</div>
+                <div class="label">资本配置</div>
+            </div>
+            <div class="summary-card">
+                <div class="value">⭐⭐⭐⭐⭐</div>
+                <div class="label">财务安全</div>
+            </div>
+            <div class="summary-card">
+                <div class="value">⭐⭐⭐</div>
+                <div class="label">增长前景</div>
+            </div>
+            <div class="summary-card">
+                <div class="value">⭐⭐⭐⭐</div>
+                <div class="label">估值吸引力</div>
+            </div>
+        </div>
+
+        <h3>估值分析</h3>
+        <table>
+            <tr><th>估值方法</th><th>假设</th><th>内在价值/ADS</th></tr>
+            <tr><td>PE估值</td><td>正常化EPS $10 × 合理PE 14-18x</td><td>$140-$180</td></tr>
+            <tr><td>EV/EBITDA</td><td>EV/EBITDA 8-10x（行业均值）</td><td>$155-$195</td></tr>
+            <tr><td>扣除现金后估值</td><td>EV $796亿 / 13.98亿ADS = $57 + 净现金$43</td><td>$100-$130</td></tr>
+            <tr><td>同行比较</td><td>BABA 23x, JD 9x, AMZN 28x → PDD 12-16x</td><td>$120-$160</td></tr>
+        </table>
+        <p><strong>综合内在价值区间：$120-$170/ADS</strong></p>
+        <p>当前股价约$98，相对内在价值有<strong>22-73%的安全边际</strong>。但需注意：如果扣除$604亿净现金，PDD的经营性业务估值仅约$796亿，对应FY2025调整后净利润~$140亿，PE约5.7x——极其便宜。</p>
+
+        <h3>关键风险</h3>
+        <div class="risk-item">
+            <strong>1. 地缘政治/关税风险</strong>：Temu约48%收入来自海外，美国取消de minimis免税后，Temu美国日活暴跌58%。如果更多国家跟进关税壁垒，Temu的商业模式可能被根本性动摇。
+        </div>
+        <div class="risk-item">
+            <strong>2. 竞争加剧/价格战</strong>：抖音电商GMV超3万亿、"国补"政策使京东/天猫价格竞争力回升、Amazon推出Haul低价区。PDD被迫加大补贴，FY2025营销费用率29%，Q1 2025更高达35%。
+        </div>
+        <div class="risk-item">
+            <strong>3. 增速见顶</strong>：FY2025营收增速降至10%，国内电商用户9亿+接近天花板，Temu海外增速放缓。从"高增长"变为"稳健增长"的转型期，估值可能持续承压。
+        </div>
+        <div class="risk-item">
+            <strong>4. VIE架构/中概股风险</strong>：投资者持有开曼公司股份，不直接持有中国运营实体。PCAOB审计争议、中美关系恶化可能导致退市风险。
+        </div>
+        <div class="risk-item">
+            <strong>5. 现金山效率低下</strong>：$604亿现金躺在账上，既不分配也不高效再投资，实质上是股东资金被"锁定"在公司内部，无法获得市场定价的回报。
+        </div>
+
+        <h3>关键催化剂</h3>
+        <div class="moat-item">
+            <strong>1. 估值极度便宜</strong>：扣除净现金后PE仅约5.7x，EV/EBITDA仅5.8x，即使考虑增速放缓，也是电商行业最便宜的股票之一。
+        </div>
+        <div class="moat-item">
+            <strong>2. 现金山提供安全垫</strong>：$604亿净现金相当于市值的43%，即使Temu完全失败，PDD仍有拼多多这一现金牛+巨额现金储备。
+        </div>
+        <div class="moat-item">
+            <strong>3. 利润率周期性回升</strong>：FY2025利润率下降是主动投资所致，若"千亿扶持计划"见效，FY2026-2027利润率可能回升至25%+。
+        </div>
+        <div class="moat-item">
+            <strong>4. Temu本地化转型</strong>：Temu正从"全托管"转向"半托管"模式，招募本地卖家、建立本地仓，降低关税冲击。
+        </div>
+
+        <h3>巴菲特/芒格视角</h3>
+        <div class="highlight">
+            <strong>芒格会怎么说？</strong><br><br>
+            "这是一家用'便宜'二字征服了9亿人的公司，但'便宜'不是护城河——'便宜'是护城河的对立面。护城河是让客户离不开你，而PDD的客户随时可以离开。PDD就像一家永远在打折的超市，顾客来是因为便宜，走也是因为别人更便宜。不过，这家超市的保险柜里躺着600亿美元现金，这让我很安心。问题是，管理层把钱锁在保险柜里既不花也不分，这让我想起了我常说的那句话：'优秀的管理层应该像优秀的资本家一样思考。'PDD的管理层是优秀的经营者，但他们是否是优秀的资本配置者？这600亿美元现金就是最好的试金石。如果你能接受VIE风险和地缘政治风险，当前估值确实便宜得令人心动——但便宜不等于安全。"
+        </div>
+
+        <h3>投资评级</h3>
+        <p style="font-size:1.3em;text-align:center;font-weight:bold;color:#e67e22;">谨慎买入</p>
+        <p><strong>理由</strong>：扣除净现金后PE仅5.7x，EV/EBITDA 5.8x，提供了极大的安全边际。即使Temu因关税受挫，拼多多国内业务+现金储备也足以支撑当前估值。但需警惕：电商行业零转换成本、地缘政治风险、增速见顶、现金囤积不分配。适合能承受中概股特殊风险、看重安全边际的价值投资者。</p>
+    </div>
+
+    <script>
+        var ctx1 = document.getElementById('roeChart').getContext('2d');
+        new Chart(ctx1, {
+            type: 'line',
+            data: {
+                labels: ['FY2021', 'FY2022', 'FY2023', 'FY2024', 'FY2025'],
+                datasets: [{
+                    label: 'ROE (%)',
+                    data: [11.1, 32.9, 39.4, 44.9, 26.9],
+                    borderColor: '#2e86c1',
+                    backgroundColor: 'rgba(46,134,193,0.1)',
+                    fill: true,
+                    tension: 0.3,
+                    yAxisID: 'y'
+                }, {
+                    label: '负债/总资产 (%)',
+                    data: [48, 42, 38, 35, 34],
+                    borderColor: '#e74c3c',
+                    backgroundColor: 'rgba(231,76,60,0.1)',
+                    fill: true,
+                    tension: 0.3,
+                    yAxisID: 'y1'
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: { title: { display: true, text: 'ROE与负债率趋势（FY2021-FY2025）' } },
+                scales: {
+                    y: { type: 'linear', position: 'left', title: { display: true, text: 'ROE (%)' }, min: 0, max: 50 },
+                    y1: { type: 'linear', position: 'right', title: { display: true, text: '负债/总资产 (%)' }, min: 20, max: 60, grid: { drawOnChartArea: false } }
+                }
+            }
+        });
+
+        var ctx2 = document.getElementById('marginChart').getContext('2d');
+        new Chart(ctx2, {
+            type: 'line',
+            data: {
+                labels: ['FY2018', 'FY2019', 'FY2020', 'FY2021', 'FY2022', 'FY2023', 'FY2024', 'FY2025'],
+                datasets: [{
+                    label: '营业利润率 (%)',
+                    data: [-82.3, -28.3, -15.8, 7.3, 23.3, 23.7, 27.5, 21.6],
+                    borderColor: '#27ae60',
+                    backgroundColor: 'rgba(39,174,96,0.1)',
+                    fill: true,
+                    tension: 0.3
+                }, {
+                    label: '营收增速 (%)',
+                    data: [null, 130, 97, 58, 39, 90, 59, 10],
+                    borderColor: '#f39c12',
+                    backgroundColor: 'rgba(243,156,18,0.1)',
+                    fill: true,
+                    tension: 0.3,
+                    yAxisID: 'y1'
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: { title: { display: true, text: '营业利润率与营收增速趋势（FY2018-FY2025）' } },
+                scales: {
+                    y: { type: 'linear', position: 'left', title: { display: true, text: '营业利润率 (%)' } },
+                    y1: { type: 'linear', position: 'right', title: { display: true, text: '营收增速 (%)' }, grid: { drawOnChartArea: false } }
+                }
+            }
+        });
+
+        var ctx3 = document.getElementById('profitChart').getContext('2d');
+        new Chart(ctx3, {
+            type: 'bar',
+            data: {
+                labels: ['FY2021', 'FY2022', 'FY2023', 'FY2024', 'FY2025'],
+                datasets: [{
+                    label: '净利润 (RMB亿)',
+                    data: [78, 315, 600, 1124, 978],
+                    backgroundColor: '#2e86c1'
+                }, {
+                    label: '现金及短期投资增量 (RMB亿)',
+                    data: [350, 500, 700, 1100, 520],
+                    backgroundColor: '#27ae60'
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: { title: { display: true, text: '净利润 vs 现金增量（RMB亿）——利润去哪了？' } },
+                scales: {
+                    y: { title: { display: true, text: '金额 (RMB亿)' } }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
