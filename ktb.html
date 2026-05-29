@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kontoor Brands (KTB) 价值投资分析</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f2f5;
+            color: #333;
+        }
+        h1 {
+            text-align: center;
+            color: #1a5276;
+            font-size: 2.2em;
+            margin-bottom: 5px;
+        }
+        h2 {
+            color: #1a5276;
+            border-bottom: 2px solid #2e86c1;
+            padding-bottom: 8px;
+            margin-top: 30px;
+        }
+        h3 {
+            color: #2c3e50;
+            margin-top: 20px;
+        }
+        .subtitle {
+            text-align: center;
+            color: #7f8c8d;
+            font-size: 1.1em;
+            margin-bottom: 30px;
+        }
+        .info-box {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            background-color: white;
+        }
+        th, td {
+            padding: 10px 14px;
+            text-align: left;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        th {
+            background-color: #1a5276;
+            color: white;
+            font-weight: bold;
+        }
+        tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        tr:hover {
+            background-color: #eaf2f8;
+        }
+        .highlight {
+            background: #fef9e7;
+            border-left: 4px solid #2e86c1;
+            padding: 15px 20px;
+            margin: 15px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .chart-container {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+        canvas {
+            max-height: 400px;
+        }
+        .tag {
+            display: inline-block;
+            background: #1a5276;
+            color: white;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.85em;
+            margin: 2px;
+        }
+        .tag-green {
+            background: #27ae60;
+        }
+        .tag-orange {
+            background: #e67e22;
+        }
+        .tag-red {
+            background: #c0392b;
+        }
+        a {
+            color: #1a5276;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            font-size: 1em;
+        }
+        .moat-item {
+            background: white;
+            border-radius: 8px;
+            padding: 15px 20px;
+            margin: 10px 0;
+            box-shadow: 0 1px 5px rgba(0,0,0,0.05);
+            border-left: 4px solid #2e86c1;
+        }
+        .moat-item strong {
+            color: #1a5276;
+        }
+        .risk-item {
+            background: white;
+            border-radius: 8px;
+            padding: 15px 20px;
+            margin: 10px 0;
+            box-shadow: 0 1px 5px rgba(0,0,0,0.05);
+            border-left: 4px solid #c0392b;
+        }
+        .star-rating {
+            color: #f39c12;
+            font-size: 1.2em;
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back-link">← 返回索引</a>
+    
+    <h1>Kontoor Brands (NYSE: KTB)</h1>
+    <p class="subtitle">巴菲特/芒格式价值投资基本面分析 | 更新日期：2026年5月</p>
+
+    <div class="info-box">
+        <h2>一、公司基本信息</h2>
+        <table>
+            <tr><td>公司全称</td><td>Kontoor Brands, Inc.</td></tr>
+            <tr><td>股票代码</td><td>NYSE: KTB</td></tr>
+            <tr><td>市值</td><td>约39亿美元（2026年5月）</td></tr>
+            <tr><td>市值（美元）</td><td>≈ $3.9B USD</td></tr>
+            <tr><td>企业价值（EV）</td><td>≈ $5.3B USD（含净债务约$1.4B）</td></tr>
+            <tr><td>成立时间</td><td>2018年（2019年5月从VF Corporation分拆上市）</td></tr>
+            <tr><td>品牌历史</td><td>Lee创立于1889年，Wrangler创立于1947年</td></tr>
+            <tr><td>公司总部</td><td>美国北卡罗来纳州格林斯博罗（Greensboro, NC）</td></tr>
+            <tr><td>最新收盘价</td><td>约$73.84（2026年5月28日）</td></tr>
+            <tr><td>财年截止</td><td>12月最后一个周六（52/53周财年）</td></tr>
+            <tr><td>CEO</td><td>Scott H. Baxter（兼董事会主席）</td></tr>
+            <tr><td>CFO</td><td>Joseph A. Alkire（兼全球运营负责人）</td></tr>
+            <tr><td>员工人数</td><td>约10,600人（2026年）</td></tr>
+            <tr><td>行业</td><td>可选消费 / 服装制造</td></tr>
+            <tr><td>股息</td><td>$2.12/股/年（季度$0.53），股息率约2.9%</td></tr>
+            <tr><td>分拆上市日期</td><td>2019年5月</td></tr>
+            <tr><td>流通股数</td><td>约5,527万股</td></tr>
+            <tr><td>52周价格区间</td><td>$53.55 - $87.00</td></tr>
+        </table>
+        <div class="highlight">
+            <strong>重大事件：</strong>2026年5月21日，Kontoor Brands签署协议将Lee品牌出售给Authentic Brands Group，交易价值最高达10亿美元（初始7.5亿美元+最高2.5亿美元绩效对价）。预计2026年下半年完成交割。出售后，Kontoor将专注于Wrangler和Helly Hansen两大品牌。同时，董事会批准了7.5亿美元的新股票回购授权。
+        </div>
+    </div>
+
+    <div class="info-box">
+        <h2>二、业务分析</h2>
+        
+        <h3>2.1 通俗解释：Kontoor Brands是干什么的？</h3>
+        <p>用最简单的话说，<strong>Kontoor Brands就是一家"卖牛仔裤和户外工作服的公司"</strong>。想象一下，你走进美国任何一家沃尔玛或Target，在服装区看到的那些Wrangler牛仔裤和Lee牛仔裤——这就是Kontoor的产品。Wrangler是牛仔和工人穿的硬核牛仔裤，Lee是更偏日常休闲的经典牛仔裤。2025年6月，公司又收购了挪威户外品牌Helly Hansen——就是那种专业帆船运动员和北海石油工人穿的防水冲锋衣。</p>
+        <p>Kontoor的赚钱逻辑很清楚：<strong>设计→找工厂生产→卖给零售商（批发）和自己卖（DTC直营）</strong>。它的核心优势是品牌历史悠久（Lee 1889年创立，Wrangler 1947年创立），在美国大众牛仔市场拥有约15-20%的份额，仅次于Levi's。它的客户主要是追求性价比的美国中产家庭——一条Wrangler牛仔裤约55-85美元，比Levi's便宜但比快时尚品牌质量好。</p>
+
+        <h3>2.2 业务板块及营收（FY2025，截至2025年12月）</h3>
+        <table>
+            <tr>
+                <th>业务板块</th>
+                <th>营收（百万美元）</th>
+                <th>占总营收比例</th>
+                <th>同比增长</th>
+                <th>增长趋势</th>
+            </tr>
+            <tr>
+                <td>Wrangler（牧马人）</td>
+                <td>$1,910</td>
+                <td>60.6%</td>
+                <td>+6.0%</td>
+                <td><span class="tag tag-green">稳健增长</span> 连续11个季度美国市场份额增长</td>
+            </tr>
+            <tr>
+                <td>Lee（李牌）</td>
+                <td>$750</td>
+                <td>23.8%</td>
+                <td>-4.9%</td>
+                <td><span class="tag tag-red">持续下滑</span> 批发渠道萎缩，即将出售</td>
+            </tr>
+            <tr>
+                <td>Helly Hansen</td>
+                <td>$475</td>
+                <td>15.1%</td>
+                <td>新收购</td>
+                <td><span class="tag tag-green">新增长引擎</span> 2025年6月收购完成</td>
+            </tr>
+            <tr>
+                <td>公司间抵消</td>
+                <td>($17)</td>
+                <td>-0.5%</td>
+                <td>—</td>
+                <td>—</td>
+            </tr>
+            <tr style="font-weight:bold;">
+                <td>合计</td>
+                <td>$3,152</td>
+                <td>100%</td>
+                <td>+20.9%</td>
+                <td>含Helly Hansen并表贡献</td>
+            </tr>
+        </table>
+
+        <h3>2.3 按渠道划分营收</h3>
+        <table>
+            <tr>
+                <th>渠道</th>
+                <th>说明</th>
+                <th>占比（估算）</th>
+            </tr>
+            <tr>
+                <td>批发（Wholesale）</td>
+                <td>通过沃尔玛、Target、Kohl's等大型零售商销售</td>
+                <td>约65%</td>
+            </tr>
+            <tr>
+                <td>直面消费者（DTC）</td>
+                <td>自有电商网站+品牌直营店+奥特莱斯店</td>
+                <td>约35%</td>
+            </tr>
+        </table>
+        <div class="highlight">
+            <strong>渠道趋势：</strong>DTC渠道持续快速增长，2025年全球DTC增长约9%，其中数字电商增长约16%。DTC毛利率比批发高约400个基点，渠道结构改善是毛利率扩张的重要驱动力。
+        </div>
+
+        <h3>2.4 按地理区域划分营收（FY2025）</h3>
+        <table>
+            <tr>
+                <th>区域</th>
+                <th>营收占比（估算）</th>
+                <th>说明</th>
+            </tr>
+            <tr>
+                <td>美国</td>
+                <td>约75%</td>
+                <td>最大市场，Wrangler和Lee的核心阵地</td>
+            </tr>
+            <tr>
+                <td>国际</td>
+                <td>约25%</td>
+                <td>欧洲、亚太、拉美；Helly Hansen贡献大量国际收入</td>
+            </tr>
+        </table>
+
+        <h3>2.5 商业模式核心</h3>
+        <p>Kontoor的商业模式可以概括为：<strong>"经典品牌+轻资产运营+多渠道分销"</strong></p>
+        <ul>
+            <li><strong>品牌授权+自主运营并行：</strong>核心市场（美国、欧洲）自主运营，部分区域通过授权合作伙伴运营</li>
+            <li><strong>外包生产：</strong>不拥有工厂，通过全球采购网络（孟加拉国、墨西哥、中国等）代工生产</li>
+            <li><strong>批发为主、DTC为辅：</strong>批发仍是主要渠道，但DTC占比持续提升</li>
+            <li><strong>"Project Jeanius"转型计划：</strong>2024年启动的全球转型项目，目标5000万-1亿美元利润改善，通过供应链优化、组织精简和数字化提升效率</li>
+        </ul>
+    </div>
+
+    <div class="info-box">
+        <h2>三、业务板块产品竞争力分析</h2>
+
+        <h3>3.1 Wrangler（牧马人）产品竞争力分析</h3>
+        
+        <div class="moat-item">
+            <strong>1. 可替代性：<span class="tag tag-orange">中等</span></strong>
+            <ul>
+                <li><strong>主要替代品：</strong>Levi's牛仔裤、Lee牛仔裤、American Eagle牛仔裤、Gap牛仔裤、快时尚品牌（H&M、Zara）、自有品牌牛仔裤（沃尔玛George、Target Denim）</li>
+                <li><strong>替代品体验差距：</strong>Levi's品牌力更强但价格更高；快时尚更便宜但质量差距明显；自有品牌价格低但缺乏品牌认同。Wrangler在"耐用+性价比"定位上几乎没有完全对等的替代品</li>
+                <li><strong>替代趋势：</strong>稳定。牛仔裤品类本身面临运动休闲裤（athleisure）的长期替代压力，但Wrangler通过拓展生活方式系列和女性市场在应对</li>
+            </ul>
+        </div>
+
+        <div class="moat-item">
+            <strong>2. 客户转换成本：<span class="tag tag-red">低</span></strong>
+            <ul>
+                <li><strong>财务转换成本：</strong>几乎为零。一条牛仔裤$55-85，消费者换品牌无任何直接成本</li>
+                <li><strong>时间转换成本：</strong>低。只需找到新品牌中合适的尺码和版型</li>
+                <li><strong>心理转换成本：</strong>中等偏低。Wrangler在牛仔/工装文化中有深厚情感认同，部分消费者因"Wrangler就是牛仔穿的"而忠诚</li>
+                <li><strong>捆绑转换成本：</strong>低。无订阅或捆绑销售模式</li>
+                <li><strong>综合评估：</strong>消费者换品牌几乎没有摩擦，品牌忠诚度主要靠情感和文化认同维持</li>
+            </ul>
+        </div>
+
+        <div class="moat-item">
+            <strong>3. 定价权：<span class="tag tag-orange">中等</span></strong>
+            <ul>
+                <li><strong>历史提价记录：</strong>过去5年Wrangler年均提价约2-3%，略高于CPI。通过产品组合升级（更多stretch面料、生活方式系列）实现隐性提价</li>
+                <li><strong>提价vs通胀：</strong>基本跑赢CPI，但主要靠产品结构升级而非直接涨价</li>
+                <li><strong>定价权来源：</strong>品牌认知（美国牛仔文化符号）+性价比定位（比Levi's便宜但质量相当）+批发渠道议价能力</li>
+                <li><strong>定价权趋势：</strong>稳定偏强。DTC渠道占比提升增强了定价控制力，但大众零售渠道对价格敏感</li>
+                <li><strong>巴菲特测试：</strong>如果Wrangler提价10%（从$70涨到$77），部分价格敏感消费者可能转向Lee或自有品牌，但核心工装用户和品牌忠诚者不会离开</li>
+            </ul>
+        </div>
+
+        <p><strong>综合竞争力评级：⭐⭐⭐</strong>（3/5星）——品牌有认知度但护城河不深，主要靠性价比定位和渠道覆盖维持竞争地位</p>
+
+        <h3>3.2 Lee（李牌）产品竞争力分析</h3>
+        
+        <div class="moat-item">
+            <strong>1. 可替代性：<span class="tag tag-orange">中等偏高</span></strong>
+            <ul>
+                <li><strong>主要替代品：</strong>与Wrangler类似，但Lee的差异化更弱——既没有Wrangler的牛仔文化符号，也没有Levi's的潮流引领力</li>
+                <li><strong>替代品体验差距：</strong>Lee与Gap、American Eagle等品牌在"日常休闲牛仔裤"定位上高度重叠，替代品体验差距很小</li>
+                <li><strong>替代趋势：</strong>加速。Lee在美国批发渠道持续萎缩，国际市场（尤其是中国）也面临本土品牌竞争</li>
+            </ul>
+        </div>
+
+        <div class="moat-item">
+            <strong>2. 客户转换成本：<span class="tag tag-red">极低</span></strong>
+            <ul>
+                <li><strong>财务转换成本：</strong>零</li>
+                <li><strong>时间转换成本：</strong>极低</li>
+                <li><strong>心理转换成本：</strong>低。Lee品牌忠诚度弱于Wrangler和Levi's</li>
+                <li><strong>综合评估：</strong>Lee缺乏独特的品牌定位，消费者切换到其他品牌几乎没有障碍</li>
+            </ul>
+        </div>
+
+        <div class="moat-item">
+            <strong>3. 定价权：<span class="tag tag-red">弱</span></strong>
+            <ul>
+                <li><strong>历史提价记录：</strong>Lee近年提价能力有限，收入持续下滑反映定价权不足</li>
+                <li><strong>提价vs通胀：</strong>难以跑赢通胀</li>
+                <li><strong>定价权来源：</strong>主要靠历史品牌认知，但缺乏独特性支撑溢价</li>
+                <li><strong>定价权趋势：</strong>削弱。这正是Kontoor决定出售Lee的核心原因——品牌缺乏足够定价权和增长潜力</li>
+                <li><strong>巴菲特测试：</strong>如果Lee提价10%，大量消费者会转向更便宜的替代品</li>
+            </ul>
+        </div>
+
+        <p><strong>综合竞争力评级：⭐⭐</strong>（2/5星）——品牌认知度尚存但竞争力持续下滑，出售决策合理</p>
+
+        <h3>3.3 Helly Hansen产品竞争力分析</h3>
+        
+        <div class="moat-item">
+            <strong>1. 可替代性：<span class="tag tag-green">低</span></strong>
+            <ul>
+                <li><strong>主要替代品：</strong>North Face、Patagonia、Columbia、Arc'teryx、Musto（帆船专业领域）</li>
+                <li><strong>替代品体验差距：</strong>在专业航海/近海工作服领域，Helly Hansen的技术壁垒（防水透气、极端天气防护）让替代品差距较大。在普通户外休闲领域，替代品差距缩小</li>
+                <li><strong>替代趋势：</strong>稳定。专业领域替代困难，但大众户外市场竞争加剧</li>
+            </ul>
+        </div>
+
+        <div class="moat-item">
+            <strong>2. 客户转换成本：<span class="tag tag-orange">中等</span></strong>
+            <ul>
+                <li><strong>财务转换成本：</strong>中等。专业级Helly Hansen产品价格$200-600，更换品牌意味着重新投资</li>
+                <li><strong>时间转换成本：</strong>低。服装品类试错成本低</li>
+                <li><strong>心理转换成本：</strong>中等。在航海和北海石油工人社区中，Helly Hansen有近乎"标准装备"的地位</li>
+                <li><strong>综合评估：</strong>专业用户转换成本较高，休闲用户转换成本低</li>
+            </ul>
+        </div>
+
+        <div class="moat-item">
+            <strong>3. 定价权：<span class="tag tag-green">强</span></strong>
+            <ul>
+                <li><strong>历史提价记录：</strong>高端户外品牌通常能以3-5%年率提价，跑赢通胀</li>
+                <li><strong>提价vs通胀：</strong>跑赢CPI，专业户外装备的溢价能力较强</li>
+                <li><strong>定价权来源：</strong>技术壁垒（防水透气专利）+专业领域品牌权威（航海、近海作业）+北欧品牌溢价</li>
+                <li><strong>定价权趋势：</strong>稳定偏强。户外运动和可持续功能性服装需求增长</li>
+                <li><strong>巴菲特测试：</strong>如果Helly Hansen提价10%，专业用户（航海者、石油工人）不会离开，因为安全和性能不能妥协；休闲用户可能部分流失</li>
+            </ul>
+        </div>
+
+        <p><strong>综合竞争力评级：⭐⭐⭐⭐</strong>（4/5星）——专业领域护城河较深，定价权强，是Kontoor未来增长的核心引擎</p>
+    </div>
+
+    <div class="info-box">
+        <h2>四、历史财务指标</h2>
+        <p>注：Kontoor Brands于2019年5月从VF Corporation分拆上市，2019年数据为不完整财年。以下为2019年（分拆年）至2025年的关键财务指标。</p>
+
+        <h3>4.1 核心财务指标年度数据</h3>
+        <table>
+            <tr>
+                <th>年度</th>
+                <th>营收（百万美元）</th>
+                <th>净利润（百万美元）</th>
+                <th>ROE</th>
+                <th>负债/资产</th>
+                <th>权益乘数</th>
+                <th>PE比率</th>
+                <th>毛利率</th>
+            </tr>
+            <tr>
+                <td>2019*</td>
+                <td>$2,549</td>
+                <td>$97</td>
+                <td>~12%</td>
+                <td>~65%</td>
+                <td>~2.9x</td>
+                <td>~30x</td>
+                <td>39.4%</td>
+            </tr>
+            <tr>
+                <td>2020</td>
+                <td>$2,098</td>
+                <td>$68</td>
+                <td>~8%</td>
+                <td>~67%</td>
+                <td>~3.0x</td>
+                <td>~45x</td>
+                <td>41.2%</td>
+            </tr>
+            <tr>
+                <td>2021</td>
+                <td>$2,476</td>
+                <td>$195</td>
+                <td>~25%</td>
+                <td>~58%</td>
+                <td>~2.4x</td>
+                <td>~18x</td>
+                <td>44.8%</td>
+            </tr>
+            <tr>
+                <td>2022</td>
+                <td>$2,631</td>
+                <td>$245</td>
+                <td>~40%</td>
+                <td>~52%</td>
+                <td>~2.1x</td>
+                <td>~9x</td>
+                <td>43.1%</td>
+            </tr>
+            <tr>
+                <td>2023</td>
+                <td>$2,607</td>
+                <td>$231</td>
+                <td>~55%</td>
+                <td>~48%</td>
+                <td>~1.9x</td>
+                <td>~10x</td>
+                <td>41.7%</td>
+            </tr>
+            <tr>
+                <td>2024</td>
+                <td>$2,608</td>
+                <td>$246</td>
+                <td>~60%</td>
+                <td>~45%</td>
+                <td>~1.8x</td>
+                <td>~15x</td>
+                <td>44.5%</td>
+            </tr>
+            <tr>
+                <td>2025</td>
+                <td>$3,152</td>
+                <td>$227</td>
+                <td>~60%</td>
+                <td>~81%</td>
+                <td>~5.3x</td>
+                <td>~17x</td>
+                <td>45.2%</td>
+            </tr>
+        </table>
+        <p>*2019年为分拆年，数据不完整；2025年含Helly Hansen收购并表，负债率因收购融资大幅上升</p>
+
+        <div class="highlight">
+            <strong>关键趋势解读：</strong>
+            <ul>
+                <li><strong>ROE异常高（60%+）：</strong>这并非纯粹的经营卓越，而是财务杠杆+低净资产的结果。Kontoor通过大量回购和分红将净资产压到极低水平（2024年底股东权益仅约$4亿），导致ROE被放大。这是典型的"财务工程ROE"而非"经营ROE"。</li>
+                <li><strong>2025年负债率跳升：</strong>因收购Helly Hansen融资约$9.6亿，长期债务从$7.4亿增至$13.4亿，负债/资产比从45%升至81%。</li>
+                <li><strong>毛利率持续改善：</strong>从2020年的41.2%提升至2025年的45.2%，主要受益于Project Jeanius成本节约、DTC渠道占比提升和产品组合优化。</li>
+            </ul>
+        </div>
+
+        <h3>4.2 营收与净利润趋势图</h3>
+        <div class="chart-container">
+            <canvas id="revenueChart"></canvas>
+        </div>
+    </div>
+
+    <div class="info-box">
+        <h2>五、竞争分析</h2>
+
+        <h3>5.1 各业务板块主要竞争对手</h3>
+        <table>
+            <tr>
+                <th>业务板块</th>
+                <th>主要竞争对手</th>
+                <th>Kontoor市场份额</th>
+                <th>竞争地位</th>
+            </tr>
+            <tr>
+                <td>牛仔裤（Wrangler+Lee）</td>
+                <td>Levi Strauss（25-30%）、American Eagle（8-12%）、Gap（5-8%）、PVH/Calvin Klein（5-7%）</td>
+                <td>15-20%（美国市场）</td>
+                <td>第二名，仅次于Levi's</td>
+            </tr>
+            <tr>
+                <td>户外/工作服（Helly Hansen）</td>
+                <td>North Face（VF Corp）、Patagonia、Columbia、Arc'teryx（亚玛芬）</td>
+                <td>小众专业市场</td>
+                <td>航海/近海作业领域领先</td>
+            </tr>
+        </table>
+
+        <h3>5.2 经济护城河评估</h3>
+        
+        <div class="moat-item">
+            <strong>品牌力：<span class="tag tag-orange">中等</span></strong>
+            <p>Wrangler和Lee都是百年品牌，在美国有深厚的文化认同。但品牌力不及Levi's——Levi's是全球牛仔裤的代名词，而Wrangler更多是"美国牛仔"的细分符号。Helly Hansen在专业航海领域品牌力极强，但在大众户外市场知名度不及North Face和Patagonia。</p>
+        </div>
+
+        <div class="moat-item">
+            <strong>成本优势：<span class="tag tag-orange">中等</span></strong>
+            <p>Project Jeanius转型计划正在通过供应链优化和运营精简降低成本。大规模采购带来一定议价能力，但服装行业本身成本优势难以持续——面料、劳动力成本波动大，且竞争对手同样依赖亚洲代工。</p>
+        </div>
+
+        <div class="moat-item">
+            <strong>网络效应：<span class="tag tag-red">无</span></strong>
+            <p>服装行业基本不存在网络效应。</p>
+        </div>
+
+        <div class="moat-item">
+            <strong>专利/知识产权：<span class="tag tag-orange">弱</span></strong>
+            <p>Helly Hansen拥有一些防水透气技术专利，但整体上服装行业的专利保护力有限。Wrangler的Indigood无水染色技术有一定差异化，但不足以构成实质性壁垒。</p>
+        </div>
+
+        <div class="moat-item">
+            <strong>转换成本：<span class="tag tag-red">低</span></strong>
+            <p>消费者更换牛仔裤品牌几乎零成本。批发渠道的零售商有一定"货架转换成本"（更换品牌需要重新谈判、调整陈列），但也很低。</p>
+        </div>
+
+        <div class="moat-item">
+            <strong>规模优势：<span class="tag tag-orange">中等</span></strong>
+            <p>Kontoor在美国大众牛仔市场的规模仅次于Levi's，在沃尔玛等大型零售商的货架空间和采购议价上有一定优势。但规模优势在服装行业不如在科技或工业行业那么显著。</p>
+        </div>
+
+        <h3>5.3 护城河综合评估</h3>
+        <div class="highlight">
+            <strong>护城河评级：窄（Narrow Moat）</strong>
+            <p>Kontoor的护城河主要来自Wrangler的品牌认知和批发渠道覆盖，但护城河宽度有限。Lee品牌护城河正在被侵蚀（这也是出售的原因）。Helly Hansen在专业领域有更强的护城河，但规模尚小。整体而言，Kontoor处于"有护城河但不够宽"的状态——品牌有价值但不足以阻止客户流失，规模有优势但不足以碾压竞争对手。</p>
+        </div>
+    </div>
+
+    <div class="info-box">
+        <h2>六、利润分配分析</h2>
+        <p>注：遵循"回购计入留存"原则，留存金额 = 净利润 - 股息，回购归入留存类别。</p>
+
+        <h3>6.1 利润分配表（2019-2025）</h3>
+        <table>
+            <tr>
+                <th>年度</th>
+                <th>净利润（百万）</th>
+                <th>股息（百万）</th>
+                <th>回购（百万）</th>
+                <th>扩张CapEx（百万）</th>
+                <th>债务偿还（百万）</th>
+                <th>留存金额（百万）</th>
+                <th>留存比率</th>
+            </tr>
+            <tr>
+                <td>2019*</td>
+                <td>$97</td>
+                <td>$31</td>
+                <td>$0</td>
+                <td>~$25</td>
+                <td>~$0</td>
+                <td>$66</td>
+                <td>68%</td>
+            </tr>
+            <tr>
+                <td>2020</td>
+                <td>$68</td>
+                <td>$74</td>
+                <td>$0</td>
+                <td>~$20</td>
+                <td>~$0</td>
+                <td>-$6</td>
+                <td>-9%</td>
+            </tr>
+            <tr>
+                <td>2021</td>
+                <td>$195</td>
+                <td>$90</td>
+                <td>$0</td>
+                <td>~$25</td>
+                <td>~$50</td>
+                <td>$105</td>
+                <td>54%</td>
+            </tr>
+            <tr>
+                <td>2022</td>
+                <td>$245</td>
+                <td>$144</td>
+                <td>$50</td>
+                <td>~$30</td>
+                <td>~$100</td>
+                <td>$101</td>
+                <td>41%</td>
+            </tr>
+            <tr>
+                <td>2023</td>
+                <td>$231</td>
+                <td>$112</td>
+                <td>$30</td>
+                <td>~$30</td>
+                <td>~$50</td>
+                <td>$119</td>
+                <td>52%</td>
+            </tr>
+            <tr>
+                <td>2024</td>
+                <td>$246</td>
+                <td>$112</td>
+                <td>$86</td>
+                <td>~$35</td>
+                <td>~$50</td>
+                <td>$134</td>
+                <td>54%</td>
+            </tr>
+            <tr>
+                <td>2025</td>
+                <td>$227</td>
+                <td>$116</td>
+                <td>$25</td>
+                <td>~$50</td>
+                <td>$235</td>
+                <td>$111</td>
+                <td>49%</td>
+            </tr>
+        </table>
+        <p>*2019年为分拆不完整财年；2020年股息超过净利润（因支付了前期累积股息）</p>
+
+        <h3>6.2 利润分配分析要点</h3>
+        <div class="highlight">
+            <ul>
+                <li><strong>留存比率趋势：</strong>从2020年的负值（股息超净利润）逐步恢复到2024-2025年的49-54%，处于"平衡分配"区间。出售Lee后预计留存比率将显著变化——7.5亿美元以上的回购将大幅提升"留存中的回购占比"。</li>
+                <li><strong>留存质量：</strong>2022-2025年留存主要用于回购股票和偿还债务（去杠杆），而非高回报的再投资。这与巴菲特偏好的"高留存+高ROE再投资"模式有差距。</li>
+                <li><strong>回购时机：</strong>2022年在低估值时回购（PE约9x），时机较好；2024年在PE约15x时回购$86M，时机一般；2025年因收购Helly Hansen限制了回购。总体回购时机判断中等偏上。</li>
+                <li><strong>债务偿还：</strong>2025年主动偿还$2.35亿定期贷款，展现了强劲的现金生成能力和去杠杆决心。预计2026年还将偿还$2.25亿。</li>
+                <li><strong>可持续增长率：</strong>ROE（60%）× 留存比率（49%）≈ 29%。但需注意ROE被财务杠杆放大，真实经营ROE远低于60%。</li>
+            </ul>
+        </div>
+
+        <h3>6.3 利润分配饼图（2025年）</h3>
+        <div class="chart-container">
+            <canvas id="profitAllocationChart"></canvas>
+        </div>
+    </div>
+
+    <div class="info-box">
+        <h2>七、投资总结</h2>
+
+        <h3>7.1 各维度评分</h3>
+        <table>
+            <tr>
+                <th>维度</th>
+                <th>评分（1-5）</th>
+                <th>说明</th>
+            </tr>
+            <tr>
+                <td>业务可理解性</td>
+                <td><span class="star-rating">⭐⭐⭐⭐⭐</span></td>
+                <td>卖牛仔裤和户外服装，业务模式简单透明，容易理解</td>
+            </tr>
+            <tr>
+                <td>护城河宽度</td>
+                <td><span class="star-rating">⭐⭐</span></td>
+                <td>窄护城河。品牌有认知但替代品多、转换成本低、定价权有限</td>
+            </tr>
+            <tr>
+                <td>资本配置</td>
+                <td><span class="star-rating">⭐⭐⭐⭐</span></td>
+                <td>管理层积极去杠杆、回购时机尚可、出售Lee聚焦核心、收购Helly Hansen拓展增长</td>
+            </tr>
+            <tr>
+                <td>财务安全</td>
+                <td><span class="star-rating">⭐⭐⭐</span></td>
+                <td>2025年因收购Helly Hansen负债率跳升（净杠杆约2x），但去杠杆路径清晰，现金流强劲</td>
+            </tr>
+            <tr>
+                <td>增长前景</td>
+                <td><span class="star-rating">⭐⭐⭐</span></td>
+                <td>Wrangler稳健增长+Helly Hansen新增长引擎，但Lee出售后短期收入减少，牛仔裤品类整体增长缓慢</td>
+            </tr>
+            <tr>
+                <td>估值吸引力</td>
+                <td><span class="star-rating">⭐⭐⭐⭐</span></td>
+                <td>PE约14x，低于行业平均；EV/EBITDA约9.8x；P/FCF约9.8x；股息率约2.9%。出售Lee后回购将显著增厚EPS</td>
+            </tr>
+        </table>
+
+        <h3>7.2 估值对比</h3>
+        <table>
+            <tr>
+                <th>公司</th>
+                <th>PE</th>
+                <th>P/S</th>
+                <th>EV/EBITDA</th>
+                <th>股息率</th>
+            </tr>
+            <tr>
+                <td>Kontoor Brands (KTB)</td>
+                <td>~14x</td>
+                <td>1.24x</td>
+                <td>~9.8x</td>
+                <td>2.9%</td>
+            </tr>
+            <tr>
+                <td>Levi Strauss (LEVI)</td>
+                <td>~22x</td>
+                <td>1.0x</td>
+                <td>~12x</td>
+                <td>2.5%</td>
+            </tr>
+            <tr>
+                <td>Gildan Activewear (GIL)</td>
+                <td>~17x</td>
+                <td>2.0x</td>
+                <td>~11x</td>
+                <td>1.6%</td>
+            </tr>
+            <tr>
+                <td>VF Corporation (VFC)</td>
+                <td>~25x</td>
+                <td>1.5x</td>
+                <td>~14x</td>
+                <td>~5%</td>
+            </tr>
+        </table>
+
+        <h3>7.3 关键风险</h3>
+        <div class="risk-item">
+            <strong>1. 关税风险：</strong>Kontoor约80%产品从海外采购（孟加拉国、墨西哥等），美国关税政策变化可能显著影响成本。公司估计2025年未缓解的关税影响约$5000万。</div>
+        <div class="risk-item">
+            <strong>2. 大客户依赖：</strong>沃尔玛是最大客户，占批发收入的很大比例。如果沃尔玛削减订单或增加自有品牌替代，将严重影响营收。</div>
+        <div class="risk-item">
+            <strong>3. Lee出售执行风险：</strong>出售Lee需获得监管批准，交易可能延迟或失败。即使完成，短期内Lee的收入贡献将消失，需要通过回购和成本削减来弥补EPS影响。</div>
+        <div class="risk-item">
+            <strong>4. 高杠杆风险：</strong>收购Helly Hansen后净杠杆约2x，虽然去杠杆计划明确，但若宏观经济恶化导致现金流下降，偿债压力将增大。</div>
+        <div class="risk-item">
+            <strong>5. 时尚趋势风险：</strong>牛仔裤品类面临运动休闲（athleisure）的长期替代趋势，年轻消费者对传统牛仔裤的兴趣可能持续下降。</div>
+
+        <h3>7.4 关键催化剂</h3>
+        <div class="moat-item">
+            <strong>1. Lee出售完成：</strong>7.5亿美元+现金将用于回购和偿债，7.5亿美元新回购授权将显著增厚EPS。预计2026年下半年完成。</div>
+        <div class="moat-item">
+            <strong>2. Helly Hansen整合加速：</strong>如果Helly Hansen的运营改善和渠道协同超预期，将成为重要的利润增长点。</div>
+        <div class="moat-item">
+            <strong>3. Project Jeanius见效：</strong>5000万-1亿美元的利润改善目标如果实现，将进一步提升毛利率和运营效率。</div>
+        <div class="moat-item">
+            <strong>4. 去杠杆超预期：</strong>2025年已偿还$2.35亿，2026年预计再还$2.25亿，净杠杆将降至1.5x以下，为更多回购创造空间。</div>
+
+        <h3>7.5 投资评级</h3>
+        <div class="highlight">
+            <strong>评级：谨慎买入（Cautious Buy）</strong>
+            <p>Kontoor Brands是一家业务简单易懂、估值偏低、管理层积极进行资本配置的公司。当前PE约14x，在服装行业中属于较低水平。出售Lee聚焦Wrangler+Helly Hansen的战略方向正确，7.5亿美元回购将显著增厚EPS。但需注意：护城河不宽（品牌服装竞争激烈）、杠杆偏高（收购Helly Hansen后）、牛仔裤品类增长缓慢。建议在$65以下建立仓位，以获取足够的安全边际。目标价$85-90（基于16-18x PE和$5.5 EPS估算）。</p>
+        </div>
+    </div>
+
+    <script>
+        const ctx1 = document.getElementById('revenueChart').getContext('2d');
+        new Chart(ctx1, {
+            type: 'bar',
+            data: {
+                labels: ['2019*', '2020', '2021', '2022', '2023', '2024', '2025'],
+                datasets: [{
+                    label: '营收（百万美元）',
+                    data: [2549, 2098, 2476, 2631, 2607, 2608, 3152],
+                    backgroundColor: 'rgba(26, 82, 118, 0.7)',
+                    yAxisID: 'y'
+                }, {
+                    label: '净利润（百万美元）',
+                    data: [97, 68, 195, 245, 231, 246, 227],
+                    type: 'line',
+                    borderColor: '#e67e22',
+                    backgroundColor: 'rgba(230, 126, 34, 0.1)',
+                    yAxisID: 'y2',
+                    tension: 0.3,
+                    fill: true
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: { display: true, text: 'Kontoor Brands 营收与净利润趋势（2019-2025）' }
+                },
+                scales: {
+                    y: {
+                        type: 'linear',
+                        position: 'left',
+                        title: { display: true, text: '营收（百万美元）' }
+                    },
+                    y2: {
+                        type: 'linear',
+                        position: 'right',
+                        title: { display: true, text: '净利润（百万美元）' },
+                        grid: { drawOnChartArea: false }
+                    }
+                }
+            }
+        });
+
+        const ctx2 = document.getElementById('profitAllocationChart').getContext('2d');
+        new Chart(ctx2, {
+            type: 'doughnut',
+            data: {
+                labels: ['股息', '回购（留存-回购）', '再投资（留存-CapEx）', '债务偿还'],
+                datasets: [{
+                    data: [116, 25, 50, 235],
+                    backgroundColor: ['#2e86c1', '#27ae60', '#f39c12', '#c0392b']
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: { display: true, text: '2025年利润分配（回购计入留存）' },
+                    legend: { position: 'bottom' }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
