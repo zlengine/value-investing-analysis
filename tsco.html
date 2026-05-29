@@ -1,0 +1,984 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tractor Supply Company (TSCO) 价值投资分析</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f2f5;
+            color: #333;
+        }
+        h1 {
+            text-align: center;
+            color: #1a5276;
+            font-size: 2.2em;
+            margin-bottom: 5px;
+        }
+        h2 {
+            color: #1a5276;
+            border-bottom: 2px solid #2e86c1;
+            padding-bottom: 8px;
+            margin-top: 30px;
+        }
+        h3 {
+            color: #2c3e50;
+            margin-top: 20px;
+        }
+        .subtitle {
+            text-align: center;
+            color: #7f8c8d;
+            font-size: 1.1em;
+            margin-bottom: 30px;
+        }
+        .info-box {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            background-color: white;
+        }
+        th, td {
+            padding: 10px 14px;
+            text-align: left;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        th {
+            background-color: #1a5276;
+            color: white;
+            font-weight: bold;
+        }
+        tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        tr:hover {
+            background-color: #eaf2f8;
+        }
+        .highlight {
+            background: #fef9e7;
+            border-left: 4px solid #2e86c1;
+            padding: 15px 20px;
+            margin: 15px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .chart-container {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+        canvas {
+            max-height: 400px;
+        }
+        .tag {
+            display: inline-block;
+            background: #1a5276;
+            color: white;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.85em;
+            margin: 2px;
+        }
+        .tag-green {
+            background: #27ae60;
+        }
+        .tag-orange {
+            background: #e67e22;
+        }
+        .tag-red {
+            background: #c0392b;
+        }
+        a {
+            color: #1a5276;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            font-size: 1em;
+        }
+        .moat-item {
+            background: white;
+            border-radius: 8px;
+            padding: 15px 20px;
+            margin: 10px 0;
+            box-shadow: 0 1px 5px rgba(0,0,0,0.05);
+            border-left: 4px solid #2e86c1;
+        }
+        .moat-item strong {
+            color: #1a5276;
+        }
+        .risk-item {
+            background: white;
+            border-radius: 8px;
+            padding: 15px 20px;
+            margin: 10px 0;
+            box-shadow: 0 1px 5px rgba(0,0,0,0.05);
+            border-left: 4px solid #c0392b;
+        }
+        .star-rating {
+            color: #f39c12;
+            font-size: 1.2em;
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back-link">← 返回索引</a>
+    
+    <h1>Tractor Supply Company (NASDAQ: TSCO)</h1>
+    <p class="subtitle">巴菲特/芒格式价值投资基本面分析 | 更新日期：2026年5月</p>
+
+    <div class="info-box">
+        <h2>一、公司基本信息</h2>
+        <table>
+            <tr><td>公司全称</td><td>Tractor Supply Company</td></tr>
+            <tr><td>股票代码</td><td>NASDAQ: TSCO</td></tr>
+            <tr><td>市值</td><td>约164亿美元（2026年5月）</td></tr>
+            <tr><td>市值（美元）</td><td>≈ $16.4B USD</td></tr>
+            <tr><td>企业价值（EV）</td><td>≈ $24.5B USD（含净债务约$8.1B，含经营租赁负债）</td></tr>
+            <tr><td>成立时间</td><td>1938年（北达科他州迈诺特，最初为拖拉机配件邮购业务）</td></tr>
+            <tr><td>公司总部</td><td>美国田纳西州布伦特伍德（Brentwood, TN）</td></tr>
+            <tr><td>最新收盘价</td><td>约$31.50（2026年5月28日，拆股后价格）</td></tr>
+            <tr><td>财年截止</td><td>12月最后一个周六（52/53周财年）</td></tr>
+            <tr><td>CEO</td><td>Hal Lawton（2019年12月上任，前Macy's和Home Depot高管）</td></tr>
+            <tr><td>CFO</td><td>Kurt D. Barton</td></tr>
+            <tr><td>员工人数</td><td>约52,000人</td></tr>
+            <tr><td>门店数量</td><td>2,435家Tractor Supply + 206家Petsense（截至2026年3月，覆盖49个州）</td></tr>
+            <tr><td>行业</td><td>可选消费 / 乡村生活专业零售</td></tr>
+            <tr><td>股息</td><td>$0.96/股/年（季度$0.24），股息率约3.0%</td></tr>
+            <tr><td>IPO日期</td><td>1994年</td></tr>
+            <tr><td>流通股数</td><td>约5.27亿股（2024年12月5:1拆股后）</td></tr>
+            <tr><td>52周价格区间</td><td>$29.42 - $55.00（拆股后）</td></tr>
+            <tr><td>拆股历史</td><td>5次拆股，最近一次2024年12月20日5:1拆股</td></tr>
+        </table>
+        <div class="highlight">
+            <strong>重大事件：</strong>2024年12月，公司宣布5:1拆股并发布"Life Out Here 2030"战略，将长期门店目标从3,000家上调至3,200家，TAM从$1,800亿上调至$2,250亿。2025年1月完成收购在线宠物药房Allivet，进入宠物处方药市场。
+        </div>
+    </div>
+
+    <div class="info-box">
+        <h2>二、业务分析</h2>
+        
+        <h3>2.1 通俗解释：Tractor Supply是干什么的？</h3>
+        <p>用最简单的话说，<strong>Tractor Supply就是美国乡村版的大型综合超市</strong>。想象一下，你住在一个小镇上，方圆50英里内没有沃尔玛，更没有Home Depot。你需要买鸡饲料、狗粮、栅栏、除草机、工作靴、花园水管——这些在城里要去三四个不同店才能买齐的东西，在Tractor Supply一家店就能全部搞定。</p>
+        <p>Tractor Supply的定位是<strong>"Life Out Here"（户外生活）</strong>——服务那些住在乡村和郊区、过着"有院子、有宠物、有小农场"生活的人。它的客户不是大型商业农场主，而是<strong>"休闲农民"（recreational farmer）</strong>——周末种种菜、养几只鸡、遛遛狗、修修栅栏的普通家庭。</p>
+        <p>Tractor Supply的赚钱逻辑是：<strong>用消耗品（宠物食品、饲料等）创造高频来店，用大型/重型商品（栅栏、设备等）提升客单价，用"一站式购齐"锁定客户忠诚度</strong>。它的门店面积约15,000-20,000平方英尺（比沃尔玛小5-10倍），但精选16,000-19,500个SKU，针对当地需求量身定制商品组合。</p>
+
+        <h3>2.2 业务板块及营收（FY2025，截至2025年12月27日）</h3>
+        <table>
+            <tr>
+                <th>产品类别</th>
+                <th>营收占比</th>
+                <th>说明</th>
+                <th>增长趋势</th>
+            </tr>
+            <tr>
+                <td>家畜、马匹与农业（Livestock, Equine & Agriculture）</td>
+                <td>约27%</td>
+                <td>饲料、兽药、围栏、马具等——"刚需消耗品"驱动来店频率</td>
+                <td><span class="tag tag-green">稳健</span> C.U.E.品类持续跑赢平均</td>
+            </tr>
+            <tr>
+                <td>伴侣动物（Companion Animal）</td>
+                <td>约24%</td>
+                <td>宠物食品、猫砂、宠物用品——最大单品类，Allivet处方药扩展中</td>
+                <td><span class="tag tag-green">强劲</span> 宠物经济持续增长+处方药增量</td>
+            </tr>
+            <tr>
+                <td>季节性与休闲（Seasonal & Recreation）</td>
+                <td>约24%</td>
+                <td>草坪设备、园艺用品、发电机、户外用品——受天气和景气影响大</td>
+                <td><span class="tag tag-orange">波动</span> 大件可选消费承压</td>
+            </tr>
+            <tr>
+                <td>卡车、工具与五金（Truck, Tool & Hardware）</td>
+                <td>约15%</td>
+                <td>工具、拖车配件、五金件——DIY和维修需求</td>
+                <td><span class="tag tag-orange">稳定</span> 受住房市场景气影响</td>
+            </tr>
+            <tr>
+                <td>服装、礼品与装饰（Clothing, Gift & Décor）</td>
+                <td>约10%</td>
+                <td>工作服、靴子、家居装饰——高毛利补充品类</td>
+                <td><span class="tag tag-orange">承压</span> 可选消费属性强</td>
+            </tr>
+        </table>
+
+        <h3>2.3 按渠道划分营收</h3>
+        <table>
+            <tr>
+                <th>渠道</th>
+                <th>说明</th>
+                <th>占比（估算）</th>
+            </tr>
+            <tr>
+                <td>实体门店</td>
+                <td>2,435家Tractor Supply + 206家Petsense</td>
+                <td>约90%</td>
+            </tr>
+            <tr>
+                <td>数字电商</td>
+                <td>网站+移动端，BOPIS（线上下单门店取货），2024年数字销售超$10亿</td>
+                <td>约10%</td>
+            </tr>
+        </table>
+
+        <h3>2.4 按地理区域划分营收</h3>
+        <table>
+            <tr>
+                <th>区域</th>
+                <th>营收占比</th>
+                <th>说明</th>
+            </tr>
+            <tr>
+                <td>美国</td>
+                <td>100%</td>
+                <td>Tractor Supply仅在美国运营，覆盖49个州</td>
+            </tr>
+            <tr>
+                <td>国际</td>
+                <td>0%</td>
+                <td>无国际业务</td>
+            </tr>
+        </table>
+
+        <h3>2.5 商业模式核心</h3>
+        <p>Tractor Supply的商业模式可以概括为：<strong>"乡村生活一站式购齐+高频消耗品驱动+本地化精选"</strong></p>
+        <ul>
+            <li><strong>消耗品驱动来店频率：</strong>C.U.E.（Consumable, Usable, Edible）产品占营收约50%，创造高频来店，带动"顺便购买"</li>
+            <li><strong>本地化选品：</strong>每家店根据当地气候、农业类型、客户偏好定制SKU组合</li>
+            <li><strong>Project Fusion门店升级：</strong>增加花园中心、改善布局、提升体验，约50%门店已完成升级</li>
+            <li><strong>Neighbor's Club忠诚计划：</strong>3,700万+会员，贡献约75%的销售额</li>
+            <li><strong>自有/独家品牌：</strong>持续提升渗透率，差异化竞争+提升毛利率</li>
+            <li><strong>Life Out Here 2030战略：</strong>六大新举措——本地化、直销（B2B）、宠物处方药、最后一英里配送、零售媒体网络、自有品牌</li>
+        </ul>
+    </div>
+
+    <div class="info-box">
+        <h2>三、业务板块产品竞争力分析</h2>
+
+        <h3>3.1 家畜、马匹与农业（Livestock, Equine & Agriculture）产品竞争力分析</h3>
+        
+        <div class="moat-item">
+            <strong>1. 可替代性：<span class="tag tag-green">低</span></strong>
+            <ul>
+                <li><strong>主要替代品：</strong>Rural King、当地合作社（Co-op）、农场用品店、Chewy（部分宠物/动物用品）、Walmart（基础饲料）</li>
+                <li><strong>替代品体验差距：</strong>在乡村地区，Tractor Supply往往是方圆30英里内唯一能一站式买到饲料+兽药+围栏+马具的商店。Rural King门店数量远少于TSCO（约130家 vs 2,435家），Co-op品类有限，Walmart不卖专业农业用品</li>
+                <li><strong>替代趋势：</strong>稳定。乡村人口密度低，竞争对手难以经济地开设同类门店</li>
+            </ul>
+        </div>
+
+        <div class="moat-item">
+            <strong>2. 客户转换成本：<span class="tag tag-orange">中等</span></strong>
+            <ul>
+                <li><strong>财务转换成本：</strong>低。商品本身无绑定，价格透明</li>
+                <li><strong>时间转换成本：</strong>中等偏高。在乡村地区，最近的替代门店可能需要额外开车30-60分钟</li>
+                <li><strong>心理转换成本：</strong>中等。Tractor Supply的店员通常对农业/动物产品有专业知识，形成信任关系</li>
+                <li><strong>捆绑转换成本：</strong>中等。Neighbor's Club会员积分、一站式购齐便利性增加了转换摩擦</li>
+                <li><strong>综合评估：</strong>地理独占性+一站式便利+会员绑定构成中等转换成本</li>
+            </ul>
+        </div>
+
+        <div class="moat-item">
+            <strong>3. 定价权：<span class="tag tag-green">强</span></strong>
+            <ul>
+                <li><strong>历史提价记录：</strong>过去5年C.U.E.品类年均提价约3-4%，跑赢CPI。通过产品组合升级（高端饲料、有机选项）实现隐性提价</li>
+                <li><strong>提价vs通胀：</strong>跑赢CPI。消耗品需求刚性，客户对小幅提价不敏感</li>
+                <li><strong>定价权来源：</strong>地理独占（乡村地区无替代）+一站式便利+专业知识服务+刚需属性</li>
+                <li><strong>定价权趋势：</strong>稳定偏强。门店密度增加强化本地垄断地位</li>
+                <li><strong>巴菲特测试：</strong>如果饲料价格涨10%，养鸡的客户不会因此开车1小时去别处买——时间成本远超价格差异</li>
+            </ul>
+        </div>
+
+        <p><strong>综合竞争力评级：⭐⭐⭐⭐</strong>（4/5星）——乡村地理独占+刚需消耗品+专业知识服务构成较强护城河</p>
+
+        <h3>3.2 伴侣动物（Companion Animal）产品竞争力分析</h3>
+        
+        <div class="moat-item">
+            <strong>1. 可替代性：<span class="tag tag-orange">中等</span></strong>
+            <ul>
+                <li><strong>主要替代品：</strong>PetSmart/Petco（专业宠物店）、Chewy（在线宠物零售）、Walmart/Target（基础宠物食品）、Amazon</li>
+                <li><strong>替代品体验差距：</strong>在宠物专业品类（处方粮、特殊护理）上，PetSmart/Petco更专业；在价格上，Chewy和Walmart有优势；但Tractor Supply在乡村地区的地理便利性无可替代</li>
+                <li><strong>替代趋势：</strong>加速。Chewy的自动配送和在线便利性正在分流部分宠物用品消费</li>
+            </ul>
+        </div>
+
+        <div class="moat-item">
+            <strong>2. 客户转换成本：<span class="tag tag-orange">中等</span></strong>
+            <ul>
+                <li><strong>财务转换成本：</strong>低。宠物食品和用品无绑定</li>
+                <li><strong>时间转换成本：</strong>中等。乡村地区替代门店距离远，但Chewy在线购买无距离限制</li>
+                <li><strong>捆绑转换成本：</strong>中等。Allivet处方药+Neighbor's Club积分+一站式购齐</li>
+                <li><strong>综合评估：</strong>线下地理独占性被在线零售部分削弱，但处方药和一站式便利仍有绑定效应</li>
+            </ul>
+        </div>
+
+        <div class="moat-item">
+            <strong>3. 定价权：<span class="tag tag-orange">中等</span></strong>
+            <ul>
+                <li><strong>历史提价记录：</strong>宠物食品年均提价约2-3%，与行业平均一致</li>
+                <li><strong>提价vs通胀：</strong>基本跑平CPI，但难以大幅跑赢</li>
+                <li><strong>定价权来源：</strong>地理便利性+一站式购齐。但在线竞争（Chewy）限制了提价空间</li>
+                <li><strong>定价权趋势：</strong>稳定。Allivet处方药可能增强定价权（处方药粘性高）</li>
+                <li><strong>巴菲特测试：</strong>如果宠物食品涨10%，部分客户会转向Chewy自动配送——在线渠道削弱了线下定价权</li>
+            </ul>
+        </div>
+
+        <p><strong>综合竞争力评级：⭐⭐⭐</strong>（3/5星）——乡村地理独占性仍在，但在线竞争正在侵蚀护城河</p>
+
+        <h3>3.3 季节性与休闲（Seasonal & Recreation）产品竞争力分析</h3>
+        
+        <div class="moat-item">
+            <strong>1. 可替代性：<span class="tag tag-red">高</span></strong>
+            <ul>
+                <li><strong>主要替代品：</strong>Home Depot/Lowe's（草坪设备、园艺）、Walmart（季节性装饰）、Amazon、当地五金店</li>
+                <li><strong>替代品体验差距：</strong>Home Depot/Lowe's在草坪设备品类更专业、选择更多；Walmart价格更低；TSCO仅在"乡村特色"品类（如围栏、鸡舍）上有差异化</li>
+                <li><strong>替代趋势：</strong>加速。Home Depot/Lowe's持续向郊区/乡村扩展，在线零售也分流了大件商品</li>
+            </ul>
+        </div>
+
+        <div class="moat-item">
+            <strong>2. 客户转换成本：<span class="tag tag-red">低</span></strong>
+            <ul>
+                <li><strong>财务转换成本：</strong>零</li>
+                <li><strong>时间转换成本：</strong>低。大多数客户附近也有Home Depot/Lowe's</li>
+                <li><strong>捆绑转换成本：</strong>低。季节性商品通常单独购买，无绑定</li>
+                <li><strong>综合评估：</strong>季节性/大件商品是TSCO最脆弱的品类，客户容易比价和切换</li>
+            </ul>
+        </div>
+
+        <div class="moat-item">
+            <strong>3. 定价权：<span class="tag tag-red">弱</span></strong>
+            <ul>
+                <li><strong>历史提价记录：</strong>大件商品（发电机、骑乘式割草机）价格竞争激烈，提价空间有限</li>
+                <li><strong>提价vs通胀：</strong>难以跑赢CPI</li>
+                <li><strong>定价权来源：</strong>主要靠地理便利性，但Home Depot/Lowe's在同类商品上往往有价格优势</li>
+                <li><strong>定价权趋势：</strong>削弱。消费者对大件商品更倾向比价，在线渠道使价格透明度提高</li>
+                <li><strong>巴菲特测试：</strong>如果割草机涨10%，客户会直接去Home Depot或在线购买——零粘性</li>
+            </ul>
+        </div>
+
+        <p><strong>综合竞争力评级：⭐⭐</strong>（2/5星）——高可替代性+低转换成本+弱定价权，是最脆弱的品类</p>
+
+        <h3>3.4 卡车、工具与五金（Truck, Tool & Hardware）产品竞争力分析</h3>
+        
+        <div class="moat-item">
+            <strong>1. 可替代性：<span class="tag tag-orange">中等偏高</span></strong>
+            <ul>
+                <li><strong>主要替代品：</strong>Home Depot/Lowe's、AutoZone（卡车配件）、NAPA、Amazon</li>
+                <li><strong>替代品体验差距：</strong>Home Depot/Lowe's在工具和五金品类更专业；但TSCO在"乡村特色"配件（拖车挂钩、牧场工具）上有差异化</li>
+                <li><strong>替代趋势：</strong>稳定。TSCO的卡车/拖车配件品类有一定独特性</li>
+            </ul>
+        </div>
+
+        <div class="moat-item">
+            <strong>2. 客户转换成本：<span class="tag tag-red">低</span></strong>
+            <ul>
+                <li><strong>财务转换成本：</strong>零</li>
+                <li><strong>时间转换成本：</strong>低。工具和五金是标准化商品</li>
+                <li><strong>综合评估：</strong>标准化商品，客户比价容易，转换无摩擦</li>
+            </ul>
+        </div>
+
+        <div class="moat-item">
+            <strong>3. 定价权：<span class="tag tag-red">弱</span></strong>
+            <ul>
+                <li><strong>历史提价记录：</strong>工具和五金品类价格竞争激烈，提价空间有限</li>
+                <li><strong>提价vs通胀：</strong>难以跑赢</li>
+                <li><strong>定价权来源：</strong>地理便利性+一站式购齐的"顺便购买"效应</li>
+                <li><strong>定价权趋势：</strong>稳定偏弱</li>
+                <li><strong>巴菲特测试：</strong>如果工具涨10%，客户会去Home Depot——标准化商品无溢价空间</li>
+            </ul>
+        </div>
+
+        <p><strong>综合竞争力评级：⭐⭐</strong>（2/5星）——标准化商品+激烈竞争，主要靠"顺便购买"和地理便利</p>
+
+        <h3>3.5 服装、礼品与装饰（Clothing, Gift & Décor）产品竞争力分析</h3>
+        
+        <div class="moat-item">
+            <strong>1. 可替代性：<span class="tag tag-red">极高</span></strong>
+            <ul>
+                <li><strong>主要替代品：</strong>Walmart、Target、Kohl's、Amazon、专业服装店、当地礼品店</li>
+                <li><strong>替代品体验差距：</strong>服装和装饰品是完全竞争品类，替代品体验差距极小</li>
+                <li><strong>替代趋势：</strong>加速。在线零售持续分流</li>
+            </ul>
+        </div>
+
+        <div class="moat-item">
+            <strong>2. 客户转换成本：<span class="tag tag-red">极低</span></strong>
+            <ul>
+                <li><strong>综合评估：</strong>服装和礼品是转换成本最低的品类，客户随时可以切换</li>
+            </ul>
+        </div>
+
+        <div class="moat-item">
+            <strong>3. 定价权：<span class="tag tag-red">极弱</span></strong>
+            <ul>
+                <li><strong>综合评估：</strong>完全竞争市场，价格由市场决定。TSCO的工作服有一定差异化（Carhartt等品牌），但整体定价权极弱</li>
+                <li><strong>巴菲特测试：</strong>如果工作靴涨10%，客户会直接去Walmart或在线购买</li>
+            </ul>
+        </div>
+
+        <p><strong>综合竞争力评级：⭐</strong>（1/5星）——完全竞争品类，仅作为"顺便购买"补充</p>
+    </div>
+
+    <div class="info-box">
+        <h2>四、历史财务指标</h2>
+        <p>注：Tractor Supply于1994年上市，2024年12月进行5:1拆股。以下每股数据均已按拆股后调整。</p>
+
+        <h3>4.1 核心财务指标年度数据</h3>
+        <table>
+            <tr>
+                <th>年度</th>
+                <th>营收（百万美元）</th>
+                <th>净利润（百万美元）</th>
+                <th>ROE</th>
+                <th>负债/资产</th>
+                <th>权益乘数</th>
+                <th>PE比率</th>
+                <th>毛利率</th>
+            </tr>
+            <tr>
+                <td>2010</td>
+                <td>$3,638</td>
+                <td>$168</td>
+                <td>~19%</td>
+                <td>~40%</td>
+                <td>~1.7x</td>
+                <td>~20x</td>
+                <td>34.2%</td>
+            </tr>
+            <tr>
+                <td>2012</td>
+                <td>$4,664</td>
+                <td>$276</td>
+                <td>~22%</td>
+                <td>~38%</td>
+                <td>~1.6x</td>
+                <td>~22x</td>
+                <td>34.8%</td>
+            </tr>
+            <tr>
+                <td>2014</td>
+                <td>$5,712</td>
+                <td>$371</td>
+                <td>~21%</td>
+                <td>~36%</td>
+                <td>~1.6x</td>
+                <td>~25x</td>
+                <td>35.2%</td>
+            </tr>
+            <tr>
+                <td>2016</td>
+                <td>$6,780</td>
+                <td>$437</td>
+                <td>~17%</td>
+                <td>~38%</td>
+                <td>~1.6x</td>
+                <td>~23x</td>
+                <td>35.5%</td>
+            </tr>
+            <tr>
+                <td>2018</td>
+                <td>$7,911</td>
+                <td>$532</td>
+                <td>~18%</td>
+                <td>~40%</td>
+                <td>~1.7x</td>
+                <td>~20x</td>
+                <td>33.8%</td>
+            </tr>
+            <tr>
+                <td>2019</td>
+                <td>$8,352</td>
+                <td>$562</td>
+                <td>~16%</td>
+                <td>~55%</td>
+                <td>~2.2x</td>
+                <td>~22x</td>
+                <td>33.5%</td>
+            </tr>
+            <tr>
+                <td>2020</td>
+                <td>$10,620</td>
+                <td>$749</td>
+                <td>~30%</td>
+                <td>~55%</td>
+                <td>~2.2x</td>
+                <td>~25x</td>
+                <td>34.9%</td>
+            </tr>
+            <tr>
+                <td>2021</td>
+                <td>$12,731</td>
+                <td>$997</td>
+                <td>~42%</td>
+                <td>~58%</td>
+                <td>~2.4x</td>
+                <td>~20x</td>
+                <td>35.5%</td>
+            </tr>
+            <tr>
+                <td>2022</td>
+                <td>$14,205</td>
+                <td>$1,089</td>
+                <td>~48%</td>
+                <td>~62%</td>
+                <td>~2.6x</td>
+                <td>~18x</td>
+                <td>35.8%</td>
+            </tr>
+            <tr>
+                <td>2023</td>
+                <td>$14,556</td>
+                <td>$1,107</td>
+                <td>~52%</td>
+                <td>~63%</td>
+                <td>~2.7x</td>
+                <td>~20x</td>
+                <td>36.3%</td>
+            </tr>
+            <tr>
+                <td>2024</td>
+                <td>$14,883</td>
+                <td>$1,101</td>
+                <td>~49%</td>
+                <td>~65%</td>
+                <td>~2.9x</td>
+                <td>~15x</td>
+                <td>36.3%</td>
+            </tr>
+            <tr>
+                <td>2025</td>
+                <td>$15,524</td>
+                <td>$1,096</td>
+                <td>~43%</td>
+                <td>~67%</td>
+                <td>~3.0x</td>
+                <td>~15x</td>
+                <td>36.4%</td>
+            </tr>
+        </table>
+
+        <div class="highlight">
+            <strong>关键趋势解读：</strong>
+            <ul>
+                <li><strong>ROE异常高（40-50%+）：</strong>这并非纯粹的经营卓越，而是财务杠杆+低净资产的结果。TSCO通过大量回购和分红将净资产压低（2025年底股东权益仅约$25.8亿，而市值$164亿），同时经营租赁负债（$37亿+）未计入传统D/E比率。如果将经营租赁调整入表，真实杠杆更高，"真实ROE"远低于表面数字。</li>
+                <li><strong>营收增速放缓：</strong>从2020-2021年的20%+高增长（疫情红利）降至2023-2025年的2-4%，同店增长仅0-1.2%，反映乡村零售市场趋于饱和+消费者大件消费疲软。</li>
+                <li><strong>毛利率稳定改善：</strong>从2018年的33.8%提升至2025年的36.4%，主要受益于自有品牌渗透率提升、产品组合优化和成本管理。</li>
+                <li><strong>净利润见顶迹象：</strong>2022-2025年净利润在$10.9-11.1亿区间停滞，营收增长被SG&A增速超过所抵消。</li>
+            </ul>
+        </div>
+
+        <h3>4.2 营收与净利润趋势图</h3>
+        <div class="chart-container">
+            <canvas id="revenueChart"></canvas>
+        </div>
+    </div>
+
+    <div class="info-box">
+        <h2>五、竞争分析</h2>
+
+        <h3>5.1 各业务板块主要竞争对手</h3>
+        <table>
+            <tr>
+                <th>竞争领域</th>
+                <th>主要竞争对手</th>
+                <th>TSCO竞争优势</th>
+                <th>竞争劣势</th>
+            </tr>
+            <tr>
+                <td>乡村生活零售（直接竞争）</td>
+                <td>Rural King（~130店，私营）、Bomgaars（~80店，私营）、Runnings（~90店，私营）</td>
+                <td>门店规模2,435家远超对手；品牌认知度高；供应链和采购规模优势</td>
+                <td>Rural King价格略低；部分区域对手更本地化</td>
+            </tr>
+            <tr>
+                <td>家居改善/五金（间接竞争）</td>
+                <td>Home Depot（2,300+店）、Lowe's（1,700+店）</td>
+                <td>TSCO门店更适合小镇（1.5万sqft vs HD 10万+sqft）；租金和库存风险更低</td>
+                <td>HD/LOW在工具、草坪设备品类更专业、选择更多</td>
+            </tr>
+            <tr>
+                <td>宠物用品（间接竞争）</td>
+                <td>PetSmart、Petco、Chewy</td>
+                <td>乡村地理独占；一站式购齐便利</td>
+                <td>专业宠物店品类更深；Chewy在线便利性和自动配送</td>
+            </tr>
+            <tr>
+                <td>大众零售（间接竞争）</td>
+                <td>Walmart、Amazon</td>
+                <td>专业品类（饲料、围栏、马具）Walmart不卖；专业知识服务</td>
+                <td>Walmart价格更低；Amazon便利性无可匹敌</td>
+            </tr>
+        </table>
+
+        <h3>5.2 经济护城河评估</h3>
+        
+        <div class="moat-item">
+            <strong>品牌力：<span class="tag tag-green">强</span></strong>
+            <p>Tractor Supply是美国乡村生活零售的代名词。在目标客户群中，品牌认知度极高——"买饲料去Tractor Supply"几乎是条件反射。85年历史+2,435家门店的规模使品牌具有不可替代性。Neighbor's Club 3,700万+会员进一步强化了品牌粘性。</p>
+        </div>
+
+        <div class="moat-item">
+            <strong>成本优势：<span class="tag tag-orange">中等</span></strong>
+            <p>规模采购带来一定议价能力，但服装和季节性品类与Walmart/Amazon相比无成本优势。在饲料、围栏等乡村专业品类上，规模优势更明显。门店面积小（1.5万sqft）意味着更低租金和库存风险，在小镇市场ROI更高。</p>
+        </div>
+
+        <div class="moat-item">
+            <strong>网络效应：<span class="tag tag-red">弱</span></strong>
+            <p>Neighbor's Club会员计划有一定网络效应（会员越多→数据越好→选品越精准→会员越多），但这是单向增强而非真正的双边网络效应。零售媒体网络可能带来轻量级网络效应。</p>
+        </div>
+
+        <div class="moat-item">
+            <strong>专利/知识产权：<span class="tag tag-red">无</span></strong>
+            <p>零售行业基本不存在专利保护。</p>
+        </div>
+
+        <div class="moat-item">
+            <strong>转换成本：<span class="tag tag-orange">中等</span></strong>
+            <p>地理独占性是TSCO最重要的"转换成本"——在乡村地区，最近的替代门店可能需要额外开车30-60分钟。Neighbor's Club积分、Allivet处方药续方、一站式购齐习惯增加了转换摩擦。但在线零售（Chewy、Amazon）正在削弱这种地理独占性。</p>
+        </div>
+
+        <div class="moat-item">
+            <strong>规模优势：<span class="tag tag-green">强</span></strong>
+            <p>TSCO在乡村零售市场拥有绝对规模优势——2,435家门店 vs Rural King的130家。这意味着：更强的采购议价能力、更高效的分销网络（10个配送中心）、更高的品牌认知度、更低的单位营销成本。新竞争者要在乡村市场达到同等规模几乎不可能。</p>
+        </div>
+
+        <h3>5.3 护城河综合评估</h3>
+        <div class="highlight">
+            <strong>护城河评级：宽（Wide Moat）</strong>
+            <p>TSCO拥有真正的经济护城河，核心来源是<strong>地理独占性+规模优势</strong>。在乡村零售市场，TSCO已经建立了2,435家门店的网络密度，新竞争者复制这一网络的成本极高且ROI不经济。消耗品（饲料、宠物食品）的刚需属性+地理独占性赋予了TSCO在核心品类上的强定价权。但需注意：在线零售正在缓慢侵蚀地理独占性的价值，季节性/大件品类的护城河较窄，整体护城河宽度面临缓慢缩窄的风险。</p>
+        </div>
+    </div>
+
+    <div class="info-box">
+        <h2>六、利润分配分析</h2>
+        <p>注：遵循"回购计入留存"原则，留存金额 = 净利润 - 股息，回购归入留存类别。每股数据已按5:1拆股调整。</p>
+
+        <h3>6.1 利润分配表（2016-2025）</h3>
+        <table>
+            <tr>
+                <th>年度</th>
+                <th>净利润（百万）</th>
+                <th>股息（百万）</th>
+                <th>回购（百万）</th>
+                <th>扩张CapEx（百万）</th>
+                <th>债务偿还（百万）</th>
+                <th>留存金额（百万）</th>
+                <th>留存比率</th>
+            </tr>
+            <tr>
+                <td>2016</td>
+                <td>$437</td>
+                <td>$51</td>
+                <td>$165</td>
+                <td>~$200</td>
+                <td>~$0</td>
+                <td>$386</td>
+                <td>88%</td>
+            </tr>
+            <tr>
+                <td>2017</td>
+                <td>$423</td>
+                <td>$68</td>
+                <td>$200</td>
+                <td>~$210</td>
+                <td>~$0</td>
+                <td>$355</td>
+                <td>84%</td>
+            </tr>
+            <tr>
+                <td>2018</td>
+                <td>$532</td>
+                <td>$74</td>
+                <td>$300</td>
+                <td>~$250</td>
+                <td>~$0</td>
+                <td>$458</td>
+                <td>86%</td>
+            </tr>
+            <tr>
+                <td>2019</td>
+                <td>$562</td>
+                <td>$95</td>
+                <td>$350</td>
+                <td>~$270</td>
+                <td>~$0</td>
+                <td>$467</td>
+                <td>83%</td>
+            </tr>
+            <tr>
+                <td>2020</td>
+                <td>$749</td>
+                <td>$163</td>
+                <td>$400</td>
+                <td>~$300</td>
+                <td>~$0</td>
+                <td>$586</td>
+                <td>78%</td>
+            </tr>
+            <tr>
+                <td>2021</td>
+                <td>$997</td>
+                <td>$238</td>
+                <td>$600</td>
+                <td>~$400</td>
+                <td>~$0</td>
+                <td>$759</td>
+                <td>76%</td>
+            </tr>
+            <tr>
+                <td>2022</td>
+                <td>$1,089</td>
+                <td>$410</td>
+                <td>$550</td>
+                <td>~$450</td>
+                <td>~$0</td>
+                <td>$679</td>
+                <td>62%</td>
+            </tr>
+            <tr>
+                <td>2023</td>
+                <td>$1,107</td>
+                <td>$447</td>
+                <td>$500</td>
+                <td>~$500</td>
+                <td>~$0</td>
+                <td>$660</td>
+                <td>60%</td>
+            </tr>
+            <tr>
+                <td>2024</td>
+                <td>$1,101</td>
+                <td>$469</td>
+                <td>$531</td>
+                <td>~$550</td>
+                <td>~$0</td>
+                <td>$632</td>
+                <td>57%</td>
+            </tr>
+            <tr>
+                <td>2025</td>
+                <td>$1,096</td>
+                <td>$487</td>
+                <td>$342</td>
+                <td>~$600</td>
+                <td>~$0</td>
+                <td>$609</td>
+                <td>56%</td>
+            </tr>
+        </table>
+
+        <h3>6.2 利润分配分析要点</h3>
+        <div class="highlight">
+            <ul>
+                <li><strong>留存比率趋势：</strong>从2016-2018年的83-88%逐步下降至2024-2025年的56-57%，公司从"高速扩张期"向"成熟回报期"过渡。当前处于"平衡分配"区间（50-70%）。</li>
+                <li><strong>留存质量：</strong>留存利润主要用于门店扩张（每年新开90家左右门店）和回购股票。CapEx占营收比约4%，属于中等水平。回购力度在2022-2024年较大（$500-550M/年），2025年有所放缓（$342M）。</li>
+                <li><strong>回购时机：</strong>2024年12月5:1拆股后股价从$50+跌至$31，回购$342M的时机较好。但2021-2023年在PE 20-25x时大量回购，时机偏贵。总体回购时机判断中等。</li>
+                <li><strong>股息增长：</strong>连续15+年持续增长，近年增速约10-12%（2022年77%大幅提升为异常值），当前股息率3.0%，派息率约47%，安全边际充足。</li>
+                <li><strong>可持续增长率：</strong>ROE（43%）× 留存比率（56%）≈ 24%。但需注意ROE被财务杠杆放大，真实经营ROE约15-20%，可持续增长率约8-11%，与公司长期EPS增长目标（8-11%）一致。</li>
+            </ul>
+        </div>
+
+        <h3>6.3 利润分配饼图（2025年）</h3>
+        <div class="chart-container">
+            <canvas id="profitAllocationChart"></canvas>
+        </div>
+    </div>
+
+    <div class="info-box">
+        <h2>七、投资总结</h2>
+
+        <h3>7.1 各维度评分</h3>
+        <table>
+            <tr>
+                <th>维度</th>
+                <th>评分（1-5）</th>
+                <th>说明</th>
+            </tr>
+            <tr>
+                <td>业务可理解性</td>
+                <td><span class="star-rating">⭐⭐⭐⭐⭐</span></td>
+                <td>乡村零售，业务模式简单透明——卖饲料、宠物食品、工具和围栏</td>
+            </tr>
+            <tr>
+                <td>护城河宽度</td>
+                <td><span class="star-rating">⭐⭐⭐⭐</span></td>
+                <td>宽护城河。地理独占性+规模优势+品牌认知，但在线竞争正在缓慢侵蚀</td>
+            </tr>
+            <tr>
+                <td>资本配置</td>
+                <td><span class="star-rating">⭐⭐⭐⭐</span></td>
+                <td>门店扩张回报率高、股息持续增长、回购时机中等偏上、Allivet收购方向正确</td>
+            </tr>
+            <tr>
+                <td>财务安全</td>
+                <td><span class="star-rating">⭐⭐⭐</span></td>
+                <td>传统D/E比率0.68看似健康，但含经营租赁后净杠杆约2.7x EBITDA，处于较高水平</td>
+            </tr>
+            <tr>
+                <td>增长前景</td>
+                <td><span class="star-rating">⭐⭐⭐</span></td>
+                <td>门店扩张至3,200家+同店增长3-5%+EPS增长8-11%，但短期同店增长仅0-1.2%，大件消费疲软</td>
+            </tr>
+            <tr>
+                <td>估值吸引力</td>
+                <td><span class="star-rating">⭐⭐⭐⭐</span></td>
+                <td>PE约15x，低于5年平均（~22x）；P/FCF约15x；股息率3.0%。拆股后股价从高点跌40%+，估值回归合理</td>
+            </tr>
+        </table>
+
+        <h3>7.2 估值对比</h3>
+        <table>
+            <tr>
+                <th>公司</th>
+                <th>PE</th>
+                <th>P/S</th>
+                <th>EV/EBITDA</th>
+                <th>股息率</th>
+            </tr>
+            <tr>
+                <td>Tractor Supply (TSCO)</td>
+                <td>~15x</td>
+                <td>1.06x</td>
+                <td>~13x</td>
+                <td>3.0%</td>
+            </tr>
+            <tr>
+                <td>Home Depot (HD)</td>
+                <td>~23x</td>
+                <td>2.5x</td>
+                <td>~17x</td>
+                <td>2.4%</td>
+            </tr>
+            <tr>
+                <td>Lowe's (LOW)</td>
+                <td>~19x</td>
+                <td>1.5x</td>
+                <td>~14x</td>
+                <td>2.0%</td>
+            </tr>
+            <tr>
+                <td>AutoZone (AZO)</td>
+                <td>~22x</td>
+                <td>2.8x</td>
+                <td>~16x</td>
+                <td>0%</td>
+            </tr>
+            <tr>
+                <td>O'Reilly (ORLY)</td>
+                <td>~24x</td>
+                <td>2.5x</td>
+                <td>~17x</td>
+                <td>0%</td>
+            </tr>
+        </table>
+
+        <h3>7.3 关键风险</h3>
+        <div class="risk-item">
+            <strong>1. 在线竞争侵蚀地理独占性：</strong>Chewy的自动配送和Amazon的便利性正在削弱TSCO"乡村地区无替代"的核心护城河。宠物食品和消耗品最容易被在线渠道替代。</div>
+        <div class="risk-item">
+            <strong>2. 乡村人口萎缩：</strong>美国乡村人口长期趋势是萎缩和老龄化，TSCO的目标市场总量可能缓慢缩小。</div>
+        <div class="risk-item">
+            <strong>3. 高杠杆风险：</strong>含经营租赁后净杠杆约2.7x EBITDA，处于历史较高水平。如果经济衰退导致同店销售大幅下滑，偿债压力将增大。</div>
+        <div class="risk-item">
+            <strong>4. 同店增长停滞：</strong>2023-2025年同店增长仅0-1.2%，反映现有门店网络趋于饱和。Life Out Here 2030的3-5%同店增长目标需要宏观环境配合。</div>
+        <div class="risk-item">
+            <strong>5. 关税和成本压力：</strong>约20-25%产品从海外采购，关税影响估计约$5000万/年。SG&A增速持续超过营收增速，利润率承压。</div>
+
+        <h3>7.4 关键催化剂</h3>
+        <div class="moat-item">
+            <strong>1. Allivet整合见效：</strong>在线宠物药房如果成功与Neighbor's Club会员体系打通，将创造高粘性的处方药续方收入流，显著提升宠物板块的LTV。</div>
+        <div class="moat-item">
+            <strong>2. 同店增长恢复：</strong>如果宏观环境改善（利率下降→大件消费回暖），3-5%同店增长目标可实现，EPS增速将显著回升。</div>
+        <div class="moat-item">
+            <strong>3. 门店扩张至3,200家：</strong>每年新开90家门店，长期仍有约765家新店空间，每家新店首年ROI约30%+。</div>
+        <div class="moat-item">
+            <strong>4. 直销（B2B）和最后一英里配送：</strong>如果成功开拓农场/小企业B2B市场，将打开全新增长空间。</div>
+
+        <h3>7.5 投资评级</h3>
+        <div class="highlight">
+            <strong>评级：买入（Buy）</strong>
+            <p>Tractor Supply是一家业务简单易懂、拥有真正经济护城河（地理独占+规模优势）的优质零售商。当前PE约15x，处于5年来最低水平（5年平均约22x），股价从高点下跌40%+，估值已回归合理区间。公司核心的消耗品业务（饲料+宠物食品，占营收50%+）具有刚需属性和强定价权，为利润提供了底线保护。Life Out Here 2030战略方向正确，门店扩张+同店恢复+新业务（Allivet、B2B）将驱动8-11%的长期EPS增长。主要风险在于在线竞争侵蚀护城河和同店增长持续疲软。建议在$30以下积极建仓，目标价$42-45（基于18-20x PE和$2.25 EPS估算）。</p>
+        </div>
+    </div>
+
+    <script>
+        const ctx1 = document.getElementById('revenueChart').getContext('2d');
+        new Chart(ctx1, {
+            type: 'bar',
+            data: {
+                labels: ['2010', '2012', '2014', '2016', '2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025'],
+                datasets: [{
+                    label: '营收（百万美元）',
+                    data: [3638, 4664, 5712, 6780, 7911, 8352, 10620, 12731, 14205, 14556, 14883, 15524],
+                    backgroundColor: 'rgba(26, 82, 118, 0.7)',
+                    yAxisID: 'y'
+                }, {
+                    label: '净利润（百万美元）',
+                    data: [168, 276, 371, 437, 532, 562, 749, 997, 1089, 1107, 1101, 1096],
+                    type: 'line',
+                    borderColor: '#e67e22',
+                    backgroundColor: 'rgba(230, 126, 34, 0.1)',
+                    yAxisID: 'y2',
+                    tension: 0.3,
+                    fill: true
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: { display: true, text: 'Tractor Supply 营收与净利润趋势（2010-2025）' }
+                },
+                scales: {
+                    y: {
+                        type: 'linear',
+                        position: 'left',
+                        title: { display: true, text: '营收（百万美元）' }
+                    },
+                    y2: {
+                        type: 'linear',
+                        position: 'right',
+                        title: { display: true, text: '净利润（百万美元）' },
+                        grid: { drawOnChartArea: false }
+                    }
+                }
+            }
+        });
+
+        const ctx2 = document.getElementById('profitAllocationChart').getContext('2d');
+        new Chart(ctx2, {
+            type: 'doughnut',
+            data: {
+                labels: ['股息', '回购（留存-回购）', '再投资（留存-CapEx）', '其他留存'],
+                datasets: [{
+                    data: [487, 342, 600, 0],
+                    backgroundColor: ['#2e86c1', '#27ae60', '#f39c12', '#9b59b6']
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: { display: true, text: '2025年利润分配（回购计入留存）' },
+                    legend: { position: 'bottom' }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
