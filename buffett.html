@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>巴菲特 / 伯克希尔·哈撒韦 最新持仓</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f2f5;
+            color: #333;
+        }
+        h1 {
+            text-align: center;
+            color: #1a5276;
+            font-size: 2.2em;
+            margin-bottom: 5px;
+        }
+        h2 {
+            color: #1a5276;
+            border-bottom: 2px solid #2e86c1;
+            padding-bottom: 8px;
+            margin-top: 30px;
+        }
+        h3 {
+            color: #2c3e50;
+            margin-top: 20px;
+        }
+        .subtitle {
+            text-align: center;
+            color: #7f8c8d;
+            font-size: 1.1em;
+            margin-bottom: 30px;
+        }
+        .info-box {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            background-color: white;
+        }
+        th, td {
+            padding: 10px 14px;
+            text-align: left;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        th {
+            background-color: #1a5276;
+            color: white;
+            font-weight: bold;
+        }
+        tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        tr:hover {
+            background-color: #eaf2f8;
+        }
+        .highlight {
+            background: #fef9e7;
+            border-left: 4px solid #2e86c1;
+            padding: 15px 20px;
+            margin: 15px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .chart-container {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+        canvas {
+            max-height: 400px;
+        }
+        .tag {
+            display: inline-block;
+            background: #1a5276;
+            color: white;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.85em;
+            margin: 2px;
+        }
+        .tag-green {
+            background: #27ae60;
+        }
+        .tag-red {
+            background: #c0392b;
+        }
+        .tag-orange {
+            background: #e67e22;
+        }
+        a {
+            color: #1a5276;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            font-size: 1em;
+        }
+        .change-new {
+            color: #27ae60;
+            font-weight: bold;
+        }
+        .change-increase {
+            color: #2980b9;
+            font-weight: bold;
+        }
+        .change-decrease {
+            color: #c0392b;
+            font-weight: bold;
+        }
+        .change-exit {
+            color: #7f8c8d;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back-link">← 返回索引</a>
+    
+    <h1>沃伦·巴菲特 / 伯克希尔·哈撒韦</h1>
+    <p class="subtitle">最新美股持仓 | 数据来源：SEC 13F文件 | 更新：2026年Q1（截至2026年3月31日）</p>
+
+    <div class="info-box">
+        <h2>一、持仓概览</h2>
+        <table>
+            <tr><td>管理人</td><td>沃伦·巴菲特（董事长）/ 格雷格·阿贝尔（CEO，2026年1月上任）</td></tr>
+            <tr><td>管理机构</td><td>Berkshire Hathaway Inc. (NYSE: BRK.A / BRK.B)</td></tr>
+            <tr><td>13F持仓总市值</td><td>约$2,631亿美元</td></tr>
+            <tr><td>持仓股票数量</td><td>29只（上季度42只，减少13只）</td></tr>
+            <tr><td>前十大持仓占比</td><td>90.72%</td></tr>
+            <tr><td>现金+短期国债</td><td>$3,474亿（历史新高）</td></tr>
+            <tr><td>Q1净操作</td><td>净卖出约$81.5亿（连续第14个季度净卖出）</td></tr>
+            <tr><td>投资风格</td><td>集中持有+长期持有+高现金流+宽护城河</td></tr>
+        </table>
+        <div class="highlight">
+            <strong>阿贝尔时代首份完整季报：</strong>2026年Q1是阿贝尔正式接任CEO后的第一个完整季度。调仓明显比巴菲特晚年更积极——清仓16只股票（包括亚马逊、Visa、万事达、联合健康），新建仓3只（达美航空、梅西百货、谷歌C类），大幅增持谷歌A类（+204%）。但核心底仓（苹果、美国运通、可口可乐）一股未动，显示"换人不换核"的延续性。
+        </div>
+    </div>
+
+    <div class="info-box">
+        <h2>二、前十大重仓股</h2>
+        <table>
+            <tr>
+                <th>排名</th>
+                <th>股票代码</th>
+                <th>公司名称</th>
+                <th>持仓占比</th>
+                <th>持仓市值</th>
+                <th>持股数量</th>
+                <th>Q1变动</th>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>AAPL</td>
+                <td>苹果公司</td>
+                <td>21.99%</td>
+                <td>$578.4亿</td>
+                <td>2.279亿股</td>
+                <td>不变（结束连续减持）</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>AXP</td>
+                <td>美国运通</td>
+                <td>17.43%</td>
+                <td>$458.6亿</td>
+                <td>1.516亿股</td>
+                <td>不变</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>KO</td>
+                <td>可口可乐</td>
+                <td>11.56%</td>
+                <td>$304.2亿</td>
+                <td>4.000亿股</td>
+                <td>不变</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>BAC</td>
+                <td>美国银行</td>
+                <td>9.52%</td>
+                <td>$250.4亿</td>
+                <td>5.136亿股</td>
+                <td><span class="change-decrease">小幅减持</span></td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>CVX</td>
+                <td>雪佛龙</td>
+                <td>6.64%</td>
+                <td>$174.6亿</td>
+                <td>8,438万股</td>
+                <td><span class="change-decrease">减持35%</span></td>
+            </tr>
+            <tr>
+                <td>6</td>
+                <td>OXY</td>
+                <td>西方石油</td>
+                <td>6.55%</td>
+                <td>$172.2亿</td>
+                <td>2.649亿股</td>
+                <td>不变</td>
+            </tr>
+            <tr>
+                <td>7</td>
+                <td>GOOGL</td>
+                <td>Alphabet（谷歌A类）</td>
+                <td>5.93%</td>
+                <td>$156.0亿</td>
+                <td>5,425万股</td>
+                <td><span class="change-increase">增持204%</span></td>
+            </tr>
+            <tr>
+                <td>8</td>
+                <td>CB</td>
+                <td>安达保险（Chubb）</td>
+                <td>4.24%</td>
+                <td>$111.6亿</td>
+                <td>3,425万股</td>
+                <td><span class="change-increase">小幅增持</span></td>
+            </tr>
+            <tr>
+                <td>9</td>
+                <td>MCO</td>
+                <td>穆迪</td>
+                <td>4.09%</td>
+                <td>$107.6亿</td>
+                <td>2,467万股</td>
+                <td>不变</td>
+            </tr>
+            <tr>
+                <td>10</td>
+                <td>KHC</td>
+                <td>卡夫亨氏</td>
+                <td>2.78%</td>
+                <td>$73.2亿</td>
+                <td>3.256亿股</td>
+                <td>不变</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="info-box">
+        <h2>三、其他重要持仓</h2>
+        <table>
+            <tr>
+                <th>股票代码</th>
+                <th>公司名称</th>
+                <th>持仓占比（估算）</th>
+                <th>Q1变动</th>
+            </tr>
+            <tr>
+                <td>DAL</td>
+                <td>达美航空</td>
+                <td>~1.0%</td>
+                <td><span class="change-new">新建仓 $26.5亿</span></td>
+            </tr>
+            <tr>
+                <td>GOOG</td>
+                <td>Alphabet（谷歌C类）</td>
+                <td>~0.5%</td>
+                <td><span class="change-new">新建仓 ~$10亿</span></td>
+            </tr>
+            <tr>
+                <td>NYT</td>
+                <td>纽约时报</td>
+                <td>~0.4%</td>
+                <td><span class="change-increase">增持至1,510万股</span></td>
+            </tr>
+            <tr>
+                <td>LEN</td>
+                <td>Lennar（住宅建筑）</td>
+                <td>~0.3%</td>
+                <td><span class="change-increase">增持</span></td>
+            </tr>
+            <tr>
+                <td>DVA</td>
+                <td>DaVita（透析服务）</td>
+                <td>~2.0%</td>
+                <td><span class="change-decrease">减持</span></td>
+            </tr>
+            <tr>
+                <td>KR</td>
+                <td>克罗格（Kroger）</td>
+                <td>~1.2%</td>
+                <td>不变</td>
+            </tr>
+            <tr>
+                <td>SIRI</td>
+                <td>Sirius XM</td>
+                <td>~1.1%</td>
+                <td>不变</td>
+            </tr>
+            <tr>
+                <td>VRSN</td>
+                <td>Verisign</td>
+                <td>~0.9%</td>
+                <td>不变</td>
+            </tr>
+            <tr>
+                <td>M</td>
+                <td>梅西百货</td>
+                <td>~0.02%</td>
+                <td><span class="change-new">新建仓 ~$5,500万</span></td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="info-box">
+        <h2>四、Q1清仓股票</h2>
+        <table>
+            <tr>
+                <th>股票代码</th>
+                <th>公司名称</th>
+                <th>清仓前持仓</th>
+                <th>可能原因</th>
+            </tr>
+            <tr>
+                <td>AMZN</td>
+                <td>亚马逊</td>
+                <td>~$19亿（Q4已减77%）</td>
+                <td>AI投入大、回报不确定、盈利透明度不足</td>
+            </tr>
+            <tr>
+                <td>V</td>
+                <td>Visa</td>
+                <td>~$29亿</td>
+                <td>支付赛道竞争加剧、监管风险、估值偏高</td>
+            </tr>
+            <tr>
+                <td>MA</td>
+                <td>万事达</td>
+                <td>~$22亿</td>
+                <td>同Visa</td>
+            </tr>
+            <tr>
+                <td>UNH</td>
+                <td>联合健康</td>
+                <td>—</td>
+                <td>医保政策不确定性、增长放缓</td>
+            </tr>
+            <tr>
+                <td>DPZ</td>
+                <td>达美乐披萨</td>
+                <td>~$12亿</td>
+                <td>消费估值偏高</td>
+            </tr>
+            <tr>
+                <td>AON</td>
+                <td>怡安保险</td>
+                <td>~$16亿</td>
+                <td>保险板块收缩</td>
+            </tr>
+            <tr>
+                <td>其他</td>
+                <td>Liberty Formula One、Nucor等</td>
+                <td>—</td>
+                <td>清理外围小仓位</td>
+            </tr>
+        </table>
+        <div class="highlight">
+            <strong>清仓逻辑：</strong>阿贝尔一次性清仓16只股票，将持仓从42只压缩至29只。被清仓的股票有一个共同特征——"高估值、高投入、现金流不确定"。这符合巴菲特"只买看得懂的现金流"的原则，只是阿贝尔执行得更彻底。市场猜测其中部分清仓（如Visa、万事达、亚马逊）可能是清理前任投资经理Todd Combs的遗留仓位。
+        </div>
+    </div>
+
+    <div class="info-box">
+        <h2>五、持仓分布饼图</h2>
+        <div class="chart-container">
+            <canvas id="buffettPieChart"></canvas>
+        </div>
+    </div>
+
+    <div class="info-box">
+        <h2>六、投资逻辑解读</h2>
+        <div class="highlight">
+            <strong>1. 苹果仍是绝对核心：</strong>虽然从峰值50%+降至22%，但$578亿的持仓仍是第一大重仓，且Q1一股未卖。阿贝尔在致股东信中明确表示苹果是"高确信度"持仓。
+        </div>
+        <div class="highlight">
+            <strong>2. 谷歌是最大亮点：</strong>从Q3 2025首次建仓$40亿，到Q1 2026增持至$166亿，仅三个季度谷歌已成为第7大重仓。这是巴菲特/阿贝尔对AI基础设施的正式押注——谷歌同时拥有搜索现金牛、云计算高增长（+63%）和AI基础设施投资，PE约28x在科技巨头中估值合理。
+        </div>
+        <div class="highlight">
+            <strong>3. 重返航空：</strong>2020年巴菲特清仓所有航空股并称"世界变了"，如今阿贝尔重新买入$26.5亿达美航空。这并非否定巴菲特的判断，而是新管理层对后疫情航空业重组（行业出清、票价稳定、现金流改善）的重新评估。
+        </div>
+        <div class="highlight">
+            <strong>4. 现金创历史新高：</strong>$3,474亿现金+短期国债，占总资产约47%。这既是防御姿态（等待市场回调时的买入机会），也反映了当前市场估值偏高的判断。巴菲特一直强调"只在好价格出现时才出手"。
+        </div>
+        <div class="highlight">
+            <strong>5. 能源板块收缩：</strong>雪佛龙减持35%（约$24亿），但西方石油持仓不变。这可能反映了对油价走势的判断——雪佛龙在3月油价飙升时达到历史高点，获利了结是理性操作。
+        </div>
+    </div>
+
+    <script>
+        const ctx = document.getElementById('buffettPieChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: ['苹果(AAPL)', '美国运通(AXP)', '可口可乐(KO)', '美国银行(BAC)', '雪佛龙(CVX)', '西方石油(OXY)', '谷歌(GOOGL+GOOG)', '安达保险(CB)', '穆迪(MCO)', '卡夫亨氏(KHC)', '其他'],
+                datasets: [{
+                    data: [21.99, 17.43, 11.56, 9.52, 6.64, 6.55, 6.43, 4.24, 4.09, 2.78, 8.77],
+                    backgroundColor: [
+                        '#1a5276', '#2e86c1', '#27ae60', '#e67e22', '#8e44ad',
+                        '#c0392b', '#f39c12', '#16a085', '#2c3e50', '#7f8c8d', '#bdc3c7'
+                    ]
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: { display: true, text: '伯克希尔·哈撒韦 Q1 2026 持仓分布' },
+                    legend: { position: 'bottom' }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
