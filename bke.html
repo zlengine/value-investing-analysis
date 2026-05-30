@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buckle (BKE) 价值投资分析</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f2f5;
+            color: #333;
+        }
+        h1 {
+            text-align: center;
+            color: #1a5276;
+            font-size: 2.2em;
+            margin-bottom: 5px;
+        }
+        h2 {
+            color: #1a5276;
+            border-bottom: 2px solid #2e86c1;
+            padding-bottom: 8px;
+            margin-top: 30px;
+        }
+        h3 {
+            color: #2c3e50;
+            margin-top: 20px;
+        }
+        .subtitle {
+            text-align: center;
+            color: #7f8c8d;
+            font-size: 1.1em;
+            margin-bottom: 30px;
+        }
+        .info-box {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            background-color: white;
+        }
+        th, td {
+            padding: 10px 14px;
+            text-align: left;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        th {
+            background-color: #1a5276;
+            color: white;
+            font-weight: bold;
+        }
+        tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        tr:hover {
+            background-color: #eaf2f8;
+        }
+        .highlight {
+            background: #fef9e7;
+            border-left: 4px solid #2e86c1;
+            padding: 15px 20px;
+            margin: 15px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .chart-container {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+        canvas {
+            max-height: 400px;
+        }
+        .tag {
+            display: inline-block;
+            background: #1a5276;
+            color: white;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.85em;
+            margin: 2px;
+        }
+        .tag-green {
+            background: #27ae60;
+        }
+        .tag-orange {
+            background: #e67e22;
+        }
+        .tag-red {
+            background: #c0392b;
+        }
+        a {
+            color: #1a5276;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            font-size: 1em;
+        }
+        .moat-item {
+            background: white;
+            border-radius: 8px;
+            padding: 15px 20px;
+            margin: 10px 0;
+            box-shadow: 0 1px 5px rgba(0,0,0,0.05);
+            border-left: 4px solid #2e86c1;
+        }
+        .moat-item strong {
+            color: #1a5276;
+        }
+        .risk-item {
+            background: white;
+            border-radius: 8px;
+            padding: 15px 20px;
+            margin: 10px 0;
+            box-shadow: 0 1px 5px rgba(0,0,0,0.05);
+            border-left: 4px solid #c0392b;
+        }
+        .competitiveness-box {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            border-top: 3px solid #2e86c1;
+        }
+        .rating-stars {
+            color: #f39c12;
+            font-size: 1.2em;
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back-link">← 返回索引</a>
+
+    <h1>Buckle Inc. (NYSE: BKE)</h1>
+    <p class="subtitle">巴菲特/芒格式价值投资基本面分析 | 更新日期：2026年5月</p>
+
+    <!-- 一、公司基本信息 -->
+    <div class="info-box">
+        <h2>一、公司基本信息</h2>
+        <table>
+            <tr><td>公司全称</td><td>The Buckle, Inc.</td></tr>
+            <tr><td>股票代码</td><td>NYSE: BKE</td></tr>
+            <tr><td>市值</td><td>约25亿美元（2026年5月）</td></tr>
+            <tr><td>市值（美元）</td><td>≈ $2.5B USD</td></tr>
+            <tr><td>企业价值</td><td>≈ $2.6B USD</td></tr>
+            <tr><td>成立时间</td><td>1948年（前身Mills Clothing, Inc.），1991年更名为The Buckle, Inc.</td></tr>
+            <tr><td>公司总部</td><td>美国内布拉斯加州卡尼（Kearney, Nebraska）</td></tr>
+            <tr><td>最新收盘价</td><td>约$49.44（2026年5月）</td></tr>
+            <tr><td>财年截止</td><td>1月底/2月初</td></tr>
+            <tr><td>CEO</td><td>Dennis H. Nelson（任职超过20年）</td></tr>
+            <tr><td>员工人数</td><td>约8,000人</td></tr>
+            <tr><td>行业</td><td>非必需消费品 / 服装零售</td></tr>
+            <tr><td>门店数量</td><td>440家（42个州）</td></tr>
+            <tr><td>流通股数</td><td>约5,090万股</td></tr>
+            <tr><td>长期债务</td><td>$0（零长期负债）</td></tr>
+            <tr><td>现金及投资</td><td>$3.07亿（FY2025年末）</td></tr>
+        </table>
+    </div>
+
+    <!-- 二、业务分析 -->
+    <div class="info-box">
+        <h2>二、业务分析</h2>
+
+        <h3>2.1 通俗解释：Buckle是干什么的？</h3>
+        <p>用最简单的话说，<strong>Buckle就是美国年轻人的"牛仔裤专卖店"</strong>。当你走进美国中西部的购物中心，很可能会看到一家Buckle门店——门口摆满了各种品牌和款式的牛仔裤，店员热情地为你推荐搭配。Buckle的核心理念是：<strong>用专业的服务帮你找到最合身的牛仔裤，然后顺便把上衣、外套、鞋子和配饰也一起卖了</strong>。</p>
+        <p>Buckle的商业模式非常清晰：<strong>在购物中心和户外商业区开设中等规模门店，销售品牌牛仔裤和休闲服装，通过个性化服务（免费裁裤脚、造型建议、会员积分）建立客户忠诚度</strong>。它的核心赚钱逻辑是——<strong>牛仔专业度+服务差异化</strong>。消费者可以在Macy's或网上买到牛仔裤，但Buckle提供的"帮你找到最合身那一条"的体验是线上无法复制的。</p>
+        <p>值得注意的是，Buckle是一家极其"专注"的公司：<strong>78年历史只做一件事——卖牛仔裤和休闲服装</strong>。它没有像Gap那样扩张到全球，没有像Zara那样追求快时尚，也没有像Nordstrom那样做全品类百货。它就像内布拉斯加州的一位老牛仔——不追时髦，但把一件事做到了极致。</p>
+
+        <h3>2.2 业务板块及营收（FY2025，截至2026年1月31日）</h3>
+        <table>
+            <tr>
+                <th>业务板块</th>
+                <th>年营收</th>
+                <th>占总营收比例</th>
+                <th>关键品牌/特点</th>
+                <th>增长趋势</th>
+            </tr>
+            <tr>
+                <td>牛仔服饰 (Denim)</td>
+                <td>约$5.52亿</td>
+                <td>42.5%</td>
+                <td>BKE私有品牌、Lucky、Big Star、Silver、MEK、Guess</td>
+                <td><span class="tag tag-green">增长</span> FY2025牛仔销售增长6.7%</td>
+            </tr>
+            <tr>
+                <td>其他休闲服饰</td>
+                <td>约$5.19亿</td>
+                <td>~40%</td>
+                <td>上衣、运动服、外套、休闲裤</td>
+                <td><span class="tag tag-green">增长</span> 女装全品类增长14.8%</td>
+            </tr>
+            <tr>
+                <td>鞋类及配饰</td>
+                <td>约$2.27亿</td>
+                <td>~17.5%</td>
+                <td>鞋类、包袋、腰带、帽子等</td>
+                <td><span class="tag tag-orange">稳定</span> 随整体客流波动</td>
+            </tr>
+        </table>
+        <p><strong>注：</strong>BKE不按产品类别单独披露详细财务数据，上述比例为公司披露的牛仔占比（42.5%）及估算。FY2025总营收$12.98亿，同比增长6.6%，同店销售增长5.6%。</p>
+
+        <h3>2.3 渠道分布</h3>
+        <table>
+            <tr>
+                <th>渠道</th>
+                <th>营收占比</th>
+                <th>说明</th>
+            </tr>
+            <tr>
+                <td>实体门店</td>
+                <td>约83%</td>
+                <td>440家门店，42个州，平均单店销售额$243.8万</td>
+            </tr>
+            <tr>
+                <td>线上 (buckle.com)</td>
+                <td>约17%</td>
+                <td>FY2025线上销售约$2.17亿，同比增长9.8%</td>
+            </tr>
+        </table>
+
+        <h3>2.4 地域分布</h3>
+        <table>
+            <tr>
+                <th>地区</th>
+                <th>营收占比</th>
+                <th>说明</th>
+            </tr>
+            <tr>
+                <td>美国</td>
+                <td>100%</td>
+                <td>Buckle仅在美国运营，无国际业务</td>
+            </tr>
+        </table>
+        <div class="highlight">
+            <strong>芒格视角：</strong>Buckle 100%的营收来自美国，且高度集中在中西部和南部市场。这既是优势（深耕本土、理解客户），也是风险（缺乏地域多元化，经济衰退时无对冲）。与Gap（全球50+国家）或Inditex（全球90+市场）相比，Buckle的市场覆盖面极窄。
+        </div>
+
+        <h3>2.5 商业模式总结</h3>
+        <p>Buckle的盈利模式可以概括为：<strong>采购品牌和自有品牌服装 → 通过440家门店+线上渠道销售 → 赚取商品差价（毛利率约49%）</strong>。公司的核心差异化在于：<strong>①牛仔专业度——全美最丰富的牛仔裤选择；②个性化服务——免费裁裤脚、造型建议、会员积分；③私有品牌——BKE等自有品牌毛利率更高</strong>。运营利润率长期维持在15-20%，自由现金流常年保持在$2亿以上。公司零长期负债，现金储备超过$3亿，财务极其稳健。</p>
+    </div>
+
+    <!-- 三、业务板块产品竞争力分析 -->
+    <div class="info-box">
+        <h2>三、业务板块产品竞争力分析</h2>
+
+        <div class="competitiveness-box">
+            <h3>3.1 牛仔服饰 (Denim) 产品竞争力分析</h3>
+
+            <p><strong>1. 可替代性：<span class="tag tag-red">高</span></strong></p>
+            <ul>
+                <li><strong>主要替代品：</strong>Levi's专卖店、American Eagle、Gap、Macy's/JCPenney的牛仔专区、Amazon/Zappos线上购买、快时尚品牌（Zara、H&M）</li>
+                <li><strong>替代品体验差距：</strong>Levi's专卖店在牛仔专业度上与Buckle接近；American Eagle价格更低；线上购买更便捷但无法试穿。Buckle的优势在于"一站式多品牌选择+专业服务"，但任何单一品牌店或线上渠道都能部分替代</li>
+                <li><strong>替代趋势：</strong><span class="tag tag-red">加速</span> — 线上购买牛仔裤的比例持续上升，虚拟试穿技术正在缩小"不能试穿"的差距</li>
+            </ul>
+
+            <p><strong>2. 客户转换成本：<span class="tag tag-red">低</span></strong></p>
+            <ul>
+                <li><strong>财务转换成本：</strong>几乎为零。没有会员费、没有预付卡绑定</li>
+                <li><strong>时间转换成本：</strong>极低。消费者可以在5分钟内从Buckle走到隔壁的American Eagle</li>
+                <li><strong>心理转换成本：</strong>轻微。BKE忠诚会员有一定习惯性，但不足以形成真正的锁定效应</li>
+                <li><strong>捆绑转换成本：</strong>轻微。BKE信用卡和积分计划提供少量激励，但远不足以阻止客户流失</li>
+                <li><strong>综合评估：</strong>消费者从Buckle转向其他渠道几乎零摩擦</li>
+            </ul>
+
+            <p><strong>3. 定价权：<span class="tag tag-orange">中等</span></strong></p>
+            <ul>
+                <li><strong>历史提价记录：</strong>BKE私有品牌牛仔裤定价$60-90，与American Eagle($40-70)和Levi's($50-110)相比处于中端。过去5年，BKE平均售价缓慢上升约2-3%/年</li>
+                <li><strong>提价vs通胀：</strong>基本跑赢CPI，但幅度有限</li>
+                <li><strong>定价权来源：</strong>主要来自牛仔专业度和个性化服务的差异化，而非品牌溢价</li>
+                <li><strong>定价权趋势：</strong><span class="tag tag-orange">稳定偏弱</span> — 线上比价使消费者更容易发现价格差异</li>
+                <li><strong>巴菲特测试：</strong>如果BKE牛仔裤提价10%（如从$80涨到$88），相当一部分价格敏感客户会转向American Eagle或线上渠道。提价空间有限</li>
+            </ul>
+
+            <p><strong>综合竞争力评级：<span class="rating-stars">⭐⭐</span></span></strong> — 牛仔服饰是高度可替代的品类，BKE的差异化主要来自服务而非产品本身，护城河较浅</p>
+        </div>
+
+        <div class="competitiveness-box">
+            <h3>3.2 其他休闲服饰 产品竞争力分析</h3>
+
+            <p><strong>1. 可替代性：<span class="tag tag-red">极高</span></strong></p>
+            <ul>
+                <li><strong>主要替代品：</strong>Gap、Old Navy、H&M、Zara、Target、Amazon、无数线上品牌</li>
+                <li><strong>替代品体验差距：</strong>休闲上衣、运动服、外套是标准化程度极高的品类，替代品与BKE产品在功能上几乎无差异</li>
+                <li><strong>替代趋势：</strong><span class="tag tag-red">加速</span> — 快时尚和线上渠道正在快速侵蚀传统零售份额</li>
+            </ul>
+
+            <p><strong>2. 客户转换成本：<span class="tag tag-red">极低</span></strong></p>
+            <ul>
+                <li><strong>财务转换成本：</strong>零</li>
+                <li><strong>时间转换成本：</strong>极低</li>
+                <li><strong>捆绑转换成本：</strong>无</li>
+                <li><strong>综合评估：</strong>休闲服饰是转换成本最低的品类之一</li>
+            </ul>
+
+            <p><strong>3. 定价权：<span class="tag tag-red">弱</span></strong></p>
+            <ul>
+                <li><strong>历史提价记录：</strong>休闲服饰定价受市场竞争严重制约，提价空间极小</li>
+                <li><strong>提价vs通胀：</strong>基本持平或略低于通胀</li>
+                <li><strong>定价权来源：</strong>几乎没有。BKE的非牛仔产品缺乏品牌辨识度</li>
+                <li><strong>定价权趋势：</strong><span class="tag tag-red">削弱</span> — 线上比价和快时尚持续压低价格</li>
+                <li><strong>巴菲特测试：</strong>如果BKE一件T恤从$30涨到$33，客户会毫不犹豫地转向Target或Amazon</li>
+            </ul>
+
+            <p><strong>综合竞争力评级：<span class="rating-stars">⭐</span></strong> — 休闲服饰是竞争最激烈的零售品类之一，BKE在此领域几乎没有护城河</p>
+        </div>
+
+        <div class="competitiveness-box">
+            <h3>3.3 鞋类及配饰 产品竞争力分析</h3>
+
+            <p><strong>1. 可替代性：<span class="tag tag-red">极高</span></strong></p>
+            <ul>
+                <li><strong>主要替代品：</strong>Foot Locker、DSW、Zappos、Amazon、品牌专卖店（Nike、Adidas）</li>
+                <li><strong>替代品体验差距：</strong>专业鞋店选择更丰富，线上购买更便捷</li>
+                <li><strong>替代趋势：</strong><span class="tag tag-red">加速</span></li>
+            </ul>
+
+            <p><strong>2. 客户转换成本：<span class="tag tag-red">极低</span></strong></p>
+            <ul>
+                <li>与休闲服饰类似，零转换成本</li>
+            </ul>
+
+            <p><strong>3. 定价权：<span class="tag tag-red">弱</span></strong></p>
+            <ul>
+                <li>鞋类和配饰是BKE的补充品类，非核心竞争优势所在</li>
+                <li><strong>巴菲特测试：</strong>提价10%会导致客户直接转向专业鞋店或线上</li>
+            </ul>
+
+            <p><strong>综合竞争力评级：<span class="rating-stars">⭐</span></strong> — 配饰是"顺带购买"品类，无独立竞争力</p>
+        </div>
+
+        <div class="highlight">
+            <strong>巴菲特视角：业务板块竞争力总结</strong><br>
+            Buckle的三个业务板块——牛仔、休闲服饰、鞋类配饰——<strong>无一拥有真正的经济护城河</strong>。牛仔是BKE最接近"有竞争力"的品类，但即便如此，可替代性高、转换成本低、定价权有限。休闲服饰和配饰更是完全竞争市场中的普通参与者。<br><br>
+            <strong>这意味着Buke的"护城河"（如果有的话）不在产品层面，而在运营层面——门店服务体验、牛仔专业选品能力、保守的财务管理。</strong>但运营优势是脆弱的，它可以被模仿、被超越、被技术颠覆。巴菲特会说："我想要的是产品本身的护城河，而不是运营效率的护城河。"
+        </div>
+    </div>
+
+    <!-- 四、历史财务指标 -->
+    <div class="info-box">
+        <h2>四、历史财务指标（2000-2026）</h2>
+
+        <h3>4.1 净资产收益率 (ROE) 趋势</h3>
+        <div class="chart-container">
+            <canvas id="roeChart"></canvas>
+        </div>
+        <table>
+            <tr>
+                <th>财年</th><th>ROE</th><th>净利润($M)</th><th>股东权益($M)</th><th>备注</th>
+            </tr>
+            <tr><td>2000</td><td>~18%</td><td>~$45</td><td>~$250</td><td>早期增长阶段</td></tr>
+            <tr><td>2002</td><td>~16%</td><td>~$40</td><td>~$260</td><td>零售环境疲软</td></tr>
+            <tr><td>2004</td><td>~20%</td><td>~$50</td><td>~$250</td><td>恢复增长</td></tr>
+            <tr><td>2006</td><td>~19%</td><td>~$56</td><td>~$287</td><td>牛仔品类崛起</td></tr>
+            <tr><td>2008</td><td>~22%</td><td>~$75</td><td>~$338</td><td>金融危机前高峰</td></tr>
+            <tr><td>2009</td><td>~28%</td><td>~$100</td><td>~$360</td><td>逆势增长，牛仔需求强劲</td></tr>
+            <tr><td>2010</td><td>~32%</td><td>~$130</td><td>~$400</td><td>强劲复苏</td></tr>
+            <tr><td>2012</td><td>~38%</td><td>~$151</td><td>~$400</td><td>历史高峰期</td></tr>
+            <tr><td>2014</td><td>~38%</td><td>~$163</td><td>~$430</td><td>维持高位</td></tr>
+            <tr><td>2016</td><td>~34%</td><td>~$147</td><td>~$431</td><td>开始下滑</td></tr>
+            <tr><td>2017</td><td>22.8%</td><td>~$98</td><td>~$391</td><td>客流下降，盈利大幅下滑</td></tr>
+            <tr><td>2018</td><td>22.9%</td><td>~$96</td><td>~$394</td><td>低谷期</td></tr>
+            <tr><td>2019</td><td>24.3%</td><td>~$104</td><td>~$389</td><td>缓慢恢复</td></tr>
+            <tr><td>2020</td><td>26.8%</td><td>~$130</td><td>~$397</td><td>疫情前改善</td></tr>
+            <tr><td>2021</td><td>32.8%</td><td>~$130</td><td>~$397</td><td>疫情影响，门店关闭</td></tr>
+            <tr><td>2022</td><td>81.4%</td><td>~$255</td><td>~$313</td><td>疫后报复性消费+低权益基数</td></tr>
+            <tr><td>2023</td><td>67.7%</td><td>~$255</td><td>~$376</td><td>高ROE但权益在恢复</td></tr>
+            <tr><td>2024</td><td>53.2%</td><td>~$220</td><td>~$413</td><td>ROE回归常态</td></tr>
+            <tr><td>2025</td><td>46.1%</td><td>~$195</td><td>~$424</td><td>继续正常化</td></tr>
+            <tr><td>2026</td><td>49.4%</td><td>~$210</td><td>~$425</td><td>稳健水平</td></tr>
+        </table>
+        <div class="highlight">
+            <strong>巴菲特视角：</strong>BKE的ROE历史呈现出非常独特的"V型"走势。2012-2014年ROE高达38%，2017-2018年跌至23%左右，2022年因疫情后低权益基数飙升至81%，然后逐步回归至当前的49%。关键问题是：<strong>49%的ROE是否可持续？</strong>答案是：部分可持续，但会继续回落。2022-2023年的超高ROE是特殊时期的产物，正常化后的ROE可能在30-40%区间——这仍然是零售行业中非常优秀的水平，主要得益于零负债和高毛利率。
+        </div>
+
+        <h3>4.2 资产负债率 (Debt-to-Asset) 趋势</h3>
+        <div class="chart-container">
+            <canvas id="debtChart"></canvas>
+        </div>
+        <table>
+            <tr>
+                <th>财年</th><th>总资产($M)</th><th>股东权益($M)</th><th>资产负债率</th><th>长期债务</th><th>备注</th>
+            </tr>
+            <tr><td>2006</td><td>~$374</td><td>~$287</td><td>~23%</td><td>$0</td><td>零负债</td></tr>
+            <tr><td>2008</td><td>~$451</td><td>~$338</td><td>~25%</td><td>$0</td><td>零负债</td></tr>
+            <tr><td>2010</td><td>~$460</td><td>~$400</td><td>~13%</td><td>$0</td><td>现金充裕</td></tr>
+            <tr><td>2012</td><td>~$500</td><td>~$400</td><td>~20%</td><td>$0</td><td>零负债</td></tr>
+            <tr><td>2015</td><td>~$580</td><td>~$430</td><td>~26%</td><td>$0</td><td>零负债</td></tr>
+            <tr><td>2017</td><td>~$538</td><td>~$391</td><td>~27%</td><td>$0</td><td>零负债</td></tr>
+            <tr><td>2019</td><td>~$868</td><td>~$389</td><td>~55%</td><td>$0</td><td>ASC 842租赁准则生效</td></tr>
+            <tr><td>2020</td><td>~$846</td><td>~$397</td><td>~53%</td><td>$0</td><td>租赁负债为主</td></tr>
+            <tr><td>2022</td><td>~$838</td><td>~$376</td><td>~55%</td><td>$0</td><td>租赁负债为主</td></tr>
+            <tr><td>2024</td><td>~$890</td><td>~$413</td><td>~54%</td><td>$0</td><td>租赁负债为主</td></tr>
+            <tr><td>2026</td><td>~$991</td><td>~$425</td><td>~57%</td><td>$0</td><td>租赁负债为主</td></tr>
+        </table>
+        <div class="highlight">
+            <strong>芒格视角：</strong>BKE的"资产负债率"从2017年的27%跳升至2019年的55%，但这并非因为借了钱——而是因为2019年起实施的ASC 842会计准则要求将经营租赁列入资产负债表。BKE<strong>从未有过一分钱的长期有息负债</strong>，这在零售行业极为罕见。真正的负债只有经营租赁（门店租金）和应付账款。芒格会说："一家不需要借钱就能赚钱的公司，才是真正的好生意。"
+        </div>
+
+        <h3>4.3 市盈率 (PE) 趋势</h3>
+        <div class="chart-container">
+            <canvas id="peChart"></canvas>
+        </div>
+        <table>
+            <tr>
+                <th>财年</th><th>PE Ratio</th><th>每股收益</th><th>备注</th>
+            </tr>
+            <tr><td>2012</td><td>~14x</td><td>$2.44</td><td>增长高峰期，市场给予溢价</td></tr>
+            <tr><td>2014</td><td>~12x</td><td>$3.39</td><td>盈利高位但增长放缓</td></tr>
+            <tr><td>2016</td><td>~10x</td><td>$2.04</td><td>盈利下滑，估值压缩</td></tr>
+            <tr><td>2017</td><td>~12x</td><td>$1.86</td><td>低谷期</td></tr>
+            <tr><td>2018</td><td>~14x</td><td>$1.97</td><td>恢复初期</td></tr>
+            <tr><td>2019</td><td>~13x</td><td>$2.15</td><td>温和恢复</td></tr>
+            <tr><td>2020</td><td>~12x</td><td>$2.67</td><td>疫情前</td></tr>
+            <tr><td>2021</td><td>~7x</td><td>$5.20</td><td>盈利暴增但市场怀疑持续性</td></tr>
+            <tr><td>2022</td><td>~8.5x</td><td>$5.17</td><td>市场仍持怀疑态度</td></tr>
+            <tr><td>2023</td><td>~8.6x</td><td>$4.40</td><td>估值仍低</td></tr>
+            <tr><td>2024</td><td>~12.2x</td><td>$3.89</td><td>估值回升</td></tr>
+            <tr><td>2025</td><td>~11.4x</td><td>$4.14</td><td>维持</td></tr>
+            <tr><td>2026(当前)</td><td>~12.7x</td><td>$4.14</td><td>合理偏低</td></tr>
+        </table>
+
+        <h3>4.4 产权比率 (Assets/Equity) 趋势</h3>
+        <div class="chart-container">
+            <canvas id="equityRatioChart"></canvas>
+        </div>
+        <table>
+            <tr>
+                <th>财年</th><th>总资产/股东权益</th><th>含义</th>
+            </tr>
+            <tr><td>2008</td><td>~1.3x</td><td>极低杠杆，资产主要由权益支撑</td></tr>
+            <tr><td>2012</td><td>~1.3x</td><td>零负债运营</td></tr>
+            <tr><td>2015</td><td>~1.3x</td><td>零负债运营</td></tr>
+            <tr><td>2017</td><td>~1.4x</td><td>零负债运营</td></tr>
+            <tr><td>2019</td><td>~2.2x</td><td>ASC 842准则推高（租赁入表）</td></tr>
+            <tr><td>2021</td><td>~2.5x</td><td>权益因疫情分红而降低</td></tr>
+            <tr><td>2023</td><td>~2.2x</td><td>权益恢复</td></tr>
+            <tr><td>2025</td><td>~2.2x</td><td>稳定</td></tr>
+            <tr><td>2026</td><td>~2.3x</td><td>稳定</td></tr>
+        </table>
+        <div class="highlight">
+            <strong>巴菲特视角：</strong>产权比率从2017年的1.4x升至2019年的2.2x，完全是会计准则变更导致的，而非实际杠杆增加。BKE的真实财务杠杆极低——没有任何有息负债，$3亿+现金储备。巴菲特会说："这是我最喜欢的资产负债表——没有债务，大量现金，赚钱的生意。"
+        </div>
+    </div>
+
+    <!-- 五、竞争分析 -->
+    <div class="info-box">
+        <h2>五、竞争分析</h2>
+
+        <h3>5.1 主要竞争对手</h3>
+        <table>
+            <tr>
+                <th>竞争对手</th>
+                <th>市值($B)</th>
+                <th>核心竞争领域</th>
+                <th>市场份额对比</th>
+            </tr>
+            <tr>
+                <td>American Eagle (AEO)</td>
+                <td>~$3.1</td>
+                <td>青年休闲服饰/牛仔</td>
+                <td>AEO营收~$52亿，规模远大于BKE；牛仔品类直接竞争</td>
+            </tr>
+            <tr>
+                <td>Gap Inc. (GAP)</td>
+                <td>~$9.6</td>
+                <td>休闲服饰/牛仔（Gap品牌）</td>
+                <td>Gap品牌牛仔是BKE的直接竞争者，但Gap定位更大众</td>
+            </tr>
+            <tr>
+                <td>Boot Barn (BOOT)</td>
+                <td>~$4.7</td>
+                <td>西部/工装生活方式</td>
+                <td>与BKE在牛仔靴和西部服饰有部分重叠</td>
+            </tr>
+            <tr>
+                <td>Abercrombie & Fitch (ANF)</td>
+                <td>~$4.4</td>
+                <td>青年时尚/牛仔</td>
+                <td>ANF转型后竞争力增强，直接争夺同一客群</td>
+            </tr>
+            <tr>
+                <td>Urban Outfitters (URBN)</td>
+                <td>~$5.9</td>
+                <td>青年时尚/生活方式</td>
+                <td>不同风格但争夺同一消费群体</td>
+            </tr>
+            <tr>
+                <td>Levi Strauss (LEVI)</td>
+                <td>~$8.9</td>
+                <td>牛仔专业品牌</td>
+                <td>Levi's自有门店与BKE直接竞争，且是BKE的供应商</td>
+            </tr>
+            <tr>
+                <td>Amazon / 线上零售</td>
+                <td>-</td>
+                <td>全品类</td>
+                <td>线上购买牛仔裤比例持续上升，长期最大威胁</td>
+            </tr>
+        </table>
+
+        <h3>5.2 关键财务指标对比</h3>
+        <table>
+            <tr>
+                <th>指标</th><th>BKE</th><th>AEO</th><th>BOOT</th><th>ANF</th><th>行业平均</th>
+            </tr>
+            <tr>
+                <td>毛利率</td>
+                <td>49.0%</td>
+                <td>~36%</td>
+                <td>~36%</td>
+                <td>~65%</td>
+                <td>~38%</td>
+            </tr>
+            <tr>
+                <td>运营利润率</td>
+                <td>20.2%</td>
+                <td>~8%</td>
+                <td>~10%</td>
+                <td>~15%</td>
+                <td>~8%</td>
+            </tr>
+            <tr>
+                <td>ROE</td>
+                <td>49.4%</td>
+                <td>~25%</td>
+                <td>~17%</td>
+                <td>~36%</td>
+                <td>~20%</td>
+            </tr>
+            <tr>
+                <td>净利率</td>
+                <td>16.2%</td>
+                <td>~5%</td>
+                <td>~6%</td>
+                <td>~10%</td>
+                <td>~5%</td>
+            </tr>
+            <tr>
+                <td>长期债务</td>
+                <td>$0</td>
+                <td>~$300M</td>
+                <td>~$300M</td>
+                <td>~$300M</td>
+                <td>有负债</td>
+            </tr>
+            <tr>
+                <td>PE Ratio</td>
+                <td>~12.7x</td>
+                <td>~14x</td>
+                <td>~20x</td>
+                <td>~10x</td>
+                <td>~15x</td>
+            </tr>
+        </table>
+        <div class="highlight">
+            <strong>关键发现：</strong>BKE在毛利率（49%）、运营利润率（20.2%）、净利率（16.2%）和ROE（49.4%）方面<strong>全面碾压</strong>同行业竞争对手。这意味着BKE的运营效率远超同行——用更少的门店、更少的营收，实现了更高的利润率。零负债更是独树一帜。但这也反映了BKE的"小而美"策略——它选择了利润率而非规模扩张。
+        </div>
+
+        <h3>5.3 经济护城河评估</h3>
+
+        <div class="moat-item">
+            <strong>🏰 品牌力（Brand Power）— 窄护城河</strong><br>
+            BKE在牛仔爱好者群体中有一定品牌认知度，但远不及Levi's那种全球性品牌。BKE的私有品牌（BKE、Buckle Black等）在牛仔圈有口碑，但大众认知度有限。消费者选择BKE更多是因为"这家店有我想要的牛仔裤"，而非"我一定要买BKE品牌"。<br>
+            <strong>评级：★★☆☆☆（2/5）</strong> — 品牌力有限，主要在细分市场有认知度。
+        </div>
+
+        <div class="moat-item">
+            <strong>💰 成本优势（Cost Advantage）— 窄护城河</strong><br>
+            BKE的毛利率49%远超行业平均38%，但这更多来自定价和选品策略而非成本优势。私有品牌占比高确实提升了毛利率（自有品牌毛利率比全国品牌高10-15个百分点）。但供应链方面，BKE的规模远小于Gap或AEO，采购议价权有限。<br>
+            <strong>评级：★★☆☆☆（2/5）</strong> — 私有品牌带来一定毛利优势，但非结构性成本优势。
+        </div>
+
+        <div class="moat-item">
+            <strong>🔄 网络效应（Network Effects）— 无护城河</strong><br>
+            零售行业本质上不具备网络效应。更多顾客去BKE购物不会让其他顾客的体验更好。<br>
+            <strong>评级：★☆☆☆☆（1/5）</strong> — 不适用。
+        </div>
+
+        <div class="moat-item">
+            <strong>📋 专利/知识产权（Patents/IP）— 无护城河</strong><br>
+            服装行业几乎没有有意义的专利保护。BKE的牛仔裤款式和设计可以被任何竞争对手模仿。<br>
+            <strong>评级：★☆☆☆☆（1/5）</strong> — 不适用。
+        </div>
+
+        <div class="moat-item">
+            <strong>🔒 转换成本（Switching Costs）— 无护城河</strong><br>
+            消费者从BKE转向American Eagle或Levi's专卖店几乎零成本。BKE的积分计划和信用卡提供少量激励，但远不足以形成锁定效应。<br>
+            <strong>评级：★☆☆☆☆（1/5）</strong> — 零售行业转换成本极低。
+        </div>
+
+        <div class="moat-item">
+            <strong>📏 规模优势（Scale Advantages）— 无护城河</strong><br>
+            BKE仅440家门店，年营收$13亿，在美国服装零售市场占比微乎其微。与Gap（3000+门店）、TJX（4900+门店）相比，BKE的规模不带来任何采购或分销优势。<br>
+            <strong>评级：★☆☆☆☆（1/5）</strong> — 规模太小，无优势。
+        </div>
+
+        <div class="highlight">
+            <strong>综合护城河评级：窄/几乎无</strong><br>
+            Buckle是一家<strong>运营优秀但护城河极浅</strong>的公司。它的超高ROE和利润率来自精细的运营管理（牛仔专业选品、高比例私有品牌、极致成本控制），而非结构性竞争优势。巴菲特会说："这是一匹跑得很快的马，但赛道没有围栏——任何竞争对手都可以进入。" <br><br>
+            <strong>BKE最接近"护城河"的是其门店服务体验</strong>——免费裁裤脚、个性化造型建议、热情的店员——这些是线上购物无法复制的。但这种"服务护城河"非常脆弱：①需要持续投入人力成本；②可以被竞争对手模仿；③年轻消费者越来越习惯自助购物。
+        </div>
+    </div>
+
+    <!-- 六、利润分配分析 -->
+    <div class="info-box">
+        <h2>六、利润分配分析（过去十年 FY2016-FY2025）</h2>
+
+        <h3>6.1 利润分配总览（回购计入留存）</h3>
+        <table>
+            <tr>
+                <th>财年</th>
+                <th>净利润($M)</th>
+                <th>股息($M)</th>
+                <th>回购($M)</th>
+                <th>扩张CapEx($M)</th>
+                <th>留存金额($M)</th>
+                <th>留存比率</th>
+            </tr>
+            <tr>
+                <td>FY2016</td><td>98.0</td><td>102</td><td>~3</td><td>~40</td><td>-4</td><td>-4.1%</td>
+            </tr>
+            <tr>
+                <td>FY2017</td><td>89.7</td><td>153</td><td>~0</td><td>~35</td><td>-63</td><td>-70.2%</td>
+            </tr>
+            <tr>
+                <td>FY2018</td><td>95.6</td><td>115</td><td>~0</td><td>~35</td><td>-19</td><td>-20.3%</td>
+            </tr>
+            <tr>
+                <td>FY2019</td><td>104.4</td><td>130</td><td>~0</td><td>~35</td><td>-26</td><td>-24.7%</td>
+            </tr>
+            <tr>
+                <td>FY2020</td><td>130.1</td><td>182</td><td>~0</td><td>~30</td><td>-52</td><td>-39.8%</td>
+            </tr>
+            <tr>
+                <td>FY2021</td><td>254.8</td><td>348</td><td>~0</td><td>~30</td><td>-93</td><td>-36.6%</td>
+            </tr>
+            <tr>
+                <td>FY2022</td><td>254.6</td><td>203</td><td>~0</td><td>~45</td><td>52</td><td>20.3%</td>
+            </tr>
+            <tr>
+                <td>FY2023</td><td>219.9</td><td>197</td><td>~0</td><td>~45</td><td>23</td><td>10.5%</td>
+            </tr>
+            <tr>
+                <td>FY2024</td><td>195.5</td><td>198</td><td>~0</td><td>~45</td><td>-2</td><td>-1.3%</td>
+            </tr>
+            <tr>
+                <td>FY2025</td><td>209.7</td><td>225</td><td>~0</td><td>~50</td><td>-15</td><td>-7.2%</td>
+            </tr>
+        </table>
+        <p><strong>注：</strong>留存金额 = 净利润 - 股息（回购计入留存）。BKE的回购金额极小，近年接近于零。负留存比率意味着公司动用了往年积累的现金储备来支付股息。</p>
+
+        <h3>6.2 利润分配趋势图</h3>
+        <div class="chart-container">
+            <canvas id="profitChart"></canvas>
+        </div>
+
+        <h3>6.3 股息历史</h3>
+        <table>
+            <tr>
+                <th>财年</th><th>每股常规股息</th><th>每股特别股息</th><th>每股合计</th><th>派息率</th>
+            </tr>
+            <tr><td>FY2016</td><td>$1.00</td><td>$1.00</td><td>$2.00</td><td>~104%</td></tr>
+            <tr><td>FY2017</td><td>$1.00</td><td>$2.00</td><td>$3.00</td><td>~171%</td></tr>
+            <tr><td>FY2018</td><td>$1.00</td><td>$1.25</td><td>$2.25</td><td>~120%</td></tr>
+            <tr><td>FY2019</td><td>$1.00</td><td>$1.55</td><td>$2.55</td><td>~125%</td></tr>
+            <tr><td>FY2020</td><td>$1.20</td><td>$2.30</td><td>$3.50</td><td>~140%</td></tr>
+            <tr><td>FY2021</td><td>$1.32</td><td>$6.00</td><td>$7.32</td><td>~136%</td></tr>
+            <tr><td>FY2022</td><td>$1.40</td><td>$2.85</td><td>$4.25</td><td>~80%</td></tr>
+            <tr><td>FY2023</td><td>$1.40</td><td>$3.00</td><td>$4.40</td><td>~89%</td></tr>
+            <tr><td>FY2024</td><td>$1.40</td><td>$2.85</td><td>$4.25</td><td>~101%</td></tr>
+            <tr><td>FY2025</td><td>$1.40</td><td>$3.00</td><td>$4.40</td><td>~107%</td></tr>
+        </table>
+        <p>当前季度常规股息为$0.35/股（年化$1.40），加上每年1月的特别股息（近年$2.85-$3.00/股），总股息收益率约8-9%。</p>
+
+        <h3>6.4 特别股息策略分析</h3>
+        <p>BKE的股息策略在美股中极为独特：<strong>常规股息保持保守（年化$1.40），但每年1月发放一次大额特别股息</strong>。这种策略的本质是：</p>
+        <ul>
+            <li><strong>将累积的现金储备"退还"给股东</strong>——BKE零负债且现金充裕，没有更好的资本配置渠道</li>
+            <li><strong>保持常规股息的可持续性</strong>——常规股息派息率仅约34%（$1.40/$4.14），非常安全</li>
+            <li><strong>灵活调整特别股息金额</strong>——根据当年盈利和现金状况决定，好的年份多发，差的年份少发</li>
+        </ul>
+
+        <div class="highlight">
+            <strong>巴菲特视角：管理层资本配置评估</strong><br>
+            <strong>优点：</strong>①零负债+大量现金储备，财务极其稳健；②通过特别股息将多余现金返还股东，而非低效囤积或盲目扩张；③常规股息派息率仅34%，安全性极高；④FY2022-2023年留存比率为正，说明在盈利高峰期适度留存。<br>
+            <strong>缺点：</strong>①过去10年中7年留存比率为负，意味着公司长期来看在"吃老本"——分配的利润超过了当年赚取的利润；②几乎没有股票回购——在PE仅8-12x的低估值时期，回购股票可能是比发放特别股息更高效的资本配置方式；③门店扩张极其保守（每年仅开6-14家新店），可能错失增长机会。<br>
+            <strong>可持续增长率 = ROE × 留存比率：</strong>以FY2025为例，49.4% × (-7.2%) = -3.6%。负的可持续增长率意味着公司当前的增长完全依赖存量资产运营效率的提升，而非新增投资。长期来看，如果BKE不增加再投资，营收增长将趋于停滞。<br><br>
+            <strong>总体评价：</strong>资本配置能力中等。特别股息策略对收入型投资者极具吸引力，但从巴菲特的角度看，<strong>在低估值时回购股票比发放特别股息更能创造长期价值</strong>。1美元留存应至少创造1美元市值——BKE的留存为负，意味着它选择将利润全部分配，而非再投资创造复利增长。
+        </div>
+    </div>
+
+    <!-- 七、综合评估 -->
+    <div class="info-box">
+        <h2>七、综合评估与投资结论</h2>
+
+        <h3>7.1 优势</h3>
+        <ul>
+            <li><strong>财务极其稳健：</strong>零长期负债、$3亿+现金储备、流动比率2.2x，在零售行业中独树一帜</li>
+            <li><strong>超高盈利能力：</strong>ROE 49%、毛利率49%、运营利润率20%、净利率16%，全面碾压同行</li>
+            <li><strong>牛仔专业定位：</strong>42.5%营收来自牛仔，全美最丰富的牛仔裤选择，形成一定差异化</li>
+            <li><strong>高股息回报：</strong>常规+特别股息合计收益率8-9%，对收入型投资者极具吸引力</li>
+            <li><strong>自由现金流强劲：</strong>常年$2亿+，为股息提供充足支撑</li>
+            <li><strong>管理团队稳定：</strong>CEO Dennis Nelson任职超20年，管理层深耕牛仔零售</li>
+        </ul>
+
+        <h3>7.2 风险</h3>
+        <ul>
+            <li><strong>护城河极浅：</strong>产品高度可替代，转换成本几乎为零，定价权有限——本质上是在竞争激烈的零售市场中运营</li>
+            <li><strong>增长停滞：</strong>3年平均营收增长-1.0%，门店数量从444家缩减至440家，缺乏增长引擎</li>
+            <li><strong>线上威胁：</strong>线上购买牛仔裤比例持续上升，BKE的"试穿+服务"优势正在被技术侵蚀</li>
+            <li><strong>购物中心依赖：</strong>大部分门店位于购物中心，而美国购物中心正在持续萎缩</li>
+            <li><strong>时尚风险：</strong>牛仔潮流可能变化，年轻消费者偏好可能转向其他风格</li>
+            <li><strong>负留存比率：</strong>长期分配超过盈利，意味着公司没有为未来增长留存足够资本</li>
+            <li><strong>规模过小：</strong>$13亿营收在零售行业微不足道，缺乏规模优势和议价权</li>
+        </ul>
+
+        <h3>7.3 估值评估</h3>
+        <table>
+            <tr>
+                <th>指标</th><th>当前值</th><th>10年平均</th><th>评价</th>
+            </tr>
+            <tr><td>PE Ratio</td><td>~12.7x</td><td>~12x</td><td>接近历史均值</td></tr>
+            <tr><td>PS Ratio</td><td>~1.9x</td><td>~1.5x</td><td>略高于历史均值</td></tr>
+            <tr><td>PB Ratio</td><td>~5.7x</td><td>~4.5x</td><td>高于历史均值</td></tr>
+            <tr><td>股息率（常规+特别）</td><td>~8.4%</td><td>~6%</td><td>高于历史均值</td></tr>
+            <tr><td>EV/EBITDA</td><td>~9.7x</td><td>~8x</td><td>略高于历史均值</td></tr>
+            <tr><td>FCF Yield</td><td>~7.7%</td><td>~8%</td><td>接近历史均值</td></tr>
+            <tr><td>P/FCF</td><td>~13x</td><td>~11x</td><td>略高于历史均值</td></tr>
+        </table>
+
+        <h3>7.4 内在价值估算</h3>
+        <table>
+            <tr>
+                <th>估值方法</th><th>假设</th><th>内在价值/股</th>
+            </tr>
+            <tr>
+                <td>PE估值法</td>
+                <td>合理PE 14x × EPS $4.14</td>
+                <td>~$58</td>
+            </tr>
+            <tr>
+                <td>FCF估值法</td>
+                <td>FCF $2.06亿 / 5%折现率 / 0%增长</td>
+                <td>~$81</td>
+            </tr>
+            <tr>
+                <td>FCF估值法（保守）</td>
+                <td>FCF $2.06亿 / 8%折现率 / -1%增长</td>
+                <td>~$51</td>
+            </tr>
+            <tr>
+                <td>股息折现法</td>
+                <td>年股息$4.40 / 8%折现率 / 1%增长</td>
+                <td>~$63</td>
+            </tr>
+        </table>
+        <p>当前股价约$49.44，相对于保守FCF估值有约3%的安全边际，相对于PE估值有约15%的上升空间。但需注意：<strong>如果营收持续下滑，当前估值可能并不便宜</strong>。</p>
+
+        <div class="highlight">
+            <strong>巴菲特/芒格式结论</strong><br><br>
+            <strong>Buckle是一家"运营优秀但护城河极浅"的公司。</strong>它用零负债和超高效率证明了管理层的运营能力，但它所处的赛道——竞争激烈的服装零售——本质上不是一个好生意。<br><br>
+            <strong>从巴菲特的投资框架看，BKE不符合"伟大公司"的标准：</strong><br>
+            ❶ <strong>没有持久竞争优势：</strong>牛仔裤和休闲服饰是高度可替代的品类，BKE没有任何结构性壁垒阻止竞争对手抢走客户<br>
+            ❷ <strong>没有定价权：</strong>提价10%会导致客户流失，巴菲特测试不通过<br>
+            ❸ <strong>没有增长引擎：</strong>3年平均营收增长-1%，门店数量在缩减，线上渠道增长但不足以抵消整体疲软<br>
+            ❹ <strong>行业趋势不利：</strong>购物中心萎缩、线上购物崛起、快时尚冲击——BKE面临三重逆风<br><br>
+            <strong>但从收入型投资者的角度看，BKE有其独特价值：</strong><br>
+            ❶ <strong>8-9%的总股息收益率</strong>在当前市场环境下极具吸引力<br>
+            ❷ <strong>零负债+大量现金</strong>意味着股息安全性极高，即使短期盈利下滑也不会削减常规股息<br>
+            ❸ <strong>PE 12.7x</strong>对于一家ROE 49%的公司来说并不贵<br><br>
+            <strong>芒格会说：</strong>"这是一家经营得很好的平庸生意。管理层做了所有正确的事——不借钱、不乱扩张、把多余的现金还给股东。但问题是，这是一门'做对了也只值这么多'的生意。我宁愿以合理的价格买一门好生意，也不愿以便宜的价格买一门平庸的生意。"<br><br>
+            <strong>投资评级：观望/适度持有</strong><br>
+            对于追求高股息收入的投资者，BKE在$45以下（股息率>10%）具有吸引力。但对于追求长期资本增值的投资者，BKE缺乏增长引擎和护城河，不是理想的选择。当前$49的股价处于合理区间，安全边际有限。
+        </div>
+    </div>
+
+    <script>
+        const commonOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    position: 'top',
+                },
+                tooltip: {
+                    mode: 'index',
+                    intersect: false,
+                }
+            }
+        };
+
+        new Chart(document.getElementById('roeChart').getContext('2d'), {
+            type: 'line',
+            data: {
+                labels: ['2000','2002','2004','2006','2008','2009','2010','2012','2014','2016','2017','2018','2019','2020','2021','2022','2023','2024','2025','2026'],
+                datasets: [{
+                    label: 'ROE (%)',
+                    data: [18,16,20,19,22,28,32,38,38,34,22.8,22.9,24.3,26.8,32.8,81.4,67.7,53.2,46.1,49.4],
+                    borderColor: 'rgba(46, 134, 193, 1)',
+                    backgroundColor: 'rgba(46, 134, 193, 0.15)',
+                    fill: true,
+                    tension: 0.3,
+                    pointRadius: 4,
+                }]
+            },
+            options: {
+                ...commonOptions,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: { display: true, text: 'ROE (%)' }
+                    }
+                }
+            }
+        });
+
+        new Chart(document.getElementById('debtChart').getContext('2d'), {
+            type: 'line',
+            data: {
+                labels: ['2006','2008','2010','2012','2015','2017','2019','2020','2022','2024','2026'],
+                datasets: [{
+                    label: '资产负债率 (%)',
+                    data: [23,25,13,20,26,27,55,53,55,54,57],
+                    borderColor: 'rgba(231, 76, 60, 1)',
+                    backgroundColor: 'rgba(231, 76, 60, 0.15)',
+                    fill: true,
+                    tension: 0.3,
+                    pointRadius: 4,
+                }]
+            },
+            options: {
+                ...commonOptions,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: { display: true, text: '资产负债率 (%)' }
+                    }
+                }
+            }
+        });
+
+        new Chart(document.getElementById('peChart').getContext('2d'), {
+            type: 'line',
+            data: {
+                labels: ['2012','2014','2016','2017','2018','2019','2020','2021','2022','2023','2024','2025','2026'],
+                datasets: [{
+                    label: 'PE Ratio',
+                    data: [14,12,10,12,14,13,12,7,8.5,8.6,12.2,11.4,12.7],
+                    borderColor: 'rgba(39, 174, 96, 1)',
+                    backgroundColor: 'rgba(39, 174, 96, 0.15)',
+                    fill: true,
+                    tension: 0.3,
+                    pointRadius: 4,
+                }]
+            },
+            options: {
+                ...commonOptions,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: { display: true, text: 'PE Ratio' }
+                    }
+                }
+            }
+        });
+
+        new Chart(document.getElementById('equityRatioChart').getContext('2d'), {
+            type: 'line',
+            data: {
+                labels: ['2008','2012','2015','2017','2019','2021','2023','2025','2026'],
+                datasets: [{
+                    label: '总资产/股东权益 (x)',
+                    data: [1.3,1.3,1.3,1.4,2.2,2.5,2.2,2.2,2.3],
+                    borderColor: 'rgba(142, 68, 173, 1)',
+                    backgroundColor: 'rgba(142, 68, 173, 0.15)',
+                    fill: true,
+                    tension: 0.3,
+                    pointRadius: 4,
+                }]
+            },
+            options: {
+                ...commonOptions,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: { display: true, text: '产权比率 (x)' }
+                    }
+                }
+            }
+        });
+
+        new Chart(document.getElementById('profitChart').getContext('2d'), {
+            type: 'bar',
+            data: {
+                labels: ['FY2016','FY2017','FY2018','FY2019','FY2020','FY2021','FY2022','FY2023','FY2024','FY2025'],
+                datasets: [{
+                    label: '净利润 ($M)',
+                    data: [98,89.7,95.6,104.4,130.1,254.8,254.6,219.9,195.5,209.7],
+                    backgroundColor: 'rgba(46, 134, 193, 0.7)',
+                }, {
+                    label: '股息 ($M)',
+                    data: [102,153,115,130,182,348,203,197,198,225],
+                    backgroundColor: 'rgba(39, 174, 96, 0.7)',
+                }, {
+                    label: '留存金额 ($M)',
+                    data: [-4,-63,-19,-26,-52,-93,52,23,-2,-15],
+                    backgroundColor: 'rgba(231, 76, 60, 0.7)',
+                }]
+            },
+            options: {
+                ...commonOptions,
+                scales: {
+                    y: {
+                        title: { display: true, text: '金额 ($M)' }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
