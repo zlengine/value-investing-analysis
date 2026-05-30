@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>段永平 / H&H国际投资 最新持仓</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f2f5;
+            color: #333;
+        }
+        h1 {
+            text-align: center;
+            color: #1a5276;
+            font-size: 2.2em;
+            margin-bottom: 5px;
+        }
+        h2 {
+            color: #1a5276;
+            border-bottom: 2px solid #2e86c1;
+            padding-bottom: 8px;
+            margin-top: 30px;
+        }
+        h3 {
+            color: #2c3e50;
+            margin-top: 20px;
+        }
+        .subtitle {
+            text-align: center;
+            color: #7f8c8d;
+            font-size: 1.1em;
+            margin-bottom: 30px;
+        }
+        .info-box {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            background-color: white;
+        }
+        th, td {
+            padding: 10px 14px;
+            text-align: left;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        th {
+            background-color: #1a5276;
+            color: white;
+            font-weight: bold;
+        }
+        tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        tr:hover {
+            background-color: #eaf2f8;
+        }
+        .highlight {
+            background: #fef9e7;
+            border-left: 4px solid #2e86c1;
+            padding: 15px 20px;
+            margin: 15px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .chart-container {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+        canvas {
+            max-height: 400px;
+        }
+        .tag {
+            display: inline-block;
+            background: #1a5276;
+            color: white;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.85em;
+            margin: 2px;
+        }
+        .tag-green {
+            background: #27ae60;
+        }
+        .tag-red {
+            background: #c0392b;
+        }
+        .tag-orange {
+            background: #e67e22;
+        }
+        a {
+            color: #1a5276;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            font-size: 1em;
+        }
+        .change-new {
+            color: #27ae60;
+            font-weight: bold;
+        }
+        .change-increase {
+            color: #2980b9;
+            font-weight: bold;
+        }
+        .change-decrease {
+            color: #c0392b;
+            font-weight: bold;
+        }
+        .change-exit {
+            color: #7f8c8d;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back-link">← 返回索引</a>
+    
+    <h1>段永平 / H&H国际投资</h1>
+    <p class="subtitle">最新美股持仓 | 数据来源：SEC 13F文件 | 更新：2026年Q1（截至2026年3月31日）</p>
+
+    <div class="info-box">
+        <h2>一、持仓概览</h2>
+        <table>
+            <tr><td>管理人</td><td>段永平（步步高创始人、投资家）</td></tr>
+            <tr><td>管理机构</td><td>H&H International Investment LLC</td></tr>
+            <tr><td>13F持仓总市值</td><td>约$200.04亿美元</td></tr>
+            <tr><td>持仓股票数量</td><td>19只（上季度15只，新增7只、清仓3只）</td></tr>
+            <tr><td>前十大持仓占比</td><td>99.2%</td></tr>
+            <tr><td>投资风格</td><td>极度集中+长期持有+巴菲特式价值投资</td></tr>
+            <tr><td>核心理念</td><td>"买股票就是买公司"、"不懂不做"、"好公司不怕贵"</td></tr>
+        </table>
+        <div class="highlight">
+            <strong>段永平的投资哲学：</strong>作为中国最知名的巴菲特门徒，段永平坚持"集中投资+长期持有"策略。前三大持仓（苹果、伯克希尔、英伟达）占总仓位的70.7%。他常说"如果你不愿意持有一只股票10年，那就不要持有10分钟"。Q1最大变化是新建仓特斯拉和联合健康，同时大幅增持英伟达（+91%）和拼多多（+71%）。
+        </div>
+    </div>
+
+    <div class="info-box">
+        <h2>二、前十大重仓股</h2>
+        <table>
+            <tr>
+                <th>排名</th>
+                <th>股票代码</th>
+                <th>公司名称</th>
+                <th>持仓占比</th>
+                <th>持仓市值</th>
+                <th>持股数量</th>
+                <th>Q1变动</th>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>AAPL</td>
+                <td>苹果公司</td>
+                <td>36.72%</td>
+                <td>$73.46亿</td>
+                <td>2,894.6万股</td>
+                <td><span class="change-decrease">减持10.55%</span></td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>BRK.B</td>
+                <td>伯克希尔B类</td>
+                <td>21.91%</td>
+                <td>$43.84亿</td>
+                <td>—</td>
+                <td><span class="change-increase">增持27.47%</span></td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>NVDA</td>
+                <td>英伟达</td>
+                <td>12.07%</td>
+                <td>$24.14亿</td>
+                <td>1,384.4万股</td>
+                <td><span class="change-increase">增持91.29%</span></td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>PDD</td>
+                <td>拼多多</td>
+                <td>10.09%</td>
+                <td>$20.18亿</td>
+                <td>1,974.8万股</td>
+                <td><span class="change-increase">增持71.18%</span></td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>TSLA</td>
+                <td>特斯拉</td>
+                <td>6.34%</td>
+                <td>$12.67亿</td>
+                <td>340.89万股</td>
+                <td><span class="change-new">新建仓</span></td>
+            </tr>
+            <tr>
+                <td>6</td>
+                <td>GOOG</td>
+                <td>Alphabet（谷歌C类）</td>
+                <td>5.31%</td>
+                <td>$10.63亿</td>
+                <td>—</td>
+                <td><span class="change-increase">增持99.74%</span></td>
+            </tr>
+            <tr>
+                <td>7</td>
+                <td>OXY</td>
+                <td>西方石油</td>
+                <td>3.33%</td>
+                <td>$6.67亿</td>
+                <td>—</td>
+                <td><span class="change-decrease">减持22.10%</span></td>
+            </tr>
+            <tr>
+                <td>8</td>
+                <td>MSFT</td>
+                <td>微软</td>
+                <td>1.88%</td>
+                <td>$3.76亿</td>
+                <td>—</td>
+                <td>不变</td>
+            </tr>
+            <tr>
+                <td>9</td>
+                <td>UNH</td>
+                <td>联合健康</td>
+                <td>0.81%</td>
+                <td>$1.63亿</td>
+                <td>—</td>
+                <td><span class="change-new">新建仓</span></td>
+            </tr>
+            <tr>
+                <td>10</td>
+                <td>DIS</td>
+                <td>迪士尼</td>
+                <td>0.73%</td>
+                <td>$1.46亿</td>
+                <td>—</td>
+                <td>不变</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="info-box">
+        <h2>三、Q1新建仓股票</h2>
+        <table>
+            <tr>
+                <th>股票代码</th>
+                <th>公司名称</th>
+                <th>持仓市值</th>
+                <th>投资逻辑推测</th>
+            </tr>
+            <tr>
+                <td>TSLA</td>
+                <td>特斯拉</td>
+                <td>$12.67亿</td>
+                <td>段永平多次在雪球表达对马斯克的认可；特斯拉在AI/机器人领域有独特优势</td>
+            </tr>
+            <tr>
+                <td>UNH</td>
+                <td>联合健康</td>
+                <td>$1.63亿</td>
+                <td>医保龙头估值跌至历史低位，与巴菲特清仓形成对冲</td>
+            </tr>
+            <tr>
+                <td>CRCL</td>
+                <td>Circle（USDC发行商）</td>
+                <td>—</td>
+                <td>加密货币基础设施，IPO后建仓</td>
+            </tr>
+            <tr>
+                <td>PLTR</td>
+                <td>Palantir</td>
+                <td>—</td>
+                <td>AI+国防赛道，政府合同护城河</td>
+            </tr>
+            <tr>
+                <td>SNPS</td>
+                <td>Synopsys</td>
+                <td>—</td>
+                <td>EDA芯片设计工具垄断者，AI芯片设计刚需</td>
+            </tr>
+            <tr>
+                <td>CRWD</td>
+                <td>CrowdStrike</td>
+                <td>—</td>
+                <td>网络安全龙头，AI驱动威胁检测</td>
+            </tr>
+            <tr>
+                <td>INOD</td>
+                <td>Innodata</td>
+                <td>—</td>
+                <td>AI数据标注小盘股，高成长</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="info-box">
+        <h2>四、Q1清仓股票</h2>
+        <table>
+            <tr>
+                <th>股票代码</th>
+                <th>公司名称</th>
+                <th>清仓前持仓</th>
+                <th>可能原因</th>
+            </tr>
+            <tr>
+                <td>BABA</td>
+                <td>阿里巴巴</td>
+                <td>—</td>
+                <td>中概股监管不确定性、竞争加剧</td>
+            </tr>
+            <tr>
+                <td>CRWV</td>
+                <td>CoreWeave</td>
+                <td>—</td>
+                <td>AI算力租赁竞争激烈、IPO后表现不佳</td>
+            </tr>
+            <tr>
+                <td>ASML</td>
+                <td>阿斯麦</td>
+                <td>—</td>
+                <td>地缘政治风险、中国出口限制影响</td>
+            </tr>
+        </table>
+        <div class="highlight">
+            <strong>Q1大幅减持：</strong>台积电(TSM)减持87.7%，Tempus AI减持81.8%。段永平对台积电的大幅减持值得关注——可能反映对地缘政治风险的担忧（台海局势），也可能是在获利了结后转向更确定的AI受益标的（英伟达）。
+        </div>
+    </div>
+
+    <div class="info-box">
+        <h2>五、持仓分布饼图</h2>
+        <div class="chart-container">
+            <canvas id="duanPieChart"></canvas>
+        </div>
+    </div>
+
+    <div class="info-box">
+        <h2>六、投资逻辑解读</h2>
+        <div class="highlight">
+            <strong>1. 苹果仍是信仰持仓：</strong>虽然减持10.55%，但$73.46亿的持仓仍占总仓位36.72%。段永平自2011年起持续持有苹果，多次表示"苹果是最好的生意"。小幅减持可能是再平衡需要。
+        </div>
+        <div class="highlight">
+            <strong>2. 伯克希尔是"巴菲特ETF"：</strong>$43.84亿伯克希尔B类股，占21.91%。段永平曾表示"买伯克希尔就是买巴菲特的投资能力"。增持27%说明他看好阿贝尔时代的延续性。
+        </div>
+        <div class="highlight">
+            <strong>3. 英伟达翻倍增持：</strong>从Q4的约$12.6亿增至$24.14亿，增幅91%。段永平在雪球上曾讨论英伟达——"AI的卖铲人，短期估值贵但长期确定性高"。这是他最激进的AI押注。
+        </div>
+        <div class="highlight">
+            <strong>4. 拼多多持续加仓：</strong>增持71%至$20.18亿。段永平对拼多多的投资逻辑是"中国下沉市场的亚马逊"——TEMU海外扩张+国内基本盘稳固，估值远低于可比电商平台。
+        </div>
+        <div class="highlight">
+            <strong>5. 特斯拉建仓是最大惊喜：</strong>$12.67亿的新仓位显示段永平对马斯克的长期信心。他在雪球上曾说"马斯克是真正的创新者，特斯拉不只是一辆车"。这可能也是对AI+机器人赛道的布局。
+        </div>
+        <div class="highlight">
+            <strong>6. 从"纯价值"向"价值+成长"转型：</strong>新建仓Palantir、CrowdStrike、Synopsys等高成长科技股，显示段永平在保持核心价值持仓的同时，正在适度拥抱AI时代的成长机会。
+        </div>
+    </div>
+
+    <script>
+        const ctx = document.getElementById('duanPieChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: ['苹果(AAPL)', '伯克希尔(BRK.B)', '英伟达(NVDA)', '拼多多(PDD)', '特斯拉(TSLA)', '谷歌(GOOG)', '西方石油(OXY)', '微软(MSFT)', '联合健康(UNH)', '迪士尼(DIS)', '其他'],
+                datasets: [{
+                    data: [36.72, 21.91, 12.07, 10.09, 6.34, 5.31, 3.33, 1.88, 0.81, 0.73, 0.81],
+                    backgroundColor: [
+                        '#1a5276', '#2e86c1', '#27ae60', '#e67e22', '#c0392b',
+                        '#8e44ad', '#f39c12', '#16a085', '#2c3e50', '#7f8c8d', '#bdc3c7'
+                    ]
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: { display: true, text: 'H&H国际投资 Q1 2026 持仓分布' },
+                    legend: { position: 'bottom' }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
