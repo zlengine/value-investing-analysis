@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comcast Corporation (CMCSA) 价值投资分析</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f2f5;
+            color: #333;
+        }
+        h1 {
+            text-align: center;
+            color: #1a5276;
+            font-size: 2.2em;
+            margin-bottom: 5px;
+        }
+        h2 {
+            color: #1a5276;
+            border-bottom: 2px solid #2e86c1;
+            padding-bottom: 8px;
+            margin-top: 30px;
+        }
+        h3 {
+            color: #2c3e50;
+            margin-top: 20px;
+        }
+        h4 {
+            color: #2c3e50;
+            margin-top: 15px;
+        }
+        .subtitle {
+            text-align: center;
+            color: #7f8c8d;
+            font-size: 1.1em;
+            margin-bottom: 30px;
+        }
+        .info-box {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            background-color: white;
+        }
+        th, td {
+            padding: 10px 14px;
+            text-align: left;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        th {
+            background-color: #1a5276;
+            color: white;
+            font-weight: bold;
+        }
+        tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        tr:hover {
+            background-color: #eaf2f8;
+        }
+        .highlight {
+            background: #fef9e7;
+            border-left: 4px solid #2e86c1;
+            padding: 15px 20px;
+            margin: 15px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .chart-container {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+        canvas {
+            max-height: 400px;
+        }
+        .tag {
+            display: inline-block;
+            background: #1a5276;
+            color: white;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.85em;
+            margin: 2px;
+        }
+        .tag-green {
+            background: #27ae60;
+        }
+        .tag-orange {
+            background: #e67e22;
+        }
+        .tag-red {
+            background: #c0392b;
+        }
+        a {
+            color: #1a5276;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            font-size: 1em;
+        }
+        .moat-item {
+            background: white;
+            border-radius: 8px;
+            padding: 15px 20px;
+            margin: 10px 0;
+            box-shadow: 0 1px 5px rgba(0,0,0,0.05);
+            border-left: 4px solid #2e86c1;
+        }
+        .moat-item strong {
+            color: #1a5276;
+        }
+        .risk-item {
+            background: white;
+            border-radius: 8px;
+            padding: 15px 20px;
+            margin: 10px 0;
+            box-shadow: 0 1px 5px rgba(0,0,0,0.05);
+            border-left: 4px solid #c0392b;
+        }
+        .competitiveness-box {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            border: 1px solid #d5dbdb;
+        }
+        .competitiveness-box h3 {
+            color: #1a5276;
+            border-bottom: 1px solid #e0e0e0;
+            padding-bottom: 8px;
+        }
+        .rating-stars {
+            color: #f39c12;
+            font-size: 1.2em;
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back-link">← 返回索引</a>
+    
+    <h1>Comcast Corporation (NASDAQ: CMCSA)</h1>
+    <p class="subtitle">巴菲特/芒格式价值投资基本面分析 | 更新日期：2026年5月</p>
+
+    <!-- 一、公司基本信息 -->
+    <div class="info-box">
+        <h2>一、公司基本信息</h2>
+        <table>
+            <tr><td>公司全称</td><td>Comcast Corporation</td></tr>
+            <tr><td>股票代码</td><td>NASDAQ: CMCSA</td></tr>
+            <tr><td>市值</td><td>约907亿美元（2026年5月）</td></tr>
+            <tr><td>市值（美元）</td><td>≈ $90.7B USD</td></tr>
+            <tr><td>企业价值 (EV)</td><td>≈ $1,990亿（含净债务约$920亿）</td></tr>
+            <tr><td>成立时间</td><td>1963年（由Ralph J. Roberts在密西西比州Tupelo创立）</td></tr>
+            <tr><td>公司总部</td><td>美国宾夕法尼亚州费城（One Comcast Center）</td></tr>
+            <tr><td>最新收盘价</td><td>约$25.4（2026年5月）</td></tr>
+            <tr><td>CEO</td><td>Brian L. Roberts（董事长兼联合CEO）& Mike Cavanagh（联合CEO）</td></tr>
+            <tr><td>员工人数</td><td>约179,000人</td></tr>
+            <tr><td>行业</td><td>通信服务 / 有线宽带与媒体娱乐</td></tr>
+            <tr><td>S&P 500成分股</td><td>是</td></tr>
+            <tr><td>流通股数</td><td>约35.9亿股（Class A）</td></tr>
+            <tr><td>创始人家族</td><td>Roberts家族持有约33%投票权（Class B超级投票股）</td></tr>
+            <tr><td>核心品牌</td><td>Xfinity（宽带/无线/视频）、Sky（欧洲）、NBC、Telemundo、Universal、Peacock</td></tr>
+        </table>
+    </div>
+
+    <!-- 二、业务分析 -->
+    <div class="info-box">
+        <h2>二、业务分析</h2>
+        
+        <h3>2.1 通俗解释：Comcast是干什么的？</h3>
+        <p>用最简单的话说，<strong>Comcast就是美国的"宽带+电视+手机+电影+主题公园"超级帝国</strong>。如果你住在美国，你家上网用的Xfinity宽带、手机用的Xfinity Mobile、看的NBC电视、在Peacock上看的英超和NBA、去奥兰多玩的环球影城——这些全都是Comcast的生意。在欧洲，它还通过Sky品牌提供宽带和电视服务。</p>
+        <p>Comcast的商业模式可以拆成两大块：<strong>（1）连接（Connectivity）</strong>——把互联网、手机、电视信号送到你家，按月收费，这是"现金牛"；<strong>（2）内容与体验（Content & Experiences）</strong>——制作电影电视节目、运营流媒体Peacock、经营环球影城主题公园，这是"增长引擎"。</p>
+        <p>2025年是Comcast的战略转折年：<strong>（1）分拆了Versant Media Group</strong>（包含CNBC、MSNBC、USA Network等传统有线电视频道），剥离衰退资产；（2）推出<strong>全新宽带定价策略</strong>（5年价格保证、简化套餐）；（3）无线业务创纪录增长（+150万线）；（4）Epic Universe主题公园开园推动公园收入增长14%。</p>
+
+        <h3>2.2 业务板块及营收（FY2025，截至2025年12月31日）</h3>
+        <table>
+            <tr>
+                <th>业务板块</th>
+                <th>年营收</th>
+                <th>占总营收比例</th>
+                <th>调整后EBITDA</th>
+                <th>增长趋势</th>
+            </tr>
+            <tr>
+                <td>住宅连接与平台 (Residential Connectivity & Platforms)</td>
+                <td>$707亿</td>
+                <td>约57%</td>
+                <td>~$270亿</td>
+                <td><span class="tag tag-orange">持平</span> 宽带用户流失(-71.1万)，无线增长(+150万线)</td>
+            </tr>
+            <tr>
+                <td>媒体 (Media)</td>
+                <td>$271亿</td>
+                <td>约22%</td>
+                <td>~$45亿</td>
+                <td><span class="tag tag-orange">波动</span> Peacock增长22%至4400万付费用户，但年亏损$11亿</td>
+            </tr>
+            <tr>
+                <td>工作室 (Studios)</td>
+                <td>$113亿</td>
+                <td>约9%</td>
+                <td>~$10亿</td>
+                <td><span class="tag tag-orange">稳定</span> 侏罗纪世界：重生全球票房近$9亿</td>
+            </tr>
+            <tr>
+                <td>主题公园 (Theme Parks)</td>
+                <td>$98亿</td>
+                <td>约8%</td>
+                <td>~$35亿</td>
+                <td><span class="tag tag-green">增长</span> Epic Universe开园推动收入+14%</td>
+            </tr>
+            <tr>
+                <td>企业服务连接 (Business Services Connectivity)</td>
+                <td>$102亿</td>
+                <td>约8%</td>
+                <td>~$58亿</td>
+                <td><span class="tag tag-green">增长</span> 收入+6.2%，EBITDA利润率56.4%</td>
+            </tr>
+        </table>
+        <p><strong>注：</strong>FY2025总营收$1,237亿，同比持平。调整后EBITDA $374亿，同比-1.8%。自由现金流$192亿创历史新高。净收入$200亿含Hulu出售$94亿税前收益。Versant Media于2026年1月2日完成分拆，转移$30亿债务。</p>
+
+        <h3>2.3 地域分布</h3>
+        <table>
+            <tr>
+                <th>地区</th>
+                <th>营收占比</th>
+                <th>说明</th>
+            </tr>
+            <tr>
+                <td>美国</td>
+                <td>约77%</td>
+                <td>核心市场：Xfinity宽带/无线/视频、NBC、Peacock、环球影城</td>
+            </tr>
+            <tr>
+                <td>英国</td>
+                <td>约12%</td>
+                <td>Sky品牌宽带/电视/移动服务</td>
+            </tr>
+            <tr>
+                <td>其他（意大利、德国等）</td>
+                <td>约11%</td>
+                <td>Sky Italia、其他欧洲业务</td>
+            </tr>
+        </table>
+        <div class="highlight">
+            <strong>芒格视角：</strong>Comcast的核心矛盾是——<strong>连接业务是"现金牛"但正在被侵蚀，内容业务是"增长引擎"但仍在烧钱</strong>。宽带用户2025年流失71.1万（渗透率从49.8%降至47.6%），这是结构性问题——5G固定无线接入（FWA）和光纤入户正在蚕食有线电视宽带的垄断地位。但Comcast的应对策略很聪明：用无线业务（MVNO模式，轻资产）作为"捆绑锚"留住宽带用户，同时用主题公园和Peacock创造新增长点。关键问题是：这种转型能否在宽带收入下滑之前完成？
+        </div>
+
+        <h3>2.4 商业模式总结</h3>
+        <p>Comcast的盈利模式可以概括为：<strong>"连接收月费 + 内容赚溢价 + 体验卖门票"</strong>。连接业务（宽带+无线+企业服务）贡献约65%的EBITDA，是公司的"压舱石"；内容与体验业务贡献约35%的EBITDA，但增长潜力更大。毛利率约71.8%，EBITDA利润率约30%，净利率约16.2%（含Hulu出售收益）。自由现金流$192亿是公司最大的财务亮点——即使投资Epic Universe和Peacock，仍能产生巨额现金用于回购和分红。</p>
+    </div>
+
+    <!-- 三、业务板块产品竞争力分析 -->
+    <div class="info-box">
+        <h2>三、业务板块产品竞争力分析</h2>
+
+        <div class="competitiveness-box">
+            <h3>3.1 住宅宽带 (Residential Broadband) 产品竞争力分析</h3>
+            <p><strong>核心业务：</strong>Xfinity品牌宽带服务，覆盖6500万家庭，提供千兆到多千兆速率，全美最大有线宽带运营商</p>
+            
+            <h4>1. 可替代性：<span class="tag tag-orange">中等</span></h4>
+            <ul>
+                <li><strong>主要替代品：</strong>5G固定无线接入（Verizon/T-Mobile FWA）、光纤入户（AT&T Fiber、Frontier、Lumen）、DSL（衰退中）</li>
+                <li><strong>替代品体验差距：</strong>FWA在高峰期速度不稳定，延迟较高；AT&T Fiber速度更快但覆盖有限（约3000万户）；Comcast有线宽带在可靠性和覆盖广度上仍有优势</li>
+                <li><strong>替代趋势：</strong>加速——FWA用户2024年新增约300万户，正在快速蚕食有线宽带市场份额</li>
+            </ul>
+
+            <h4>2. 客户转换成本：<span class="tag tag-orange">中等</span></h4>
+            <ul>
+                <li><strong>财务转换成本：</strong>早期终止费约$0-100（多数已取消）；新运营商安装费$0-100</li>
+                <li><strong>时间转换成本：</strong>安装需1-7天；WiFi网络重新配置</li>
+                <li><strong>捆绑转换成本：</strong>Comcast的"宽带+无线+视频"三合一捆绑使单一产品切换更困难——切换宽带意味着无线套餐也需变更</li>
+                <li><strong>综合评估：</strong>单独宽带切换成本低，但捆绑策略显著提高了转换摩擦</li>
+            </ul>
+
+            <h4>3. 定价权：<span class="tag tag-orange">中等</span></h4>
+            <ul>
+                <li><strong>历史提价记录：</strong>2025年推出"5年价格保证"策略，从频繁涨价转向稳定定价；此前每年宽带费约涨3-5%</li>
+                <li><strong>提价vs通胀：</strong>过去5年宽带价格增速略高于CPI，但FWA竞争正在压缩提价空间</li>
+                <li><strong>定价权来源：</strong>规模优势（6500万家庭覆盖）+捆绑策略+网络可靠性</li>
+                <li><strong>定价权趋势：</strong>削弱——FWA和光纤竞争使Comcast不得不推出价格保证来留住客户</li>
+                <li><strong>巴菲特测试：</strong>如果Comcast提价10%，部分价格敏感客户会转向T-Mobile FWA（$50/月无限流量），但追求稳定高速的客户可能留下</li>
+            </ul>
+
+            <p><strong>综合竞争力评级：<span class="rating-stars">⭐⭐⭐</span></strong></p>
+        </div>
+
+        <div class="competitiveness-box">
+            <h3>3.2 无线业务 (Xfinity Mobile) 产品竞争力分析</h3>
+            <p><strong>核心业务：</strong>MVNO（移动虚拟网络运营商），租用Verizon网络，930万线，仅限Xfinity宽带用户</p>
+            
+            <h4>1. 可替代性：<span class="tag tag-red">高</span></h4>
+            <ul>
+                <li><strong>主要替代品：</strong>Verizon、AT&T、T-Mobile三大运营商直营服务；其他MVNO（Visible、US Mobile、Google Fi）</li>
+                <li><strong>替代品体验差距：</strong>三大运营商提供更完整的网络覆盖和优先级；Xfinity Mobile在Verizon网络上为低优先级，高峰期可能降速</li>
+                <li><strong>替代趋势：</strong>稳定——MVNO市场整体增长，但Comcast的捆绑模式有差异化</li>
+            </ul>
+
+            <h4>2. 客户转换成本：<span class="tag tag-orange">中等</span></h4>
+            <ul>
+                <li><strong>财务转换成本：</strong>手机设备分期付款未结清需一次性付清；携号转网免费</li>
+                <li><strong>时间转换成本：</strong>携号转网需1-3天</li>
+                <li><strong>捆绑转换成本：</strong>Xfinity Mobile仅限宽带用户，离开宽带=离开无线，双重摩擦</li>
+                <li><strong>综合评估：</strong>捆绑策略是核心护城河——离开Xfinity Mobile意味着同时失去宽带折扣</li>
+            </ul>
+
+            <h4>3. 定价权：<span class="tag tag-red">弱</span></h4>
+            <ul>
+                <li><strong>历史提价记录：</strong>2025年推出"免费Xfinity Unlimited Mobile一年"促销，实际在降价获客</li>
+                <li><strong>提价vs通胀：</strong>无线行业整体价格竞争激烈，Comcast无法独立提价</li>
+                <li><strong>定价权来源：</strong>捆绑折扣——Xfinity Mobile的价值在于与宽带捆绑后的整体成本优势</li>
+                <li><strong>定价权趋势：</strong>稳定——作为MVNO，定价权受制于宿主网络（Verizon）</li>
+                <li><strong>巴菲特测试：</strong>如果Xfinity Mobile提价10%，客户可以轻松携号转网到Verizon直营或T-Mobile</li>
+            </ul>
+
+            <p><strong>综合竞争力评级：<span class="rating-stars">⭐⭐</span></strong></p>
+        </div>
+
+        <div class="competitiveness-box">
+            <h3>3.3 企业服务连接 (Business Services Connectivity) 产品竞争力分析</h3>
+            <p><strong>核心业务：</strong>为中小企业和大型企业提供宽带、以太网、云、网络安全解决方案，年收入$102亿，EBITDA利润率56.4%</p>
+            
+            <h4>1. 可替代性：<span class="tag tag-orange">中等</span></h4>
+            <ul>
+                <li><strong>主要替代品：</strong>AT&T Business、Verizon Business、Lumen、区域光纤运营商</li>
+                <li><strong>替代品体验差距：</strong>Comcast在中小企业市场覆盖最广（服务最多小企业），但大型企业市场AT&T/Verizon光纤方案更强</li>
+                <li><strong>替代趋势：</strong>稳定——中小企业对Comcast的依赖度较高</li>
+            </ul>
+
+            <h4>2. 客户转换成本：<span class="tag tag-green">高</span></h4>
+            <ul>
+                <li><strong>财务转换成本：</strong>企业网络切换涉及设备更换、服务中断风险，成本可达数万至数十万美元</li>
+                <li><strong>时间转换成本：</strong>企业网络迁移通常需要3-6个月规划</li>
+                <li><strong>捆绑转换成本：</strong>企业通常同时使用Comcast的宽带+语音+安全+云服务</li>
+                <li><strong>综合评估：</strong>企业客户转换成本显著高于住宅客户</li>
+            </ul>
+
+            <h4>3. 定价权：<span class="tag tag-green">强</span></h4>
+            <ul>
+                <li><strong>历史提价记录：</strong>收入持续增长（FY2025 +6.2%），EBITDA利润率56.4%极高</li>
+                <li><strong>提价vs通胀：</strong>企业服务定价跑赢通胀，高利润率说明定价权强</li>
+                <li><strong>定价权来源：</strong>规模优势+高转换成本+中小企业对可靠连接的刚性需求</li>
+                <li><strong>定价权趋势：</strong>稳定——Nitel收购扩展了企业市场能力</li>
+                <li><strong>巴菲特测试：</strong>如果Comcast企业服务提价10%，中小企业不太可能为省几百美元冒网络中断风险</li>
+            </ul>
+
+            <p><strong>综合竞争力评级：<span class="rating-stars">⭐⭐⭐⭐</span></strong></p>
+        </div>
+
+        <div class="competitiveness-box">
+            <h3>3.4 媒体与流媒体 (Media / Peacock) 产品竞争力分析</h3>
+            <p><strong>核心业务：</strong>NBC广播网、Telemundo西语网、Peacock流媒体（4400万付费用户）、Sky欧洲电视网络</p>
+            
+            <h4>1. 可替代性：<span class="tag tag-red">高</span></h4>
+            <ul>
+                <li><strong>主要替代品：</strong>Netflix、Disney+、Amazon Prime Video、Apple TV+、YouTube、Hulu</li>
+                <li><strong>替代品体验差距：</strong>流媒体之间差异不大，用户可随时切换；NBC的直播体育（NFL、NBA、奥运会）是差异化优势</li>
+                <li><strong>替代趋势：</strong>加速——流媒体竞争白热化，用户"订阅疲劳"加剧</li>
+            </ul>
+
+            <h4>2. 客户转换成本：<span class="tag tag-red">极低</span></h4>
+            <ul>
+                <li><strong>财务转换成本：</strong>月费$7.99-13.99，随时取消，无违约金</li>
+                <li><strong>时间转换成本：</strong>一键取消，一分钟完成</li>
+                <li><strong>捆绑转换成本：</strong>Comcast将Peacock与Xfinity宽带捆绑提供，增加了一些摩擦</li>
+                <li><strong>综合评估：</strong>流媒体是所有行业中转换成本最低的产品之一</li>
+            </ul>
+
+            <h4>3. 定价权：<span class="tag tag-red">弱</span></h4>
+            <ul>
+                <li><strong>历史提价记录：</strong>Peacock 2024年提价$1-2/月，但面临用户流失风险</li>
+                <li><strong>提价vs通胀：</strong>流媒体提价幅度跑赢通胀，但每次提价都伴随流失率上升</li>
+                <li><strong>定价权来源：</strong>直播体育独家版权（NFL、NBA、英超、奥运会）是唯一定价权来源</li>
+                <li><strong>定价权趋势：</strong>稳定——体育版权成本持续上涨，压缩利润空间</li>
+                <li><strong>巴菲特测试：</strong>如果Peacock提价10%，用户可以轻松切换到Netflix或Disney+</li>
+            </ul>
+
+            <p><strong>综合竞争力评级：<span class="rating-stars">⭐⭐</span></strong></p>
+        </div>
+
+        <div class="competitiveness-box">
+            <h3>3.5 主题公园 (Theme Parks) 产品竞争力分析</h3>
+            <p><strong>核心业务：</strong>环球影城（奥兰多、好莱坞、日本、北京）、Epic Universe（2025年5月开园）、英国新公园规划中</p>
+            
+            <h4>1. 可替代性：<span class="tag tag-orange">中等</span></h4>
+            <ul>
+                <li><strong>主要替代品：</strong>Disney世界/乐园、SeaWorld、六旗、当地旅游景点</li>
+                <li><strong>替代品体验差距：</strong>Disney品牌力更强但价格更高；Epic Universe以新技术和IP差异化；环球影城的沉浸式体验（哈利波特、侏罗纪、超级马里奥）难以复制</li>
+                <li><strong>替代趋势：</strong>稳定——主题公园市场整体增长，体验经济趋势利好</li>
+            </ul>
+
+            <h4>2. 客户转换成本：<span class="tag tag-red">低</span></h4>
+            <ul>
+                <li><strong>财务转换成本：</strong>门票价格相近，无锁定机制</li>
+                <li><strong>时间转换成本：</strong>旅行规划需要时间，但不同公园可交替选择</li>
+                <li><strong>捆绑转换成本：</strong>年票和多日票提供一定粘性</li>
+                <li><strong>综合评估：</strong>主题公园的转换成本很低，但IP独特性创造了"必须去"的体验</li>
+            </ul>
+
+            <h4>3. 定价权：<span class="tag tag-green">强</span></h4>
+            <ul>
+                <li><strong>历史提价记录：</strong>门票价格每年涨3-5%，人均消费持续增长；Epic Universe推动奥兰多整体人均消费上升</li>
+                <li><strong>提价vs通胀：</strong>门票价格增速跑赢CPI</li>
+                <li><strong>定价权来源：</strong>IP独特性（哈利波特、侏罗纪、超级马里奥）+稀缺性（全球仅5个环球影城）+体验经济溢价</li>
+                <li><strong>定价权趋势：</strong>增强——Epic Universe的成功证明环球品牌可以支撑更高定价</li>
+                <li><strong>巴菲特测试：</strong>如果环球影城提价10%，哈利波特粉丝仍然会来——因为世界上只有5个地方可以体验哈利波特魔法世界</li>
+            </ul>
+
+            <p><strong>综合竞争力评级：<span class="rating-stars">⭐⭐⭐⭐</span></strong></p>
+        </div>
+
+        <div class="highlight">
+            <strong>综合竞争力评估：</strong>Comcast各板块竞争力呈现"两强三弱"格局。企业服务和主题公园拥有最强的竞争力（高转换成本+强定价权），是公司最值得投资的板块。住宅宽带作为核心收入来源，竞争力正在被FWA和光纤侵蚀——这是最大的结构性风险。无线和流媒体竞争力最弱，但无线作为"捆绑锚"有战略价值，流媒体则处于亏损烧钱阶段。Versant分拆后，Comcast更聚焦于连接+体验，但核心宽带的护城河正在收窄，这是投资者必须关注的关键变量。
+        </div>
+    </div>
+
+    <!-- 四、历史财务指标 -->
+    <div class="info-box">
+        <h2>四、历史财务指标（2016-2025）</h2>
+        
+        <h3>4.1 净资产收益率 (ROE) 趋势</h3>
+        <div class="chart-container">
+            <canvas id="roeChart"></canvas>
+        </div>
+        <table>
+            <tr>
+                <th>财年</th><th>ROE</th><th>净利润($B)</th><th>股东权益($B)</th><th>备注</th>
+            </tr>
+            <tr><td>2016</td><td>38.9%</td><td>$8.7</td><td>$30.1</td><td>稳定高ROE</td></tr>
+            <tr><td>2017</td><td>74.1%</td><td>$22.7</td><td>$38.4</td><td>⚠️ 含税改一次性收益</td></tr>
+            <tr><td>2018</td><td>29.2%</td><td>$11.7</td><td>$42.5</td><td>Sky收购推高杠杆</td></tr>
+            <tr><td>2019</td><td>28.1%</td><td>$13.1</td><td>$49.8</td><td>Sky整合期</td></tr>
+            <tr><td>2020</td><td>19.7%</td><td>$10.5</td><td>$56.2</td><td>疫情冲击主题公园</td></tr>
+            <tr><td>2021</td><td>23.9%</td><td>$14.2</td><td>$62.1</td><td>复苏期</td></tr>
+            <tr><td>2022</td><td>9.5%</td><td>$5.4</td><td>$61.3</td><td>⚠️ Peacock巨额亏损+减值</td></tr>
+            <tr><td>2023</td><td>29.4%</td><td>$15.4</td><td>$57.6</td><td>盈利恢复</td></tr>
+            <tr><td>2024</td><td>29.5%</td><td>$16.2</td><td>$60.8</td><td>稳定</td></tr>
+            <tr><td>2025</td><td>32.3%</td><td>$20.0</td><td>$67.5</td><td>含Hulu出售$94亿收益</td></tr>
+        </table>
+        <div class="highlight">
+            <strong>巴菲特视角：</strong>剔除2017年税改一次性收益和2025年Hulu出售收益后，Comcast的正常化ROE约25-30%。这个水平在通信行业属于优秀，但需要警惕——高ROE部分由高杠杆驱动（产权比率约2.7-3.2x），而非完全来自经营效率。2022年ROE骤降至9.5%是一个警示：当Peacock亏损和减值同时出现时，杠杆会放大利润波动。巴菲特偏好低杠杆+高ROE的公司，Comcast的杠杆水平是其最大财务风险。
+        </div>
+
+        <h3>4.2 资产负债率与产权比率趋势</h3>
+        <div class="chart-container">
+            <canvas id="debtChart"></canvas>
+        </div>
+        <table>
+            <tr>
+                <th>财年</th><th>总债务($B)</th><th>总资产($B)</th><th>资产负债率</th><th>产权比率(资产/权益)</th><th>债务/EBITDA</th>
+            </tr>
+            <tr><td>2016</td><td>$61.0</td><td>$175.5</td><td>65%</td><td>5.83x</td><td>2.32x</td></tr>
+            <tr><td>2017</td><td>$64.6</td><td>$191.3</td><td>64%</td><td>4.98x</td><td>2.33x</td></tr>
+            <tr><td>2018</td><td>$111.7</td><td>$260.2</td><td>70%</td><td>6.12x</td><td>3.76x</td></tr>
+            <tr><td>2019</td><td>$107.4</td><td>$275.9</td><td>68%</td><td>5.54x</td><td>3.15x</td></tr>
+            <tr><td>2020</td><td>$108.9</td><td>$282.5</td><td>67%</td><td>5.03x</td><td>3.56x</td></tr>
+            <tr><td>2021</td><td>$100.0</td><td>$289.7</td><td>65%</td><td>4.67x</td><td>2.89x</td></tr>
+            <tr><td>2022</td><td>$100.0</td><td>$295.7</td><td>66%</td><td>4.83x</td><td>2.74x</td></tr>
+            <tr><td>2023</td><td>$97.1</td><td>$285.8</td><td>65%</td><td>4.96x</td><td>2.58x</td></tr>
+            <tr><td>2024</td><td>$99.1</td><td>$288.7</td><td>64%</td><td>4.75x</td><td>2.60x</td></tr>
+            <tr><td>2025</td><td>$98.9</td><td>$296.5</td><td>62%</td><td>4.39x</td><td>2.68x</td></tr>
+        </table>
+        <div class="highlight">
+            <strong>芒格视角：</strong>Comcast的总债务约$989亿，虽然绝对金额巨大，但债务/EBITDA约2.68x，在通信行业中属于中等水平（AT&T约3.0x，Charter约4.5x）。2018年因Sky收购债务飙升至$1117亿，此后持续去杠杆。Versant分拆转移了$30亿债务，Hulu出售收益进一步改善了资产负债表。但需注意：Comcast的商誉和无形资产约$1557亿，占总资产一半以上——如果业务恶化，这些资产可能面临减值风险。
+        </div>
+
+        <h3>4.3 市盈率 (PE) 趋势</h3>
+        <div class="chart-container">
+            <canvas id="peChart"></canvas>
+        </div>
+        <table>
+            <tr>
+                <th>财年</th><th>PE Ratio (年末)</th><th>年末股价</th><th>EPS</th><th>备注</th>
+            </tr>
+            <tr><td>2016</td><td>19.5x</td><td>$35.3</td><td>$1.81</td><td>市场给予稳定估值</td></tr>
+            <tr><td>2017</td><td>8.3x</td><td>$40.1</td><td>$4.83</td><td>税改收益推高EPS</td></tr>
+            <tr><td>2018</td><td>14.2x</td><td>$36.2</td><td>$2.55</td><td>Sky收购不确定性</td></tr>
+            <tr><td>2019</td><td>14.8x</td><td>$42.5</td><td>$2.87</td><td>市场消化Sky</td></tr>
+            <tr><td>2020</td><td>17.6x</td><td>$40.5</td><td>$2.30</td><td>疫情低点后反弹</td></tr>
+            <tr><td>2021</td><td>17.1x</td><td>$52.8</td><td>$3.09</td><td>市场乐观</td></tr>
+            <tr><td>2022</td><td>35.5x</td><td>$43.3</td><td>$1.22</td><td>⚠️ Peacock亏损拉低EPS</td></tr>
+            <tr><td>2023</td><td>10.7x</td><td>$39.9</td><td>$3.73</td><td>盈利恢复，估值压缩</td></tr>
+            <tr><td>2024</td><td>14.2x</td><td>$58.9</td><td>$4.14</td><td>Hulu出售预期</td></tr>
+            <tr><td>2025</td><td>4.7x</td><td>$25.4</td><td>$5.39</td><td>⚠️ 含Hulu收益，正常化PE约14x</td></tr>
+        </table>
+        <div class="highlight">
+            <strong>巴菲特视角：</strong>当前PE 4.7x看似极低，但这是因为2025年净收入含$94亿Hulu出售一次性收益。调整后EPS $4.31，对应正常化PE约5.9x。即使按正常化PE，CMCSA也处于历史低位——市场正在为宽带用户流失和媒体业务不确定性定价。与同行相比：Charter (CHTR) PE约11x，AT&T约10x，Verizon约9x。CMCSA的估值折让反映了市场对其转型不确定性的担忧，但也可能意味着安全边际。
+        </div>
+    </div>
+
+    <!-- 五、竞争分析 -->
+    <div class="info-box">
+        <h2>五、竞争分析</h2>
+        
+        <h3>5.1 主要竞争对手</h3>
+        <table>
+            <tr>
+                <th>竞争对手</th>
+                <th>市值($B)</th>
+                <th>核心竞争领域</th>
+                <th>市场份额对比</th>
+            </tr>
+            <tr>
+                <td>Charter Communications (CHTR)</td>
+                <td>~$60</td>
+                <td>有线宽带（Spectrum品牌）</td>
+                <td>CHTR约3200万宽带用户 vs CMCSA约3130万；CHTR增速更快</td>
+            </tr>
+            <tr>
+                <td>AT&T (T)</td>
+                <td>~$165</td>
+                <td>光纤宽带+无线</td>
+                <td>AT&T Fiber覆盖约3000万户，增速强劲；无线1亿+用户</td>
+            </tr>
+            <tr>
+                <td>Verizon (VZ)</td>
+                <td>~$165</td>
+                <td>5G FWA+无线</td>
+                <td>FWA用户约500万，增速快；无线9300万用户</td>
+            </tr>
+            <tr>
+                <td>T-Mobile (TMUS)</td>
+                <td>~$230</td>
+                <td>5G FWA+无线</td>
+                <td>FWA用户约600万，全美最大FWA运营商</td>
+            </tr>
+            <tr>
+                <td>Disney (DIS)</td>
+                <td>~$200</td>
+                <td>主题公园+流媒体</td>
+                <td>Disney+ 1.5亿用户 vs Peacock 4400万；Disney世界 vs 环球影城</td>
+            </tr>
+            <tr>
+                <td>Netflix (NFLX)</td>
+                <td>~$430</td>
+                <td>流媒体</td>
+                <td>Netflix 3亿用户 vs Peacock 4400万</td>
+            </tr>
+        </table>
+
+        <h3>5.2 各领域市场份额</h3>
+        <table>
+            <tr>
+                <th>领域</th>
+                <th>Comcast份额</th>
+                <th>主要竞争者份额</th>
+            </tr>
+            <tr>
+                <td>美国有线宽带</td>
+                <td>约37%</td>
+                <td>Charter约32%，Cox约8%</td>
+            </tr>
+            <tr>
+                <td>美国整体宽带（含光纤/FWA）</td>
+                <td>约24%</td>
+                <td>AT&T约15%，Verizon约12%，T-Mobile约5%</td>
+            </tr>
+            <tr>
+                <td>美国无线（MVNO）</td>
+                <td>约1%</td>
+                <td>Verizon约30%，AT&T约29%，T-Mobile约28%</td>
+            </tr>
+            <tr>
+                <td>美国主题公园</td>
+                <td>约25%</td>
+                <td>Disney约50%，SeaWorld约8%</td>
+            </tr>
+            <tr>
+                <td>全球流媒体</td>
+                <td>约3%</td>
+                <td>Netflix约20%，Disney+约10%，Amazon约8%</td>
+            </tr>
+            <tr>
+                <td>英国宽带</td>
+                <td>约28%（Sky）</td>
+                <td>BT约32%，Virgin Media约15%</td>
+            </tr>
+        </table>
+
+        <h3>5.3 经济护城河评估</h3>
+        
+        <div class="moat-item">
+            <strong>🏗️ 规模优势（Scale Advantages）— 宽护城河</strong><br>
+            Comcast拥有全美最大的有线宽带网络，覆盖6500万家庭，3130万宽带用户。规模带来的优势包括：（1）网络建设固定成本已沉没，边际成本极低；（2）采购议价权（设备、内容版权）；（3）品牌认知度（Xfinity全美知名）。在企业服务领域，Comcast服务最多中小企业，规模优势更明显。<br>
+            <strong>评级：★★★★☆（4/5）</strong> — 规模优势明显，但FWA和光纤正在绕过有线网络。
+        </div>
+
+        <div class="moat-item">
+            <strong>📦 捆绑效应（Bundling Effects）— 中等护城河</strong><br>
+            Comcast的"宽带+无线+视频+智能家居"捆绑策略是其核心防御武器。数据显示，捆绑3个以上产品的客户流失率仅为单一产品客户的1/3。Xfinity Mobile的快速增长（930万线）正在强化捆绑效应——客户离开宽带意味着同时失去无线折扣。但捆绑效应的局限性在于：如果宽带本身失去竞争力，捆绑只是延缓而非阻止客户流失。<br>
+            <strong>评级：★★★☆☆（3/5）</strong> — 捆绑有效但非万能。
+        </div>
+
+        <div class="moat-item">
+            <strong>🎬 IP与内容资产（Intellectual Property）— 窄护城河</strong><br>
+            NBCUniversal拥有丰富的IP资产（侏罗纪公园、小黄人、超级马里奥、速度与激情），这些IP同时赋能流媒体、工作室和主题公园。但IP的竞争壁垒有限——Disney的IP更强，Netflix的原创能力更灵活。Peacock的4400万用户远落后于Netflix（3亿）和Disney+（1.5亿）。<br>
+            <strong>评级：★★★☆☆（3/5）</strong> — IP有价值但不足以构成宽护城河。
+        </div>
+
+        <div class="moat-item">
+            <strong>🔄 网络效应（Network Effects）— 窄护城河</strong><br>
+            Xfinity WiFi热点网络（全美数千万个热点）为移动用户提供了"WiFi优先"的网络体验——约90%的Xfinity Mobile数据通过WiFi传输。这个WiFi网络随着用户增长而扩展，形成了一定的网络效应。但WiFi热点的价值正在被5G网络覆盖削弱。<br>
+            <strong>评级：★★☆☆☆（2/5）</strong> — 网络效应存在但正在被技术进步削弱。
+        </div>
+
+        <div class="moat-item">
+            <strong>🔒 转换成本（Switching Costs）— 中等护城河</strong><br>
+            住宅宽带转换成本低（无违约金、安装简单），但捆绑策略提高了综合转换成本。企业服务转换成本高（网络迁移风险大、时间长）。主题公园转换成本低但IP独特性创造了"必须体验"的粘性。<br>
+            <strong>评级：★★★☆☆（3/5）</strong> — 转换成本因板块而异，整体中等。
+        </div>
+
+        <div class="moat-item">
+            <strong>💰 品牌力（Brand Power）— 中等护城河</strong><br>
+            Xfinity在美国宽带市场有较高品牌认知度，但品牌忠诚度不高——客户更多是因为"没有更好选择"而非"品牌偏好"而留下。NBC和Universal在娱乐领域有强品牌，但流媒体时代品牌忠诚度正在下降。Sky在英国有较强品牌力。<br>
+            <strong>评级：★★★☆☆（3/5）</strong> — 品牌有认知度但忠诚度不足。
+        </div>
+
+        <div class="highlight">
+            <strong>综合护城河评级：中等护城河（正在收窄）</strong><br>
+            Comcast曾经拥有美国有线宽带的"准垄断"护城河，但5G FWA和光纤入户正在打破这一壁垒。当前护城河的核心是<strong>规模优势+捆绑效应</strong>，但这两者都在被竞争侵蚀。企业服务和主题公园是护城河最强的板块，但仅占总营收的16%。住宅宽带（57%营收）的护城河正在收窄，这是Comcast面临的最大结构性挑战。Versant分拆后，公司更聚焦于连接+体验，但核心宽带的竞争格局恶化是不可逆的趋势。
+        </div>
+
+        <h3>5.4 深度专题：宽带用户流失——结构性衰退还是周期性波动？</h3>
+        
+        <table>
+            <tr><th>指标</th><th>2022</th><th>2023</th><th>2024</th><th>2025</th><th>趋势</th></tr>
+            <tr><td>宽带用户净增减</td><td>+5.5万</td><td>-6.6万</td><td>-38.9万</td><td>-71.1万</td><td>⚠️ 加速流失</td></tr>
+            <tr><td>宽带渗透率（homes passed）</td><td>50.5%</td><td>50.2%</td><td>49.8%</td><td>47.6%</td><td>⚠️ 持续下降</td></tr>
+            <tr><td>FWA新增用户（全行业）</td><td>~300万</td><td>~350万</td><td>~350万</td><td>~300万</td><td>稳定增长</td></tr>
+            <tr><td>AT&T Fiber新增用户</td><td>~80万</td><td>~90万</td><td>~100万</td><td>~100万</td><td>稳定增长</td></tr>
+        </table>
+        <div class="highlight">
+            <strong>巴菲特视角：</strong>宽带用户流失是Comcast投资者必须面对的核心问题。2022年净增5.5万→2025年净减71.1万，流失速度在加速。这不是周期性波动，而是<strong>结构性变化</strong>——5G FWA（T-Mobile/Verizon）和光纤入户（AT&T）正在为消费者提供真正的替代选择。Comcast的应对策略是：（1）5年价格保证留住价格敏感客户；（2）免费无线1年吸引新客户；（3）升级多千兆网络提升产品竞争力。但巴菲特会问：如果宽带用户持续流失，Comcast的"现金牛"还能产多少奶？这是决定CMCSA投资价值的关键变量。
+        </div>
+    </div>
+
+    <!-- 六、利润分配分析 -->
+    <div class="info-box">
+        <h2>六、利润分配分析（2016-2025）</h2>
+
+        <h3>6.1 利润分配表</h3>
+        <p><em>注：按照巴菲特/芒格框架，股票回购计入留存而非与股息并列作为"回报股东"项目。</em></p>
+        <table>
+            <tr>
+                <th>年度</th><th>净利润($B)</th><th>股息($B)</th><th>回购($B)</th><th>扩张CapEx($B)</th><th>债务偿还($B)</th><th>留存金额($B)</th><th>留存比率</th>
+            </tr>
+            <tr><td>2016</td><td>$8.7</td><td>$2.4</td><td>$3.5</td><td>$8.3</td><td>$2.0</td><td>$6.3</td><td>72%</td></tr>
+            <tr><td>2017</td><td>$22.7</td><td>$2.8</td><td>$4.5</td><td>$8.5</td><td>$3.0</td><td>$19.9</td><td>88%</td></tr>
+            <tr><td>2018</td><td>$11.7</td><td>$3.3</td><td>$5.0</td><td>$8.8</td><td>$5.0</td><td>$8.4</td><td>72%</td></tr>
+            <tr><td>2019</td><td>$13.1</td><td>$3.6</td><td>$5.5</td><td>$9.2</td><td>$4.0</td><td>$9.5</td><td>73%</td></tr>
+            <tr><td>2020</td><td>$10.5</td><td>$4.0</td><td>$3.0</td><td>$9.5</td><td>$3.0</td><td>$6.5</td><td>62%</td></tr>
+            <tr><td>2021</td><td>$14.2</td><td>$4.3</td><td>$5.0</td><td>$9.8</td><td>$2.0</td><td>$9.9</td><td>70%</td></tr>
+            <tr><td>2022</td><td>$5.4</td><td>$4.6</td><td>$3.5</td><td>$9.5</td><td>$1.0</td><td>$0.8</td><td>15%</td></tr>
+            <tr><td>2023</td><td>$15.4</td><td>$4.8</td><td>$4.0</td><td>$9.2</td><td>$2.0</td><td>$10.6</td><td>69%</td></tr>
+            <tr><td>2024</td><td>$16.2</td><td>$4.8</td><td>$9.1</td><td>$9.5</td><td>$3.0</td><td>$11.4</td><td>70%</td></tr>
+            <tr><td>2025</td><td>$20.0</td><td>$4.9</td><td>$6.8</td><td>$10.5</td><td>$5.0</td><td>$15.1</td><td>76%</td></tr>
+        </table>
+
+        <h3>6.2 利润分配饼图（FY2025）</h3>
+        <div class="chart-container">
+            <canvas id="profitChart"></canvas>
+        </div>
+
+        <h3>6.3 利润分配分析要点</h3>
+        
+        <div class="moat-item">
+            <strong>1. 留存比率趋势：从"平衡分配"向"高留存"过渡</strong><br>
+            10年平均留存比率约67%，属于"平衡分配，半留半分"的稳健型公司。2022年因Peacock亏损导致净利润骤降，留存比率仅15%（股息支付超过净利润的85%），这是一个危险信号。2024-2025年恢复正常至70-76%。值得注意的是，2025年留存金额$151亿含Hulu出售收益，正常化留存约$57亿。
+        </div>
+
+        <div class="moat-item">
+            <strong>2. 留存质量：回购占比波动大，CapEx刚性支出高</strong><br>
+            留存利润中，回购占比约40-60%（2024年高达80%），CapEx占比约50-60%。Comcast的CapEx刚性支出约$100亿/年（网络升级+内容制作+公园建设），这意味着即使利润下降，CapEx也难以大幅削减。2024年回购$91亿是近年最高，部分原因是Hulu出售预期带来的信心。
+        </div>
+
+        <div class="moat-item">
+            <strong>3. 回购时机：2024年高价位回购是瑕疵</strong><br>
+            2024年回购$91亿，平均回购价约$50-55（PE约13-14x）；2025年回购$68亿，平均回购价约$35-40（PE约8-9x）。2025年股价从$59跌至$25，回购力度反而从$91亿降至$68亿——管理层在股价最便宜时没有加速回购，这是一个资本配置瑕疵。不过，2025年1月批准的$150亿新回购授权显示了长期信心。
+        </div>
+
+        <div class="moat-item">
+            <strong>4. 巴菲特视角：1美元留存创造多少市值？</strong><br>
+            2016-2025年累计留存利润约$884亿（含Hulu收益），市值从约$860亿降至约$907亿，增加约$47亿。每1美元留存仅创造了约$0.05市值——远低于巴菲特的1美元标准。这反映了市场对Comcast转型前景的悲观预期。但需注意：同期Comcast通过回购减少了约10亿股（从45亿股降至36亿股），每股价值实际在增长。
+        </div>
+
+        <div class="moat-item">
+            <strong>5. 可持续增长率 = ROE × 留存比率</strong><br>
+            FY2025正常化: 25% × 76% = 19%——理论内生增长极限。实际营收增长0%，说明Comcast远未达到理论增长极限，主要受制于宽带用户流失和媒体业务亏损。利润增长（EPS +30%）主要来自回购减股和Hulu出售，而非内生经营增长。
+        </div>
+
+        <div class="highlight">
+            <strong>股息政策评估：</strong>Comcast的股息率约5.2%（TTM $1.32/股），在大型通信公司中属于较高水平（AT&T约4.5%，Verizon约6.5%）。派息率约25%（正常化净利润），股息安全性较高。连续16年增加股息，年复合增长率约10%。但2022年派息率一度超过100%（净利润仅$54亿但分红$46亿），说明在极端情况下股息可能面临压力。对于追求股息收入的投资者，CMCSA的5.2%股息率+低PE组合具有吸引力，但需关注宽带用户流失对长期现金流的影响。
+        </div>
+    </div>
+
+    <!-- 七、投资总结 -->
+    <div class="info-box">
+        <h2>七、投资总结</h2>
+
+        <h3>7.1 核心投资论点</h3>
+        
+        <div class="moat-item">
+            <strong>✅ 优势：自由现金流机器</strong><br>
+            FY2025自由现金流$192亿创历史新高，FCF收益率约21%（基于$907亿市值）。即使投资Epic Universe（约$60亿）和Peacock（年亏损$11亿），Comcast仍能产生巨额现金。这种现金生成能力使其能够同时支付5.2%股息、回购5%流通股、投资网络升级和公园扩张。
+        </div>
+
+        <div class="moat-item">
+            <strong>✅ 优势：战略转型方向正确</strong><br>
+            Versant分拆剥离衰退资产、聚焦连接+体验是正确方向。无线业务（MVNO轻资产模式）作为"捆绑锚"留住宽带用户的策略正在奏效——930万线、15%渗透率、仍有巨大增长空间。Epic Universe的成功证明主题公园是可持续的增长引擎。企业服务（EBITDA利润率56.4%）是隐藏的宝石。
+        </div>
+
+        <div class="moat-item">
+            <strong>✅ 优势：估值极度便宜</strong><br>
+            正常化PE约5.9x，P/FCF约4.7x，EV/EBITDA约5.3x。这些估值指标在S&P 500大型股中几乎最低。市场已经为宽带用户流失和媒体不确定性充分定价，任何超预期的正面信号都可能触发估值修复。
+        </div>
+
+        <div class="risk-item">
+            <strong>⚠️ 风险：宽带用户结构性流失</strong><br>
+            2025年流失71.1万宽带用户，渗透率从50.5%降至47.6%，且流失在加速。5G FWA和光纤入户是不可逆的竞争趋势。如果宽带用户以每年2-3%的速度流失，Comcast的"现金牛"将在5-10年内显著萎缩。这是决定CMCSA投资价值的核心变量。
+        </div>
+
+        <div class="risk-item">
+            <strong>⚠️ 风险：高杠杆+高商誉</strong><br>
+            总债务$989亿，商誉+无形资产$1557亿。如果宽带业务恶化导致减值，可能触发债务契约问题。虽然当前债务/EBITDA 2.68x尚可，但EBITDA下降会快速推高杠杆率。
+        </div>
+
+        <div class="risk-item">
+            <strong>⚠️ 风险：Peacock持续亏损</strong><br>
+            Peacock年EBITDA亏损$11亿，4400万付费用户远落后于Netflix（3亿）和Disney+（1.5亿）。流媒体是"赢者通吃"的市场，Peacock可能永远无法实现盈利。体育版权成本（NBA、NFL、英超）持续上涨，进一步压缩利润空间。
+        </div>
+
+        <div class="risk-item">
+            <strong>⚠️ 风险：Roberts家族控制</strong><br>
+            Roberts家族通过Class B超级投票股持有约33%投票权，但仅占约1%经济利益。这种"同股不同权"结构意味着少数股东对公司决策几乎没有影响力，存在代理人风险。
+        </div>
+
+        <h3>7.2 估值评估</h3>
+        <table>
+            <tr>
+                <th>估值指标</th><th>当前值</th><th>5年平均</th><th>同行中位数</th><th>评估</th>
+            </tr>
+            <tr><td>PE (正常化)</td><td>5.9x</td><td>14.5x</td><td>10.0x</td><td><span class="tag tag-green">极度低估</span></td></tr>
+            <tr><td>P/S</td><td>0.73x</td><td>1.3x</td><td>1.5x</td><td><span class="tag tag-green">低估</span></td></tr>
+            <tr><td>P/FCF</td><td>4.7x</td><td>9.5x</td><td>12.0x</td><td><span class="tag tag-green">极度低估</span></td></tr>
+            <tr><td>P/B</td><td>1.03x</td><td>2.0x</td><td>2.5x</td><td><span class="tag tag-green">低估</span></td></tr>
+            <tr><td>EV/EBITDA</td><td>5.3x</td><td>7.5x</td><td>7.0x</td><td><span class="tag tag-green">低估</span></td></tr>
+            <tr><td>股息率</td><td>5.2%</td><td>2.5%</td><td>4.0%</td><td><span class="tag tag-green">优异</span></td></tr>
+            <tr><td>FCF收益率</td><td>21.2%</td><td>10.5%</td><td>8.0%</td><td><span class="tag tag-green">极度优异</span></td></tr>
+        </table>
+
+        <h3>7.3 巴菲特/芒格最终评估</h3>
+        <div class="highlight">
+            <strong>业务可理解性：★★★★☆（4/5）</strong> — 宽带+媒体+公园的业务模式清晰可理解，但流媒体和体育版权经济学较复杂。<br><br>
+            <strong>可持续竞争优势：★★★☆☆（3/5）</strong> — 宽带护城河正在被FWA和光纤侵蚀；企业服务和主题公园护城河较强但占比有限。整体护城河中等且在收窄。<br><br>
+            <strong>管理层资本配置能力：★★★☆☆（3/5）</strong> — Versant分拆和Hulu出售是正确决策，但2024年高价位回购和Peacock持续亏损是瑕疵。Roberts家族控制结构存在代理人风险。<br><br>
+            <strong>安全边际：★★★★★（5/5）</strong> — 正常化PE 5.9x、P/FCF 4.7x、FCF收益率21.2%——估值已充分反映悲观预期，安全边际极为充足。<br><br>
+            <strong>综合评级：谨慎买入</strong><br><br>
+            Comcast是一家"估值极度便宜但基本面面临结构性挑战"的公司。5.9x正常化PE和21.2% FCF收益率提供了充足的安全边际——即使宽带用户继续流失，Comcast仍有足够的现金流来支付股息、回购股票和投资增长。但投资者必须接受：（1）宽带用户流失是长期趋势而非周期波动；（2）Peacock可能永远无法盈利；（3）Roberts家族控制意味着少数股东缺乏话语权。<br><br>
+            <strong>核心判断：</strong>如果宽带用户流失速度在未来2-3年内稳定在每年1-2%（而非加速至3-5%），CMCSA当前估值提供了显著的安全边际和估值修复空间。5.2%的股息率为等待提供了回报。但如果宽带用户流失加速至每年3%以上，Comcast的"现金牛"将快速萎缩，当前估值可能仍不够便宜。建议投资者密切关注每季度宽带用户净增减数据——这是CMCSA投资逻辑的"北极星"指标。
+        </div>
+    </div>
+
+    <script>
+        const roeCtx = document.getElementById('roeChart').getContext('2d');
+        new Chart(roeCtx, {
+            type: 'line',
+            data: {
+                labels: ['2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025'],
+                datasets: [{
+                    label: 'ROE (%)',
+                    data: [38.9, 74.1, 29.2, 28.1, 19.7, 23.9, 9.5, 29.4, 29.5, 32.3],
+                    borderColor: '#2e86c1',
+                    backgroundColor: 'rgba(46, 134, 193, 0.1)',
+                    fill: true,
+                    tension: 0.3
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: { beginAtZero: true, title: { display: true, text: 'ROE (%)' }, max: 80 }
+                }
+            }
+        });
+
+        const debtCtx = document.getElementById('debtChart').getContext('2d');
+        new Chart(debtCtx, {
+            type: 'bar',
+            data: {
+                labels: ['2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025'],
+                datasets: [{
+                    label: '资产负债率 (%)',
+                    data: [65, 64, 70, 68, 67, 65, 66, 65, 64, 62],
+                    backgroundColor: 'rgba(231, 76, 60, 0.7)',
+                    yAxisID: 'y'
+                }, {
+                    label: '产权比率 (x)',
+                    data: [5.83, 4.98, 6.12, 5.54, 5.03, 4.67, 4.83, 4.96, 4.75, 4.39],
+                    type: 'line',
+                    borderColor: '#2e86c1',
+                    backgroundColor: 'rgba(46, 134, 193, 0.1)',
+                    fill: false,
+                    tension: 0.3,
+                    yAxisID: 'y1'
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: { beginAtZero: true, title: { display: true, text: '资产负债率 (%)' }, max: 80 },
+                    y1: { position: 'right', beginAtZero: true, title: { display: true, text: '产权比率 (x)' }, max: 7 }
+                }
+            }
+        });
+
+        const peCtx = document.getElementById('peChart').getContext('2d');
+        new Chart(peCtx, {
+            type: 'line',
+            data: {
+                labels: ['2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025'],
+                datasets: [{
+                    label: 'PE Ratio (x)',
+                    data: [19.5, 8.3, 14.2, 14.8, 17.6, 17.1, 35.5, 10.7, 14.2, 4.7],
+                    borderColor: '#27ae60',
+                    backgroundColor: 'rgba(39, 174, 96, 0.1)',
+                    fill: true,
+                    tension: 0.3
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: { beginAtZero: true, title: { display: true, text: 'PE Ratio (x)' }, max: 40 }
+                }
+            }
+        });
+
+        const profitCtx = document.getElementById('profitChart').getContext('2d');
+        new Chart(profitCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['股息 ($4.9B, 24.5%)', '回购-留存 ($6.8B, 34.0%)', '再投资-CapEx ($10.5B, 52.5%)', '债务偿还 ($5.0B, 25.0%)', '其他留存 (-$7.2B)'],
+                datasets: [{
+                    data: [4.9, 6.8, 10.5, 5.0, 7.2],
+                    backgroundColor: ['#e74c3c', '#3498db', '#27ae60', '#f39c12', '#9b59b6']
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: { display: true, text: 'FY2025利润分配（回购计入留存）', font: { size: 16 } },
+                    legend: { position: 'bottom' }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
