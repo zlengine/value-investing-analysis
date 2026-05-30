@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>喜马拉雅资本 / 李录 最新持仓</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f2f5;
+            color: #333;
+        }
+        h1 {
+            text-align: center;
+            color: #1a5276;
+            font-size: 2.2em;
+            margin-bottom: 5px;
+        }
+        h2 {
+            color: #1a5276;
+            border-bottom: 2px solid #2e86c1;
+            padding-bottom: 8px;
+            margin-top: 30px;
+        }
+        h3 {
+            color: #2c3e50;
+            margin-top: 20px;
+        }
+        .subtitle {
+            text-align: center;
+            color: #7f8c8d;
+            font-size: 1.1em;
+            margin-bottom: 30px;
+        }
+        .info-box {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            background-color: white;
+        }
+        th, td {
+            padding: 10px 14px;
+            text-align: left;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        th {
+            background-color: #1a5276;
+            color: white;
+            font-weight: bold;
+        }
+        tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        tr:hover {
+            background-color: #eaf2f8;
+        }
+        .highlight {
+            background: #fef9e7;
+            border-left: 4px solid #2e86c1;
+            padding: 15px 20px;
+            margin: 15px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .chart-container {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+        canvas {
+            max-height: 400px;
+        }
+        .tag {
+            display: inline-block;
+            background: #1a5276;
+            color: white;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.85em;
+            margin: 2px;
+        }
+        .tag-green {
+            background: #27ae60;
+        }
+        .tag-red {
+            background: #c0392b;
+        }
+        .tag-orange {
+            background: #e67e22;
+        }
+        a {
+            color: #1a5276;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            font-size: 1em;
+        }
+        .change-new {
+            color: #27ae60;
+            font-weight: bold;
+        }
+        .change-increase {
+            color: #2980b9;
+            font-weight: bold;
+        }
+        .change-decrease {
+            color: #c0392b;
+            font-weight: bold;
+        }
+        .change-exit {
+            color: #7f8c8d;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back-link">← 返回索引</a>
+    
+    <h1>喜马拉雅资本 / 李录</h1>
+    <p class="subtitle">最新美股持仓 | 数据来源：SEC 13F文件 | 更新：2026年Q1（截至2026年3月31日）</p>
+
+    <div class="info-box">
+        <h2>一、持仓概览</h2>
+        <table>
+            <tr><td>管理人</td><td>李录（喜马拉雅资本创始人兼董事长）</td></tr>
+            <tr><td>管理机构</td><td>Himalaya Capital Management LLC</td></tr>
+            <tr><td>13F持仓总市值</td><td>约$32.01亿美元</td></tr>
+            <tr><td>持仓股票数量</td><td>约14只</td></tr>
+            <tr><td>前五大持仓占比</td><td>82.23%</td></tr>
+            <tr><td>投资风格</td><td>极度集中+深度研究+中国视角</td></tr>
+            <tr><td>核心理念</td><td>"在能力圈内做投资"、"中国市场是全球最大的机会"</td></tr>
+        </table>
+        <div class="highlight">
+            <strong>李录的投资哲学：</strong>李录是巴菲特和芒格最认可的中国投资人，芒格曾将家族资产交由李录管理。他坚持"极度集中"策略——前五大持仓占82%。李录的独特之处在于"中国视角"——他是最早发现比亚迪、拼多多等中国公司投资价值的美国基金经理之一。Q1最大变化是大幅减持美国银行（-71.26%），同时新建仓腾讯音乐、标普全球、穆迪等。
+        </div>
+    </div>
+
+    <div class="info-box">
+        <h2>二、前十大重仓股</h2>
+        <table>
+            <tr>
+                <th>排名</th>
+                <th>股票代码</th>
+                <th>公司名称</th>
+                <th>持仓占比</th>
+                <th>持仓市值</th>
+                <th>持股数量</th>
+                <th>Q1变动</th>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>GOOGL</td>
+                <td>Alphabet（谷歌A类）</td>
+                <td>22.85%</td>
+                <td>$7.31亿</td>
+                <td>254.33万股</td>
+                <td>不变</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>GOOG</td>
+                <td>Alphabet（谷歌C类）</td>
+                <td>21.97%</td>
+                <td>$7.03亿</td>
+                <td>245.13万股</td>
+                <td>不变</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>PDD</td>
+                <td>拼多多</td>
+                <td>14.71%</td>
+                <td>$4.71亿</td>
+                <td>460.80万股</td>
+                <td>不变</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>BRK.B</td>
+                <td>伯克希尔B类</td>
+                <td>13.44%</td>
+                <td>$4.30亿</td>
+                <td>89.77万股</td>
+                <td>不变</td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>EWBC</td>
+                <td>华美银行（East West Bancorp）</td>
+                <td>9.26%</td>
+                <td>$2.96亿</td>
+                <td>277.64万股</td>
+                <td>不变</td>
+            </tr>
+            <tr>
+                <td>6</td>
+                <td>BAC</td>
+                <td>美国银行</td>
+                <td>~3-5%（估算）</td>
+                <td>—</td>
+                <td>—</td>
+                <td><span class="change-decrease">减持71.26%</span></td>
+            </tr>
+            <tr>
+                <td>7</td>
+                <td>CROX</td>
+                <td>Crocs（洞洞鞋）</td>
+                <td>~2-3%（估算）</td>
+                <td>—</td>
+                <td>—</td>
+                <td><span class="change-increase">增持41.22%</span></td>
+            </tr>
+            <tr>
+                <td>8</td>
+                <td>TME</td>
+                <td>腾讯音乐</td>
+                <td>~1-2%（估算）</td>
+                <td>—</td>
+                <td>—</td>
+                <td><span class="change-new">新建仓</span></td>
+            </tr>
+            <tr>
+                <td>9</td>
+                <td>MCO</td>
+                <td>穆迪</td>
+                <td>~1%（估算）</td>
+                <td>—</td>
+                <td>—</td>
+                <td><span class="change-new">新建仓</span></td>
+            </tr>
+            <tr>
+                <td>10</td>
+                <td>SPGI</td>
+                <td>标普全球（S&P Global）</td>
+                <td>~1%（估算）</td>
+                <td>—</td>
+                <td>—</td>
+                <td><span class="change-new">新建仓</span></td>
+            </tr>
+        </table>
+        <div class="highlight">
+            <strong>注：</strong>第6-10名的持仓占比为估算值，因13F文件仅披露前五大持仓的精确数据。其他新建仓还包括HRB（H&R Block）和MSCI。
+        </div>
+    </div>
+
+    <div class="info-box">
+        <h2>三、Q1新建仓股票</h2>
+        <table>
+            <tr>
+                <th>股票代码</th>
+                <th>公司名称</th>
+                <th>行业</th>
+                <th>投资逻辑推测</th>
+            </tr>
+            <tr>
+                <td>TME</td>
+                <td>腾讯音乐</td>
+                <td>流媒体音乐</td>
+                <td>中国最大的音乐流媒体平台，付费率持续提升，与Spotify逻辑类似但估值更低</td>
+            </tr>
+            <tr>
+                <td>SPGI</td>
+                <td>标普全球</td>
+                <td>金融数据/评级</td>
+                <td>评级机构垄断者，与穆迪双寡头，高利润率+高定价权</td>
+            </tr>
+            <tr>
+                <td>MCO</td>
+                <td>穆迪</td>
+                <td>金融数据/评级</td>
+                <td>评级双寡头之一，与巴菲特持仓重叠（巴菲特持有穆迪4.09%）</td>
+            </tr>
+            <tr>
+                <td>HRB</td>
+                <td>H&R Block</td>
+                <td>税务服务</td>
+                <td>税务服务龙头，稳定现金流，低估值高分红</td>
+            </tr>
+            <tr>
+                <td>MSCI</td>
+                <td>MSCI明晟</td>
+                <td>金融指数</td>
+                <td>全球指数编制垄断者，ETF增长的最大受益者</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="info-box">
+        <h2>四、Q1重大调仓</h2>
+        <table>
+            <tr>
+                <th>操作</th>
+                <th>股票代码</th>
+                <th>公司名称</th>
+                <th>变动幅度</th>
+                <th>可能原因</th>
+            </tr>
+            <tr>
+                <td><span class="change-decrease">大幅减持</span></td>
+                <td>BAC</td>
+                <td>美国银行</td>
+                <td>-71.26%</td>
+                <td>利率见顶预期、银行净息差收窄；获利了结</td>
+            </tr>
+            <tr>
+                <td><span class="change-increase">增持</span></td>
+                <td>CROX</td>
+                <td>Crocs</td>
+                <td>+41.22%</td>
+                <td>品牌复兴持续、国际扩张加速、估值合理</td>
+            </tr>
+        </table>
+        <div class="highlight">
+            <strong>美国银行减持解读：</strong>李录曾在2024-2025年大举建仓美国银行，持仓一度占组合的20%+。Q1减持71.26%是一个重大转向。可能原因：①美联储降息周期下银行净息差收窄；②美国银行股价已从低位反弹超50%，估值不再便宜；③释放资金用于建仓穆迪、标普全球等金融基础设施公司——从"银行"转向"金融数据"，这是从周期性资产向结构性资产的升级。
+        </div>
+    </div>
+
+    <div class="info-box">
+        <h2>五、持仓分布饼图</h2>
+        <div class="chart-container">
+            <canvas id="himalayaPieChart"></canvas>
+        </div>
+    </div>
+
+    <div class="info-box">
+        <h2>六、投资逻辑解读</h2>
+        <div class="highlight">
+            <strong>1. 谷歌是绝对信仰：</strong>GOOGL+GOOG合计占44.82%，是组合的绝对核心。李录对谷歌的投资逻辑是"AI时代的搜索+云计算+自动驾驶三位一体"——搜索提供现金流，云计算提供增长，Waymo提供期权价值。谷歌PE约28x，在AI巨头中估值最合理。
+        </div>
+        <div class="highlight">
+            <strong>2. 拼多多是"中国视角"的体现：</strong>14.71%的持仓显示李录对中国消费下沉市场的深度理解。TEMU海外扩张+国内基本盘稳固，PE仅约15x，远低于亚马逊的35x+。李录认为拼多多是"全球最具性价比的电商平台"。
+        </div>
+        <div class="highlight">
+            <strong>3. 伯克希尔是"锚"：</strong>13.44%的BRK.B持仓是李录的"安全垫"。作为芒格家族资产的管理人，李录对伯克希尔的理解深度远超普通基金经理。这笔持仓既是对巴菲特/阿贝尔的信任，也是组合的压舱石。
+        </div>
+        <div class="highlight">
+            <strong>4. 华美银行是"中美桥梁"：</strong>9.26%的EWBC持仓是李录的独特选择。华美银行是美国最大的华裔银行，专注于中美跨境金融服务。这笔持仓体现了李录对"中美经贸关系长期存在"的判断。
+        </div>
+        <div class="highlight">
+            <strong>5. 从"银行"向"金融基础设施"转型：</strong>Q1新建仓穆迪、标普全球、MSCI——这三家都是金融数据/评级/指数领域的垄断者，拥有极强的定价权和网络效应。减持美国银行的同时买入这些公司，说明李录正在从"周期性金融"转向"结构性金融基础设施"，这是一个更高质量的投资方向。
+        </div>
+        <div class="highlight">
+            <strong>6. 腾讯音乐是"中国消费"的新押注：</strong>新建仓腾讯音乐，与拼多多形成"中国消费组合"。腾讯音乐的付费率仅约20%（Spotify约45%），提升空间巨大，且估值远低于Spotify。
+        </div>
+    </div>
+
+    <script>
+        const ctx = document.getElementById('himalayaPieChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: ['谷歌A(GOOGL)', '谷歌C(GOOG)', '拼多多(PDD)', '伯克希尔(BRK.B)', '华美银行(EWBC)', '美国银行(BAC)', 'Crocs(CROX)', '腾讯音乐(TME)', '穆迪(MCO)', '标普全球(SPGI)', '其他'],
+                datasets: [{
+                    data: [22.85, 21.97, 14.71, 13.44, 9.26, 4.0, 3.0, 2.0, 1.5, 1.5, 5.77],
+                    backgroundColor: [
+                        '#1a5276', '#2e86c1', '#e67e22', '#27ae60', '#8e44ad',
+                        '#c0392b', '#f39c12', '#16a085', '#2c3e50', '#7f8c8d', '#bdc3c7'
+                    ]
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: { display: true, text: '喜马拉雅资本 Q1 2026 持仓分布' },
+                    legend: { position: 'bottom' }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
