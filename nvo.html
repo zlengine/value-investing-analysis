@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>诺和诺德 (NVO) 价值投资分析</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f2f5;
+            color: #333;
+        }
+        h1 {
+            text-align: center;
+            color: #1a5276;
+            font-size: 2.2em;
+            margin-bottom: 5px;
+        }
+        h2 {
+            color: #1a5276;
+            border-bottom: 2px solid #2e86c1;
+            padding-bottom: 8px;
+            margin-top: 30px;
+        }
+        h3 {
+            color: #2c3e50;
+            margin-top: 20px;
+        }
+        .subtitle {
+            text-align: center;
+            color: #7f8c8d;
+            font-size: 1.1em;
+            margin-bottom: 30px;
+        }
+        .info-box {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            background-color: white;
+        }
+        th, td {
+            padding: 10px 14px;
+            text-align: left;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        th {
+            background-color: #1a5276;
+            color: white;
+            font-weight: bold;
+        }
+        tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        tr:hover {
+            background-color: #eaf2f8;
+        }
+        .highlight {
+            background: #fef9e7;
+            border-left: 4px solid #2e86c1;
+            padding: 15px 20px;
+            margin: 15px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .chart-container {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+        canvas {
+            max-height: 400px;
+        }
+        .tag {
+            display: inline-block;
+            background: #1a5276;
+            color: white;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.85em;
+            margin: 2px;
+        }
+        .tag-green {
+            background: #27ae60;
+        }
+        .tag-orange {
+            background: #e67e22;
+        }
+        .tag-red {
+            background: #c0392b;
+        }
+        a {
+            color: #1a5276;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            font-size: 1em;
+        }
+        .moat-item {
+            background: white;
+            border-radius: 8px;
+            padding: 15px 20px;
+            margin: 10px 0;
+            box-shadow: 0 1px 5px rgba(0,0,0,0.05);
+            border-left: 4px solid #2e86c1;
+        }
+        .moat-item strong {
+            color: #1a5276;
+        }
+        .risk-item {
+            background: white;
+            border-radius: 8px;
+            padding: 15px 20px;
+            margin: 10px 0;
+            box-shadow: 0 1px 5px rgba(0,0,0,0.05);
+            border-left: 4px solid #c0392b;
+        }
+        .competitiveness-box {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            border-top: 3px solid #2e86c1;
+        }
+        .rating-stars {
+            color: #f39c12;
+            font-size: 1.2em;
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back-link">← 返回索引</a>
+
+    <h1>诺和诺德 Novo Nordisk (NYSE: NVO)</h1>
+    <p class="subtitle">巴菲特/芒格式价值投资基本面分析 | 更新日期：2026年5月</p>
+
+    <!-- 一、公司基本信息 -->
+    <div class="info-box">
+        <h2>一、公司基本信息</h2>
+        <table>
+            <tr><td>公司全称</td><td>Novo Nordisk A/S</td></tr>
+            <tr><td>股票代码</td><td>NYSE: NVO（ADR，1 ADR = 1 B股）</td></tr>
+            <tr><td>市值</td><td>约1,500亿美元（2026年5月）</td></tr>
+            <tr><td>市值（美元）</td><td>≈ $150B USD</td></tr>
+            <tr><td>企业价值</td><td>≈ $163B USD</td></tr>
+            <tr><td>成立时间</td><td>1923年（诺德胰岛素实验室），1989年诺和与诺德合并</td></tr>
+            <tr><td>公司总部</td><td>丹麦巴格斯瓦德（Bagsværd, Denmark）</td></tr>
+            <tr><td>最新收盘价</td><td>约$45.51（2026年5月底）</td></tr>
+            <tr><td>财年截止</td><td>12月31日</td></tr>
+            <tr><td>CEO</td><td>Maziar Mike Doustdar（2025年8月上任）</td></tr>
+            <tr><td>员工人数</td><td>约68,794人（裁员前约78,000人）</td></tr>
+            <tr><td>行业</td><td>医疗保健 / 大型制药</td></tr>
+            <tr><td>流通股数</td><td>约33.7亿股（B股+ADR）</td></tr>
+            <tr><td>控股股东</td><td>诺和诺德基金会（28.1%股权，71.2%投票权，A/B股双级结构）</td></tr>
+            <tr><td>毛利率</td><td>80.3%（FY2025）</td></tr>
+            <tr><td>运营利润率</td><td>41.3%（FY2025）</td></tr>
+            <tr><td>净利率</td><td>33.1%（FY2025）</td></tr>
+        </table>
+    </div>
+
+    <!-- 二、业务分析 -->
+    <div class="info-box">
+        <h2>二、业务分析</h2>
+
+        <h3>2.1 通俗解释：诺和诺德是干什么的？</h3>
+        <p>用最简单的话说，<strong>诺和诺德就是"糖尿病+减肥药之王"</strong>。如果你最近听说过"减肥针"或"司美格鲁肽"，那就是诺和诺德的产品。这家丹麦公司用一种叫做GLP-1的分子，做出了三种药：给糖尿病人用的Ozempic（降糖针）、给糖尿病人吃的Rybelsus（降糖药片）、给想减肥的人用的Wegovy（减肥针）。这三种药本质上都是同一个分子——司美格鲁肽，只是剂量和剂型不同。</p>
+        <p>诺和诺德的商业模式可以概括为：<strong>研发代谢疾病药物 → 获得专利保护 → 通过医生处方销售 → 赚取高额利润</strong>。它的核心赚钱逻辑是——<strong>专利壁垒+临床刚需+先发优势</strong>。糖尿病患者必须终身用药，肥胖患者需要长期治疗，而且GLP-1药物在减重效果上远超以往任何药物，需求极其旺盛。</p>
+        <p>值得注意的是，诺和诺德是一家<strong>百年老店</strong>——1923年就开始生产胰岛素，100年来只做一件事：治疗代谢疾病。这种极致专注让它成为全球糖尿病领域的绝对王者。但2025-2026年，它面临前所未有的挑战：礼来的替尔泊肽（Mounjaro/Zepbound）疗效更优，正在快速抢夺市场份额。</p>
+
+        <h3>2.2 业务板块及营收（FY2025，截至2025年12月31日）</h3>
+        <table>
+            <tr>
+                <th>业务板块</th>
+                <th>年营收（DKK亿）</th>
+                <th>年营收（USD亿）</th>
+                <th>占总营收比例</th>
+                <th>同比增长（CER）</th>
+                <th>关键产品</th>
+            </tr>
+            <tr>
+                <td>糖尿病护理 (Diabetes Care)</td>
+                <td>1,679</td>
+                <td>~$258</td>
+                <td>54.3%</td>
+                <td>+4%</td>
+                <td>Ozempic、Rybelsus、Victoza、胰岛素系列</td>
+            </tr>
+            <tr>
+                <td>肥胖护理 (Obesity Care)</td>
+                <td>822</td>
+                <td>~$126</td>
+                <td>26.6%</td>
+                <td>+31%</td>
+                <td>Wegovy、Saxenda</td>
+            </tr>
+            <tr>
+                <td>罕见病 (Rare Disease)</td>
+                <td>196</td>
+                <td>~$30</td>
+                <td>6.3%</td>
+                <td>+9%</td>
+                <td>血友病药物、生长激素Norditropin</td>
+            </tr>
+        </table>
+        <p><strong>注：</strong>糖尿病护理+肥胖护理合计占营收80.9%，是公司的绝对核心。司美格鲁肽系列（Ozempic+Wegovy+Rybelsus）合计贡献约73%营收，是名副其实的"单一分子依赖"。</p>
+
+        <h3>2.3 核心产品营收拆解</h3>
+        <table>
+            <tr>
+                <th>产品</th>
+                <th>适应症</th>
+                <th>FY2025营收（USD亿）</th>
+                <th>同比增长</th>
+                <th>备注</th>
+            </tr>
+            <tr>
+                <td>Ozempic（注射司美格鲁肽）</td>
+                <td>2型糖尿病</td>
+                <td>~$175</td>
+                <td>+6%</td>
+                <td>增速显著放缓（2023年+45%），受礼来Mounjaro冲击</td>
+            </tr>
+            <tr>
+                <td>Wegovy（注射司美格鲁肽高剂量）</td>
+                <td>肥胖症</td>
+                <td>~$95</td>
+                <td>+31%</td>
+                <td>高增长但产能受限，7.2mg高剂量版获批</td>
+            </tr>
+            <tr>
+                <td>Rybelsus（口服司美格鲁肽）</td>
+                <td>2型糖尿病</td>
+                <td>~$35</td>
+                <td>+15%</td>
+                <td>全球唯一口服GLP-1，但生物利用度低</td>
+            </tr>
+            <tr>
+                <td>Wegovy口服片（25mg）</td>
+                <td>肥胖症</td>
+                <td>~$3.5（Q1 2026）</td>
+                <td>新品</td>
+                <td>2026年1月上市，首季超预期</td>
+            </tr>
+            <tr>
+                <td>胰岛素系列</td>
+                <td>糖尿病</td>
+                <td>~$80</td>
+                <td>持平</td>
+                <td>逐步被GLP-1替代，成为现金流基本盘</td>
+            </tr>
+            <tr>
+                <td>Saxenda（利拉鲁肽）</td>
+                <td>肥胖症</td>
+                <td>~$20</td>
+                <td>-30%+</td>
+                <td>被Wegovy和竞品快速替代</td>
+            </tr>
+        </table>
+
+        <h3>2.4 地域分布</h3>
+        <table>
+            <tr>
+                <th>地区</th>
+                <th>营收占比</th>
+                <th>同比增长（CER）</th>
+                <th>说明</th>
+            </tr>
+            <tr>
+                <td>北美（美国为主）</td>
+                <td>~55%</td>
+                <td>+8%</td>
+                <td>最大市场，但定价压力和竞争最激烈</td>
+            </tr>
+            <tr>
+                <td>欧洲/中东/非洲（EMEA）</td>
+                <td>~23%</td>
+                <td>+14%</td>
+                <td>欧洲市场稳健增长</td>
+            </tr>
+            <tr>
+                <td>中国</td>
+                <td>~5%</td>
+                <td>+13%</td>
+                <td>渗透率低但增长快，仿制药威胁加大</td>
+            </tr>
+            <tr>
+                <td>其他国际市场</td>
+                <td>~17%</td>
+                <td>+19%</td>
+                <td>Wegovy全球推广驱动增长</td>
+            </tr>
+        </table>
+
+        <h3>2.5 商业模式总结</h3>
+        <p>诺和诺德的盈利模式：<strong>研发专利药物 → 获得监管批准 → 通过医生处方和药店销售 → 赚取高额利润（毛利率80%+、运营利润率41%+）</strong>。公司的核心优势在于：<strong>①百年代谢疾病专精——全球最深的糖尿病/肥胖领域知识积累；②司美格鲁肽先发优势——全球首个GLP-1周制剂，临床数据最丰富；③垂直整合制造——自建全球产能，降低对CDMO依赖</strong>。但核心风险同样突出：<strong>单一分子依赖（73%营收来自司美格鲁肽）、专利悬崖（2032年美国专利到期）、礼来替尔泊肽疗效更优导致份额流失</strong>。</p>
+    </div>
+
+    <!-- 三、业务板块产品竞争力分析 -->
+    <div class="info-box">
+        <h2>三、业务板块产品竞争力分析</h2>
+
+        <div class="competitiveness-box">
+            <h3>3.1 GLP-1糖尿病药物（Ozempic/Rybelsus）产品竞争力分析</h3>
+
+            <p><strong>1. 可替代性：<span class="tag tag-orange">中等</span></strong></p>
+            <ul>
+                <li><strong>主要替代品：</strong>礼来Mounjaro（替尔泊肽，GLP-1/GIP双靶点）、礼来Foundayo（口服orforglipron）、传统胰岛素、DPP-4抑制剂（西格列汀等）、SGLT2抑制剂（恩格列净等）</li>
+                <li><strong>替代品体验差距：</strong>Mounjaro降糖效果优于Ozempic（HbA1c降幅更大），且已获得处方份额优势；传统口服降糖药效果远不及GLP-1，但价格更低</li>
+                <li><strong>替代趋势：</strong><span class="tag tag-red">加速</span> — 礼来Mounjaro在2025年已超越Ozempic成为美国新增GLP-1糖尿病处方领导者，占新增处方的55%+</li>
+            </ul>
+
+            <p><strong>2. 客户转换成本：<span class="tag tag-orange">中等</span></strong></p>
+            <ul>
+                <li><strong>财务转换成本：</strong>医保覆盖下患者自付费用差异不大（Ozempic和Mounjaro月费均在$900-1000左右）</li>
+                <li><strong>时间转换成本：</strong>中等。换药需要医生重新评估和调整剂量，但GLP-1类药物之间切换相对简单</li>
+                <li><strong>心理转换成本：</strong>中等。医生对Ozempic的熟悉度高（使用多年），但Mounjaro疗效更优正在改变处方习惯</li>
+                <li><strong>捆绑转换成本：</strong>轻微。Ozempic的心血管获益数据更成熟，部分高风险患者可能不愿切换</li>
+                <li><strong>综合评估：</strong>糖尿病药物转换有一定摩擦，但疗效差距正在驱动医生和患者主动切换</li>
+            </ul>
+
+            <p><strong>3. 定价权：<span class="tag tag-orange">中等</span></strong></p>
+            <ul>
+                <li><strong>历史提价记录：</strong>Ozempic美国标价近年每年提价3-5%，但净价（扣除回扣后）因竞争加剧而下降</li>
+                <li><strong>提价vs通胀：</strong>标价跑赢通胀，但净价持平或下降</li>
+                <li><strong>定价权来源：</strong>主要来自专利保护和临床刚需，但正被竞争侵蚀</li>
+                <li><strong>定价权趋势：</strong><span class="tag tag-red">削弱</span> — IRA药价谈判2027年起将对Ozempic施压；礼来竞争迫使诺和诺德提供更大回扣</li>
+                <li><strong>巴菲特测试：</strong>如果Ozempic提价10%，大量患者和医保计划会转向Mounjaro——定价权正在快速流失</li>
+            </ul>
+
+            <p><strong>综合竞争力评级：<span class="rating-stars">⭐⭐⭐</span></strong> — GLP-1糖尿病药物有临床刚需支撑，但竞争正在加速侵蚀诺和诺德的先发优势</p>
+        </div>
+
+        <div class="competitiveness-box">
+            <h3>3.2 GLP-1肥胖药物（Wegovy）产品竞争力分析</h3>
+
+            <p><strong>1. 可替代性：<span class="tag tag-orange">中等</span></strong></p>
+            <ul>
+                <li><strong>主要替代品：</strong>礼来Zepbound（替尔泊肽减重版，减重效果22.5% vs Wegovy 15%）、复合药房仿制司美格鲁肽、Amgen MariTide（月制剂，临床中）、Roche CT-388（临床中）</li>
+                <li><strong>替代品体验差距：</strong>Zepbound减重效果显著优于Wegovy（22.5% vs 15%），这是核心劣势；但Wegovy有心血管获益数据优势</li>
+                <li><strong>替代趋势：</strong><span class="tag tag-red">加速</span> — Zepbound已占美国新增肥胖处方70%，Wegovy份额持续下滑</li>
+            </ul>
+
+            <p><strong>2. 客户转换成本：<span class="tag tag-red">低</span></strong></p>
+            <ul>
+                <li><strong>财务转换成本：</strong>极低。肥胖药物多为自费患者，价格敏感度高，Zepbound和Wegovy月费接近</li>
+                <li><strong>时间转换成本：</strong>低。肥胖患者换药无需复杂调整</li>
+                <li><strong>心理转换成本：</strong>低。肥胖患者更关注减重效果，品牌忠诚度弱于糖尿病患者</li>
+                <li><strong>捆绑转换成本：</strong>无</li>
+                <li><strong>综合评估：</strong>肥胖药物市场更接近消费者市场，转换成本极低，疗效为王</li>
+            </ul>
+
+            <p><strong>3. 定价权：<span class="tag tag-orange">中等</span></strong></p>
+            <ul>
+                <li><strong>历史提价记录：</strong>Wegovy月费约$1,349（标价），但实际净价因回扣和折扣而低得多</li>
+                <li><strong>提价vs通胀：</strong>标价维持高位，但净价因竞争而承压</li>
+                <li><strong>定价权来源：</strong>主要来自减重效果的刚需性和专利保护，但Zepbound疗效更优正在削弱这一优势</li>
+                <li><strong>定价权趋势：</strong><span class="tag tag-red">削弱</span> — 竞争加剧+IRA谈判+复合药房仿制品共同施压</li>
+                <li><strong>巴菲特测试：</strong>如果Wegovy提价10%，大量自费患者会转向更便宜且更有效的Zepbound——定价权有限</li>
+            </ul>
+
+            <p><strong>综合竞争力评级：<span class="rating-stars">⭐⭐⭐</span></strong> — 肥胖市场空间巨大但竞争更激烈，Wegovy的疗效劣势是核心短板</p>
+        </div>
+
+        <div class="competitiveness-box">
+            <h3>3.3 罕见病药物 产品竞争力分析</h3>
+
+            <p><strong>1. 可替代性：<span class="tag tag-green">低</span></strong></p>
+            <ul>
+                <li><strong>主要替代品：</strong>赛诺菲血友病药物、拜耳血友病药物、辉瑞生长激素、罗氏血友病药物</li>
+                <li><strong>替代品体验差距：</strong>罕见病药物替代品有限，且患者对特定药物有稳定性需求</li>
+                <li><strong>替代趋势：</strong><span class="tag tag-green">稳定</span> — 罕见病市场格局相对稳定</li>
+            </ul>
+
+            <p><strong>2. 客户转换成本：<span class="tag tag-green">高</span></strong></p>
+            <ul>
+                <li><strong>财务转换成本：</strong>中等。罕见病药物价格高昂，医保覆盖下差异不大</li>
+                <li><strong>时间转换成本：</strong>高。血友病患者换药需要重新评估凝血因子水平和给药方案</li>
+                <li><strong>心理转换成本：</strong>高。罕见病患者对现有治疗方案有强烈依赖和信任</li>
+                <li><strong>综合评估：</strong>罕见病药物转换成本较高，但仅占6.3%营收</li>
+            </ul>
+
+            <p><strong>3. 定价权：<span class="tag tag-green">强</span></strong></p>
+            <ul>
+                <li><strong>历史提价记录：</strong>罕见病药物通常每年提价3-7%，跑赢通胀</li>
+                <li><strong>定价权来源：</strong>专利保护+罕见病药物市场小众且替代品有限</li>
+                <li><strong>定价权趋势：</strong><span class="tag tag-green">稳定</span></li>
+                <li><strong>巴菲特测试：</strong>提价10%患者不太可能离开——罕见病药物定价权强</li>
+            </ul>
+
+            <p><strong>综合竞争力评级：<span class="rating-stars">⭐⭐⭐⭐</span></strong> — 罕见病药物护城河较深，但仅占6.3%营收，对整体估值影响有限</p>
+        </div>
+
+        <div class="highlight">
+            <strong>巴菲特视角：业务板块竞争力总结</strong><br>
+            诺和诺德的核心业务——GLP-1糖尿病和肥胖药物——<strong>正处于竞争加剧的关键转折点</strong>。礼来替尔泊肽疗效更优，正在快速抢夺市场份额（美国GLP-1市场份额：礼来60.1% vs 诺和诺德39.4%）。罕见病业务护城河深但规模小。<br><br>
+            <strong>关键洞察：诺和诺德的"护城河"正在被侵蚀，但尚未崩塌。</strong>司美格鲁肽的心血管获益数据、医生处方习惯、全球产能布局和品牌认知度仍然构成壁垒。但疗效差距是致命的——在医疗领域，更好的药最终会赢。诺和诺德的未来取决于下一代管线（Amycretin、CagriSema）能否缩小或逆转疗效差距。
+        </div>
+    </div>
+
+    <!-- 四、历史财务指标 -->
+    <div class="info-box">
+        <h2>四、历史财务指标（2000-2026）</h2>
+
+        <h3>4.1 净资产收益率 (ROE) 趋势</h3>
+        <div class="chart-container">
+            <canvas id="roeChart"></canvas>
+        </div>
+        <table>
+            <tr>
+                <th>财年</th><th>ROE</th><th>净利率</th><th>资产周转率</th><th>权益乘数</th><th>备注</th>
+            </tr>
+            <tr><td>2006</td><td>~30%</td><td>~25%</td><td>~0.9x</td><td>~1.3x</td><td>胰岛素时代</td></tr>
+            <tr><td>2008</td><td>~35%</td><td>~26%</td><td>~0.9x</td><td>~1.5x</td><td>稳健增长</td></tr>
+            <tr><td>2010</td><td>~38%</td><td>~25%</td><td>~1.0x</td><td>~1.5x</td><td>胰岛素+GLP-1起步</td></tr>
+            <tr><td>2012</td><td>~43%</td><td>~27%</td><td>~1.0x</td><td>~1.6x</td><td>Victoza放量</td></tr>
+            <tr><td>2014</td><td>~46%</td><td>~28%</td><td>~1.0x</td><td>~1.6x</td><td>持续提升</td></tr>
+            <tr><td>2016</td><td>~52%</td><td>~33%</td><td>~1.0x</td><td>~1.6x</td><td>利润率大幅提升</td></tr>
+            <tr><td>2018</td><td>~75%</td><td>~35%</td><td>~1.0x</td><td>~2.1x</td><td>Ozempic上市前夜</td></tr>
+            <tr><td>2019</td><td>~68%</td><td>~32%</td><td>~1.0x</td><td>~2.1x</td><td>ROE开始攀升</td></tr>
+            <tr><td>2020</td><td>~67%</td><td>~33%</td><td>~0.9x</td><td>~2.2x</td><td>疫情影响</td></tr>
+            <tr><td>2021</td><td>~68%</td><td>~34%</td><td>~0.7x</td><td>~2.8x</td><td>Ozempic快速放量</td></tr>
+            <tr><td>2022</td><td>~67%</td><td>~31%</td><td>~0.7x</td><td>~3.0x</td><td>Wegovy上市</td></tr>
+            <tr><td>2023</td><td>~79%</td><td>~36%</td><td>~0.7x</td><td>~3.1x</td><td>GLP-1爆发</td></tr>
+            <tr><td>2024</td><td>~70%</td><td>~35%</td><td>~0.6x</td><td>~3.3x</td><td>高杠杆驱动ROE</td></tr>
+            <tr><td>2025</td><td>~53%</td><td>~33%</td><td>~0.6x</td><td>~2.7x</td><td>ROE回落（利润率下滑+杠杆降低）</td></tr>
+            <tr><td>2026E</td><td>~40%</td><td>~28%</td><td>~0.6x</td><td>~2.4x</td><td>营收下滑预期</td></tr>
+        </table>
+        <div class="highlight">
+            <strong>巴菲特视角：</strong>诺和诺德的ROE从2018年的75%飙升至2023年的79%，核心驱动力是<strong>净利率提升（31%→36%）+杠杆增加</strong>。但2025年ROE已回落至53%，预计2026年将进一步降至40%左右。关键问题：<strong>高ROE中有多少来自真实的运营效率，多少来自财务杠杆？</strong>答案是：诺和诺德的净利率33%是真实的高盈利能力（毛利率80%+），但权益乘数从1.6x升至3.3x也贡献了大量ROE增量。随着营收下滑和去杠杆，ROE将回归至40-50%的"正常"水平——这仍然是制药行业中非常优秀的水平。
+        </div>
+
+        <h3>4.2 资产负债率 (Debt-to-Asset) 趋势</h3>
+        <div class="chart-container">
+            <canvas id="debtChart"></canvas>
+        </div>
+        <table>
+            <tr>
+                <th>财年</th><th>总资产($B)</th><th>股东权益($B)</th><th>资产负债率</th><th>有息负债/权益</th><th>备注</th>
+            </tr>
+            <tr><td>2014</td><td>~$20</td><td>~$16</td><td>~20%</td><td>~0%</td><td>几乎零负债</td></tr>
+            <tr><td>2016</td><td>~$22</td><td>~$17</td><td>~23%</td><td>~1%</td><td>几乎零负债</td></tr>
+            <tr><td>2018</td><td>~$24</td><td>~$16</td><td>~33%</td><td>~1%</td><td>几乎零负债</td></tr>
+            <tr><td>2020</td><td>~$30</td><td>~$18</td><td>~40%</td><td>~16%</td><td>开始增加负债</td></tr>
+            <tr><td>2022</td><td>~$44</td><td>~$22</td><td>~50%</td><td>~31%</td><td>杠杆上升</td></tr>
+            <tr><td>2023</td><td>~$55</td><td>~$22</td><td>~60%</td><td>~25%</td><td>Catalent收购前</td></tr>
+            <tr><td>2024</td><td>~$75</td><td>~$22</td><td>~71%</td><td>~72%</td><td>Catalent收购推高负债</td></tr>
+            <tr><td>2025</td><td>~$82</td><td>~$25</td><td>~70%</td><td>~67%</td><td>高杠杆状态</td></tr>
+        </table>
+        <div class="highlight">
+            <strong>芒格视角：</strong>诺和诺德从2020年前的"几乎零负债"变成了2024年的"高杠杆"公司，核心原因是<strong>2024年以$117亿收购Catalent三个制造工厂</strong>。这是诺和诺德历史上最大的资本配置决策。芒格会说："用债务收购制造资产，在生意好时没问题，但在营收下滑时就是双刃剑。"2026年指引营收下滑4-12%，高杠杆将成为利润的放大器——向下。
+        </div>
+
+        <h3>4.3 市盈率 (PE) 趋势</h3>
+        <div class="chart-container">
+            <canvas id="peChart"></canvas>
+        </div>
+        <table>
+            <tr>
+                <th>财年</th><th>PE Ratio</th><th>EPS(USD)</th><th>备注</th>
+            </tr>
+            <tr><td>2012</td><td>~18x</td><td>$0.68</td><td>胰岛素时代，估值合理</td></tr>
+            <tr><td>2014</td><td>~20x</td><td>$0.87</td><td>稳健增长</td></tr>
+            <tr><td>2016</td><td>~18x</td><td>$1.06</td><td>估值偏低</td></tr>
+            <tr><td>2018</td><td>~16x</td><td>$1.27</td><td>市场未充分认识GLP-1潜力</td></tr>
+            <tr><td>2019</td><td>~21x</td><td>$1.23</td><td>Ozempic开始放量</td></tr>
+            <tr><td>2020</td><td>~23x</td><td>$1.38</td><td>估值提升</td></tr>
+            <tr><td>2021</td><td>~28x</td><td>$1.65</td><td>GLP-1概念升温</td></tr>
+            <tr><td>2022</td><td>~37x</td><td>$1.74</td><td>Wegovy上市，估值飙升</td></tr>
+            <tr><td>2023</td><td>~37x</td><td>$2.71</td><td>GLP-1狂热</td></tr>
+            <tr><td>2024H1</td><td>~47x</td><td>$2.92</td><td>估值巅峰</td></tr>
+            <tr><td>2024</td><td>~25x</td><td>$3.29</td><td>估值开始回落</td></tr>
+            <tr><td>2025</td><td>~14x</td><td>$4.27</td><td>暴跌后估值回归</td></tr>
+            <tr><td>2026(当前)</td><td>~10.4x</td><td>$4.27</td><td>历史最低区间</td></tr>
+        </table>
+
+        <h3>4.4 产权比率 (Assets/Equity) 趋势</h3>
+        <div class="chart-container">
+            <canvas id="equityRatioChart"></canvas>
+        </div>
+        <table>
+            <tr>
+                <th>财年</th><th>总资产/股东权益</th><th>含义</th>
+            </tr>
+            <tr><td>2014</td><td>~1.3x</td><td>低杠杆，资产主要由权益支撑</td></tr>
+            <tr><td>2016</td><td>~1.3x</td><td>低杠杆</td></tr>
+            <tr><td>2018</td><td>~1.5x</td><td>低杠杆</td></tr>
+            <tr><td>2020</td><td>~1.7x</td><td>杠杆开始上升</td></tr>
+            <tr><td>2022</td><td>~2.0x</td><td>中等杠杆</td></tr>
+            <tr><td>2023</td><td>~2.5x</td><td>杠杆上升</td></tr>
+            <tr><td>2024</td><td>~3.4x</td><td>Catalent收购推高</td></tr>
+            <tr><td>2025</td><td>~3.3x</td><td>高杠杆状态</td></tr>
+        </table>
+    </div>
+
+    <!-- 五、竞争分析 -->
+    <div class="info-box">
+        <h2>五、竞争分析</h2>
+
+        <h3>5.1 主要竞争对手</h3>
+        <table>
+            <tr>
+                <th>竞争对手</th>
+                <th>市值($B)</th>
+                <th>核心竞争领域</th>
+                <th>市场份额对比</th>
+            </tr>
+            <tr>
+                <td>礼来 (Eli Lilly, LLY)</td>
+                <td>~$730</td>
+                <td>GLP-1糖尿病+肥胖</td>
+                <td>美国GLP-1市场份额60.1% vs 诺和诺德39.4%；替尔泊肽疗效更优</td>
+            </tr>
+            <tr>
+                <td>安进 (Amgen, AMGN)</td>
+                <td>~$150</td>
+                <td>月制剂GLP-1（MariTide）</td>
+                <td>临床Phase 3，差异化在于月度给药</td>
+            </tr>
+            <tr>
+                <td>罗氏 (Roche, RHHBY)</td>
+                <td>~$230</td>
+                <td>GLP-1/GIP双靶点（CT-388）</td>
+                <td>Phase 2数据22.5%减重，潜力较大</td>
+            </tr>
+            <tr>
+                <td>Viking Therapeutics</td>
+                <td>~$8</td>
+                <td>口服VK2735</td>
+                <td>Phase 2数据优异，被收购标的</td>
+            </tr>
+            <tr>
+                <td>中国仿制药企</td>
+                <td>-</td>
+                <td>司美格鲁肽仿制药</td>
+                <td>中国/巴西/加拿大专利已到期，仿制药加速上市</td>
+            </tr>
+        </table>
+
+        <h3>5.2 关键财务指标对比（诺和诺德 vs 礼来）</h3>
+        <table>
+            <tr>
+                <th>指标</th><th>NVO</th><th>LLY</th><th>说明</th>
+            </tr>
+            <tr>
+                <td>FY2025营收</td>
+                <td>$467亿</td>
+                <td>$580亿+</td>
+                <td>礼来营收已超越诺和诺德</td>
+            </tr>
+            <tr>
+                <td>毛利率</td>
+                <td>80.3%</td>
+                <td>~82%</td>
+                <td>礼来略高</td>
+            </tr>
+            <tr>
+                <td>运营利润率</td>
+                <td>41.3%</td>
+                <td>~35%</td>
+                <td>诺和诺德更高（礼来研发投入更大）</td>
+            </tr>
+            <tr>
+                <td>净利率</td>
+                <td>33.1%</td>
+                <td>~20%</td>
+                <td>诺和诺德净利率更高</td>
+            </tr>
+            <tr>
+                <td>PE Ratio</td>
+                <td>~10.4x</td>
+                <td>~35x</td>
+                <td>诺和诺德估值远低于礼来</td>
+            </tr>
+            <tr>
+                <td>营收增速</td>
+                <td>+11%（2025）→ -4~-12%（2026E）</td>
+                <td>+56%（Q1 2026）</td>
+                <td>增速差距是估值差距的核心原因</td>
+            </tr>
+        </table>
+
+        <h3>5.3 经济护城河评估</h3>
+
+        <div class="moat-item">
+            <strong>🏰 品牌力（Brand Power）— 宽护城河（正在变窄）</strong><br>
+            诺和诺德在糖尿病领域拥有百年品牌积淀，Ozempic和Wegovy已成为GLP-1的代名词。医生对司美格鲁肽的处方习惯和信任度极高。但品牌力在肥胖市场弱于糖尿病市场——肥胖患者更关注疗效而非品牌。<br>
+            <strong>评级：★★★★☆（4/5）</strong> — 糖尿病品牌力强，肥胖品牌力中等。
+        </div>
+
+        <div class="moat-item">
+            <strong>💰 成本优势（Cost Advantage）— 窄护城河</strong><br>
+            诺和诺德通过垂直整合（收购Catalent工厂、自建产能）降低了对CDMO的依赖，原料自供率98%。单剂成本从2018年的$23.6降至2024年的$8.2。但礼来同样在大规模投资产能，成本差距不大。<br>
+            <strong>评级：★★★☆☆（3/5）</strong> — 垂直整合带来一定优势，但非结构性。
+        </div>
+
+        <div class="moat-item">
+            <strong>🔄 网络效应（Network Effects）— 无护城河</strong><br>
+            制药行业不具备网络效应。更多患者使用Ozempic不会让其他患者的体验更好。<br>
+            <strong>评级：★☆☆☆☆（1/5）</strong> — 不适用。
+        </div>
+
+        <div class="moat-item">
+            <strong>📋 专利/知识产权（Patents/IP）— 宽护城河（有期限）</strong><br>
+            司美格鲁肽美国化合物专利2032年到期，晶型专利2031年。这是诺和诺德最核心的护城河——在专利期内，仿制药无法合法上市。但中国、巴西、加拿大等市场专利已到期或即将到期。CagriSema的REDEFINE 4临床试验失败（未能证明非劣效于替尔泊肽），下一代管线前景不确定。<br>
+            <strong>评级：★★★★☆（4/5）</strong> — 专利保护是核心壁垒，但有明确到期日。
+        </div>
+
+        <div class="moat-item">
+            <strong>🔒 转换成本（Switching Costs）— 中等护城河</strong><br>
+            糖尿病患者换药有一定摩擦（需要医生重新评估），但肥胖患者转换成本极低。心血管获益数据为Ozempic/Wegovy提供了一定锁定效应。<br>
+            <strong>评级：★★★☆☆（3/5）</strong> — 糖尿病转换成本中等，肥胖转换成本低。
+        </div>
+
+        <div class="moat-item">
+            <strong>📏 规模优势（Scale Advantages）— 窄护城河</strong><br>
+            诺和诺德全球员工68,794人，在170个国家销售产品，美国内分泌科室覆盖率91%。但礼来规模更大，且在GLP-1处方量上已超越诺和诺德。<br>
+            <strong>评级：★★★☆☆（3/5）</strong> — 规模优势存在但正在被礼来追平。
+        </div>
+
+        <div class="highlight">
+            <strong>综合护城河评级：宽→窄（正在变窄）</strong><br>
+            诺和诺德曾经拥有制药行业中<strong>最宽的护城河之一</strong>——专利保护+先发优势+临床数据壁垒+品牌力。但2025-2026年的竞争格局变化正在<strong>系统性侵蚀</strong>这一护城河：<br>
+            ❶ <strong>疗效劣势：</strong>替尔泊肽减重22.5% vs 司美格鲁肽15%，差距显著<br>
+            ❷ <strong>份额流失：</strong>美国GLP-1市场份额从60%降至39.4%<br>
+            ❸ <strong>管线受挫：</strong>CagriSema头对头试验失败，未能证明非劣效于替尔泊肽<br>
+            ❹ <strong>定价压力：</strong>IRA药价谈判+竞争加剧=净价下行<br><br>
+            <strong>巴菲特会说：</strong>"一家护城河正在变窄的公司，即便当前利润丰厚，也不是理想的投资标的。我宁愿以合理的价格买一家护城河正在变宽的公司，也不愿以便宜的价格买一家护城河正在变窄的公司。"
+        </div>
+    </div>
+
+    <!-- 六、利润分配分析 -->
+    <div class="info-box">
+        <h2>六、利润分配分析（过去十年 FY2016-FY2025）</h2>
+
+        <h3>6.1 利润分配总览（回购计入留存）</h3>
+        <table>
+            <tr>
+                <th>财年</th>
+                <th>净利润($B)</th>
+                <th>股息($B)</th>
+                <th>回购($B)</th>
+                <th>扩张CapEx($B)</th>
+                <th>留存金额($B)</th>
+                <th>留存比率</th>
+            </tr>
+            <tr><td>FY2016</td><td>3.6</td><td>1.6</td><td>0.5</td><td>0.8</td><td>2.0</td><td>55.6%</td></tr>
+            <tr><td>FY2017</td><td>4.0</td><td>1.7</td><td>0.8</td><td>0.9</td><td>2.3</td><td>57.5%</td></tr>
+            <tr><td>FY2018</td><td>4.4</td><td>2.0</td><td>0.6</td><td>1.0</td><td>2.4</td><td>54.5%</td></tr>
+            <tr><td>FY2019</td><td>4.4</td><td>2.2</td><td>0.8</td><td>1.1</td><td>2.2</td><td>50.0%</td></tr>
+            <tr><td>FY2020</td><td>4.8</td><td>2.4</td><td>0.7</td><td>1.2</td><td>2.4</td><td>50.0%</td></tr>
+            <tr><td>FY2021</td><td>5.8</td><td>2.6</td><td>0.8</td><td>1.5</td><td>3.2</td><td>55.2%</td></tr>
+            <tr><td>FY2022</td><td>7.9</td><td>3.0</td><td>1.0</td><td>1.8</td><td>4.9</td><td>62.0%</td></tr>
+            <tr><td>FY2023</td><td>12.1</td><td>3.5</td><td>1.5</td><td>2.5</td><td>8.6</td><td>71.1%</td></tr>
+            <tr><td>FY2024</td><td>14.6</td><td>4.0</td><td>2.8</td><td>6.0</td><td>10.6</td><td>72.6%</td></tr>
+            <tr><td>FY2025</td><td>15.5</td><td>4.5</td><td>2.0</td><td>6.5</td><td>11.0</td><td>71.0%</td></tr>
+        </table>
+        <p><strong>注：</strong>留存金额 = 净利润 - 股息（回购计入留存）。FY2024年CapEx大幅增加主要因Catalent收购（$117亿），自由现金流为负。FY2025年自由现金流转正至DKK 283亿（约$43亿）。</p>
+
+        <h3>6.2 利润分配趋势图</h3>
+        <div class="chart-container">
+            <canvas id="profitChart"></canvas>
+        </div>
+
+        <h3>6.3 股息历史</h3>
+        <table>
+            <tr>
+                <th>财年</th><th>每股股息(DKK)</th><th>每股股息(USD)</th><th>派息率</th><th>备注</th>
+            </tr>
+            <tr><td>FY2016</td><td>5.40</td><td>~$0.81</td><td>~44%</td><td>稳健增长</td></tr>
+            <tr><td>FY2017</td><td>6.10</td><td>~$1.00</td><td>~43%</td><td></td></tr>
+            <tr><td>FY2018</td><td>7.10</td><td>~$1.15</td><td>~45%</td><td></td></tr>
+            <tr><td>FY2019</td><td>7.85</td><td>~$1.18</td><td>~50%</td><td></td></tr>
+            <tr><td>FY2020</td><td>8.65</td><td>~$1.40</td><td>~50%</td><td></td></tr>
+            <tr><td>FY2021</td><td>10.40</td><td>~$1.60</td><td>~45%</td><td></td></tr>
+            <tr><td>FY2022</td><td>12.80</td><td>~$1.83</td><td>~38%</td><td>盈利暴增，派息率下降</td></tr>
+            <tr><td>FY2023</td><td>15.40</td><td>~$2.27</td><td>~29%</td><td>盈利继续暴增</td></tr>
+            <tr><td>FY2024</td><td>11.40</td><td>~$1.68</td><td>~27%</td><td>2:1拆股后</td></tr>
+            <tr><td>FY2025</td><td>11.70</td><td>~$1.73</td><td>~29%</td><td>股息持续增长</td></tr>
+        </table>
+        <p>诺和诺德已连续29年以上持续增加股息（以DKK计），是欧洲最可靠的股息增长股之一。当前股息率约3.8%（以$45.5股价计），派息率约29%，远低于制药行业平均50-60%的水平。</p>
+
+        <div class="highlight">
+            <strong>巴菲特视角：管理层资本配置评估</strong><br>
+            <strong>优点：</strong>①派息率仅29%，在盈利暴增期保留了大部分利润用于再投资；②2024年Catalent收购是战略性决策，垂直整合制造能力是长期竞争优势；③股息连续29年增长，体现了对股东回报的承诺；④FY2025年自由现金流转正，说明Catalent收购的一次性冲击已消化。<br>
+            <strong>缺点：</strong>①CagriSema头对头试验失败意味着$5.2亿收购Akero的MASH药物efruxifermin可能是更好的资本配置方向；②FY2024年自由现金流为负（-$14.7B DKK），说明Catalent收购对短期现金流冲击极大；③在PE仅10-14x的低估值时期，回购力度（FY2025年约$20亿DKK）相对保守，可能错失了低价回购的机会。<br>
+            <strong>可持续增长率 = ROE × 留存比率：</strong>以FY2025为例，53% × 71% = 37.7%。极高的可持续增长率说明诺和诺德有强大的内生增长能力——前提是营收不下滑。2026年营收预计下滑4-12%，这将使高留存比率变成"利润囤积"而非"增长投资"。<br><br>
+            <strong>总体评价：</strong>资本配置能力中等偏上。Catalent收购是大胆但合理的战略决策，但CagriSema的临床失败和下一代管线的不确定性，使得未来的资本配置面临更大挑战。巴菲特会关注：<strong>在营收下滑期，管理层是否会继续大额回购（在低估值时），还是会保守囤积现金？</strong>
+        </div>
+    </div>
+
+    <!-- 七、综合评估 -->
+    <div class="info-box">
+        <h2>七、综合评估与投资结论</h2>
+
+        <h3>7.1 优势</h3>
+        <ul>
+            <li><strong>极高盈利能力：</strong>毛利率80%+、运营利润率41%+、净利率33%+，全球制药行业顶级水平</li>
+            <li><strong>巨大市场空间：</strong>全球10亿+肥胖患者，GLP-1药物治疗渗透率仅5-6%，长期增长空间巨大</li>
+            <li><strong>百年品牌积淀：</strong>100年代谢疾病专精，Ozempic/Wegovy已成为GLP-1代名词</li>
+            <li><strong>临床数据壁垒：</strong>司美格鲁肽心血管获益数据最成熟，医生处方习惯根深蒂固</li>
+            <li><strong>垂直整合制造：</strong>Catalent收购后自建产能，降低CDMO依赖，构建规模壁垒</li>
+            <li><strong>控股股东稳定：</strong>诺和诺德基金会持有71.2%投票权，确保长期战略稳定</li>
+            <li><strong>估值极低：</strong>PE仅10.4x，处于历史最低区间，市场已充分定价悲观预期</li>
+        </ul>
+
+        <h3>7.2 风险</h3>
+        <ul>
+            <li><strong>疗效劣势（核心风险）：</strong>替尔泊肽减重22.5% vs 司美格鲁肽15%，疗效差距是致命的——更好的药最终会赢</li>
+            <li><strong>份额持续流失：</strong>美国GLP-1市场份额从60%降至39.4%，且仍在下滑</li>
+            <li><strong>管线受挫：</strong>CagriSema头对头试验失败，Amycretin尚在Phase 2，下一代管线不确定性大</li>
+            <li><strong>专利悬崖：</strong>司美格鲁肽美国专利2032年到期，中国/巴西等市场专利已到期</li>
+            <li><strong>定价压力：</strong>IRA药价谈判2027年起施压，竞争加剧迫使提供更大回扣</li>
+            <li><strong>营收下滑：</strong>2026年指引营收下滑4-12%，为十多年来首次</li>
+            <li><strong>高杠杆：</strong>Catalent收购后负债/权益比达67%，在营收下滑期杠杆是双刃剑</li>
+            <li><strong>单一分子依赖：</strong>73%营收来自司美格鲁肽，集中度风险极高</li>
+        </ul>
+
+        <h3>7.3 估值评估</h3>
+        <table>
+            <tr>
+                <th>指标</th><th>当前值</th><th>10年平均</th><th>评价</th>
+            </tr>
+            <tr><td>PE Ratio</td><td>~10.4x</td><td>~25x</td><td>远低于历史均值</td></tr>
+            <tr><td>PS Ratio</td><td>~3.2x</td><td>~6x</td><td>远低于历史均值</td></tr>
+            <tr><td>PB Ratio</td><td>~5.7x</td><td>~15x</td><td>远低于历史均值</td></tr>
+            <tr><td>EV/EBITDA</td><td>~10.7x</td><td>~18x</td><td>远低于历史均值</td></tr>
+            <tr><td>股息率</td><td>~3.8%</td><td>~2%</td><td>高于历史均值</td></tr>
+            <tr><td>FCF Yield</td><td>~8%</td><td>~4%</td><td>远高于历史均值</td></tr>
+        </table>
+
+        <h3>7.4 内在价值估算</h3>
+        <table>
+            <tr>
+                <th>估值方法</th><th>假设</th><th>内在价值/ADR</th>
+            </tr>
+            <tr>
+                <td>PE估值法（保守）</td>
+                <td>合理PE 16x × 2026E EPS $3.8</td>
+                <td>~$61</td>
+            </tr>
+            <tr>
+                <td>PE估值法（乐观）</td>
+                <td>合理PE 20x × 2026E EPS $3.8</td>
+                <td>~$76</td>
+            </tr>
+            <tr>
+                <td>DCF估值（熊市）</td>
+                <td>营收-8%/年，9%折现率，-2%永续增长</td>
+                <td>~$26</td>
+            </tr>
+            <tr>
+                <td>DCF估值（基准）</td>
+                <td>营收-2%/年→2028年恢复增长，8%折现率，2%永续增长</td>
+                <td>~$47</td>
+            </tr>
+            <tr>
+                <td>DCF估值（牛市）</td>
+                <td>Amycretin成功+GLP-1渗透率加速，8%折现率，3%永续增长</td>
+                <td>~$79</td>
+            </tr>
+        </table>
+        <p>当前股价约$45.5，处于基准DCF估值附近，意味着<strong>市场已定价了大部分悲观预期</strong>。但熊市情景（$26）仍有显著下行风险——如果营收下滑超预期或管线持续受挫。</p>
+
+        <div class="highlight">
+            <strong>巴菲特/芒格式结论</strong><br><br>
+            <strong>诺和诺德是一家"护城河正在变窄的伟大公司"。</strong>它拥有制药行业最赚钱的商业模式之一（毛利率80%+、净利率33%+），但核心产品面临疗效更优的竞争对手，市场份额正在快速流失。<br><br>
+            <strong>从巴菲特的投资框架看，NVO处于一个微妙的位置：</strong><br>
+            ❶ <strong>护城河正在变窄：</strong>礼来替尔泊肽疗效更优，美国份额从60%降至39.4%，且仍在下滑——这是巴菲特最警惕的信号<br>
+            ❷ <strong>估值已充分反映悲观：</strong>PE 10.4x是历史最低区间，市场已定价了营收下滑和竞争加剧<br>
+            ❸ <strong>市场空间仍然巨大：</strong>全球10亿+肥胖患者，渗透率仅5%，长期TAM支撑增长<br>
+            ❹ <strong>管线不确定性是关键变量：</strong>Amycretin如果成功，可能逆转竞争格局；如果失败，诺和诺德将沦为"二线GLP-1供应商"<br><br>
+            <strong>芒格会说：</strong>"这是一家好公司在经历坏时光。问题在于——这是暂时的坏时光，还是永久性衰退的开始？如果Amycretin能证明24%的减重效果可以在Phase 3复制，那当前的股价就是黄金坑。如果CagriSema的失败是趋势而非偶然，那这就是价值陷阱。"<br><br>
+            <strong>投资评级：谨慎买入/观望</strong><br>
+            对于风险承受能力较强的价值投资者，当前$45的股价（PE 10.4x）提供了<strong>有限的安全边际</strong>。但需要密切关注三个关键催化剂：<br>
+            ① <strong>Amycretin Phase 3数据</strong>（预计2027年）——如果成功，股价可能翻倍<br>
+            ② <strong>2026年Q2-Q3营收趋势</strong>——如果下滑幅度小于指引，说明最坏时刻已过<br>
+            ③ <strong>IRA药价谈判最终结果</strong>——如果降价幅度小于预期，将是正面催化剂<br><br>
+            <strong>建议买入区间：$35-45</strong>（对应PE 8-10x，提供更大安全边际）<br>
+            <strong>止损参考：$25</strong>（对应熊市DCF估值下限，意味着竞争格局彻底恶化）
+        </div>
+    </div>
+
+    <script>
+        const commonOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    position: 'top',
+                },
+                tooltip: {
+                    mode: 'index',
+                    intersect: false,
+                }
+            }
+        };
+
+        new Chart(document.getElementById('roeChart').getContext('2d'), {
+            type: 'line',
+            data: {
+                labels: ['2006','2008','2010','2012','2014','2016','2018','2019','2020','2021','2022','2023','2024','2025','2026E'],
+                datasets: [{
+                    label: 'ROE (%)',
+                    data: [30,35,38,43,46,52,75,68,67,68,67,79,70,53,40],
+                    borderColor: 'rgba(46, 134, 193, 1)',
+                    backgroundColor: 'rgba(46, 134, 193, 0.15)',
+                    fill: true,
+                    tension: 0.3,
+                    pointRadius: 4,
+                }]
+            },
+            options: {
+                ...commonOptions,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: { display: true, text: 'ROE (%)' }
+                    }
+                }
+            }
+        });
+
+        new Chart(document.getElementById('debtChart').getContext('2d'), {
+            type: 'line',
+            data: {
+                labels: ['2014','2016','2018','2020','2022','2023','2024','2025'],
+                datasets: [{
+                    label: '资产负债率 (%)',
+                    data: [20,23,33,40,50,60,71,70],
+                    borderColor: 'rgba(231, 76, 60, 1)',
+                    backgroundColor: 'rgba(231, 76, 60, 0.15)',
+                    fill: true,
+                    tension: 0.3,
+                    pointRadius: 4,
+                }]
+            },
+            options: {
+                ...commonOptions,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: { display: true, text: '资产负债率 (%)' }
+                    }
+                }
+            }
+        });
+
+        new Chart(document.getElementById('peChart').getContext('2d'), {
+            type: 'line',
+            data: {
+                labels: ['2012','2014','2016','2018','2019','2020','2021','2022','2023','2024H1','2024','2025','2026'],
+                datasets: [{
+                    label: 'PE Ratio',
+                    data: [18,20,18,16,21,23,28,37,37,47,25,14,10.4],
+                    borderColor: 'rgba(39, 174, 96, 1)',
+                    backgroundColor: 'rgba(39, 174, 96, 0.15)',
+                    fill: true,
+                    tension: 0.3,
+                    pointRadius: 4,
+                }]
+            },
+            options: {
+                ...commonOptions,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: { display: true, text: 'PE Ratio' }
+                    }
+                }
+            }
+        });
+
+        new Chart(document.getElementById('equityRatioChart').getContext('2d'), {
+            type: 'line',
+            data: {
+                labels: ['2014','2016','2018','2020','2022','2023','2024','2025'],
+                datasets: [{
+                    label: '总资产/股东权益 (x)',
+                    data: [1.3,1.3,1.5,1.7,2.0,2.5,3.4,3.3],
+                    borderColor: 'rgba(142, 68, 173, 1)',
+                    backgroundColor: 'rgba(142, 68, 173, 0.15)',
+                    fill: true,
+                    tension: 0.3,
+                    pointRadius: 4,
+                }]
+            },
+            options: {
+                ...commonOptions,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: { display: true, text: '产权比率 (x)' }
+                    }
+                }
+            }
+        });
+
+        new Chart(document.getElementById('profitChart').getContext('2d'), {
+            type: 'bar',
+            data: {
+                labels: ['FY2016','FY2017','FY2018','FY2019','FY2020','FY2021','FY2022','FY2023','FY2024','FY2025'],
+                datasets: [{
+                    label: '净利润 ($B)',
+                    data: [3.6,4.0,4.4,4.4,4.8,5.8,7.9,12.1,14.6,15.5],
+                    backgroundColor: 'rgba(46, 134, 193, 0.7)',
+                }, {
+                    label: '股息 ($B)',
+                    data: [1.6,1.7,2.0,2.2,2.4,2.6,3.0,3.5,4.0,4.5],
+                    backgroundColor: 'rgba(39, 174, 96, 0.7)',
+                }, {
+                    label: '留存金额 ($B)',
+                    data: [2.0,2.3,2.4,2.2,2.4,3.2,4.9,8.6,10.6,11.0],
+                    backgroundColor: 'rgba(231, 76, 60, 0.7)',
+                }]
+            },
+            options: {
+                ...commonOptions,
+                scales: {
+                    y: {
+                        title: { display: true, text: '金额 ($B)' }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
