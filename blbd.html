@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blue Bird Corporation (BLBD) 价值投资分析</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f2f5;
+            color: #333;
+        }
+        h1 {
+            text-align: center;
+            color: #1a5276;
+            font-size: 2.2em;
+            margin-bottom: 5px;
+        }
+        h2 {
+            color: #1a5276;
+            border-bottom: 2px solid #2e86c1;
+            padding-bottom: 8px;
+            margin-top: 30px;
+        }
+        h3 {
+            color: #2c3e50;
+            margin-top: 20px;
+        }
+        .subtitle {
+            text-align: center;
+            color: #7f8c8d;
+            font-size: 1.1em;
+            margin-bottom: 30px;
+        }
+        .info-box {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            background-color: white;
+        }
+        th, td {
+            padding: 10px 14px;
+            text-align: left;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        th {
+            background-color: #1a5276;
+            color: white;
+            font-weight: bold;
+        }
+        tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        tr:hover {
+            background-color: #eaf2f8;
+        }
+        .highlight {
+            background: #fef9e7;
+            border-left: 4px solid #2e86c1;
+            padding: 15px 20px;
+            margin: 15px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .chart-container {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+        canvas {
+            max-height: 400px;
+        }
+        .tag {
+            display: inline-block;
+            background: #1a5276;
+            color: white;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.85em;
+            margin: 2px;
+        }
+        .tag-green {
+            background: #27ae60;
+        }
+        .tag-orange {
+            background: #e67e22;
+        }
+        .tag-red {
+            background: #c0392b;
+        }
+        a {
+            color: #1a5276;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            font-size: 1em;
+        }
+        .moat-item {
+            background: white;
+            border-radius: 8px;
+            padding: 15px 20px;
+            margin: 10px 0;
+            box-shadow: 0 1px 5px rgba(0,0,0,0.05);
+            border-left: 4px solid #2e86c1;
+        }
+        .moat-item strong {
+            color: #1a5276;
+        }
+        .risk-item {
+            background: white;
+            border-radius: 8px;
+            padding: 15px 20px;
+            margin: 10px 0;
+            box-shadow: 0 1px 5px rgba(0,0,0,0.05);
+            border-left: 4px solid #c0392b;
+        }
+        .competitiveness-box {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            border-top: 3px solid #2e86c1;
+        }
+        .rating-stars {
+            color: #f39c12;
+            font-size: 1.2em;
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back-link">← 返回索引</a>
+
+    <h1>Blue Bird Corporation (NASDAQ: BLBD)</h1>
+    <p class="subtitle">巴菲特/芒格式价值投资基本面分析 | 更新日期：2026年5月</p>
+
+    <!-- 一、公司基本信息 -->
+    <div class="info-box">
+        <h2>一、公司基本信息</h2>
+        <table>
+            <tr><td>公司全称</td><td>Blue Bird Corporation</td></tr>
+            <tr><td>股票代码</td><td>NASDAQ: BLBD</td></tr>
+            <tr><td>市值</td><td>约21亿美元（2026年5月）</td></tr>
+            <tr><td>市值（美元）</td><td>≈ $2.1B USD</td></tr>
+            <tr><td>企业价值</td><td>≈ $1.96B USD</td></tr>
+            <tr><td>成立时间</td><td>1927年（创始人Albert L. Luce, Sr.制造第一辆校车；1932年正式成立Blue Bird Body Company）</td></tr>
+            <tr><td>公司总部</td><td>美国佐治亚州梅肯（Macon, Georgia）；制造基地位于佐治亚州Fort Valley</td></tr>
+            <tr><td>最新收盘价</td><td>约$67.77（2026年5月）</td></tr>
+            <tr><td>财年截止</td><td>9月底</td></tr>
+            <tr><td>CEO</td><td>John Wyskiel（2025年2月上任，汽车行业资深人士）</td></tr>
+            <tr><td>员工人数</td><td>约2,012人</td></tr>
+            <tr><td>行业</td><td>工业 / 商用车制造</td></tr>
+            <tr><td>流通股数</td><td>约3,165万股</td></tr>
+            <tr><td>长期债务</td><td>$8,500万（FY2025末）</td></tr>
+            <tr><td>现金及投资</td><td>$2.29亿（FY2025末）</td></tr>
+            <tr><td>净债务</td><td>负值（现金 > 债务）</td></tr>
+        </table>
+    </div>
+
+    <!-- 二、业务分析 -->
+    <div class="info-box">
+        <h2>二、业务分析</h2>
+
+        <h3>2.1 通俗解释：Blue Bird是干什么的？</h3>
+        <p>用最简单的话说，<strong>Blue Bird就是美国"造校车的公司"</strong>。每天早上，全美约有2,600万孩子乘坐黄色校车上学——其中大约每三辆就有一辆是Blue Bird制造的。这家公司从1927年开始造校车，将近100年只做这一件事。</p>
+        <p>Blue Bird的商业模式非常清晰：<strong>设计、制造和销售校车，然后卖零部件给已有的校车车队</strong>。它的核心赚钱逻辑是——<strong>校车是刚需+寡头垄断</strong>。美国法律要求学区必须为距离较远的学生提供校车服务，而全美只有三家主要校车制造商，Blue Bird是其中唯一一家独立的专业校车公司（另外两家分别隶属于大众集团和戴姆勒集团）。</p>
+        <p>值得注意的是，Blue Bird在<strong>替代动力校车</strong>领域处于绝对领先地位：它是最早推出丙烷校车的制造商（与福特/Roush合作），也是最早推出纯电动校车的公司之一。2025财年，Blue Bird售出的校车中<strong>60%是非柴油车型</strong>（电动、丙烷、汽油、压缩天然气），而竞争对手的非柴油比例仅10-20%。这种差异化定位使Blue Bird在行业电气化转型中占据了先发优势。</p>
+
+        <h3>2.2 业务板块及营收（FY2025，截至2025年9月27日）</h3>
+        <table>
+            <tr>
+                <th>业务板块</th>
+                <th>年营收</th>
+                <th>占总营收比例</th>
+                <th>关键产品/特点</th>
+                <th>增长趋势</th>
+            </tr>
+            <tr>
+                <td>巴士销售 (Bus)</td>
+                <td>约$13.57亿</td>
+                <td>~91.7%</td>
+                <td>Type C校车、Type D校车、特种巴士；柴油/丙烷/汽油/CNG/电动</td>
+                <td><span class="tag tag-green">增长</span> FY2025巴士营收增长11%</td>
+            </tr>
+            <tr>
+                <td>零部件销售 (Parts)</td>
+                <td>约$1.23亿</td>
+                <td>~8.3%</td>
+                <td>替换零件、配件、延保服务</td>
+                <td><span class="tag tag-orange">稳定</span> 高毛利经常性收入</td>
+            </tr>
+        </table>
+        <p><strong>注：</strong>FY2025总营收$14.80亿，同比增长9.9%。巴士销量9,409辆，同比增加409辆。其中电动巴士901辆（占销量9.6%，占营收约24%），替代动力合计占销量60%。</p>
+
+        <h3>2.3 产品动力类型分布（FY2025）</h3>
+        <table>
+            <tr>
+                <th>动力类型</th>
+                <th>销量占比</th>
+                <th>营收占比</th>
+                <th>平均售价</th>
+                <th>毛利率</th>
+            </tr>
+            <tr>
+                <td>柴油 (ICE)</td>
+                <td>~40%</td>
+                <td>~30%</td>
+                <td>~$100,000</td>
+                <td>~10%</td>
+            </tr>
+            <tr>
+                <td>丙烷/汽油/CNG</td>
+                <td>~50%</td>
+                <td>~46%</td>
+                <td>~$120,000-140,000</td>
+                <td>~15-18%</td>
+            </tr>
+            <tr>
+                <td>纯电动 (EV)</td>
+                <td>~9.6%</td>
+                <td>~24%</td>
+                <td>~$350,000-400,000</td>
+                <td>~30%</td>
+            </tr>
+        </table>
+        <div class="highlight">
+            <strong>关键洞察：</strong>电动校车虽然仅占销量的9.6%，却贡献了约24%的营收和更高的毛利。随着EV渗透率提升，Blue Bird的营收和利润率都有结构性上升空间。管理层长期目标：营收~$20亿，调整后EBITDA利润率16%+。
+        </div>
+
+        <h3>2.4 地域分布</h2>
+        <table>
+            <tr>
+                <th>地区</th>
+                <th>营收占比</th>
+                <th>说明</th>
+            </tr>
+            <tr>
+                <td>美国</td>
+                <td>~95%</td>
+                <td>核心市场，约480,000辆校车运营中</td>
+            </tr>
+            <tr>
+                <td>加拿大及国际</td>
+                <td>~5%</td>
+                <td>通过经销商网络出口</td>
+            </tr>
+        </table>
+        <div class="highlight">
+            <strong>芒格视角：</strong>Blue Bird高度依赖美国市场，这既是优势（深耕本土、理解学区需求），也是风险（缺乏地域多元化）。美国校车市场受联邦和州政府预算驱动，政策变动（如EPA清洁校车计划资金）对公司影响巨大。
+        </div>
+
+        <h3>2.5 商业模式总结</h3>
+        <p>Blue Bird的盈利模式可以概括为：<strong>设计制造校车 → 通过经销商网络和直销卖给学区和车队运营商 → 赚取制造差价（毛利率约20-21%）</strong>。公司的核心差异化在于：<strong>①唯一独立专业校车OEM——不像竞争对手那样只是大型汽车集团的附属业务；②替代动力领先者——60%非柴油销量远超对手；③丙烷校车垄断——唯一拥有活跃丙烷校车车队的制造商</strong>。运营利润率从FY2022的亏损提升至FY2025的11.3%，自由现金流$1.53亿。公司净债务为负值（现金超过债务），财务状况极为稳健。</p>
+    </div>
+
+    <!-- 三、业务板块产品竞争力分析 -->
+    <div class="info-box">
+        <h2>三、业务板块产品竞争力分析</h2>
+
+        <div class="competitiveness-box">
+            <h3>3.1 巴士销售 (Bus) 产品竞争力分析</h3>
+
+            <p><strong>1. 可替代性：<span class="tag tag-green">低</span></strong></p>
+            <ul>
+                <li><strong>主要替代品：</strong>IC Bus（Navistar/大众集团）、Thomas Built Buses（戴姆勒）、Lion Electric（纯电动，但财务困难）</li>
+                <li><strong>替代品体验差距：</strong>三家主要OEM的产品在功能上差异不大，但Blue Bird在替代动力领域领先竞争对手数年。丙烷校车是Blue Bird独有优势，竞争对手几乎没有同类产品。电动校车方面，Blue Bird已交付超过2,000辆，经验积累远超对手</li>
+                <li><strong>替代趋势：</strong><span class="tag tag-green">稳定</span> — 校车是刚需产品，学区必须购买。行业寡头格局稳定，新进入者几乎不可能（安全法规壁垒极高）</li>
+            </ul>
+
+            <p><strong>2. 客户转换成本：<span class="tag tag-orange">中等</span></strong></p>
+            <ul>
+                <li><strong>财务转换成本：</strong>中等。学区更换品牌需要重新培训司机和维护人员，但校车采购本身是竞标过程，价格是主要考量</li>
+                <li><strong>时间转换成本：</strong>中等。校车采购周期长（从下订单到交付通常6-12个月），但三家OEM的交付周期相近</li>
+                <li><strong>心理转换成本：</strong>较高。Blue Bird品牌在学区运输主管中有97年安全声誉，"没人因为选择Blue Bird而被解雇"</li>
+                <li><strong>捆绑转换成本：</strong>较高。一旦购买Blue Bird巴士，后续零部件和维护服务自然倾向于继续使用同一品牌。已建立零件库存和维修流程的学区更换品牌成本更高</li>
+                <li><strong>综合评估：</strong>学区更换校车品牌有一定摩擦，但价格竞争仍然激烈。Blue Bird的替代动力领先地位增加了转换成本</li>
+            </ul>
+
+            <p><strong>3. 定价权：<span class="tag tag-green">强</span></strong></p>
+            <ul>
+                <li><strong>历史提价记录：</strong>FY2025平均单车售价同比上涨6.0%，FY2024同比上涨约5%。FY2025 Q4实施了$3,500/辆的额外提价以对冲关税影响</li>
+                <li><strong>提价vs通胀：</strong>显著跑赢CPI。FY2025营收增长9.9%中，约6个百分点来自提价，仅4.5个百分点来自销量增长</li>
+                <li><strong>定价权来源：</strong>①寡头垄断——三家OEM定价纪律性强；②替代动力溢价——EV巴士售价是柴油的3.5倍；③安全刚需——学区无法延迟校车更换</li>
+                <li><strong>定价权趋势：</strong><span class="tag tag-green">增强</span> — 随着EV和替代动力占比提升，平均售价和毛利率结构性上升</li>
+                <li><strong>巴菲特测试：</strong>如果Blue Bird提价10%（如柴油巴士从$100K涨到$110K），学区能去哪里？只有另外两家同样会提价的竞争对手。校车是法律强制需求，学区无法选择不买</li>
+            </ul>
+
+            <p><strong>综合竞争力评级：<span class="rating-stars">⭐⭐⭐⭐</span></strong> — 校车是法律刚需+寡头垄断+替代动力领先，定价权显著。但客户（学区）预算有限，提价空间受政府拨款制约</p>
+        </div>
+
+        <div class="competitiveness-box">
+            <h3>3.2 零部件销售 (Parts) 产品竞争力分析</h3>
+
+            <p><strong>1. 可替代性：<span class="tag tag-green">低</span></strong></p>
+            <ul>
+                <li><strong>主要替代品：</strong>第三方售后零件供应商、翻新零件、非原厂替代件</li>
+                <li><strong>替代品体验差距：</strong>原厂零件在安全性和适配性上有显著优势。校车安全法规要求使用合规零件，学区倾向于使用原厂件以避免安全责任风险</li>
+                <li><strong>替代趋势：</strong><span class="tag tag-green">稳定</span> — 安规要求使原厂零件保持优势。约180,000辆Blue Bird在运营车辆构成庞大的售后市场基础</li>
+            </ul>
+
+            <p><strong>2. 客户转换成本：<span class="tag tag-green">高</span></strong></p>
+            <ul>
+                <li><strong>财务转换成本：</strong>使用非原厂件可能导致保修失效，安全认证风险</li>
+                <li><strong>时间转换成本：</strong>寻找替代供应商耗时，且可能无法保证交货</li>
+                <li><strong>捆绑转换成本：</strong>Blue Bird拥有专门的零件配送中心，与经销商网络深度整合</li>
+                <li><strong>综合评估：</strong>原厂零件的转换成本较高，安全法规和保修要求构成天然壁垒</li>
+            </ul>
+
+            <p><strong>3. 定价权：<span class="tag tag-green">强</span></strong></p>
+            <ul>
+                <li><strong>历史提价记录：</strong>零件价格随通胀稳步上涨，毛利率显著高于巴士销售</li>
+                <li><strong>提价vs通胀：</strong>零件业务毛利率约30-40%，远高于巴士的10-20%</li>
+                <li><strong>定价权来源：</strong>①原厂专有性——很多零件只有Blue Bird能提供；②安全合规要求——学区不敢在安全零件上省钱；③安装基数锁定——180,000辆在运营车辆是稳定的售后需求来源</li>
+                <li><strong>定价权趋势：</strong><span class="tag tag-green">稳定</span> — 随着在运营车辆数量增长，零件业务将持续提供高毛利经常性收入</li>
+                <li><strong>巴菲特测试：</strong>如果Blue Bird零件提价10%，学区会因为安全合规要求继续购买原厂件</li>
+            </ul>
+
+            <p><strong>综合竞争力评级：<span class="rating-stars">⭐⭐⭐⭐</span></strong> — 原厂零件+安全合规+安装基数锁定，定价权强。但零件业务占比较小（8.3%），对公司整体影响有限</p>
+        </div>
+    </div>
+
+    <!-- 四、历史财务指标 -->
+    <div class="info-box">
+        <h2>四、历史财务指标</h2>
+
+        <h3>4.1 净资产收益率 (ROE)</h3>
+        <table>
+            <tr>
+                <th>财年</th>
+                <th>ROE</th>
+                <th>备注</th>
+            </tr>
+            <tr><td>FY2016</td><td>-7.9%</td><td>负权益，公司处于重组期</td></tr>
+            <tr><td>FY2017</td><td>-49.2%</td><td>负权益扩大</td></tr>
+            <tr><td>FY2018</td><td>-108.8%</td><td>负权益最深</td></tr>
+            <tr><td>FY2019</td><td>-35.8%</td><td>负权益开始收窄</td></tr>
+            <tr><td>FY2020</td><td>-22.9%</td><td>负权益进一步改善</td></tr>
+            <tr><td>FY2021</td><td>0.9%</td><td>权益转正，疫情冲击营收</td></tr>
+            <tr><td>FY2022</td><td>N/A</td><td>净亏损，权益极低</td></tr>
+            <tr><td>FY2023</td><td>59.5%</td><td>盈利恢复，权益基数低导致ROE偏高</td></tr>
+            <tr><td>FY2024</td><td>66.2%</td><td>净利润$1.06亿，权益仍较低</td></tr>
+            <tr><td>FY2025</td><td>50.0%</td><td>净利润$1.28亿，权益增长至$2.98亿</td></tr>
+        </table>
+        <div class="highlight">
+            <strong>关键解读：</strong>Blue Bird的ROE历史极其波动，2016-2022年公司长期处于负权益状态（累计亏损超过股本），导致ROE数学上无意义或极端值。2023年起盈利恢复，但由于权益基数仍然较低，ROE显得异常高（50-66%）。随着权益持续增长，ROE将逐步回归正常水平。真正值得关注的是ROA（2025年为21.3%）和营业利润率（11.3%）的稳步提升趋势。
+        </div>
+
+        <h3>4.2 资产负债率 (Debt-to-Asset Ratio)</h3>
+        <table>
+            <tr>
+                <th>财年</th>
+                <th>总债务</th>
+                <th>总资产</th>
+                <th>资产负债率</th>
+            </tr>
+            <tr><td>FY2016</td><td>$1.20亿</td><td>~$3.5亿</td><td>~34%</td></tr>
+            <tr><td>FY2017</td><td>$1.56亿</td><td>~$3.8亿</td><td>~41%</td></tr>
+            <tr><td>FY2018</td><td>$1.55亿</td><td>~$4.0亿</td><td>~39%</td></tr>
+            <tr><td>FY2019</td><td>$1.91亿</td><td>~$4.2亿</td><td>~45%</td></tr>
+            <tr><td>FY2020</td><td>$0.65亿</td><td>~$3.5亿</td><td>~19%</td></tr>
+            <tr><td>FY2021</td><td>$0.90亿</td><td>~$3.5亿</td><td>~26%</td></tr>
+            <tr><td>FY2022</td><td>$3.67亿</td><td>~$5.0亿</td><td>~73%</td></tr>
+            <tr><td>FY2023</td><td>$3.34亿</td><td>~$5.5亿</td><td>~61%</td></tr>
+            <tr><td>FY2024</td><td>$3.58亿</td><td>~$6.2亿</td><td>~58%</td></tr>
+            <tr><td>FY2025</td><td>$0.88亿</td><td>$6.89亿</td><td>~12.8%</td></tr>
+        </table>
+        <div class="highlight">
+            <strong>关键解读：</strong>FY2025资产负债率大幅下降至12.8%，主要因为公司偿还了大量长期债务（从FY2024的$2.55亿降至FY2025的$0.85亿），同时总资产增长。净债务/EBITDA为-0.94（负值，意味着现金超过债务），利息覆盖率高达27.7倍。Blue Bird的资产负债表已从高杠杆状态转变为净现金状态，这是极其积极的信号。
+        </div>
+
+        <h3>4.3 权益乘数 (Assets/Equity)</h3>
+        <table>
+            <tr>
+                <th>财年</th>
+                <th>总资产</th>
+                <th>股东权益</th>
+                <th>权益乘数</th>
+            </tr>
+            <tr><td>FY2016</td><td>~$3.5亿</td><td>-$0.87亿</td><td>N/A（负权益）</td></tr>
+            <tr><td>FY2018</td><td>~$4.0亿</td><td>-$0.28亿</td><td>N/A（负权益）</td></tr>
+            <tr><td>FY2020</td><td>~$3.5亿</td><td>-$0.53亿</td><td>N/A（负权益）</td></tr>
+            <tr><td>FY2022</td><td>~$5.0亿</td><td>$0.01亿</td><td>~500</td></tr>
+            <tr><td>FY2023</td><td>~$5.5亿</td><td>$0.40亿</td><td>~13.8</td></tr>
+            <tr><td>FY2024</td><td>~$6.2亿</td><td>$1.60亿</td><td>~3.9</td></tr>
+            <tr><td>FY2025</td><td>$6.89亿</td><td>$2.98亿</td><td>~2.3</td></tr>
+        </table>
+
+        <h3>4.4 市盈率 (PE Ratio)</h3>
+        <table>
+            <tr>
+                <th>财年</th>
+                <th>年末股价</th>
+                <th>EPS</th>
+                <th>PE Ratio</th>
+            </tr>
+            <tr><td>FY2016</td><td>~$17.35</td><td>$0.14</td><td>~45.0</td></tr>
+            <tr><td>FY2017</td><td>~$18.75</td><td>$1.05</td><td>~16.7</td></tr>
+            <tr><td>FY2018</td><td>~$18.60</td><td>$1.15</td><td>~22.8</td></tr>
+            <tr><td>FY2019</td><td>~$20.26</td><td>$0.92</td><td>~20.7</td></tr>
+            <tr><td>FY2020</td><td>~$16.70</td><td>$0.45</td><td>~36.1</td></tr>
+            <tr><td>FY2021</td><td>~$16.07</td><td>-$0.01</td><td>N/A</td></tr>
+            <tr><td>FY2022</td><td>~$12.35</td><td>-$1.48</td><td>N/A</td></tr>
+            <tr><td>FY2023</td><td>~$21.81</td><td>$0.74</td><td>~28.9</td></tr>
+            <tr><td>FY2024</td><td>~$42.83</td><td>$3.27</td><td>~14.8</td></tr>
+            <tr><td>FY2025</td><td>~$54.86</td><td>$3.88</td><td>~12.5</td></tr>
+        </table>
+        <div class="highlight">
+            <strong>估值解读：</strong>FY2025年末PE约12.5倍，考虑到公司盈利快速增长（FY2023-2025净利润从$0.24亿增至$1.28亿）和EV转型带来的结构性利润率提升，当前估值相对合理。3年平均PE约9.9倍，当前PE略高于历史均值，反映了市场对EV增长故事的认可。
+        </div>
+
+        <h3>4.5 关键财务指标趋势图</h3>
+        <div class="chart-container">
+            <canvas id="revenueChart"></canvas>
+        </div>
+        <div class="chart-container">
+            <canvas id="marginChart"></canvas>
+        </div>
+    </div>
+
+    <!-- 五、竞争分析 -->
+    <div class="info-box">
+        <h2>五、竞争分析</h2>
+
+        <h3>5.1 竞争格局概览</h3>
+        <p>北美校车市场是一个典型的<strong>寡头垄断</strong>市场，仅有三家主要OEM占据97%以上的市场份额：</p>
+        <table>
+            <tr>
+                <th>竞争对手</th>
+                <th>母公司</th>
+                <th>市场份额</th>
+                <th>非柴油比例</th>
+                <th>优势</th>
+                <th>劣势</th>
+            </tr>
+            <tr>
+                <td>IC Bus</td>
+                <td>Navistar / TRATON（大众集团）</td>
+                <td>~35%</td>
+                <td>10-20%</td>
+                <td>最大市场份额；大众集团资源支持；经销商网络广</td>
+                <td>替代动力落后；只是大众集团的附属业务，非核心</td>
+            </tr>
+            <tr>
+                <td>Thomas Built Buses</td>
+                <td>Daimler Buses（戴姆勒集团）</td>
+                <td>~32%</td>
+                <td>10-20%</td>
+                <td>戴姆勒技术支持；品牌历史悠久</td>
+                <td>替代动力落后；母公司战略重心不在校车</td>
+            </tr>
+            <tr>
+                <td><strong>Blue Bird</strong></td>
+                <td><strong>独立上市公司</strong></td>
+                <td><strong>~30%</strong></td>
+                <td><strong>60%</strong></td>
+                <td><strong>替代动力绝对领先；唯一专业校车OEM；丙烷校车垄断</strong></td>
+                <td><strong>规模最小；单一制造基地；资源有限</strong></td>
+            </tr>
+            <tr>
+                <td>Lion Electric</td>
+                <td>独立（加拿大）</td>
+                <td><3%</td>
+                <td>100%</td>
+                <td>纯电动专注</td>
+                <td>财务困难（持续亏损）；规模极小；生存风险</td>
+            </tr>
+        </table>
+
+        <h3>5.2 经济护城河分析</h3>
+
+        <div class="moat-item">
+            <strong>🚌 寡头垄断地位（规模优势）</strong>
+            <p>北美校车市场仅有3家主要OEM，新进入者几乎不可能。校车安全法规极其严格（FMVSS标准），需要数十年安全记录和监管信任才能进入市场。制造校车需要专用工厂和设备，资本投入巨大。Blue Bird在Fort Valley拥有唯一的校车制造基地，产能约10,000辆/年。</p>
+        </div>
+
+        <div class="moat-item">
+            <strong>⚡ 替代动力领先者（技术优势）</strong>
+            <p>Blue Bird的60%非柴油销量比例远超竞争对手（10-20%）。丙烷校车是Blue Bird的独有优势——与福特/Roush的独家合作延续至2030年，竞争对手几乎没有同类产品。电动校车方面，Blue Bird已累计交付超过2,000辆，运营数据和可靠性记录远超对手。这种先发优势在学区采购决策中极具说服力。</p>
+        </div>
+
+        <div class="moat-item">
+            <strong>🔒 安全法规壁垒（监管护城河）</strong>
+            <p>校车是受监管最严格的商用车辆之一。FMVSS（联邦机动车安全标准）对校车有超过40项专门标准。新进入者需要通过数年的认证和测试，且学区不会轻易将孩子的安全托付给未经长期验证的新品牌。"没人因为选择Blue Bird而被解雇"——这种安全声誉是97年积累的结果，无法被快速复制。</p>
+        </div>
+
+        <div class="moat-item">
+            <strong>🔧 安装基数锁定（转换成本）</strong>
+            <p>约180,000辆Blue Bird校车正在运营中，这些车辆需要持续的零件供应和维护服务。学区一旦选择了Blue Bird，后续的零件采购、维修培训、库存管理都围绕该品牌建立，更换品牌的成本和风险都很高。零件业务虽然仅占8.3%的营收，但毛利率高达30-40%，是稳定的利润来源。</p>
+        </div>
+
+        <div class="moat-item">
+            <strong>🏛️ 政府资金驱动（政策护城河）</strong>
+            <p>EPA清洁校车计划（$50亿）和各州零排放指令推动校车电气化转型。Blue Bird作为替代动力领导者，是这些政府资金的最大受益者。2025财年售出901辆电动校车，很大程度上得益于联邦和州的补贴。虽然政策风险存在（如新政府审查DOE拨款），但完全取消的可能性较低——校车电气化已获得两党支持。</p>
+        </div>
+
+        <h3>5.3 主要风险</h3>
+
+        <div class="risk-item">
+            <strong>⚠️ 订单积压下降36%</strong>
+            <p>FY2025末订单积压从4,800辆降至3,070辆，降幅36%。虽然管理层表示目前已恢复至约4,000辆，但这可能预示着此前被压抑的更换需求正在正常化。如果新订单增速持续低于生产速度，未来营收增长可能放缓。</p>
+        </div>
+
+        <div class="risk-item">
+            <strong>⚠️ DOE拨款审查风险</strong>
+            <p>公司计划投资$1.6亿改造工厂以扩大EV产能，其中约$8,000万预期来自DOE拨款。该拨款目前正被新政府审查，如果被取消，公司将需要自行承担全部投资，增加资本支出压力。</p>
+        </div>
+
+        <div class="risk-item">
+            <strong>⚠️ 关税和供应链风险</strong>
+            <p>公司部分零部件依赖进口，关税政策不确定性导致成本波动。虽然Blue Bird已通过提价对冲部分影响，但持续关税可能压缩利润率或抑制需求。</p>
+        </div>
+
+        <div class="risk-item">
+            <strong>⚠️ 单一制造基地</strong>
+            <p>所有校车均在佐治亚州Fort Valley工厂生产。任何自然灾害、劳资纠纷或供应链中断都可能导致全面停产。2024年新签的USW工会合同包含大幅加薪（首年至少12%），增加了劳动力成本压力。</p>
+        </div>
+
+        <div class="risk-item">
+            <strong>⚠️ EV补贴政策不确定性</strong>
+            <p>如果EPA清洁校车计划资金被大幅削减或取消，电动校车的需求可能显著下降。电动校车售价是柴油的3.5倍，没有补贴的情况下很多学区无法负担。这将直接影响Blue Bird的高利润EV业务。</p>
+        </div>
+    </div>
+
+    <!-- 六、利润分配分析 -->
+    <div class="info-box">
+        <h2>六、利润分配分析</h2>
+
+        <h3>6.1 利润分配表（回购计入留存）</h3>
+        <table>
+            <tr>
+                <th>财年</th>
+                <th>净利润</th>
+                <th>股息</th>
+                <th>回购</th>
+                <th>扩张CapEx</th>
+                <th>债务偿还</th>
+                <th>留存金额</th>
+                <th>留存比率</th>
+            </tr>
+            <tr>
+                <td>FY2016</td>
+                <td>$0.07亿</td>
+                <td>$0</td>
+                <td>$0</td>
+                <td>~$0.15亿</td>
+                <td>净借款</td>
+                <td>$0.07亿</td>
+                <td>100%</td>
+            </tr>
+            <tr>
+                <td>FY2017</td>
+                <td>$0.29亿</td>
+                <td>$0</td>
+                <td>$0</td>
+                <td>~$0.16亿</td>
+                <td>净借款</td>
+                <td>$0.29亿</td>
+                <td>100%</td>
+            </tr>
+            <tr>
+                <td>FY2018</td>
+                <td>$0.31亿</td>
+                <td>$0</td>
+                <td>$0</td>
+                <td>~$0.14亿</td>
+                <td>净还款</td>
+                <td>$0.31亿</td>
+                <td>100%</td>
+            </tr>
+            <tr>
+                <td>FY2019</td>
+                <td>$0.24亿</td>
+                <td>$0</td>
+                <td>$0</td>
+                <td>~$0.13亿</td>
+                <td>净还款</td>
+                <td>$0.24亿</td>
+                <td>100%</td>
+            </tr>
+            <tr>
+                <td>FY2020</td>
+                <td>$0.12亿</td>
+                <td>$0</td>
+                <td>$0</td>
+                <td>~$0.12亿</td>
+                <td>大量还款</td>
+                <td>$0.12亿</td>
+                <td>100%</td>
+            </tr>
+            <tr>
+                <td>FY2021</td>
+                <td>~$0</td>
+                <td>$0</td>
+                <td>$0</td>
+                <td>~$0.10亿</td>
+                <td>净借款</td>
+                <td>~$0</td>
+                <td>N/A</td>
+            </tr>
+            <tr>
+                <td>FY2022</td>
+                <td>-$0.46亿</td>
+                <td>$0</td>
+                <td>$0</td>
+                <td>~$0.14亿</td>
+                <td>大量借款</td>
+                <td>-$0.46亿</td>
+                <td>N/A</td>
+            </tr>
+            <tr>
+                <td>FY2023</td>
+                <td>$0.24亿</td>
+                <td>$0</td>
+                <td>$0</td>
+                <td>~$0.15亿</td>
+                <td>还款</td>
+                <td>$0.24亿</td>
+                <td>100%</td>
+            </tr>
+            <tr>
+                <td>FY2024</td>
+                <td>$1.06亿</td>
+                <td>$0</td>
+                <td>$0</td>
+                <td>~$0.19亿</td>
+                <td>大量还款</td>
+                <td>$1.06亿</td>
+                <td>100%</td>
+            </tr>
+            <tr>
+                <td>FY2025</td>
+                <td>$1.28亿</td>
+                <td>$0</td>
+                <td>$0.40亿</td>
+                <td>~$0.23亿</td>
+                <td>大量还款</td>
+                <td>$1.28亿</td>
+                <td>100%</td>
+            </tr>
+        </table>
+        <div class="highlight">
+            <strong>注：</strong>Blue Bird从未支付股息。按照"回购计入留存"的原则，留存金额 = 净利润 - 股息 = 净利润（因无股息）。FY2025的$3,950万回购属于留存中的"回购留存"部分，而非利润分配。留存构成：FY2025留存$1.28亿中，约$0.40亿用于回购（31%），约$0.23亿用于资本支出（18%），约$0.15亿用于R&D（12%），其余用于偿还债务和增加现金储备。
+        </div>
+
+        <h3>6.2 留存比率解读</h3>
+        <p>Blue Bird的留存比率始终为100%（除亏损年份外），属于<strong>"几乎全部利润用于再增长"</strong>的典型。这符合公司的生命周期阶段——从长期亏损/低盈利状态中恢复，需要大量留存利润来：</p>
+        <ul>
+            <li><strong>偿还历史债务：</strong>FY2022-2025期间，总债务从$3.67亿降至$0.88亿，降幅76%</li>
+            <li><strong>重建资产负债表：</strong>股东权益从FY2022的接近零增长至FY2025的$2.98亿</li>
+            <li><strong>投资EV产能：</strong>计划$1.6亿工厂改造投资</li>
+            <li><strong>启动回购：</strong>FY2025首次回购$3,950万，并授权$1亿新回购计划</li>
+        </ul>
+
+        <h3>6.3 利润分配饼图</h3>
+        <div class="chart-container">
+            <canvas id="profitAllocationChart"></canvas>
+        </div>
+
+        <h3>6.4 管理层资本配置评价</h3>
+        <div class="moat-item">
+            <strong>✅ 债务去杠杆（优秀）</strong>
+            <p>FY2022-2025期间，管理层将总债务从$3.67亿削减至$0.88亿，利息支出从$1,060万降至$720万（降32%），净杠杆率降至Level I定价水平。这是极其出色的资本配置——在高利率环境下优先降债，显著降低了财务风险。</p>
+        </div>
+        <div class="moat-item">
+            <strong>✅ 回购启动（积极信号）</strong>
+            <p>FY2025首次回购$3,950万（约105万股），并授权$1亿新回购计划。回购发生在股价相对低位（平均约$37/股），显示了管理层对公司价值的信心。流通股从3,270万降至3,165万股，减少3.2%。</p>
+        </div>
+        <div class="moat-item">
+            <strong>✅ 养老金计划终止（降低风险）</strong>
+            <p>公司启动了冻结的确定收益养老金计划终止程序，将$1.096亿的预计福利义务转为结算负债。虽然FY2026将产生$2,820万非现金费用，但长期来看消除了未来资金负担和精算风险。</p>
+        </div>
+        <div class="moat-item">
+            <strong>⚠️ CBS合资企业减值（教训）</strong>
+            <p>公司对Clean Bus Solutions合资企业的股权投资计提$740万减值，账面价值降至零。这表明"车队即服务"的EV融资模式可能存在挑战，管理层需要更谨慎地评估新业务模式的投资。</p>
+        </div>
+
+        <h3>6.5 可持续增长率</h3>
+        <p><strong>可持续增长率 = ROE × 留存比率 = 50.0% × 100% = 50.0%</strong></p>
+        <p>这个数字显然不现实——ROE因权益基数低而被人为推高。更合理的计算使用ROA：<strong>ROA × 权益乘数 × 留存比率 = 21.3% × 2.3 × 100% ≈ 49%</strong>，仍然偏高。实际上，Blue Bird的可持续增长率受限于校车市场的总需求增长（约3-5%/年）和产能扩张速度。管理层给出的长期目标（营收从$15亿增至$20亿，CAGR约6%）更接近实际可持续增长率。</p>
+    </div>
+
+    <!-- 七、投资总结 -->
+    <div class="info-box">
+        <h2>七、投资总结</h2>
+
+        <h3>7.1 投资亮点</h3>
+        <div class="moat-item">
+            <strong>🏆 寡头垄断中的差异化领先者</strong>
+            <p>北美校车市场仅有3家OEM，Blue Bird是唯一独立专业校车公司，且在替代动力领域领先竞争对手数年。60%非柴油销量 vs 竞争对手10-20%，这种差距在短期内难以被追平。</p>
+        </div>
+        <div class="moat-item">
+            <strong>📈 结构性利润率提升</strong>
+            <p>EV校车毛利率约30% vs 柴油校车约10%。随着EV渗透率从9.6%提升，公司整体毛利率将从21%向25%+迈进。管理层长期目标：调整后EBITDA利润率16%+。</p>
+        </div>
+        <div class="moat-item">
+            <strong>💰 极强的现金流生成能力</strong>
+            <p>FY2025自由现金流$1.53亿，自由现金流收益率约7.3%（基于$21亿市值）。净债务为负值，利息覆盖率27.7倍。资产负债表已从高杠杆转变为净现金状态。</p>
+        </div>
+        <div class="moat-item">
+            <strong>🔒 刚需+监管护城河</strong>
+            <p>校车是法律强制需求，学区无法选择不买。安全法规壁垒极高，新进入者几乎不可能。定价权在寡头格局中得到保障——FY2025成功提价6%且未显著影响需求。</p>
+        </div>
+
+        <h3>7.2 投资风险</h3>
+        <div class="risk-item">
+            <strong>📉 订单积压下降</strong>
+            <p>从4,800辆降至3,070辆（-36%），可能预示需求正常化。如果EV补贴被削减，订单可能进一步下降。</p>
+        </div>
+        <div class="risk-item">
+            <strong>🏛️ 政策风险</strong>
+            <p>EPA清洁校车计划和DOE拨款面临新政府审查。如果补贴大幅削减，EV需求将受重创——电动校车售价是柴油的3.5倍，没有补贴很多学区买不起。</p>
+        </div>
+        <div class="risk-item">
+            <strong>🏭 单一制造基地</strong>
+            <p>所有生产集中在Fort Valley一家工厂，面临自然灾害和劳资纠纷风险。USW新合同大幅加薪增加了成本压力。</p>
+        </div>
+        <div class="risk-item">
+            <strong>📊 ROE虚高</strong>
+            <p>当前50%的ROE因权益基数低而被人为推高，不代表可持续水平。随着权益增长，ROE将回归15-25%的正常区间。</p>
+        </div>
+
+        <h3>7.3 估值评估</h3>
+        <table>
+            <tr>
+                <th>指标</th>
+                <th>当前值</th>
+                <th>评估</th>
+            </tr>
+            <tr>
+                <td>PE (TTM)</td>
+                <td>~16倍</td>
+                <td>合理。考虑EV增长故事，略低于成长股应有估值</td>
+            </tr>
+            <tr>
+                <td>EV/EBITDA</td>
+                <td>~9.8倍</td>
+                <td>偏低。对于寡头垄断+高增长公司，10倍以下有吸引力</td>
+            </tr>
+            <tr>
+                <td>P/S</td>
+                <td>~1.4倍</td>
+                <td>合理。商用车制造业通常1-2倍</td>
+            </tr>
+            <tr>
+                <td>FCF Yield</td>
+                <td>~7.3%</td>
+                <td>优秀。自由现金流收益率超过7%</td>
+            </tr>
+            <tr>
+                <td>PEG</td>
+                <td>~0.64</td>
+                <td>低估。PEG < 1通常表示增长未被充分定价</td>
+            </tr>
+        </table>
+
+        <h3>7.4 巴菲特/芒格视角总结</h3>
+        <div class="highlight">
+            <strong>蓝鸟公司是否符合巴菲特/芒格的投资标准？</strong>
+            <p><strong>✅ 可理解的业务：</strong>造校车卖校车，商业模式简单清晰，120岁的人也能理解。</p>
+            <p><strong>✅ 持久竞争优势：</strong>寡头垄断+安全法规壁垒+替代动力领先，护城河真实且可持续。</p>
+            <p><strong>✅ 能干且以股东利益为导向的管理层：</strong>积极降债、启动回购、终止养老金风险、投资R&D（+62%），资本配置记录优秀。</p>
+            <p><strong>✅ 合理的价格：</strong>EV/EBITDA约10倍，FCF Yield 7%+，PEG 0.64。对于一家寡头垄断+结构性增长的公司，当前估值留有安全边际。</p>
+            <p><strong>⚠️ 需要关注：</strong>政策风险（EV补贴）、订单积压趋势、单一制造基地集中风险。</p>
+            <p><strong>结论：</strong>Blue Bird是一家在寡头垄断市场中拥有差异化领先地位的特色公司，资产负债表已修复至净现金状态，自由现金流生成能力强，估值合理。主要风险来自政策不确定性。对于能承受政策风险的长期投资者，BLBD在当前价位提供了有吸引力的风险回报比。</p>
+        </div>
+    </div>
+
+    <script>
+        var revenueCtx = document.getElementById('revenueChart').getContext('2d');
+        new Chart(revenueCtx, {
+            type: 'bar',
+            data: {
+                labels: ['FY2020', 'FY2021', 'FY2022', 'FY2023', 'FY2024', 'FY2025'],
+                datasets: [{
+                    label: '营收（百万美元）',
+                    data: [879, 684, 801, 1133, 1347, 1480],
+                    backgroundColor: 'rgba(46, 134, 193, 0.7)',
+                    borderColor: 'rgba(46, 134, 193, 1)',
+                    borderWidth: 1
+                }, {
+                    label: '净利润（百万美元）',
+                    data: [12, 0, -46, 24, 106, 128],
+                    backgroundColor: 'rgba(39, 174, 96, 0.7)',
+                    borderColor: 'rgba(39, 174, 96, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: { display: true, text: 'Blue Bird 营收与净利润趋势', font: { size: 16 } }
+                },
+                scales: { y: { beginAtZero: false } }
+            }
+        });
+
+        var marginCtx = document.getElementById('marginChart').getContext('2d');
+        new Chart(marginCtx, {
+            type: 'line',
+            data: {
+                labels: ['FY2020', 'FY2021', 'FY2022', 'FY2023', 'FY2024', 'FY2025'],
+                datasets: [{
+                    label: '毛利率 (%)',
+                    data: [10.5, 5.2, 4.4, 12.1, 18.9, 20.5],
+                    borderColor: 'rgba(46, 134, 193, 1)',
+                    backgroundColor: 'rgba(46, 134, 193, 0.1)',
+                    fill: true,
+                    tension: 0.3
+                }, {
+                    label: '营业利润率 (%)',
+                    data: [2.5, -1.5, -5.1, 4.6, 10.3, 11.3],
+                    borderColor: 'rgba(39, 174, 96, 1)',
+                    backgroundColor: 'rgba(39, 174, 96, 0.1)',
+                    fill: true,
+                    tension: 0.3
+                }, {
+                    label: '净利润率 (%)',
+                    data: [1.4, 0, -5.7, 2.1, 7.9, 8.6],
+                    borderColor: 'rgba(231, 76, 60, 1)',
+                    backgroundColor: 'rgba(231, 76, 60, 0.1)',
+                    fill: true,
+                    tension: 0.3
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: { display: true, text: 'Blue Bird 利润率趋势', font: { size: 16 } }
+                },
+                scales: { y: { beginAtZero: false } }
+            }
+        });
+
+        var profitCtx = document.getElementById('profitAllocationChart').getContext('2d');
+        new Chart(profitCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['回购留存 (31%)', '资本支出留存 (18%)', 'R&D留存 (12%)', '债务偿还 (24%)', '现金储备增加 (15%)'],
+                datasets: [{
+                    data: [31, 18, 12, 24, 15],
+                    backgroundColor: [
+                        'rgba(46, 134, 193, 0.8)',
+                        'rgba(39, 174, 96, 0.8)',
+                        'rgba(243, 156, 18, 0.8)',
+                        'rgba(155, 89, 182, 0.8)',
+                        'rgba(149, 165, 166, 0.8)'
+                    ]
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: { display: true, text: 'FY2025 利润分配（回购计入留存）', font: { size: 16 } },
+                    legend: { position: 'bottom' }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
