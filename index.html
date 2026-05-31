@@ -41,11 +41,144 @@
         a:hover {
             text-decoration: underline;
         }
+        .search-container {
+            max-width: 700px;
+            margin: 25px auto;
+            position: relative;
+        }
+        .search-box {
+            width: 100%;
+            padding: 14px 20px 14px 50px;
+            font-size: 16px;
+            border: 2px solid #ddd;
+            border-radius: 30px;
+            outline: none;
+            box-sizing: border-box;
+            transition: border-color 0.3s, box-shadow 0.3s;
+            background: white;
+        }
+        .search-box:focus {
+            border-color: #2e86c1;
+            box-shadow: 0 0 0 3px rgba(46,134,193,0.15);
+        }
+        .search-icon {
+            position: absolute;
+            left: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 18px;
+            color: #999;
+            pointer-events: none;
+        }
+        .search-hint {
+            text-align: center;
+            color: #999;
+            font-size: 13px;
+            margin-top: 6px;
+        }
+        .search-results {
+            max-width: 700px;
+            margin: 0 auto 20px;
+            display: none;
+        }
+        .search-results.active {
+            display: block;
+        }
+        .search-result-item {
+            background: white;
+            border-radius: 10px;
+            padding: 16px 20px;
+            margin-bottom: 10px;
+            box-shadow: 0 1px 6px rgba(0,0,0,0.08);
+            transition: box-shadow 0.2s;
+        }
+        .search-result-item:hover {
+            box-shadow: 0 3px 12px rgba(0,0,0,0.15);
+        }
+        .search-result-title {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 6px;
+        }
+        .search-result-title a {
+            color: #1a5276;
+        }
+        .search-result-url {
+            font-size: 12px;
+            color: #999;
+            margin-bottom: 6px;
+        }
+        .search-result-snippet {
+            font-size: 14px;
+            color: #555;
+            line-height: 1.6;
+        }
+        .search-result-snippet mark {
+            background: #fff3cd;
+            color: #333;
+            padding: 1px 3px;
+            border-radius: 3px;
+        }
+        .search-result-score {
+            display: inline-block;
+            background: #eaf2f8;
+            color: #1a5276;
+            font-size: 11px;
+            padding: 2px 8px;
+            border-radius: 10px;
+            margin-left: 8px;
+        }
+        .search-stats {
+            text-align: center;
+            color: #7f8c8d;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+        .search-loading {
+            text-align: center;
+            padding: 30px;
+            color: #999;
+        }
+        .search-no-result {
+            text-align: center;
+            padding: 30px;
+            color: #999;
+            font-size: 15px;
+        }
+        .search-clear {
+            position: absolute;
+            right: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            font-size: 18px;
+            color: #999;
+            cursor: pointer;
+            display: none;
+            padding: 4px 8px;
+        }
+        .search-clear.visible {
+            display: block;
+        }
+        .search-clear:hover {
+            color: #333;
+        }
     </style>
 </head>
 <body>
     <h1>美股公司分析索引</h1>
 
+    <div class="search-container">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="searchInput" class="search-box" placeholder="搜索公司名称、股票代码、关键词（如：护城河、ROE、定价权...）" autocomplete="off">
+        <button class="search-clear" id="searchClear" onclick="clearSearch()">✕</button>
+        <div class="search-hint">全文搜索覆盖所有公司分析页面 · 支持中英文关键词</div>
+    </div>
+
+    <div class="search-results" id="searchResults"></div>
+
+    <div id="mainContent">
     <h2 style="color:#1a5276; border-bottom:2px solid #2e86c1; padding-bottom:8px;">投资大师最新持仓</h2>
     <p style="color:#7f8c8d; margin-bottom:15px;">数据来源：SEC 13F文件 | 更新：2026年Q1（截至2026年3月31日）</p>
     <table style="margin-bottom:40px;">
@@ -385,5 +518,168 @@
             <td>-</td>
         </tr>
     </table>
+    </div>
+
+    <script>
+    var searchIndex = null;
+    var searchTimer = null;
+
+    var searchInput = document.getElementById('searchInput');
+    var searchResults = document.getElementById('searchResults');
+    var searchClear = document.getElementById('searchClear');
+    var mainContent = document.getElementById('mainContent');
+
+    function loadSearchIndex() {
+        if (searchIndex) return Promise.resolve(searchIndex);
+        return fetch('search-index.json')
+            .then(function(r) { return r.json(); })
+            .then(function(data) {
+                searchIndex = data;
+                return searchIndex;
+            });
+    }
+
+    function escapeHtml(text) {
+        var div = document.createElement('div');
+        div.appendChild(document.createTextNode(text));
+        return div.innerHTML;
+    }
+
+    function highlightText(text, query) {
+        if (!query) return escapeHtml(text);
+        var escaped = escapeHtml(text);
+        var escapedQuery = escapeHtml(query);
+        var re = new RegExp('(' + escapedQuery.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'gi');
+        return escaped.replace(re, '<mark>$1</mark>');
+    }
+
+    function search(query) {
+        if (!query || query.trim().length < 2) {
+            searchResults.classList.remove('active');
+            searchResults.innerHTML = '';
+            mainContent.style.display = '';
+            searchClear.classList.remove('visible');
+            return;
+        }
+
+        query = query.trim();
+        searchClear.classList.add('visible');
+
+        loadSearchIndex().then(function(index) {
+            var terms = query.toLowerCase().split(/\s+/).filter(function(t) { return t.length > 0; });
+            var results = [];
+
+            for (var i = 0; i < index.length; i++) {
+                var page = index[i];
+                var titleLower = page.title.toLowerCase();
+                var contentLower = page.content.toLowerCase();
+                var urlLower = page.url.toLowerCase();
+
+                var score = 0;
+                var matched = false;
+
+                for (var j = 0; j < terms.length; j++) {
+                    var term = terms[j];
+
+                    if (urlLower.replace('.html', '') === term) {
+                        score += 100;
+                        matched = true;
+                    } else if (titleLower.indexOf(term) !== -1) {
+                        score += 50;
+                        var titleIdx = titleLower.indexOf(term);
+                        if (titleIdx === 0) score += 30;
+                        matched = true;
+                    }
+
+                    var contentIdx = contentLower.indexOf(term);
+                    if (contentIdx !== -1) {
+                        score += 10;
+                        if (contentIdx < 200) score += 15;
+                        var count = contentLower.split(term).length - 1;
+                        score += Math.min(count, 20);
+                        matched = true;
+                    }
+                }
+
+                if (matched) {
+                    results.push({ page: page, score: score });
+                }
+            }
+
+            results.sort(function(a, b) { return b.score - a.score; });
+            results = results.slice(0, 20);
+
+            searchResults.classList.add('active');
+            mainContent.style.display = 'none';
+
+            if (results.length === 0) {
+                searchResults.innerHTML = '<div class="search-no-result">未找到与 "' + escapeHtml(query) + '" 相关的结果</div>';
+                return;
+            }
+
+            var html = '<div class="search-stats">找到 ' + results.length + ' 个相关结果（搜索词：' + escapeHtml(query) + '）</div>';
+
+            for (var k = 0; k < results.length; k++) {
+                var r = results[k];
+                var snippet = getSnippet(r.page.content, terms, 150);
+                html += '<div class="search-result-item">';
+                html += '<div class="search-result-title"><a href="' + r.page.url + '">' + highlightText(r.page.title, terms[0]) + '</a><span class="search-result-score">相关度 ' + r.score + '</span></div>';
+                html += '<div class="search-result-url">' + r.page.url + '</div>';
+                html += '<div class="search-result-snippet">' + highlightText(snippet, terms[0]) + '</div>';
+                html += '</div>';
+            }
+
+            searchResults.innerHTML = html;
+        });
+    }
+
+    function getSnippet(content, terms, maxLen) {
+        var lower = content.toLowerCase();
+        var firstPos = content.length;
+        for (var i = 0; i < terms.length; i++) {
+            var idx = lower.indexOf(terms[i]);
+            if (idx !== -1 && idx < firstPos) firstPos = idx;
+        }
+
+        var start = Math.max(0, firstPos - 60);
+        var end = Math.min(content.length, start + maxLen + 60);
+        var snippet = content.substring(start, end);
+
+        if (start > 0) snippet = '...' + snippet;
+        if (end < content.length) snippet = snippet + '...';
+
+        return snippet;
+    }
+
+    function clearSearch() {
+        searchInput.value = '';
+        searchResults.classList.remove('active');
+        searchResults.innerHTML = '';
+        mainContent.style.display = '';
+        searchClear.classList.remove('visible');
+        searchInput.focus();
+    }
+
+    searchInput.addEventListener('input', function() {
+        clearTimeout(searchTimer);
+        var val = this.value;
+        searchTimer = setTimeout(function() {
+            search(val);
+        }, 300);
+    });
+
+    searchInput.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            clearSearch();
+        }
+    });
+
+    var urlParams = new URLSearchParams(window.location.search);
+    var q = urlParams.get('q');
+    if (q) {
+        searchInput.value = q;
+        search(q);
+    }
+    </script>
 </body>
 </html>
