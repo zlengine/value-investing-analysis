@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Murphy USA Inc. (MUSA) 价值投资分析</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f2f5;
+            color: #333;
+        }
+        h1 {
+            text-align: center;
+            color: #1a5276;
+            font-size: 2.2em;
+            margin-bottom: 5px;
+        }
+        h2 {
+            color: #1a5276;
+            border-bottom: 2px solid #2e86c1;
+            padding-bottom: 8px;
+            margin-top: 30px;
+        }
+        h3 {
+            color: #2c3e50;
+            margin-top: 20px;
+        }
+        .subtitle {
+            text-align: center;
+            color: #7f8c8d;
+            font-size: 1.1em;
+            margin-bottom: 30px;
+        }
+        .info-box {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            background-color: white;
+        }
+        th, td {
+            padding: 10px 12px;
+            text-align: left;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        th {
+            background-color: #2e86c1;
+            color: white;
+            font-weight: 600;
+        }
+        tr:hover {
+            background-color: #f5f8fa;
+        }
+        .moat-item {
+            background: #eaf7ed;
+            border-left: 4px solid #27ae60;
+            padding: 12px 18px;
+            margin: 10px 0;
+            border-radius: 0 6px 6px 0;
+        }
+        .risk-item {
+            background: #fdecea;
+            border-left: 4px solid #e74c3c;
+            padding: 12px 18px;
+            margin: 10px 0;
+            border-radius: 0 6px 6px 0;
+        }
+        .tag-green {
+            display: inline-block;
+            background: #27ae60;
+            color: white;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.85em;
+            margin: 2px;
+        }
+        .tag-orange {
+            display: inline-block;
+            background: #f39c12;
+            color: white;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.85em;
+            margin: 2px;
+        }
+        .tag-red {
+            display: inline-block;
+            background: #e74c3c;
+            color: white;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.85em;
+            margin: 2px;
+        }
+        .chart-container {
+            position: relative;
+            height: 350px;
+            margin: 20px 0;
+        }
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: #2e86c1;
+            text-decoration: none;
+            font-size: 1.05em;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+        .rating-stars {
+            color: #f39c12;
+            font-size: 1.3em;
+        }
+        .summary-box {
+            background: linear-gradient(135deg, #1a5276, #2e86c1);
+            color: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 20px 0;
+        }
+        .summary-box h3 {
+            color: white;
+            margin-top: 0;
+        }
+        .competitiveness-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 15px;
+            margin: 15px 0;
+        }
+        .competitiveness-card {
+            background: white;
+            border-radius: 8px;
+            padding: 18px;
+            box-shadow: 0 1px 5px rgba(0,0,0,0.06);
+            border-top: 3px solid #2e86c1;
+        }
+        .competitiveness-card h4 {
+            margin-top: 0;
+            color: #1a5276;
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back-link">&larr; 返回索引</a>
+    <h1>Murphy USA Inc. (MUSA)</h1>
+    <p class="subtitle">巴菲特/芒格式价值投资基本面分析 | 更新日期：2026年6月</p>
+
+    <!-- 一、公司基本信息 -->
+    <div class="info-box">
+        <h2>一、公司基本信息</h2>
+        <table>
+            <tr><td>公司全称</td><td>Murphy USA Inc.</td></tr>
+            <tr><td>股票代码</td><td>NYSE: MUSA</td></tr>
+            <tr><td>市值</td><td>约100亿美元（2026年6月）</td></tr>
+            <tr><td>企业价值（EV）</td><td>约124亿美元</td></tr>
+            <tr><td>成立时间</td><td>1996年（Murphy Oil旗下）；2013年分拆独立上市</td></tr>
+            <tr><td>公司总部</td><td>美国阿肯色州埃尔杜拉多</td></tr>
+            <tr><td>最新股价</td><td>约$545（2026年6月5日）</td></tr>
+            <tr><td>2025财年营收</td><td>193.8亿美元（-4.3% YoY，油价下降导致）</td></tr>
+            <tr><td>2025财年净利润</td><td>4.706亿美元（-6.4% YoY）</td></tr>
+            <tr><td>2025调整后EBITDA</td><td>10.194亿美元（+1.3% YoY）</td></tr>
+            <tr><td>门店数量</td><td>1,800家（1,649家Murphy + 151家QuickChek）</td></tr>
+            <tr><td>覆盖州</td><td>27个州，主要在美国东南/西南/中西部</td></tr>
+            <tr><td>员工数量</td><td>约16,900人</td></tr>
+            <tr><td>CEO</td><td>Mindy West（2026年1月接任，前任Andrew Clyde）</td></tr>
+            <tr><td>零售燃油量</td><td>48亿加仑/年</td></tr>
+            <tr><td>燃油贡献</td><td>30.7 cpg（美分/加仑，FY2025）</td></tr>
+            <tr><td>商品贡献</td><td>8.69亿美元（FY2025，+4.2% YoY）</td></tr>
+            <tr><td>总债务</td><td>约27亿美元</td></tr>
+            <tr><td>现金</td><td>约2,890万美元</td></tr>
+            <tr><td>流通股</td><td>约1,847万股（持续回购缩减中）</td></tr>
+        </table>
+    </div>
+
+    <!-- 二、业务分析 -->
+    <div class="info-box">
+        <h2>二、业务分析</h2>
+        <h3>2.1 公司业务概述（通俗解释）</h3>
+        <p><strong>Murphy USA到底是干什么的？</strong></p>
+        <p>想象一下，你去Walmart购物，停车场旁边总有一个加油站+便利店——那就是Murphy USA。它卖便宜的汽油和柴油，旁边的小店卖香烟、饮料、零食和汽车用品。你加完油顺便买包烟和一杯咖啡，这就是Murphy USA赚钱的方式。</p>
+        <p>Murphy USA的生意本质上是<strong>高销量、低利润率的零售生意</strong>：</p>
+        <ul>
+            <li><strong>燃油业务</strong>：每加仑汽油只赚约30美分（毛利率约5%），但一年卖48亿加仑，积少成多</li>
+            <li><strong>便利店业务</strong>：毛利率约20%，卖烟草、饮料、零食、新鲜食品（QuickChek）</li>
+            <li><strong>核心优势</strong>：1,100+门店紧邻Walmart，自带客流，无需花钱吸引客户</li>
+        </ul>
+        <p>这不是一个"高利润率"的生意——净利润率仅2.4%，但通过高资产周转率（4.2x）和高杠杆（D/E 4.4x）实现了高ROE（75.5%）。这是典型的"薄利多销+杠杆"模式。</p>
+
+        <h3>2.2 主要业务板块及营收占比（FY2025）</h3>
+        <table>
+            <tr><th>业务板块</th><th>年收入</th><th>占总营收比</th><th>贡献利润</th><th>增长趋势</th></tr>
+            <tr><td>燃油零售</td><td>~$150亿</td><td>~77%</td><td>~$14.7亿（30.7cpg）</td><td>销量持平，油价下降导致营收下降</td></tr>
+            <tr><td>商品零售（便利店）</td><td>~$43亿</td><td>~22%</td><td>~$8.69亿（20.2%毛利率）</td><td>+4.2% YoY，QuickChek驱动增长</td></tr>
+            <tr><td>产品供应与批发（PS&W）</td><td>含在燃油中</td><td>—</td><td>亏损约$1.1亿</td><td>RINs收入部分对冲</td></tr>
+        </table>
+
+        <h3>2.3 品牌与门店类型</h3>
+        <table>
+            <tr><th>品牌</th><th>门店数</th><th>定位</th><th>特点</th></tr>
+            <tr><td>Murphy USA</td><td>1,649</td><td>低价燃油+便利店</td><td>紧邻Walmart，小面积（1,400-2,000 sq ft），高燃油吞吐量</td></tr>
+            <tr><td>Murphy Express</td><td>含在Murphy中</td><td>独立便利店</td><td>不依赖Walmart，更大面积，更多商品选择</td></tr>
+            <tr><td>QuickChek</td><td>151</td><td>新鲜食品+燃油</td><td>2021年收购，现做三明治/沙拉/咖啡，高商品毛利率，增长引擎</td></tr>
+        </table>
+
+        <h3>2.4 地域分布</h3>
+        <table>
+            <tr><th>地区</th><th>门店占比</th><th>特点</th></tr>
+            <tr><td>美国东南部（TX, FL, GA, NC等）</td><td>~60%</td><td>核心市场，Walmart密度高</td></tr>
+            <tr><td>美国中西部（MO, OH, IN等）</td><td>~25%</td><td>QuickChek重点扩张区域</td></tr>
+            <tr><td>美国西南部（AZ, NM等）</td><td>~15%</td><td>新兴市场</td></tr>
+            <tr><td>国际</td><td>0%</td><td>纯美国本土业务</td></tr>
+        </table>
+
+        <h3>2.5 商业模式核心</h3>
+        <div class="moat-item">
+            <strong>Walmart协同+低运营成本</strong>：1,100+门店紧邻Walmart Supercenter，共享巨大客流。小面积门店（1,400-2,000 sq ft）保持低运营成本，使Murphy USA能以低于竞争对手的价格卖油，同时保持30+ cpg的燃油贡献。每家店月均燃油销量23.5万加仑，远超行业平均。
+        </div>
+    </div>
+
+    <!-- 三、业务板块产品竞争力分析 -->
+    <div class="info-box">
+        <h2>三、业务板块产品竞争力分析</h2>
+
+        <div class="competitiveness-card">
+            <h4>燃油零售产品竞争力分析</h4>
+            <p><strong>1. 可替代性：<span class="tag-red">极高</span></strong></p>
+            <ul>
+                <li>主要替代品：其他加油站（Exxon、Shell、Chevron、RaceTrac、QuikTrip、Costco加油站）、电动车充电站、公共交通</li>
+                <li>替代品体验差距：汽油是标准商品，不同品牌的油几乎没有体验差异。Murphy USA的唯一差异化是价格低</li>
+                <li>替代趋势：加速——电动车渗透率持续提升（2025年美国约10%新车销量为EV），长期威胁燃油需求</li>
+            </ul>
+            <p><strong>2. 客户转换成本：<span class="tag-red">极低</span></strong></p>
+            <ul>
+                <li>财务转换成本：几乎为零，换一个加油站加油无任何费用</li>
+                <li>时间转换成本：极低，路过哪个加油站就加哪个</li>
+                <li>心理转换成本：品牌忠诚度极低，消费者主要看价格和便利性</li>
+                <li>捆绑转换成本：Walmart购物卡折扣提供微弱粘性，但不足以阻止切换</li>
+                <li>综合评估：燃油是完全同质化商品，转换成本几乎为零</li>
+            </ul>
+            <p><strong>3. 定价权：<span class="tag-red">极弱</span></strong></p>
+            <ul>
+                <li>历史提价记录：燃油价格完全由市场决定，Murphy USA是价格接受者而非制定者</li>
+                <li>提价vs通胀：燃油零售价与原油价格挂钩，无法独立提价</li>
+                <li>定价权来源：无定价权，只能通过运营效率在市场价基础上赚取边际利润</li>
+                <li>定价权趋势：稳定偏弱——燃油需求长期下降（EV替代），但短期油价波动提供交易性机会</li>
+                <li>巴菲特测试：如果Murphy USA提价10%（每加仑多收30美分），客户会立即转向隔壁加油站</li>
+            </ul>
+            <p><strong>综合竞争力评级：<span class="rating-stars">&#9733;&#9733;</span>（2/5星）</strong></p>
+        </div>
+
+        <div class="competitiveness-card">
+            <h4>便利店商品产品竞争力分析</h4>
+            <p><strong>1. 可替代性：<span class="tag-red">高</span></strong></p>
+            <ul>
+                <li>主要替代品：Walmart本店、Dollar General、7-Eleven、Circle K、QuikTrip、杂货店、在线零售</li>
+                <li>替代品体验差距：替代品众多且体验接近。QuickChek的新鲜食品有一定差异化</li>
+                <li>替代趋势：稳定——便利店行业竞争激烈但需求刚性（即时消费）</li>
+            </ul>
+            <p><strong>2. 客户转换成本：<span class="tag-red">低</span></strong></p>
+            <ul>
+                <li>财务转换成本：几乎为零</li>
+                <li>时间转换成本：极低，便利店选择多</li>
+                <li>捆绑转换成本：与燃油购买有一定捆绑（加油时顺便购物），但粘性有限</li>
+                <li>综合评估：便利店商品是低转换成本的即时消费品类</li>
+            </ul>
+            <p><strong>3. 定价权：<span class="tag-orange">中等</span></strong></p>
+            <ul>
+                <li>历史提价记录：商品毛利率从19.8%提升至20.2%，有一定提价能力</li>
+                <li>定价权来源：便利性溢价（客户愿意为即时消费多付一点）+ 烟草类刚需 + QuickChek新鲜食品差异化</li>
+                <li>定价权趋势：稳定偏增强——QuickChek的新鲜食品提供更高定价权</li>
+                <li>巴菲特测试：如果便利店商品提价10%，部分客户会转向Walmart本店，但即时消费需求仍有支撑</li>
+            </ul>
+            <p><strong>综合竞争力评级：<span class="rating-stars">&#9733;&#9733;</span>（2/5星）</strong></p>
+        </div>
+
+        <div class="competitiveness-card">
+            <h4>QuickChek新鲜食品产品竞争力分析</h4>
+            <p><strong>1. 可替代性：<span class="tag-orange">中等</span></strong></p>
+            <ul>
+                <li>主要替代品：Wawa、Sheetz、7-Eleven新鲜食品、快餐店（Subway、Panera）、外卖</li>
+                <li>替代品体验差距：QuickChek的现做三明治和咖啡与Wawa/Sheetz体验接近，但优于传统加油站便利店</li>
+                <li>替代趋势：稳定——新鲜食品是便利店行业增长最快的品类</li>
+            </ul>
+            <p><strong>2. 客户转换成本：<span class="tag-red">低</span></strong></p>
+            <ul>
+                <li>财务转换成本：零</li>
+                <li>时间转换成本：极低，附近有多个替代选择</li>
+                <li>综合评估：新鲜食品虽然体验更好，但转换成本仍然很低</li>
+            </ul>
+            <p><strong>3. 定价权：<span class="tag-orange">中等</span></strong></p>
+            <ul>
+                <li>历史提价记录：QuickChek门店商品毛利率高于Murphy USA传统门店</li>
+                <li>定价权来源：新鲜食品差异化+品牌认知（东北部市场）+便利性溢价</li>
+                <li>定价权趋势：增强——随着QuickChek扩张，新鲜食品占比提升</li>
+                <li>巴菲特测试：如果QuickChek三明治提价10%，部分客户可能转向快餐店，但便利性仍有支撑</li>
+            </ul>
+            <p><strong>综合竞争力评级：<span class="rating-stars">&#9733;&#9733;&#9733;</span>（3/5星）</strong></p>
+        </div>
+    </div>
+
+    <!-- 四、历史财务指标 -->
+    <div class="info-box">
+        <h2>四、历史财务指标</h2>
+
+        <h3>4.1 净资产利润率（ROE）趋势</h3>
+        <p><em>说明：Murphy USA因低净资产（大量回购导致权益薄），ROE数值极高，需结合ROA和ROIC分析。</em></p>
+        <table>
+            <tr><th>年度</th><th>ROE</th><th>ROA</th><th>ROIC</th><th>净利润率</th><th>备注</th></tr>
+            <tr><td>2025</td><td>75.5%</td><td>9.8%</td><td>14.5%</td><td>2.4%</td><td>低权益导致ROE虚高</td></tr>
+            <tr><td>2024</td><td>59.8%</td><td>11.1%</td><td>16.1%</td><td>2.5%</td><td>低权益导致ROE虚高</td></tr>
+            <tr><td>2023</td><td>67.2%</td><td>12.8%</td><td>18.8%</td><td>2.6%</td><td>油价回落，营收下降</td></tr>
+            <tr><td>2022</td><td>105%</td><td>16.3%</td><td>27.7%</td><td>2.9%</td><td>油价飙升，燃油利润丰厚</td></tr>
+            <tr><td>2021</td><td>49.2%</td><td>9.8%</td><td>15.2%</td><td>2.3%</td><td>疫后复苏+收购QuickChek</td></tr>
+            <tr><td>2020</td><td>49.2%</td><td>14.4%</td><td>22.3%</td><td>3.4%</td><td>疫情初期油价暴跌后反弹</td></tr>
+            <tr><td>2019</td><td>19.3%</td><td>5.8%</td><td>8.6%</td><td>1.1%</td><td>燃油利润低迷期</td></tr>
+            <tr><td>2018</td><td>26.5%</td><td>9.1%</td><td>13.0%</td><td>1.5%</td><td>分拆后第5年</td></tr>
+            <tr><td>2017</td><td>33.2%</td><td>10.5%</td><td>15.3%</td><td>1.9%</td><td>正常经营</td></tr>
+            <tr><td>2016</td><td>31.8%</td><td>10.6%</td><td>16.7%</td><td>1.9%</td><td>正常经营</td></tr>
+        </table>
+        <div class="moat-item">
+            <strong>巴菲特/芒格视角</strong>：Murphy USA的ROE 75.5%因低权益而虚高，这是"杠杆ROE"。更真实的指标是ROA（9.8%）和ROIC（14.5%）。ROIC 14.5%说明资本配置效率尚可，但远不及真正拥有护城河的公司（如Visa的ROIC 40%+）。关键问题是：ROE高度依赖杠杆——如果去杠杆，ROE将大幅下降。这不是巴菲特偏好的"轻资产高回报"生意。
+        </div>
+
+        <h3>4.2 资产负债率趋势</h3>
+        <table>
+            <tr><th>年度</th><th>总资产(百万)</th><th>总负债(百万)</th><th>股东权益(百万)</th><th>资产负债率</th><th>D/E比率</th></tr>
+            <tr><td>2025</td><td>$4,734</td><td>$4,110</td><td>$624</td><td>86.8%</td><td>4.40x</td></tr>
+            <tr><td>2024</td><td>$4,648</td><td>$3,808</td><td>$840</td><td>81.9%</td><td>2.82x</td></tr>
+            <tr><td>2023</td><td>$4,340</td><td>$3,511</td><td>$829</td><td>80.9%</td><td>2.17x</td></tr>
+            <tr><td>2022</td><td>$4,120</td><td>$3,482</td><td>$638</td><td>84.5%</td><td>2.82x</td></tr>
+            <tr><td>2021</td><td>$3,817</td><td>$3,005</td><td>$812</td><td>78.7%</td><td>2.25x</td></tr>
+            <tr><td>2020</td><td>$2,768</td><td>$1,968</td><td>$800</td><td>71.1%</td><td>1.28x</td></tr>
+            <tr><td>2019</td><td>$2,642</td><td>$1,839</td><td>$803</td><td>69.6%</td><td>1.29x</td></tr>
+            <tr><td>2018</td><td>$2,393</td><td>$1,580</td><td>$813</td><td>66.0%</td><td>1.07x</td></tr>
+        </table>
+        <div class="risk-item">
+            <strong>风险提示</strong>：Murphy USA的资产负债率从2018年的66%持续上升至2025年的87%，D/E从1.07x飙升至4.40x。主要原因是：1）2021年收购QuickChek增加$14亿债务；2）2022-2025年持续大规模回购（累计约$25亿），消耗了大量权益。总杠杆比率2.2x尚在债务契约限制（3.0x）内，但杠杆空间正在收窄。利息覆盖率约4.5x，尚可但不算宽裕。
+        </div>
+
+        <h3>4.3 营收与净利润趋势</h3>
+        <div class="chart-container">
+            <canvas id="revenueChart"></canvas>
+        </div>
+        <table>
+            <tr><th>年度</th><th>营收(百万)</th><th>净利润(百万)</th><th>调整后EBITDA(百万)</th><th>毛利率</th><th>净利润率</th></tr>
+            <tr><td>2025</td><td>$19,380</td><td>$471</td><td>$1,019</td><td>5.0%</td><td>2.4%</td></tr>
+            <tr><td>2024</td><td>$20,244</td><td>$503</td><td>$1,007</td><td>4.9%</td><td>2.5%</td></tr>
+            <tr><td>2023</td><td>$21,534</td><td>$557</td><td>$1,059</td><td>5.0%</td><td>2.6%</td></tr>
+            <tr><td>2022</td><td>$23,454</td><td>$672</td><td>$1,190</td><td>5.1%</td><td>2.9%</td></tr>
+            <tr><td>2021</td><td>$17,027</td><td>$390</td><td>$798</td><td>10.7%</td><td>2.3%</td></tr>
+            <tr><td>2020</td><td>$12,510</td><td>$428</td><td>$803</td><td>12.8%</td><td>3.4%</td></tr>
+            <tr><td>2019</td><td>$12,851</td><td>$141</td><td>$385</td><td>8.0%</td><td>1.1%</td></tr>
+            <tr><td>2018</td><td>$14,316</td><td>$214</td><td>$460</td><td>7.6%</td><td>1.5%</td></tr>
+        </table>
+        <p><em>注：营收波动主要反映油价变化（2020年油价暴跌→2022年油价飙升），而非实际业务量变化。燃油销量相对稳定在48亿加仑/年。</em></p>
+
+        <h3>4.4 市盈率（P/E）趋势</h3>
+        <table>
+            <tr><th>年度</th><th>年末股价</th><th>EPS</th><th>P/E</th></tr>
+            <tr><td>2025</td><td>$403.52</td><td>$24.10</td><td>~17x</td></tr>
+            <tr><td>2024</td><td>$501.75</td><td>$24.11</td><td>~21x</td></tr>
+            <tr><td>2023</td><td>$356.56</td><td>$26.77</td><td>~13x</td></tr>
+            <tr><td>2022</td><td>$279.54</td><td>$28.65</td><td>~10x</td></tr>
+            <tr><td>2021</td><td>~$213</td><td>$17.90</td><td>~12x</td></tr>
+            <tr><td>2020</td><td>~$108</td><td>$11.01</td><td>~10x</td></tr>
+            <tr><td>2019</td><td>~$91</td><td>$6.62</td><td>~14x</td></tr>
+            <tr><td>2018</td><td>~$71</td><td>$5.18</td><td>~14x</td></tr>
+        </table>
+        <p>当前P/E约19x（基于TTM EPS $29），处于8年历史区间偏高水平。FY2025年末P/E 17x，股价从$404涨至$545主要反映Q1 2026业绩大超预期（EPS $7.28 vs 预期$5.37）。</p>
+    </div>
+
+    <!-- 五、竞争分析 -->
+    <div class="info-box">
+        <h2>五、竞争分析</h2>
+
+        <h3>5.1 主要竞争对手</h3>
+        <table>
+            <tr><th>公司</th><th>品牌</th><th>门店数</th><th>与MUSA竞争领域</th></tr>
+            <tr><td>Casey's General Stores</td><td>CASY</td><td>~2,600</td><td>中西部便利店+燃油，最大纯便利店上市公司</td></tr>
+            <tr><td>Alimentation Couche-Tard</td><td>Circle K</td><td>~7,100（北美）</td><td>全球最大便利店运营商，北美主要竞争者</td></tr>
+            <tr><td>RaceTrac</td><td>RaceTrac/RaceTrac Petroleum</td><td>~560</td><td>东南部低价燃油，直接竞争</td></tr>
+            <tr><td>QuikTrip</td><td>QT</td><td>~900</td><td>中西部/东南部高品质便利店</td></tr>
+            <tr><td>Wawa</td><td>Wawa</td><td>~1,050</td><td>东海岸新鲜食品便利店</td></tr>
+            <tr><td>Sheetz</td><td>Sheetz</td><td>~700</td><td>中大西洋地区新鲜食品便利店</td></tr>
+            <tr><td>7-Eleven</td><td>7-Eleven</td><td>~13,000（北美）</td><td>最大便利店品牌，但多为加盟</td></tr>
+            <tr><td>BJ's Wholesale</td><td>BJ's Gas</td><td>~230</td><td>会员制低价加油站</td></tr>
+            <tr><td>Costco</td><td>Costco Gas</td><td>~700</td><td>会员制超低价加油站</td></tr>
+        </table>
+
+        <h3>5.2 市场份额</h3>
+        <table>
+            <tr><th>指标</th><th>Murphy USA</th><th>行业对比</th></tr>
+            <tr><td>美国加油站市场份额</td><td>~1.1%（1,800/145,000）</td><td>高度分散</td></tr>
+            <tr><td>美国便利店市场份额</td><td>~0.9%</td><td>高度分散（150,000+门店）</td></tr>
+            <tr><td>Walmart邻近加油站</td><td>~50%（1,100/2,200）</td><td>绝对优势</td></tr>
+            <tr><td>燃油吞吐量/店/月</td><td>23.5万加仑</td><td>远超行业平均（~15万加仑）</td></tr>
+        </table>
+
+        <h3>5.3 护城河分析</h3>
+        <div class="moat-item">
+            <strong>规模优势（中等）</strong>：1,800家门店的采购规模带来一定的成本优势，但远不及Couche-Tard（7,100+门店）的规模。核心优势在于单店燃油吞吐量极高（23.5万加仑/月），摊薄了固定成本。
+        </div>
+        <div class="moat-item">
+            <strong>Walmart协同（强）</strong>：这是Murphy USA最独特的护城河。1,100+门店紧邻Walmart Supercenter，共享全美最大零售商的客流。这种选址优势是数十年合作关系积累的，竞争对手难以复制。但风险是：如果Walmart改变策略（如自建加油站），Murphy USA将失去核心优势。
+        </div>
+        <div class="moat-item">
+            <strong>低运营成本（中等偏强）</strong>：小面积门店（1,400-2,000 sq ft）+ 精简SKU + 高燃油吞吐量 = 行业领先的运营效率。APSM运营费用持续优化，2025年Q4仅增长3.4%。
+        </div>
+        <div class="risk-item">
+            <strong>护城河弱点</strong>：燃油是完全同质化商品，无品牌溢价。便利店商品也是高度竞争市场。Walmart协同是"借来的护城河"——Murphy USA不控制Walmart的决策。EV长期替代威胁真实存在。行业进入门槛低，新竞争者可以轻易进入。
+        </div>
+
+        <h3>5.4 关键战略事件</h3>
+        <ul>
+            <li><strong>2013年从Murphy Oil分拆上市</strong>：独立运营，专注零售</li>
+            <li><strong>2016-2018年门店现代化</strong>：从Murphy USA向Murphy Express转型</li>
+            <li><strong>2021年1月收购QuickChek</strong>（$14.5亿）：进入新鲜食品便利店领域，151家门店</li>
+            <li><strong>2022-2025年大规模回购</strong>：累计回购约$25亿，流通股从2,400万缩减至1,847万</li>
+            <li><strong>2025年4月债务再融资</strong>：新$6亿定期贷款（2032年到期），利率6.05%</li>
+            <li><strong>2025年10月新$20亿回购授权</strong>：至2030年12月31日</li>
+            <li><strong>2026年1月Mindy West接任CEO</strong>：Andrew Clyde退休</li>
+            <li><strong>2026年Q1业绩大超预期</strong>：EPS $7.28 vs 预期$5.37，燃油贡献35.0 cpg</li>
+        </ul>
+    </div>
+
+    <!-- 六、利润分配分析 -->
+    <div class="info-box">
+        <h2>六、利润分配分析</h2>
+        <p><em>注：按照巴菲特/芒格原则，股票回购计入留存而非分配。</em></p>
+
+        <table>
+            <tr>
+                <th>年度</th><th>净利润(百万)</th><th>股息(百万)</th><th>回购(百万)</th><th>扩张CapEx(百万)</th><th>债务净变动(百万)</th><th>留存金额(百万)</th><th>留存比率</th>
+            </tr>
+            <tr><td>2025</td><td>$471</td><td>$46</td><td>$652</td><td>~$430</td><td>净增债$393</td><td>$425</td><td>90.2%</td></tr>
+            <tr><td>2024</td><td>$503</td><td>$40</td><td>$443</td><td>~$350</td><td>净增债$0</td><td>$463</td><td>92.0%</td></tr>
+            <tr><td>2023</td><td>$557</td><td>$34</td><td>$333</td><td>~$320</td><td>净减债$50</td><td>$523</td><td>93.9%</td></tr>
+            <tr><td>2022</td><td>$672</td><td>$29</td><td>$806</td><td>~$280</td><td>净增债$1,580</td><td>$643</td><td>95.7%</td></tr>
+            <tr><td>2021</td><td>$390</td><td>$22</td><td>$355</td><td>~$220</td><td>净增债$1,340</td><td>$368</td><td>94.4%</td></tr>
+            <tr><td>2020</td><td>$428</td><td>$18</td><td>$400</td><td>~$160</td><td>净增债$290</td><td>$410</td><td>95.8%</td></tr>
+            <tr><td>2019</td><td>$141</td><td>$14</td><td>$166</td><td>~$140</td><td>净减债$30</td><td>$127</td><td>90.1%</td></tr>
+            <tr><td>2018</td><td>$214</td><td>$0</td><td>$144</td><td>~$130</td><td>净增债$560</td><td>$214</td><td>100%</td></tr>
+        </table>
+
+        <h3>利润分配分析要点</h3>
+        <div class="risk-item">
+            <strong>债务驱动的回购策略</strong>：Murphy USA的回购规模远超净利润——2022年回购$8.06亿（净利润$6.72亿），2025年回购$6.52亿（净利润$4.71亿）。差额主要来自新增借款。2025年前9个月净增债$3.93亿用于支撑回购。这是"借债回购"策略，虽然短期内提升EPS，但增加了财务风险。
+        </div>
+        <div class="moat-item">
+            <strong>回购效果</strong>：流通股从2018年的3,460万股缩减至2025年的1,847万股，7年减少47%。EPS增速显著超过净利润增速——FY2025 EPS $24.10 vs FY2018 EPS $5.18，增长365%，而净利润仅增长120%。
+        </div>
+        <div class="risk-item">
+            <strong>回购时机评估</strong>：2022年回购均价约$265（P/E ~9x），时机极佳。2025年回购均价$424（P/E ~18x），时机一般。2025年Q4回购均价降至$385，略有改善。总体而言，管理层在低估值时回购更积极，但近年来回购价格偏高。
+        </div>
+        <div class="moat-item">
+            <strong>股息增长</strong>：2025年季度股息从$0.48提升至$0.63（+31%），年化$2.52/股。股息支付率仅10.4%（极低），有充足增长空间。管理层目标"两位数每股股息增长"。
+        </div>
+        <div class="moat-item">
+            <strong>可持续增长率</strong> = ROIC × 留存比率 ≈ 14.5% × 90% = 13.1%。理论上Murphy USA可以内生增长13%，但实际营收增长受限于燃油需求下降。EPS增长主要靠回购缩股而非营收增长。
+        </div>
+        <div class="chart-container">
+            <canvas id="profitChart"></canvas>
+        </div>
+    </div>
+
+    <!-- 七、投资总结 -->
+    <div class="info-box">
+        <h2>七、投资总结</h2>
+
+        <div class="summary-box">
+            <h3>综合评估</h3>
+            <table style="background: transparent;">
+                <tr><td style="color: white; border: none;"><strong>业务可理解性</strong></td><td style="color: white; border: none;">⭐⭐⭐⭐⭐</td><td style="color: #ddd; border: none;">加油站+便利店，简单易懂</td></tr>
+                <tr><td style="color: white; border: none;"><strong>护城河宽度</strong></td><td style="color: white; border: none;">⭐⭐⭐</td><td style="color: #ddd; border: none;">Walmart协同是核心优势，但"借来的护城河"</td></tr>
+                <tr><td style="color: white; border: none;"><strong>资本配置</strong></td><td style="color: white; border: none;">⭐⭐⭐</td><td style="color: #ddd; border: none;">回购积极但依赖借债，QuickChek收购战略意义大</td></tr>
+                <tr><td style="color: white; border: none;"><strong>财务安全</strong></td><td style="color: white; border: none;">⭐⭐</td><td style="color: white; border: none;">D/E 4.4x，资产负债率87%，杠杆偏高</td></tr>
+                <tr><td style="color: white; border: none;"><strong>增长前景</strong></td><td style="color: white; border: none;">⭐⭐⭐</td><td style="color: #ddd; border: none;">新店扩张+QuickChek增长，但燃油需求长期下降</td></tr>
+                <tr><td style="color: white; border: none;"><strong>估值吸引力</strong></td><td style="color: white; border: none;">⭐⭐⭐</td><td style="color: #ddd; border: none;">P/E 19x，EV/EBITDA 10x，合理但非便宜</td></tr>
+            </table>
+        </div>
+
+        <h3>投资评级：观察（Hold/Watch）</h3>
+
+        <h3>核心论点</h3>
+        <div class="moat-item">
+            <strong>看多因素</strong>：
+            <ul>
+                <li>Walmart协同效应独特且难以复制——1,100+门店共享全美最大零售商客流</li>
+                <li>低运营成本模式持续产生30+ cpg燃油贡献，即使在低波动性市场</li>
+                <li>QuickChek新鲜食品平台是增长引擎——151家门店，更高毛利率，持续扩张</li>
+                <li>2026年目标新开50+门店，有机增长路径清晰</li>
+                <li>回购持续缩减流通股（7年减少47%），EPS增速远超净利润增速</li>
+                <li>股息支付率仅10%，有充足增长空间</li>
+                <li>Q1 2026业绩大超预期（EPS $7.28 vs 预期$5.37），燃油贡献35 cpg</li>
+                <li>总杠杆比率2.2x，距契约限制3.0x仍有空间</li>
+            </ul>
+        </div>
+        <div class="risk-item">
+            <strong>看空因素</strong>：
+            <ul>
+                <li>燃油是完全同质化商品——无品牌溢价，无定价权，无转换成本</li>
+                <li>D/E 4.4x，资产负债率87%——"借债回购"策略增加财务风险</li>
+                <li>同店燃油销量持续下降（FY2025 SSS -2.6%）——EV替代+远程办公趋势</li>
+                <li>营收3年复合增长率-5.6%——油价下降+燃油量下降双重压力</li>
+                <li>Walmart协同是"借来的护城河"——不控制Walmart的决策</li>
+                <li>净利润率仅2.4%——微小的成本上升就可能大幅侵蚀利润</li>
+                <li>EV长期替代威胁——美国EV渗透率已达10%+，且持续提升</li>
+                <li>当前P/E 19x处于历史偏高水平，安全边际不足</li>
+                <li>有形净资产为负——大量商誉（$4.67亿）来自QuickChek收购</li>
+            </ul>
+        </div>
+
+        <h3>估值对比</h3>
+        <table>
+            <tr><th>公司</th><th>P/E</th><th>EV/EBITDA</th><th>净利润率</th><th>股息率</th></tr>
+            <tr><td>Murphy USA (MUSA)</td><td>~19x</td><td>~10x</td><td>2.4%</td><td>0.5%</td></tr>
+            <tr><td>Casey's (CASY)</td><td>~27x</td><td>~15x</td><td>3.2%</td><td>0.6%</td></tr>
+            <tr><td>Couche-Tard (ATD.TO)</td><td>~18x</td><td>~11x</td><td>3.0%</td><td>0.9%</td></tr>
+        </table>
+        <p>与同行相比，MUSA估值合理，净利润率最低但EV/EBITDA也最低。Casey's享有更高估值因为其新鲜食品占比更高、增长更快。MUSA的估值折价反映了市场对其高杠杆和燃油依赖的担忧。</p>
+
+        <h3>关键催化剂</h3>
+        <ul>
+            <li>燃油价格波动性上升→燃油利润率提升（如Q1 2026的35 cpg）</li>
+            <li>QuickChek加速扩张→商品贡献占比提升→利润率改善</li>
+            <li>新店扩张超预期→50+新店/年目标达成</li>
+            <li>杠杆率下降→估值倍数扩张</li>
+        </ul>
+
+        <h3>关键风险</h3>
+        <ul>
+            <li>EV渗透率加速→燃油需求结构性下降</li>
+            <li>Walmart策略变化→自建加油站或终止合作</li>
+            <li>经济衰退→燃油需求下降+商品消费萎缩</li>
+            <li>利率持续高企→利息支出增加侵蚀利润</li>
+            <li>债务契约触发→限制回购和股息</li>
+        </ul>
+
+        <h3>巴菲特/芒格视角总结</h3>
+        <div class="summary-box">
+            <p>芒格会说："这是一个没有护城河的生意——汽油是同质化商品，客户没有理由忠诚于任何品牌。"巴菲特会补充："Walmart协同是有趣的，但你不拥有Walmart，所以你不控制自己的命运。"Murphy USA的核心矛盾是：运营效率优秀（30+ cpg燃油贡献、低运营成本），但生意本质缺乏护城河（无定价权、无转换成本、无品牌溢价）。高ROE（75.5%）是杠杆驱动的"财务工程ROE"，而非真正的经营效率。当前P/E 19x、EV/EBITDA 10x的估值已经反映了运营效率溢价，但未充分反映高杠杆和EV替代风险。如果燃油利润率回到2019年的低位（约20 cpg），净利润可能下降40%+，P/E将飙升至30x以上。这不是巴菲特会买的生意——他更喜欢"任何价格都能赚钱"的公司，而不是"依赖市场波动才能赚钱"的公司。建议等待更好的价格（P/E < 14x）或燃油利润率持续改善的确认信号后再考虑买入。</p>
+        </div>
+    </div>
+
+    <script>
+        // 营收与净利润图表
+        var revenueCtx = document.getElementById('revenueChart').getContext('2d');
+        new Chart(revenueCtx, {
+            type: 'bar',
+            data: {
+                labels: ['2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025'],
+                datasets: [{
+                    label: '营收（百万美元）',
+                    data: [14316, 12851, 12510, 17027, 23454, 21534, 20244, 19380],
+                    backgroundColor: 'rgba(46, 134, 193, 0.7)',
+                    borderColor: 'rgba(46, 134, 193, 1)',
+                    borderWidth: 1,
+                    yAxisID: 'y'
+                }, {
+                    label: '净利润（百万美元）',
+                    data: [214, 141, 428, 390, 672, 557, 503, 471],
+                    type: 'line',
+                    borderColor: 'rgba(39, 174, 96, 1)',
+                    backgroundColor: 'rgba(39, 174, 96, 0.1)',
+                    borderWidth: 2,
+                    fill: true,
+                    yAxisID: 'y1'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: { beginAtZero: true, position: 'left', title: { display: true, text: '营收（百万美元）' } },
+                    y1: { beginAtZero: true, position: 'right', title: { display: true, text: '净利润（百万美元）' }, grid: { drawOnChartArea: false } }
+                }
+            }
+        });
+
+        // 利润分配饼图
+        var profitCtx = document.getElementById('profitChart').getContext('2d');
+        new Chart(profitCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['股息', '回购（留存-回购）', '再投资（留存-CapEx）'],
+                datasets: [{
+                    data: [46, 652, 430],
+                    backgroundColor: ['rgba(155, 89, 182, 0.8)', 'rgba(52, 152, 219, 0.8)', 'rgba(46, 204, 113, 0.8)'],
+                    borderWidth: 2,
+                    borderColor: 'white'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'FY2025利润分配（回购计入留存）',
+                        font: { size: 16 }
+                    },
+                    legend: { position: 'bottom' }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
