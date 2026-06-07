@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Choice Hotels International (CHH) 价值投资分析</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f2f5;
+            color: #333;
+        }
+        h1 {
+            text-align: center;
+            color: #1a5276;
+            font-size: 2.2em;
+            margin-bottom: 5px;
+        }
+        h2 {
+            color: #1a5276;
+            border-bottom: 2px solid #2e86c1;
+            padding-bottom: 8px;
+            margin-top: 30px;
+        }
+        h3 {
+            color: #2c3e50;
+            margin-top: 20px;
+        }
+        .subtitle {
+            text-align: center;
+            color: #7f8c8d;
+            font-size: 1.1em;
+            margin-bottom: 30px;
+        }
+        .info-box {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            background-color: white;
+        }
+        th, td {
+            padding: 10px 12px;
+            text-align: left;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        th {
+            background-color: #2e86c1;
+            color: white;
+            font-weight: 600;
+        }
+        tr:hover {
+            background-color: #f5f8fa;
+        }
+        .moat-item {
+            background: #eaf7ed;
+            border-left: 4px solid #27ae60;
+            padding: 12px 18px;
+            margin: 10px 0;
+            border-radius: 0 6px 6px 0;
+        }
+        .risk-item {
+            background: #fdecea;
+            border-left: 4px solid #e74c3c;
+            padding: 12px 18px;
+            margin: 10px 0;
+            border-radius: 0 6px 6px 0;
+        }
+        .tag-green {
+            display: inline-block;
+            background: #27ae60;
+            color: white;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.85em;
+            margin: 2px;
+        }
+        .tag-orange {
+            display: inline-block;
+            background: #f39c12;
+            color: white;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.85em;
+            margin: 2px;
+        }
+        .tag-red {
+            display: inline-block;
+            background: #e74c3c;
+            color: white;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.85em;
+            margin: 2px;
+        }
+        .chart-container {
+            position: relative;
+            height: 350px;
+            margin: 20px 0;
+        }
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: #2e86c1;
+            text-decoration: none;
+            font-size: 1.05em;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+        .rating-stars {
+            color: #f39c12;
+            font-size: 1.3em;
+        }
+        .summary-box {
+            background: linear-gradient(135deg, #1a5276, #2e86c1);
+            color: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 20px 0;
+        }
+        .summary-box h3 {
+            color: white;
+            margin-top: 0;
+        }
+        .competitiveness-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 15px;
+            margin: 15px 0;
+        }
+        .competitiveness-card {
+            background: white;
+            border-radius: 8px;
+            padding: 18px;
+            box-shadow: 0 1px 5px rgba(0,0,0,0.06);
+            border-top: 3px solid #2e86c1;
+        }
+        .competitiveness-card h4 {
+            margin-top: 0;
+            color: #1a5276;
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back-link">&larr; 返回索引</a>
+    <h1>Choice Hotels International (CHH)</h1>
+    <p class="subtitle">巴菲特/芒格式价值投资基本面分析 | 更新日期：2026年6月</p>
+
+    <!-- 一、公司基本信息 -->
+    <div class="info-box">
+        <h2>一、公司基本信息</h2>
+        <table>
+            <tr><td>公司全称</td><td>Choice Hotels International, Inc.</td></tr>
+            <tr><td>股票代码</td><td>NYSE: CHH</td></tr>
+            <tr><td>市值</td><td>约50亿美元（2026年6月）</td></tr>
+            <tr><td>企业价值（EV）</td><td>约71亿美元</td></tr>
+            <tr><td>成立时间</td><td>1939年</td></tr>
+            <tr><td>公司总部</td><td>美国马里兰州北贝塞斯达</td></tr>
+            <tr><td>最新股价</td><td>约$110（2026年6月）</td></tr>
+            <tr><td>2025财年营收</td><td>15.97亿美元</td></tr>
+            <tr><td>2025财年净利润</td><td>3.70亿美元（含1亿美元加拿大合资企业非现金收益）</td></tr>
+            <tr><td>2025调整后EBITDA</td><td>6.256亿美元（公司纪录）</td></tr>
+            <tr><td>酒店数量</td><td>7,500+家，51个国家和地区</td></tr>
+            <tr><td>客房数量</td><td>650,000+间</td></tr>
+            <tr><td>品牌数量</td><td>22个</td></tr>
+            <tr><td>员工数量</td><td>约1,695人</td></tr>
+            <tr><td>CEO</td><td>Dominic Dragisich（临时CEO，2026年5月起）</td></tr>
+            <tr><td>长期债务</td><td>约21亿美元</td></tr>
+            <tr><td>现金</td><td>约4,400万美元</td></tr>
+        </table>
+    </div>
+
+    <!-- 二、业务分析 -->
+    <div class="info-box">
+        <h2>二、业务分析</h2>
+        <h3>2.1 公司业务概述（通俗解释）</h3>
+        <p><strong>Choice Hotels到底是干什么的？</strong></p>
+        <p>想象一下，你开车在美国公路上旅行，看到路边那些Comfort Inn、Quality Inn、Econo Lodge等连锁酒店——这些大部分都是Choice Hotels的加盟店。Choice Hotels自己几乎不拥有酒店物业，它的核心生意是<strong>把品牌"租"给酒店业主</strong>。</p>
+        <p>具体来说，酒店业主付给Choice Hotels几类费用：</p>
+        <ul>
+            <li><strong>初始加盟费</strong>：开业时一次性缴纳（$35,000-$75,000）</li>
+            <li><strong>特许权使用费（Royalty）</strong>：按酒店营业额的约5%持续缴纳</li>
+            <li><strong>营销/忠诚计划费</strong>：额外2-4%的营业额</li>
+            <li><strong>技术/采购服务费</strong>：使用Choice的预订系统和采购平台</li>
+        </ul>
+        <p>这种"轻资产"模式意味着Choice Hotels不需要花大钱建酒店，而是让加盟商承担物业投资风险。Choice Hotels则收取稳定的费用流，毛利率高达94%以上。这是典型的"收过路费"商业模式。</p>
+
+        <h3>2.2 主要业务板块及营收占比（FY2025）</h3>
+        <table>
+            <tr><th>业务板块</th><th>年收入</th><th>占总营收比</th><th>特点</th></tr>
+            <tr><td>特许经营与管理费</td><td>~$9.5亿</td><td>~60%</td><td>核心收入，含初始加盟费、持续特许权使用费</td></tr>
+            <tr><td>合作服务费</td><td>~$1.14亿</td><td>~7%</td><td>技术平台、采购服务、许可收入，增长14%</td></tr>
+            <tr><td>可报销费用</td><td>~$6.16亿</td><td>~39%</td><td>代加盟商支付的营销和运营费用（净额为零）</td></tr>
+            <tr><td>其他收入</td><td>~$0.5亿</td><td>~3%</td><td>年会收入、自有酒店收入等</td></tr>
+        </table>
+        <p><em>注：扣除可报销费用后，FY2025实际自有收入约$9.81亿</em></p>
+
+        <h3>2.3 品牌组合</h3>
+        <table>
+            <tr><th>品牌层级</th><th>代表品牌</th><th>国内客房占比</th><th>特点</th></tr>
+            <tr><td>高端/精选服务</td><td>Cambria Hotels, Ascend Hotel Collection, Radisson</td><td>~7%</td><td>高RevPAR，增长最快</td></tr>
+            <tr><td>中端</td><td>Comfort Inn, Comfort Suites, Quality Inn, Sleep Inn</td><td>~50%</td><td>核心现金牛，品牌重塑中</td></tr>
+            <tr><td>长住</td><td>WoodSpring Suites, Everhome Suites, MainStay Suites, Suburban</td><td>~20%</td><td>周期韧性强，净客房增长11.7%</td></tr>
+            <tr><td>经济型</td><td>Econo Lodge, Rodeway Inn</td><td>~15%</td><td>市场份额大但RevPAR低，正在收缩</td></tr>
+        </table>
+
+        <h3>2.4 地域分布</h3>
+        <table>
+            <tr><th>地区</th><th>客房占比</th><th>特点</th></tr>
+            <tr><td>美国国内</td><td>~77%</td><td>核心市场，FY2025客房数下降2.9%</td></tr>
+            <tr><td>国际</td><td>~23%</td><td>增长引擎，净客房增长12.5%，加拿大、中国、巴西扩张</td></tr>
+        </table>
+
+        <h3>2.5 商业模式核心</h3>
+        <div class="moat-item">
+            <strong>轻资产特许经营模式</strong>：Choice Hotels几乎不拥有酒店物业，通过品牌授权收取5%左右的特许权使用费。毛利率94%+，营业利润率28%，净利润率23%。这种模式资本回报率极高（ROIC约15%），自由现金流转化能力强。
+        </div>
+    </div>
+
+    <!-- 三、业务板块产品竞争力分析 -->
+    <div class="info-box">
+        <h2>三、业务板块产品竞争力分析</h2>
+
+        <div class="competitiveness-card">
+            <h4>酒店特许经营服务 产品竞争力分析</h4>
+            <p><strong>1. 可替代性：<span class="tag-orange">中等</span></strong></p>
+            <ul>
+                <li>主要替代品：万豪、希尔顿、温德姆、IHG等特许经营体系；独立经营酒店；软品牌集合（Autograph Collection, Curio等）</li>
+                <li>替代品体验差距：万豪/希尔顿在高端市场品牌力更强，但加盟成本也更高（总费用10-12% vs Choice的7-8%）；温德姆在经济型与Choice直接竞争</li>
+                <li>替代趋势：加速——软品牌集合正在吸引原本可能选择传统特许经营的独立酒店</li>
+            </ul>
+            <p><strong>2. 客户转换成本：<span class="tag-orange">中等</span></strong></p>
+            <ul>
+                <li>财务转换成本：解约罚金（通常为剩余合同期费用的50-80%）；品牌改造费$10,000-$50,000/间；新品牌初始加盟费$35,000-$75,000</li>
+                <li>时间转换成本：品牌改造通常需要6-18个月；员工培训2-4周</li>
+                <li>捆绑转换成本：Choice Privileges忠诚计划（7,000万+会员）为加盟商带来稳定客源，离开意味着失去这部分预订</li>
+                <li>综合评估：加盟合同通常10-20年，中途退出成本高，但到期后切换可行</li>
+            </ul>
+            <p><strong>3. 定价权：<span class="tag-green">强</span></strong></p>
+            <ul>
+                <li>历史提价记录：国内有效特许权费率从FY2023的5.06%提升至FY2025的5.14%，持续稳步上升</li>
+                <li>提价vs通胀：费率增速跑赢CPI，且客户流失率未显著上升</li>
+                <li>定价权来源：品牌认知度+忠诚计划+预订系统+转换成本</li>
+                <li>定价权趋势：稳定——费率持续小幅提升，但国内RevPAR下降3%可能限制未来提价空间</li>
+                <li>巴菲特测试：如果特许权使用费从5%提升到5.5%，加盟商虽不满但多数不会离开，因为转换成本和品牌价值仍然值得</li>
+            </ul>
+            <p><strong>综合竞争力评级：<span class="rating-stars">&#9733;&#9733;&#9733;&#9733;</span>（4/5星）</strong></p>
+        </div>
+
+        <div class="competitiveness-card">
+            <h4>忠诚计划/技术平台 产品竞争力分析</h4>
+            <p><strong>1. 可替代性：<span class="tag-orange">中等</span></strong></p>
+            <ul>
+                <li>主要替代品：万豪Bonvoy（2.1亿+会员）、希尔顿Honors（2.1亿+会员）、IHG One Rewards、OTA平台（Booking.com, Expedia）</li>
+                <li>替代品体验差距：万豪/希尔顿会员基数远大于Choice Privileges的7,000万，高端用户更倾向前者</li>
+                <li>替代趋势：稳定——Choice Privileges在公路旅行和经济型旅客中仍有独特优势</li>
+            </ul>
+            <p><strong>2. 客户转换成本：<span class="tag-orange">中等</span></strong></p>
+            <ul>
+                <li>旅客转换成本：积分余额损失、会员等级重置，但注册新计划免费</li>
+                <li>加盟商转换成本：离开Choice生态系统意味着失去忠诚计划带来的预订流量（约占入住率的30-40%）</li>
+                <li>综合评估：对旅客转换成本低，对加盟商转换成本中等偏高</li>
+            </ul>
+            <p><strong>3. 定价权：<span class="tag-orange">中等</span></strong></p>
+            <ul>
+                <li>历史提价记录：忠诚计划费用年均增长3.9%，高于行业平均</li>
+                <li>定价权来源：网络效应——会员越多→加盟商越多→会员越多</li>
+                <li>定价权趋势：稳定偏弱——OTA和AI搜索正在削弱品牌忠诚计划的引流能力</li>
+                <li>巴菲特测试：如果忠诚计划费用提升10%，加盟商可能转向OTA渠道</li>
+            </ul>
+            <p><strong>综合竞争力评级：<span class="rating-stars">&#9733;&#9733;&#9733;</span>（3/5星）</strong></p>
+        </div>
+    </div>
+
+    <!-- 四、历史财务指标 -->
+    <div class="info-box">
+        <h2>四、历史财务指标</h2>
+
+        <h3>4.1 净资产利润率（ROE）趋势</h3>
+        <p><em>说明：Choice Hotels因负净资产（大量股票回购导致），ROE数值极度扭曲，需结合ROA和ROIC分析。</em></p>
+        <table>
+            <tr><th>年度</th><th>ROE</th><th>ROA</th><th>ROIC</th><th>备注</th></tr>
+            <tr><td>2025</td><td>204%</td><td>12.7%</td><td>~15%</td><td>ROE因负权益失真；含1亿美元非现金收益</td></tr>
+            <tr><td>2024</td><td>-662%</td><td>11.8%</td><td>~17%</td><td>负权益导致ROE负值</td></tr>
+            <tr><td>2023</td><td>726%</td><td>10.8%</td><td>~16%</td><td>负权益导致ROE极端值</td></tr>
+            <tr><td>2022</td><td>215%</td><td>15.8%</td><td>~20%</td><td>疫后复苏高峰</td></tr>
+            <tr><td>2021</td><td>109%</td><td>15.0%</td><td>~18%</td><td>强劲复苏</td></tr>
+            <tr><td>2020</td><td>-1311%</td><td>4.8%</td><td>~5%</td><td>疫情冲击</td></tr>
+            <tr><td>2019</td><td>-948%</td><td>16.1%</td><td>~22%</td><td>负权益</td></tr>
+            <tr><td>2018</td><td>-118%</td><td>19.0%</td><td>~25%</td><td>负权益</td></tr>
+            <tr><td>2017</td><td>-47%</td><td>12.3%</td><td>~18%</td><td>负权益</td></tr>
+            <tr><td>2016</td><td>-34%</td><td>12.5%</td><td>~17%</td><td>负权益</td></tr>
+        </table>
+        <div class="moat-item">
+            <strong>巴菲特/芒格视角</strong>：Choice Hotels的ROE因负净资产而失真，这是典型的"财务工程ROE"——通过大量回购使权益变负，而非经营效率提升。更真实的指标是ROA（12-16%）和ROIC（15-25%）。ROIC在15%以上说明资本配置效率不错，但远不及Visa/Mastercard等真正轻资产特许经营商的30%+水平。
+        </div>
+
+        <h3>4.2 资产负债率趋势</h3>
+        <table>
+            <tr><th>年度</th><th>总资产(百万)</th><th>总负债(百万)</th><th>股东权益(百万)</th><th>资产负债率</th></tr>
+            <tr><td>2025</td><td>$2,917</td><td>$2,736</td><td>$181</td><td>93.8%</td></tr>
+            <tr><td>2024</td><td>$2,534</td><td>$2,580</td><td>-$46</td><td>101.8%</td></tr>
+            <tr><td>2023</td><td>$2,390</td><td>$2,412</td><td>-$22</td><td>100.9%</td></tr>
+            <tr><td>2022</td><td>$2,098</td><td>$1,972</td><td>$126</td><td>94.0%</td></tr>
+            <tr><td>2021</td><td>$1,930</td><td>$1,665</td><td>$265</td><td>86.3%</td></tr>
+            <tr><td>2020</td><td>$1,578</td><td>$1,711</td><td>-$133</td><td>108.4%</td></tr>
+            <tr><td>2019</td><td>$1,378</td><td>$1,627</td><td>-$249</td><td>118.1%</td></tr>
+            <tr><td>2018</td><td>$1,132</td><td>$1,219</td><td>-$87</td><td>107.7%</td></tr>
+        </table>
+        <div class="risk-item">
+            <strong>风险提示</strong>：Choice Hotels长期处于负权益状态，资产负债率超过100%。这主要源于激进股票回购和2022年收购Radisson Americas带来的商誉。虽然轻资产模式下债务风险相对可控（净债务/EBITDA约3.0x），但负权益意味着任何资产减值都可能严重影响公司财务健康。
+        </div>
+
+        <h3>4.3 营收与净利润趋势</h3>
+        <div class="chart-container">
+            <canvas id="revenueChart"></canvas>
+        </div>
+        <table>
+            <tr><th>年度</th><th>营收(百万)</th><th>净利润(百万)</th><th>调整后EBITDA(百万)</th><th>净利润率</th></tr>
+            <tr><td>2025</td><td>$1,597</td><td>$370</td><td>$626</td><td>23.2%</td></tr>
+            <tr><td>2024</td><td>$1,585</td><td>$300</td><td>$604</td><td>18.9%</td></tr>
+            <tr><td>2023</td><td>$1,544</td><td>$259</td><td>$540</td><td>16.8%</td></tr>
+            <tr><td>2022</td><td>$1,402</td><td>$332</td><td>$558</td><td>23.7%</td></tr>
+            <tr><td>2021</td><td>$1,069</td><td>$289</td><td>$493</td><td>27.0%</td></tr>
+            <tr><td>2020</td><td>$774</td><td>$75</td><td>$181</td><td>9.7%</td></tr>
+            <tr><td>2019</td><td>$1,115</td><td>$223</td><td>$366</td><td>20.0%</td></tr>
+            <tr><td>2018</td><td>$1,041</td><td>$216</td><td>$366</td><td>20.8%</td></tr>
+            <tr><td>2017</td><td>$941</td><td>$122</td><td>$324</td><td>12.9%</td></tr>
+            <tr><td>2016</td><td>$808</td><td>$107</td><td>$197</td><td>13.2%</td></tr>
+        </table>
+
+        <h3>4.4 市盈率（P/E）趋势</h3>
+        <table>
+            <tr><th>年度</th><th>年末股价</th><th>EPS</th><th>P/E</th></tr>
+            <tr><td>2025</td><td>~$95</td><td>$7.90</td><td>~12x</td></tr>
+            <tr><td>2024</td><td>~$142</td><td>$6.20</td><td>~23x</td></tr>
+            <tr><td>2023</td><td>~$113</td><td>$5.07</td><td>~22x</td></tr>
+            <tr><td>2022</td><td>~$113</td><td>$5.80</td><td>~19x</td></tr>
+            <tr><td>2021</td><td>~$143</td><td>$5.06</td><td>~28x</td></tr>
+            <tr><td>2020</td><td>~$71</td><td>$1.32</td><td>~54x</td></tr>
+            <tr><td>2019</td><td>~$83</td><td>$3.89</td><td>~21x</td></tr>
+            <tr><td>2018</td><td>~$67</td><td>$3.77</td><td>~18x</td></tr>
+        </table>
+        <p>当前P/E约14x（基于调整后EPS），处于5年历史区间低端（12x-51x的25%分位），估值相对合理。</p>
+    </div>
+
+    <!-- 五、竞争分析 -->
+    <div class="info-box">
+        <h2>五、竞争分析</h2>
+
+        <h3>5.1 主要竞争对手</h3>
+        <table>
+            <tr><th>公司</th><th>股票代码</th><th>市值</th><th>客房数</th><th>品牌定位</th><th>与CHH竞争领域</th></tr>
+            <tr><td>万豪国际</td><td>MAR</td><td>$760亿</td><td>1.6M+</td><td>全品类，偏高端</td><td>中端特许经营（Fairfield, TownePlace）</td></tr>
+            <tr><td>希尔顿全球</td><td>HLT</td><td>$460亿</td><td>1.2M+</td><td>全品类，偏高端</td><td>中端特许经营（Hampton, Home2）</td></tr>
+            <tr><td>温德姆酒店</td><td>WH</td><td>$57亿</td><td>850K+</td><td>经济型/中端</td><td>直接竞争——经济型和中端市场</td></tr>
+            <tr><td>IHG</td><td>IHG</td><td>$120亿</td><td>930K+</td><td>中高端</td><td>中端特许经营（Holiday Inn Express）</td></tr>
+            <tr><td>雅高集团</td><td>ACCOF</td><td>$90亿</td><td>820K+</td><td>全品类，偏欧洲</td><td>国际市场竞争</td></tr>
+        </table>
+
+        <h3>5.2 市场份额</h3>
+        <table>
+            <tr><th>公司</th><th>全球酒店特许经营市场份额</th><th>美国经济型/中端份额</th></tr>
+            <tr><td>万豪</td><td>~14.8%</td><td>~8%</td></tr>
+            <tr><td>希尔顿</td><td>~12%</td><td>~10%</td></tr>
+            <tr><td>IHG</td><td>~7%</td><td>~6%</td></tr>
+            <tr><td>温德姆</td><td>~9%</td><td>~15%</td></tr>
+            <tr><td>Choice Hotels</td><td>~5.9%</td><td>~12%</td></tr>
+        </table>
+
+        <h3>5.3 护城河分析</h3>
+        <div class="moat-item">
+            <strong>品牌护城河（中等）</strong>：Comfort Inn是美国最知名的中端酒店品牌之一，但品牌溢价有限。经济型品牌（Econo Lodge, Rodeway Inn）品牌力弱，正在流失份额。Radisson品牌在美国认知度不高。品牌护城河在高端市场远弱于万豪/希尔顿。
+        </div>
+        <div class="moat-item">
+            <strong>规模优势（中等）</strong>：7,500+酒店的网络为加盟商提供集体采购折扣、全国营销覆盖和忠诚计划引流。但规模不及万豪/希尔顿，在OTA谈判中议价能力较弱。
+        </div>
+        <div class="moat-item">
+            <strong>网络效应（中等偏弱）</strong>：Choice Privileges忠诚计划7,000万+会员创造正向循环——会员多→预订多→加盟商多→酒店多→会员多。但与万豪Bonvoy（2.1亿+会员）和希尔顿Honors（2.1亿+会员）相比，网络效应明显较弱。
+        </div>
+        <div class="moat-item">
+            <strong>转换成本（中等）</strong>：10-20年的加盟合同和品牌改造费用创造了中等转换成本，但到期后加盟商可以切换到竞争对手。
+        </div>
+        <div class="risk-item">
+            <strong>护城河弱点</strong>：Choice Hotels在高端市场缺乏竞争力，经济型品牌正在被温德姆和Airbnb侵蚀，忠诚计划规模远小于竞争对手。国内客房数FY2025下降2.9%，表明护城河正在被侵蚀。
+        </div>
+
+        <h3>5.4 关键战略事件</h3>
+        <ul>
+            <li><strong>2022年收购Radisson Hotels Americas</strong>（$6.75亿）：增加约70,000间客房，扩展至高端市场</li>
+            <li><strong>2023年试图收购温德姆失败</strong>：敌意收购未果，暴露了Choice的战略焦虑</li>
+            <li><strong>2025年收购Choice Hotels Canada剩余50%权益</strong>（$1.12亿）：增加26,000间客房</li>
+            <li><strong>2026年5月CEO更替</strong>：Patrick Pacious突然离职，Dominic Dragisich任临时CEO</li>
+        </ul>
+    </div>
+
+    <!-- 六、利润分配分析 -->
+    <div class="info-box">
+        <h2>六、利润分配分析</h2>
+        <p><em>注：按照巴菲特/芒格原则，股票回购计入留存而非分配。</em></p>
+
+        <table>
+            <tr>
+                <th>年度</th><th>净利润(百万)</th><th>股息(百万)</th><th>回购(百万)</th><th>扩张CapEx(百万)</th><th>债务偿还(百万)</th><th>留存金额(百万)</th><th>留存比率</th>
+            </tr>
+            <tr><td>2025</td><td>$370</td><td>~$53</td><td>~$200</td><td>~$36</td><td>净增债</td><td>$317</td><td>85.7%</td></tr>
+            <tr><td>2024</td><td>$300</td><td>~$52</td><td>$382</td><td>~$30</td><td>净增债</td><td>$248</td><td>82.7%</td></tr>
+            <tr><td>2023</td><td>$259</td><td>~$50</td><td>~$250</td><td>~$25</td><td>净增债</td><td>$209</td><td>80.7%</td></tr>
+            <tr><td>2022</td><td>$332</td><td>~$48</td><td>~$200</td><td>~$675*</td><td>净增债</td><td>$284</td><td>85.5%</td></tr>
+            <tr><td>2021</td><td>$289</td><td>~$46</td><td>~$300</td><td>~$20</td><td>净减债</td><td>$243</td><td>84.1%</td></tr>
+            <tr><td>2020</td><td>$75</td><td>~$18</td><td>~$0</td><td>~$10</td><td>净增债</td><td>$57</td><td>76.0%</td></tr>
+            <tr><td>2019</td><td>$223</td><td>~$44</td><td>~$350</td><td>~$15</td><td>净减债</td><td>$179</td><td>80.3%</td></tr>
+            <tr><td>2018</td><td>$216</td><td>~$40</td><td>~$250</td><td>~$12</td><td>净减债</td><td>$176</td><td>81.5%</td></tr>
+            <tr><td>2017</td><td>$122</td><td>~$38</td><td>~$100</td><td>~$10</td><td>净减债</td><td>$84</td><td>68.9%</td></tr>
+            <tr><td>2016</td><td>$107</td><td>~$36</td><td>~$50</td><td>~$8</td><td>净减债</td><td>$71</td><td>66.4%</td></tr>
+        </table>
+        <p><em>*2022年CapEx包含收购Radisson Americas的$6.75亿</em></p>
+
+        <h3>利润分配分析要点</h3>
+        <div class="moat-item">
+            <strong>留存比率趋势</strong>：从2016年的66%上升至2025年的86%，公司从"平衡分配"过渡到"高留存增长型"。这反映了管理层对股票回购和收购的偏好。
+        </div>
+        <div class="moat-item">
+            <strong>留存质量</strong>：留存利润主要用于股票回购（占比约60-70%）和收购（Radisson, Choice Canada），而非有机资本支出。回购在2024年达到$3.82亿（占年初市值6%），但回购均价约$123，而当前股价约$110，说明部分回购在较高估值时进行。
+        </div>
+        <div class="risk-item">
+            <strong>回购时机问题</strong>：FY2024回购均价约$123，当前股价$110，回购存在"高买"嫌疑。巴菲特偏好低估值时加速回购、高估值时放缓——Choice的回购节奏更多受盈利和债务约束，而非估值水平驱动。
+        </div>
+        <div class="moat-item">
+            <strong>可持续增长率</strong> = ROIC × 留存比率 ≈ 15% × 85% ≈ 12.8%。这意味着在不增加杠杆的情况下，Choice Hotels可以内生增长约12.8%。但考虑到国内客房收缩，实际增长率可能低于此数。
+        </div>
+        <div class="chart-container">
+            <canvas id="profitChart"></canvas>
+        </div>
+    </div>
+
+    <!-- 七、投资总结 -->
+    <div class="info-box">
+        <h2>七、投资总结</h2>
+
+        <div class="summary-box">
+            <h3>综合评估</h3>
+            <table style="background: transparent;">
+                <tr><td style="color: white; border: none;"><strong>业务可理解性</strong></td><td style="color: white; border: none;">⭐⭐⭐⭐⭐</td><td style="color: #ddd; border: none;">特许经营模式简单易懂，"收过路费"生意</td></tr>
+                <tr><td style="color: white; border: none;"><strong>护城河宽度</strong></td><td style="color: white; border: none;">⭐⭐⭐</td><td style="color: #ddd; border: none;">中等护城河，品牌力弱于万豪/希尔顿，国内份额在收缩</td></tr>
+                <tr><td style="color: white; border: none;"><strong>资本配置</strong></td><td style="color: white; border: none;">⭐⭐⭐</td><td style="color: #ddd; border: none;">回购积极但时机一般，收购Radisson尚可，温德姆收购失败浪费资源</td></tr>
+                <tr><td style="color: white; border: none;"><strong>财务安全</strong></td><td style="color: white; border: none;">⭐⭐</td><td style="color: white; border: none;">负权益、高杠杆（D/E 10.5x），净债务/EBITDA 3.0x</td></tr>
+                <tr><td style="color: white; border: none;"><strong>增长前景</strong></td><td style="color: white; border: none;">⭐⭐⭐</td><td style="color: #ddd; border: none;">国际扩张和长住板块增长，但国内核心市场收缩</td></tr>
+                <tr><td style="color: white; border: none;"><strong>估值吸引力</strong></td><td style="color: white; border: none;">⭐⭐⭐⭐</td><td style="color: #ddd; border: none;">P/E 14x处于5年低位，EV/EBITDA 9.8x，估值合理偏低</td></tr>
+            </table>
+        </div>
+
+        <h3>投资评级：观察（Hold/Watch）</h3>
+
+        <h3>核心论点</h3>
+        <div class="moat-item">
+            <strong>看多因素</strong>：
+            <ul>
+                <li>轻资产特许经营模式产生高利润率和强劲自由现金流</li>
+                <li>特许权费率持续提升（5.06%→5.14%），证明定价权存在</li>
+                <li>国际扩张加速（净客房增长12.5%），提供增长新引擎</li>
+                <li>长住板块周期韧性强，Everhome Suites从7家增长至30家</li>
+                <li>当前估值处于5年低位（P/E 14x），提供一定安全边际</li>
+                <li>全球pipeline 78,000+间客房，占现有客房12%</li>
+            </ul>
+        </div>
+        <div class="risk-item">
+            <strong>看空因素</strong>：
+            <ul>
+                <li>国内核心市场客房数FY2025下降2.9%（净减少14,000间），护城河正在被侵蚀</li>
+                <li>国内RevPAR下降3%，入住率下降80个基点至55.6%</li>
+                <li>负权益+高杠杆（D/E 10.5x），财务安全边际薄弱</li>
+                <li>FY2025净利润含1亿美元非现金收益，核心经营利润实际下降3%</li>
+                <li>加盟商财务压力上升：坏账准备增长82%至2,000万，非应计应收票据增长145%</li>
+                <li>CEO突然更替带来战略不确定性</li>
+                <li>温德姆收购失败后，战略方向不明朗</li>
+                <li>利息支出增长43%至9,100万，侵蚀利润</li>
+            </ul>
+        </div>
+
+        <h3>估值对比</h3>
+        <table>
+            <tr><th>公司</th><th>P/E</th><th>EV/EBITDA</th><th>P/S</th><th>股息率</th></tr>
+            <tr><td>Choice Hotels (CHH)</td><td>~14x</td><td>~9.8x</td><td>~3.0x</td><td>~1.0%</td></tr>
+            <tr><td>万豪 (MAR)</td><td>~22x</td><td>~17x</td><td>~5.0x</td><td>~0.8%</td></tr>
+            <tr><td>希尔顿 (HLT)</td><td>~28x</td><td>~20x</td><td>~6.5x</td><td>~0.3%</td></tr>
+            <tr><td>温德姆 (WH)</td><td>~17x</td><td>~13x</td><td>~4.0x</td><td>~2.0%</td></tr>
+        </table>
+        <p>Choice Hotels的估值在同行中最低，反映了市场对其国内份额收缩和财务杠杆的担忧。但这也意味着如果国内RevPAR企稳，估值修复空间较大。</p>
+
+        <h3>关键催化剂</h3>
+        <ul>
+            <li>2026年世界杯和美国250周年纪念带来的旅行需求增长</li>
+            <li>降息周期推动新酒店建设，加速pipeline转化</li>
+            <li>AI技术应用提升运营效率和客户体验</li>
+            <li>新CEO上任后的战略明确</li>
+        </ul>
+
+        <h3>关键风险</h3>
+        <ul>
+            <li>美国经济衰退导致商务和休闲旅行需求下降</li>
+            <li>加盟商破产率上升（已见端倪：坏账激增）</li>
+            <li>OTA和Airbnb持续侵蚀经济型和中端酒店市场份额</li>
+            <li>利率维持高位增加利息负担</li>
+        </ul>
+
+        <h3>巴菲特/芒格视角总结</h3>
+        <div class="summary-box">
+            <p>Choice Hotels拥有一个可理解的轻资产商业模式，能产生可观的自由现金流和不错的资本回报率（ROIC 15%）。特许权费率的持续提升证明了某种程度的定价权。然而，这不是巴菲特会青睐的"不可替代"型生意——国内市场份额正在被侵蚀，护城河不够宽，负权益和高杠杆令人不安。当前估值（P/E 14x）提供了有限的安全边际，但不足以弥补业务质量上的不足。芒格可能会说："这是一个还行的生意，但不是一个伟大的生意。以合理价格买入一个还行的生意，不如以便宜价格买入一个好生意。"</p>
+        </div>
+    </div>
+
+    <script>
+        // 营收与净利润图表
+        var revenueCtx = document.getElementById('revenueChart').getContext('2d');
+        new Chart(revenueCtx, {
+            type: 'bar',
+            data: {
+                labels: ['2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025'],
+                datasets: [{
+                    label: '营收（百万美元）',
+                    data: [808, 941, 1041, 1115, 774, 1069, 1402, 1544, 1585, 1597],
+                    backgroundColor: 'rgba(46, 134, 193, 0.7)',
+                    borderColor: 'rgba(46, 134, 193, 1)',
+                    borderWidth: 1
+                }, {
+                    label: '净利润（百万美元）',
+                    data: [107, 122, 216, 223, 75, 289, 332, 259, 300, 370],
+                    backgroundColor: 'rgba(39, 174, 96, 0.7)',
+                    borderColor: 'rgba(39, 174, 96, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: { y: { beginAtZero: true } }
+            }
+        });
+
+        // 利润分配饼图
+        var profitCtx = document.getElementById('profitChart').getContext('2d');
+        new Chart(profitCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['股息（真正分配）', '回购（留存-回购）', '再投资（留存-CapEx/收购）'],
+                datasets: [{
+                    data: [53, 200, 117],
+                    backgroundColor: ['rgba(231, 76, 60, 0.8)', 'rgba(52, 152, 219, 0.8)', 'rgba(46, 204, 113, 0.8)'],
+                    borderWidth: 2,
+                    borderColor: 'white'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'FY2025利润分配（回购计入留存）',
+                        font: { size: 16 }
+                    },
+                    legend: { position: 'bottom' }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
