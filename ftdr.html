@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frontdoor, Inc. (FTDR) 价值投资分析</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f2f5;
+            color: #333;
+        }
+        h1 {
+            text-align: center;
+            color: #1a5276;
+            font-size: 2.2em;
+            margin-bottom: 5px;
+        }
+        h2 {
+            color: #1a5276;
+            border-bottom: 2px solid #2e86c1;
+            padding-bottom: 8px;
+            margin-top: 30px;
+        }
+        h3 {
+            color: #2c3e50;
+            margin-top: 20px;
+        }
+        .subtitle {
+            text-align: center;
+            color: #7f8c8d;
+            font-size: 1.1em;
+            margin-bottom: 30px;
+        }
+        .info-box {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            background-color: white;
+        }
+        th, td {
+            padding: 10px 12px;
+            text-align: left;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        th {
+            background-color: #2e86c1;
+            color: white;
+            font-weight: 600;
+        }
+        tr:hover {
+            background-color: #f5f8fa;
+        }
+        .moat-item {
+            background: #eaf7ed;
+            border-left: 4px solid #27ae60;
+            padding: 12px 18px;
+            margin: 10px 0;
+            border-radius: 0 6px 6px 0;
+        }
+        .risk-item {
+            background: #fdecea;
+            border-left: 4px solid #e74c3c;
+            padding: 12px 18px;
+            margin: 10px 0;
+            border-radius: 0 6px 6px 0;
+        }
+        .tag-green {
+            display: inline-block;
+            background: #27ae60;
+            color: white;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.85em;
+            margin: 2px;
+        }
+        .tag-orange {
+            display: inline-block;
+            background: #f39c12;
+            color: white;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.85em;
+            margin: 2px;
+        }
+        .tag-red {
+            display: inline-block;
+            background: #e74c3c;
+            color: white;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.85em;
+            margin: 2px;
+        }
+        .chart-container {
+            position: relative;
+            height: 350px;
+            margin: 20px 0;
+        }
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: #2e86c1;
+            text-decoration: none;
+            font-size: 1.05em;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+        .rating-stars {
+            color: #f39c12;
+            font-size: 1.3em;
+        }
+        .summary-box {
+            background: linear-gradient(135deg, #1a5276, #2e86c1);
+            color: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 20px 0;
+        }
+        .summary-box h3 {
+            color: white;
+            margin-top: 0;
+        }
+        .competitiveness-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 15px;
+            margin: 15px 0;
+        }
+        .competitiveness-card {
+            background: white;
+            border-radius: 8px;
+            padding: 18px;
+            box-shadow: 0 1px 5px rgba(0,0,0,0.06);
+            border-top: 3px solid #2e86c1;
+        }
+        .competitiveness-card h4 {
+            margin-top: 0;
+            color: #1a5276;
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back-link">&larr; 返回索引</a>
+    <h1>Frontdoor, Inc. (FTDR)</h1>
+    <p class="subtitle">巴菲特/芒格式价值投资基本面分析 | 更新日期：2026年6月</p>
+
+    <!-- 一、公司基本信息 -->
+    <div class="info-box">
+        <h2>一、公司基本信息</h2>
+        <table>
+            <tr><td>公司全称</td><td>Frontdoor, Inc.</td></tr>
+            <tr><td>股票代码</td><td>NASDAQ: FTDR</td></tr>
+            <tr><td>市值</td><td>约45亿美元（2026年6月）</td></tr>
+            <tr><td>企业价值（EV）</td><td>约50亿美元</td></tr>
+            <tr><td>成立时间</td><td>1971年（American Home Shield品牌）；2018年从ServiceMaster分拆独立上市</td></tr>
+            <tr><td>公司总部</td><td>美国田纳西州孟菲斯</td></tr>
+            <tr><td>最新股价</td><td>约$63.64（2026年6月5日）</td></tr>
+            <tr><td>2025财年营收</td><td>20.93亿美元（+14% YoY）</td></tr>
+            <tr><td>2025财年净利润</td><td>2.55亿美元（+9% YoY）</td></tr>
+            <tr><td>2025调整后EBITDA</td><td>5.53亿美元（+25% YoY，创纪录）</td></tr>
+            <tr><td>活跃家庭保修会员</td><td>约211万</td></tr>
+            <tr><td>品牌</td><td>American Home Shield, HSA, OneGuard, Landmark, 2-10 HBW</td></tr>
+            <tr><td>承包商网络</td><td>约17,000家合格承包商</td></tr>
+            <tr><td>员工数量</td><td>约2,034人</td></tr>
+            <tr><td>CEO</td><td>Bill Cobb（2022年6月上任）</td></tr>
+            <tr><td>客户留存率</td><td>79.4%（2025年Q3）</td></tr>
+            <tr><td>总债务</td><td>约11.7亿美元</td></tr>
+            <tr><td>现金</td><td>约5.66亿美元</td></tr>
+        </table>
+    </div>
+
+    <!-- 二、业务分析 -->
+    <div class="info-box">
+        <h2>二、业务分析</h2>
+        <h3>2.1 公司业务概述（通俗解释）</h3>
+        <p><strong>Frontdoor到底是干什么的？</strong></p>
+        <p>想象一下，你刚买了一栋房子，住进去三个月后空调坏了，修一下要$3,000。如果你有Frontdoor的家庭保修计划，你只需要付$100-$125的服务费（类似挂号费），剩下的维修或更换费用由Frontdoor承担。</p>
+        <p>Frontdoor的生意本质上是<strong>给房子买"保险"</strong>——但不是房屋保险（保火灾、洪水），而是保修计划，覆盖房屋内23个主要系统和电器的故障维修，包括：</p>
+        <ul>
+            <li><strong>HVAC系统</strong>（空调/暖气）——索赔占比约29%</li>
+            <li><strong>厨房电器</strong>（冰箱、洗碗机、烤箱）——索赔占比约24%</li>
+            <li><strong>管道系统</strong>——索赔占比约18%</li>
+            <li><strong>电气系统</strong>——索赔占比约12%</li>
+        </ul>
+        <p>客户按年付费（$360-$1,200/年），Frontdoor用收来的保费支付维修费用，差额就是利润。这是一个<strong>订阅制+风险池</strong>的商业模式，类似保险但不受保险监管。</p>
+
+        <h3>2.2 主要业务板块及营收占比（FY2025）</h3>
+        <table>
+            <tr><th>业务板块</th><th>年收入</th><th>占总营收比</th><th>增长趋势</th></tr>
+            <tr><td>续费收入（Renewals）</td><td>~$13.3亿</td><td>~63%</td><td>+12% YoY，最稳定收入来源</td></tr>
+            <tr><td>房地产渠道（Real Estate）</td><td>~$1.4亿</td><td>~7%</td><td>+5% YoY，与房屋交易挂钩</td></tr>
+            <tr><td>直销渠道（DTC）</td><td>~$1.5亿</td><td>~7%</td><td>-6% YoY，促销策略影响</td></tr>
+            <tr><td>非保修及其他</td><td>~$4.7亿</td><td>~23%</td><td>+48% YoY，增长最快（2-10收购+新HVAC/Moen项目）</td></tr>
+        </table>
+
+        <h3>2.3 品牌组合</h3>
+        <table>
+            <tr><th>品牌</th><th>定位</th><th>特点</th></tr>
+            <tr><td>American Home Shield (AHS)</td><td>核心品牌，市场领导者</td><td>覆盖48州，200万+会员，唯一覆盖"既有损坏"的保修商</td></tr>
+            <tr><td>2-10 HBW</td><td>新房结构保修</td><td>2024年12月以$5.85亿收购，19,000+建筑商客户，美国每5栋新房就有1栋使用</td></tr>
+            <tr><td>HSA, OneGuard, Landmark</td><td>区域品牌</td><td>覆盖特定市场，补充AHS的地理覆盖</td></tr>
+            <tr><td>Frontdoor App</td><td>技术平台</td><td>视频聊天专家、AR诊断、DIY建议、在线商城</td></tr>
+        </table>
+
+        <h3>2.4 地域分布</h3>
+        <table>
+            <tr><th>地区</th><th>营收占比</th><th>特点</th></tr>
+            <tr><td>美国（除阿拉斯加、夏威夷）</td><td>~100%</td><td>纯美国本土业务，覆盖48州</td></tr>
+            <tr><td>国际</td><td>~0%</td><td>无国际业务</td></tr>
+        </table>
+
+        <h3>2.5 商业模式核心</h3>
+        <div class="moat-item">
+            <strong>订阅制风险池模式</strong>：客户按年支付$360-$1,200的保费，Frontdoor用集体资金池支付维修费用。毛利率从2022年的40.7%提升至2025年的55%，证明定价权和成本控制能力增强。关键运营指标：客户留存率79.4%，每单服务费$100-$125，17,000+承包商网络。
+        </div>
+    </div>
+
+    <!-- 三、业务板块产品竞争力分析 -->
+    <div class="info-box">
+        <h2>三、业务板块产品竞争力分析</h2>
+
+        <div class="competitiveness-card">
+            <h4>家庭保修计划（Home Warranty）产品竞争力分析</h4>
+            <p><strong>1. 可替代性：<span class="tag-orange">中等</span></strong></p>
+            <ul>
+                <li>主要替代品： homeowners保险（不覆盖机械故障）、自保（自己存钱修）、独立承包商直接维修、HomeAdvisor/Angi等按需服务平台、Cinch Home Services/First American/Old Republic等竞争保修商</li>
+                <li>替代品体验差距：homeowners保险不覆盖机械故障，自保面临突发大额支出风险，按需服务平台无预防性保障。竞争保修商覆盖范围和限额通常不如AHS</li>
+                <li>替代趋势：稳定偏加速——按需服务平台（Angi, TaskRabbit）正在为部分消费者提供替代方案，但突发大额维修风险仍使保修计划有独特价值</li>
+            </ul>
+            <p><strong>2. 客户转换成本：<span class="tag-orange">中等</span></strong></p>
+            <ul>
+                <li>财务转换成本：新保修商等待期30-60天；新计划初始费用$50-$100；不同保修商覆盖范围差异可能导致保障空白</li>
+                <li>时间转换成本：研究替代方案1-2周；等待期内的维修风险</li>
+                <li>心理转换成本：AHS品牌认知度高（41%的保修用户使用AHS）；习惯性续费——79.4%留存率证明客户粘性</li>
+                <li>捆绑转换成本：房地产交易中，卖家/中介通常选择AHS，买家被动接受</li>
+                <li>综合评估：年度合同制，理论上每年可切换，但79.4%留存率说明实际转换成本和心理惯性较高</li>
+            </ul>
+            <p><strong>3. 定价权：<span class="tag-green">强</span></strong></p>
+            <ul>
+                <li>历史提价记录：2022-2025年持续提价，FY2024收入增长7%来自提价、FY2025续费收入增长12%部分来自提价</li>
+                <li>提价vs通胀：保费增速跑赢CPI，毛利率从40.7%提升至55%证明提价幅度超过成本增长</li>
+                <li>提价vs客户流失：留存率从2022年的约75%提升至2025年的79.4%，提价并未导致流失</li>
+                <li>定价权来源：品牌认知度（AHS是最大保修商）+承包商网络规模（17,000+）+覆盖"既有损坏"的独特条款</li>
+                <li>定价权趋势：增强——Bill Cobb上任后通过动态定价和更高服务费持续提升利润率</li>
+                <li>巴菲特测试：如果AHS保费提升10%（约$50-$120/年），大多数客户不会因此取消，因为一次HVAC维修可能花费$3,000-$5,000，保修费只是"保险费"</li>
+            </ul>
+            <p><strong>综合竞争力评级：<span class="rating-stars">&#9733;&#9733;&#9733;&#9733;</span>（4/5星）</strong></p>
+        </div>
+
+        <div class="competitiveness-card">
+            <h4>非保修/按需服务（On-Demand Services）产品竞争力分析</h4>
+            <p><strong>1. 可替代性：<span class="tag-red">高</span></strong></p>
+            <ul>
+                <li>主要替代品：Angi（原Angie's List）、HomeAdvisor、TaskRabbit、Thumbtack、独立承包商、Lowe's/Home Depot安装服务、Moen直接购买</li>
+                <li>替代品体验差距：替代品众多且体验接近，Frontdoor的差异化在于与保修计划的整合</li>
+                <li>替代趋势：加速——按需家居服务平台竞争激烈，Frontdoor的HVAC安装和Moen安装面临众多替代</li>
+            </ul>
+            <p><strong>2. 客户转换成本：<span class="tag-red">低</span></strong></p>
+            <ul>
+                <li>财务转换成本：几乎为零，按次付费无合同约束</li>
+                <li>时间转换成本：极低，Google搜索即可找到替代服务商</li>
+                <li>捆绑转换成本：与保修计划有一定捆绑（会员折扣），但不足以阻止切换</li>
+                <li>综合评估：按需服务本质上是竞争性市场，转换成本极低</li>
+            </ul>
+            <p><strong>3. 定价权：<span class="tag-red">弱</span></strong></p>
+            <ul>
+                <li>历史提价记录：非保修服务价格主要由市场竞争决定</li>
+                <li>定价权来源：主要依赖与保修会员的交叉销售，而非独立定价能力</li>
+                <li>定价权趋势：稳定偏弱——按需服务市场竞争激烈</li>
+                <li>巴菲特测试：如果HVAC安装价格提升10%，客户会轻易转向其他安装商</li>
+            </ul>
+            <p><strong>综合竞争力评级：<span class="rating-stars">&#9733;&#9733;</span>（2/5星）</strong></p>
+        </div>
+
+        <div class="competitiveness-card">
+            <h4>新房结构保修（2-10 HBW）产品竞争力分析</h4>
+            <p><strong>1. 可替代性：<span class="tag-green">低</span></strong></p>
+            <ul>
+                <li>主要替代品：建筑商自保、其他结构保修商（有限）、无保修</li>
+                <li>替代品体验差距：2-10 HBW是美国新房结构保修领域的收入领导者，美国每5栋新房就有1栋使用其保修，建筑商依赖其品牌增强购房者信心</li>
+                <li>替代趋势：稳定——新房结构保修渗透率在提升，2-10 HBW的领先地位稳固</li>
+            </ul>
+            <p><strong>2. 客户转换成本：<span class="tag-green">高</span></strong></p>
+            <ul>
+                <li>财务转换成本：建筑商已建立与2-10 HBW的流程整合，切换需要重新培训</li>
+                <li>时间转换成本：建筑商需要修改合同模板和销售流程</li>
+                <li>心理转换成本：2-10 HBW品牌在购房者和建筑商中都有高认知度</li>
+                <li>综合评估：19,000+建筑商客户网络形成高转换成本</li>
+            </ul>
+            <p><strong>3. 定价权：<span class="tag-orange">中等</span></strong></p>
+            <ul>
+                <li>历史提价记录：作为市场领导者有一定定价权，但建筑商对成本敏感</li>
+                <li>定价权来源：市场领导地位+建筑商网络效应+品牌认知</li>
+                <li>定价权趋势：稳定——被Frontdoor收购后可能通过交叉销售增强</li>
+                <li>巴菲特测试：如果结构保修价格提升10%，大型建筑商可能考虑替代方案，但中小建筑商转换成本较高</li>
+            </ul>
+            <p><strong>综合竞争力评级：<span class="rating-stars">&#9733;&#9733;&#9733;&#9733;</span>（4/5星）</strong></p>
+        </div>
+    </div>
+
+    <!-- 四、历史财务指标 -->
+    <div class="info-box">
+        <h2>四、历史财务指标</h2>
+
+        <h3>4.1 净资产利润率（ROE）趋势</h3>
+        <p><em>说明：Frontdoor因低净资产（大量回购+收购导致权益薄），ROE数值极高，需结合ROA和ROIC分析。</em></p>
+        <table>
+            <tr><th>年度</th><th>ROE</th><th>ROA</th><th>ROIC</th><th>备注</th></tr>
+            <tr><td>2025</td><td>~106%</td><td>12.0%</td><td>~18%</td><td>低权益导致ROE虚高</td></tr>
+            <tr><td>2024</td><td>~98%</td><td>11.2%</td><td>~18%</td><td>低权益导致ROE虚高</td></tr>
+            <tr><td>2023</td><td>~125%</td><td>15.7%</td><td>~20%</td><td>利润恢复+低权益</td></tr>
+            <tr><td>2022</td><td>~44%</td><td>6.6%</td><td>~10%</td><td>通胀冲击，利润大幅下滑</td></tr>
+            <tr><td>2021</td><td>~128%</td><td>12.0%</td><td>~18%</td><td>疫后复苏</td></tr>
+            <tr><td>2020</td><td>~62%</td><td>8.0%</td><td>~12%</td><td>疫情影响</td></tr>
+            <tr><td>2019</td><td>~61%</td><td>12.2%</td><td>~18%</td><td>正常经营</td></tr>
+            <tr><td>2018</td><td>~48%</td><td>12.0%</td><td>~17%</td><td>分拆上市首年</td></tr>
+        </table>
+        <div class="moat-item">
+            <strong>巴菲特/芒格视角</strong>：Frontdoor的ROE因低权益而虚高（106%），这是"财务工程ROE"而非纯经营效率。更真实的指标是ROA（12%）和ROIC（18%）。ROIC 18%说明资本配置效率不错，但需要注意：2022年ROIC仅10%，说明业务对通胀高度敏感——这不是一个"任何环境下都能赚钱"的生意。
+        </div>
+
+        <h3>4.2 资产负债率趋势</h3>
+        <table>
+            <tr><th>年度</th><th>总资产(百万)</th><th>总负债(百万)</th><th>股东权益(百万)</th><th>资产负债率</th></tr>
+            <tr><td>2025</td><td>$2,142</td><td>$1,900</td><td>$242</td><td>88.7%</td></tr>
+            <tr><td>2024</td><td>$2,107</td><td>$1,868</td><td>$239</td><td>88.7%</td></tr>
+            <tr><td>2023</td><td>$1,089</td><td>$954</td><td>$414</td><td>87.6%</td></tr>
+            <tr><td>2022</td><td>$1,082</td><td>$1,021</td><td>$215</td><td>94.4%</td></tr>
+            <tr><td>2021</td><td>$1,069</td><td>$1,067</td><td>$124</td><td>99.8%</td></tr>
+        </table>
+        <div class="risk-item">
+            <strong>风险提示</strong>：Frontdoor资产负债率长期在88-100%之间，2024年收购2-10 HBW后新增$5.85亿债务，总债务从$6亿跳升至$12亿。净债务/EBITDA约2.1x，利息覆盖率6.8x，尚可但不算宽裕。有形净资产为负（-$11.15亿），大量商誉（$9.59亿）和无形资产（$3.86亿）占资产的63%。
+        </div>
+
+        <h3>4.3 营收与净利润趋势</h3>
+        <div class="chart-container">
+            <canvas id="revenueChart"></canvas>
+        </div>
+        <table>
+            <tr><th>年度</th><th>营收(百万)</th><th>净利润(百万)</th><th>调整后EBITDA(百万)</th><th>毛利率</th><th>净利润率</th></tr>
+            <tr><td>2025</td><td>$2,093</td><td>$255</td><td>$553</td><td>55.0%</td><td>12.2%</td></tr>
+            <tr><td>2024</td><td>$1,843</td><td>$235</td><td>$443</td><td>53.8%</td><td>12.8%</td></tr>
+            <tr><td>2023</td><td>$1,783</td><td>$171</td><td>$346</td><td>47.6%</td><td>9.6%</td></tr>
+            <tr><td>2022</td><td>$1,661</td><td>$71</td><td>$214</td><td>40.7%</td><td>4.3%</td></tr>
+            <tr><td>2021</td><td>$1,601</td><td>$128</td><td>$268</td><td>46.8%</td><td>8.0%</td></tr>
+            <tr><td>2020</td><td>$1,473</td><td>$112</td><td>$224</td><td>46.3%</td><td>7.6%</td></tr>
+            <tr><td>2019</td><td>$1,366</td><td>$153</td><td>$266</td><td>47.9%</td><td>11.2%</td></tr>
+            <tr><td>2018</td><td>$1,263</td><td>$126</td><td>$236</td><td>43.9%</td><td>9.9%</td></tr>
+        </table>
+
+        <h3>4.4 市盈率（P/E）趋势</h3>
+        <table>
+            <tr><th>年度</th><th>年末股价</th><th>EPS</th><th>P/E</th></tr>
+            <tr><td>2025</td><td>$38.42</td><td>$3.42</td><td>~11x</td></tr>
+            <tr><td>2024</td><td>$32.58</td><td>$3.01</td><td>~11x</td></tr>
+            <tr><td>2023</td><td>$27.88</td><td>$2.19</td><td>~13x</td></tr>
+            <tr><td>2022</td><td>$29.85</td><td>$0.87</td><td>~34x</td></tr>
+            <tr><td>2021</td><td>~$39</td><td>$1.64</td><td>~24x</td></tr>
+            <tr><td>2020</td><td>~$43</td><td>$1.44</td><td>~30x</td></tr>
+            <tr><td>2019</td><td>~$35</td><td>$1.96</td><td>~18x</td></tr>
+            <tr><td>2018</td><td>~$22</td><td>$1.60</td><td>~14x</td></tr>
+        </table>
+        <p>当前P/E约18x（基于TTM EPS $3.58），处于8年历史区间中位。FY2025年末P/E仅11x，股价从$38涨至$64主要反映盈利增长和估值修复。</p>
+    </div>
+
+    <!-- 五、竞争分析 -->
+    <div class="info-box">
+        <h2>五、竞争分析</h2>
+
+        <h3>5.1 主要竞争对手</h3>
+        <table>
+            <tr><th>公司</th><th>品牌</th><th>定位</th><th>与FTDR竞争领域</th></tr>
+            <tr><td>Cinch Home Services</td><td>Cinch</td><td>综合保修</td><td>直接竞争——ConsumerAffairs 2026年排名第一</td></tr>
+            <tr><td>First American</td><td>First American Home Warranty</td><td>中端保修</td><td>房地产渠道竞争</td></tr>
+            <tr><td>Old Republic</td><td>Old Republic Home Protection</td><td>中端保修</td><td>区域市场竞争</td></tr>
+            <tr><td>Liberty Home Guard</td><td>Liberty Home Guard</td><td>低价保修</td><td>价格敏感客户竞争</td></tr>
+            <tr><td>Select Home Warranty</td><td>Select</td><td>低价保修</td><td>预算有限客户竞争</td></tr>
+            <tr><td>HomeServe USA</td><td>HomeServe</td><td>管道/HVAC专项</td><td>专项服务竞争</td></tr>
+        </table>
+
+        <h3>5.2 市场份额</h3>
+        <table>
+            <tr><th>公司</th><th>市场份额</th><th>活跃保单数</th></tr>
+            <tr><td>Frontdoor (AHS等)</td><td>~16%</td><td>211万</td></tr>
+            <tr><td>Choice Home Warranty</td><td>~5%</td><td>约50万</td></tr>
+            <tr><td>Cinch Home Services</td><td>~4%</td><td>约40万</td></tr>
+            <tr><td>First American</td><td>~3%</td><td>约30万</td></tr>
+            <tr><td>Old Republic</td><td>~2%</td><td>约20万</td></tr>
+            <tr><td>其他（高度分散）</td><td>~70%</td><td>—</td></tr>
+        </table>
+        <p><em>注：美国家庭保修市场渗透率仅约6%（6,800万自住房屋中约700万持有保修），市场极度分散。</em></p>
+
+        <h3>5.3 护城河分析</h3>
+        <div class="moat-item">
+            <strong>品牌护城河（中等偏强）</strong>：American Home Shield成立于1971年，是美国最知名的家庭保修品牌。This Old House 2026年调查显示41%的保修用户使用AHS，远超第二名。AHS是唯一覆盖"既有损坏"的保修商，这是独特卖点。
+        </div>
+        <div class="moat-item">
+            <strong>规模优势（强）</strong>：17,000+承包商网络是最大的竞争壁垒。规模越大→承包商越多→服务越快→客户越满意→续费率越高→规模越大。AHS的承包商覆盖密度远超竞争对手，确保在大多数市场能快速响应。
+        </div>
+        <div class="moat-item">
+            <strong>网络效应（中等）</strong>：房地产渠道的网络效应明显——与全美前10大房地产经纪商建立关系→更多房源使用AHS→更多购房者了解AHS→更多房地产经纪人推荐AHS。2-10 HBW的19,000+建筑商客户进一步增强了网络效应。
+        </div>
+        <div class="moat-item">
+            <strong>转换成本（中等）</strong>：79.4%的留存率证明客户粘性存在，但年度合同制意味着理论上每年都可切换。房地产渠道的转换成本更高（经纪人习惯性推荐AHS）。
+        </div>
+        <div class="risk-item">
+            <strong>护城河弱点</strong>：家庭保修行业口碑普遍较差（索赔被拒、服务延迟是常见投诉），AHS的BBB评级仅为B。行业渗透率仅6%，说明大多数消费者认为保修"不值得"。通胀对成本端冲击巨大（2022年毛利率暴跌至40.7%），定价权在极端通胀环境下受限。
+        </div>
+
+        <h3>5.4 关键战略事件</h3>
+        <ul>
+            <li><strong>2018年从ServiceMaster分拆上市</strong>：独立运营，释放价值</li>
+            <li><strong>2022年6月Bill Cobb上任CEO</strong>：扭转通胀冲击，推动定价和运营改革</li>
+            <li><strong>2024年12月收购2-10 HBW</strong>（$5.85亿）：进入新房结构保修市场，增加19,000建筑商客户</li>
+            <li><strong>2024年新$6.5亿回购授权</strong>：3年期，2025年回购$2.8亿</li>
+            <li><strong>2024年12月新$14.7亿信贷安排</strong>：为2-10收购和债务再融资</li>
+            <li><strong>2025年毛利率创纪录55%</strong>：从2022年低谷40.7%持续提升</li>
+        </ul>
+    </div>
+
+    <!-- 六、利润分配分析 -->
+    <div class="info-box">
+        <h2>六、利润分配分析</h2>
+        <p><em>注：按照巴菲特/芒格原则，股票回购计入留存而非分配。Frontdoor不支付股息。</em></p>
+
+        <table>
+            <tr>
+                <th>年度</th><th>净利润(百万)</th><th>股息(百万)</th><th>回购(百万)</th><th>扩张CapEx/收购(百万)</th><th>债务净变动(百万)</th><th>留存金额(百万)</th><th>留存比率</th>
+            </tr>
+            <tr><td>2025</td><td>$255</td><td>$0</td><td>$280</td><td>~$30</td><td>净增债</td><td>$255</td><td>100%</td></tr>
+            <tr><td>2024</td><td>$235</td><td>$0</td><td>$150</td><td>~$585*</td><td>净增债$570</td><td>$235</td><td>100%</td></tr>
+            <tr><td>2023</td><td>$171</td><td>$0</td><td>$120</td><td>~$15</td><td>净减债$16</td><td>$171</td><td>100%</td></tr>
+            <tr><td>2022</td><td>$71</td><td>$0</td><td>$83</td><td>~$12</td><td>净减债$16</td><td>$71</td><td>100%</td></tr>
+            <tr><td>2021</td><td>$128</td><td>$0</td><td>$0</td><td>~$10</td><td>净减债$25</td><td>$128</td><td>100%</td></tr>
+            <tr><td>2020</td><td>$112</td><td>$0</td><td>$0</td><td>~$10</td><td>净减债</td><td>$112</td><td>100%</td></tr>
+            <tr><td>2019</td><td>$153</td><td>$0</td><td>$0</td><td>~$10</td><td>净减债</td><td>$153</td><td>100%</td></tr>
+            <tr><td>2018</td><td>$126</td><td>$0</td><td>$0</td><td>~$10</td><td>净增债</td><td>$126</td><td>100%</td></tr>
+        </table>
+        <p><em>*2024年CapEx/收购包含2-10 HBW收购的$5.85亿</em></p>
+
+        <h3>利润分配分析要点</h3>
+        <div class="moat-item">
+            <strong>留存比率100%</strong>：Frontdoor从不支付股息，所有利润留存。留存主要用于股票回购和收购。这符合巴菲特偏好——如果1美元留存能创造超过1美元的市值，就不应该分红。
+        </div>
+        <div class="moat-item">
+            <strong>留存质量</strong>：留存利润主要用于股票回购（2023-2025年回购$5.5亿，约占当前市值的12%）和2-10 HBW收购（$5.85亿）。回购在P/E 11-13x时进行，估值合理偏低，回购时机不错。
+        </div>
+        <div class="moat-item">
+            <strong>回购时机评估</strong>：2023年回购均价约$33（P/E ~15x），2024年回购均价约$30（P/E ~10x），2025年回购均价约$38（P/E ~11x）。回购主要在低估值时进行，管理层资本配置能力值得肯定。
+        </div>
+        <div class="risk-item">
+            <strong>收购风险</strong>：2-10 HBW收购$5.85亿，加上$14.7亿新信贷安排，总债务从$6亿跳升至$12亿。收购是否创造价值取决于整合效果——2-10在FY2025贡献约10%营收，但协同效应尚需时间验证。
+        </div>
+        <div class="moat-item">
+            <strong>可持续增长率</strong> = ROIC × 留存比率 ≈ 18% × 100% = 18%。理论上Frontdoor可以内生增长18%，但实际营收增长受限于家庭保修渗透率（仅6%）和房地产周期。
+        </div>
+        <div class="chart-container">
+            <canvas id="profitChart"></canvas>
+        </div>
+    </div>
+
+    <!-- 七、投资总结 -->
+    <div class="info-box">
+        <h2>七、投资总结</h2>
+
+        <div class="summary-box">
+            <h3>综合评估</h3>
+            <table style="background: transparent;">
+                <tr><td style="color: white; border: none;"><strong>业务可理解性</strong></td><td style="color: white; border: none;">⭐⭐⭐⭐⭐</td><td style="color: #ddd; border: none;">订阅制风险池模式简单易懂，类似保险</td></tr>
+                <tr><td style="color: white; border: none;"><strong>护城河宽度</strong></td><td style="color: white; border: none;">⭐⭐⭐⭐</td><td style="color: #ddd; border: none;">品牌+规模+网络效应构成中等偏强护城河</td></tr>
+                <tr><td style="color: white; border: none;"><strong>资本配置</strong></td><td style="color: white; border: none;">⭐⭐⭐⭐</td><td style="color: #ddd; border: none;">回购时机好，2-10收购战略意义大但增加杠杆</td></tr>
+                <tr><td style="color: white; border: none;"><strong>财务安全</strong></td><td style="color: white; border: none;">⭐⭐⭐</td><td style="color: #ddd; border: none;">有形净资产为负，D/E 4.9x，但利息覆盖率6.8x尚可</td></tr>
+                <tr><td style="color: white; border: none;"><strong>增长前景</strong></td><td style="color: white; border: none;">⭐⭐⭐⭐</td><td style="color: #ddd; border: none;">6%渗透率提供巨大增长空间，2-10打开新房市场</td></tr>
+                <tr><td style="color: white; border: none;"><strong>估值吸引力</strong></td><td style="color: white; border: none;">⭐⭐⭐⭐</td><td style="color: #ddd; border: none;">P/E 18x，P/FCF 10.6x，EV/EBITDA 10x，合理偏低</td></tr>
+            </table>
+        </div>
+
+        <h3>投资评级：买入（Buy）</h3>
+
+        <h3>核心论点</h3>
+        <div class="moat-item">
+            <strong>看多因素</strong>：
+            <ul>
+                <li>美国家庭保修市场渗透率仅6%，长期增长空间巨大（$500亿家居服务市场）</li>
+                <li>AHS品牌市占率16%，是第二名3倍以上，品牌护城河稳固</li>
+                <li>Bill Cobb的运营改革成效显著：毛利率从40.7%提升至55%，留存率从75%提升至79.4%</li>
+                <li>2-10 HBW收购打开新房结构保修市场（19,000建筑商客户），交叉销售潜力大</li>
+                <li>回购积极且时机好（P/E 10-13x时大量回购），管理层资本配置能力优秀</li>
+                <li>技术投入（AHS App、视频聊天专家、AR诊断）提升运营效率和客户体验</li>
+                <li>自由现金流强劲（FCF Yield 9.4%），支持持续回购和债务偿还</li>
+                <li>2026年指引：营收$21.55-21.95亿，调整后EBITDA $5.65-5.80亿，继续增长</li>
+            </ul>
+        </div>
+        <div class="risk-item">
+            <strong>看空因素</strong>：
+            <ul>
+                <li>有形净资产为负（-$11.15亿），商誉和无形资产占总资产63%</li>
+                <li>总债务$12亿（D/E 4.9x），2-10收购后杠杆显著上升</li>
+                <li>行业口碑差——47%消费者担心索赔被拒，43%报告服务延迟</li>
+                <li>业务高度依赖房地产周期：利率上升→房屋交易减少→首年保修销售下降</li>
+                <li>通胀对成本端冲击大（2022年毛利率暴跌至40.7%），定价权在极端环境下受限</li>
+                <li>会员数从2021年高峰220万下降至211万，增长尚未恢复</li>
+                <li>非保修业务竞争力弱（可替代性高、转换成本低、定价权弱）</li>
+                <li>17,000承包商均为独立承包商，质量控制难度大</li>
+            </ul>
+        </div>
+
+        <h3>估值对比</h3>
+        <table>
+            <tr><th>公司</th><th>P/E</th><th>EV/EBITDA</th><th>P/FCF</th><th>股息率</th></tr>
+            <tr><td>Frontdoor (FTDR)</td><td>~18x</td><td>~10x</td><td>~10.6x</td><td>0%</td></tr>
+            <tr><td>Rollins (ROL)</td><td>~51x</td><td>~32x</td><td>~35x</td><td>1.6%</td></tr>
+            <tr><td>Service Corp (SCI)</td><td>~18x</td><td>~12x</td><td>~16x</td><td>2.1%</td></tr>
+            <tr><td>H&R Block (HRB)</td><td>~14x</td><td>~9x</td><td>~12x</td><td>4.5%</td></tr>
+        </table>
+        <p>与类似订阅制服务公司相比，FTDR估值合理。Rollins（害虫防治龙头）P/E 51x反映了市场对订阅制高留存率生意的溢价，FTDR的P/E 18x说明市场对其周期性和杠杆的担忧。如果FTDR能证明会员数恢复增长且杠杆下降，估值有向Rollins靠拢的空间。</p>
+
+        <h3>关键催化剂</h3>
+        <ul>
+            <li>降息周期推动房屋交易回暖→首年保修销售恢复增长</li>
+            <li>2-10 HBW交叉销售实现协同效应→营收和利润超预期</li>
+            <li>会员数恢复增长（2026年指引1-2%增长）</li>
+            <li>长期EBITDA利润率目标提升至中20%范围（当前约26%）</li>
+            <li>AI/技术投入进一步降低索赔成本</li>
+        </ul>
+
+        <h3>关键风险</h3>
+        <ul>
+            <li>美国经济衰退→房屋交易和消费者支出双降</li>
+            <li>通胀再次飙升→维修成本上升侵蚀利润率</li>
+            <li>2-10 HBW整合失败→商誉减值风险</li>
+            <li>监管风险——家庭保修行业可能面临更严格的消费者保护法规</li>
+            <li>承包商网络质量下降→客户满意度下降→留存率下滑</li>
+        </ul>
+
+        <h3>巴菲特/芒格视角总结</h3>
+        <div class="summary-box">
+            <p>Frontdoor拥有一个巴菲特能理解的商业模式——订阅制风险池，类似GEICO的保险逻辑。AHS品牌在家庭保修领域的统治地位（16%市占率，41%用户份额）和79.4%的留存率构成了真实的护城河。Bill Cobb的运营改革成效显著，毛利率从40.7%提升至55%是实打实的经营改善。6%的市场渗透率意味着巨大的长期增长空间。但芒格会指出两个问题：1）这不是一个"任何价格都能买"的生意——2022年通胀证明了成本端脆弱性；2）有形净资产为负意味着如果业务恶化，股东几乎没有任何缓冲。当前P/E 18x、P/FCF 10.6x的估值提供了合理的安全边际，但不足以弥补资产负债表上的风险。总体而言，这是一个"好生意但不够伟大"的案例——如果能在未来2-3年证明会员数恢复增长且杠杆下降，将成为更有吸引力的投资。</p>
+        </div>
+    </div>
+
+    <script>
+        // 营收与净利润图表
+        var revenueCtx = document.getElementById('revenueChart').getContext('2d');
+        new Chart(revenueCtx, {
+            type: 'bar',
+            data: {
+                labels: ['2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025'],
+                datasets: [{
+                    label: '营收（百万美元）',
+                    data: [1263, 1366, 1473, 1601, 1661, 1783, 1843, 2093],
+                    backgroundColor: 'rgba(46, 134, 193, 0.7)',
+                    borderColor: 'rgba(46, 134, 193, 1)',
+                    borderWidth: 1
+                }, {
+                    label: '净利润（百万美元）',
+                    data: [126, 153, 112, 128, 71, 171, 235, 255],
+                    backgroundColor: 'rgba(39, 174, 96, 0.7)',
+                    borderColor: 'rgba(39, 174, 96, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: { y: { beginAtZero: true } }
+            }
+        });
+
+        // 利润分配饼图
+        var profitCtx = document.getElementById('profitChart').getContext('2d');
+        new Chart(profitCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['回购（留存-回购）', '再投资（留存-CapEx/收购）', '债务偿还'],
+                datasets: [{
+                    data: [280, 30, 0],
+                    backgroundColor: ['rgba(52, 152, 219, 0.8)', 'rgba(46, 204, 113, 0.8)', 'rgba(155, 89, 182, 0.8)'],
+                    borderWidth: 2,
+                    borderColor: 'white'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'FY2025利润分配（回购计入留存，无股息）',
+                        font: { size: 16 }
+                    },
+                    legend: { position: 'bottom' }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
