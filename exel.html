@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exelixis (EXEL) 价值投资分析</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f2f5;
+            color: #333;
+        }
+        h1 {
+            text-align: center;
+            color: #1a5276;
+            font-size: 2.2em;
+            margin-bottom: 5px;
+        }
+        h2 {
+            color: #1a5276;
+            border-bottom: 2px solid #2e86c1;
+            padding-bottom: 8px;
+            margin-top: 30px;
+        }
+        h3 {
+            color: #2c3e50;
+            margin-top: 20px;
+        }
+        .subtitle {
+            text-align: center;
+            color: #7f8c8d;
+            font-size: 1.1em;
+            margin-bottom: 30px;
+        }
+        .info-box {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            background-color: white;
+        }
+        th, td {
+            padding: 10px 14px;
+            text-align: left;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        th {
+            background-color: #1a5276;
+            color: white;
+            font-weight: bold;
+        }
+        tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        tr:hover {
+            background-color: #eaf2f8;
+        }
+        .highlight {
+            background: #fef9e7;
+            border-left: 4px solid #2e86c1;
+            padding: 15px 20px;
+            margin: 15px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .chart-container {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+        canvas {
+            max-height: 400px;
+        }
+        .tag {
+            display: inline-block;
+            background: #1a5276;
+            color: white;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.85em;
+            margin: 2px;
+        }
+        .tag-green {
+            background: #27ae60;
+        }
+        .tag-orange {
+            background: #e67e22;
+        }
+        .tag-red {
+            background: #c0392b;
+        }
+        a {
+            color: #1a5276;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            font-size: 1em;
+        }
+        .moat-item {
+            background: white;
+            border-radius: 8px;
+            padding: 15px 20px;
+            margin: 10px 0;
+            box-shadow: 0 1px 5px rgba(0,0,0,0.05);
+            border-left: 4px solid #2e86c1;
+        }
+        .moat-item strong {
+            color: #1a5276;
+        }
+        .risk-item {
+            background: white;
+            border-radius: 8px;
+            padding: 15px 20px;
+            margin: 10px 0;
+            box-shadow: 0 1px 5px rgba(0,0,0,0.05);
+            border-left: 4px solid #c0392b;
+        }
+        .star { color: #f39c12; }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back-link">← 返回索引</a>
+    
+    <h1>Exelixis 伊克力西斯 (NASDAQ: EXEL)</h1>
+    <p class="subtitle">巴菲特/芒格式价值投资基本面分析 | 更新日期：2026年6月</p>
+
+    <!-- 一、公司基本信息 -->
+    <div class="info-box">
+        <h2>一、公司基本信息</h2>
+        <table>
+            <tr><td>公司全称</td><td>Exelixis, Inc.</td></tr>
+            <tr><td>股票代码</td><td>NASDAQ: EXEL</td></tr>
+            <tr><td>市值</td><td>约132亿美元（2026年6月）</td></tr>
+            <tr><td>市值（美元）</td><td>≈ $13.2B USD</td></tr>
+            <tr><td>企业价值（EV）</td><td>≈ $12.6B USD（净现金约$6.08亿）</td></tr>
+            <tr><td>成立时间</td><td>1994年11月15日</td></tr>
+            <tr><td>公司总部</td><td>美国加利福尼亚州阿拉米达（Alameda, CA）</td></tr>
+            <tr><td>最新收盘价</td><td>约$52.70（2026年6月5日）</td></tr>
+            <tr><td>52周区间</td><td>$33.76 - $52.98</td></tr>
+            <tr><td>CEO</td><td>Michael M. Morrissey, Ph.D.</td></tr>
+            <tr><td>员工人数</td><td>约1,147人</td></tr>
+            <tr><td>行业</td><td>生物技术 / 肿瘤学</td></tr>
+            <tr><td>流通股数</td><td>约2.51亿股</td></tr>
+            <tr><td>股息</td><td>无（不支付股息）</td></tr>
+            <tr><td>IPO时间</td><td>2000年</td></tr>
+        </table>
+    </div>
+
+    <!-- 二、业务分析 -->
+    <div class="info-box">
+        <h2>二、业务分析</h2>
+        
+        <h3>2.1 通俗解释：Exelixis是干什么的？</h3>
+        <p>用最简单的话说，<strong>Exelixis是一家专门做抗癌药的生物技术公司</strong>。它最核心的产品叫CABOMETYX（卡博替尼），是一种口服的小分子药片，主要用于治疗肾癌和肝癌。你可以把它想象成一把"多靶点钥匙"——它能同时锁住癌细胞生长的多个"开关"（MET、VEGFR、AXL等激酶），让肿瘤既不能生长也不能扩散。</p>
+        <p>Exelixis的商业模式非常清晰：<strong>自己研发抗癌药 → 获得FDA批准 → 在美国自己销售 → 在美国以外授权给合作伙伴（如Ipsen）收取特许权使用费和里程碑付款</strong>。它的核心赚钱逻辑是——专利保护下的独家销售权。一颗卡博替尼药片的制造成本极低（毛利率高达96%），但因为专利保护，没有仿制药竞争，所以可以以高价销售。</p>
+        <p>目前公司正处于关键转型期：<strong>从"单一产品公司"向"多产品平台公司"转变</strong>。下一代核心药物zanzalintinib（曾用名XL092）正在等待FDA审批，如果获批用于转移性结直肠癌，将为公司打开第二个增长引擎。</p>
+
+        <h3>2.2 业务板块及营收（FY2025，截至2025年12月31日）</h3>
+        <table>
+            <tr>
+                <th>业务板块</th>
+                <th>年营收</th>
+                <th>占总营收比例</th>
+                <th>关键产品</th>
+                <th>增长趋势</th>
+            </tr>
+            <tr>
+                <td>卡博替尼产品收入（美国）</td>
+                <td>$21.23亿</td>
+                <td>约91.5%</td>
+                <td>CABOMETYX, COMETRIQ</td>
+                <td><span class="tag tag-green">强劲增长</span> 同比+17%，RCC+NET双驱动</td>
+            </tr>
+            <tr>
+                <td>合作收入</td>
+                <td>$1.97亿</td>
+                <td>约8.5%</td>
+                <td>Ipsen/Takeda特许权使用费+里程碑</td>
+                <td><span class="tag tag-orange">下降</span> 里程碑收入减少，特许权使用费增长</td>
+            </tr>
+        </table>
+        <p><strong>注：</strong>FY2025总营收为$23.20亿，同比增长7.0%。其中产品收入$21.23亿，同比增长17%；合作收入$1.97亿，同比下降45%（因FY2024包含Ipsen的$1.50亿里程碑付款，属于非经常性收入）。</p>
+
+        <h3>2.3 卡博替尼适应症拆分</h3>
+        <table>
+            <tr>
+                <th>适应症</th>
+                <th>批准状态</th>
+                <th>市场地位</th>
+                <th>增长趋势</th>
+            </tr>
+            <tr>
+                <td>肾细胞癌（RCC）- 一线联合Opdivo</td>
+                <td>FDA批准</td>
+                <td>一线TKI+IO联合疗法处方量第一</td>
+                <td><span class="tag tag-green">稳健增长</span></td>
+            </tr>
+            <tr>
+                <td>肾细胞癌（RCC）- 二线单药</td>
+                <td>FDA批准</td>
+                <td>二线口服疗法市场领导者</td>
+                <td><span class="tag tag-green">稳定</span></td>
+            </tr>
+            <tr>
+                <td>肝细胞癌（HCC）- 经索拉非尼治疗后</td>
+                <td>FDA批准</td>
+                <td>二线HCC标准疗法之一</td>
+                <td><span class="tag tag-orange">成熟</span></td>
+            </tr>
+            <tr>
+                <td>神经内分泌肿瘤（NET）</td>
+                <td>FDA批准（2025年3月）</td>
+                <td>二线及以上口服药物市场领导者</td>
+                <td><span class="tag tag-green">快速放量</span> FY2025收入超$1亿</td>
+            </tr>
+            <tr>
+                <td>甲状腺髓样癌（MTC）</td>
+                <td>FDA批准（COMETRIQ）</td>
+                <td>小众适应症</td>
+                <td><span class="tag tag-orange">稳定</span></td>
+            </tr>
+        </table>
+
+        <h3>2.4 地域分布</h3>
+        <table>
+            <tr>
+                <th>地区</th>
+                <th>营收占比</th>
+                <th>说明</th>
+            </tr>
+            <tr>
+                <td>美国（自营销售）</td>
+                <td>约91.5%</td>
+                <td>核心市场，CABOMETYX美国自营</td>
+            </tr>
+            <tr>
+                <td>美国以外（Ipsen合作）</td>
+                <td>约8.5%（特许权使用费+里程碑）</td>
+                <td>欧洲、亚洲等市场由Ipsen运营，EXEL收取分成</td>
+            </tr>
+        </table>
+        <p>全球卡博替尼品牌（含所有合作伙伴）FY2025总收入约$28.9亿，其中美国$21.23亿，美国以外约$7.67亿。</p>
+        <div class="highlight">
+            <strong>芒格视角：</strong>Exelixis约91.5%的营收来自美国市场自营销售，海外市场通过Ipsen授权模式运营。这种"美国自营+海外授权"的模式在生物技术行业很常见，优点是降低了海外运营风险和成本，缺点是海外收入仅以特许权使用费形式体现（通常为销售额的20-30%），无法充分享受海外市场的增长。与完全全球化的制药公司（如辉瑞、诺华）相比，Exelixis的海外收入占比偏低。
+        </div>
+
+        <h3>2.5 商业模式总结</h3>
+        <p>Exelixis的盈利模式可以概括为：<strong>自主研发靶向抗癌药 → 获得FDA批准及专利保护 → 美国市场自营销售（高毛利96%） → 海外授权给合作伙伴收取分成 → 用现金流回购股票+投入新药研发</strong>。公司不支付股息，所有利润要么用于研发（FY2025研发支出$8.25亿），要么用于股票回购（FY2025回购$9.54亿）。自由现金流常年保持在$9亿以上，财务状况极为健康——净现金$6.08亿，几乎无长期债务。</p>
+    </div>
+
+    <!-- 三、业务板块产品竞争力分析 -->
+    <div class="info-box">
+        <h2>三、业务板块产品竞争力分析</h2>
+
+        <h3>3.1 CABOMETYX（卡博替尼）产品竞争力分析</h3>
+        
+        <div class="moat-item">
+            <strong>1. 可替代性：<span class="tag tag-orange">中等</span></strong>
+            <ul>
+                <li><strong>主要替代品：</strong>
+                    <ul>
+                        <li>RCC一线：默沙东Keytruda+辉瑞Inlyta组合、BMS Opdivo+Yervoy组合、默沙东Welireg（belzutifan）</li>
+                        <li>RCC二线：辉瑞Sutent（舒尼替尼）、BMS Opdivo单药</li>
+                        <li>HCC二线：拜耳Stivarga（瑞戈非尼）、Bayer Nexavar（索拉非尼）</li>
+                        <li>NET：诺华Afinitor（依维莫司）、PRRT肽受体放射性核素治疗</li>
+                    </ul>
+                </li>
+                <li><strong>替代品体验差距：</strong>卡博替尼作为多靶点TKI，在RCC二线单药和一线联合Opdivo方案中显示出显著的总生存期获益，临床数据优于多数替代品。但在RCC一线，Keytruda+Inlyta组合是强劲竞争对手，临床数据相当。</li>
+                <li><strong>替代趋势：</strong>稳定偏加速。RCC领域免疫疗法组合竞争加剧，但卡博替尼凭借联合Opdivo的一线地位和NET新适应症，整体市场地位稳固。</li>
+            </ul>
+        </div>
+
+        <div class="moat-item">
+            <strong>2. 客户转换成本：<span class="tag tag-orange">中等</span></strong>
+            <ul>
+                <li><strong>财务转换成本：</strong>抗癌药由医生处方决定，患者本身不承担直接财务转换成本。但医保/保险覆盖网络切换可能影响患者自付费用。</li>
+                <li><strong>时间转换成本：</strong>肿瘤科医生对特定药物的使用经验形成惯性。卡博替尼在RCC领域已有7年+临床使用经验，医生对其剂量调整、副作用管理非常熟悉。换用新药需要重新学习管理副作用。</li>
+                <li><strong>心理转换成本：</strong>癌症患者对"有效"的治疗方案有强烈粘性——如果当前药物有效，患者和医生都不愿冒险换药。</li>
+                <li><strong>捆绑转换成本：</strong>卡博替尼+Opdivo联合方案形成了一定的"方案锁定"效应，医生倾向于在同一方案内调整而非完全更换。</li>
+                <li><strong>综合评估：</strong>处方药领域的转换成本主要来自医生处方习惯和临床指南推荐，而非消费者层面的转换成本。中等转换成本主要靠临床数据支撑和指南推荐维持。</li>
+            </ul>
+        </div>
+
+        <div class="moat-item">
+            <strong>3. 定价权：<span class="tag tag-green">强</span></strong>
+            <ul>
+                <li><strong>历史提价记录：</strong>卡博替尼美国WAC价格每年稳定提价2-3%。2025年1月提价2.8%，2026年1月提价3.0%。</li>
+                <li><strong>提价vs通胀：</strong>提价幅度略高于CPI，跑赢通胀。但需注意Medicare Part D和340B折扣对实际净价的影响。</li>
+                <li><strong>提价vs客户流失：</strong>处方药领域，提价不会直接导致"客户流失"——患者不会因为药价上涨而换药，因为费用主要由保险支付。但保险公司可能通过处方集管理限制使用。</li>
+                <li><strong>定价权来源：</strong>专利保护（美国专利到期约2030年）+FDA独家批准+临床指南推荐。专利期内，仿制药无法进入市场。</li>
+                <li><strong>定价权趋势：</strong>稳定偏削弱。专利到期后（约2030-2032年），仿制药进入将彻底消除定价权。此外，Medicare Part D价格谈判和340B折扣压力持续增大。</li>
+                <li><strong>巴菲特测试：</strong>如果卡博替尼提价10%，患者和医生几乎不会因此换药——因为抗癌药的选择基于疗效而非价格，且费用主要由保险承担。定价权在专利期内极强。</li>
+            </ul>
+        </div>
+
+        <div class="moat-item">
+            <strong>综合竞争力评级：<span class="star">⭐⭐⭐⭐</span>（4/5）</strong><br>
+            卡博替尼在专利期内拥有强定价权和稳固的市场地位，但面临RCC一线竞争加剧和2030年后专利悬崖的双重挑战。NET新适应症是重要增量，但整体可替代性为中等——临床数据是护城河，而非品牌或转换成本。
+        </div>
+
+        <h3>3.2 Zanzalintinib（研发管线）产品竞争力分析</h3>
+        
+        <div class="moat-item">
+            <strong>1. 可替代性：<span class="tag tag-orange">中等</span></strong>
+            <ul>
+                <li><strong>主要替代品：</strong>
+                    <ul>
+                        <li>结直肠癌三线：BMS Opdivo+Yervoy（MSI-H亚型）、拜耳Stivarga、礼来Cyramza</li>
+                        <li>非透明细胞RCC：辉瑞Sutent、BMS Opdivo+Yervoy</li>
+                        <li>NET：卡博替尼本身、诺华Afinitor</li>
+                    </ul>
+                </li>
+                <li><strong>替代品体验差距：</strong>zanzalintinib是下一代MET/VEGFR/TAM激酶抑制剂，设计上改善了卡博替尼的药代动力学特性（半衰期更长）。STELLAR-303试验显示联合atezolizumab在转移性CRC中达到OS主要终点，具有差异化优势。</li>
+                <li><strong>替代趋势：</strong>稳定。CRC后线治疗选择有限，存在明显未满足医疗需求。</li>
+            </ul>
+        </div>
+
+        <div class="moat-item">
+            <strong>2. 客户转换成本：<span class="tag tag-orange">中等</span></strong>
+            <ul>
+                <li><strong>财务转换成本：</strong>与卡博替尼类似，处方药由医生决定，患者无直接财务转换成本。</li>
+                <li><strong>时间转换成本：</strong>新药上市初期医生学习曲线存在，但Exelixis已有成熟的肿瘤商业化团队和医生关系网络。</li>
+                <li><strong>捆绑转换成本：</strong>zanzalintinib与atezolizumab（罗氏Tecentriq）联合使用，形成组合方案锁定。</li>
+                <li><strong>综合评估：</strong>与卡博替尼类似的处方药转换成本模式，中等水平。</li>
+            </ul>
+        </div>
+
+        <div class="moat-item">
+            <strong>3. 定价权：<span class="tag tag-green">强</span></strong>
+            <ul>
+                <li><strong>历史提价记录：</strong>尚未上市，无历史数据。预计定价与卡博替尼相当或略高。</li>
+                <li><strong>提价vs通胀：</strong>新药上市后预计每年可提价2-4%，与行业惯例一致。</li>
+                <li><strong>定价权来源：</strong>专利保护（新分子实体，专利期更长）+FDA独家批准+潜在的首创疗法地位。</li>
+                <li><strong>定价权趋势：</strong>增强。如果获批，zanzalintinib将拥有比卡博替尼更长的专利保护期。</li>
+                <li><strong>巴菲特测试：</strong>抗癌新药在专利期内提价10%，患者和医生不会因此换药——定价权在专利期内极强。</li>
+            </ul>
+        </div>
+
+        <div class="moat-item">
+            <strong>综合竞争力评级：<span class="star">⭐⭐⭐</span>（3/5）</strong><br>
+            Zanzalintinib尚未获批上市，存在监管和临床风险。但STELLAR-303阳性数据和7项关键试验布局显示了差异化潜力。如果成功获批，竞争力可能提升至4星。当前评级反映其"尚未证明"的状态。
+        </div>
+
+        <h3>3.3 合作收入（Ipsen/Takeda特许权使用费）产品竞争力分析</h3>
+        
+        <div class="moat-item">
+            <strong>1. 可替代性：<span class="tag tag-green">低</span></strong>
+            <ul>
+                <li><strong>主要替代品：</strong>无直接替代品。特许权使用费是合同约定的被动收入流，只要卡博替尼在授权区域持续销售，Exelixis就有权按比例分成。</li>
+                <li><strong>替代品体验差距：</strong>不适用——这是合同权利，非产品。</li>
+                <li><strong>替代趋势：</strong>稳定。合同期限通常覆盖专利期，法律保障强。</li>
+            </ul>
+        </div>
+
+        <div class="moat-item">
+            <strong>2. 客户转换成本：<span class="tag tag-green">极高</span></strong>
+            <ul>
+                <li><strong>财务转换成本：</strong>Ipsen已支付大额预付款和里程碑，无法"切换"到其他合作伙伴。</li>
+                <li><strong>综合评估：</strong>合同锁定，几乎不可能变更。极高转换成本。</li>
+            </ul>
+        </div>
+
+        <div class="moat-item">
+            <strong>3. 定价权：<span class="tag tag-orange">中等</span></strong>
+            <ul>
+                <li><strong>历史提价记录：</strong>特许权使用费率由合同固定，Exelixis无法单方面调整。但Ipsen在海外提价会间接提高Exelixis的特许权使用费收入。</li>
+                <li><strong>定价权来源：</strong>合同约定，非自主定价权。</li>
+                <li><strong>定价权趋势：</strong>稳定。合同期内费率不变。</li>
+                <li><strong>巴菲特测试：</strong>Exelixis无法直接提价，但Ipsan的提价会传导。间接定价权中等。</li>
+            </ul>
+        </div>
+
+        <div class="moat-item">
+            <strong>综合竞争力评级：<span class="star">⭐⭐⭐⭐</span>（4/5）</strong><br>
+            合同收入流具有法律保障和极高转换成本，但Exelixis对海外定价和销售策略缺乏直接控制力。稳定性强，但增长弹性有限。
+        </div>
+    </div>
+
+    <!-- 四、历史财务指标 -->
+    <div class="info-box">
+        <h2>四、历史财务指标（2016-2025）</h2>
+        
+        <h3>4.1 净资产收益率 (ROE) 趋势</h3>
+        <div class="chart-container">
+            <canvas id="roeChart"></canvas>
+        </div>
+        <table>
+            <tr>
+                <th>财年</th><th>ROE</th><th>备注</th>
+            </tr>
+            <tr><td>2016</td><td>-78.6%</td><td>卡博替尼刚上市，巨额亏损</td></tr>
+            <tr><td>2017</td><td>54.1%</td><td>卡博替尼放量+递延税资产释放</td></tr>
+            <tr><td>2018</td><td>53.6%</td><td>里程碑收入大增，GAAP净收入$6.9亿（含税收益）</td></tr>
+            <tr><td>2019</td><td>19.0%</td><td>回归常态，非GAAP ROE更真实</td></tr>
+            <tr><td>2020</td><td>6.0%</td><td>疫情+研发投入加大</td></tr>
+            <tr><td>2021</td><td>10.5%</td><td>卡博替尼RCC一线获批推动恢复</td></tr>
+            <tr><td>2022</td><td>7.3%</td><td>研发支出大增（$8.92亿）压制利润</td></tr>
+            <tr><td>2023</td><td>9.2%</td><td>收入增长但研发持续高投入</td></tr>
+            <tr><td>2024</td><td>23.2%</td><td>收入加速+研发效率提升，利润大幅改善</td></tr>
+            <tr><td>2025</td><td>36.2%</td><td>净利润$7.83亿，运营杠杆充分释放</td></tr>
+        </table>
+        <div class="highlight">
+            <strong>巴菲特视角：</strong>Exelixis的ROE从2016年的-78.6%飙升至2025年的36.2%，这一转变极为戏剧性。但需区分"真实经营ROE"和"财务工程ROE"——2017-2018年的超高ROE主要来自递延税资产释放（非现金收益），而非真实经营利润。2024-2025年的ROE提升才是真实的：收入增长+研发效率改善+股票回购减少股本，三重驱动。当前36%的ROE在生物技术行业中极为罕见，反映了卡博替尼96%毛利率带来的超强盈利能力。但需警惕——如此高的ROE高度依赖单一产品的专利保护，2030年后专利悬崖将严重冲击ROE。
+        </div>
+
+        <h3>4.2 资产负债率 (Debt-to-Asset) 趋势</h3>
+        <div class="chart-container">
+            <canvas id="debtChart"></canvas>
+        </div>
+        <table>
+            <tr>
+                <th>财年</th><th>总负债($M)</th><th>总资产($M)</th><th>资产负债率</th><th>债务/权益比</th>
+            </tr>
+            <tr><td>2016</td><td>~$160</td><td>~$410</td><td>~39%</td><td>~0.6x</td></tr>
+            <tr><td>2017</td><td>~$200</td><td>~$700</td><td>~29%</td><td>~0.4x</td></tr>
+            <tr><td>2018</td><td>~$240</td><td>~$1,200</td><td>~20%</td><td>~0.2x</td></tr>
+            <tr><td>2019</td><td>~$350</td><td>~$1,800</td><td>~19%</td><td>~0.2x</td></tr>
+            <tr><td>2020</td><td>~$400</td><td>~$2,200</td><td>~18%</td><td>~0.2x</td></tr>
+            <tr><td>2021</td><td>~$450</td><td>~$2,600</td><td>~17%</td><td>~0.2x</td></tr>
+            <tr><td>2022</td><td>~$500</td><td>~$3,100</td><td>~16%</td><td>~0.2x</td></tr>
+            <tr><td>2023</td><td>~$520</td><td>~$3,400</td><td>~15%</td><td>~0.2x</td></tr>
+            <tr><td>2024</td><td>~$580</td><td>~$3,600</td><td>~16%</td><td>~0.2x</td></tr>
+            <tr><td>2025</td><td>~$640</td><td>~$3,800</td><td>~17%</td><td>~0.2x</td></tr>
+        </table>
+        <div class="highlight">
+            <strong>芒格视角：</strong>Exelixis的资产负债率长期维持在15-20%的极低水平，债务/权益比仅0.08-0.09x，几乎无长期债务。这是巴菲特最欣赏的财务结构——"好公司不需要借很多钱"。公司持有净现金$6.08亿，经营现金流$9.25亿/年，完全不需要外部融资。这种财务安全度在生物技术行业中极为罕见——大多数biotech公司依赖融资和债务维持运营。
+        </div>
+
+        <h3>4.3 市盈率 (PE) 趋势</h3>
+        <div class="chart-container">
+            <canvas id="peChart"></canvas>
+        </div>
+        <table>
+            <tr>
+                <th>财年</th><th>PE Ratio</th><th>备注</th>
+            </tr>
+            <tr><td>2017</td><td>~8x</td><td>GAAP净收入含税收益，PE失真</td></tr>
+            <tr><td>2018</td><td>~5x</td><td>同上，GAAP PE极低</td></tr>
+            <tr><td>2019</td><td>~25x</td><td>非GAAP PE更合理</td></tr>
+            <tr><td>2020</td><td>~50x</td><td>疫情压制利润，PE飙升</td></tr>
+            <tr><td>2021</td><td>~30x</td><td>利润恢复</td></tr>
+            <tr><td>2022</td><td>~40x</td><td>研发投入大增压制利润</td></tr>
+            <tr><td>2023</td><td>~30x</td><td>利润改善</td></tr>
+            <tr><td>2024</td><td>~18x</td><td>利润大幅增长</td></tr>
+            <tr><td>2025</td><td>~17x</td><td>当前PE约17x（TTM）</td></tr>
+            <tr><td>当前(2026.6)</td><td>~17x</td><td>PEG仅0.25，估值偏低</td></tr>
+        </table>
+
+        <h3>4.4 产权比率 (Assets/Equity) 趋势</h3>
+        <table>
+            <tr>
+                <th>财年</th><th>总资产/股东权益</th><th>含义</th>
+            </tr>
+            <tr><td>2018</td><td>~1.2x</td><td>极低杠杆</td></tr>
+            <tr><td>2020</td><td>~1.3x</td><td>低杠杆</td></tr>
+            <tr><td>2022</td><td>~1.3x</td><td>低杠杆</td></tr>
+            <tr><td>2024</td><td>~1.3x</td><td>低杠杆</td></tr>
+            <tr><td>2025</td><td>~1.3x</td><td>低杠杆，财务极为安全</td></tr>
+        </table>
+        <div class="highlight">
+            <strong>巴菲特视角：</strong>产权比率长期维持在1.2-1.3x，意味着每1美元股东权益仅对应1.2-1.3美元资产，几乎没有债务杠杆。这是最健康的财务结构——所有增长都来自内生利润，而非借债。巴菲特常说"好公司不需要借很多钱"，Exelixis完全符合这一标准。
+        </div>
+    </div>
+
+    <!-- 五、竞争分析 -->
+    <div class="info-box">
+        <h2>五、竞争分析</h2>
+        
+        <h3>5.1 主要竞争对手</h3>
+        <table>
+            <tr>
+                <th>竞争对手</th>
+                <th>市值($B)</th>
+                <th>核心竞争领域</th>
+                <th>市场份额对比</th>
+            </tr>
+            <tr>
+                <td>默沙东 (Merck, MRK)</td>
+                <td>~$220</td>
+                <td>RCC一线IO+TKI（Keytruda+Inlyta）</td>
+                <td>Keytruda+Inlyta是CABOMETYX+Opdivo的主要竞争方案</td>
+            </tr>
+            <tr>
+                <td>百时美施贵宝 (BMS)</td>
+                <td>~$124</td>
+                <td>RCC一线IO双免（Opdivo+Yervoy）/ IO+TKI合作伙伴</td>
+                <td>Opdivo+Yervoy占RCC一线约25-30%份额；同时也是CABOMETYX+Opdivo方案的合作伙伴</td>
+            </tr>
+            <tr>
+                <td>辉瑞 (Pfizer, PFE)</td>
+                <td>~$150</td>
+                <td>RCC一线IO+TKI（Inlyta+ Bavencio）</td>
+                <td>Inlyta是Keytruda联合方案的TKI组件</td>
+            </tr>
+            <tr>
+                <td>诺华 (Novartis, NVS)</td>
+                <td>~$210</td>
+                <td>NET（Afinitor）/ RCC（未来belzutifan）</td>
+                <td>Afinitor是NET领域主要竞争者，但CABOMETYX已超越</td>
+            </tr>
+            <tr>
+                <td>默沙东 Welireg (belzutifan)</td>
+                <td>-</td>
+                <td>RCC新一代疗法</td>
+                <td>belzutifan是HIF-2α抑制剂，RCC新竞争者</td></tr>
+            <tr>
+                <td>Incyte (INCY)</td>
+                <td>~$19</td>
+                <td>肿瘤靶向药</td>
+                <td>规模较小，不同适应症</td>
+            </tr>
+        </table>
+
+        <h3>5.2 各适应症市场份额</h3>
+        <table>
+            <tr>
+                <th>适应症/市场</th>
+                <th>Exelixis份额</th>
+                <th>主要竞争者份额</th>
+            </tr>
+            <tr>
+                <td>RCC一线TKI+IO联合</td>
+                <td>~47%（TKI处方份额）</td>
+                <td>Keytruda+Inlyta ~35%，Opdivo+Yervoy ~18%</td>
+            </tr>
+            <tr>
+                <td>RCC二线口服疗法</td>
+                <td>领先地位</td>
+                <td>Sutent份额持续下降</td>
+            </tr>
+            <tr>
+                <td>NET二线口服药物</td>
+                <td>市场领导者</td>
+                <td>Afinitor份额被快速蚕食</td>
+            </tr>
+            <tr>
+                <td>HCC二线</td>
+                <td>主要玩家之一</td>
+                <td>Stivarga、Cyramza竞争</td>
+            </tr>
+        </table>
+
+        <h3>5.3 经济护城河评估</h3>
+        
+        <div class="moat-item">
+            <strong>🏰 品牌力（Brand Power）— 窄护城河</strong><br>
+            在处方药领域，"品牌力"更多体现为医生对药物的信任度和处方习惯。CABOMETYX在RCC领域已建立7年+的临床使用经验，肿瘤科医生对其疗效和安全性非常熟悉。但与消费品品牌不同，处方药的"品牌力"远不如临床数据重要——如果竞品显示出更好的疗效数据，医生会迅速切换。<br>
+            <strong>评级：★★☆☆☆（2/5）</strong> — 处方药品牌力有限，临床数据才是真正的护城河。
+        </div>
+
+        <div class="moat-item">
+            <strong>💰 成本优势（Cost Advantage）— 中等护城河</strong><br>
+            96%的毛利率意味着卡博替尼的制造成本极低（FY2025 COGS仅$8,370万），这为公司提供了巨大的定价灵活性和利润空间。但生物技术行业的"成本优势"主要来自专利保护下的定价权，而非真正的制造效率优势。专利到期后，仿制药将以更低价格进入市场。<br>
+            <strong>评级：★★★☆☆（3/5）</strong> — 专利期内成本优势显著，但不可持续。
+        </div>
+
+        <div class="moat-item">
+            <strong>🔄 网络效应（Network Effects）— 无护城河</strong><br>
+            处方药行业本质上不具备网络效应。更多患者使用卡博替尼不会使药物本身变得更好。<br>
+            <strong>评级：★☆☆☆☆（1/5）</strong> — 不适用。
+        </div>
+
+        <div class="moat-item">
+            <strong>📋 专利/知识产权（Patents/IP）— 宽护城河（但有时限）</strong><br>
+            这是Exelixis最核心的护城河。卡博替尼的美国专利预计2030年左右到期，在此之前，仿制药无法合法进入市场。专利保护赋予了公司独家定价权和市场独占权。但这是一条"有期限的护城河"——2030年后将面临仿制药冲击。Zanzalintinib作为新分子实体，拥有更长的专利保护期，是"护城河续命"的关键。<br>
+            <strong>评级：★★★★☆（4/5）</strong> — 专利期内护城河极宽，但有时限。
+        </div>
+
+        <div class="moat-item">
+            <strong>🔒 转换成本（Switching Costs）— 窄护城河</strong><br>
+            抗癌药的转换成本主要来自医生处方习惯和临床指南推荐。一旦卡博替尼被纳入NCCN指南推荐方案，医生倾向于遵循指南处方。但指南会随新数据更新，如果竞品显示更优疗效，指南推荐可能改变。患者层面的转换成本较低——抗癌药选择主要由医生和保险决定。<br>
+            <strong>评级：★★☆☆☆（2/5）</strong> — 临床指南提供一定粘性，但非永久壁垒。
+        </div>
+
+        <div class="moat-item">
+            <strong>📏 规模优势（Scale Advantages）— 中等护城河</strong><br>
+            Exelixis拥有约1,147名员工，其中包含成熟的肿瘤商业化团队（覆盖泌尿生殖系统和胃肠道肿瘤领域）。与Ipsen的全球合作网络覆盖欧洲和亚洲市场。年营收$23亿+的规模使其能够投入$8.25亿研发支出，远超小型biotech。但与大型制药公司（如默沙东年研发$300亿+）相比，规模优势有限。<br>
+            <strong>评级：★★★☆☆（3/5）</strong> — 在中型biotech中有规模优势，但远不及大药企。
+        </div>
+
+        <div class="highlight">
+            <strong>综合护城河评级：中等（专利驱动型）</strong><br>
+            Exelixis的护城河几乎完全由<strong>专利保护</strong>支撑。在专利期内，公司享有独家定价权和市场独占权，96%的毛利率和36%的ROE都是专利保护的直接产物。但这条护城河有明确的"到期日"——卡博替尼美国专利约2030年到期。巴菲特最欣赏的是"永久性"护城河（如可口可乐的品牌、Visa的网络效应），而Exelixis的护城河是"倒计时型"的。<strong>Zanzalintinib的成功与否，将决定这条护城河能否在卡博替尼专利到期后"续命"。</strong>
+        </div>
+    </div>
+
+    <!-- 六、利润分配分析 -->
+    <div class="info-box">
+        <h2>六、利润分配分析（2016-2025）</h2>
+        
+        <h3>6.1 利润分配总览（回购计入留存）</h3>
+        <table>
+            <tr>
+                <th>财年</th>
+                <th>净利润($M)</th>
+                <th>股息($M)</th>
+                <th>回购($M)</th>
+                <th>扩张CapEx($M)</th>
+                <th>留存金额($M)</th>
+                <th>留存比率</th>
+            </tr>
+            <tr><td>2016</td><td>-$188</td><td>$0</td><td>$0</td><td>~$15</td><td>-$188</td><td>N/A（亏损）</td></tr>
+            <tr><td>2017</td><td>$306</td><td>$0</td><td>$0</td><td>~$20</td><td>$306</td><td>100%</td></tr>
+            <tr><td>2018</td><td>$690</td><td>$0</td><td>$0</td><td>~$25</td><td>$690</td><td>100%</td></tr>
+            <tr><td>2019</td><td>$369</td><td>$0</td><td>$0</td><td>~$25</td><td>$369</td><td>100%</td></tr>
+            <tr><td>2020</td><td>$157</td><td>$0</td><td>$0</td><td>~$20</td><td>$157</td><td>100%</td></tr>
+            <tr><td>2021</td><td>$394</td><td>$0</td><td>$0</td><td>~$20</td><td>$394</td><td>100%</td></tr>
+            <tr><td>2022</td><td>$183</td><td>$0</td><td>$0</td><td>~$25</td><td>$183</td><td>100%</td></tr>
+            <tr><td>2023</td><td>$208</td><td>$0</td><td>$658</td><td>~$25</td><td>$208</td><td>100%</td></tr>
+            <tr><td>2024</td><td>$521</td><td>$0</td><td>$548</td><td>~$25</td><td>$521</td><td>100%</td></tr>
+            <tr><td>2025</td><td>$783</td><td>$0</td><td>$954</td><td>~$30</td><td>$783</td><td>100%</td></tr>
+        </table>
+        <p><strong>注：</strong>Exelixis不支付股息，因此留存金额=净利润，留存比率=100%。回购计入留存——回购减少股数、提升每股价值，与留存收益本质相同（利润保留在公司生态内）。FY2023起公司开始大规模回购，截至FY2025末累计回购$21.6亿，注销7,670万股，平均回购价$28.14/股。</p>
+
+        <h3>6.2 留存构成分析</h3>
+        <table>
+            <tr>
+                <th>财年</th>
+                <th>留存金额($M)</th>
+                <th>回购占比</th>
+                <th>再投资(CapEx+R&D)占比</th>
+                <th>净现金增加</th>
+            </tr>
+            <tr><td>2023</td><td>$208</td><td>316%（回购超净利润，动用现金储备）</td><td>~470%（R&D $10.4亿）</td><td>减少</td></tr>
+            <tr><td>2024</td><td>$521</td><td>105%（回购略超净利润）</td><td>~175%（R&D $9.10亿）</td><td>基本持平</td></tr>
+            <tr><td>2025</td><td>$783</td><td>122%（回购超净利润）</td><td>~105%（R&D $8.25亿）</td><td>减少</td></tr>
+        </table>
+        <div class="highlight">
+            <strong>巴菲特视角：</strong>Exelixis的利润分配策略极为激进——100%留存+大规模回购。自2023年3月启动回购计划以来，公司已累计回购$21.6亿，注销7,670万股（占总股本约23%），平均回购价仅$28.14/股。当前股价约$52.70，意味着这些回购已经创造了约87%的浮盈。<strong>这是极佳的资本配置——在低估时大量回购</strong>。巴菲特最欣赏的就是"在股价低于内在价值时积极回购"的管理层。Exelixis的管理层在这方面表现优秀。
+        </div>
+
+        <h3>6.3 回购时机评估</h3>
+        <table>
+            <tr>
+                <th>时间段</th>
+                <th>回购金额</th>
+                <th>平均回购价</th>
+                <th>当前股价</th>
+                <th>浮盈/浮亏</th>
+            </tr>
+            <tr><td>2023年3月-2025年12月</td><td>$21.6亿</td><td>$28.14</td><td>$52.70</td><td><span class="tag tag-green">+87%</span></td></tr>
+        </table>
+        <p>管理层在股价$20-40区间大规模回购，显示出对自身价值的强烈信心。当前股价已升至$52.70，但2025年10月董事会仍授权了额外的$7.50亿回购计划（至2026年12月），表明管理层认为当前估值仍有吸引力。</p>
+
+        <h3>6.4 可持续增长率</h3>
+        <table>
+            <tr>
+                <th>指标</th>
+                <th>数值</th>
+                <th>含义</th>
+            </tr>
+            <tr><td>ROE（FY2025）</td><td>36.2%</td><td>极高的资本回报率</td></tr>
+            <tr><td>留存比率</td><td>100%</td><td>全部利润留存</td></tr>
+            <tr><td>可持续增长率 = ROE × 留存比率</td><td>36.2%</td><td>不靠外部融资的内生增长极限</td></tr>
+        </table>
+        <div class="highlight">
+            <strong>芒格视角：</strong>36.2%的可持续增长率意味着，如果Exelixis能维持当前ROE，理论上可以不靠外部融资实现36%的年增长。当然，这在现实中不可能持续——随着收入基数增大和专利到期临近，ROE必然会下降。但这个数字说明了一件事：<strong>Exelixis当前的盈利能力极为强劲，完全不需要外部融资就能支撑增长</strong>。巴菲特偏好高留存比率+高ROE的公司——1美元留存至少创造1美元市值。Exelixis的1美元留存（通过回购）已创造约1.87美元市值，远超巴菲特标准。
+        </div>
+    </div>
+
+    <!-- 七、投资总结 -->
+    <div class="info-box">
+        <h2>七、投资总结</h2>
+
+        <h3>7.1 各维度评分</h3>
+        <table>
+            <tr>
+                <th>维度</th>
+                <th>评分</th>
+                <th>说明</th>
+            </tr>
+            <tr>
+                <td>业务可理解性</td>
+                <td><span class="star">⭐⭐⭐⭐</span> 4/5</td>
+                <td>商业模式清晰：研发抗癌药→获批→销售→收特许权使用费。但药物管线存在医学专业性门槛</td>
+            </tr>
+            <tr>
+                <td>护城河</td>
+                <td><span class="star">⭐⭐⭐</span> 3/5</td>
+                <td>专利期内护城河宽，但有明确到期日（~2030年）。zanzalintinib是护城河续命的关键</td>
+            </tr>
+            <tr>
+                <td>资本配置</td>
+                <td><span class="star">⭐⭐⭐⭐⭐</span> 5/5</td>
+                <td>在低估值时大规模回购（均价$28.14，当前$52.70），研发投入高效，无浪费性收购</td>
+            </tr>
+            <tr>
+                <td>财务安全</td>
+                <td><span class="star">⭐⭐⭐⭐⭐</span> 5/5</td>
+                <td>净现金$6.08亿，几乎无债务，经营现金流$9.25亿/年，财务极为安全</td>
+            </tr>
+            <tr>
+                <td>增长前景</td>
+                <td><span class="star">⭐⭐⭐⭐</span> 4/5</td>
+                <td>卡博替尼NET新适应症放量+zanzalintinib潜在获批（7项关键试验），但2030年后专利悬崖风险</td>
+            </tr>
+            <tr>
+                <td>估值吸引力</td>
+                <td><span class="star">⭐⭐⭐⭐</span> 4/5</td>
+                <td>PE ~17x，PEG ~0.25，FCF Yield ~6.6%，EV/EBITDA ~12.5x，对于36% ROE的公司估值偏低</td>
+            </tr>
+        </table>
+
+        <h3>7.2 估值对比</h3>
+        <table>
+            <tr>
+                <th>公司</th>
+                <th>PE</th>
+                <th>PS</th>
+                <th>EV/EBITDA</th>
+                <th>ROE</th>
+                <th>毛利率</th>
+            </tr>
+            <tr>
+                <td>Exelixis (EXEL)</td>
+                <td>17x</td>
+                <td>5.1x</td>
+                <td>12.5x</td>
+                <td>36%</td>
+                <td>96%</td>
+            </tr>
+            <tr>
+                <td>Incyte (INCY)</td>
+                <td>~22x</td>
+                <td>~6x</td>
+                <td>~15x</td>
+                <td>~15%</td>
+                <td>~92%</td>
+            </tr>
+            <tr>
+                <td>BioMarin (BMRN)</td>
+                <td>~35x</td>
+                <td>~8x</td>
+                <td>~20x</td>
+                <td>~4%</td>
+                <td>~85%</td>
+            </tr>
+            <tr>
+                <td>Regeneron (REGN)</td>
+                <td>~20x</td>
+                <td>~7x</td>
+                <td>~16x</td>
+                <td>~20%</td>
+                <td>~90%</td>
+            </tr>
+        </table>
+        <p>Exelixis在同行中估值偏低，但ROE最高、毛利率最高。PEG仅0.25（远低于1），表明市场可能低估了其增长潜力。</p>
+
+        <h3>7.3 关键风险</h3>
+        <div class="risk-item">
+            <strong>❶ 专利悬崖（最大风险）</strong><br>
+            卡博替尼美国专利约2030年到期。届时仿制药将进入市场，价格可能下跌80-90%，收入和利润将遭受毁灭性打击。这是投资Exelixis必须面对的核心风险。zanzalintinib的成功是"续命"的关键——如果能在2026-2027年成功获批CRC和其他适应症，到2030年时zanzalintinib的收入可能部分抵消卡博替尼的仿制药冲击。
+        </div>
+        <div class="risk-item">
+            <strong>❷ 单一产品依赖</strong><br>
+            FY2025约91.5%的营收来自卡博替尼。任何影响卡博替尼销售的不利事件（安全性问题、竞争加剧、医保谈判降价）都将严重影响公司整体业绩。
+        </div>
+        <div class="risk-item">
+            <strong>❸ Zanzalintinib监管风险</strong><br>
+            FDA正在审查zanzalintinib联合atezolizumab用于CRC的NDA，PDUFA目标日期为2026年12月。虽然STELLAR-303达到一个主要终点（ITT人群OS），但非肝转移亚组的OS数据尚不成熟。FDA可能要求更多数据，延迟或拒绝批准。
+        </div>
+        <div class="risk-item">
+            <strong>❹ 340B和Medicare Part D折扣压力</strong><br>
+            340B渠道和Medicare Part D的折扣持续影响卡博替尼的净价实现。FY2025 Q4毛利率28.5%（低于Q3），主要因340B和PHS渠道销量增加。这种压力可能持续。
+        </div>
+        <div class="risk-item">
+            <strong>❺ RCC一线竞争加剧</strong><br>
+            Keytruda+Inlyta组合在RCC一线持续抢占份额，默沙东Welireg（belzutifan）作为新一代HIF-2α抑制剂也在崛起。卡博替尼+Opdivo虽然仍是处方量第一的TKI+IO方案，但份额可能被蚕食。
+        </div>
+
+        <h3>7.4 关键催化剂</h3>
+        <div class="moat-item">
+            <strong>🔥 Zanzalintinib FDA批准（2026年12月PDUFA）</strong><br>
+            如果获批用于CRC三线+，将为Exelixis打开$50亿+的CRC市场，成为第二个商业franchise。这是2026年最重要的催化剂。
+        </div>
+        <div class="moat-item">
+            <strong>🔥 STELLAR-304数据读出（2026年中）</strong><br>
+            Zanzalintinib+nivolumab vs sunitinib在非透明细胞RCC的Phase 3数据。如果阳性，将进一步扩大zanzalintinib的适应症范围。
+        </div>
+        <div class="moat-item">
+            <strong>🔥 STELLAR-303非肝转移亚组OS最终数据</strong><br>
+            如果非肝转移CRC患者也显示OS获益，将强化zanzalintinib在更广泛CRC人群中的价值。
+        </div>
+        <div class="moat-item">
+            <strong>🔥 CABOMETYX NET持续放量</strong><br>
+            NET适应症FY2025收入超$1亿，仍在快速渗透中。GI销售团队扩张将加速社区医疗机构覆盖。
+        </div>
+
+        <h3>7.5 投资评级</h3>
+        <div class="highlight">
+            <strong>综合评级：买入（谨慎）</strong><br><br>
+            <strong>理由：</strong><br>
+            1. <strong>估值偏低：</strong>PE 17x、PEG 0.25、FCF Yield 6.6%，对于一家ROE 36%、毛利率96%的公司来说，估值明显偏低。市场可能过度定价了专利悬崖风险。<br>
+            2. <strong>资本配置优秀：</strong>管理层在低估值时大规模回购（均价$28.14），创造了约87%的浮盈，显示出卓越的资本配置能力。<br>
+            3. <strong>财务极度安全：</strong>净现金$6.08亿，几乎无债务，经营现金流$9.25亿/年。<br>
+            4. <strong>增长催化剂明确：</strong>zanzalintinib 2026年12月PDUFA、STELLAR-304数据读出、NET持续放量。<br><br>
+            <strong>风险提示：</strong><br>
+            1. 2030年专利悬崖是最大风险，投资者必须有4-5年的投资 horizon。<br>
+            2. 单一产品依赖度极高（91.5%），任何卡博替尼的不利事件都将严重影响业绩。<br>
+            3. Zanzalintinib尚未获批，存在监管风险。<br><br>
+            <strong>安全边际要求：</strong>考虑到专利悬崖风险，建议在当前价格基础上要求至少20-30%的安全边际。如果股价回调至$40-42区间（对应PE ~13-14x），将提供更有吸引力的入场点。
+        </div>
+    </div>
+
+    <script>
+        // ROE Chart
+        const roeCtx = document.getElementById('roeChart').getContext('2d');
+        new Chart(roeCtx, {
+            type: 'bar',
+            data: {
+                labels: ['2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025'],
+                datasets: [{
+                    label: 'ROE (%)',
+                    data: [-78.6, 54.1, 53.6, 19.0, 6.0, 10.5, 7.3, 9.2, 23.2, 36.2],
+                    backgroundColor: function(context) {
+                        const value = context.raw;
+                        return value < 0 ? 'rgba(192, 57, 43, 0.7)' : 'rgba(46, 134, 193, 0.7)';
+                    },
+                    borderColor: function(context) {
+                        const value = context.raw;
+                        return value < 0 ? 'rgba(192, 57, 43, 1)' : 'rgba(46, 134, 193, 1)';
+                    },
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: { display: true, text: 'Exelixis ROE趋势（2016-2025）' },
+                    legend: { display: false }
+                },
+                scales: {
+                    y: { title: { display: true, text: 'ROE (%)' } }
+                }
+            }
+        });
+
+        // Debt-to-Asset Chart
+        const debtCtx = document.getElementById('debtChart').getContext('2d');
+        new Chart(debtCtx, {
+            type: 'line',
+            data: {
+                labels: ['2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025'],
+                datasets: [{
+                    label: '资产负债率 (%)',
+                    data: [39, 29, 20, 19, 18, 17, 16, 15, 16, 17],
+                    borderColor: 'rgba(39, 174, 96, 1)',
+                    backgroundColor: 'rgba(39, 174, 96, 0.1)',
+                    fill: true,
+                    tension: 0.3
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: { display: true, text: 'Exelixis资产负债率趋势（2016-2025）' },
+                    legend: { display: false }
+                },
+                scales: {
+                    y: { title: { display: true, text: '资产负债率 (%)' }, min: 0, max: 50 }
+                }
+            }
+        });
+
+        // PE Chart
+        const peCtx = document.getElementById('peChart').getContext('2d');
+        new Chart(peCtx, {
+            type: 'line',
+            data: {
+                labels: ['2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025', '2026E'],
+                datasets: [{
+                    label: 'PE Ratio',
+                    data: [8, 5, 25, 50, 30, 40, 30, 18, 17, 17],
+                    borderColor: 'rgba(230, 126, 34, 1)',
+                    backgroundColor: 'rgba(230, 126, 34, 0.1)',
+                    fill: true,
+                    tension: 0.3
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: { display: true, text: 'Exelixis PE趋势' },
+                    legend: { display: false }
+                },
+                scales: {
+                    y: { title: { display: true, text: 'PE Ratio' }, min: 0 }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
