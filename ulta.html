@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ulta Beauty (ULTA) 价值投资分析</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f2f5;
+            color: #333;
+        }
+        h1 {
+            text-align: center;
+            color: #1a5276;
+            font-size: 2.2em;
+            margin-bottom: 5px;
+        }
+        h2 {
+            color: #1a5276;
+            border-bottom: 2px solid #2e86c1;
+            padding-bottom: 8px;
+            margin-top: 30px;
+        }
+        h3 {
+            color: #2c3e50;
+            margin-top: 20px;
+        }
+        .subtitle {
+            text-align: center;
+            color: #7f8c8d;
+            font-size: 1.1em;
+            margin-bottom: 30px;
+        }
+        .info-box {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            background-color: white;
+        }
+        th, td {
+            padding: 10px 14px;
+            text-align: left;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        th {
+            background-color: #1a5276;
+            color: white;
+            font-weight: bold;
+        }
+        tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        tr:hover {
+            background-color: #eaf2f8;
+        }
+        .highlight {
+            background: #fef9e7;
+            border-left: 4px solid #2e86c1;
+            padding: 15px 20px;
+            margin: 15px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .chart-container {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+        canvas {
+            max-height: 400px;
+        }
+        .tag {
+            display: inline-block;
+            background: #1a5276;
+            color: white;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.85em;
+            margin: 2px;
+        }
+        .tag-green {
+            background: #27ae60;
+        }
+        .tag-orange {
+            background: #e67e22;
+        }
+        .tag-red {
+            background: #c0392b;
+        }
+        a {
+            color: #1a5276;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            font-size: 1em;
+        }
+        .moat-item {
+            background: white;
+            border-radius: 8px;
+            padding: 15px 20px;
+            margin: 10px 0;
+            box-shadow: 0 1px 5px rgba(0,0,0,0.05);
+            border-left: 4px solid #2e86c1;
+        }
+        .moat-item strong {
+            color: #1a5276;
+        }
+        .risk-item {
+            background: white;
+            border-radius: 8px;
+            padding: 15px 20px;
+            margin: 10px 0;
+            box-shadow: 0 1px 5px rgba(0,0,0,0.05);
+            border-left: 4px solid #c0392b;
+        }
+        .star { color: #f39c12; }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back-link">← 返回索引</a>
+    
+    <h1>Ulta Beauty 奥特美容 (NASDAQ: ULTA)</h1>
+    <p class="subtitle">巴菲特/芒格式价值投资基本面分析 | 更新日期：2026年6月</p>
+
+    <!-- 一、公司基本信息 -->
+    <div class="info-box">
+        <h2>一、公司基本信息</h2>
+        <table>
+            <tr><td>公司全称</td><td>Ulta Beauty, Inc.</td></tr>
+            <tr><td>股票代码</td><td>NASDAQ: ULTA</td></tr>
+            <tr><td>市值</td><td>约200亿美元（2026年6月）</td></tr>
+            <tr><td>市值（美元）</td><td>≈ $20.0B USD</td></tr>
+            <tr><td>企业价值（EV）</td><td>≈ $23.8B USD（净债务约$3.8B）</td></tr>
+            <tr><td>成立时间</td><td>1990年</td></tr>
+            <tr><td>公司总部</td><td>美国伊利诺伊州博林布鲁克（Bolingbrook, IL）</td></tr>
+            <tr><td>最新收盘价</td><td>约$467（2026年6月初）</td></tr>
+            <tr><td>52周区间</td><td>$314 - $593</td></tr>
+            <tr><td>CEO</td><td>Kecia Steelman（2025年1月接任）</td></tr>
+            <tr><td>员工人数</td><td>约56,000人</td></tr>
+            <tr><td>行业</td><td>专业零售 / 美妆零售</td></tr>
+            <tr><td>门店数量</td><td>1,473家（美国）+ 81家（英国/爱尔兰，Space NK）</td></tr>
+            <tr><td>流通股数</td><td>约4,500万股</td></tr>
+            <tr><td>股息</td><td>无（不支付股息）</td></tr>
+            <tr><td>IPO时间</td><td>2007年</td></tr>
+        </table>
+    </div>
+
+    <!-- 二、业务分析 -->
+    <div class="info-box">
+        <h2>二、业务分析</h2>
+        
+        <h3>2.1 通俗解释：Ulta Beauty是干什么的？</h3>
+        <p>用最简单的话说，<strong>Ulta Beauty是美国最大的美妆零售商</strong>，就像一个"美妆超市"——从平价的开架品牌（如美宝莲、欧莱雅）到高端奢侈品牌（如香奈儿、迪奥），从化妆品、护肤品到香水、护发产品，再到美发沙龙服务，<strong>所有和美有关的东西，一站式全搞定</strong>。</p>
+        <p>Ulta最独特的卖点是<strong>"大众+高端"（Mass + Prestige）同店模式</strong>。传统上，高端美妆只在百货公司专柜或Sephora卖，平价品牌只在药妆店或超市卖。但Ulta打破了这种分层——同一个店里，你可以花$5买一支开架口红，也可以花$40买一支MAC口红，还能顺便做个头发。这种"全价格带+全品类+带沙龙"的组合，在美国零售业中独一无二。</p>
+        <p>Ulta的赚钱逻辑是：<strong>开大店（平均1万平方英尺）→ 吸引全年龄段、全收入层的美妆消费者 → 用忠诚度计划锁定客户（4,670万活跃会员贡献95%销售额）→ 通过零售媒体网络（UB Media）向品牌方出售广告位赚取高利润 → 用现金流开新店+回购股票</strong>。</p>
+        <p>2025年7月，Ulta收购了英国高端美妆零售商Space NK，首次进入国际市场；同时宣布将在2026年8月前结束与Target的店中店合作，重新聚焦自营渠道。</p>
+
+        <h3>2.2 业务板块及营收（FY2025，截至2026年1月31日）</h3>
+        <table>
+            <tr>
+                <th>业务板块</th>
+                <th>年营收</th>
+                <th>占总营收比例</th>
+                <th>关键品牌/产品</th>
+                <th>增长趋势</th>
+            </tr>
+            <tr>
+                <td>化妆品（Cosmetics）</td>
+                <td>~$47亿</td>
+                <td>约38%</td>
+                <td>MAC、NARS、Urban Decay、Ulta自有品牌</td>
+                <td><span class="tag tag-orange">成熟</span> 最大品类但增速放缓</td>
+            </tr>
+            <tr>
+                <td>护肤与健康（Skincare & Wellness）</td>
+                <td>~$31亿</td>
+                <td>约25%</td>
+                <td>CeraVe、La Roche-Posay、Drunk Elephant</td>
+                <td><span class="tag tag-green">快速增长</span> 受护肤意识提升驱动</td>
+            </tr>
+            <tr>
+                <td>护发（Haircare）</td>
+                <td>~$24亿</td>
+                <td>约19%</td>
+                <td>Redken、Olaplex、Drybar</td>
+                <td><span class="tag tag-orange">稳定</span> 沙龙渠道护城河</td>
+            </tr>
+            <tr>
+                <td>香水（Fragrance）</td>
+                <td>~$15亿</td>
+                <td>约12%</td>
+                <td>香奈儿、迪奥、YSL</td>
+                <td><span class="tag tag-green">强劲增长</span> 香水品类全球热潮</td>
+            </tr>
+            <tr>
+                <td>服务及其他（Services & Other）</td>
+                <td>~$5亿</td>
+                <td>约4%</td>
+                <td>美发、美甲、护肤、眉部服务</td>
+                <td><span class="tag tag-orange">恢复中</span> 疫后持续恢复</td>
+            </tr>
+            <tr>
+                <td>其他收入</td>
+                <td>~$1.7亿</td>
+                <td>约2%</td>
+                <td>UB Media零售媒体网络</td>
+                <td><span class="tag tag-green">高速增长</span> 高利润率新业务</td>
+            </tr>
+        </table>
+        <p><strong>注：</strong>FY2025总营收为$123.93亿，同比增长9.7%。同店销售增长5.4%，其中交易量增长2.4%，客单价增长3.0%。毛利率39.1%，营业利润率12.4%，稀释EPS $25.64。</p>
+
+        <h3>2.3 地域分布</h3>
+        <table>
+            <tr>
+                <th>地区</th>
+                <th>营收占比</th>
+                <th>说明</th>
+            </tr>
+            <tr>
+                <td>美国（自营门店+电商）</td>
+                <td>约98%</td>
+                <td>1,473家门店覆盖全美50州，核心市场</td>
+            </tr>
+            <tr>
+                <td>英国/爱尔兰（Space NK）</td>
+                <td>约2%</td>
+                <td>2025年7月收购，81家门店，国际扩张起点</td>
+            </tr>
+        </table>
+        <div class="highlight">
+            <strong>芒格视角：</strong>Ulta Beauty约98%的营收来自美国市场，是典型的"单一市场深度渗透"策略。美国美妆市场规模约$1,190亿，Ulta以$124亿营收占据约17%的市场份额，仅次于Sephora的18%。与Sephora的全球扩张不同，Ulta选择深耕美国——1,473家门店覆盖全美50州，远超Sephora的约600家独立门店。这种"密度优先"策略带来了更高的品牌认知度和运营效率，但也意味着国际增长空间尚未打开。Space NK收购是国际化的第一步试探。
+        </div>
+
+        <h3>2.4 商业模式总结</h3>
+        <p>Ulta Beauty的盈利模式可以概括为：<strong>开设大型美妆综合店（平均1万平方英尺）→ 提供"大众+高端"全价格带产品+沙龙服务 → 用Ultamate Rewards忠诚度计划锁定4,670万会员（贡献95%销售）→ 通过UB Media零售媒体网络向品牌方出售广告位（高利润率）→ 用经营现金流开新店+回购股票</strong>。公司不支付股息，利润主要用于门店扩张和股票回购。FY2025经营现金流约$15亿，自由现金流约$10.7亿，资本支出约$4.35亿。</p>
+    </div>
+
+    <!-- 三、业务板块产品竞争力分析 -->
+    <div class="info-box">
+        <h2>三、业务板块产品竞争力分析</h2>
+
+        <h3>3.1 零售产品销售（化妆品+护肤+护发+香水）产品竞争力分析</h3>
+        
+        <div class="moat-item">
+            <strong>1. 可替代性：<span class="tag tag-orange">高</span></strong>
+            <ul>
+                <li><strong>主要替代品：</strong>
+                    <ul>
+                        <li>Sephora（高端美妆专营，LVMH旗下，约600家美国门店+1,100家Kohl's店中店）</li>
+                        <li>Amazon（电商巨头，美妆品类快速增长）</li>
+                        <li>百货公司（Nordstrom、Macy's、Dillard's美妆专柜）</li>
+                        <li>药妆店/大众零售（CVS、Walgreens、Target、Walmart的开架美妆）</li>
+                        <li>品牌DTC官网（如MAC官网、Clinique官网）</li>
+                    </ul>
+                </li>
+                <li><strong>替代品体验差距：</strong>Sephora在高端品牌独家性和购物体验上优于Ulta；Amazon在价格和便利性上有优势；百货公司在奢侈品牌体验上更强。但<strong>没有任何单一渠道能同时提供Ulta的"全价格带+全品类+沙龙服务"组合</strong>——这是Ulta的独特定位。</li>
+                <li><strong>替代趋势：</strong>加速。Amazon美妆品类增长迅速，Sephora通过Kohl's合作渗透郊区市场（Ulta的传统腹地），品牌DTC持续分流。但美妆品类具有"试用驱动"特性，实体店体验仍不可替代。</li>
+            </ul>
+        </div>
+
+        <div class="moat-item">
+            <strong>2. 客户转换成本：<span class="tag tag-orange">中等</span></strong>
+            <ul>
+                <li><strong>财务转换成本：</strong>Ultamate Rewards积分体系提供一定财务锁定——Platinum会员（年消费$500+）和Diamond会员（年消费$1,200+）享有加速积分和积分不过期特权。会员积分可直接抵扣现金（每100积分=$3），形成"沉没成本"效应。但积分价值相对有限，不足以阻止客户流失。</li>
+                <li><strong>时间转换成本：</strong>低。消费者可以在不同零售商之间自由切换，无需学习新系统。</li>
+                <li><strong>心理转换成本：</strong>中等。4,670万会员的忠诚度计划创造了品牌习惯，尤其是Ulta的"积分换现金"比Sephora的积分换赠品更直观，消费者感知价值更高。</li>
+                <li><strong>捆绑转换成本：</strong>中等。Ulta的"产品+沙龙服务+电商+积分"形成了一定的捆绑效应——在一个渠道消费越多，积分越多，跨渠道切换的动力越弱。</li>
+                <li><strong>综合评估：</strong>美妆零售的转换成本主要来自忠诚度计划的积分锁定和购物习惯，而非技术或合同壁垒。中等水平，但4,670万会员的规模本身就是一种竞争优势。</li>
+            </ul>
+        </div>
+
+        <div class="moat-item">
+            <strong>3. 定价权：<span class="tag tag-orange">中等</span></strong>
+            <ul>
+                <li><strong>历史提价记录：</strong>Ulta作为零售商，产品定价受品牌方MSRP（建议零售价）约束，无法像品牌方那样自主提价。但Ulta可以通过减少促销力度、提高自有品牌占比、增加高毛利品类（如香水、护肤）来间接提升客单价和毛利率。</li>
+                <li><strong>提价vs通胀：</strong>FY2020-FY2025，Ulta的平均客单价从约$56增长到约$62，年化增速约2%，略低于CPI。但同店销售增长主要靠交易量驱动而非提价。</li>
+                <li><strong>提价vs客户流失：</strong>美妆零售高度价格敏感，Ulta无法显著提价而不流失客户。但忠诚度计划的积分折扣（相当于变相降价）帮助维持客户粘性。</li>
+                <li><strong>定价权来源：</strong>便利性（一站式购物）+ 品类广度（全价格带）+ 忠诚度计划锁定，而非品牌溢价或垄断地位。</li>
+                <li><strong>定价权趋势：</strong>稳定偏削弱。Amazon和Sephora的价格竞争压力持续增大，Ulta的定价权更多来自"便利性溢价"而非"品牌溢价"。</li>
+                <li><strong>巴菲特测试：</strong>如果Ulta全面提价10%，大量价格敏感型客户会转向Amazon或药妆店——Ulta的定价权主要来自便利性和品类广度，而非不可替代性。</li>
+            </ul>
+        </div>
+
+        <div class="moat-item">
+            <strong>综合竞争力评级：<span class="star">⭐⭐⭐</span>（3/5）</strong><br>
+            零售产品销售的可替代性高、转换成本中等、定价权中等——这是典型的零售业特征。Ulta的差异化在于"全价格带+全品类+沙龙"的独特组合，但这种差异化并非不可复制。Sephora正在通过Kohl's合作渗透大众市场，Amazon持续蚕食线上份额。Ulta的核心竞争力更多来自规模和忠诚度计划的网络效应，而非产品本身。
+        </div>
+
+        <h3>3.2 沙龙服务（Salon Services）产品竞争力分析</h3>
+        
+        <div class="moat-item">
+            <strong>1. 可替代性：<span class="tag tag-orange">中等</span></strong>
+            <ul>
+                <li><strong>主要替代品：</strong>独立美发沙龙（如Great Clips、Supercuts等连锁）、高端专业沙龙、家庭DIY、移动美发服务。</li>
+                <li><strong>替代品体验差距：</strong>Ulta的沙龙服务定位中端（$50-100/次），专业度不及高端沙龙，但便利性极强——购物+美发一站式完成。独立连锁沙龙（如Great Clips）价格更低但无产品零售协同。</li>
+                <li><strong>替代趋势：</strong>稳定。沙龙服务的核心是"信任关系"——消费者与发型师之间建立的信任难以替代。</li>
+            </ul>
+        </div>
+
+        <div class="moat-item">
+            <strong>2. 客户转换成本：<span class="tag tag-orange">中等</span></strong>
+            <ul>
+                <li><strong>财务转换成本：</strong>低。沙龙服务无合同绑定，客户可随时切换。</li>
+                <li><strong>时间转换成本：</strong>中等。找到一位满意的发型师需要时间，消费者不愿频繁更换。</li>
+                <li><strong>心理转换成本：</strong>高。"我的发型师"是一种高度个人化的信任关系，消费者对满意的发型师有强烈粘性。</li>
+                <li><strong>捆绑转换成本：</strong>高。沙龙客户在Ulta的零售消费显著高于非沙龙客户——沙龙服务将客户"锚定"在Ulta生态中，形成产品+服务的交叉销售闭环。</li>
+                <li><strong>综合评估：</strong>沙龙服务的转换成本主要来自发型师信任关系和产品+服务捆绑效应，中等偏高水平。</li>
+            </ul>
+        </div>
+
+        <div class="moat-item">
+            <strong>3. 定价权：<span class="tag tag-orange">中等</span></strong>
+            <ul>
+                <li><strong>历史提价记录：</strong>沙龙服务价格随通胀温和上涨，年增幅约2-3%。</li>
+                <li><strong>提价vs通胀：</strong>基本持平，无法显著跑赢通胀。</li>
+                <li><strong>定价权来源：</strong>便利性（购物+美发一站式）+ 信任关系（发型师粘性）+ 产品协同（沙龙客户零售消费更高）。</li>
+                <li><strong>定价权趋势：</strong>稳定。沙龙服务定价受当地市场竞争约束，但Ulta的"产品+服务"捆绑提供了差异化。</li>
+                <li><strong>巴菲特测试：</strong>如果Ulta沙龙提价10%，部分价格敏感客户会转向更便宜的连锁沙龙，但信任特定发型师的客户不会离开——定价权因人而异。</li>
+            </ul>
+        </div>
+
+        <div class="moat-item">
+            <strong>综合竞争力评级：<span class="star">⭐⭐⭐</span>（3/5）</strong><br>
+            沙龙服务是Ulta差异化的重要组成部分——它是唯一一家将零售与全服务沙龙结合的美妆零售商。沙龙服务的核心价值不在于直接利润（仅占4%营收），而在于<strong>将客户"锚定"在Ulta生态中</strong>，驱动更高的零售交叉销售。但沙龙服务本身的可替代性和定价权均为中等，不是独立的护城河。
+        </div>
+
+        <h3>3.3 UB Media零售媒体网络产品竞争力分析</h3>
+        
+        <div class="moat-item">
+            <strong>1. 可替代性：<span class="tag tag-green">低</span></strong>
+            <ul>
+                <li><strong>主要替代品：</strong>Amazon DSP、Walmart Connect、Instacart Ads等零售媒体网络；Google/Meta数字广告平台。</li>
+                <li><strong>替代品体验差距：</strong>UB Media的独特价值在于<strong>闭环美妆消费数据</strong>——4,670万会员的购买行为、偏好、忠诚度层级数据，是Amazon和Google无法复制的。品牌方可以在UB Media上精准投放广告，并直接追踪从曝光到购买的完整链路。</li>
+                <li><strong>替代趋势：</strong>稳定。零售媒体网络是数字广告增长最快的细分市场，美妆品牌方对UB Media的需求持续增长。</li>
+            </ul>
+        </div>
+
+        <div class="moat-item">
+            <strong>2. 客户转换成本：<span class="tag tag-green">高</span></strong>
+            <ul>
+                <li><strong>财务转换成本：</strong>品牌方在UB Media上的广告投入形成了一定的"广告支出惯性"——切换到其他平台需要重新学习投放策略和优化逻辑。</li>
+                <li><strong>时间转换成本：</strong>中等。设置和优化广告活动需要时间。</li>
+                <li><strong>捆绑转换成本：</strong>高。品牌方同时在Ulta零售和UB Media上投入，形成"零售+广告"双重绑定——如果减少UB Media投放，可能影响Ulta的货架位置和促销资源。</li>
+                <li><strong>综合评估：</strong>UB Media的转换成本来自闭环数据的不可替代性和零售+广告的双重绑定，处于较高水平。</li>
+            </ul>
+        </div>
+
+        <div class="moat-item">
+            <strong>3. 定价权：<span class="tag tag-green">强</span></strong>
+            <ul>
+                <li><strong>历史提价记录：</strong>UB Media作为新兴业务（2022年推出），广告单价持续上涨。CPM（千次曝光成本）随需求增长而提升。</li>
+                <li><strong>提价vs通胀：</strong>显著跑赢通胀。零售媒体网络的定价权来自稀缺的闭环数据，而非成本加成。</li>
+                <li><strong>定价权来源：</strong>4,670万会员的闭环消费数据 + 美妆品类垂直垄断地位 + 广告ROI可追踪性。</li>
+                <li><strong>定价权趋势：</strong>增强。随着会员基数增长和数据积累，UB Media的定价权在持续增强。</li>
+                <li><strong>巴菲特测试：</strong>如果UB Media提价10%，品牌方不太可能离开——因为Ulta是美妆品牌触达核心消费者的最有效渠道，且广告ROI可追踪、可证明。</li>
+            </ul>
+        </div>
+
+        <div class="moat-item">
+            <strong>综合竞争力评级：<span class="star">⭐⭐⭐⭐</span>（4/5）</strong><br>
+            UB Media是Ulta最具"护城河"特征的业务——闭环数据不可复制、品牌方双重绑定、定价权强且在增强。虽然目前营收占比小（约2%），但增速快、利润率极高（估计80%+毛利率），是Ulta未来利润增长的重要引擎。这是巴菲特最欣赏的"轻资产、高利润、网络效应"型业务。
+        </div>
+    </div>
+
+    <!-- 四、历史财务指标 -->
+    <div class="info-box">
+        <h2>四、历史财务指标（2016-2025）</h2>
+        
+        <h3>4.1 净资产收益率 (ROE) 趋势</h3>
+        <div class="chart-container">
+            <canvas id="roeChart"></canvas>
+        </div>
+        <table>
+            <tr>
+                <th>财年</th><th>ROE</th><th>备注</th>
+            </tr>
+            <tr><td>2016</td><td>22.0%</td><td>稳健增长期</td></tr>
+            <tr><td>2017</td><td>26.4%</td><td>同店销售强劲，门店扩张加速</td></tr>
+            <tr><td>2018</td><td>31.3%</td><td>运营杠杆释放</td></tr>
+            <tr><td>2019</td><td>36.2%</td><td>利润率持续改善</td></tr>
+            <tr><td>2020</td><td>37.1%</td><td>疫情前峰值</td></tr>
+            <tr><td>2021</td><td>8.8%</td><td>疫情冲击，门店关闭数周</td></tr>
+            <tr><td>2022</td><td>64.2%</td><td>强劲反弹+负股东权益效应</td></tr>
+            <tr><td>2023</td><td>63.4%</td><td>高ROE部分因回购导致权益基数低</td></tr>
+            <tr><td>2024</td><td>56.6%</td><td>权益恢复正值，ROE回归常态</td></tr>
+            <tr><td>2025</td><td>48.3%</td><td>利润增长+权益基数增大</td></tr>
+        </table>
+        <div class="highlight">
+            <strong>巴菲特视角：</strong>Ulta Beauty的ROE长期维持在极高水平（20-65%），远超零售行业平均（约15-20%）。但需注意2022-2023年的超高ROE（64-63%）部分是"财务幻觉"——大规模股票回购导致股东权益一度为负，使ROE失真。FY2024-2025随着权益恢复正值，ROE回归到更真实的48-57%水平。即便如此，48%的ROE在零售行业中仍然极为出色，反映了Ulta"轻资产+高周转+适度杠杆"的商业模式优势。巴菲特偏好ROE持续高于20%的公司，Ulta完全符合这一标准。
+        </div>
+
+        <h3>4.2 资产负债率 (Debt-to-Asset) 与产权比率趋势</h3>
+        <div class="chart-container">
+            <canvas id="debtChart"></canvas>
+        </div>
+        <table>
+            <tr>
+                <th>财年</th><th>总负债($M)</th><th>总资产($M)</th><th>资产负债率</th><th>产权比率(资产/权益)</th><th>长期债务/权益</th>
+            </tr>
+            <tr><td>2016</td><td>~$1,950</td><td>~$3,380</td><td>~57.7%</td><td>2.7x</td><td>0.66x</td></tr>
+            <tr><td>2017</td><td>~$2,300</td><td>~$3,920</td><td>~58.7%</td><td>2.8x</td><td>0.65x</td></tr>
+            <tr><td>2018</td><td>~$2,600</td><td>~$4,170</td><td>~62.4%</td><td>2.7x</td><td>0.64x</td></tr>
+            <tr><td>2019</td><td>~$2,900</td><td>~$4,380</td><td>~66.2%</td><td>2.9x</td><td>0.75x</td></tr>
+            <tr><td>2020</td><td>~$3,500</td><td>~$4,860</td><td>~72.0%</td><td>4.3x</td><td>1.56x</td></tr>
+            <tr><td>2021</td><td>~$3,600</td><td>~$5,040</td><td>~71.4%</td><td>4.3x</td><td>1.55x</td></tr>
+            <tr><td>2022</td><td>~$4,200</td><td>~$5,030</td><td>~83.5%</td><td>7.3x</td><td>2.10x</td></tr>
+            <tr><td>2023</td><td>~$4,500</td><td>~$5,300</td><td>~84.9%</td><td>5.4x</td><td>1.74x</td></tr>
+            <tr><td>2024</td><td>~$4,500</td><td>~$5,300</td><td>~84.9%</td><td>4.4x</td><td>1.50x</td></tr>
+            <tr><td>2025</td><td>~$4,900</td><td>~$6,100</td><td>~80.3%</td><td>4.1x</td><td>1.41x</td></tr>
+        </table>
+        <div class="highlight">
+            <strong>芒格视角：</strong>Ulta Beauty的资产负债率从2016年的58%上升至2023年的85%，主要原因是2020年发行$8亿债券（利用低利率环境）+ 大规模股票回购导致权益减少。长期债务/权益比从2019年的0.75x跳升至2020年的1.56x，此后维持在1.4-2.1x区间。这在零售行业中属于中等偏高水平——Sephora（LVMH私有）的杠杆率不公开，但Target和Walmart的长期债务/权益比分别约1.0x和0.5x。Ulta的杠杆策略是"用低息债务回购股票"，在利率上升周期中需关注利息覆盖能力。FY2025净债务/EBITDA约1.0x，仍在安全范围内。
+        </div>
+
+        <h3>4.3 市盈率 (PE) 趋势</h3>
+        <div class="chart-container">
+            <canvas id="peChart"></canvas>
+        </div>
+        <table>
+            <tr>
+                <th>财年</th><th>PE Ratio</th><th>备注</th>
+            </tr>
+            <tr><td>2016</td><td>~36x</td><td>高增长期，市场给予成长溢价</td></tr>
+            <tr><td>2017</td><td>~41x</td><td>持续高增长</td></tr>
+            <tr><td>2018</td><td>~24x</td><td>增速放缓+市场回调</td></tr>
+            <tr><td>2019</td><td>~26x</td><td>稳健增长</td></tr>
+            <tr><td>2020</td><td>~22x</td><td>疫情前估值</td></tr>
+            <tr><td>2021</td><td>~90x</td><td>疫情低利润导致PE失真</td></tr>
+            <tr><td>2022</td><td>~20x</td><td>利润恢复，PE回归</td></tr>
+            <tr><td>2023</td><td>~21x</td><td>估值稳定</td></tr>
+            <tr><td>2024</td><td>~19x</td><td>增速放缓，估值压缩</td></tr>
+            <tr><td>2025</td><td>~16x</td><td>市场担忧加剧，估值进一步压缩</td></tr>
+            <tr><td>当前(2026.6)</td><td>~18x</td><td>TTM PE约18x，10年中位数23x</td></tr>
+        </table>
+        <div class="highlight">
+            <strong>巴菲特视角：</strong>Ulta的PE从2016-2017年的36-41x（成长股估值）持续压缩至当前的18x（价值股估值），反映了市场对其增长放缓的担忧。10年PE中位数为23x，当前18x低于中位数22%。如果Ulta能维持5-7%的同店销售增长+新店扩张，当前估值可能偏低。但需警惕——零售业的"估值陷阱"很常见，低PE可能反映的是结构性衰退而非暂时性低估。
+        </div>
+
+        <h3>4.4 产权比率 (Assets/Equity) 趋势</h3>
+        <table>
+            <tr>
+                <th>财年</th><th>总资产/股东权益</th><th>含义</th>
+            </tr>
+            <tr><td>2016</td><td>2.7x</td><td>适度杠杆</td></tr>
+            <tr><td>2018</td><td>2.7x</td><td>适度杠杆</td></tr>
+            <tr><td>2020</td><td>4.3x</td><td>杠杆上升（发债+回购）</td></tr>
+            <tr><td>2022</td><td>7.3x</td><td>高杠杆（权益一度为负）</td></tr>
+            <tr><td>2024</td><td>4.4x</td><td>杠杆回落</td></tr>
+            <tr><td>2025</td><td>4.1x</td><td>杠杆继续回落，但仍高于疫情前</td></tr>
+        </table>
+        <div class="highlight">
+            <strong>巴菲特视角：</strong>产权比率从2016年的2.7x上升至2022年的7.3x，主要原因是大规模回购导致股东权益大幅缩减（甚至一度为负）。FY2024-2025随着利润积累，权益逐步恢复，产权比率回落至4.1x。巴菲特偏好低杠杆公司，但零售业适度杠杆是常态——Ulta的4.1x产权比率在零售业中处于中等水平，不算危险但也不算保守。
+        </div>
+    </div>
+
+    <!-- 五、竞争分析 -->
+    <div class="info-box">
+        <h2>五、竞争分析</h2>
+        
+        <h3>5.1 主要竞争对手</h3>
+        <table>
+            <tr>
+                <th>竞争对手</th>
+                <th>母公司</th>
+                <th>核心竞争领域</th>
+                <th>市场份额对比</th>
+            </tr>
+            <tr>
+                <td>Sephora</td>
+                <td>LVMH</td>
+                <td>高端美妆专营零售</td>
+                <td>美国美妆零售份额约18%，高于Ulta的17%</td>
+            </tr>
+            <tr>
+                <td>Amazon</td>
+                <td>Amazon.com</td>
+                <td>电商美妆销售</td>
+                <td>美国美妆电商份额约35%，整体份额约12%</td>
+            </tr>
+            <tr>
+                <td>Target（含Sephora店中店）</td>
+                <td>Target Corp</td>
+                <td>大众零售+高端美妆</td>
+                <td>Sephora at Kohl's约1,100家，Target自有美妆份额约5%</td>
+            </tr>
+            <tr>
+                <td>百货公司（Nordstrom/Macy's）</td>
+                <td>各自上市</td>
+                <td>高端美妆专柜</td>
+                <td>百货渠道份额持续下滑，约8-10%</td>
+            </tr>
+            <tr>
+                <td>药妆店（CVS/Walgreens）</td>
+                <td>各自上市</td>
+                <td>大众开架美妆</td>
+                <td>大众渠道份额约15%，但无高端品牌</td>
+            </tr>
+            <tr>
+                <td>Sally Beauty</td>
+                <td>SBH</td>
+                <td>专业护发零售</td>
+                <td>小众市场，与Ulta护发品类部分重叠</td>
+            </tr>
+        </table>
+
+        <h3>5.2 各渠道市场份额</h3>
+        <table>
+            <tr>
+                <th>渠道</th>
+                <th>美国美妆市场份额</th>
+                <th>趋势</th>
+            </tr>
+            <tr>
+                <td>Sephora（独立店+Kohl's）</td>
+                <td>~18%</td>
+                <td><span class="tag tag-green">上升</span> Kohl's合作扩大覆盖</td>
+            </tr>
+            <tr>
+                <td>Ulta Beauty</td>
+                <td>~17%</td>
+                <td><span class="tag tag-orange">稳定</span> 同店增长但份额增长放缓</td>
+            </tr>
+            <tr>
+                <td>Amazon</td>
+                <td>~12%</td>
+                <td><span class="tag tag-green">快速上升</span> 电商渗透加速</td>
+            </tr>
+            <tr>
+                <td>百货公司</td>
+                <td>~8-10%</td>
+                <td><span class="tag tag-red">下降</span> 百货渠道持续萎缩</td>
+            </tr>
+            <tr>
+                <td>药妆店/大众零售</td>
+                <td>~15%</td>
+                <td><span class="tag tag-red">缓慢下降</span> 被专业零售和电商分流</td>
+            </tr>
+            <tr>
+                <td>品牌DTC</td>
+                <td>~5-8%</td>
+                <td><span class="tag tag-green">上升</span> 品牌自建渠道</td>
+            </tr>
+        </table>
+
+        <h3>5.3 经济护城河评估</h3>
+        
+        <div class="moat-item">
+            <strong>🏰 品牌力（Brand Power）— 中等护城河</strong><br>
+            Ulta Beauty在美国消费者中拥有极高的品牌认知度——1,473家门店覆盖全美50州，4,670万忠诚度会员。但与Sephora的"奢侈品光环"不同，Ulta的品牌力更多来自"便利性"和"全价格带"的实用定位，而非情感溢价。消费者选择Ulta是因为"什么都有、很方便"，而非"只有Ulta才有"。<br>
+            <strong>评级：★★★☆☆（3/5）</strong> — 强认知度但弱情感溢价，实用型品牌力。
+        </div>
+
+        <div class="moat-item">
+            <strong>💰 成本优势（Cost Advantage）— 窄护城河</strong><br>
+            Ulta的规模（1,473家门店+$124亿营收）为其带来了采购议价权和供应链效率，39%的毛利率在专业零售中属于优秀水平。但与Amazon的物流效率和Walmart的采购规模相比，Ulta的成本优势有限。零售业的成本优势很容易被规模更大的竞争者侵蚀。<br>
+            <strong>评级：★★☆☆☆（2/5）</strong> — 规模带来一定优势，但不显著。
+        </div>
+
+        <div class="moat-item">
+            <strong>🔄 网络效应（Network Effects）— 中等护城河（忠诚度计划+零售媒体）</strong><br>
+            这是Ulta最被低估的护城河。4,670万Ultamate Rewards会员形成了"双边网络效应"：<strong>更多会员→更多消费数据→更精准的UB Media广告→更多品牌方投入→更好的会员体验→更多会员</strong>。这种数据飞轮效应与Amazon的飞轮逻辑类似，但在美妆垂直领域更加集中。UB Media的闭环数据是Amazon和Google无法复制的。<br>
+            <strong>评级：★★★☆☆（3/5）</strong> — 忠诚度计划+零售媒体形成数据飞轮，但网络效应仍在早期。
+        </div>
+
+        <div class="moat-item">
+            <strong>📋 专利/知识产权（Patents/IP）— 无护城河</strong><br>
+            零售业本质上不具备专利保护。Ulta销售的是其他品牌的产品，自有品牌（Ulta Beauty Collection）占比小且无专利壁垒。<br>
+            <strong>评级：★☆☆☆☆（1/5）</strong> — 不适用。
+        </div>
+
+        <div class="moat-item">
+            <strong>🔒 转换成本（Switching Costs）— 窄护城河</strong><br>
+            忠诚度计划的积分体系提供了一定的财务锁定，但消费者可以在不同零售商之间自由切换。沙龙服务的发型师信任关系提供了一定的心理转换成本，但不足以形成强壁垒。整体而言，美妆零售的转换成本较低。<br>
+            <strong>评级：★★☆☆☆（2/5）</strong> — 积分锁定+沙龙绑定提供一定粘性，但非永久壁垒。
+        </div>
+
+        <div class="moat-item">
+            <strong>📏 规模优势（Scale Advantages）— 中等护城河</strong><br>
+            Ulta以1,473家门店和$124亿营收成为美国最大的美妆零售商（按门店数计），规模优势体现在：1）采购议价权——品牌方需要Ulta的货架位置；2）门店密度——全美50州覆盖带来品牌认知度和物流效率；3）忠诚度计划规模——4,670万会员的数据价值随规模增长。但Sephora（LVMH旗下）的全球规模远超Ulta，且Amazon的电商规模无人能及。<br>
+            <strong>评级：★★★☆☆（3/5）</strong> — 美国市场规模领先，但全球规模不及Sephora。
+        </div>
+
+        <div class="highlight">
+            <strong>综合护城河评级：中等偏窄（规模+忠诚度计划驱动型）</strong><br>
+            Ulta Beauty的护城河主要由<strong>规模优势+忠诚度计划网络效应</strong>支撑。1,473家门店的全美覆盖和4,670万会员的数据飞轮是实实在在的竞争壁垒，但这种壁垒并非不可逾越——Sephora通过Kohl's合作正在渗透Ulta的郊区腹地，Amazon持续蚕食线上份额。与巴菲特最欣赏的"永久性护城河"（如可口可乐的品牌、Visa的网络效应）相比，Ulta的护城河更像是"运营效率型"——需要持续执行和创新来维持，而非天然不可撼动。<strong>UB Media零售媒体网络是Ulta护城河中最具"永久性"潜力的部分</strong>——闭环数据的不可复制性和品牌方双重绑定，使其成为Ulta未来护城河加深的关键。
+        </div>
+    </div>
+
+    <!-- 六、利润分配分析 -->
+    <div class="info-box">
+        <h2>六、利润分配分析（2016-2025）</h2>
+        
+        <h3>6.1 利润分配总览（回购计入留存）</h3>
+        <table>
+            <tr>
+                <th>财年</th>
+                <th>净利润($M)</th>
+                <th>股息($M)</th>
+                <th>回购($M)</th>
+                <th>扩张CapEx($M)</th>
+                <th>留存金额($M)</th>
+                <th>留存比率</th>
+            </tr>
+            <tr><td>2016</td><td>$410</td><td>$0</td><td>$788</td><td>~$200</td><td>$410</td><td>100%</td></tr>
+            <tr><td>2017</td><td>$555</td><td>$0</td><td>$440</td><td>~$240</td><td>$555</td><td>100%</td></tr>
+            <tr><td>2018</td><td>$659</td><td>$0</td><td>$1,057</td><td>~$260</td><td>$659</td><td>100%</td></tr>
+            <tr><td>2019</td><td>$706</td><td>$0</td><td>$488</td><td>~$280</td><td>$706</td><td>100%</td></tr>
+            <tr><td>2020</td><td>$176</td><td>$0</td><td>$4</td><td>~$230</td><td>$176</td><td>100%</td></tr>
+            <tr><td>2021</td><td>$986</td><td>$0</td><td>$388</td><td>~$260</td><td>$986</td><td>100%</td></tr>
+            <tr><td>2022</td><td>$1,242</td><td>$0</td><td>$1,171</td><td>~$300</td><td>$1,242</td><td>100%</td></tr>
+            <tr><td>2023</td><td>$1,291</td><td>$0</td><td>$1,306</td><td>~$310</td><td>$1,291</td><td>100%</td></tr>
+            <tr><td>2024</td><td>$1,201</td><td>$0</td><td>$964</td><td>~$350</td><td>$1,201</td><td>100%</td></tr>
+            <tr><td>2025</td><td>$1,153</td><td>$0</td><td>$891</td><td>~$435</td><td>$1,153</td><td>100%</td></tr>
+        </table>
+        <p><strong>注：</strong>Ulta Beauty不支付股息，因此留存金额=净利润，留存比率=100%。回购计入留存——回购减少股数、提升每股价值，与留存收益本质相同（利润保留在公司生态内）。自2013年启动回购计划以来，Ulta已累计回购2.68亿股（占2013年总股本的46.5%），总回购成本约$233亿。</p>
+
+        <h3>6.2 留存构成分析</h3>
+        <table>
+            <tr>
+                <th>财年</th>
+                <th>留存金额($M)</th>
+                <th>回购占留存比</th>
+                <th>再投资(CapEx)占留存比</th>
+                <th>净债务变动</th>
+            </tr>
+            <tr><td>2022</td><td>$1,242</td><td>94%</td><td>24%</td><td>增加（发债回购）</td></tr>
+            <tr><td>2023</td><td>$1,291</td><td>101%</td><td>24%</td><td>基本持平</td></tr>
+            <tr><td>2024</td><td>$1,201</td><td>80%</td><td>29%</td><td>基本持平</td></tr>
+            <tr><td>2025</td><td>$1,153</td><td>77%</td><td>38%</td><td>增加（Space NK收购）</td></tr>
+        </table>
+        <div class="highlight">
+            <strong>巴菲特视角：</strong>Ulta Beauty的利润分配策略是"100%留存+大规模回购"——不支付股息，将几乎所有利润通过回购和再投资保留在公司生态内。FY2022-2025，回购占留存比例高达77-101%，显示出管理层对自身价值的强烈信心。但需注意：<strong>2018年和2022年回购金额超过当年净利润</strong>，这意味着公司动用了借款来回购——在低利率环境下是合理的，但在利率上升周期中需谨慎。FY2025回购$8.91亿（占净利润77%），同时资本支出$4.35亿（占净利润38%），两者合计$13.26亿，超过净利润$11.53亿——差额由经营现金流和借款覆盖。
+        </div>
+
+        <h3>6.3 回购时机评估</h3>
+        <table>
+            <tr>
+                <th>时间段</th>
+                <th>回购金额</th>
+                <th>平均回购价</th>
+                <th>当前股价</th>
+                <th>浮盈/浮亏</th>
+            </tr>
+            <tr><td>FY2022 (Q1-Q4)</td><td>$11.71亿</td><td>~$358</td><td>$467</td><td><span class="tag tag-green">+30%</span></td></tr>
+            <tr><td>FY2023 (Q1-Q4)</td><td>$13.06亿</td><td>~$425</td><td>$467</td><td><span class="tag tag-green">+10%</span></td></tr>
+            <tr><td>FY2024 (Q1-Q4)</td><td>$9.64亿</td><td>~$435</td><td>$467</td><td><span class="tag tag-green">+7%</span></td></tr>
+            <tr><td>FY2025 (Q1-Q4)</td><td>$8.91亿</td><td>~$490</td><td>$467</td><td><span class="tag tag-red">-5%</span></td></tr>
+        </table>
+        <p>FY2025的回购平均价约$490，高于当前股价$467，出现短期浮亏。但FY2022-2023在低价区间的大规模回购（均价$358-$425）创造了显著浮盈。整体来看，Ulta的回购时机把握尚可——在2022年股价低迷时加速回购，在2024-2025股价高位时适度放缓。</p>
+
+        <h3>6.4 可持续增长率</h3>
+        <table>
+            <tr>
+                <th>指标</th>
+                <th>数值</th>
+                <th>含义</th>
+            </tr>
+            <tr><td>ROE（FY2025）</td><td>48.3%</td><td>极高的资本回报率</td></tr>
+            <tr><td>留存比率</td><td>100%</td><td>全部利润留存</td></tr>
+            <tr><td>可持续增长率 = ROE × 留存比率</td><td>48.3%</td><td>不靠外部融资的内生增长极限</td></tr>
+        </table>
+        <div class="highlight">
+            <strong>芒格视角：</strong>48.3%的可持续增长率理论上意味着Ulta可以不靠外部融资实现48%的年增长。但现实中，零售业的增长受门店扩张速度和同店增长上限约束——FY2026指引为6-7%的净销售增长。可持续增长率与实际增长率的巨大差距说明：<strong>Ulta的盈利能力远超其增长需求</strong>，多余的利润通过回购返还给股东。这是成熟零售公司的典型特征——巴菲特偏好这种"高ROE+适度增长+大量回购"的资本配置模式。
+        </div>
+    </div>
+
+    <!-- 七、投资总结 -->
+    <div class="info-box">
+        <h2>七、投资总结</h2>
+
+        <h3>7.1 各维度评分</h3>
+        <table>
+            <tr>
+                <th>维度</th>
+                <th>评分</th>
+                <th>说明</th>
+            </tr>
+            <tr>
+                <td>业务可理解性</td>
+                <td><span class="star">⭐⭐⭐⭐⭐</span> 5/5</td>
+                <td>美妆零售，商业模式简单直观：开店→卖货→赚差价+服务费。任何人都能理解</td>
+            </tr>
+            <tr>
+                <td>护城河</td>
+                <td><span class="star">⭐⭐⭐</span> 3/5</td>
+                <td>规模+忠诚度计划+UB Media数据飞轮构成中等护城河，但零售业护城河天然偏窄</td>
+            </tr>
+            <tr>
+                <td>资本配置</td>
+                <td><span class="star">⭐⭐⭐⭐</span> 4/5</td>
+                <td>100%留存+大规模回购，整体回购时机尚可。FY2025高位回购略有瑕疵</td>
+            </tr>
+            <tr>
+                <td>财务安全</td>
+                <td><span class="star">⭐⭐⭐</span> 3/5</td>
+                <td>净债务/EBITDA约1.0x，利息覆盖充足，但杠杆率高于疫情前水平</td>
+            </tr>
+            <tr>
+                <td>增长前景</td>
+                <td><span class="star">⭐⭐⭐</span> 3/5</td>
+                <td>同店增长5-7%+新店扩张（目标1,800+家）+国际扩张（Space NK），但增速放缓</td>
+            </tr>
+            <tr>
+                <td>估值吸引力</td>
+                <td><span class="star">⭐⭐⭐⭐</span> 4/5</td>
+                <td>PE 18x低于10年中位数23x，FCF Yield约5%，对于48% ROE的公司估值偏低</td>
+            </tr>
+        </table>
+
+        <h3>7.2 估值对比</h3>
+        <table>
+            <tr>
+                <th>公司</th>
+                <th>PE</th>
+                <th>PS</th>
+                <th>EV/EBITDA</th>
+                <th>ROE</th>
+                <th>毛利率</th>
+            </tr>
+            <tr>
+                <td>Ulta Beauty (ULTA)</td>
+                <td>18x</td>
+                <td>1.6x</td>
+                <td>11.5x</td>
+                <td>48%</td>
+                <td>39%</td>
+            </tr>
+            <tr>
+                <td>Sephora (LVMH内部)</td>
+                <td>N/A（私有）</td>
+                <td>~2.0x</td>
+                <td>~14x</td>
+                <td>~25%</td>
+                <td>~45%</td>
+            </tr>
+            <tr>
+                <td>Sally Beauty (SBH)</td>
+                <td>~7x</td>
+                <td>~0.5x</td>
+                <td>~7x</td>
+                <td>~-30%</td>
+                <td>~50%</td>
+            </tr>
+            <tr>
+                <td>Target (TGT)</td>
+                <td>~16x</td>
+                <td>~0.7x</td>
+                <td>~12x</td>
+                <td>~30%</td>
+                <td>~28%</td>
+            </tr>
+        </table>
+        <p>Ulta的PE 18x在同行中处于中等水平，但ROE 48%远超同行。PS 1.6x反映了零售业的低利润率特征。EV/EBITDA 11.5x对于48% ROE的公司来说偏低。</p>
+
+        <h3>7.3 关键风险</h3>
+        <div class="risk-item">
+            <strong>❶ Amazon和电商侵蚀（最大风险）</strong><br>
+            Amazon美妆品类增长迅速，价格透明、送货便捷、评论丰富，对Ulta的线上业务构成持续威胁。虽然美妆品类具有"试用驱动"特性（实体店仍有优势），但Amazon正在通过虚拟试妆工具和品牌合作缩小体验差距。如果美妆电商渗透率从当前的40%继续上升至50%+，Ulta的实体店流量将受到显著影响。
+        </div>
+        <div class="risk-item">
+            <strong>❷ Sephora竞争加剧</strong><br>
+            Sephora通过Kohl's合作（1,100+店中店）正在渗透Ulta的传统郊区腹地。Sephora在高端品牌独家性和购物体验上优于Ulta，如果其"高端下沉"策略成功，可能蚕食Ulta的高端客户群。同时，Sephora也在扩大其忠诚度计划规模，缩小与Ulta的会员差距。
+        </div>
+        <div class="risk-item">
+            <strong>❸ 同店销售增长放缓</strong><br>
+            FY2024同店销售仅增长0.7%，FY2025恢复至5.4%，但FY2026指引为4-5%。如果同店增长持续放缓至2-3%，Ulta的估值将进一步压缩。零售业"同店增长是生命线"——一旦同店转负，估值将大幅下杀。
+        </div>
+        <div class="risk-item">
+            <strong>❹ 杠杆风险</strong><br>
+            长期债务/权益比1.41x，净债务/EBITDA约1.0x。虽然利息覆盖充足，但在经济衰退+同店下滑的情景下，杠杆会放大利润波动。FY2020疫情期间净利润暴跌75%的教训值得铭记。
+        </div>
+        <div class="risk-item">
+            <strong>❺ 品牌方DTC分流</strong><br>
+            越来越多美妆品牌（如Fenty Beauty、Glossier）建立自己的DTC渠道，减少对零售商的依赖。如果品牌方缩减在Ulta的投入（货架位置+广告预算），Ulta的营收和UB Media收入都将受影响。
+        </div>
+
+        <h3>7.4 关键催化剂</h3>
+        <div class="moat-item">
+            <strong>🔥 UB Media零售媒体网络加速增长</strong><br>
+            UB Media目前营收占比仅约2%，但增速快、利润率极高（估计80%+毛利率）。如果UB Media营收在3-5年内增长至$5-10亿，将为Ulta带来显著的利润增量，并加深护城河。
+        </div>
+        <div class="moat-item">
+            <strong>🔥 国际扩张（Space NK整合+新市场）</strong><br>
+            Space NK收购是Ulta国际化的第一步。如果整合顺利，Ulta可能进入更多欧洲和亚洲市场，打开长期增长空间。
+        </div>
+        <div class="moat-item">
+            <strong>🔥 门店扩张至1,800+家</strong><br>
+            Ulta当前1,473家门店，管理层认为长期可扩展至1,800+家。每年净增40-50家新店，可贡献约3-4%的营收增长。
+        </div>
+        <div class="moat-item">
+            <strong>🔥 高端品牌引入（香奈儿、迪奥等）</strong><br>
+            Ulta近年来成功引入了香奈儿香水、迪奥彩妆等超高端品牌，提升了品牌形象和客单价。如果更多超高端品牌入驻，将进一步缩小与Sephora的品牌差距。
+        </div>
+
+        <h3>7.5 投资评级</h3>
+        <div class="highlight">
+            <strong>综合评级：持有偏买入</strong><br><br>
+            <strong>理由：</strong><br>
+            1. <strong>估值偏低：</strong>PE 18x低于10年中位数23x，FCF Yield约5%，对于一家ROE 48%的公司来说，估值有吸引力但不极端。<br>
+            2. <strong>护城河中等：</strong>规模+忠诚度计划+UB Media构成中等护城河，但零售业护城河天然偏窄，需持续执行来维持。<br>
+            3. <strong>增长放缓：</strong>同店增长从FY2023的5.4%可能逐步回落至3-4%，新店扩张贡献3-4%，总营收增长6-7%。这不是"高增长"故事。<br>
+            4. <strong>资本配置合理：</strong>100%留存+大规模回购，管理层对资本配置的态度积极，但FY2025高位回购略有瑕疵。<br><br>
+            <strong>风险提示：</strong><br>
+            1. Amazon和Sephora的竞争压力持续增大，是最大的结构性风险。<br>
+            2. 同店增长如果持续低于3%，估值可能进一步压缩。<br>
+            3. 杠杆率高于疫情前水平，经济衰退情景下利润波动会被放大。<br><br>
+            <strong>安全边际要求：</strong>考虑到零售业护城河偏窄和竞争加剧，建议在当前价格基础上要求至少15-20%的安全边际。如果股价回调至$380-$400区间（对应PE ~14-15x），将提供更有吸引力的入场点。当前PE 18x处于合理区间，但尚未达到"显著低估"的水平。
+        </div>
+    </div>
+
+    <script>
+        // ROE Chart
+        const roeCtx = document.getElementById('roeChart').getContext('2d');
+        new Chart(roeCtx, {
+            type: 'bar',
+            data: {
+                labels: ['2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025'],
+                datasets: [{
+                    label: 'ROE (%)',
+                    data: [22.0, 26.4, 31.3, 36.2, 37.1, 8.8, 64.2, 63.4, 56.6, 48.3],
+                    backgroundColor: function(context) {
+                        const value = context.raw;
+                        return value < 0 ? 'rgba(192, 57, 43, 0.7)' : 'rgba(46, 134, 193, 0.7)';
+                    },
+                    borderColor: function(context) {
+                        const value = context.raw;
+                        return value < 0 ? 'rgba(192, 57, 43, 1)' : 'rgba(46, 134, 193, 1)';
+                    },
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: { display: true, text: 'Ulta Beauty ROE趋势（2016-2025）' },
+                    legend: { display: false }
+                },
+                scales: {
+                    y: { title: { display: true, text: 'ROE (%)' } }
+                }
+            }
+        });
+
+        // Debt-to-Asset Chart
+        const debtCtx = document.getElementById('debtChart').getContext('2d');
+        new Chart(debtCtx, {
+            type: 'line',
+            data: {
+                labels: ['2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025'],
+                datasets: [{
+                    label: '资产负债率 (%)',
+                    data: [57.7, 58.7, 62.4, 66.2, 72.0, 71.4, 83.5, 84.9, 84.9, 80.3],
+                    borderColor: 'rgba(230, 126, 34, 1)',
+                    backgroundColor: 'rgba(230, 126, 34, 0.1)',
+                    fill: true,
+                    tension: 0.3
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: { display: true, text: 'Ulta Beauty资产负债率趋势（2016-2025）' },
+                    legend: { display: false }
+                },
+                scales: {
+                    y: { title: { display: true, text: '资产负债率 (%)' }, min: 0, max: 100 }
+                }
+            }
+        });
+
+        // PE Chart
+        const peCtx = document.getElementById('peChart').getContext('2d');
+        new Chart(peCtx, {
+            type: 'line',
+            data: {
+                labels: ['2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025'],
+                datasets: [{
+                    label: 'PE Ratio',
+                    data: [36, 41, 24, 26, 22, 90, 20, 21, 19, 16],
+                    borderColor: 'rgba(39, 174, 96, 1)',
+                    backgroundColor: 'rgba(39, 174, 96, 0.1)',
+                    fill: true,
+                    tension: 0.3
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: { display: true, text: 'Ulta Beauty PE趋势（2016-2025）' },
+                    legend: { display: false }
+                },
+                scales: {
+                    y: { title: { display: true, text: 'PE Ratio' }, min: 0, max: 100 }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
