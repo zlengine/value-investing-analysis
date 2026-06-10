@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zoetis 硕腾 (ZTS) 价值投资分析</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body { font-family: 'Segoe UI', Arial, sans-serif; margin: 0; padding: 20px; background-color: #f0f2f5; color: #333; }
+        h1 { text-align: center; color: #1a5276; font-size: 2.2em; margin-bottom: 5px; }
+        h2 { color: #1a5276; border-bottom: 2px solid #2e86c1; padding-bottom: 8px; margin-top: 30px; }
+        h3 { color: #2c3e50; margin-top: 20px; }
+        .subtitle { text-align: center; color: #7f8c8d; font-size: 1.1em; margin-bottom: 30px; }
+        .info-box { background: white; border-radius: 10px; padding: 25px; margin: 20px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.08); }
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; background-color: white; }
+        th, td { padding: 10px 14px; text-align: left; border-bottom: 1px solid #e0e0e0; }
+        th { background-color: #1a5276; color: white; font-weight: bold; }
+        tr:nth-child(even) { background-color: #f8f9fa; }
+        tr:hover { background-color: #eaf2f8; }
+        .highlight { background: #fef9e7; border-left: 4px solid #2e86c1; padding: 15px 20px; margin: 15px 0; border-radius: 0 8px 8px 0; }
+        .chart-container { background: white; border-radius: 10px; padding: 25px; margin: 20px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.08); }
+        canvas { max-height: 400px; }
+        .tag { display: inline-block; background: #1a5276; color: white; padding: 3px 10px; border-radius: 12px; font-size: 0.85em; margin: 2px; }
+        .tag-green { background: #27ae60; }
+        .tag-orange { background: #e67e22; }
+        .tag-red { background: #c0392b; }
+        a { color: #1a5276; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        .back-link { display: inline-block; margin-bottom: 20px; font-size: 1em; }
+        .moat-item { background: white; border-radius: 8px; padding: 15px 20px; margin: 10px 0; box-shadow: 0 1px 5px rgba(0,0,0,0.05); border-left: 4px solid #2e86c1; }
+        .moat-item strong { color: #1a5276; }
+        .risk-item { background: white; border-radius: 8px; padding: 15px 20px; margin: 10px 0; box-shadow: 0 1px 5px rgba(0,0,0,0.05); border-left: 4px solid #c0392b; }
+        .star { color: #f39c12; }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back-link">← 返回索引</a>
+    <h1>Zoetis 硕腾 (NYSE: ZTS)</h1>
+    <p class="subtitle">巴菲特/芒格式价值投资基本面分析 | 更新日期：2026年6月</p>
+
+    <!-- 一、公司基本信息 -->
+    <div class="info-box">
+        <h2>一、公司基本信息</h2>
+        <table>
+            <tr><td>公司全称</td><td>Zoetis Inc.（硕腾公司）</td></tr>
+            <tr><td>股票代码</td><td>NYSE: ZTS</td></tr>
+            <tr><td>市值</td><td>约340亿美元（2026年6月）</td></tr>
+            <tr><td>企业价值（EV）</td><td>≈ $40.0B USD（净债务约$6B）</td></tr>
+            <tr><td>成立时间</td><td>1952年（前身为辉瑞动物保健部门），2013年从辉瑞分拆独立上市</td></tr>
+            <tr><td>公司总部</td><td>美国新泽西州帕西帕尼（Parsippany, NJ）</td></tr>
+            <tr><td>最新收盘价</td><td>约$81（2026年6月初）</td></tr>
+            <tr><td>52周区间</td><td>$72.38 - $172.23</td></tr>
+            <tr><td>CEO</td><td>Kristin Peck（2019年起任CEO）</td></tr>
+            <tr><td>CFO</td><td>Wetteny Joseph</td></tr>
+            <tr><td>员工人数</td><td>约14,000人</td></tr>
+            <tr><td>行业</td><td>动物保健 / 兽药</td></tr>
+            <tr><td>流通股数</td><td>约4.2亿股</td></tr>
+            <tr><td>股息</td><td>$2.12/年（季度$0.53），股息率约2.6%</td></tr>
+            <tr><td>股息连续增长</td><td>连续12年增长（自2013年独立上市以来每年增息）</td></tr>
+            <tr><td>IPO时间</td><td>2013年2月1日</td></tr>
+            <tr><td>全球覆盖</td><td>100+国家，8个核心物种，15个治疗领域</td></tr>
+            <tr><td>研发投入</td><td>FY2025研发支出$6.98亿（占营收7.4%）</td></tr>
+        </table>
+    </div>
+
+    <!-- 二、业务分析 -->
+    <div class="info-box">
+        <h2>二、业务分析</h2>
+        <h3>2.1 通俗解释：Zoetis是干什么的？</h3>
+        <p>用最简单的话说，<strong>Zoetis（硕腾）是全球最大的动物保健公司</strong>——它做的事情就是给动物看病、治病、防病。就像人类有辉瑞、强生做药，动物也有自己的"辉瑞"，那就是Zoetis。</p>
+        <p>Zoetis的业务分两大块：<strong>宠物药</strong>（伴侣动物，占约68%营收）和<strong>畜禽药</strong>（生产动物，占约32%营收）。宠物药是增长引擎——当你的狗得了皮肤病、你的猫关节疼、你的宠物需要驱虫，兽医开的药很可能就是Zoetis的产品。畜禽药是稳健底盘——全球养猪场、养牛场、养鸡场用的疫苗和抗生素，很多也来自Zoetis。</p>
+        <p>Zoetis最厉害的地方是<strong>研发能力</strong>——自2013年独立以来累计投入$60亿研发，拥有2000+专利，每年推出1-2款"重磅炸弹"产品（年销超1亿美元）。它把人类医药领域最前沿的技术（如单克隆抗体）应用到动物身上——Librela（犬关节炎）和Solensia（猫关节炎）就是全球首批宠物单抗药物，开创了全新的治疗领域。</p>
+        <p>Zoetis的赚钱逻辑是：<strong>研发创新药→获得专利保护→通过兽医渠道销售（处方药壁垒）→宠物终身复购（慢性病需持续用药）→高毛利率（约72%）→强劲现金流→再投入研发+回购+分红</strong>。这是一个典型的"研发驱动型"飞轮。</p>
+
+        <h3>2.2 业务板块及营收（FY2025）</h3>
+        <table>
+            <tr><th>业务板块</th><th>年营收</th><th>占总营收比例</th><th>关键品牌/产品</th><th>增长趋势</th></tr>
+            <tr><td>伴侣动物</td><td>~$64亿</td><td>约68%</td><td>Simparica Trio、Apoquel/Cytopoint、Librela/Solensia</td><td><span class="tag tag-green">增长引擎</span></td></tr>
+            <tr><td>畜禽动物</td><td>~$30亿</td><td>约32%</td><td>Draxxin、Excede、Bovi-Shield、禽用疫苗</td><td><span class="tag tag-orange">稳健</span></td></tr>
+        </table>
+        <p><strong>注：</strong>FY2025总营收$94.67亿（同比+2%，有机+6%）。GAAP净利润$26.73亿（EPS $6.02），调整EPS $6.41。经营现金流$29.04亿，自由现金流$22.83亿（FCF利润率24.1%）。毛利率71.8%，营业利润率37.5%。</p>
+
+        <h3>2.3 按产品类别拆分</h3>
+        <table>
+            <tr><th>产品类别</th><th>营收占比</th><th>说明</th></tr>
+            <tr><td>驱虫药</td><td>约25%</td><td>Simparica Trio（年销$20亿+，市占50%+）、ProHeart</td></tr>
+            <tr><td>皮肤科</td><td>约16%</td><td>Apoquel（口服止痒）、Cytopoint（注射止痒单抗）</td></tr>
+            <tr><td>疼痛与镇静</td><td>约10%</td><td>Librela（犬关节炎单抗）、Solensia（猫关节炎单抗）</td></tr>
+            <tr><td>疫苗</td><td>约20%</td><td>犬猫疫苗、畜禽疫苗</td></tr>
+            <tr><td>抗感染药</td><td>约12%</td><td>Draxxin、Excede</td></tr>
+            <tr><td>诊断</td><td>约7%</td><td>VetScan诊断设备、基因检测、AI诊断</td></tr>
+            <tr><td>其他</td><td>约10%</td><td>营养品、生殖激素、生物器械</td></tr>
+        </table>
+
+        <h3>2.4 地域分布</h3>
+        <table>
+            <tr><th>地区</th><th>营收占比</th><th>说明</th></tr>
+            <tr><td>美国</td><td>约55%</td><td>最大市场，FY2025同比-2%</td></tr>
+            <tr><td>欧洲/中东/非洲</td><td>约22%</td><td>第二大市场</td></tr>
+            <tr><td>亚太/拉美/加拿大</td><td>约23%</td><td>增长最快区域，年增8-10%</td></tr>
+        </table>
+        <div class="highlight">
+            <strong>芒格视角：</strong>Zoetis约55%营收来自美国。FY2025美国营收同比下降2%，反映宠物消费放缓短期压力。国际市场（45%营收）增长更快（有机+9%），尤其是中国和拉美市场。宠物经济的长期趋势（宠物家人化、医疗支出刚性）不会改变，短期放缓提供了更好的入场机会。
+        </div>
+    </div>
+
+    <!-- 三、业务板块产品竞争力分析 -->
+    <div class="info-box">
+        <h2>三、业务板块产品竞争力分析</h2>
+        <h3>3.1 伴侣动物药品（驱虫+皮肤+疼痛+疫苗）</h3>
+        <div class="moat-item">
+            <strong>1. 可替代性：<span class="tag tag-green">低</span></strong>
+            <ul>
+                <li><strong>主要替代品：</strong>Elanco Credelio/NexGard、Merck BRAVECTO/Numelvi、BI NexGard Combo、仿制药</li>
+                <li><strong>替代品体验差距：</strong>Zoetis核心产品均为首创或同类最优。Simparica Trio是唯一三合一口服驱虫药；Apoquel/Cytopoint是唯一靶向止痒药物；Librela/Solensia是全球首批宠物单抗。</li>
+                <li><strong>替代趋势：</strong>稳定偏加速。Merck Numelvi直接挑战Librela，但Zoetis首创优势和品牌忠诚度仍构成显著壁垒。</li>
+            </ul>
+        </div>
+        <div class="moat-item">
+            <strong>2. 客户转换成本：<span class="tag tag-green">高</span></strong>
+            <ul>
+                <li><strong>心理转换成本：</strong>高。宠物主对"有效的药"有强烈粘性，兽医也倾向继续使用已验证有效的产品。</li>
+                <li><strong>捆绑转换成本：</strong>高。诊所同时使用驱虫、皮肤、疼痛、疫苗产品线，形成"一站式解决方案"。</li>
+                <li><strong>综合评估：</strong>处方权壁垒+品牌信任+渠道绑定，转换成本较高。兽医是真正决策者，Zoetis覆盖90%+兽医诊所。</li>
+            </ul>
+        </div>
+        <div class="moat-item">
+            <strong>3. 定价权：<span class="tag tag-green">强</span></strong>
+            <ul>
+                <li><strong>历史提价记录：</strong>每年2-3%价格提升，跑赢CPI。</li>
+                <li><strong>提价vs客户流失：</strong>流失率极低。宠物主对"让宠物不再痛苦"的药物价格敏感度低。</li>
+                <li><strong>定价权来源：</strong>专利保护+处方权壁垒+品牌信任+临床刚需。</li>
+                <li><strong>定价权趋势：</strong>稳定偏削弱。专利陆续到期（2027-2030年），但创新管线持续补充。</li>
+                <li><strong>巴菲特测试：</strong>提价10%，宠物主不太可能让宠物停药。</li>
+            </ul>
+        </div>
+        <div class="moat-item">
+            <strong>综合竞争力评级：<span class="star">⭐⭐⭐⭐</span>（4/5）</strong><br>
+            典型的"专利药+处方壁垒"型护城河。宠物药没有人药医保议价压力，定价权更强。核心风险是专利到期，但创新管线持续补充。
+        </div>
+
+        <h3>3.2 畜禽动物药品（疫苗+抗感染+驱虫）</h3>
+        <div class="moat-item">
+            <strong>1. 可替代性：<span class="tag tag-orange">中等</span></strong>
+            <ul>
+                <li><strong>主要替代品：</strong>Merck、BI、Elanco、Phibro的畜禽产品。生物安全措施可部分替代。</li>
+                <li><strong>替代品体验差距：</strong>畜禽药品更接近"大宗商品"，同类产品间疗效差异较小。</li>
+            </ul>
+        </div>
+        <div class="moat-item">
+            <strong>2. 客户转换成本：<span class="tag tag-orange">中等</span></strong>
+            <ul>
+                <li>养殖场更理性、更价格敏感，品牌忠诚度不如宠物主。</li>
+            </ul>
+        </div>
+        <div class="moat-item">
+            <strong>3. 定价权：<span class="tag tag-orange">中等</span></strong>
+            <ul>
+                <li><strong>历史提价记录：</strong>年增幅约1-2%，基本持平通胀。</li>
+                <li><strong>巴菲特测试：</strong>提价10%，大型养殖场会认真评估替代品。</li>
+            </ul>
+        </div>
+        <div class="moat-item">
+            <strong>综合竞争力评级：<span class="star">⭐⭐⭐</span>（3/5）</strong><br>
+            典型的"规模+渠道"型竞争，护城河不如伴侣动物药品深。但提供收入多样性和抗周期性。
+        </div>
+
+        <h3>3.3 诊断与数字化</h3>
+        <div class="moat-item">
+            <strong>1. 可替代性：<span class="tag tag-green">低</span></strong>
+            <ul>
+                <li><strong>主要替代品：</strong>IDEXX（诊断市场约50%份额）、Heska、Antech。</li>
+                <li><strong>替代品体验差距：</strong>IDEXX诊断设备更强，但Zoetis"诊断+治疗"一体化方案是IDEXX无法提供的。</li>
+            </ul>
+        </div>
+        <div class="moat-item">
+            <strong>2. 客户转换成本：<span class="tag tag-green">高</span></strong>
+            <ul>
+                <li>"诊断+治疗"闭环创造独特捆绑效应——更换诊断系统意味着打破闭环。</li>
+            </ul>
+        </div>
+        <div class="moat-item">
+            <strong>3. 定价权：<span class="tag tag-green">强</span></strong>
+            <ul>
+                <li>"剃刀-刀片"模式（设备低价，试剂持续收费）+闭环不可替代性。</li>
+                <li>定价权趋势：增强。AI诊断和基因检测普及。</li>
+            </ul>
+        </div>
+        <div class="moat-item">
+            <strong>综合竞争力评级：<span class="star">⭐⭐⭐⭐</span>（4/5）</strong><br>
+            最具"平台化"潜力的板块。巴菲特最欣赏"剃刀-刀片"模式——一旦客户购买诊断设备，就会持续购买试剂和服务。
+        </div>
+    </div>
+
+    <!-- 四、历史财务指标 -->
+    <div class="info-box">
+        <h2>四、历史财务指标（2016-2025）</h2>
+        <h3>4.1 净资产收益率 (ROE) 趋势</h3>
+        <div class="chart-container"><canvas id="roeChart"></canvas></div>
+        <table>
+            <tr><th>财年</th><th>ROE</th><th>备注</th></tr>
+            <tr><td>2016</td><td>55.2%</td><td>分拆后运营优化期</td></tr>
+            <tr><td>2017</td><td>48.8%</td><td>营收增长9%，利润率改善</td></tr>
+            <tr><td>2018</td><td>65.4%</td><td>税改利好+利润大增</td></tr>
+            <tr><td>2019</td><td>55.4%</td><td>ROE回落至常态水平</td></tr>
+            <tr><td>2020</td><td>43.5%</td><td>疫情初期，权益基数增大</td></tr>
+            <tr><td>2021</td><td>44.8%</td><td>宠物经济爆发，营收增长16%</td></tr>
+            <tr><td>2022</td><td>48.0%</td><td>Simparica Trio放量</td></tr>
+            <tr><td>2023</td><td>46.9%</td><td>稳健增长</td></tr>
+            <tr><td>2024</td><td>52.1%</td><td>利润率改善+回购缩股</td></tr>
+            <tr><td>2025</td><td>80.3%</td><td>超高ROE部分因回购导致权益基数大幅缩减</td></tr>
+        </table>
+        <div class="highlight">
+            <strong>巴菲特视角：</strong>Zoetis的ROE长期维持在44-65%的极高水平，10年平均约54%，远超制药行业平均（约15-20%）。FY2025的80.3%超高ROE部分是"财务幻觉"——大规模股票回购导致股东权益缩减。即便剔除这一因素，真实运营ROIC约24-26%，仍然极为出色。巴菲特偏好ROE持续高于20%的公司，Zoetis完全符合。但需注意：高ROE部分来自杠杆。
+        </div>
+
+        <h3>4.2 资产负债率与产权比率趋势</h3>
+        <div class="chart-container"><canvas id="debtChart"></canvas></div>
+        <table>
+            <tr><th>财年</th><th>总负债($M)</th><th>总资产($M)</th><th>资产负债率</th><th>产权比率</th><th>长期债务/权益</th></tr>
+            <tr><td>2016</td><td>~7,000</td><td>~11,500</td><td>60.9%</td><td>2.5x</td><td>1.20x</td></tr>
+            <tr><td>2017</td><td>~7,500</td><td>~11,800</td><td>63.6%</td><td>2.7x</td><td>1.15x</td></tr>
+            <tr><td>2018</td><td>~7,800</td><td>~12,200</td><td>63.9%</td><td>2.8x</td><td>1.10x</td></tr>
+            <tr><td>2019</td><td>~8,000</td><td>~12,500</td><td>64.0%</td><td>2.8x</td><td>1.20x</td></tr>
+            <tr><td>2020</td><td>~8,500</td><td>~13,000</td><td>65.4%</td><td>2.9x</td><td>1.30x</td></tr>
+            <tr><td>2021</td><td>~9,500</td><td>~14,500</td><td>65.5%</td><td>2.9x</td><td>1.48x</td></tr>
+            <tr><td>2022</td><td>~10,500</td><td>~14,800</td><td>70.9%</td><td>3.4x</td><td>1.53x</td></tr>
+            <tr><td>2023</td><td>~10,800</td><td>~14,700</td><td>73.5%</td><td>3.8x</td><td>1.35x</td></tr>
+            <tr><td>2024</td><td>~10,000</td><td>~14,200</td><td>70.4%</td><td>3.4x</td><td>1.13x</td></tr>
+            <tr><td>2025</td><td>~12,100</td><td>~15,500</td><td>78.1%</td><td>4.6x</td><td>2.77x</td></tr>
+        </table>
+        <div class="highlight">
+            <strong>芒格视角：</strong>资产负债率从2016年的61%上升至2025年的78%，主要因FY2025发行可转换债券（$17.5亿）+大规模回购（$32亿）。长期债务/权益从1.13x跳升至2.77x。净债务/EBITDA约1.72x，在制药行业中属中等水平。FY2025利息支出$2.22亿，利息覆盖倍数约16x，仍在可控范围。
+        </div>
+
+        <h3>4.3 市盈率 (PE) 趋势</h3>
+        <div class="chart-container"><canvas id="peChart"></canvas></div>
+        <table>
+            <tr><th>财年</th><th>PE Ratio</th><th>备注</th></tr>
+            <tr><td>2016</td><td>~47x</td><td>市场给予成长溢价</td></tr>
+            <tr><td>2017</td><td>~50x</td><td>持续高增长</td></tr>
+            <tr><td>2018</td><td>~36x</td><td>税改利好，PE回落</td></tr>
+            <tr><td>2019</td><td>~40x</td><td>稳健增长</td></tr>
+            <tr><td>2020</td><td>~46x</td><td>宠物经济概念受追捧</td></tr>
+            <tr><td>2021</td><td>~57x</td><td>宠物经济泡沫巅峰</td></tr>
+            <tr><td>2022</td><td>~33x</td><td>利率上升，成长股杀估值</td></tr>
+            <tr><td>2023</td><td>~39x</td><td>估值稳定</td></tr>
+            <tr><td>2024</td><td>~30x</td><td>增长放缓，估值压缩</td></tr>
+            <tr><td>2025</td><td>~21x</td><td>股价大跌，估值进一步压缩</td></tr>
+            <tr><td>当前(2026.6)</td><td>~13x</td><td>TTM PE约13x，10年中位数38x</td></tr>
+        </table>
+        <div class="highlight">
+            <strong>巴菲特视角：</strong>PE从2021年的57x（宠物经济泡沫巅峰）持续压缩至当前的13x，跌幅超75%。典型的"戴维斯双杀"——盈利增长放缓+估值倍数收缩。当前PE 13x远低于10年中位数38x，也低于制药行业平均（约16-18x）。如果Zoetis能维持5-7%有机增长+创新管线持续产出，当前估值可能处于历史性低估区域。但需警惕——低PE可能反映竞争加剧和增长放缓的结构性问题。
+        </div>
+    </div>
+
+    <!-- 五、竞争分析 -->
+    <div class="info-box">
+        <h2>五、竞争分析</h2>
+        <h3>5.1 主要竞争对手</h3>
+        <table>
+            <tr><th>竞争对手</th><th>母公司</th><th>核心竞争领域</th><th>市场份额对比</th></tr>
+            <tr><td>Merck Animal Health</td><td>Merck (MRK)</td><td>畜禽疫苗+伴侣动物驱虫</td><td>全球动保份额约15%</td></tr>
+            <tr><td>Elanco Animal Health</td><td>ELAN（独立）</td><td>伴侣动物+畜禽全品类</td><td>全球动保份额约12%，盈利能力远弱于Zoetis</td></tr>
+            <tr><td>Boehringer Ingelheim</td><td>私有</td><td>畜禽疫苗+伴侣动物</td><td>全球动保份额约10%</td></tr>
+            <tr><td>IDEXX Laboratories</td><td>IDXX（独立）</td><td>宠物诊断</td><td>诊断市场份额约50%</td></tr>
+            <tr><td>Phibro Animal Health</td><td>PAHC（独立）</td><td>畜禽抗生素+营养</td><td>小众市场</td></tr>
+        </table>
+
+        <h3>5.2 全球动物保健市场份额</h3>
+        <table>
+            <tr><th>公司</th><th>全球份额</th><th>趋势</th></tr>
+            <tr><td>Zoetis</td><td>~20%</td><td><span class="tag tag-orange">稳定</span> 龙头地位稳固，但竞争加剧</td></tr>
+            <tr><td>Merck Animal Health</td><td>~15%</td><td><span class="tag tag-green">上升</span> Numelvi等新品挑战Zoetis</td></tr>
+            <tr><td>Elanco</td><td>~12%</td><td><span class="tag tag-orange">稳定</span> 整合拜耳动保后份额提升，但盈利弱</td></tr>
+            <tr><td>Boehringer Ingelheim</td><td>~10%</td><td><span class="tag tag-orange">稳定</span> 畜禽疫苗领域强势</td></tr>
+            <tr><td>其他</td><td>~43%</td><td><span class="tag tag-orange">分散</span> 地区性厂商和仿制药</td></tr>
+        </table>
+
+        <h3>5.3 经济护城河评估</h3>
+        <div class="moat-item">
+            <strong>🏰 品牌力 — 宽护城河 ★★★★☆</strong><br>
+            Zoetis在动物保健领域拥有无可争议的品牌领导地位。Apoquel、Simparica Trio、Librela等品牌已成为各自治疗领域的"金标准"。兽医（而非消费者）是真正的决策者，而Zoetis覆盖90%+兽医诊所。
+        </div>
+        <div class="moat-item">
+            <strong>💰 成本优势 — 中等护城河 ★★★☆☆</strong><br>
+            72%毛利率在行业中属顶尖水平，但成本优势更多来自"研发效率"（兽药审批更快、临床试验成本更低）而非"制造规模"。竞争对手也有类似全球供应链能力。
+        </div>
+        <div class="moat-item">
+            <strong>🔄 网络效应 — 窄护城河 ★★★☆☆</strong><br>
+            "诊断+治疗"一体化方案正在形成网络效应，但仍在早期。兽医渠道覆盖（90%+诊所）本身就是一种"规模网络"。
+        </div>
+        <div class="moat-item">
+            <strong>📋 专利/知识产权 — 宽护城河 ★★★★★</strong><br>
+            这是最核心的护城河。2000+专利保护核心产品独占权。自独立以来累计投入$60亿研发，每年$7亿研发支出持续产出1-2款重磅新品。创新管线包括慢性肾病、肿瘤学、心脏病等全新领域。
+        </div>
+        <div class="moat-item">
+            <strong>🔒 转换成本 — 宽护城河 ★★★★☆</strong><br>
+            处方权壁垒是独特转换成本——宠物主不能自行购买处方药。兽医一旦选择Zoetis产品线，形成"一站式解决方案"习惯性。慢性病终身用药特性进一步增加转换成本。
+        </div>
+        <div class="moat-item">
+            <strong>📏 规模优势 — 宽护城河 ★★★★☆</strong><br>
+            $95亿营收和20%全球市场份额是行业绝对领导者。研发投入$7亿是Elanco（$3亿）的2倍+。100+国家直销网络，300+产品线覆盖8物种15治疗领域。
+        </div>
+        <div class="highlight">
+            <strong>综合护城河评级：宽（专利+处方壁垒+规模驱动型）</strong><br>
+            Zoetis的护城河主要由<strong>专利保护+处方权壁垒+规模优势</strong>支撑。与巴菲特最欣赏的"永久性护城河"（如可口可乐品牌、Visa网络效应）相比，Zoetis的护城河更接近"专利药型"——在专利期内极宽，但专利到期后需靠创新管线补充。好消息是，兽药生命周期通常比人药更长（仿制药渗透率更低、品牌忠诚度更高），且Zoetis创新管线持续补充。"诊断+治疗一体化方案"是护城河加深的重要方向。
+        </div>
+    </div>
+
+    <!-- 六、利润分配分析 -->
+    <div class="info-box">
+        <h2>六、利润分配分析（2016-2025）</h2>
+        <h3>6.1 利润分配总览（回购计入留存）</h3>
+        <table>
+            <tr><th>财年</th><th>净利润($M)</th><th>股息($M)</th><th>回购($M)</th><th>扩张CapEx($M)</th><th>留存金额($M)</th><th>留存比率</th></tr>
+            <tr><td>2016</td><td>$821</td><td>$198</td><td>$500</td><td>~$350</td><td>$623</td><td>75.9%</td></tr>
+            <tr><td>2017</td><td>$864</td><td>$196</td><td>$500</td><td>~$380</td><td>$668</td><td>77.3%</td></tr>
+            <tr><td>2018</td><td>$1,428</td><td>$253</td><td>$800</td><td>~$400</td><td>$1,175</td><td>82.3%</td></tr>
+            <tr><td>2019</td><td>$1,500</td><td>$305</td><td>$1,000</td><td>~$420</td><td>$1,195</td><td>79.7%</td></tr>
+            <tr><td>2020</td><td>$1,638</td><td>$380</td><td>$500</td><td>~$450</td><td>$1,258</td><td>76.8%</td></tr>
+            <tr><td>2021</td><td>$2,037</td><td>$475</td><td>$1,200</td><td>~$500</td><td>$1,562</td><td>76.7%</td></tr>
+            <tr><td>2022</td><td>$2,114</td><td>$620</td><td>$1,500</td><td>~$550</td><td>$1,494</td><td>70.7%</td></tr>
+            <tr><td>2023</td><td>$2,344</td><td>$690</td><td>$1,800</td><td>~$730</td><td>$1,654</td><td>70.6%</td></tr>
+            <tr><td>2024</td><td>$2,486</td><td>$786</td><td>$1,900</td><td>~$655</td><td>$1,700</td><td>68.4%</td></tr>
+            <tr><td>2025</td><td>$2,673</td><td>$800</td><td>$3,200</td><td>~$621</td><td>$1,873</td><td>70.1%</td></tr>
+        </table>
+        <p><strong>注：</strong>留存金额=净利润-股息（回购计入留存）。Zoetis留存比率稳定在68-82%区间，10年平均约75%。FY2025回购$32亿（含可转债对冲交易），创历史新高。</p>
+
+        <h3>6.2 留存构成分析</h3>
+        <table>
+            <tr><th>财年</th><th>留存金额($M)</th><th>回购占留存比</th><th>再投资(CapEx+R&D)占留存比</th><th>净债务变动</th></tr>
+            <tr><td>2022</td><td>$1,494</td><td>100%</td><td>72%</td><td>增加</td></tr>
+            <tr><td>2023</td><td>$1,654</td><td>109%</td><td>81%</td><td>基本持平</td></tr>
+            <tr><td>2024</td><td>$1,700</td><td>112%</td><td>79%</td><td>减少（还债）</td></tr>
+            <tr><td>2025</td><td>$1,873</td><td>171%</td><td>70%</td><td>增加（可转债）</td></tr>
+        </table>
+        <div class="highlight">
+            <strong>巴菲特视角：</strong>Zoetis的利润分配策略是"高留存+适度分红+大规模回购"——留存比率约70-75%，股息支付率约30-33%（极低、安全、有提升空间），回购力度逐年加大。FY2025回购$32亿（占留存171%），超过当年留存金额——差额由可转换债券融资覆盖。巴菲特偏好"高留存+高ROE"的公司——1美元留存至少创造1美元市值。但Zoetis过去3年高位回购严重失误（详见6.3），管理层资本配置能力存疑。
+        </div>
+
+        <h3>6.3 回购时机评估</h3>
+        <table>
+            <tr><th>时间段</th><th>回购金额</th><th>平均回购价</th><th>当前股价</th><th>浮盈/浮亏</th></tr>
+            <tr><td>FY2023</td><td>$18亿</td><td>~$170</td><td>$81</td><td><span class="tag tag-red">-52%</span></td></tr>
+            <tr><td>FY2024</td><td>$19亿</td><td>~$155</td><td>$81</td><td><span class="tag tag-red">-48%</span></td></tr>
+            <tr><td>FY2025</td><td>$32亿</td><td>~$145</td><td>$81</td><td><span class="tag tag-red">-44%</span></td></tr>
+        </table>
+        <p>FY2023-2025的回购均价$145-$170，远高于当前股价$81，出现大幅浮亏。这是Zoetis资本配置中最令人担忧的问题——<strong>管理层在股价高位时大规模回购，在股价腰斩后反而放缓</strong>。这违反了巴菲特"低估值时加速回购、高估值时放缓"的原则。</p>
+
+        <h3>6.4 可持续增长率</h3>
+        <table>
+            <tr><th>指标</th><th>数值</th><th>含义</th></tr>
+            <tr><td>ROE（FY2025）</td><td>80.3%</td><td>极高（部分因回购导致权益低）</td></tr>
+            <tr><td>留存比率</td><td>70.1%</td><td>大部分利润留存</td></tr>
+            <tr><td>可持续增长率 = ROE × 留存比率</td><td>56.3%</td><td>不靠外部融资的内生增长极限</td></tr>
+            <tr><td>实际营收增长（FY2025）</td><td>2%（有机6%）</td><td>远低于可持续增长率</td></tr>
+        </table>
+        <div class="highlight">
+            <strong>芒格视角：</strong>56.3%的可持续增长率理论上意味着Zoetis可以不靠外部融资实现56%的年增长。但现实中，动物保健行业的增长受市场渗透率和创新产出约束——FY2025有机增长仅6%。可持续增长率与实际增长率的巨大差距说明：<strong>Zoetis的盈利能力远超其增长需求</strong>，多余的利润通过回购和分红返还给股东。芒格会特别关注回购时机——如果管理层在高位回购（如FY2023-2025），实际上是在摧毁股东价值，而非创造价值。
+        </div>
+    </div>
+
+    <!-- 七、投资总结 -->
+    <div class="info-box">
+        <h2>七、投资总结</h2>
+        <h3>7.1 各维度评分</h3>
+        <table>
+            <tr><th>维度</th><th>评分</th><th>说明</th></tr>
+            <tr><td>业务可理解性</td><td><span class="star">⭐⭐⭐⭐⭐</span> 5/5</td><td>动物保健，给动物做药治病。商业模式简单：研发→专利→卖药→复购</td></tr>
+            <tr><td>护城河</td><td><span class="star">⭐⭐⭐⭐</span> 4/5</td><td>专利+处方壁垒+规模优势构成宽护城河，但专利到期需创新管线补充</td></tr>
+            <tr><td>资本配置</td><td><span class="star">⭐⭐⭐</span> 3/5</td><td>高留存+适度分红，但FY2023-2025高位回购严重失误，浮亏超50%</td></tr>
+            <tr><td>财务安全</td><td><span class="star">⭐⭐⭐</span> 3/5</td><td>净债务/EBITDA 1.72x，利息覆盖16x，安全但杠杆偏高</td></tr>
+            <tr><td>增长前景</td><td><span class="star">⭐⭐⭐⭐</span> 4/5</td><td>创新管线丰富（慢性肾病、肿瘤、心脏病），宠物经济长期趋势不变</td></tr>
+            <tr><td>估值吸引力</td><td><span class="star">⭐⭐⭐⭐⭐</span> 5/5</td><td>PE 13x远低于10年中位数38x，FCF Yield 6.9%，历史性低估</td></tr>
+        </table>
+
+        <h3>7.2 估值对比</h3>
+        <table>
+            <tr><th>公司</th><th>PE</th><th>PS</th><th>EV/EBITDA</th><th>ROE</th><th>毛利率</th></tr>
+            <tr><td>Zoetis (ZTS)</td><td>13x</td><td>3.5x</td><td>10x</td><td>80%</td><td>72%</td></tr>
+            <tr><td>IDEXX (IDXX)</td><td>~30x</td><td>~8x</td><td>~22x</td><td>71%</td><td>~60%</td></tr>
+            <tr><td>Elanco (ELAN)</td><td>N/A（亏损）</td><td>~1.5x</td><td>~12x</td><td>-4%</td><td>~55%</td></tr>
+        </table>
+        <p>Zoetis的PE 13x在同行中处于最低水平，远低于IDEXX的30x。EV/EBITDA 10x对于一家ROIC 24%的公司来说，估值极具吸引力。</p>
+
+        <h3>7.3 关键风险</h3>
+        <div class="risk-item">
+            <strong>❶ 竞争加剧（最大风险）</strong><br>
+            Merck的Numelvi直接挑战Librela；Elanco的Credelio持续蚕食驱虫份额；仿制药在专利到期后侵蚀定价权。如果Zoetis无法持续产出创新产品，护城河将逐步收窄。
+        </div>
+        <div class="risk-item">
+            <strong>❷ 美国宠物市场放缓</strong><br>
+            FY2025美国营收同比下降2%。通胀压力下，宠物主减少非必要医疗支出。如果美国经济衰退，宠物医疗支出可能进一步下降。
+        </div>
+        <div class="risk-item">
+            <strong>❸ 专利到期风险</strong><br>
+            Apoquel专利约2027年到期，Simparica Trio约2030年到期。专利到期后仿制药将侵蚀定价权。新品上市时间和市场接受度存在不确定性。
+        </div>
+        <div class="risk-item">
+            <strong>❹ 高位回购失误</strong><br>
+            FY2023-2025累计回购约$69亿，均价约$155，当前股价$81，浮亏约48%。管理层在股价高位时大规模回购，严重摧毁股东价值。
+        </div>
+        <div class="risk-item">
+            <strong>❺ Librela安全性争议</strong><br>
+            Librela在欧洲和美国面临安全性争议——部分兽医报告了严重副作用。虽然FDA和EMA尚未采取行动，但持续负面报道可能影响销售增长和品牌声誉。
+        </div>
+
+        <h3>7.4 关键催化剂</h3>
+        <div class="moat-item">
+            <strong>🔥 估值修复</strong><br>
+            当前PE 13x是上市以来最低估值水平。如果市场重新认识动物保健长期增长潜力，估值有望修复至20-25x，对应股价$125-$155（+55%-90%空间）。
+        </div>
+        <div class="moat-item">
+            <strong>🔥 创新管线产出</strong><br>
+            Lenivia/Portela（长效骨关节炎单抗）2026年获EU/UK批准；慢性肾病药物2027年潜在上市，打开$30亿+新市场。
+        </div>
+        <div class="moat-item">
+            <strong>🔥 国际市场加速增长</strong><br>
+            FY2025国际市场有机增长9%，远超美国的-2%。中国、巴西等新兴市场宠物经济刚起步。
+        </div>
+        <div class="moat-item">
+            <strong>🔥 诊断+治疗闭环</strong><br>
+            "诊断-治疗"一体化平台将创造更高转换成本和客户粘性。
+        </div>
+
+        <h3>7.5 投资评级</h3>
+        <div class="highlight">
+            <strong>综合评级：买入</strong><br><br>
+            <strong>理由：</strong><br>
+            1. <strong>估值极具吸引力：</strong>PE 13x是上市以来最低水平，FCF Yield 6.9%，EV/EBITDA 10x。对于ROIC 24%、毛利率72%的动物保健龙头，当前估值处于历史性低估区域。<br>
+            2. <strong>护城河宽且可持续：</strong>专利+处方壁垒+规模优势构成宽护城河，创新管线持续补充。兽药生命周期比人药更长，仿制药渗透率更低。<br>
+            3. <strong>长期增长逻辑不变：</strong>宠物家人化趋势不可逆，全球宠物保健市场年增5-7%。创新管线将打开全新市场。<br>
+            4. <strong>现金流机器：</strong>年自由现金流$23亿，FCF利润率24%，股息连续12年增长。<br><br>
+            <strong>风险提示：</strong><br>
+            1. 美国宠物市场短期放缓可能持续1-2年。<br>
+            2. FY2023-2025高位回购严重失误，管理层资本配置能力存疑。<br>
+            3. 专利到期风险需密切关注。<br>
+            4. Librela安全性争议可能影响品牌声誉。<br><br>
+            <strong>安全边际要求：</strong>当前PE 13x已提供充足安全边际——即使增长放缓至3-4%，PE 13x也仅隐含3%的永续增长率。如果估值修复至20x（仍低于历史中位数38x），对应股价约$125（+54%空间）。建议在当前价格基础上分批建仓——13x PE对于Zoetis这样的优质资产已经是极度低估。
+        </div>
+    </div>
+
+    <script>
+        const roeCtx = document.getElementById('roeChart').getContext('2d');
+        new Chart(roeCtx, {
+            type: 'bar',
+            data: {
+                labels: ['2016','2017','2018','2019','2020','2021','2022','2023','2024','2025'],
+                datasets: [{
+                    label: 'ROE (%)',
+                    data: [55.2, 48.8, 65.4, 55.4, 43.5, 44.8, 48.0, 46.9, 52.1, 80.3],
+                    backgroundColor: 'rgba(46, 134, 193, 0.7)',
+                    borderColor: 'rgba(46, 134, 193, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: { title: { display: true, text: 'Zoetis ROE趋势（2016-2025）' }, legend: { display: false } },
+                scales: { y: { title: { display: true, text: 'ROE (%)' } } }
+            }
+        });
+
+        const debtCtx = document.getElementById('debtChart').getContext('2d');
+        new Chart(debtCtx, {
+            type: 'line',
+            data: {
+                labels: ['2016','2017','2018','2019','2020','2021','2022','2023','2024','2025'],
+                datasets: [{
+                    label: '资产负债率 (%)',
+                    data: [60.9, 63.6, 63.9, 64.0, 65.4, 65.5, 70.9, 73.5, 70.4, 78.1],
+                    borderColor: 'rgba(230, 126, 34, 1)',
+                    backgroundColor: 'rgba(230, 126, 34, 0.1)',
+                    fill: true, tension: 0.3
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: { title: { display: true, text: 'Zoetis资产负债率趋势（2016-2025）' }, legend: { display: false } },
+                scales: { y: { title: { display: true, text: '资产负债率 (%)' }, min: 0, max: 100 } }
+            }
+        });
+
+        const peCtx = document.getElementById('peChart').getContext('2d');
+        new Chart(peCtx, {
+            type: 'line',
+            data: {
+                labels: ['2016','2017','2018','2019','2020','2021','2022','2023','2024','2025'],
+                datasets: [{
+                    label: 'PE Ratio',
+                    data: [47, 50, 36, 40, 46, 57, 33, 39, 30, 21],
+                    borderColor: 'rgba(39, 174, 96, 1)',
+                    backgroundColor: 'rgba(39, 174, 96, 0.1)',
+                    fill: true, tension: 0.3
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: { title: { display: true, text: 'Zoetis PE趋势（2016-2025）' }, legend: { display: false } },
+                scales: { y: { title: { display: true, text: 'PE Ratio' }, min: 0, max: 65 } }
+            }
+        });
+    </script>
+</body>
+</html>
