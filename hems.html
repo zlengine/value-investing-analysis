@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hess Midstream (HESM) 价值投资分析</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body { font-family: 'Segoe UI', Arial, sans-serif; margin: 0; padding: 20px; background-color: #f0f2f5; color: #333; }
+        h1 { text-align: center; color: #1a5276; font-size: 2.2em; margin-bottom: 5px; }
+        h2 { color: #1a5276; border-bottom: 2px solid #2e86c1; padding-bottom: 8px; margin-top: 30px; }
+        h3 { color: #2c3e50; margin-top: 20px; }
+        .subtitle { text-align: center; color: #7f8c8d; font-size: 1.1em; margin-bottom: 30px; }
+        .info-box { background: white; border-radius: 10px; padding: 25px; margin: 20px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.08); }
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; background-color: white; }
+        th, td { padding: 10px 14px; text-align: left; border-bottom: 1px solid #e0e0e0; }
+        th { background-color: #1a5276; color: white; font-weight: bold; }
+        tr:nth-child(even) { background-color: #f8f9fa; }
+        tr:hover { background-color: #eaf2f8; }
+        .highlight { background: #fef9e7; border-left: 4px solid #2e86c1; padding: 15px 20px; margin: 15px 0; border-radius: 0 8px 8px 0; }
+        .chart-container { background: white; border-radius: 10px; padding: 25px; margin: 20px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.08); }
+        canvas { max-height: 400px; }
+        .tag { display: inline-block; background: #1a5276; color: white; padding: 3px 10px; border-radius: 12px; font-size: 0.85em; margin: 2px; }
+        .tag-green { background: #27ae60; }
+        .tag-orange { background: #e67e22; }
+        .tag-red { background: #c0392b; }
+        a { color: #1a5276; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        .back-link { display: inline-block; margin-bottom: 20px; font-size: 1em; }
+        .moat-item { background: white; border-radius: 8px; padding: 15px 20px; margin: 10px 0; box-shadow: 0 1px 5px rgba(0,0,0,0.05); border-left: 4px solid #2e86c1; }
+        .moat-item strong { color: #1a5276; }
+        .risk-item { background: white; border-radius: 8px; padding: 15px 20px; margin: 10px 0; box-shadow: 0 1px 5px rgba(0,0,0,0.05); border-left: 4px solid #c0392b; }
+        .star { color: #f39c12; }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back-link">← 返回索引</a>
+    <h1>Hess Midstream (NYSE: HESM)</h1>
+    <p class="subtitle">巴菲特/芒格式价值投资基本面分析 | 更新日期：2026年6月</p>
+
+    <!-- 一、公司基本信息 -->
+    <div class="info-box">
+        <h2>一、公司基本信息</h2>
+        <table>
+            <tr><td>公司全称</td><td>Hess Midstream LP（赫斯中游合伙企业）</td></tr>
+            <tr><td>股票代码</td><td>NYSE: HESM</td></tr>
+            <tr><td>市值</td><td>约50亿美元（2026年6月）</td></tr>
+            <tr><td>企业价值（EV）</td><td>≈ $88亿美元（净债务约$38亿）</td></tr>
+            <tr><td>成立时间</td><td>2014年（由Hess Corporation创立为MLP）</td></tr>
+            <tr><td>公司总部</td><td>美国德克萨斯州休斯顿（Houston, TX）</td></tr>
+            <tr><td>最新收盘价</td><td>约$38.6（2026年6月10日）</td></tr>
+            <tr><td>52周区间</td><td>$31.63 - $44.14</td></tr>
+            <tr><td>CEO</td><td>Jonathan C. Stein（2025年起任CEO，此前任CFO）</td></tr>
+            <tr><td>CFO</td><td>Michael Chadwick</td></tr>
+            <tr><td>员工人数</td><td>约400人（高度自动化运营）</td></tr>
+            <tr><td>行业</td><td>油气中游 / 管道运输与处理</td></tr>
+            <tr><td>流通A类股</td><td>约1.29亿股</td></tr>
+            <tr><td>季度分配</td><td>$0.7792/股（Q1 2026），年化约$3.12</td></tr>
+            <tr><td>股息率</td><td>约7.8%</td></tr>
+            <tr><td>分配连续增长</td><td>连续9年增长（自2017年IPO以来）</td></tr>
+            <tr><td>主要股东/赞助方</td><td>Chevron Corporation（2025年7月收购Hess后间接持股约37.6%）</td></tr>
+            <tr><td>运营区域</td><td>Williston Basin / Bakken页岩区（北达科他州和蒙大拿州）</td></tr>
+            <tr><td>商业合同期限</td><td>长期合同延长至2033年12月31日</td></tr>
+            <tr><td>最低量承诺（MVCs）</td><td>约95%营收受MVCs保护</td></tr>
+        </table>
+    </div>
+
+    <!-- 二、业务分析 -->
+    <div class="info-box">
+        <h2>二、业务分析</h2>
+        <h3>2.1 通俗解释：Hess Midstream是干什么的？</h3>
+        <p>用最简单的话说，<strong>Hess Midstream是一家"油气收费站"</strong>——它不挖油、不卖油，它做的是把油井里产出的原油、天然气和废水收集起来、处理干净、然后输送出去。</p>
+        <p>想象一下：北达科他州的Bakken页岩区，成百上千口油井在产油产气。这些刚从地下出来的东西是"毛坯"——原油里混着水，天然气里有杂质，不能直接用。Hess Midstream就像一条"加工流水线"：<strong>收集（Gathering）→处理（Processing）→输送（Terminaling/Export）</strong>。它铺设管道把油气从井口收集起来，在处理厂把天然气里的杂质去掉、把NGL（天然气液）分离出来，最后把干净的原油和天然气送到终端或管道干线。</p>
+        <p>最关键的是它的<strong>商业模式</strong>：Hess Midstream不靠油价赚钱，它靠<strong>过路费</strong>赚钱。就像高速公路收费站，不管你拉的是什么货、货值多少，过路费按车次收。Hess Midstream按处理的油气<strong>体积</strong>收费（fee-based），而不是按油气价格收费。而且，它的合同里有<strong>最低量承诺（MVCs）</strong>——就算油井产量下降，客户也得按最低量付钱。约95%的营收受MVCs保护，这让它的现金流极其稳定。</p>
+        <p>2025年7月，<strong>Chevron收购了Hess Corporation</strong>，成为Hess Midstream的间接赞助方和最大客户。这意味着Hess Midstream现在背靠的是全球最大的石油公司之一，信用更强，但同时也意味着单一客户依赖更严重。</p>
+
+        <h3>2.2 业务板块及营收（FY2025）</h3>
+        <table>
+            <tr><th>业务板块</th><th>Q4 2025季度营收</th><th>占比（估算）</th><th>核心资产</th><th>增长趋势</th></tr>
+            <tr><td>收集（Gathering）</td><td>$2.173亿</td><td>约54%</td><td>1,350英里天然气收集管道、550英里原油收集管道、水收集系统</td><td><span class="tag tag-green">增长</span></td></tr>
+            <tr><td>处理与储存（Processing & Storage）</td><td>$1.547亿</td><td>约38%</td><td>Tioga天然气处理厂、Little Missouri 4处理厂（50%权益）、Mentor丙烷储存终端</td><td><span class="tag tag-green">增长</span></td></tr>
+            <tr><td>终端与出口（Terminaling & Export）</td><td>$0.322亿</td><td>约8%</td><td>Ramberg终端、Tioga铁路终端、原油铁路罐车、Johnson's Corner管道系统</td><td><span class="tag tag-orange">稳定</span></td></tr>
+        </table>
+
+        <h3>2.3 FY2025全年财务摘要</h3>
+        <table>
+            <tr><th>指标</th><th>FY2025</th><th>FY2024</th><th>同比变化</th></tr>
+            <tr><td>总营收</td><td>$16.21亿</td><td>$14.96亿</td><td>+8.4%</td></tr>
+            <tr><td>净利润（合并）</td><td>$6.85亿</td><td>$6.40亿</td><td>+7.0%</td></tr>
+            <tr><td>调整后EBITDA</td><td>$12.38亿</td><td>$11.35亿</td><td>+9.1%</td></tr>
+            <tr><td>调整后EBITDA利润率</td><td>~76%</td><td>~76%</td><td>持平</td></tr>
+            <tr><td>调整后自由现金流</td><td>~$7.5亿</td><td>~$6.5亿</td><td>+15%</td></tr>
+            <tr><td>资本支出</td><td>~$2.5亿</td><td>~$2.3亿</td><td>+9%</td></tr>
+            <tr><td>净债务/调整后EBITDA</td><td>~3.0x</td><td>~3.2x</td><td>改善</td></tr>
+        </table>
+
+        <h3>2.4 地域分布</h3>
+        <p>Hess Midstream的运营<strong>100%集中在美国Williston Basin的Bakken和Three Forks页岩区</strong>（北达科他州和蒙大拿州）。这是一个地理高度集中的"纯Bakken玩家"——既是优势（深耕区域、基础设施完善），也是风险（单一盆地依赖）。</p>
+
+        <h3>2.5 运营量数据（FY2025全年平均）</h3>
+        <table>
+            <tr><th>运营指标</th><th>FY2025日均</th><th>FY2024日均</th><th>同比变化</th></tr>
+            <tr><td>天然气收集量</td><td>~455 MMcf/天</td><td>~410 MMcf/天</td><td>+11%</td></tr>
+            <tr><td>天然气处理量</td><td>~445 MMcf/天</td><td>~395 MMcf/天</td><td>+13%</td></tr>
+            <tr><td>原油收集量</td><td>~125 MBbl/天</td><td>~120 MBbl/天</td><td>+4%</td></tr>
+            <tr><td>原油终端处理量</td><td>~129 MBbl/天</td><td>~125 MBbl/天</td><td>+3%</td></tr>
+            <tr><td>水收集量</td><td>~131 MBbl/天</td><td>~125 MBbl/天</td><td>+5%</td></tr>
+        </table>
+    </div>
+
+    <!-- 三、业务板块产品竞争力分析 -->
+    <div class="info-box">
+        <h2>三、业务板块产品竞争力分析</h2>
+
+        <h3>3.1 收集服务（Gathering）产品竞争力分析</h3>
+        <div class="moat-item">
+            <p><strong>1. 可替代性：<span class="tag tag-orange">中等</span></strong></p>
+            <ul>
+                <li>主要替代品：ONEOK、Plains All American、Targa Resources在Bakken的收集系统</li>
+                <li>替代品体验差距：HESM管道覆盖Hess/Chevron的核心产区，替代需要重新铺设管道或使用卡车运输（成本高5-10倍）</li>
+                <li>替代趋势：稳定——新进入者铺设管道的资本壁垒极高，但第三方客户有切换可能</li>
+            </ul>
+            <p><strong>2. 客户转换成本：<span class="tag tag-green">高</span></strong></p>
+            <ul>
+                <li>财务转换成本：重新连接到竞争对手管道系统需$500万-$2000万/井组</li>
+                <li>时间转换成本：管道切换需6-18个月规划与建设</li>
+                <li>捆绑转换成本：HESM提供气、油、水一体化收集，切换意味着同时更换三套系统</li>
+                <li>综合评估：合同期至2033年，MVCs使提前退出代价极高</li>
+            </ul>
+            <p><strong>3. 定价权：<span class="tag tag-green">强</span></strong></p>
+            <ul>
+                <li>历史提价记录：多数系统费率每年按通胀上调（上限3%），过去5年累计提价约12-15%</li>
+                <li>提价vs通胀：费率调整与PPI-FG挂钩，基本跑赢CPI</li>
+                <li>定价权来源：FERC监管下的州际管道定价机制+合同通胀escalator条款</li>
+                <li>定价权趋势：稳定——合同条款锁定至2033年</li>
+                <li>巴菲特测试：提价10%不会导致客户流失——MVCs和合同约束使客户无法离开</li>
+            </ul>
+            <p><strong>综合竞争力评级：<span class="star">⭐⭐⭐⭐</span></strong></p>
+        </div>
+
+        <h3>3.2 处理与储存（Processing & Storage）产品竞争力分析</h3>
+        <div class="moat-item">
+            <p><strong>1. 可替代性：<span class="tag tag-orange">中等</span></strong></p>
+            <ul>
+                <li>主要替代品：ONEOK的Bakken NGL处理设施、Targa的天然气处理厂</li>
+                <li>替代品体验差距：Tioga处理厂是Bakken最大的天然气处理设施之一，处理能力难以被单一替代</li>
+                <li>替代趋势：稳定——处理厂建设周期2-3年，资本密集</li>
+            </ul>
+            <p><strong>2. 客户转换成本：<span class="tag tag-green">高</span></strong></p>
+            <ul>
+                <li>财务转换成本：天然气处理合同绑定收集系统，切换意味着整个上游链条重组</li>
+                <li>时间转换成本：新处理厂建设需2-3年</li>
+                <li>捆绑转换成本：处理与收集一体化，无法单独切换</li>
+                <li>综合评估：合同至2033年，MVCs保护</li>
+            </ul>
+            <p><strong>3. 定价权：<span class="tag tag-green">强</span></strong></p>
+            <ul>
+                <li>历史提价记录：处理费率每年按通胀escalator上调</li>
+                <li>提价vs通胀：与收集服务类似，费率调整跑赢CPI</li>
+                <li>定价权来源：长期合同+通胀条款+MVCs</li>
+                <li>定价权趋势：稳定</li>
+                <li>巴菲特测试：提价10%不会导致客户流失</li>
+            </ul>
+            <p><strong>综合竞争力评级：<span class="star">⭐⭐⭐⭐</span></strong></p>
+        </div>
+
+        <h3>3.3 终端与出口（Terminaling & Export）产品竞争力分析</h3>
+        <div class="moat-item">
+            <p><strong>1. 可替代性：<span class="tag tag-orange">中等</span></strong></p>
+            <ul>
+                <li>主要替代品：Enbridge、Plains的Bakken原油终端和铁路运输</li>
+                <li>替代品体验差距：铁路运输成本高于管道3-5美元/桶，且运力有限</li>
+                <li>替代趋势：稳定——管道终端具有天然地理垄断优势</li>
+            </ul>
+            <p><strong>2. 客户转换成本：<span class="tag tag-orange">中等</span></strong></p>
+            <ul>
+                <li>财务转换成本：切换终端需重新安排物流，成本中等</li>
+                <li>时间转换成本：终端切换相对较快（1-3个月）</li>
+                <li>捆绑转换成本：与收集/处理系统一体化，单独切换终端意义不大</li>
+                <li>综合评估：终端业务占比小（8%），影响有限</li>
+            </ul>
+            <p><strong>3. 定价权：<span class="tag tag-orange">中等</span></strong></p>
+            <ul>
+                <li>历史提价记录：终端费率按FERC年度调整机制上调</li>
+                <li>提价vs通胀：FERC定价上限基于PPI-FG减21bps，略低于通胀</li>
+                <li>定价权来源：FERC监管定价，非完全市场化但受上限约束</li>
+                <li>定价权趋势：稳定</li>
+                <li>巴菲特测试：提价10%可能促使部分客户转向铁路运输</li>
+            </ul>
+            <p><strong>综合竞争力评级：<span class="star">⭐⭐⭐</span></strong></p>
+        </div>
+    </div>
+
+    <!-- 四、历史财务指标 -->
+    <div class="info-box">
+        <h2>四、历史财务指标</h2>
+
+        <h3>4.1 ROE（净资产收益率）趋势</h3>
+        <p>注：HESM作为MLP架构，权益基数极小（大量资产通过债务融资），导致ROE数值异常偏高。ROE>100%不代表"超常盈利能力"，而是杠杆效应的体现。更应关注ROIC和EBITDA利润率。</p>
+        <table>
+            <tr><th>年份</th><th>2017</th><th>2018</th><th>2019</th><th>2020</th><th>2021</th><th>2022</th><th>2023</th><th>2024</th><th>2025</th></tr>
+            <tr><td>ROE (%)</td><td>N/A</td><td>~15</td><td>~18</td><td>~12</td><td>~3</td><td>~11</td><td>~22</td><td>~42</td><td>~153*</td></tr>
+        </table>
+        <p>*2025年ROE 153%因权益基数极小（$3.75亿权益 vs $6.85亿净利润）导致失真，不代表可持续盈利能力。</p>
+
+        <div class="chart-container">
+            <canvas id="roeChart"></canvas>
+        </div>
+
+        <h3>4.2 资产负债率趋势</h3>
+        <table>
+            <tr><th>年份</th><th>2017</th><th>2018</th><th>2019</th><th>2020</th><th>2021</th><th>2022</th><th>2023</th><th>2024</th><th>2025</th></tr>
+            <tr><td>资产负债率 (%)</td><td>~75</td><td>~72</td><td>~70</td><td>~73</td><td>~78</td><td>~82</td><td>~85</td><td>~88</td><td>~91</td></tr>
+            <tr><td>净债务/EBITDA (x)</td><td>~5.0</td><td>~4.5</td><td>~3.8</td><td>~4.2</td><td>~4.5</td><td>~3.8</td><td>~3.5</td><td>~3.2</td><td>~3.0</td></tr>
+        </table>
+
+        <div class="chart-container">
+            <canvas id="debtChart"></canvas>
+        </div>
+
+        <h3>4.3 PE比率趋势</h3>
+        <table>
+            <tr><th>年份</th><th>2017</th><th>2018</th><th>2019</th><th>2020</th><th>2021</th><th>2022</th><th>2023</th><th>2024</th><th>2025</th></tr>
+            <tr><td>年末PE (x)</td><td>26.4</td><td>13.4</td><td>18.7</td><td>14.7</td><td>15.3</td><td>14.7</td><td>15.0</td><td>14.8</td><td>12.0</td></tr>
+        </table>
+
+        <div class="chart-container">
+            <canvas id="peChart"></canvas>
+        </div>
+
+        <h3>4.4 关键财务指标解读</h3>
+        <div class="highlight">
+            <p><strong>ROE失真警示</strong>：HESM的ROE极高（2025年153%）是因为MLP架构下权益基数极小（$3.75亿权益支撑$43亿资产），这是杠杆效应而非真实盈利能力。投资者应更关注<strong>调整后EBITDA利润率（76%）</strong>和<strong>调整后自由现金流利润率（49%）</strong>——这两个指标才是HESM真正赚钱能力的体现。</p>
+        </div>
+        <div class="highlight">
+            <p><strong>资产负债率上升但杠杆改善</strong>：虽然账面资产负债率从70%升至91%（权益缩减导致），但更重要的指标——净债务/EBITDA——从5.0x降至3.0x，说明实际偿债能力在改善。管理层目标是长期降至3.0x以下。</p>
+        </div>
+    </div>
+
+    <!-- 五、竞争分析 -->
+    <div class="info-box">
+        <h2>五、竞争分析</h2>
+
+        <h3>5.1 Bakken中游市场竞争格局</h3>
+        <table>
+            <tr><th>竞争对手</th><th>Bakken业务规模</th><th>主要优势</th><th>与HESM的差异</th></tr>
+            <tr><td>ONEOK (OKE)</td><td>Bakken最大NGL收集商</td><td>规模大、NGL全链条、多元化盆地</td><td>更侧重NGL，HESM更侧重天然气和原油</td></tr>
+            <tr><td>Plains All American (PAA)</td><td>Bakken主要原油运输商</td><td>原油管道网络广、终端设施多</td><td>更侧重原油运输，HESM更侧重收集和处理</td></tr>
+            <tr><td>Targa Resources (TRGP)</td><td>Bakken天然气处理能力</td><td>Permian核心玩家，Bakken次要</td><td>重心在Permian，Bakken投入有限</td></tr>
+            <tr><td>Enbridge (ENB)</td><td>Bakken原油外输干线</td><td>北美最大管道网络，$1210亿市值</td><td>规模远超HESM，但Bakken只是其一小部分</td></tr>
+            <tr><td>Enterprise Products (EPD)</td><td>Bakken有限存在</td><td>$760亿增长资本计划，NGL出口龙头</td><td>重心在Permian和墨西哥湾，Bakken非核心</td></tr>
+        </table>
+
+        <h3>5.2 HESM在Bakken的竞争地位</h3>
+        <p>HESM在Bakken的核心产区拥有<strong>最密集的收集管道网络</strong>，特别是在Hess/Chevron的专属产区内，几乎没有竞争对手可以替代。它的优势是"深度"而非"广度"——在一个特定区域做深做透，而非像ONEOK或Enbridge那样在多个盆地布局。</p>
+
+        <h3>5.3 经济护城河评估</h3>
+        <div class="moat-item">
+            <p><strong>1. 规模优势：<span class="star">⭐⭐⭐⭐</span></strong> — Bakken核心产区最大收集系统，1,350英里天然气管道+550英里原油管道，处理能力450+ MMcf/天</p>
+        </div>
+        <div class="moat-item">
+            <p><strong>2. 合同壁垒：<span class="star">⭐⭐⭐⭐⭐</span></strong> — 长期合同至2033年，95%营收受MVCs保护，通胀escalator条款锁定定价权。这是HESM最核心的护城河——合同本身就是壁垒</p>
+        </div>
+        <div class="moat-item">
+            <p><strong>3. 资本壁垒：<span class="star">⭐⭐⭐⭐</span></strong> — 重复铺设管道的资本成本极高（$100万+/英里），且需获得路权和环保许可，新进入者几乎不可能</p>
+        </div>
+        <div class="moat-item">
+            <p><strong>4. 客户绑定：<span class="star">⭐⭐⭐⭐⭐</span></strong> — Chevron（原Hess）专属产区全部dedicate给HESM系统，且Chevron持有37.6%权益，利益深度绑定</p>
+        </div>
+        <div class="moat-item">
+            <p><strong>5. 品牌力：<span class="star">⭐⭐</span></strong> — B2B基础设施，品牌力无关紧要</p>
+        </div>
+        <div class="moat-item">
+            <p><strong>6. 网络效应：<span class="star">⭐⭐⭐</span></strong> — 收集系统有轻度网络效应：更多井口连接→更充分利用管道容量→单位成本降低→吸引更多客户</p>
+        </div>
+
+        <div class="highlight">
+            <p><strong>护城河综合评级：宽（合同+资本双重壁垒）</strong></p>
+            <p>HESM的护城河本质是"合同+资本"双重壁垒——长期合同锁定收入（至2033年），巨额资本投入形成物理壁垒（管道不可复制），Chevron作为最大客户和股东深度绑定。这种护城河在Bakken核心产区几乎不可逾越。但护城河的宽度受限于地理范围——HESM是"盆地级"护城河，而非"全国级"。</p>
+        </div>
+
+        <h3>5.4 主要风险</h3>
+        <div class="risk-item">
+            <p><strong>1. 单一客户依赖（极高风险）</strong>：Chevron/Hess贡献约90%+的吞吐量。如果Chevron削减Bakken钻机数量（已从4台减至3台），HESM的增长将直接受影响。</p>
+        </div>
+        <div class="risk-item">
+            <p><strong>2. 单一盆地风险（高风险）</strong>：100%运营在Bakken，如果Bakken产量长期下降（井口衰减+新井开发不足），HESM无法通过其他盆地弥补。</p>
+        </div>
+        <div class="risk-item">
+            <p><strong>3. 公司治理风险（中等风险）</strong>：Chevron作为37.6%股东和最大客户，存在利益冲突可能。GIP退出后，Chevron影响力进一步增强。</p>
+        </div>
+        <div class="risk-item">
+            <p><strong>4. 债务水平（中等风险）</strong>：$37.7亿总债务，净债务/EBITDA约3.0x。虽然改善中，但利率上升会增加利息支出。</p>
+        </div>
+        <div class="risk-item">
+            <p><strong>5. 监管风险（低-中等风险）</strong>：FERC定价监管可能限制终端费率上调幅度；环保法规可能增加运营成本。</p>
+        </div>
+    </div>
+
+    <!-- 六、利润分配分析 -->
+    <div class="info-box">
+        <h2>六、利润分配分析</h2>
+        <p>注：按照价值投资分析框架，<strong>股票回购计入留存</strong>，而非与股息并列作为"回报股东"项目。回购减少股数、提升每股价值，与留存收益本质相同——利润保留在公司生态内。</p>
+
+        <h3>6.1 利润分配表（FY2016-FY2025，单位：百万美元）</h3>
+        <table>
+            <tr><th>年度</th><th>净利润(合并)</th><th>分配(Distributions)</th><th>回购</th><th>扩张CapEx</th><th>债务偿还(净)</th><th>留存金额</th><th>留存比率</th></tr>
+            <tr><td>2017</td><td>403</td><td>31</td><td>0</td><td>265</td><td>0</td><td>372</td><td>92%</td></tr>
+            <tr><td>2018</td><td>448</td><td>74</td><td>0</td><td>325</td><td>0</td><td>374</td><td>84%</td></tr>
+            <tr><td>2019</td><td>466</td><td>28</td><td>0</td><td>390</td><td>0</td><td>438</td><td>94%</td></tr>
+            <tr><td>2020</td><td>416</td><td>31</td><td>0</td><td>235</td><td>0</td><td>385</td><td>93%</td></tr>
+            <tr><td>2021</td><td>433</td><td>49</td><td>0</td><td>210</td><td>0</td><td>384</td><td>89%</td></tr>
+            <tr><td>2022</td><td>505</td><td>90</td><td>100</td><td>240</td><td>0</td><td>415</td><td>82%</td></tr>
+            <tr><td>2023</td><td>554</td><td>133</td><td>200</td><td>245</td><td>0</td><td>421</td><td>76%</td></tr>
+            <tr><td>2024</td><td>640</td><td>275</td><td>300</td><td>230</td><td>0</td><td>365</td><td>57%</td></tr>
+            <tr><td>2025</td><td>685</td><td>330</td><td>420</td><td>250</td><td>0</td><td>355</td><td>52%</td></tr>
+        </table>
+        <p>注：以上数据为估算值。HESM的MLP架构下，"分配"指对公众A类股持有者的现金分配；合并层面净利润包含非控制权益（Chevron/Hess/GIP持有的B类单位）。"留存金额"=净利润-分配（回购计入留存）。债务偿还为净额（新借-偿还），多数年份为0表示滚动融资。</p>
+
+        <h3>6.2 留存比率趋势分析</h3>
+        <div class="highlight">
+            <p><strong>留存比率从2017年的92%下降至2025年的52%</strong>，反映公司从"建设期"向"收获期"的过渡。早期大量利润用于资本扩张（铺设管道、建处理厂），近年来随着基础设施基本建成，CapEx大幅下降（2026年预计仅$1.05亿，2027-2028年降至<$7500万/年），自由现金流大幅增加，公司开始将更多利润通过分配和回购返还给股东。</p>
+        </div>
+
+        <h3>6.3 回购质量评估</h3>
+        <table>
+            <tr><th>时期</th><th>回购金额</th><th>回购类型</th><th>回购价格区间</th><th>当前股价</th><th>浮盈/浮亏</th></tr>
+            <tr><td>2023年3月</td><td>$1亿</td><td>B类单位回购（Sponsor）</td><td>$27.63/单位</td><td>$38.6</td><td>+40%</td></tr>
+            <tr><td>2024年</td><td>~$3亿</td><td>B类单位+A类股回购</td><td>$28-$37</td><td>$38.6</td><td>+4%~+38%</td></tr>
+            <tr><td>2025年5月</td><td>$2亿</td><td>$1.9亿B类+$0.1亿A类</td><td>~$33-35</td><td>$38.6</td><td>+10%~+17%</td></tr>
+            <tr><td>2026年Q1</td><td>$0.6亿</td><td>$0.42亿A类+$0.18亿B类</td><td>~$37-39</td><td>$38.6</td><td>持平~+5%</td></tr>
+        </table>
+        <div class="highlight">
+            <p><strong>回购质量评价：优秀</strong>。HESM的回购策略非常理性——主要通过回购Sponsor（Chevron）的B类单位实现增厚，而非在公开市场高价回购A类股。回购价格远低于当前股价，且每次回购后都立即注销，增厚每股分配。CFO明确表示"用分配后的自由现金流回购，而非加杠杆回购"，体现了保守的资本配置理念。</p>
+        </div>
+
+        <h3>6.4 可持续增长率</h3>
+        <p>可持续增长率 = ROE × 留存比率 = 153% × 52% ≈ 80%（理论值，因ROE失真无实际意义）</p>
+        <p>更有意义的指标：<strong>调整后自由现金流增长率</strong>——管理层指引2026-2028年调整后FCF年化增长约10%，主要由CapEx下降驱动。</p>
+    </div>
+
+    <!-- 七、投资总结 -->
+    <div class="info-box">
+        <h2>七、投资总结</h2>
+
+        <h3>7.1 估值分析</h3>
+        <table>
+            <tr><th>估值指标</th><th>当前值</th><th>行业平均</th><th>历史中位数</th><th>评价</th></tr>
+            <tr><td>PE (TTM)</td><td>~13.5x</td><td>~18x</td><td>~14.8x</td><td><span class="tag tag-green">低于中位数</span></td></tr>
+            <tr><td>EV/EBITDA</td><td>~7.1x</td><td>~10x</td><td>~9x</td><td><span class="tag tag-green">行业最低水平</span></td></tr>
+            <tr><td>P/FCF</td><td>~11.3x</td><td>~15x</td><td>~14x</td><td><span class="tag tag-green">低估</span></td></tr>
+            <tr><td>股息率</td><td>~7.8%</td><td>~5%</td><td>~7.5%</td><td><span class="tag tag-green">高于平均</span></td></tr>
+            <tr><td>FCF Yield</td><td>~16%</td><td>~8%</td><td>~10%</td><td><span class="tag tag-green">极高</span></td></tr>
+        </table>
+
+        <h3>7.2 SWOT分析</h3>
+        <table>
+            <tr><th style="background:#27ae60;">优势 (Strengths)</th><th style="background:#c0392b;">劣势 (Weaknesses)</th></tr>
+            <tr><td>
+                <ul>
+                    <li>95%营收受MVCs保护，现金流极度稳定</li>
+                    <li>76% EBITDA利润率，行业顶级</li>
+                    <li>合同期至2033年，收入可见性极强</li>
+                    <li>CapEx大幅下降，FCF加速释放</li>
+                    <li>背靠Chevron，信用支撑强</li>
+                    <li>连续9年分配增长，目标5%+年增长至2028年</li>
+                </ul>
+            </td><td>
+                <ul>
+                    <li>90%+营收依赖单一客户（Chevron）</li>
+                    <li>100%运营在单一盆地（Bakken）</li>
+                    <li>MLP架构复杂，税务申报繁琐</li>
+                    <li>权益基数极小，账面杠杆率看似很高</li>
+                    <li>Bakken产量可能已接近平台期</li>
+                    <li>第三方业务拓展缓慢（仅~10%）</li>
+                </ul>
+            </td></tr>
+            <tr><th style="background:#2e86c1;">机会 (Opportunities)</th><th style="background:#e67e22;">威胁 (Threats)</th></tr>
+            <tr><td>
+                <ul>
+                    <li>CapEx从$2.5亿降至<$0.75亿，FCF大幅增加</li>
+                    <li>2026-2028年约$10亿超额FCF可用于回购和偿债</li>
+                    <li>天然气收集量仍有增长空间（Chevron 20万桶/天目标）</li>
+                    <li>通胀escalator条款持续推高费率</li>
+                    <li>第三方客户拓展潜力（目标10%→15%+）</li>
+                    <li>杠杆率自然下降，信用评级可能提升</li>
+                </ul>
+            </td><td>
+                <ul>
+                    <li>Chevron进一步削减Bakken钻机（3→2台）</li>
+                    <li>Bakken产量进入长期衰退</li>
+                    <li>能源转型加速，长期油气需求下降</li>
+                    <li>利率长期高位增加利息支出</li>
+                    <li>环保法规趋严增加合规成本</li>
+                    <li>Chevron治理决策可能损害少数股东利益</li>
+                </ul>
+            </td></tr>
+        </table>
+
+        <h3>7.3 投资评级与目标价</h3>
+        <div class="highlight">
+            <p><strong>投资评级：持有偏买入</strong></p>
+            <p><strong>合理估值区间：$36-$42</strong></p>
+            <p><strong>当前价格：$38.6（处于合理区间中位）</strong></p>
+        </div>
+
+        <h3>7.4 投资逻辑</h3>
+        <p><strong>看多理由：</strong></p>
+        <ul>
+            <li><strong>收费公路模式</strong>：fee-based + MVCs = 近似债券的现金流稳定性，但收益率远超债券（7.8%分配率+5%年增长=总回报12-13%）</li>
+            <li><strong>CapEx断崖下降</strong>：2026年$1.05亿→2027-2028年<$0.75亿/年，FCF从$7.5亿增至$9亿+，FCF Yield达16%</li>
+            <li><strong>估值便宜</strong>：EV/EBITDA 7.1x是中游行业最低水平之一，PE 13.5x低于5年平均14.8x</li>
+            <li><strong>回购增厚</strong>：持续回购Sponsor B类单位，注销后增厚每股分配，已形成良性循环</li>
+        </ul>
+        <p><strong>看空理由：</strong></p>
+        <ul>
+            <li><strong>增长天花板</strong>：Bakken产量接近平台期，Chevron已减至3台钻机，2026年油量预计持平，增长仅靠天然气和通胀escalator</li>
+            <li><strong>单一客户风险</strong>：Chevron一个决策（减钻机、延迟开发）就能影响HESM的增长前景</li>
+            <li><strong>无定价权自主性</strong>：费率调整受FERC监管和合同条款约束，无法主动提价</li>
+            <li><strong>MLP税务复杂性</strong>：K-1报税表对外国投资者和退休账户不友好</li>
+        </ul>
+
+        <h3>7.5 巴菲特视角</h3>
+        <div class="highlight">
+            <p>巴菲特喜欢"收费桥梁"式的业务——无论经济好坏，过桥费照收。HESM本质上就是Bakken的"收费桥梁"：油气必须经过它的管道才能从井口到达市场，而且过路费受长期合同保护。</p>
+            <p>但巴菲特不会喜欢的是：<strong>单一客户依赖</strong>（"如果Chevron是唯一的客户，那Chevron就是老板"）和<strong>有限的增长前景</strong>（巴菲特偏好能将1美元留存变成>1美元市值的公司，HESM的留存回报率在Bakken平台期将下降）。</p>
+            <p><strong>巴菲特测试结论</strong>：HESM是一个"类债券"投资——7.8%当前收益率+5%年增长+合同保护至2033年，总回报约12-13%/年。它不是巴菲特最偏好的"复利机器"，但对于追求稳定现金流的投资者而言，是一个风险可控的收益型资产。</p>
+        </div>
+
+        <h3>7.6 关键催化剂与观察点</h3>
+        <table>
+            <tr><th>催化剂</th><th>影响</th><th>时间</th></tr>
+            <tr><td>CapEx降至<$0.75亿/年</td><td>FCF大幅增加，回购和偿债加速</td><td>2027-2028年</td></tr>
+            <tr><td>Chevron增加Bakken钻机</td><td>吞吐量增长超预期</td><td>不确定</td></tr>
+            <tr><td>杠杆率降至<3.0x</td><td>信用评级提升，融资成本下降</td><td>2027-2028年</td></tr>
+            <tr><td>第三方客户拓展超预期</td><td>降低单一客户依赖</td><td>持续</td></tr>
+        </table>
+        <table>
+            <tr><th>风险事件</th><th>影响</th><th>概率</th></tr>
+            <tr><td>Chevron进一步减钻机至2台</td><td>吞吐量下降，增长停滞</td><td>中等</td></tr>
+            <tr><td>Bakken产量进入长期衰退</td><td>MVCs保护失效，收入下降</td><td>低-中</td></tr>
+            <tr><td>Chevron出售HESM权益</td><td>治理结构变化，不确定性增加</td><td>低</td></tr>
+        </table>
+
+        <h3>7.7 建议操作</h3>
+        <div class="highlight">
+            <p><strong>对于收益型投资者</strong>：当前$38.6可建仓，7.8%分配率+5%年增长提供12-13%总回报预期。建议在$35以下加大仓位（对应8.5%+分配率）。</p>
+            <p><strong>对于价值投资者</strong>：等待$34-36区间（PE约12x，EV/EBITDA约6.5x），要求15%以上安全边际。HESM的"类债券"属性意味着上行空间有限，但下行保护较强（MVCs+合同至2033年）。</p>
+            <p><strong>不建议追高</strong>：$42以上（PE>15x）时，风险回报比不再有利。分析师平均目标价仅$36.83，低于当前价格。</p>
+        </div>
+    </div>
+
+    <script>
+        // ROE趋势图表
+        const roeCtx = document.getElementById('roeChart').getContext('2d');
+        new Chart(roeCtx, {
+            type: 'bar',
+            data: {
+                labels: ['2018','2019','2020','2021','2022','2023','2024','2025'],
+                datasets: [{
+                    label: 'ROE (%)',
+                    data: [15, 18, 12, 3, 11, 22, 42, 153],
+                    backgroundColor: 'rgba(46, 134, 193, 0.7)',
+                    borderColor: 'rgba(46, 134, 193, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: { title: { display: true, text: 'Hess Midstream ROE趋势（2018-2025）' }, legend: { display: false } },
+                scales: { y: { title: { display: true, text: 'ROE (%)' } } }
+            }
+        });
+
+        // 资产负债率和净债务/EBITDA趋势图表
+        const debtCtx = document.getElementById('debtChart').getContext('2d');
+        new Chart(debtCtx, {
+            type: 'line',
+            data: {
+                labels: ['2017','2018','2019','2020','2021','2022','2023','2024','2025'],
+                datasets: [{
+                    label: '资产负债率 (%)',
+                    data: [75, 72, 70, 73, 78, 82, 85, 88, 91],
+                    borderColor: 'rgba(192, 57, 43, 1)',
+                    backgroundColor: 'rgba(192, 57, 43, 0.1)',
+                    yAxisID: 'y',
+                    fill: true
+                }, {
+                    label: '净债务/EBITDA (x)',
+                    data: [5.0, 4.5, 3.8, 4.2, 4.5, 3.8, 3.5, 3.2, 3.0],
+                    borderColor: 'rgba(39, 174, 96, 1)',
+                    backgroundColor: 'rgba(39, 174, 96, 0.1)',
+                    yAxisID: 'y1',
+                    fill: false
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: { title: { display: true, text: 'Hess Midstream杠杆率趋势' } },
+                scales: {
+                    y: { position: 'left', title: { display: true, text: '资产负债率 (%)' }, min: 60, max: 100 },
+                    y1: { position: 'right', title: { display: true, text: '净债务/EBITDA (x)' }, min: 0, max: 6, grid: { drawOnChartArea: false } }
+                }
+            }
+        });
+
+        // PE趋势图表
+        const peCtx = document.getElementById('peChart').getContext('2d');
+        new Chart(peCtx, {
+            type: 'line',
+            data: {
+                labels: ['2017','2018','2019','2020','2021','2022','2023','2024','2025'],
+                datasets: [{
+                    label: '年末PE (x)',
+                    data: [26.4, 13.4, 18.7, 14.7, 15.3, 14.7, 15.0, 14.8, 12.0],
+                    borderColor: 'rgba(230, 126, 34, 1)',
+                    backgroundColor: 'rgba(230, 126, 34, 0.1)',
+                    fill: true,
+                    tension: 0.3
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: { title: { display: true, text: 'Hess Midstream PE比率趋势' }, legend: { display: false } },
+                scales: { y: { title: { display: true, text: 'PE (x)' }, min: 8, max: 30 } }
+            }
+        });
+    </script>
+</body>
+</html>
