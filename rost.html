@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ross Stores (ROST) 价值投资分析</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body { font-family: 'Segoe UI', Arial, sans-serif; margin: 0; padding: 20px; background-color: #f0f2f5; color: #333; }
+        h1 { text-align: center; color: #1a5276; font-size: 2.2em; margin-bottom: 5px; }
+        h2 { color: #1a5276; border-bottom: 2px solid #2e86c1; padding-bottom: 8px; margin-top: 30px; }
+        h3 { color: #2c3e50; margin-top: 20px; }
+        .subtitle { text-align: center; color: #7f8c8d; font-size: 1.1em; margin-bottom: 30px; }
+        .info-box { background: white; border-radius: 10px; padding: 25px; margin: 20px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.08); }
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; background-color: white; }
+        th, td { padding: 10px 14px; text-align: left; border-bottom: 1px solid #e0e0e0; }
+        th { background-color: #1a5276; color: white; font-weight: bold; }
+        tr:nth-child(even) { background-color: #f8f9fa; }
+        tr:hover { background-color: #eaf2f8; }
+        .highlight { background: #fef9e7; border-left: 4px solid #2e86c1; padding: 15px 20px; margin: 15px 0; border-radius: 0 8px 8px 0; }
+        .chart-container { background: white; border-radius: 10px; padding: 25px; margin: 20px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.08); }
+        canvas { max-height: 400px; }
+        .tag { display: inline-block; background: #1a5276; color: white; padding: 3px 10px; border-radius: 12px; font-size: 0.85em; margin: 2px; }
+        .tag-green { background: #27ae60; }
+        .tag-orange { background: #e67e22; }
+        .tag-red { background: #c0392b; }
+        a { color: #1a5276; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        .back-link { display: inline-block; margin-bottom: 20px; font-size: 1em; }
+        .moat-item { background: white; border-radius: 8px; padding: 15px 20px; margin: 10px 0; box-shadow: 0 1px 5px rgba(0,0,0,0.05); border-left: 4px solid #2e86c1; }
+        .moat-item strong { color: #1a5276; }
+        .risk-item { background: white; border-radius: 8px; padding: 15px 20px; margin: 10px 0; box-shadow: 0 1px 5px rgba(0,0,0,0.05); border-left: 4px solid #c0392b; }
+        .star { color: #f39c12; }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back-link">← 返回索引</a>
+    <h1>Ross Stores, Inc. (NASDAQ: ROST)</h1>
+    <p class="subtitle">巴菲特/芒格式价值投资基本面分析 | 更新日期：2026年6月</p>
+
+    <!-- 一、公司基本信息 -->
+    <div class="info-box">
+        <h2>一、公司基本信息</h2>
+        <table>
+            <tr><td>公司全称</td><td>Ross Stores, Inc.</td></tr>
+            <tr><td>股票代码</td><td>NASDAQ: ROST</td></tr>
+            <tr><td>市值</td><td>约735亿美元（2026年6月）</td></tr>
+            <tr><td>企业价值（EV）</td><td>≈ $741亿（净现金约$24亿）</td></tr>
+            <tr><td>成立时间</td><td>1982年（第一家店在加州旧金山）</td></tr>
+            <tr><td>公司总部</td><td>美国加利福尼亚州都柏林（Dublin, CA）</td></tr>
+            <tr><td>最新收盘价</td><td>约$239（2026年6月11日）</td></tr>
+            <tr><td>52周区间</td><td>$124.49 - $240.51</td></tr>
+            <tr><td>CEO</td><td>Jim Conroy（2024年接任，前TJX高管）</td></tr>
+            <tr><td>员工人数</td><td>约111,000人</td></tr>
+            <tr><td>行业</td><td>折扣零售 / Off-Price Retail</td></tr>
+            <tr><td>流通股数</td><td>约3,210万股（持续回购缩减中）</td></tr>
+            <tr><td>股息</td><td>$1.78/年（季度$0.445，收益率0.69%）</td></tr>
+            <tr><td>门店总数</td><td>2,267家（Ross 1,904家 + dd's DISCOUNTS 363家，截至2026年1月）</td></tr>
+            <tr><td>信用评级</td><td>A-（S&P，2026年3月从BBB+上调）</td></tr>
+            <tr><td>现金及投资</td><td>$41亿（2026年Q1末）</td></tr>
+            <tr><td>总债务</td><td>$17亿（长期债务$12亿）</td></tr>
+            <tr><td>净现金</td><td>约$24亿</td></tr>
+        </table>
+    </div>
+
+    <!-- 二、业务分析 -->
+    <div class="info-box">
+        <h2>二、业务分析</h2>
+        <h3>2.1 通俗解释：Ross Stores是干什么的？</h3>
+        <p>用最简单的话说，<strong>Ross Stores是美国第二大"品牌折扣店"</strong>——它从品牌商和百货公司那里低价收购"多出来的商品"（过季、清仓、取消订单），然后以比正价低20%-60%的价格卖给消费者。</p>
+        <p>想象一下：Nike生产了太多运动鞋，Macy's取消了一大批订单，某个设计师品牌需要清库存。这些品牌不想在自己的渠道打折太狠（会伤害品牌形象），于是悄悄卖给Ross。Ross拿到货后，在自己的店里以原价的4-8折出售。消费者觉得"赚到了"（品牌货这么便宜！），品牌商解决了库存问题，Ross赚了差价——<strong>三方共赢</strong>。</p>
+        <p>Ross最独特的地方是<strong>"寻宝式购物体验"</strong>——每次去店里，商品都不一样。你可能在运动鞋旁边发现厨房锅具，在连衣裙旁边发现宠物用品。这种"不确定性"反而让购物变成了一种乐趣——就像寻宝一样。这种体验是Amazon无法复制的，因为Amazon是"搜索驱动"（你知道自己要什么），而Ross是"发现驱动"（你不知道自己会发现什么）。</p>
+        <p>它的赚钱逻辑是：<strong>低价收购品牌商的过剩库存→以折扣价卖给消费者→27.7%毛利率→11.9%营业利润率→9.4%净利率→强劲自由现金流→回购+分红</strong>。</p>
+
+        <h3>2.2 两大品牌</h3>
+        <table>
+            <tr><th>品牌</th><th>门店数</th><th>营收占比</th><th>目标客户</th><th>折扣力度</th><th>平均门店面积</th></tr>
+            <tr><td>Ross Dress for Less</td><td>1,904</td><td>~87.6%</td><td>中等收入家庭</td><td>20%-60% off</td><td>2.7万平方英尺</td></tr>
+            <tr><td>dd's DISCOUNTS</td><td>363</td><td>~12.4%</td><td>中低收入/年轻多元群体</td><td>20%-70% off</td><td>2.2万平方英尺</td></tr>
+        </table>
+
+        <h3>2.3 品类结构</h3>
+        <table>
+            <tr><th>品类</th><th>营收占比</th><th>趋势</th></tr>
+            <tr><td>家居饰品及床上用品</td><td>26%</td><td>最大品类，受房地产周期影响</td></tr>
+            <tr><td>女士服装</td><td>22%</td><td>核心品类，增长稳定</td></tr>
+            <tr><td>男士服装</td><td>16%</td><td>增长较快</td></tr>
+            <tr><td>配饰、内衣、珠宝及化妆品</td><td>15%</td><td>高毛利品类</td></tr>
+            <tr><td>鞋类</td><td>12%</td><td>增长稳定</td></tr>
+            <tr><td>儿童鞋服</td><td>9%</td><td>受出生率影响</td></tr>
+        </table>
+
+        <h3>2.4 FY2025全年财务摘要（截至2026年1月31日）</h3>
+        <table>
+            <tr><th>指标</th><th>FY2025</th><th>FY2024</th><th>同比变化</th></tr>
+            <tr><td>总营收</td><td>$227.51亿</td><td>$211.29亿</td><td>+7.7%</td></tr>
+            <tr><td>同店销售增长</td><td>+5%</td><td>+3%</td><td>+2pp</td></tr>
+            <tr><td>GAAP净利润</td><td>$21.45亿</td><td>$20.91亿</td><td>+2.6%</td></tr>
+            <tr><td>摊薄EPS</td><td>$6.61</td><td>$6.32</td><td>+4.6%</td></tr>
+            <tr><td>毛利率</td><td>27.7%</td><td>27.8%</td><td>-0.1pp</td></tr>
+            <tr><td>营业利润率</td><td>11.9%</td><td>12.2%</td><td>-0.3pp</td></tr>
+            <tr><td>净利率</td><td>9.4%</td><td>9.9%</td><td>-0.5pp</td></tr>
+            <tr><td>经营现金流</td><td>$30.27亿</td><td>—</td><td>强劲</td></tr>
+            <tr><td>资本支出</td><td>$8.19亿</td><td>—</td><td>新店+新配送中心</td></tr>
+            <tr><td>自由现金流</td><td>约$22亿</td><td>—</td><td>FCF利润率~9.7%</td></tr>
+            <tr><td>新开店数</td><td>90家（净增81家）</td><td>—</td><td>加速扩张</td></tr>
+        </table>
+
+        <h3>2.5 FY2026 Q1（最新季度，截至2026年5月2日）</h3>
+        <table>
+            <tr><th>指标</th><th>FY2026 Q1</th><th>FY2025 Q1</th><th>同比变化</th></tr>
+            <tr><td>总营收</td><td>$60亿</td><td>$50亿</td><td>+21%</td></tr>
+            <tr><td>同店销售增长</td><td>+17%</td><td>0%</td><td>大幅反弹</td></tr>
+            <tr><td>净利润</td><td>$6.5亿</td><td>$4.79亿</td><td>+36%</td></tr>
+            <tr><td>EPS</td><td>$2.02</td><td>$1.47</td><td>+37%</td></tr>
+            <tr><td>营业利润率</td><td>13.4%</td><td>—</td><td>远超指引11.8-12.1%</td></tr>
+        </table>
+        <div class="highlight">
+            <p><strong>FY2026 Q1业绩爆发</strong>：同店销售+17%远超预期，主要受益于：(1)客户流量强劲增长；(2)营销活动推动新客获取和参与度提升；(3)店内体验改善；(4)税收退款刺激消费。CEO Jim Conroy表示"整个业务执行出色"。</p>
+        </div>
+
+        <h3>2.6 FY2026全年指引（已上调）</h3>
+        <table>
+            <tr><th>指标</th><th>原指引</th><th>上调后指引</th></tr>
+            <tr><td>同店销售增长</td><td>4%-5%</td><td>6%-7%</td></tr>
+            <tr><td>EPS</td><td>—</td><td>$7.50-$7.74（+13%-17%）</td></tr>
+            <tr><td>新开店数</td><td>110家</td><td>110家（Ross 85 + dd's 25）</td></tr>
+            <tr><td>资本支出</td><td>$11亿</td><td>$11亿</td></tr>
+        </table>
+
+        <h3>2.7 地域分布</h3>
+        <p>Ross是<strong>纯美国业务</strong>，无国际业务。门店覆盖44个州+哥伦比亚特区+关岛+波多黎各。重点集中在加州、德州、佛州等阳光带州。2025年新进入纽约都会区和波多黎各市场。中西部和东北部仍有大量空白市场。</p>
+
+        <h3>2.8 战略方向</h3>
+        <ul>
+            <li><strong>门店扩张</strong>：长期目标Ross 2,900家+dd's 700家=3,600家（当前2,267家，还有59%增长空间）</li>
+            <li><strong>地理扩张</strong>：向中西部和东北部渗透，2025年新进入纽约市场</li>
+            <li><strong>dd's DISCOUNTS加速</strong>：FY2026计划新开25家dd's（vs FY2025仅10家），重新加速</li>
+            <li><strong>China-plus-one采购</strong>：将部分采购从中国转移至越南、印度、马来西亚，降低关税风险</li>
+            <li><strong>营销投入</strong>：增加数字营销和客户获取投入，FY2026 Q1已见效</li>
+            <li><strong>无电商策略</strong>：坚持纯线下模式，认为"寻宝体验"无法在线复制</li>
+        </ul>
+    </div>
+
+    <!-- 三、业务板块产品竞争力分析 -->
+    <div class="info-box">
+        <h2>三、业务板块产品竞争力分析</h2>
+
+        <h3>3.1 Ross Dress for Less 产品竞争力分析</h3>
+        <div class="moat-item">
+            <p><strong>1. 可替代性：<span class="tag tag-orange">中等</span></strong></p>
+            <ul>
+                <li>主要替代品：TJ Maxx/Marshalls（TJX）、Burlington、Nordstrom Rack、Macy's Backstage、Amazon、Walmart</li>
+                <li>替代品体验差距：TJX品牌选择更广、门店体验更好，但Ross价格更低；Amazon无法提供"寻宝体验"；Walmart品牌力弱</li>
+                <li>替代趋势：稳定——折扣零售在持续从百货商店夺取份额，行业整体受益</li>
+            </ul>
+            <p><strong>2. 客户转换成本：<span class="tag tag-red">低</span></strong></p>
+            <ul>
+                <li>财务转换成本：几乎为零——没有会员费、没有绑定</li>
+                <li>时间转换成本：低——客户可以同时去Ross和TJX</li>
+                <li>捆绑转换成本：无——Ross没有电商、没有会员体系</li>
+                <li>综合评估：零售行业天然转换成本低，Ross靠"价格+寻宝体验"而非锁定留住客户</li>
+            </ul>
+            <p><strong>3. 定价权：<span class="tag tag-orange">中等</span></strong></p>
+            <ul>
+                <li>历史提价记录：Ross不直接"提价"，但通过减少折扣力度（即缩小降价幅度）实现隐性提价</li>
+                <li>提价vs通胀：折扣零售本质是"通胀受益者"——通胀推动更多消费者转向折扣渠道</li>
+                <li>定价权来源：不是品牌溢价，而是"品牌折扣"的稀缺性——消费者知道在其他地方买不到这么便宜的品牌货</li>
+                <li>定价权趋势：稳定——但关税可能压缩定价空间</li>
+                <li>巴菲特测试：如果Ross提价10%（减少折扣），部分客户会转向TJX或Burlington——定价权受竞争制约</li>
+            </ul>
+            <p><strong>综合竞争力评级：<span class="star">⭐⭐⭐</span></strong></p>
+        </div>
+
+        <h3>3.2 dd's DISCOUNTS 产品竞争力分析</h3>
+        <div class="moat-item">
+            <p><strong>1. 可替代性：<span class="tag tag-red">高</span></strong></p>
+            <ul>
+                <li>主要替代品：Dollar General、Family Dollar、Walmart、Aldi的日用品区、Burlington</li>
+                <li>替代品体验差距：Dollar Store更便宜但品牌力弱；Walmart品类更全；Burlington品牌选择更好</li>
+                <li>替代趋势：加速——低价零售竞争激烈，Dollar Store持续扩张</li>
+            </ul>
+            <p><strong>2. 客户转换成本：<span class="tag tag-red">极低</span></strong></p>
+            <ul>
+                <li>财务转换成本：零</li>
+                <li>时间转换成本：极低——低价消费者对价格高度敏感，哪里便宜去哪里</li>
+                <li>捆绑转换成本：无</li>
+                <li>综合评估：dd's DISCOUNTS的客户是最价格敏感的群体，忠诚度最低</li>
+            </ul>
+            <p><strong>3. 定价权：<span class="tag tag-red">弱</span></strong></p>
+            <ul>
+                <li>历史提价记录：dd's定价受Dollar Store和Walmart制约</li>
+                <li>提价vs通胀：难以跑赢通胀</li>
+                <li>定价权来源：几乎没有——完全靠价格竞争</li>
+                <li>定价权趋势：削弱——Dollar Store持续扩张</li>
+                <li>巴菲特测试：提价10%客户立即离开——定价权极弱</li>
+            </ul>
+            <p><strong>综合竞争力评级：<span class="star">⭐⭐</span></strong></p>
+        </div>
+    </div>
+
+    <!-- 四、历史财务指标 -->
+    <div class="info-box">
+        <h2>四、历史财务指标</h2>
+
+        <h3>4.1 ROE（净资产收益率）趋势</h3>
+        <table>
+            <tr><th>年份</th><th>2016</th><th>2017</th><th>2018</th><th>2019</th><th>2020</th><th>2021</th><th>2022</th><th>2023</th><th>2024</th><th>2025</th></tr>
+            <tr><td>ROE (%)</td><td>41.3</td><td>40.7</td><td>44.7</td><td>48.0</td><td>49.4</td><td>2.6</td><td>42.4</td><td>35.3</td><td>38.5</td><td>38.0</td></tr>
+        </table>
+        <div class="highlight">
+            <p><strong>ROE极高且稳定</strong>：10年平均ROE约38%，在零售行业中属于顶尖水平。2021年ROE暴跌至2.6%（疫情关店），但2022年迅速恢复至42.4%。ROE高的原因：(1)净利润率9-10%（零售业优秀）；(2)资产周转率1.4-2.5x（高库存周转）；(3)适度财务杠杆（债务/权益0.4x）。疫情后ROE从49%降至38%，主要因为债务增加（2020年发行$25亿债券应对疫情）和资产规模扩大。</p>
+        </div>
+
+        <div class="chart-container">
+            <canvas id="roeChart"></canvas>
+        </div>
+
+        <h3>4.2 资产负债率趋势</h3>
+        <table>
+            <tr><th>年份</th><th>2016</th><th>2017</th><th>2018</th><th>2019</th><th>2020</th><th>2021</th><th>2022</th><th>2023</th><th>2024</th><th>2025</th></tr>
+            <tr><td>资产负债率 (%)</td><td>42</td><td>43</td><td>45</td><td>46</td><td>55</td><td>62</td><td>60</td><td>57</td><td>51</td><td>50</td></tr>
+            <tr><td>债务/权益</td><td>0.16</td><td>0.14</td><td>0.13</td><td>0.09</td><td>0.09</td><td>0.76</td><td>0.60</td><td>0.57</td><td>0.51</td><td>0.40</td></tr>
+        </table>
+        <div class="highlight">
+            <p><strong>资产负债率从42%升至50%</strong>：2020年疫情期发行$25亿债券导致资产负债率跳升，此后持续偿还债务（2025年偿还$7亿）。当前债务/权益0.40x，远低于疫情高峰0.76x。S&P于2026年3月将信用评级从BBB+上调至A-，反映财务状况持续改善。经营租赁负债$35.6亿（表外）是主要"隐藏负债"。</p>
+        </div>
+
+        <div class="chart-container">
+            <canvas id="debtChart"></canvas>
+        </div>
+
+        <h3>4.3 PE比率趋势</h3>
+        <table>
+            <tr><th>年份</th><th>2016</th><th>2017</th><th>2018</th><th>2019</th><th>2020</th><th>2021</th><th>2022</th><th>2023</th><th>2024</th><th>2025</th></tr>
+            <tr><td>年末PE (x)</td><td>22</td><td>19</td><td>17</td><td>17</td><td>75</td><td>22</td><td>20</td><td>24</td><td>24</td><td>27</td></tr>
+        </table>
+        <div class="highlight">
+            <p><strong>PE从17x扩张至32x（TTM）</strong>：当前PE 32x处于10年高位，远高于零售行业平均12x。PE扩张的原因：(1)FY2026 Q1业绩爆发（同店+17%）推动股价从$180涨至$239；(2)市场对"通胀受益+消费降级"逻辑的追捧；(3)S&P评级上调至A-。32x PE对于一个10%增速的零售公司而言偏贵——PEG约3.2x。</p>
+        </div>
+
+        <div class="chart-container">
+            <canvas id="peChart"></canvas>
+        </div>
+
+        <h3>4.4 关键盈利指标对比</h3>
+        <table>
+            <tr><th>指标</th><th>Ross (ROST)</th><th>TJX (TJX)</th><th>Burlington (BURL)</th><th>零售行业平均</th></tr>
+            <tr><td>营收增速</td><td>7.7%</td><td>6%</td><td>10%</td><td>4%</td></tr>
+            <tr><td>毛利率</td><td>27.7%</td><td>29.5%</td><td>30.5%</td><td>25%</td></tr>
+            <tr><td>营业利润率</td><td>11.9%</td><td>10.5%</td><td>9.5%</td><td>6%</td></tr>
+            <tr><td>净利率</td><td>9.4%</td><td>7.8%</td><td>5.5%</td><td>4%</td></tr>
+            <tr><td>ROE</td><td>38%</td><td>55%</td><td>—</td><td>15%</td></tr>
+            <tr><td>库存周转率</td><td>6.2x</td><td>6.5x</td><td>7.0x</td><td>5.0x</td></tr>
+            <tr><td>门店数</td><td>2,267</td><td>4,800+</td><td>1,050</td><td>—</td></tr>
+        </table>
+        <div class="highlight">
+            <p><strong>Ross vs TJX</strong>：TJX是行业龙头（$540亿营收 vs Ross $228亿），规模2.5倍。TJX毛利率更高（29.5% vs 27.7%），但Ross营业利润率更高（11.9% vs 10.5%）——Ross的成本控制更极致（无电商、无广告、简装门店）。TJX的ROE更高（55% vs 38%），因为TJX更积极回购。Ross的优势是估值更低（PE 32x vs TJX 28x...等等，TJX PE反而更低？是的，因为TJX增速更稳定，市场给Ross更高PE是因为FY2026 Q1爆发式增长）。</p>
+        </div>
+    </div>
+
+    <!-- 五、竞争分析 -->
+    <div class="info-box">
+        <h2>五、竞争分析</h2>
+
+        <h3>5.1 折扣零售市场竞争格局</h3>
+        <table>
+            <tr><th>竞争对手</th><th>市值</th><th>营收</th><th>门店数</th><th>核心优势</th><th>与ROST的差异</th></tr>
+            <tr><td>TJX Companies (TJX)</td><td>$1,400亿</td><td>$540亿+</td><td>4,800+</td><td>行业绝对龙头，规模2.5x Ross，国际布局，HomeGoods家居品类强</td><td>TJX品牌选择更广、门店体验更好、有国际业务；Ross价格更低、成本控制更极致</td></tr>
+            <tr><td>Burlington (BURL)</td><td>$180亿</td><td>$100亿</td><td>1,050</td><td>更激进的扩张（年开100+店），时尚导向，库存周转更快</td><td>Burlington增速更快但利润率更低；Ross规模更大、利润率更高</td></tr>
+            <tr><td>Nordstrom Rack</td><td>（Nordstrom一部分）</td><td>$55亿</td><td>—</td><td>高端品牌渠道，全渠道整合</td><td>Rack品牌更高端但规模小；Ross覆盖更广</td></tr>
+            <tr><td>Macy's Backstage</td><td>（Macy's一部分）</td><td>—</td><td>—</td><td>与百货店协同，清仓自有库存</td><td>Backstage是Macy's的补充而非独立业务</td></tr>
+            <tr><td>Walmart/Target</td><td>$6,000亿/$650亿</td><td>—</td><td>—</td><td>规模碾压，自有品牌，全渠道</td><td>不是直接竞争对手，但在基础品类有价格竞争</td></tr>
+            <tr><td>Dollar General/Family Dollar</td><td>$180亿/$70亿</td><td>—</td><td>20,000+</td><td>极致低价，社区渗透</td><td>与dd's DISCOUNTS部分竞争，但品类重叠有限</td></tr>
+        </table>
+
+        <h3>5.2 Ross的竞争地位</h3>
+        <p>Ross在折扣零售市场的定位是<strong>"成本最低的二当家"</strong>——TJX是绝对龙头（市场份额45-50%），Ross是老二（约17-22%），Burlington是老三（约8-10%）。Ross选择了一条"极致成本控制"的道路：不投广告、不做电商、门店装修极简、员工成本最低——这些节省全部转化为利润率优势（11.9%营业利润率 vs TJX 10.5% vs Burlington 9.5%）。</p>
+        <p>这种策略的优势是<strong>利润率行业最高</strong>（在折扣零售这个低利润行业尤其珍贵），劣势是<strong>增长天花板</strong>——不做电商意味着错过线上增长，不投广告意味着品牌认知度低，简装门店意味着客户体验不如TJX。</p>
+
+        <h3>5.3 经济护城河评估</h3>
+        <div class="moat-item">
+            <p><strong>1. 规模优势/采购力：<span class="star">⭐⭐⭐⭐</span></strong> — $228亿采购规模使Ross拥有强大的供应商议价能力。品牌商需要一个"安静"的清仓渠道（不打折品牌形象），Ross是少数能大批量收购的买家之一。但规模仅为TJX的40%，采购力不如TJX。</p>
+        </div>
+        <div class="moat-item">
+            <p><strong>2. 寻宝体验/网络效应：<span class="star">⭐⭐⭐</span></strong> — "寻宝式购物"是Ross的核心体验差异化，Amazon无法复制。但这不是真正的网络效应——更多客户不直接让体验更好。这更像是"体验护城河"而非"网络效应护城河"。</p>
+        </div>
+        <div class="moat-item">
+            <p><strong>3. 成本优势：<span class="star">⭐⭐⭐⭐</span></strong> — 无广告、无电商、简装门店、低员工成本——Ross的成本结构是折扣零售行业最精简的。这种成本优势是可持续的，因为它来自"不做"而非"做得更便宜"。</p>
+        </div>
+        <div class="moat-item">
+            <p><strong>4. 品牌力：<span class="star">⭐⭐</span></strong> — Ross几乎没有品牌投入，消费者认知度远低于TJX。Ross的"品牌"就是"便宜"，而非"品质"或"体验"。</p>
+        </div>
+        <div class="moat-item">
+            <p><strong>5. 客户锁定：<span class="star">⭐</span></strong> — 零售行业天然无客户锁定。Ross没有会员体系、没有积分、没有订阅——客户随时可以转向TJX或Burlington。</p>
+        </div>
+        <div class="moat-item">
+            <p><strong>6. 逆周期特性：<span class="star">⭐⭐⭐⭐</span></strong> — 经济衰退时，消费者从百货商店"降级"到折扣零售，Ross反而受益。这种"逆周期"特性是折扣零售独有的护城河——巴菲特会称之为"不管经济好坏都能赚钱的生意"。</p>
+        </div>
+
+        <div class="highlight">
+            <p><strong>护城河综合评级：中等（成本优势+逆周期驱动型）</strong></p>
+            <p>Ross的护城河不是"不可替代"（客户可以轻松转向TJX），而是"成本结构最优"——在折扣零售这个低利润行业，成本最低的玩家长期胜出。加上逆周期特性（经济衰退反而受益），Ross是一个"经济不好时更好"的生意。但护城河宽度不如TJX（规模更大+品牌更强+国际分散），也不如COSTCO（会员锁定+极致效率）。</p>
+        </div>
+
+        <h3>5.4 主要风险</h3>
+        <div class="risk-item">
+            <p><strong>1. 关税风险（高风险）</strong>：Ross约50%商品从中国采购，是三大折扣零售商中对中国依赖度最高的。2025年关税对EPS影响约$0.22-$0.25。虽然公司正在推进"China-plus-one"策略（转移至越南、印度、马来西亚），但转移需要时间，短期内关税仍是利润压力。2026年2月美国最高法院裁定部分关税违法，可能带来关税退款。</p>
+        </div>
+        <div class="risk-item">
+            <p><strong>2. 无电商策略风险（中等风险）</strong>：Ross坚持纯线下模式，而TJX已试水电商（Sierra、欧洲平台）。如果消费者购物习惯持续向线上转移，Ross可能错失增长机会。尤其在Z世代和Alpha世代中，线上购物是默认选择。</p>
+        </div>
+        <div class="risk-item">
+            <p><strong>3. 估值过高（中等风险）</strong>：PE 32x在零售行业属于极高估值。如果FY2026 Q1的爆发式增长不可持续（同店+17%可能受益于税收退款等一次性因素），估值可能大幅回调。</p>
+        </div>
+        <div class="risk-item">
+            <p><strong>4. TJX竞争压力（低-中等风险）</strong>：TJX规模2.5x Ross，品牌更强、门店体验更好、有国际业务分散风险。长期来看，TJX可能通过规模优势持续拉开差距。</p>
+        </div>
+        <div class="risk-item">
+            <p><strong>5. 过剩库存供应减少（低风险）</strong>：Ross的商业模式依赖品牌商的过剩库存。如果供应链效率提升导致过剩库存减少，Ross的采购优势将削弱。但历史证明，过剩库存永远存在——只是多少的问题。</p>
+        </div>
+        <div class="risk-item">
+            <p><strong>6. 新CEO执行风险（低风险）</strong>：Jim Conroy 2024年从TJX跳槽至Ross担任CEO，有丰富的折扣零售经验。但新CEO的战略方向（增加营销投入、改善店内体验）可能增加成本、压缩利润率。</p>
+        </div>
+    </div>
+
+    <!-- 六、利润分配分析 -->
+    <div class="info-box">
+        <h2>六、利润分配分析</h2>
+        <p>注：按照价值投资分析框架，<strong>股票回购计入留存</strong>。</p>
+
+        <h3>6.1 利润分配表（FY2016-FY2025，单位：百万美元）</h3>
+        <table>
+            <tr><th>年度</th><th>GAAP净利润</th><th>股息</th><th>回购</th><th>CapEx</th><th>债务偿还</th><th>留存金额</th><th>留存比率</th></tr>
+            <tr><td>2016</td><td>1,118</td><td>212</td><td>735</td><td>380</td><td>0</td><td>906</td><td>81%</td></tr>
+            <tr><td>2017</td><td>1,363</td><td>244</td><td>1,050</td><td>415</td><td>0</td><td>1,119</td><td>82%</td></tr>
+            <tr><td>2018</td><td>1,587</td><td>372</td><td>1,225</td><td>440</td><td>0</td><td>1,215</td><td>77%</td></tr>
+            <tr><td>2019</td><td>1,661</td><td>389</td><td>1,350</td><td>470</td><td>0</td><td>1,272</td><td>77%</td></tr>
+            <tr><td>2020</td><td>85</td><td>102</td><td>0</td><td>310</td><td>0</td><td>-17</td><td>-20%</td></tr>
+            <tr><td>2021</td><td>1,723</td><td>401</td><td>525</td><td>440</td><td>0</td><td>1,322</td><td>77%</td></tr>
+            <tr><td>2022</td><td>1,512</td><td>426</td><td>1,050</td><td>470</td><td>0</td><td>1,086</td><td>72%</td></tr>
+            <tr><td>2023</td><td>1,875</td><td>449</td><td>1,050</td><td>560</td><td>700</td><td>1,426</td><td>76%</td></tr>
+            <tr><td>2024</td><td>2,091</td><td>483</td><td>1,050</td><td>680</td><td>700</td><td>1,608</td><td>77%</td></tr>
+            <tr><td>2025</td><td>2,145</td><td>528</td><td>1,050</td><td>819</td><td>700</td><td>1,617</td><td>75%</td></tr>
+        </table>
+        <p>注：2020年因疫情关店，净利润仅$8,500万，暂停回购。2023-2025年每年偿还$7亿债务。留存金额 = 净利润 - 股息（回购计入留存）。</p>
+
+        <h3>6.2 回购历史与质量评估</h3>
+        <table>
+            <tr><th>时期</th><th>回购金额</th><th>回购股数</th><th>均价</th><th>当前股价</th><th>浮盈/浮亏</th></tr>
+            <tr><td>FY2022</td><td>~$10.5亿</td><td>~1,500万股</td><td>~$70</td><td>$239</td><td>+241%</td></tr>
+            <tr><td>FY2023</td><td>~$10.5亿</td><td>~1,400万股</td><td>~$75</td><td>$239</td><td>+219%</td></tr>
+            <tr><td>FY2024</td><td>~$10.5亿</td><td>~730万股</td><td>~$144</td><td>$239</td><td>+66%</td></tr>
+            <tr><td>FY2025</td><td>~$10.5亿</td><td>~710万股</td><td>~$148</td><td>$239</td><td>+61%</td></tr>
+            <tr><td>FY2026 Q1</td><td>~$3.19亿</td><td>~150万股</td><td>~$213</td><td>$239</td><td>+12%</td></tr>
+        </table>
+        <div class="highlight">
+            <p><strong>回购质量评价：优秀</strong>。Ross的回购策略非常纪律——每年固定$10.5亿回购（两年$21亿计划），不因股价上涨而加速。FY2022-2023年以$70-75均价回购（当前$239浮盈200%+），回购时机把握极好。FY2026年3月新批准$25.5亿两年回购计划（每年$12.75亿，较此前增加21%），反映管理层对未来现金流的信心。过去10年累计回购约$80亿，流通股从4.06亿减至3.21亿（减少21%）。</p>
+        </div>
+
+        <h3>6.3 股息历史</h3>
+        <table>
+            <tr><th>年份</th><th>年度股息/股</th><th>同比增长</th><th>派息率</th></tr>
+            <tr><td>2020</td><td>$0.29</td><td>-72%</td><td>121%（疫情削减）</td></tr>
+            <tr><td>2021</td><td>$1.14</td><td>+293%</td><td>23%</td></tr>
+            <tr><td>2022</td><td>$1.24</td><td>+9%</td><td>28%</td></tr>
+            <tr><td>2023</td><td>$1.34</td><td>+8%</td><td>24%</td></tr>
+            <tr><td>2024</td><td>$1.47</td><td>+10%</td><td>23%</td></tr>
+            <tr><td>2025</td><td>$1.62</td><td>+10%</td><td>25%</td></tr>
+            <tr><td>2026E</td><td>$1.78</td><td>+10%</td><td>~24%</td></tr>
+        </table>
+        <div class="highlight">
+            <p><strong>股息增长稳健</strong>：连续32年支付股息，疫情后连续4年每年增配10%。当前派息率仅24-25%，远低于零售行业平均40-50%，有大量增配空间。以当前增速，预计5年内股息可翻倍至$3.5+/年。</p>
+        </div>
+
+        <h3>6.4 留存比率解读</h3>
+        <div class="highlight">
+            <p><strong>留存比率稳定在75-82%</strong>：属于"大部分利润留存，适度回报股东"的模式。留存构成：回购约占留存金额的50-65%，CapEx/再投资约占35-50%。Ross的留存质量很高——回购在低价时执行（浮盈200%+），CapEx用于新店扩张（新店生产力75%，单店年营收$547万）。</p>
+            <p><strong>1美元留存创造市值评估</strong>：FY2022-2025年累计留存约$54亿（含回购$42亿+CapEx增量$12亿），市值从$460亿增至$735亿（增加$275亿）。粗略估算，<strong>1美元留存创造了约5.1美元市值</strong>——远超巴菲特的1美元标准。但这主要受益于PE扩张（从20x扩至32x），而非纯基本面驱动。</p>
+        </div>
+
+        <h3>6.5 可持续增长率</h3>
+        <p>可持续增长率 = ROE × 留存比率 = 38% × 75% = 28.5%</p>
+        <p>实际营收增长率约7.7%，远低于可持续增长率，说明公司有大量余力用于回购和分红。Ross选择将超额利润通过回购和分红返还股东，而非盲目扩张——这是优秀的资本配置。</p>
+    </div>
+
+    <!-- 七、投资总结 -->
+    <div class="info-box">
+        <h2>七、投资总结</h2>
+
+        <h3>7.1 估值分析</h3>
+        <table>
+            <tr><th>估值指标</th><th>当前值</th><th>5年均值</th><th>零售行业平均</th><th>评价</th></tr>
+            <tr><td>PE (TTM)</td><td>~32x</td><td>~23x</td><td>~12x</td><td><span class="tag tag-red">显著高估</span></td></tr>
+            <tr><td>Forward PE</td><td>~29x</td><td>—</td><td>~11x</td><td><span class="tag tag-red">偏高</span></td></tr>
+            <tr><td>EV/EBITDA</td><td>~17x</td><td>~13x</td><td>~9x</td><td><span class="tag tag-red">偏高</span></td></tr>
+            <tr><td>P/FCF</td><td>~28x</td><td>~26x</td><td>~10x</td><td><span class="tag tag-orange">高于平均</span></td></tr>
+            <tr><td>FCF Yield</td><td>~3.0%</td><td>~3.8%</td><td>~10%</td><td><span class="tag tag-red">偏低</span></td></tr>
+            <tr><td>PEG</td><td>~3.2x</td><td>~2.0x</td><td>~1.5x</td><td><span class="tag tag-red">偏贵</span></td></tr>
+            <tr><td>P/S</td><td>3.1x</td><td>2.3x</td><td>0.9x</td><td><span class="tag tag-red">偏高</span></td></tr>
+        </table>
+
+        <h3>7.2 SWOT分析</h3>
+        <table>
+            <tr><th style="background:#27ae60;">优势 (Strengths)</th><th style="background:#c0392b;">劣势 (Weaknesses)</th></tr>
+            <tr><td>
+                <ul>
+                    <li>营业利润率11.9%，折扣零售行业最高</li>
+                    <li>ROE 38%，10年平均38%，极稳定</li>
+                    <li>逆周期特性——经济衰退反而受益</li>
+                    <li>净现金$24亿，信用评级A-</li>
+                    <li>门店扩张空间大（当前2,267家 vs 目标3,600家）</li>
+                    <li>回购质量优秀，1美元留存创造5.1美元市值</li>
+                    <li>32年连续股息，4年连续10%增配</li>
+                </ul>
+            </td><td>
+                <ul>
+                    <li>无电商渠道，错过线上增长</li>
+                    <li>品牌认知度低，几乎无广告投入</li>
+                    <li>50%商品从中国采购，关税风险高</li>
+                    <li>客户转换成本极低，无锁定机制</li>
+                    <li>dd's DISCOUNTS竞争力弱</li>
+                    <li>纯美国业务，无地域分散</li>
+                    <li>新CEO战略可能增加成本</li>
+                </ul>
+            </td></tr>
+            <tr><th style="background:#2e86c1;">机会 (Opportunities)</th><th style="background:#e67e22;">威胁 (Threats)</th></tr>
+            <tr><td>
+                <ul>
+                    <li>门店扩张至3,600家（+59%空间）</li>
+                    <li>中西部/东北部空白市场渗透</li>
+                    <li>通胀持续推动消费者"降级"到折扣零售</li>
+                    <li>百货商店持续关店，释放市场份额</li>
+                    <li>China-plus-one采购降低关税风险</li>
+                    <li>营销投入见效（Q1同店+17%）</li>
+                </ul>
+            </td><td>
+                <ul>
+                    <li>关税升级压缩利润率</li>
+                    <li>TJX规模优势持续扩大</li>
+                    <li>电商渗透率持续提升</li>
+                    <li>消费者支出放缓</li>
+                    <li>过剩库存供应减少</li>
+                    <li>最低工资上涨推高人力成本</li>
+                </ul>
+            </td></tr>
+        </table>
+
+        <h3>7.3 投资评级与目标价</h3>
+        <div class="highlight">
+            <p><strong>投资评级：观望（估值过高）</strong></p>
+            <p><strong>合理估值区间：$170-$200</strong></p>
+            <p><strong>当前价格：$239（高于合理估值区间上限20%）</strong></p>
+        </div>
+
+        <h3>7.4 投资逻辑</h3>
+        <p><strong>看多理由：</strong></p>
+        <ul>
+            <li><strong>商业模式优秀</strong>：折扣零售是"经济不好时更好"的生意。通胀+消费降级+百货关店三重利好。Ross的成本结构是行业最精简的，利润率最高。</li>
+            <li><strong>增长空间大</strong>：门店从2,267家扩张至3,600家（+59%），每年新开100+店。即使同店销售零增长，新店也能贡献4-5%营收增速。</li>
+            <li><strong>资本配置优秀</strong>：回购纪律性强（低价时大量回购），股息连续10%增长，派息率仅24%有大量增配空间。</li>
+            <li><strong>逆周期防御</strong>：经济衰退时，Ross反而受益（消费者从百货降级到折扣）。这是巴菲特喜欢的"不管经济好坏都能赚钱"的生意。</li>
+        </ul>
+        <p><strong>看空理由：</strong></p>
+        <ul>
+            <li><strong>估值过高</strong>：PE 32x、PEG 3.2x、FCF Yield 3.0%——对于一个7-8%增速的零售公司，这个估值太贵了。FY2026 Q1的爆发式增长（同店+17%）可能不可持续（受益于税收退款等一次性因素）。</li>
+            <li><strong>护城河不够宽</strong>：客户转换成本极低，无锁定机制。TJX规模2.5x Ross，品牌更强、体验更好。Ross的核心优势是"成本最低"，但成本优势可以被复制。</li>
+            <li><strong>关税风险</strong>：50%商品从中国采购，关税对EPS影响$0.22-$0.25。虽然正在推进China-plus-one，但转移需要时间。</li>
+            <li><strong>无电商</strong>：在电商渗透率持续提升的时代，Ross坚持纯线下模式是双刃剑——成本更低但增长受限。</li>
+        </ul>
+
+        <h3>7.5 巴菲特视角</h3>
+        <div class="highlight">
+            <p>巴菲特会喜欢Ross的<strong>逆周期特性</strong>和<strong>低成本结构</strong>——这是典型的"不管经济好坏都能赚钱"的生意。通胀越高，消费者越需要折扣零售；经济越差，百货商店越需要清仓——Ross两头受益。巴菲特也会喜欢Ross的<strong>资本配置</strong>——回购纪律性强、股息持续增长、派息率保守。</p>
+            <p>但巴菲特不会喜欢的是：<strong>护城河不够宽</strong>。Ross没有客户锁定（不像COSTCO的会员制），没有品牌溢价（不像Nike），没有网络效应（不像Visa）。它的优势是"成本最低"，但成本优势是可以被侵蚀的——TJX如果决定打价格战，Ross的利润率会受压。</p>
+            <p>更重要的是，<strong>巴菲特绝不会在32x PE买入一个零售股</strong>。巴菲特买零售股的PE通常在10-15x（如他买入Walmart时PE约15x）。32x PE意味着市场已经充分定价了Ross的所有优点——逆周期、成本优势、增长空间。在这个价格上，安全边际为零。</p>
+            <p><strong>巴菲特测试结论</strong>：Ross是一个"好公司但不是好价格"的典型案例。业务质量7/10，但估值2/10。巴菲特会说："以合理价格买入优秀公司，远胜于以优秀价格买入平庸公司——但以荒谬价格买入任何公司都是愚蠢的。"</p>
+        </div>
+
+        <h3>7.6 与TJX对比</h3>
+        <table>
+            <tr><th>指标</th><th>ROST</th><th>TJX</th></tr>
+            <tr><td>市值</td><td>$735亿</td><td>$1,400亿</td></tr>
+            <tr><td>PE (TTM)</td><td>~32x</td><td>~28x</td></tr>
+            <tr><td>Forward PE</td><td>~29x</td><td>~25x</td></tr>
+            <tr><td>营收增速</td><td>7.7%</td><td>6%</td></tr>
+            <tr><td>营业利润率</td><td>11.9%</td><td>10.5%</td></tr>
+            <tr><td>净利率</td><td>9.4%</td><td>7.8%</td></tr>
+            <tr><td>ROE</td><td>38%</td><td>55%</td></tr>
+            <tr><td>门店数</td><td>2,267</td><td>4,800+</td></tr>
+            <tr><td>国际业务</td><td>无</td><td>有（欧洲/加拿大）</td></tr>
+            <tr><td>电商</td><td>无</td><td>有限（Sierra等）</td></tr>
+            <tr><td>股息率</td><td>0.69%</td><td>1.5%</td></tr>
+            <tr><td>关税风险</td><td>高（50%中国采购）</td><td>中等</td></tr>
+        </table>
+        <div class="highlight">
+            <p><strong>ROST vs TJX</strong>：TJX在几乎所有维度都优于Ross——规模更大、品牌更强、有国际分散、有电商试水、股息率更高、PE更低。Ross唯一的优势是利润率更高（11.9% vs 10.5%）和增速略快（7.7% vs 6%）。但市场给Ross更高PE（32x vs 28x），这看起来不合理——Ross的风险更高（关税、无电商、无国际），却享受更高估值。这可能是短期Q1爆发式增长带来的情绪溢价。</p>
+        </div>
+
+        <h3>7.7 关键催化剂与观察点</h3>
+        <table>
+            <tr><th>催化剂</th><th>影响</th><th>时间</th></tr>
+            <tr><td>经济衰退→消费降级加速</td><td>同店销售加速增长</td><td>不确定</td></tr>
+            <tr><td>关税退款（最高法院裁定）</td><td>EPS一次性提升$0.10-$0.20</td><td>2026</td></tr>
+            <tr><td>dd's DISCOUNTS加速扩张</td><td>打开低价市场</td><td>2026-2027</td></tr>
+            <tr><td>东北部/中西部新市场渗透</td><td>长期增长驱动</td><td>2026+</td></tr>
+        </table>
+        <table>
+            <tr><th>风险事件</th><th>影响</th><th>概率</th></tr>
+            <tr><td>Q2-Q4同店增速回归5-6%（Q1的17%不可持续）</td><td>估值从32x压缩至22-25x，股价跌20-30%</td><td>高</td></tr>
+            <tr><td>关税进一步升级</td><td>利润率压缩0.5-1pp</td><td>中等</td></tr>
+            <tr><td>TJX发起价格战</td><td>Ross利润率优势被侵蚀</td><td>低</td></tr>
+        </table>
+
+        <h3>7.8 建议操作</h3>
+        <div class="highlight">
+            <p><strong>对于价值投资者</strong>：当前$239不建议建仓——PE 32x对于零售股太贵了。建议等待股价回调至$170-$200区间（对应PE 22-26x、FCF Yield 4-5%），那时将提供合理安全边际。如果经济衰退来临，Ross可能短期下跌（恐慌性抛售），但基本面反而会改善——那是更好的买入时机。</p>
+            <p><strong>对于持有者</strong>：Ross是优秀的长期持有标的，但当前估值偏高。建议持有但不加仓。如果股价突破$250（PE 35x+），考虑减仓1/3锁定利润。</p>
+            <p><strong>关键观察点</strong>：FY2026 Q2财报（2026年8月）——同店销售是否从17%回归至6-7%正常水平。如果Q2同店仍在10%+，说明Ross的增长加速是结构性的而非一次性的，可以重新评估估值。</p>
+        </div>
+    </div>
+
+    <script>
+        // ROE趋势图表
+        const roeCtx = document.getElementById('roeChart').getContext('2d');
+        new Chart(roeCtx, {
+            type: 'line',
+            data: {
+                labels: ['2016','2017','2018','2019','2020','2021','2022','2023','2024','2025'],
+                datasets: [{
+                    label: 'ROE (%)',
+                    data: [41.3, 40.7, 44.7, 48.0, 49.4, 2.6, 42.4, 35.3, 38.5, 38.0],
+                    borderColor: 'rgba(46, 134, 193, 1)',
+                    backgroundColor: 'rgba(46, 134, 193, 0.1)',
+                    fill: true,
+                    tension: 0.3
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: { title: { display: true, text: 'Ross Stores ROE趋势（2016-2025）' }, legend: { display: false } },
+                scales: { y: { title: { display: true, text: 'ROE (%)' }, min: 0, max: 55 } }
+            }
+        });
+
+        // 资产负债率趋势图表
+        const debtCtx = document.getElementById('debtChart').getContext('2d');
+        new Chart(debtCtx, {
+            type: 'bar',
+            data: {
+                labels: ['2016','2017','2018','2019','2020','2021','2022','2023','2024','2025'],
+                datasets: [{
+                    label: '资产负债率 (%)',
+                    data: [42, 43, 45, 46, 55, 62, 60, 57, 51, 50],
+                    backgroundColor: 'rgba(192, 57, 43, 0.7)',
+                    borderColor: 'rgba(192, 57, 43, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: { title: { display: true, text: 'Ross Stores资产负债率趋势' }, legend: { display: false } },
+                scales: { y: { title: { display: true, text: '资产负债率 (%)' }, min: 0, max: 70 } }
+            }
+        });
+
+        // PE趋势图表
+        const peCtx = document.getElementById('peChart').getContext('2d');
+        new Chart(peCtx, {
+            type: 'line',
+            data: {
+                labels: ['2016','2017','2018','2019','2020','2021','2022','2023','2024','2025'],
+                datasets: [{
+                    label: '年末PE (x)',
+                    data: [22, 19, 17, 17, 75, 22, 20, 24, 24, 27],
+                    borderColor: 'rgba(230, 126, 34, 1)',
+                    backgroundColor: 'rgba(230, 126, 34, 0.1)',
+                    fill: true,
+                    tension: 0.3
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: { title: { display: true, text: 'Ross Stores PE比率趋势（2020年疫情异常值75x已包含）' }, legend: { display: false } },
+                scales: { y: { title: { display: true, text: 'PE (x)' }, min: 0, max: 80 } }
+            }
+        });
+    </script>
+</body>
+</html>
