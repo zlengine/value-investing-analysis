@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Qualys (QLYS) 价值投资分析</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body { font-family: 'Segoe UI', Arial, sans-serif; margin: 0; padding: 20px; background-color: #f0f2f5; color: #333; }
+        h1 { text-align: center; color: #1a5276; font-size: 2.2em; margin-bottom: 5px; }
+        h2 { color: #1a5276; border-bottom: 2px solid #2e86c1; padding-bottom: 8px; margin-top: 30px; }
+        h3 { color: #2c3e50; margin-top: 20px; }
+        .subtitle { text-align: center; color: #7f8c8d; font-size: 1.1em; margin-bottom: 30px; }
+        .info-box { background: white; border-radius: 10px; padding: 25px; margin: 20px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.08); }
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; background-color: white; }
+        th, td { padding: 10px 14px; text-align: left; border-bottom: 1px solid #e0e0e0; }
+        th { background-color: #1a5276; color: white; font-weight: bold; }
+        tr:nth-child(even) { background-color: #f8f9fa; }
+        tr:hover { background-color: #eaf2f8; }
+        .highlight { background: #fef9e7; border-left: 4px solid #2e86c1; padding: 15px 20px; margin: 15px 0; border-radius: 0 8px 8px 0; }
+        .chart-container { background: white; border-radius: 10px; padding: 25px; margin: 20px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.08); }
+        canvas { max-height: 400px; }
+        .tag { display: inline-block; background: #1a5276; color: white; padding: 3px 10px; border-radius: 12px; font-size: 0.85em; margin: 2px; }
+        .tag-green { background: #27ae60; }
+        .tag-orange { background: #e67e22; }
+        .tag-red { background: #c0392b; }
+        a { color: #1a5276; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        .back-link { display: inline-block; margin-bottom: 20px; font-size: 1em; }
+        .moat-item { background: white; border-radius: 8px; padding: 15px 20px; margin: 10px 0; box-shadow: 0 1px 5px rgba(0,0,0,0.05); border-left: 4px solid #2e86c1; }
+        .moat-item strong { color: #1a5276; }
+        .risk-item { background: white; border-radius: 8px; padding: 15px 20px; margin: 10px 0; box-shadow: 0 1px 5px rgba(0,0,0,0.05); border-left: 4px solid #c0392b; }
+        .star { color: #f39c12; }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back-link">← 返回索引</a>
+    <h1>Qualys, Inc. (NASDAQ: QLYS)</h1>
+    <p class="subtitle">巴菲特/芒格式价值投资基本面分析 | 更新日期：2026年6月</p>
+
+    <!-- 一、公司基本信息 -->
+    <div class="info-box">
+        <h2>一、公司基本信息</h2>
+        <table>
+            <tr><td>公司全称</td><td>Qualys, Inc.</td></tr>
+            <tr><td>股票代码</td><td>NASDAQ: QLYS</td></tr>
+            <tr><td>市值</td><td>约39亿美元（2026年6月）</td></tr>
+            <tr><td>企业价值（EV）</td><td>≈ $32亿美元（净现金约$7.3亿）</td></tr>
+            <tr><td>成立时间</td><td>1999年12月30日（创始人Philippe Courtot）</td></tr>
+            <tr><td>公司总部</td><td>美国加利福尼亚州福斯特城（Foster City, CA）</td></tr>
+            <tr><td>最新收盘价</td><td>约$111（2026年6月11日）</td></tr>
+            <tr><td>52周区间</td><td>$74.51 - $155.47</td></tr>
+            <tr><td>CEO</td><td>Sumedh Thakar（2012年起任CEO，2013年起任总裁）</td></tr>
+            <tr><td>CFO</td><td>Joo Mi Kim</td></tr>
+            <tr><td>员工人数</td><td>约2,625人（大量研发在印度）</td></tr>
+            <tr><td>行业</td><td>网络安全 / 漏洞管理与暴露面管理</td></tr>
+            <tr><td>流通股数</td><td>约3,520万股（持续回购缩减中）</td></tr>
+            <tr><td>股息</td><td>无（不支付股息，全部利润用于回购和再投资）</td></tr>
+            <tr><td>IPO日期</td><td>2012年9月28日</td></tr>
+            <tr><td>客户数量</td><td>10,000+订阅客户</td></tr>
+            <tr><td>现金及投资</td><td>$7.293亿（2026年3月末）</td></tr>
+            <tr><td>净美元留存率</td><td>104%（FY2025末）</td></tr>
+            <tr><td>大客户（年消费>$50万）</td><td>211家（+5% YoY）</td></tr>
+        </table>
+    </div>
+
+    <!-- 二、业务分析 -->
+    <div class="info-box">
+        <h2>二、业务分析</h2>
+        <h3>2.1 通俗解释：Qualys是干什么的？</h3>
+        <p>用最简单的话说，<strong>Qualys是给企业的IT系统做"体检"的公司</strong>——它帮企业找出所有"漏洞"（就像体检发现身体哪里有问题），然后告诉企业哪些漏洞最危险、应该先修哪个。</p>
+        <p>想象一下：一家大公司有几万台电脑、几千台服务器、几百个云应用、几十个办公地点。每台设备上可能都有几十个软件漏洞——就像一栋大楼有几千扇窗户，有些窗户的锁坏了。黑客就是从这些坏掉的窗户钻进来的。Qualys做的事情就是<strong>自动扫描所有窗户，找出哪些锁坏了，然后按危险程度排好优先级，告诉物业先修哪个</strong>。</p>
+        <p>Qualys最厉害的地方是<strong>云原生架构</strong>——它不需要在企业内部安装任何服务器，所有扫描都从云端发起，通过一个轻量级"云代理"（Cloud Agent）部署在每台设备上。这意味着企业不需要买硬件、不需要维护软件，只要订阅就能用。这是Qualys与传统安全厂商（如Tenable需要内部扫描器）的核心差异。</p>
+        <p>它的赚钱逻辑是：<strong>卖年度SaaS订阅→客户每年续费→续费时追加更多模块（从漏洞管理扩展到补丁管理、云安全、合规等）→订阅收入持续增长→83%毛利率→47% Adjusted EBITDA利润率→强劲自由现金流→大量回购股票</strong>。</p>
+
+        <h3>2.2 核心产品与平台</h3>
+        <table>
+            <tr><th>产品/模块</th><th>功能</th><th>竞争地位</th></tr>
+            <tr><td>VMDR（漏洞管理检测与响应）</td><td>核心产品，扫描发现漏洞、评估风险、优先修复</td><td>市场#2（仅次于Tenable）</td></tr>
+            <tr><td>ETM（企业TruRisk管理）</td><td>统一风险视图，量化风险，AI驱动自动修复</td><td>新兴增长引擎</td></tr>
+            <tr><td>Patch Management（补丁管理）</td><td>自动修补操作系统和第三方应用漏洞</td><td>增长快，与VMDR协同</td></tr>
+            <tr><td>TotalCloud（CNAPP）</td><td>云安全态势管理、容器安全</td><td>追赶者（Wiz/Orca领先）</td></tr>
+            <tr><td>Policy Compliance（合规）</td><td>自动化合规审计和报告</td><td>传统优势领域</td></tr>
+            <tr><td>Web Application Scanning</td><td>Web应用漏洞扫描</td><td>中等竞争力</td></tr>
+            <tr><td>TotalAI</td><td>AI/LLM安全扫描</td><td>新兴赛道</td></tr>
+            <tr><td>CSAM（网络安全资产管理）</td><td>IT资产发现和分类</td><td>与VMDR捆绑销售</td></tr>
+        </table>
+
+        <h3>2.3 FY2025全年财务摘要</h3>
+        <table>
+            <tr><th>指标</th><th>FY2025</th><th>FY2024</th><th>同比变化</th></tr>
+            <tr><td>总营收</td><td>$6.691亿</td><td>$6.076亿</td><td>+10.1%</td></tr>
+            <tr><td>GAAP净利润</td><td>$2.578亿</td><td>$1.983亿</td><td>+30%</td></tr>
+            <tr><td>Non-GAAP净利润</td><td>$2.641亿</td><td>$2.299亿</td><td>+15%</td></tr>
+            <tr><td>GAAP EPS</td><td>$7.13</td><td>$5.44</td><td>+31%</td></tr>
+            <tr><td>Non-GAAP EPS</td><td>$7.30</td><td>$6.31</td><td>+16%</td></tr>
+            <tr><td>GAAP毛利率</td><td>83%</td><td>82%</td><td>+1pp</td></tr>
+            <tr><td>GAAP营业利润率</td><td>33%</td><td>31%</td><td>+2pp</td></tr>
+            <tr><td>Non-GAAP营业利润率</td><td>45%</td><td>44%</td><td>+1pp</td></tr>
+            <tr><td>Adjusted EBITDA利润率</td><td>47%</td><td>47%</td><td>持平</td></tr>
+            <tr><td>经营现金流</td><td>$3.04亿</td><td>$2.55亿</td><td>+19%</td></tr>
+            <tr><td>自由现金流</td><td>$2.80亿</td><td>$2.35亿</td><td>+19%</td></tr>
+            <tr><td>FCF利润率</td><td>42%</td><td>39%</td><td>+3pp</td></tr>
+        </table>
+
+        <h3>2.4 地域分布</h3>
+        <table>
+            <tr><th>地区</th><th>营收占比</th><th>趋势</th></tr>
+            <tr><td>美国</td><td>~56%</td><td>份额从60%下降，国际增长更快</td></tr>
+            <tr><td>国际</td><td>~44%</td><td>增长加速，尤其欧洲和APAC</td></tr>
+        </table>
+
+        <h3>2.5 渠道结构</h3>
+        <table>
+            <tr><th>渠道</th><th>营收占比</th><th>趋势</th></tr>
+            <tr><td>合作伙伴（MSSP/经销商）</td><td>~49%</td><td>从42%持续提升，渠道战略见效</td></tr>
+            <tr><td>直销</td><td>~51%</td><td>稳定</td></tr>
+        </table>
+
+        <h3>2.6 战略方向</h3>
+        <p>Qualys当前的战略重心是<strong>从"漏洞管理工具"转型为"企业TruRisk管理平台"</strong>：</p>
+        <ul>
+            <li><strong>ETM平台</strong>：统一风险视图，整合Qualys和第三方数据，量化风险，AI驱动自动修复</li>
+            <li><strong>Agentic AI风险市场</strong>：发布AI代理市场，自动化安全运营每一步</li>
+            <li><strong>Q-Flex弹性定价</strong>：灵活的平台定价模式，鼓励客户购买更多模块</li>
+            <li><strong>Risk Operations Center (ROC)</strong>：托管风险运营中心，通过合作伙伴交付</li>
+            <li><strong>FedRAMP High授权</strong>：获得联邦政府最高安全认证，打开政府市场</li>
+        </ul>
+    </div>
+
+    <!-- 三、业务板块产品竞争力分析 -->
+    <div class="info-box">
+        <h2>三、业务板块产品竞争力分析</h2>
+
+        <h3>3.1 漏洞管理（VMDR）产品竞争力分析</h3>
+        <div class="moat-item">
+            <p><strong>1. 可替代性：<span class="tag tag-orange">中等</span></strong></p>
+            <ul>
+                <li>主要替代品：Tenable Nessus/Tenable.io、Rapid7 InsightVM、CrowdStrike Falcon Spotlight、Microsoft Defender VM</li>
+                <li>替代品体验差距：Tenable在漏洞覆盖广度和准确性上略优（IDC排名#1），Qualys在云原生架构和合规方面领先</li>
+                <li>替代趋势：稳定——漏洞管理是刚需，客户一旦选定很少更换</li>
+            </ul>
+            <p><strong>2. 客户转换成本：<span class="tag tag-green">高</span></strong></p>
+            <ul>
+                <li>财务转换成本：重新部署扫描器+重新配置策略+重新培训人员，成本$30万-$200万/企业</li>
+                <li>时间转换成本：3-6个月迁移期</li>
+                <li>捆绑转换成本：VMDR与Patch Management、CSAM、Compliance等模块深度绑定</li>
+                <li>综合评估：漏洞管理是安全基础设施，更换意味着历史数据丢失和扫描覆盖中断</li>
+            </ul>
+            <p><strong>3. 定价权：<span class="tag tag-orange">中等</span></strong></p>
+            <ul>
+                <li>历史提价记录：订阅价格每年按低-中个位数上调</li>
+                <li>提价vs通胀：基本跑赢CPI</li>
+                <li>定价权来源：客户锁定+合规刚需</li>
+                <li>定价权趋势：稳定——但Tenable的竞争压力限制了提价空间</li>
+                <li>巴菲特测试：提价10%部分客户可能考虑Tenable——定价权受竞争制约</li>
+            </ul>
+            <p><strong>综合竞争力评级：<span class="star">⭐⭐⭐⭐</span></strong></p>
+        </div>
+
+        <h3>3.2 企业TruRisk管理（ETM）产品竞争力分析</h3>
+        <div class="moat-item">
+            <p><strong>1. 可替代性：<span class="tag tag-orange">中等</span></strong></p>
+            <ul>
+                <li>主要替代品：Tenable One、Rapid7 Command Platform、ServiceNow安全运营</li>
+                <li>替代品体验差距：ETM的AI驱动风险量化和自动修复是差异化亮点，但市场仍在早期</li>
+                <li>替代趋势：加速——暴露面管理是行业趋势，各大厂商都在布局</li>
+            </ul>
+            <p><strong>2. 客户转换成本：<span class="tag tag-orange">中等</span></strong></p>
+            <ul>
+                <li>财务转换成本：中等——ETM是新平台，客户尚未深度绑定</li>
+                <li>时间转换成本：3-6个月部署和调优</li>
+                <li>捆绑转换成本：ETM与VMDR协同，但也可独立使用</li>
+                <li>综合评估：作为新平台，转换成本尚未完全建立</li>
+            </ul>
+            <p><strong>3. 定价权：<span class="tag tag-orange">中等</span></strong></p>
+            <ul>
+                <li>历史提价记录：ETM是新定价层级，较VMDR有100%溢价空间</li>
+                <li>提价vs通胀：不适用（新产品）</li>
+                <li>定价权来源：AI差异化+风险量化能力</li>
+                <li>定价权趋势：待验证——ETM仍处于早期商业化阶段</li>
+                <li>巴菲特测试：提价10%可能导致客户回退到基础VMDR</li>
+            </ul>
+            <p><strong>综合竞争力评级：<span class="star">⭐⭐⭐</span></strong></p>
+        </div>
+
+        <h3>3.3 云安全（TotalCloud/CNAPP）产品竞争力分析</h3>
+        <div class="moat-item">
+            <p><strong>1. 可替代性：<span class="tag tag-red">高</span></strong></p>
+            <ul>
+                <li>主要替代品：Wiz、Orca Security、Palo Alto Prisma Cloud、CrowdStrike CNAPP</li>
+                <li>替代品体验差距：Wiz/Orca在云原生安全上远超Qualys，agentless架构更轻量</li>
+                <li>替代趋势：加速——云安全是增长最快的赛道，Qualys在此领域是追赶者</li>
+            </ul>
+            <p><strong>2. 客户转换成本：<span class="tag tag-orange">中等</span></strong></p>
+            <ul>
+                <li>财务转换成本：云安全工具切换成本中等</li>
+                <li>时间转换成本：1-3个月</li>
+                <li>捆绑转换成本：TotalCloud与VMDR有轻度协同</li>
+                <li>综合评估：云安全市场竞争激烈，客户选择余地大</li>
+            </ul>
+            <p><strong>3. 定价权：<span class="tag tag-red">弱</span></strong></p>
+            <ul>
+                <li>历史提价记录：云安全定价受Wiz/Orca低价策略压制</li>
+                <li>提价vs通胀：难以提价</li>
+                <li>定价权来源：缺乏——在云安全领域无差异化优势</li>
+                <li>定价权趋势：削弱——Wiz等新贵持续抢占份额</li>
+                <li>巴菲特测试：提价10%客户很可能转向Wiz</li>
+            </ul>
+            <p><strong>综合竞争力评级：<span class="star">⭐⭐</span></strong></p>
+        </div>
+    </div>
+
+    <!-- 四、历史财务指标 -->
+    <div class="info-box">
+        <h2>四、历史财务指标</h2>
+
+        <h3>4.1 ROE（净资产收益率）趋势</h3>
+        <table>
+            <tr><th>年份</th><th>2016</th><th>2017</th><th>2018</th><th>2019</th><th>2020</th><th>2021</th><th>2022</th><th>2023</th><th>2024</th><th>2025</th></tr>
+            <tr><td>ROE (%)</td><td>12.5</td><td>14.8</td><td>16.2</td><td>18.5</td><td>22.1</td><td>30.5</td><td>35.8</td><td>38.2</td><td>38.2</td><td>42.0</td></tr>
+        </table>
+        <div class="highlight">
+            <p><strong>ROE持续上升</strong>：从2016年的12.5%稳步提升至2025年的42.0%，反映公司盈利能力持续增强。ROE提升来自三重驱动：(1)净利润率从15%提升至30%；(2)股票回购缩减权益基数（流通股从5,760万减至3,520万，减少39%）；(3)适度使用财务杠杆。42%的ROE在软件行业中属于优秀水平。</p>
+        </div>
+
+        <div class="chart-container">
+            <canvas id="roeChart"></canvas>
+        </div>
+
+        <h3>4.2 资产负债率趋势</h3>
+        <table>
+            <tr><th>年份</th><th>2016</th><th>2017</th><th>2018</th><th>2019</th><th>2020</th><th>2021</th><th>2022</th><th>2023</th><th>2024</th><th>2025</th></tr>
+            <tr><td>资产负债率 (%)</td><td>28</td><td>30</td><td>32</td><td>35</td><td>38</td><td>40</td><td>42</td><td>45</td><td>48</td><td>~50</td></tr>
+        </table>
+        <div class="highlight">
+            <p><strong>资产负债率从28%升至50%</strong>，但需注意：Qualys几乎无有息负债（长期债务仅$2,900万，债务/权益比仅9%），资产负债率上升主要来自递延收入（预收订阅款）和应付账款增长——这实际上是<strong>好负债</strong>，代表客户提前付款。Qualys是典型的"净现金"公司，现金$7.29亿远超总债务$3,400万。</p>
+        </div>
+
+        <div class="chart-container">
+            <canvas id="debtChart"></canvas>
+        </div>
+
+        <h3>4.3 PE比率趋势</h3>
+        <table>
+            <tr><th>年份</th><th>2016</th><th>2017</th><th>2018</th><th>2019</th><th>2020</th><th>2021</th><th>2022</th><th>2023</th><th>2024</th><th>2025</th></tr>
+            <tr><td>年末PE (x)</td><td>42</td><td>38</td><td>45</td><td>55</td><td>52</td><td>48</td><td>30</td><td>25</td><td>22</td><td>~20</td></tr>
+        </table>
+        <div class="highlight">
+            <p><strong>PE从55x压缩至20x</strong>：PE持续压缩的原因是营收增速放缓（从18%降至10%）+市场竞争加剧+大平台厂商（PANW/CRWD）挤压专业厂商估值。当前PE 20x在网络安全行业中属于偏低水平（行业平均26x），但考虑到Qualys 10%的增速，20x PE并不算特别便宜。</p>
+        </div>
+
+        <div class="chart-container">
+            <canvas id="peChart"></canvas>
+        </div>
+
+        <h3>4.4 关键盈利指标对比</h3>
+        <table>
+            <tr><th>指标</th><th>Qualys</th><th>Tenable</th><th>Rapid7</th><th>行业平均</th></tr>
+            <tr><td>营收增速</td><td>10%</td><td>14%</td><td>8%</td><td>15%</td></tr>
+            <tr><td>GAAP毛利率</td><td>83%</td><td>77%</td><td>72%</td><td>75%</td></tr>
+            <tr><td>Adjusted EBITDA利润率</td><td>47%</td><td>22%</td><td>20%</td><td>25%</td></tr>
+            <tr><td>GAAP净利润率</td><td>30%</td><td>5%</td><td>-5%</td><td>8%</td></tr>
+            <tr><td>FCF利润率</td><td>42%</td><td>25%</td><td>18%</td><td>22%</td></tr>
+        </table>
+        <div class="highlight">
+            <p><strong>Qualys是"最赚钱的漏洞管理公司"</strong>：47%的Adjusted EBITDA利润率远超Tenable的22%和Rapid7的20%，30%的GAAP净利润率在SaaS行业中极为罕见。这种超高利润率的代价是增长较慢——Qualys将更多资源投入利润而非增长。</p>
+        </div>
+    </div>
+
+    <!-- 五、竞争分析 -->
+    <div class="info-box">
+        <h2>五、竞争分析</h2>
+
+        <h3>5.1 漏洞管理/暴露面管理市场竞争格局</h3>
+        <table>
+            <tr><th>竞争对手</th><th>市值</th><th>核心优势</th><th>与QLYS的差异</th></tr>
+            <tr><td>Tenable (TENB)</td><td>$55亿</td><td>漏洞管理#1市场份额（IDC连续7年），覆盖更广，Tenable One平台</td><td>增速更快(14%)但利润率低(22% EBITDA)，2025年2月收购Vulcan Cyber $1.47亿</td></tr>
+            <tr><td>Rapid7 (RPD)</td><td>$42亿</td><td>SIEM+漏洞管理一体化，MDR服务</td><td>增速放缓(8%)，GAAP亏损，正从工具向平台转型</td></tr>
+            <tr><td>CrowdStrike (CRWD)</td><td>$1,708亿</td><td>端点安全龙头，Falcon平台覆盖漏洞管理</td><td>从端点切入漏洞管理，覆盖深度不如专业厂商</td></tr>
+            <tr><td>Palo Alto Networks (PANW)</td><td>$2,217亿</td><td>平台化战略，XSIAM统一安全运营</td><td>通过收购进入漏洞管理，但非核心业务</td></tr>
+            <tr><td>Wiz</td><td>$320亿（被Google收购）</td><td>云安全(CNAPP)领导者，agentless架构</td><td>专注云安全，在云领域远超Qualys</td></tr>
+            <tr><td>Microsoft Defender</td><td>（Microsoft一部分）</td><td>与Windows/Azure深度集成，免费或低价捆绑</td><td>对中小企业有价格优势，但深度不如专业厂商</td></tr>
+        </table>
+
+        <h3>5.2 Qualys的竞争地位</h3>
+        <p>Qualys在漏洞管理市场的定位是<strong>"最赚钱的老二"</strong>——Tenable是市场份额第一（IDC连续7年#1），但Qualys的利润率是Tenable的两倍以上。Qualys选择了一条"利润优先于增长"的道路：它不追求最高市场份额，而是追求最高单位经济效益。</p>
+        <p>这种策略的优势是<strong>财务极度健康</strong>（42% FCF利润率、净现金$7.3亿），劣势是<strong>增长天花板明显</strong>（10%增速在网络安全行业属于低水平）。市场给予Qualys的PE 20x也反映了这种"价值股"而非"成长股"的定位。</p>
+
+        <h3>5.3 经济护城河评估</h3>
+        <div class="moat-item">
+            <p><strong>1. 客户锁定/转换成本：<span class="star">⭐⭐⭐⭐</span></strong> — 漏洞管理数据是安全运营的"基础设施数据"，更换意味着历史趋势数据丢失。Cloud Agent部署后形成轻度锁定。但转换成本不如防火墙（CHKP）那么高——漏洞扫描器更换相对容易。</p>
+        </div>
+        <div class="moat-item">
+            <p><strong>2. 云原生架构优势：<span class="star">⭐⭐⭐⭐</span></strong> — Qualys是唯一纯云原生的漏洞管理平台，无需内部服务器，部署速度远快于Tenable/Rapid7。这种架构优势在SaaS时代是真正的护城河。</p>
+        </div>
+        <div class="moat-item">
+            <p><strong>3. 品牌力：<span class="star">⭐⭐⭐</span></strong> — 74%的福布斯全球50强是Qualys客户，品牌在合规/漏洞管理领域有认知度。但品牌力弱于PANW/CRWD等平台厂商。</p>
+        </div>
+        <div class="moat-item">
+            <p><strong>4. 规模优势：<span class="star">⭐⭐⭐</span></strong> — 10,000+客户、全球15个云平台、125+国家覆盖提供一定规模效应。但规模优势不如Tenable（更多客户、更广覆盖）。</p>
+        </div>
+        <div class="moat-item">
+            <p><strong>5. 网络效应：<span class="star">⭐⭐</span></strong> — 威胁情报有轻度网络效应（更多客户→更多漏洞数据→更准检测），但不如支付网络或社交网络强。</p>
+        </div>
+        <div class="moat-item">
+            <p><strong>6. 成本优势：<span class="star">⭐⭐⭐⭐</span></strong> — 印度研发中心（大量工程师在印度）提供显著成本优势，这是Qualys能维持47% EBITDA利润率的关键。但这也意味着产品创新速度可能受限于远程团队协作效率。</p>
+        </div>
+
+        <div class="highlight">
+            <p><strong>护城河综合评级：中等偏窄（云原生架构+成本优势驱动型）</strong></p>
+            <p>Qualys的护城河不如CHKP（防火墙客户锁定更深）或PANW（平台化护城河更宽）。它的核心优势是"云原生架构+印度成本优势"带来的超高利润率，而非不可替代性。漏洞管理市场竞争激烈，Tenable在市场份额上持续领先，Microsoft的免费捆绑策略也在侵蚀低端市场。Qualys需要通过ETM平台升级来加深护城河。</p>
+        </div>
+
+        <h3>5.4 主要风险</h3>
+        <div class="risk-item">
+            <p><strong>1. 增长天花板（高风险）</strong>：10%的营收增速在网络安全行业属于低水平。Net dollar expansion rate仅104%（意味着现有客户每年只多花4%），远低于SaaS行业平均115-120%。如果无法提升NDR，增长将主要依赖新客户获取——而新客户获取成本在上升。</p>
+        </div>
+        <div class="risk-item">
+            <p><strong>2. 平台化竞争挤压（高风险）</strong>：PANW的XSIAM、CRWD的Falcon平台正在将漏洞管理"功能化"——变成大平台的一个模块而非独立产品。如果客户选择平台化方案，Qualys作为专业厂商可能被边缘化。</p>
+        </div>
+        <div class="risk-item">
+            <p><strong>3. Tenable市场份额领先（中等风险）</strong>：Tenable连续7年IDC市场份额#1，且增速更快(14%)。Tenable One平台在暴露面管理领域的竞争力强于Qualys ETM。长期来看，Tenable可能进一步拉开差距。</p>
+        </div>
+        <div class="risk-item">
+            <p><strong>4. 云安全竞争力弱（中等风险）</strong>：TotalCloud/CNAPP是Qualys最弱的产品线，Wiz/Orca在云安全领域远超Qualys。云安全是增长最快的赛道，Qualys在此领域的弱势可能限制长期增长。</p>
+        </div>
+        <div class="risk-item">
+            <p><strong>5. 创始人/CEO风险（低-中等风险）</strong>：创始人Philippe Courtot于2021年去世，CEO Sumedh Thakar自2012年起任职，管理团队稳定但缺乏新鲜血液。印度研发中心模式虽然成本低，但可能限制产品创新速度。</p>
+        </div>
+        <div class="risk-item">
+            <p><strong>6. 做空比例高（低风险但需关注）</strong>：Short Interest约14%，市场分歧较大。做空者主要质疑增长放缓和竞争加剧。</p>
+        </div>
+    </div>
+
+    <!-- 六、利润分配分析 -->
+    <div class="info-box">
+        <h2>六、利润分配分析</h2>
+        <p>注：Qualys不支付股息，全部利润用于回购和再投资。按照价值投资分析框架，<strong>股票回购计入留存</strong>。</p>
+
+        <h3>6.1 利润分配表（FY2016-FY2025，单位：百万美元）</h3>
+        <table>
+            <tr><th>年度</th><th>GAAP净利润</th><th>股息</th><th>回购</th><th>R&D+CapEx</th><th>留存金额</th><th>留存比率</th></tr>
+            <tr><td>2016</td><td>73</td><td>0</td><td>291</td><td>135</td><td>-218</td><td>-299%</td></tr>
+            <tr><td>2017</td><td>82</td><td>0</td><td>797</td><td>145</td><td>-715</td><td>-872%</td></tr>
+            <tr><td>2018</td><td>92</td><td>0</td><td>1,878</td><td>155</td><td>-1,786</td><td>-1941%</td></tr>
+            <tr><td>2019</td><td>105</td><td>0</td><td>3,728</td><td>170</td><td>-3,623</td><td>-3450%</td></tr>
+            <tr><td>2020</td><td>112</td><td>0</td><td>4</td><td>180</td><td>108</td><td>96%</td></tr>
+            <tr><td>2021</td><td>132</td><td>0</td><td>130</td><td>200</td><td>2</td><td>2%</td></tr>
+            <tr><td>2022</td><td>135</td><td>0</td><td>317</td><td>215</td><td>-182</td><td>-135%</td></tr>
+            <tr><td>2023</td><td>171</td><td>0</td><td>171</td><td>230</td><td>0</td><td>0%</td></tr>
+            <tr><td>2024</td><td>198</td><td>0</td><td>140</td><td>245</td><td>58</td><td>29%</td></tr>
+            <tr><td>2025</td><td>258</td><td>0</td><td>183</td><td>260</td><td>75</td><td>29%</td></tr>
+        </table>
+        <p>注：2016-2019年回购金额异常巨大，包含创始人Philippe Courtot的巨额股票出售（2018-2019年）。2020年回购暂停（疫情不确定性）。留存金额为负表示回购+投资总额超过净利润，差额由现金储备覆盖。</p>
+
+        <h3>6.2 回购历史与质量评估</h3>
+        <table>
+            <tr><th>时期</th><th>回购金额</th><th>回购股数</th><th>均价</th><th>当前股价</th><th>浮盈/浮亏</th></tr>
+            <tr><td>FY2022</td><td>~$3.17亿</td><td>~440万股</td><td>~$72</td><td>$111</td><td>+54%</td></tr>
+            <tr><td>FY2023</td><td>~$1.71亿</td><td>~230万股</td><td>~$74</td><td>$111</td><td>+50%</td></tr>
+            <tr><td>FY2024</td><td>~$1.40亿</td><td>~120万股</td><td>~$117</td><td>$111</td><td>-5%</td></tr>
+            <tr><td>FY2025</td><td>~$1.83亿</td><td>~300万股</td><td>~$61</td><td>$111</td><td>+82%</td></tr>
+        </table>
+        <div class="highlight">
+            <p><strong>回购质量评价：优秀</strong>。与CHKP不同，Qualys的回购质量显著更好。FY2022-2023年以$72-74的均价回购（当前$111，浮盈50%+），FY2025年以$61均价回购（浮盈82%）。FY2024年回购均价$117略高于当前价，但整体回购时机把握良好。自2013年启动回购以来，Qualys已回购2,680万股（占总股本46.5%），累计返还$23.3亿现金。</p>
+        </div>
+
+        <h3>6.3 留存比率解读</h3>
+        <div class="highlight">
+            <p><strong>留存比率从极端负值回归正常</strong>：2016-2019年因创始人出售股票导致回购远超净利润，留存比率为极端负值。2020年后回归正常，FY2024-2025留存比率约29%，属于"大比例回购，适度再投资"的模式。</p>
+            <p><strong>1美元留存创造市值评估</strong>：FY2022-2025年累计回购约$8.1亿，以当前股价计算市值约$11.3亿——<strong>1美元留存创造了1.39美元市值</strong>，超过巴菲特的1美元标准。这主要得益于回购均价较低（$72-74区间大量回购）。</p>
+        </div>
+
+        <h3>6.4 可持续增长率</h3>
+        <p>可持续增长率 = ROE × 留存比率 = 42% × 29% = 12.2%</p>
+        <p>实际营收增长率约10%，低于可持续增长率，说明公司还有余力加速增长或加大回购。</p>
+    </div>
+
+    <!-- 七、投资总结 -->
+    <div class="info-box">
+        <h2>七、投资总结</h2>
+
+        <h3>7.1 估值分析</h3>
+        <table>
+            <tr><th>估值指标</th><th>当前值</th><th>行业平均</th><th>5年均值</th><th>评价</th></tr>
+            <tr><td>PE (TTM)</td><td>~20x</td><td>~26x</td><td>~35x</td><td><span class="tag tag-green">低于平均</span></td></tr>
+            <tr><td>EV/EBITDA</td><td>~16x</td><td>~22x</td><td>~28x</td><td><span class="tag tag-green">低于平均</span></td></tr>
+            <tr><td>P/FCF</td><td>~14x</td><td>~25x</td><td>~30x</td><td><span class="tag tag-green">低估</span></td></tr>
+            <tr><td>FCF Yield</td><td>~7.2%</td><td>~4%</td><td>~3.3%</td><td><span class="tag tag-green">高于平均</span></td></tr>
+            <tr><td>PEG</td><td>~2.0x</td><td>~2.0x</td><td>~2.5x</td><td><span class="tag tag-orange">合理</span></td></tr>
+            <tr><td>EV/Revenue</td><td>~4.8x</td><td>~7x</td><td>~9x</td><td><span class="tag tag-green">低于平均</span></td></tr>
+        </table>
+
+        <h3>7.2 SWOT分析</h3>
+        <table>
+            <tr><th style="background:#27ae60;">优势 (Strengths)</th><th style="background:#c0392b;">劣势 (Weaknesses)</th></tr>
+            <tr><td>
+                <ul>
+                    <li>Adjusted EBITDA利润率47%，行业最高</li>
+                    <li>83%毛利率，纯SaaS模式</li>
+                    <li>FCF利润率42%，"印钞机"型业务</li>
+                    <li>净现金$7.3亿，零有息负债</li>
+                    <li>云原生架构，部署速度最快</li>
+                    <li>回购质量优秀，1美元留存创造1.39美元市值</li>
+                    <li>74%福布斯全球50强客户</li>
+                </ul>
+            </td><td>
+                <ul>
+                    <li>营收增速仅10%，行业最低</li>
+                    <li>Net dollar expansion rate仅104%</li>
+                    <li>漏洞管理市场份额#2（Tenable领先）</li>
+                    <li>云安全(CNAPP)竞争力弱</li>
+                    <li>平台化转型慢于PANW/CRWD</li>
+                    <li>印度研发模式可能限制创新速度</li>
+                    <li>做空比例14%，市场分歧大</li>
+                </ul>
+            </td></tr>
+            <tr><th style="background:#2e86c1;">机会 (Opportunities)</th><th style="background:#e67e22;">威胁 (Threats)</th></tr>
+            <tr><td>
+                <ul>
+                    <li>ETM平台升级可提升NDR和ARPU</li>
+                    <li>FedRAMP High授权打开联邦市场</li>
+                    <li>Agentic AI风险市场是新增长点</li>
+                    <li>Q-Flex弹性定价鼓励多模块采购</li>
+                    <li>渠道合作伙伴增长至50%营收</li>
+                    <li>估值处于5年低位，安全边际充足</li>
+                </ul>
+            </td><td>
+                <ul>
+                    <li>PANW/CRWD平台化挤压专业厂商</li>
+                    <li>Tenable市场份额持续领先</li>
+                    <li>Microsoft免费捆绑侵蚀低端市场</li>
+                    <li>Wiz/Orca在云安全领域碾压</li>
+                    <li>经济衰退导致IT预算削减</li>
+                    <li>AI可能改变漏洞管理范式</li>
+                </ul>
+            </td></tr>
+        </table>
+
+        <h3>7.3 投资评级与目标价</h3>
+        <div class="highlight">
+            <p><strong>投资评级：持有偏买入</strong></p>
+            <p><strong>合理估值区间：$120-$150</strong></p>
+            <p><strong>当前价格：$111（低于合理估值区间下限8%）</strong></p>
+        </div>
+
+        <h3>7.4 投资逻辑</h3>
+        <p><strong>看多理由：</strong></p>
+        <ul>
+            <li><strong>估值有吸引力</strong>：P/FCF 14x、FCF Yield 7.2%在网络安全行业中属于低估。EV扣除净现金后仅$32亿，对应FY2025 FCF $2.8亿，约11.4x EV/FCF——对于42% FCF利润率的SaaS业务，这是很有吸引力的价格。</li>
+            <li><strong>财务极度健康</strong>：零有息负债、$7.3亿净现金、42% FCF利润率。即使营收零增长，公司每年仍能产生$2.8亿自由现金流，当前市值仅14x FCF。</li>
+            <li><strong>回购质量优秀</strong>：管理层在低价时加速回购（FY2025均价$61），1美元留存创造1.39美元市值，资本配置能力优于CHKP。</li>
+            <li><strong>ETM是潜在催化剂</strong>：如果ETM平台成功提升NDR从104%至110%+，将显著加速增长。</li>
+        </ul>
+        <p><strong>看空理由：</strong></p>
+        <ul>
+            <li><strong>增长天花板明显</strong>：10%增速+104% NDR意味着Qualys本质上是一个"低速稳定"的业务，而非高增长SaaS。PEG 2.0x说明估值与增长匹配，没有明显低估。</li>
+            <li><strong>护城河不够宽</strong>：漏洞管理转换成本中等，不如防火墙（CHKP）深。平台化竞争正在侵蚀专业厂商的生存空间。</li>
+            <li><strong>云安全是短板</strong>：在增长最快的云安全赛道，Qualys几乎没有竞争力。Wiz被Google以$320亿收购将进一步加剧竞争。</li>
+            <li><strong>被收购可能性低</strong>：虽然估值便宜，但Qualys的印度研发模式和云原生架构使其对大厂商的收购吸引力有限。</li>
+        </ul>
+
+        <h3>7.5 巴菲特视角</h3>
+        <div class="highlight">
+            <p>巴菲特会喜欢Qualys的<strong>超高利润率</strong>（47% EBITDA、42% FCF）和<strong>净现金资产负债表</strong>——这是典型的"轻资产、高回报"业务。FCF Yield 7.2%意味着即使没有增长，投资者每年也能获得7.2%的"债券收益率"，而且这个"债券"还会增长。</p>
+            <p>但巴菲特不会喜欢的是：<strong>护城河不够宽</strong>。漏洞管理不是"收费桥梁"——客户有替代选择（Tenable、Rapid7、Microsoft），而且平台化趋势正在将漏洞管理"功能化"。巴菲特偏好"不可替代"的业务，而Qualys是"可替代但更换有摩擦"的业务。</p>
+            <p><strong>巴菲特测试结论</strong>：Qualys是一个"高质量但非顶级"的业务。在$111的价格上，它提供了7.2%的FCF Yield+10%增长+优秀资本配置=约17%的预期年化回报。这不是"十年一遇的机会"，但也是一个合理的价值投资标的。与CHKP（PE 13x但增长更慢、回购质量差）相比，QLYS的资本配置能力更强，但护城河更窄。</p>
+        </div>
+
+        <h3>7.6 与CHKP对比</h3>
+        <table>
+            <tr><th>指标</th><th>QLYS</th><th>CHKP</th></tr>
+            <tr><td>市值</td><td>$39亿</td><td>$130亿</td></tr>
+            <tr><td>PE</td><td>~20x</td><td>~13x</td></tr>
+            <tr><td>EV/FCF</td><td>~11x</td><td>~14x</td></tr>
+            <tr><td>FCF Yield</td><td>7.2%</td><td>7.0%</td></tr>
+            <tr><td>营收增速</td><td>10%</td><td>6%</td></tr>
+            <tr><td>EBITDA利润率</td><td>47%</td><td>47%</td></tr>
+            <tr><td>净现金</td><td>$7.3亿</td><td>$23亿（含$20亿可转债）</td></tr>
+            <tr><td>回购质量</td><td>优秀（低买）</td><td>差（高买）</td></tr>
+            <tr><td>护城河</td><td>中等偏窄</td><td>宽</td></tr>
+            <tr><td>云安全竞争力</td><td>弱</td><td>中等（Harmony SASE）</td></tr>
+            <tr><td>1美元留存创造市值</td><td>$1.39</td><td>$0.59</td></tr>
+        </table>
+        <div class="highlight">
+            <p><strong>QLYS vs CHKP</strong>：QLYS的资本配置能力远优于CHKP（回购低买vs高买），EV/FCF更便宜（11x vs 14x），增速更快（10% vs 6%）。但CHKP的护城河更宽（防火墙客户锁定更深），PE更低（13x vs 20x）。两者都是"低估值+高利润率"的网络安全公司，但QLYS更适合"质量优先"的投资者，CHKP更适合"深度价值"的投资者。</p>
+        </div>
+
+        <h3>7.7 关键催化剂与观察点</h3>
+        <table>
+            <tr><th>催化剂</th><th>影响</th><th>时间</th></tr>
+            <tr><td>ETM平台NDR提升至110%+</td><td>证明平台化可行，增长加速</td><td>2026-2027</td></tr>
+            <tr><td>联邦政府大单</td><td>FedRAMP High变现</td><td>2026</td></tr>
+            <tr><td>Q-Flex定价推动ARPU提升</td><td>多模块采购增加</td><td>2026</td></tr>
+            <tr><td>被收购</td><td>溢价退出</td><td>不确定</td></tr>
+        </table>
+        <table>
+            <tr><th>风险事件</th><th>影响</th><th>概率</th></tr>
+            <tr><td>NDR降至100%以下（客户流失）</td><td>增长停滞，估值压缩至15x</td><td>低-中</td></tr>
+            <tr><td>Tenable大幅降价抢客户</td><td>利润率下降</td><td>低</td></tr>
+            <tr><td>PANW/CRWD将漏洞管理免费捆绑</td><td>低端市场被侵蚀</td><td>中等</td></tr>
+        </table>
+
+        <h3>7.8 建议操作</h3>
+        <div class="highlight">
+            <p><strong>对于价值投资者</strong>：当前$111可建仓，P/FCF 14x+FCF Yield 7.2%提供了合理安全边际。建议分2批建仓：$115买入1/2，$100买入1/2。目标持有期2-3年，预期年化回报15-17%（10%增长+7% FCF Yield-回购缩股增厚）。</p>
+            <p><strong>对于成长投资者</strong>：QLYS不适合你——10%增速+104% NDR无法满足成长标准。建议关注CRWD或ZS。</p>
+            <p><strong>关键观察点</strong>：Q2 2026财报（2026年8月）——NDR是否从104%提升是判断ETM平台化是否成功的核心指标。如果NDR提升至106%+，说明ETM正在发挥作用；如果维持104%或下降，说明平台化转型失败。</p>
+        </div>
+    </div>
+
+    <script>
+        // ROE趋势图表
+        const roeCtx = document.getElementById('roeChart').getContext('2d');
+        new Chart(roeCtx, {
+            type: 'line',
+            data: {
+                labels: ['2016','2017','2018','2019','2020','2021','2022','2023','2024','2025'],
+                datasets: [{
+                    label: 'ROE (%)',
+                    data: [12.5, 14.8, 16.2, 18.5, 22.1, 30.5, 35.8, 38.2, 38.2, 42.0],
+                    borderColor: 'rgba(46, 134, 193, 1)',
+                    backgroundColor: 'rgba(46, 134, 193, 0.1)',
+                    fill: true,
+                    tension: 0.3
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: { title: { display: true, text: 'Qualys ROE趋势（2016-2025）' }, legend: { display: false } },
+                scales: { y: { title: { display: true, text: 'ROE (%)' }, min: 8, max: 48 } }
+            }
+        });
+
+        // 资产负债率趋势图表
+        const debtCtx = document.getElementById('debtChart').getContext('2d');
+        new Chart(debtCtx, {
+            type: 'bar',
+            data: {
+                labels: ['2016','2017','2018','2019','2020','2021','2022','2023','2024','2025'],
+                datasets: [{
+                    label: '资产负债率 (%)',
+                    data: [28, 30, 32, 35, 38, 40, 42, 45, 48, 50],
+                    backgroundColor: 'rgba(192, 57, 43, 0.7)',
+                    borderColor: 'rgba(192, 57, 43, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: { title: { display: true, text: 'Qualys资产负债率趋势（注：主要为递延收入，非有息负债）' }, legend: { display: false } },
+                scales: { y: { title: { display: true, text: '资产负债率 (%)' }, min: 0, max: 60 } }
+            }
+        });
+
+        // PE趋势图表
+        const peCtx = document.getElementById('peChart').getContext('2d');
+        new Chart(peCtx, {
+            type: 'line',
+            data: {
+                labels: ['2016','2017','2018','2019','2020','2021','2022','2023','2024','2025'],
+                datasets: [{
+                    label: '年末PE (x)',
+                    data: [42, 38, 45, 55, 52, 48, 30, 25, 22, 20],
+                    borderColor: 'rgba(230, 126, 34, 1)',
+                    backgroundColor: 'rgba(230, 126, 34, 0.1)',
+                    fill: true,
+                    tension: 0.3
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: { title: { display: true, text: 'Qualys PE比率趋势' }, legend: { display: false } },
+                scales: { y: { title: { display: true, text: 'PE (x)' }, min: 10, max: 60 } }
+            }
+        });
+    </script>
+</body>
+</html>
