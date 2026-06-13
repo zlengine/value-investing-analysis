@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rogers Communications (RCI) 价值投资分析</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body { font-family: 'Segoe UI', Arial, sans-serif; margin: 0; padding: 20px; background-color: #f0f2f5; color: #333; }
+        h1 { text-align: center; color: #1a5276; font-size: 2.2em; margin-bottom: 5px; }
+        h2 { color: #1a5276; border-bottom: 2px solid #2e86c1; padding-bottom: 8px; margin-top: 30px; }
+        h3 { color: #2c3e50; margin-top: 20px; }
+        .subtitle { text-align: center; color: #7f8c8d; font-size: 1.1em; margin-bottom: 30px; }
+        .info-box { background: white; border-radius: 10px; padding: 25px; margin: 20px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.08); }
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; background-color: white; }
+        th, td { padding: 10px 14px; text-align: left; border-bottom: 1px solid #e0e0e0; }
+        th { background-color: #1a5276; color: white; font-weight: bold; }
+        tr:nth-child(even) { background-color: #f8f9fa; }
+        tr:hover { background-color: #eaf2f8; }
+        .highlight { background: #fef9e7; border-left: 4px solid #2e86c1; padding: 15px 20px; margin: 15px 0; border-radius: 0 8px 8px 0; }
+        .chart-container { background: white; border-radius: 10px; padding: 25px; margin: 20px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.08); }
+        canvas { max-height: 400px; }
+        .tag { display: inline-block; background: #1a5276; color: white; padding: 3px 10px; border-radius: 12px; font-size: 0.85em; margin: 2px; }
+        .tag-green { background: #27ae60; }
+        .tag-orange { background: #e67e22; }
+        .tag-red { background: #c0392b; }
+        a { color: #1a5276; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        .back-link { display: inline-block; margin-bottom: 20px; font-size: 1em; }
+        .moat-item { background: white; border-radius: 8px; padding: 15px 20px; margin: 10px 0; box-shadow: 0 1px 5px rgba(0,0,0,0.05); border-left: 4px solid #2e86c1; }
+        .moat-item strong { color: #1a5276; }
+        .risk-item { background: white; border-radius: 8px; padding: 15px 20px; margin: 10px 0; box-shadow: 0 1px 5px rgba(0,0,0,0.05); border-left: 4px solid #c0392b; }
+        .star { color: #f39c12; }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back-link">← 返回索引</a>
+    <h1>Rogers Communications Inc. (NYSE: RCI / TSX: RCI.B)</h1>
+    <p class="subtitle">巴菲特/芒格式价值投资基本面分析 | 更新日期：2026年6月</p>
+
+    <!-- 一、公司基本信息 -->
+    <div class="info-box">
+        <h2>一、公司基本信息</h2>
+        <table>
+            <tr><td>公司全称</td><td>Rogers Communications Inc.</td></tr>
+            <tr><td>股票代码</td><td>NYSE: RCI / TSX: RCI.A（有投票权）、RCI.B（无投票权）</td></tr>
+            <tr><td>市值</td><td>约C$290亿（约$209亿美元，2026年6月）</td></tr>
+            <tr><td>企业价值（EV）</td><td>约C$791亿（约$643亿美元）</td></tr>
+            <tr><td>成立时间</td><td>1960年（Ted Rogers收购CHFI电台）</td></tr>
+            <tr><td>公司总部</td><td>加拿大多伦多，安大略省</td></tr>
+            <tr><td>最新收盘价</td><td>约$38.75 USD / C$53.10（2026年6月11日）</td></tr>
+            <tr><td>52周区间</td><td>$26.70 - $41.14 USD</td></tr>
+            <tr><td>CEO</td><td>Tony Staffieri（2022年1月接任）</td></tr>
+            <tr><td>员工人数</td><td>约28,000人（2026年4月向约10,000人提供自愿离职计划）</td></tr>
+            <tr><td>行业</td><td>综合电信服务 / Integrated Telecommunications</td></tr>
+            <tr><td>流通股数</td><td>约5.40亿股（含A类和B类）</td></tr>
+            <tr><td>股息</td><td>C$2.00/年（季度C$0.50，收益率3.7%）</td></tr>
+            <tr><td>信用评级</td><td>BBB-（S&P，2025年11月展望调为负面）</td></tr>
+            <tr><td>现金及等价物</td><td>C$14亿（2026年3月31日）</td></tr>
+            <tr><td>总债务</td><td>C$445亿（含长期债务C$422亿）</td></tr>
+            <tr><td>净债务/EBITDA</td><td>3.8x（2026年3月31日）</td></tr>
+            <tr><td>控制权</td><td>Rogers家族通过信托持有A类股，控制公司投票权</td></tr>
+        </table>
+        <div class="highlight">
+            <p><strong>关键特征：高杠杆+重资产+寡头垄断</strong>。Rogers是加拿大最大的无线运营商（35%市场份额），同时拥有加拿大最大的体育媒体资产组合（多伦多蓝鸟队+MLSE 75%股权）。企业价值C$791亿中，净债务占C$431亿（54%）——这是一个高度杠杆化的生意。S&P评级BBB-且展望负面，意味着降级风险真实存在。</p>
+        </div>
+    </div>
+
+    <!-- 二、业务分析 -->
+    <div class="info-box">
+        <h2>二、业务分析</h2>
+        <h3>2.1 通俗解释：Rogers是干什么的？</h3>
+        <p>用最简单的话说，<strong>Rogers是加拿大最大的手机和宽带公司</strong>——它给你提供手机信号、家里上网的网线、有线电视节目，还拥有多伦多蓝鸟棒球队和多伦多枫叶冰球队等体育资产。</p>
+        <p>想象一下：你在加拿大，手机要用Rogers、Bell或Telus的信号——这三家垄断了整个加拿大无线市场。你家里上网，也大概率是Rogers或Bell的宽带。你看冰球比赛，大概率是Rogers的Sportsnet频道。你去多伦多看蓝鸟队比赛，球场也是Rogers的。</p>
+        <p>它的赚钱逻辑是：<strong>建网络（基站+光缆）→收月费（手机+宽带+电视）→高毛利（无线67%、有线58%）→大量折旧摊销→自由现金流→还债+分红</strong>。电信是典型的"建好之后边际成本极低"的生意——多一个用户几乎不增加成本，所以利润率极高。</p>
+
+        <h3>2.2 三大业务板块</h3>
+        <table>
+            <tr><th>板块</th><th>FY2025营收</th><th>营收占比</th><th>调整后EBITDA</th><th>EBITDA利润率</th><th>关键指标</th></tr>
+            <tr><td>Wireless（无线）</td><td>C$107.15亿</td><td>49%</td><td>C$53.64亿</td><td>67%</td><td>1,220万用户，ARPU C$55.60，后付费流失率1.22%</td></tr>
+            <tr><td>Cable（有线）</td><td>C$78.68亿</td><td>36%</td><td>C$45.85亿</td><td>58%</td><td>450万零售互联网用户，覆盖1,060万户</td></tr>
+            <tr><td>Media（媒体）</td><td>C$32.88亿</td><td>15%</td><td>C$2.41亿</td><td>7%</td><td>Sportsnet+蓝鸟队+MLSE 75%+50电台+67社区电视</td></tr>
+        </table>
+
+        <h3>2.3 Wireless（无线）业务详解</h3>
+        <ul>
+            <li><strong>品牌矩阵</strong>：Rogers（高端）、Fido（中端，2026年升级至5G）、chatr（预付费低端）</li>
+            <li><strong>网络覆盖</strong>：5G覆盖96%加拿大人口，加拿大首个5G-Advanced部署</li>
+            <li><strong>FY2025</strong>：服务收入C$81.42亿（持平），设备收入C$25.73亿；全年净增24.5万手机用户（含14.5万后付费）</li>
+            <li><strong>FY2026 Q1</strong>：服务收入C$20.32亿（+0.2%），EBITDA C$13.22亿（+0.9%），净增3.3万手机用户</li>
+            <li><strong>趋势</strong>：ARPU持续下滑（C$55.60，同比-2.4%），但流失率改善（后付费1.22% vs 1.01%去年同期——注意Q1季节性较高）</li>
+        </ul>
+
+        <h3>2.4 Cable（有线）业务详解</h3>
+        <ul>
+            <li><strong>产品</strong>：互联网（核心增长引擎）、电视（Rogers Xfinity TV）、家庭电话（持续流失）、智能家居监控</li>
+            <li><strong>FY2025</strong>：服务收入C$78.33亿（持平），全年净增10万零售互联网用户</li>
+            <li><strong>FY2026 Q1</strong>：服务收入C$19.43亿（+0.7%），EBITDA C$11.24亿（+1.3%），净增7,000互联网用户</li>
+            <li><strong>趋势</strong>：互联网增长放缓（市场饱和），电视和电话持续流失，但EBITDA利润率58%行业领先</li>
+        </ul>
+
+        <h3>2.5 Media（媒体）业务详解</h3>
+        <ul>
+            <li><strong>核心资产</strong>：Sportsnet（加拿大#1体育网络）、多伦多蓝鸟队（MLB）、MLSE 75%股权（枫叶队NHL+猛龙队NBA+FC MLS+阿尔戈队CFL）</li>
+            <li><strong>2025年7月</strong>：以C$47亿收购Bell持有的MLSE 37.5%股权，成为75%控股股东</li>
+            <li><strong>FY2025</strong>：收入C$32.88亿（+47%），EBITDA C$2.41亿（+174%），受益于蓝鸟队打入世界大赛+MLSE全年并表</li>
+            <li><strong>FY2026 Q1</strong>：收入C$9.88亿（+82%），EBITDA盈亏平衡（同比改善约C$6,000万）</li>
+            <li><strong>NHL版权</strong>：2026年3月签署12年NHL加拿大全国媒体版权续约</li>
+            <li><strong>估值</strong>：公司估算体育+媒体资产价值超过C$150亿</li>
+        </ul>
+
+        <h3>2.6 FY2025全年财务摘要（截至2025年12月31日）</h3>
+        <table>
+            <tr><th>指标</th><th>FY2025</th><th>FY2024</th><th>同比变化</th></tr>
+            <tr><td>总营收</td><td>C$217.12亿</td><td>C$206.04亿</td><td>+5%</td></tr>
+            <tr><td>总服务收入</td><td>C$191.04亿</td><td>C$180.66亿</td><td>+6%</td></tr>
+            <tr><td>调整后EBITDA</td><td>C$98.20亿</td><td>C$96.17亿</td><td>+2%</td></tr>
+            <tr><td>GAAP净利润</td><td>C$69.06亿</td><td>C$17.34亿</td><td>n/m（含一次性收益）</td></tr>
+            <tr><td>调整后净利润</td><td>C$27.20亿</td><td>C$27.19亿</td><td>持平</td></tr>
+            <tr><td>调整后EPS</td><td>C$5.02</td><td>C$5.04</td><td>-0.4%</td></tr>
+            <tr><td>经营现金流</td><td>C$60.59亿</td><td>C$56.80亿</td><td>+7%</td></tr>
+            <tr><td>自由现金流</td><td>C$33.56亿</td><td>C$30.45亿</td><td>+10%</td></tr>
+            <tr><td>资本支出</td><td>C$37.03亿</td><td>C$39.85亿</td><td>-7%</td></tr>
+            <tr><td>资本密集度</td><td>17%</td><td>19%</td><td>-2pp</td></tr>
+        </table>
+
+        <h3>2.7 FY2026 Q1（最新季度，截至2026年3月31日）</h3>
+        <table>
+            <tr><th>指标</th><th>FY2026 Q1</th><th>FY2025 Q1</th><th>同比变化</th></tr>
+            <tr><td>总营收</td><td>C$54.82亿</td><td>C$49.76亿</td><td>+10%</td></tr>
+            <tr><td>总服务收入</td><td>C$49.12亿</td><td>C$44.47亿</td><td>+10%</td></tr>
+            <tr><td>调整后EBITDA</td><td>C$23.64亿</td><td>C$22.54亿</td><td>+5%</td></tr>
+            <tr><td>调整后EPS</td><td>C$1.01</td><td>C$0.99</td><td>+2%</td></tr>
+            <tr><td>自由现金流</td><td>C$7.76亿</td><td>C$5.86亿</td><td>+32%</td></tr>
+            <tr><td>资本支出</td><td>C$7.19亿</td><td>C$7.10亿</td><td>+1%</td></tr>
+            <tr><td>资本密集度</td><td>15%</td><td>17%</td><td>-2pp</td></tr>
+        </table>
+
+        <h3>2.8 FY2026全年指引（已上调）</h3>
+        <table>
+            <tr><th>指标</th><th>原指引</th><th>上调后指引</th></tr>
+            <tr><td>总服务收入增长</td><td>3%-5%</td><td>3%-5%（不变）</td></tr>
+            <tr><td>调整后EBITDA增长</td><td>1%-3%</td><td>1%-3%（不变）</td></tr>
+            <tr><td>资本支出</td><td>C$33-35亿</td><td>C$25-27亿（大幅下调30%）</td></tr>
+            <tr><td>资本密集度</td><td>~15%</td><td>~12%</td></tr>
+            <tr><td>自由现金流</td><td>C$33-35亿</td><td>C$41-43亿（大幅上调24%）</td></tr>
+        </table>
+        <div class="highlight">
+            <p><strong>资本支出大幅下调是关键变化</strong>：FY2026资本支出从C$33-35亿下调至C$25-27亿（减少约30%），直接推动自由现金流从C$33-35亿上调至C$41-43亿。管理层认为5G网络建设高峰已过，可以大幅削减资本支出。这意味着Rogers从"投资期"进入"收获期"——如果可持续，将显著改善股东回报能力。</p>
+        </div>
+
+        <h3>2.9 地域分布</h3>
+        <p>Rogers是<strong>纯加拿大业务</strong>，无国际业务。加拿大电信市场是全球最集中的市场之一——三大运营商（Rogers/Bell/Telus）合计控制约90%无线市场份额。Rogers在安大略省最强（加拿大最大省份，人口1,500万），同时通过Shaw收购扩展至西部（BC省、阿尔伯塔省等）。</p>
+
+        <h3>2.10 重大战略事件</h3>
+        <ul>
+            <li><strong>2023年4月</strong>：以C$200亿收购Shaw Communications，成为加拿大最大无线运营商</li>
+            <li><strong>2025年7月</strong>：以C$47亿收购Bell持有的MLSE 37.5%股权，成为75%控股股东</li>
+            <li><strong>2025年Q2</strong>：与Blackstone达成结构化合资，出售无线网络少数股权，净减少约C$23亿债务</li>
+            <li><strong>2026年计划</strong>：收购MLSE剩余25%少数股权（Kilmer Group），并计划通过体育资产货币化降杠杆</li>
+            <li><strong>2026年4月</strong>：向约10,000名员工提供自愿离职计划，削减成本</li>
+        </ul>
+    </div>
+
+    <!-- 三、业务板块产品竞争力分析 -->
+    <div class="info-box">
+        <h2>三、业务板块产品竞争力分析</h2>
+
+        <h3>3.1 Wireless（无线通信）产品竞争力分析</h3>
+        <div class="moat-item">
+            <p><strong>1. 可替代性：<span class="tag tag-green">低</span></strong></p>
+            <ul>
+                <li>主要替代品：Bell Mobility、Telus Mobility、虚拟运营商（Freedom Mobile、Flanker brands）</li>
+                <li>替代品体验差距：三大运营商网络质量接近，但虚拟运营商信号覆盖和速度明显差。加拿大地广人稀，建网成本极高，新进入者几乎不可能</li>
+                <li>替代趋势：稳定——加拿大三寡头格局根深蒂固，监管限制第四家全国性运营商</li>
+            </ul>
+            <p><strong>2. 客户转换成本：<span class="tag tag-green">高</span></strong></p>
+            <ul>
+                <li>财务转换成本：设备余额需付清（最高C$1,000+），部分合约有提前解约费</li>
+                <li>时间转换成本：号码携带需1-2小时，但过程繁琐</li>
+                <li>捆绑转换成本：Rogers提供无线+宽带+电视捆绑折扣，单一切换会失去折扣（每月C$15-30）</li>
+                <li>综合评估：加拿大无线转换成本中等偏高——号码可携带降低了心理成本，但捆绑折扣和设备余额提高了财务成本</li>
+            </ul>
+            <p><strong>3. 定价权：<span class="tag tag-green">强</span></strong></p>
+            <ul>
+                <li>历史提价记录：加拿大手机月费全球最贵之一（C$55-80/月），过去10年持续上涨</li>
+                <li>提价vs通胀：手机月费增速跑赢CPI，但2024-2025年ARPU开始下滑（竞争加剧）</li>
+                <li>定价权来源：寡头垄断——三家公司默契定价，监管干预有限</li>
+                <li>定价权趋势：稳定偏弱——2024年竞争加剧导致ARPU下滑，2025年下半年趋缓</li>
+                <li>巴菲特测试：如果Rogers提价10%（月费从C$55涨至C$60.5），部分价格敏感客户可能转向Bell或Telus，但大多数人不会——因为三大运营商价格几乎同步上涨</li>
+            </ul>
+            <p><strong>综合竞争力评级：<span class="star">⭐⭐⭐⭐</span></strong></p>
+        </div>
+
+        <h3>3.2 Cable（有线宽带+电视）产品竞争力分析</h3>
+        <div class="moat-item">
+            <p><strong>1. 可替代性：<span class="tag tag-orange">中等</span></strong></p>
+            <ul>
+                <li>主要替代品：Bell光纤（FTTH）、5G固定无线接入（FWA）、Starlink卫星</li>
+                <li>替代品体验差距：Bell光纤速度更快（对称1Gbps vs Rogers非对称），但覆盖不如Rogers广泛；5G FWA速度不稳定；Starlink延迟高</li>
+                <li>替代趋势：缓慢加速——Bell光纤持续扩展覆盖，5G FWA在郊区有吸引力</li>
+            </ul>
+            <p><strong>2. 客户转换成本：<span class="tag tag-green">高</span></strong></p>
+            <ul>
+                <li>财务转换成本：安装费C$50-100，设备归还要求，捆绑折扣损失</li>
+                <li>时间转换成本：预约安装需1-2周，设备设置需数小时</li>
+                <li>捆绑转换成本：无线+宽带+电视捆绑折扣C$15-30/月，单一切换损失大</li>
+                <li>综合评估：宽带转换成本中等偏高——物理安装和捆绑折扣是主要壁垒</li>
+            </ul>
+            <p><strong>3. 定价权：<span class="tag tag-green">强</span></strong></p>
+            <ul>
+                <li>历史提价记录：宽带月费每年涨C$3-5，过去10年累计涨约30%</li>
+                <li>提价vs通胀：宽带价格增速跑赢CPI</li>
+                <li>定价权来源：双寡头垄断（Rogers vs Bell），物理网络壁垒极高</li>
+                <li>定价权趋势：稳定——宽带是"刚需"，消费者对小幅涨价不敏感</li>
+                <li>巴菲特测试：如果Rogers宽带提价10%（月费从C$100涨至C$110），少数客户会转向Bell光纤，但大多数人不会——因为Bell价格也差不多</li>
+            </ul>
+            <p><strong>综合竞争力评级：<span class="star">⭐⭐⭐⭐</span></strong></p>
+        </div>
+
+        <h3>3.3 Media（媒体+体育）产品竞争力分析</h3>
+        <div class="moat-item">
+            <p><strong>1. 可替代性：<span class="tag tag-orange">中等</span></strong></p>
+            <ul>
+                <li>主要替代品：Netflix/Disney+等流媒体、TSN（Bell体育频道）、社交媒体</li>
+                <li>替代品体验差距：流媒体无法替代直播体育（NHL/NBA/MLB）的实时性和社交体验；TSN是直接竞争者但内容不同</li>
+                <li>替代趋势：传统电视加速被流媒体替代，但直播体育是最后堡垒</li>
+            </ul>
+            <p><strong>2. 客户转换成本：<span class="tag tag-red">低</span></strong></p>
+            <ul>
+                <li>财务转换成本：低——取消电视订阅无罚金（多数已无合约）</li>
+                <li>时间转换成本：低——一键取消</li>
+                <li>捆绑转换成本：中等——电视与宽带捆绑有折扣</li>
+                <li>综合评估：媒体内容转换成本极低，但直播体育有一定"锁定"效应（粉丝不会放弃主队比赛）</li>
+            </ul>
+            <p><strong>3. 定价权：<span class="tag tag-orange">中等</span></strong></p>
+            <ul>
+                <li>历史提价记录：体育版权费持续上涨（NHL 12年版权费预计大幅增加），广告费率随收视率波动</li>
+                <li>定价权来源：独家体育版权（NHL/NBA/MLB）是核心——加拿大人热爱冰球，Sportsnet拥有NHL独家版权</li>
+                <li>定价权趋势：增强——MLSE 75%股权+蓝鸟队+NHL 12年版权构成加拿大最强体育内容壁垒</li>
+                <li>巴菲特测试：如果Sportsnet提价10%，部分边缘用户会取消，但核心体育迷不会——冰球是加拿大文化的一部分</li>
+            </ul>
+            <p><strong>综合竞争力评级：<span class="star">⭐⭐⭐</span></strong></p>
+        </div>
+    </div>
+
+    <!-- 四、历史财务指标 -->
+    <div class="info-box">
+        <h2>四、历史财务指标</h2>
+
+        <h3>4.1 ROE（净资产收益率）趋势</h3>
+        <table>
+            <tr><th>年份</th><th>2016</th><th>2017</th><th>2018</th><th>2019</th><th>2020</th><th>2021</th><th>2022</th><th>2023</th><th>2024</th><th>2025</th></tr>
+            <tr><td>ROE (%)</td><td>15.9</td><td>27.0</td><td>25.2</td><td>21.7</td><td>16.6</td><td>14.8</td><td>16.7</td><td>8.1</td><td>16.7</td><td>44.4*</td></tr>
+        </table>
+        <p>*FY2025 GAAP ROE 44.4%包含一次性收益（MLSE交易等），调整后ROE约16-17%</p>
+        <div class="highlight">
+            <p><strong>ROE看似不低但质量存疑</strong>：调整后ROE约16-17%，在电信行业属于中等偏上。但ROE高的原因不是利润率特别高，而是<strong>财务杠杆极高</strong>——债务/权益比2.5x+，意味着ROE的相当部分来自债务放大。如果去杠杆，ROE会显著下降。2023年ROE暴跌至8.1%（Shaw收购导致债务跳升+竞争加剧），2024年恢复至16.7%。巴菲特会问：这是"真实"的ROE还是"杠杆"的ROE？答案是后者。</p>
+        </div>
+
+        <div class="chart-container">
+            <canvas id="roeChart"></canvas>
+        </div>
+
+        <h3>4.2 资产负债率趋势</h3>
+        <table>
+            <tr><th>年份</th><th>2016</th><th>2017</th><th>2018</th><th>2019</th><th>2020</th><th>2021</th><th>2022</th><th>2023</th><th>2024</th><th>2025</th></tr>
+            <tr><td>资产负债率 (%)</td><td>76</td><td>72</td><td>67</td><td>66</td><td>70</td><td>66</td><td>77</td><td>79</td><td>79</td><td>85</td></tr>
+            <tr><td>债务/权益</td><td>3.20</td><td>2.53</td><td>2.02</td><td>1.93</td><td>2.03</td><td>1.98</td><td>3.44</td><td>4.08</td><td>4.31</td><td>2.49</td></tr>
+        </table>
+        <div class="highlight">
+            <p><strong>资产负债率极高且持续恶化</strong>：从2019年的66%飙升至2025年的85%（含MLSE并表）。债务/权益比4.31x（2024年），S&P调整后杠杆3.8-4.6x。这是Rogers最大的风险——<strong>BBB-评级且展望负面</strong>，如果杠杆不能降至4.25x以下，可能被降级至BB+（垃圾级），融资成本将大幅上升。2026年资本支出削减30%+自由现金流C$41-43亿是降杠杆的关键举措。</p>
+        </div>
+
+        <div class="chart-container">
+            <canvas id="debtChart"></canvas>
+        </div>
+
+        <h3>4.3 PE比率趋势</h3>
+        <table>
+            <tr><th>年份</th><th>2016</th><th>2017</th><th>2018</th><th>2019</th><th>2020</th><th>2021</th><th>2022</th><th>2023</th><th>2024</th><th>2025</th></tr>
+            <tr><td>年末PE (x)</td><td>18</td><td>13</td><td>14</td><td>15</td><td>17</td><td>19</td><td>15</td><td>29</td><td>10</td><td>4*</td></tr>
+        </table>
+        <p>*FY2025 GAAP PE 4x包含一次性收益，调整后PE约15x</p>
+        <div class="highlight">
+            <p><strong>调整后PE约15x，看似合理</strong>：但电信公司应该看EV/EBITDA而非PE，因为高折旧+高债务使得PE失真。当前EV/EBITDA约6.5x，在电信行业属于中等偏低——市场对高杠杆和降级风险给予折价。P/FCF约9x（基于FY2026 FCF指引C$41-43亿），如果资本支出削减可持续，这个估值有吸引力。</p>
+        </div>
+
+        <div class="chart-container">
+            <canvas id="peChart"></canvas>
+        </div>
+
+        <h3>4.4 关键盈利指标对比</h3>
+        <table>
+            <tr><th>指标</th><th>Rogers (RCI)</th><td>BCE (Bell)</td><td>Telus (T)</td><td>电信行业平均</td></tr>
+            <tr><td>营收增速</td><td>5%</td><td>1%</td><td>2%</td><td>3%</td></tr>
+            <tr><td>调整后EBITDA利润率</td><td>45%</td><td>42%</td><td>38%</td><td>40%</td></tr>
+            <tr><td>无线EBITDA利润率</td><td>67%</td><td>62%</td><td>55%</td><td>60%</td></tr>
+            <tr><td>有线EBITDA利润率</td><td>58%</td><td>52%</td><td>50%</td><td>52%</td></tr>
+            <tr><td>净债务/EBITDA</td><td>3.8x</td><td>3.5x</td><td>3.2x</td><td>3.0x</td></tr>
+            <tr><td>股息率</td><td>3.7%</td><td>7.5%</td><td>5.5%</td><td>5%</td></tr>
+            <tr><td>信用评级</td><td>BBB-</td><td>BBB+</td><td>BBB+</td><td>BBB+</td></tr>
+        </table>
+    </div>
+
+    <!-- 五、竞争分析 -->
+    <div class="info-box">
+        <h2>五、竞争分析</h2>
+
+        <h3>5.1 加拿大电信市场竞争格局</h3>
+        <table>
+            <tr><th>竞争对手</th><th>市值</th><th>营收</th><th>无线份额</th><th>核心优势</th><th>与RCI的差异</th></tr>
+            <tr><td>BCE (Bell Canada)</td><td>C$400亿</td><td>C$240亿</td><td>~30%</td><td>全业务线（无线+有线+媒体），光纤覆盖最广，BBB+评级</td><td>Bell光纤更强，媒体资产弱于Rogers（已出售MLSE股权），股息率7.5%更高</td></tr>
+            <tr><td>Telus</td><td>C$280亿</td><td>C$200亿</td><td>~30%</td><td>客户服务口碑最好，西加拿大强势，数字化转型（Telus Health/Agriculture）</td><td>Telus增长更多元（健康+农业），但杠杆也高（3.2x），无媒体资产</td></tr>
+            <tr><td>Quebecor (Videotron)</td><td>C$100亿</td><td>C$57亿</td><td>~5%</td><td>魁北克省主导，2023年收购Freedom Mobile进入全国市场</td><td>规模小，主要在魁北克，对Rogers全国份额威胁有限</td></tr>
+        </table>
+
+        <h3>5.2 Rogers的竞争地位</h3>
+        <p>Rogers在加拿大电信市场的定位是<strong>"规模最大的无线运营商+最强的体育媒体资产"</strong>。通过Shaw收购，Rogers超越Bell成为加拿大无线用户数最多的运营商（1,220万 vs Bell约1,000万）。通过MLSE收购，Rogers拥有加拿大最有价值的体育IP组合。</p>
+        <p>但Rogers的劣势也很明显：<strong>杠杆最高（3.8x vs Bell 3.5x vs Telus 3.2x）、评级最低（BBB- vs BBB+）、股息率最低（3.7% vs Bell 7.5%）</strong>。市场对Rogers的定价反映了这些风险。</p>
+
+        <h3>5.3 经济护城河评估</h3>
+        <div class="moat-item">
+            <p><strong>1. 网络效应/规模优势：<span class="star">⭐⭐⭐⭐⭐</span></strong> — 电信是典型的规模经济生意。Rogers拥有1,220万无线用户+450万宽带用户，网络成本固定，每多一个用户几乎零边际成本。加拿大地广人稀，建网成本极高，新进入者几乎不可能。三寡头格局受监管保护（频谱拍卖限制新进入者）。</p>
+        </div>
+        <div class="moat-item">
+            <p><strong>2. 转换成本：<span class="star">⭐⭐⭐⭐</span></strong> — 捆绑折扣（无线+宽带+电视）提高了客户粘性。设备分期余额和安装成本也增加了转换摩擦。但号码可携带降低了心理成本。</p>
+        </div>
+        <div class="moat-item">
+            <p><strong>3. 定价权/寡头垄断：<span class="star">⭐⭐⭐⭐⭐</span></strong> — 加拿大三寡头默契定价，手机月费全球最贵之一。监管干预有限（2024年竞争加剧是暂时的，2025年已趋缓）。这是Rogers最核心的护城河。</p>
+        </div>
+        <div class="moat-item">
+            <p><strong>4. 独家体育内容：<span class="star">⭐⭐⭐⭐</span></strong> — NHL 12年独家版权+MLSE 75%+蓝鸟队，构成加拿大最强体育内容壁垒。直播体育是传统电视最后的护城河——流媒体无法替代。</p>
+        </div>
+        <div class="moat-item">
+            <p><strong>5. 品牌力：<span class="star">⭐⭐⭐</span></strong> — Rogers品牌在加拿大知名度高，但口碑一般（2022年全国断网事件损害声誉）。Fido和chatr品牌覆盖不同价位段。</p>
+        </div>
+
+        <div class="highlight">
+            <p><strong>护城河综合评级：宽（寡头垄断+网络效应+独家体育驱动型）</strong></p>
+            <p>Rogers的护城河是"结构性"的——不是因为它做得特别好，而是因为加拿大电信市场的结构决定了三寡头可以持续赚取超额利润。这种护城河非常稳定（监管不会打破三寡头格局），但也有局限——利润率受监管约束，提价空间有限。体育媒体资产是增量护城河，但利润率远低于电信（7% vs 60%+），且波动大。</p>
+        </div>
+
+        <h3>5.4 主要风险</h3>
+        <div class="risk-item">
+            <p><strong>1. 高杠杆+降级风险（极高风险）</strong>：净债务/EBITDA 3.8x，S&P评级BBB-且展望负面。如果2026年不能降至4.25x以下，可能被降级至BB+（垃圾级）。降级将导致融资成本跳升、债务再融资困难。MLSE剩余25%收购（预计C$40亿）将进一步增加杠杆。</p>
+        </div>
+        <div class="risk-item">
+            <p><strong>2. 监管风险（高风险）</strong>：加拿大CRTC（电信监管机构）可能强制降价、开放网络接入、限制频谱集中。2023-2024年竞争加剧部分源于监管推动。如果监管进一步干预，利润率将承压。</p>
+        </div>
+        <div class="risk-item">
+            <p><strong>3. ARPU下滑风险（中等风险）</strong>：无线ARPU从C$57+降至C$55.60，2024年竞争加剧导致降价促销。如果竞争再次升温，ARPU可能继续下滑。</p>
+        </div>
+        <div class="risk-item">
+            <p><strong>4. 资本支出削减是否可持续（中等风险）</strong>：FY2026资本支出从C$37亿降至C$25-27亿，如果5G网络质量因此下降，可能导致客户流失。电信是"不投资就衰退"的生意——削减CapEx短期提升FCF，长期可能损害竞争力。</p>
+        </div>
+        <div class="risk-item">
+            <p><strong>5. 体育资产货币化不确定性（中等风险）</strong>：公司估算体育+媒体资产价值超C$150亿，但货币化时机和估值不确定。S&P认为可能推迟至2027年。如果市场条件不佳（如经济衰退），资产出售价格可能低于预期。</p>
+        </div>
+        <div class="risk-item">
+            <p><strong>6. 家族控制风险（低风险）</strong>：Rogers家族通过信托控制A类股（投票权），2021年曾爆发家族内斗（董事会控制权之争）。家族控制可能导致非最优资本配置决策。</p>
+        </div>
+    </div>
+
+    <!-- 六、利润分配分析 -->
+    <div class="info-box">
+        <h2>六、利润分配分析</h2>
+        <p>注：按照价值投资分析框架，<strong>股票回购计入留存</strong>。</p>
+
+        <h3>6.1 利润分配表（FY2016-FY2025，单位：百万加元）</h3>
+        <table>
+            <tr><th>年度</th><th>调整后净利润</th><th>股息</th><th>回购</th><th>CapEx</th><th>债务偿还（净）</th><th>留存金额</th><th>留存比率</th></tr>
+            <tr><td>2016</td><td>1,544</td><td>783</td><td>0</td><td>2,576</td><td>0</td><td>761</td><td>49%</td></tr>
+            <tr><td>2017</td><td>1,845</td><td>764</td><td>0</td><td>2,539</td><td>0</td><td>1,081</td><td>59%</td></tr>
+            <tr><td>2018</td><td>1,960</td><td>784</td><td>0</td><td>2,672</td><td>0</td><td>1,176</td><td>60%</td></tr>
+            <tr><td>2019</td><td>2,059</td><td>789</td><td>0</td><td>2,830</td><td>0</td><td>1,270</td><td>62%</td></tr>
+            <tr><td>2020</td><td>1,592</td><td>789</td><td>0</td><td>2,698</td><td>0</td><td>803</td><td>50%</td></tr>
+            <tr><td>2021</td><td>1,558</td><td>793</td><td>0</td><td>2,823</td><td>0</td><td>765</td><td>49%</td></tr>
+            <tr><td>2022</td><td>1,680</td><td>793</td><td>0</td><td>3,049</td><td>0</td><td>887</td><td>53%</td></tr>
+            <tr><td>2023</td><td>849</td><td>816</td><td>0</td><td>3,478</td><td>+10,000（Shaw）</td><td>33</td><td>4%</td></tr>
+            <tr><td>2024</td><td>1,734</td><td>830</td><td>0</td><td>3,985</td><td>0</td><td>904</td><td>52%</td></tr>
+            <tr><td>2025</td><td>2,720</td><td>841</td><td>0</td><td>3,703</td><td>+4,700（MLSE）</td><td>1,879</td><td>69%</td></tr>
+        </table>
+        <p>注：Rogers不进行股票回购。2023年Shaw收购和2025年MLSE收购导致债务大幅增加。留存金额 = 调整后净利润 - 股息（回购计入留存，此处回购为0）。</p>
+
+        <h3>6.2 股息历史</h3>
+        <table>
+            <tr><th>年份</th><th>年度股息/股（CAD）</th><th>同比增长</th><th>派息率（调整后）</th></tr>
+            <tr><td>2016</td><td>C$1.92</td><td>—</td><td>50%</td></tr>
+            <tr><td>2017</td><td>C$1.92</td><td>0%</td><td>42%</td></tr>
+            <tr><td>2018</td><td>C$1.92</td><td>0%</td><td>40%</td></tr>
+            <tr><td>2019</td><td>C$1.92</td><td>0%</td><td>38%</td></tr>
+            <tr><td>2020</td><td>C$1.92</td><td>0%</td><td>49%</td></tr>
+            <tr><td>2021</td><td>C$1.94</td><td>+1%</td><td>51%</td></tr>
+            <tr><td>2022</td><td>C$2.00</td><td>+3%</td><td>48%</td></tr>
+            <tr><td>2023</td><td>C$2.00</td><td>0%</td><td>96%</td></tr>
+            <tr><td>2024</td><td>C$2.00</td><td>0%</td><td>48%</td></tr>
+            <tr><td>2025</td><td>C$2.00</td><td>0%</td><td>31%</td></tr>
+        </table>
+        <div class="highlight">
+            <p><strong>股息增长停滞</strong>：2018-2025年股息一直维持在C$2.00/年，7年零增长。这在电信行业非常罕见——BCE和Telus每年都在增配。Rogers不增配的原因是高杠杆——管理层优先还债而非增配。3年股息增长率为-9.14%，5年为-5.59%。如果杠杆降至3.5x以下，增配空间很大（当前派息率仅31%）。</p>
+        </div>
+
+        <h3>6.3 回购历史</h3>
+        <p>Rogers<strong>不进行股票回购</strong>。所有自由现金流用于还债+资本支出+股息。这与BCE和Telus形成鲜明对比——BCE每年回购C$5-10亿。Rogers不回购的原因同样是高杠杆。</p>
+
+        <h3>6.4 留存比率解读</h3>
+        <div class="highlight">
+            <p><strong>留存比率50-69%</strong>：属于"平衡分配"模式。但留存质量存疑——留存利润主要用于：(1)巨额资本支出（C$25-40亿/年，维护性CapEx占比高）；(2)偿还收购债务（Shaw C$200亿+MLSE C$47亿）。<strong>留存利润没有创造增量价值</strong>——只是维持现有网络运营和消化收购成本。</p>
+            <p><strong>1美元留存创造市值评估</strong>：FY2022-2025年累计留存约C$37亿（含回购0），市值从C$250亿降至C$290亿（增加C$40亿，但主要来自PE扩张）。粗略估算，<strong>1美元留存创造了约1.1美元市值</strong>——勉强达到巴菲特标准。但考虑到同期债务增加了C$100亿+，股东价值实际上是被稀释的。</p>
+        </div>
+
+        <h3>6.5 可持续增长率</h3>
+        <p>可持续增长率 = ROE × 留存比率 = 17% × 60% = 10.2%</p>
+        <p>实际营收增长率约5-6%，低于可持续增长率，说明公司有部分利润用于还债而非再投资。如果杠杆降至正常水平（2.5-3.0x），可持续增长率将提升。</p>
+    </div>
+
+    <!-- 七、投资总结 -->
+    <div class="info-box">
+        <h2>七、投资总结</h2>
+
+        <h3>7.1 估值分析</h3>
+        <table>
+            <tr><th>估值指标</th><th>当前值</th><th>5年均值</th><th>电信行业平均</th><th>评价</th></tr>
+            <tr><td>PE (调整后TTM)</td><td>~15x</td><td>~17x</td><td>~14x</td><td><span class="tag tag-orange">中等</span></td></tr>
+            <tr><td>EV/EBITDA</td><td>~6.5x</td><td>~7.5x</td><td>~6x</td><td><span class="tag tag-green">偏低</span></td></tr>
+            <tr><td>P/FCF (FY2026E)</td><td>~7x</td><td>~10x</td><td>~9x</td><td><span class="tag tag-green">有吸引力</span></td></tr>
+            <tr><td>FCF Yield (FY2026E)</td><td>~14%</td><td>~10%</td><td>~11%</td><td><span class="tag tag-green">有吸引力</span></td></tr>
+            <tr><td>股息率</td><td>3.7%</td><td>3.5%</td><td>5%</td><td><span class="tag tag-orange">偏低</span></td></tr>
+            <tr><td>P/B</td><td>1.5x</td><td>2.0x</td><td>1.8x</td><td><span class="tag tag-green">偏低</span></td></tr>
+        </table>
+
+        <h3>7.2 SWOT分析</h3>
+        <table>
+            <tr><th style="background:#27ae60;">优势 (Strengths)</th><th style="background:#c0392b;">劣势 (Weaknesses)</th></tr>
+            <tr><td>
+                <ul>
+                    <li>加拿大最大无线运营商（35%份额，1,220万用户）</li>
+                    <li>无线EBITDA利润率67%，行业领先</li>
+                    <li>三寡头格局受监管保护，定价权强</li>
+                    <li>加拿大最强体育媒体资产（MLSE+蓝鸟+NHL版权）</li>
+                    <li>5G覆盖96%人口，网络质量领先</li>
+                    <li>Shaw收购协同效应C$10亿/年已实现</li>
+                    <li>FCF Yield 14%（FY2026E），资本支出大幅削减</li>
+                </ul>
+            </td><td>
+                <ul>
+                    <li>净债务/EBITDA 3.8x，S&P BBB-展望负面</li>
+                    <li>7年股息零增长（C$2.00/年）</li>
+                    <li>不回购股票</li>
+                    <li>ARPU持续下滑（C$55.60，-2.4% YoY）</li>
+                    <li>媒体业务利润率仅7%，波动大</li>
+                    <li>2022年全国断网事件损害声誉</li>
+                    <li>家族控制可能影响治理</li>
+                </ul>
+            </td></tr>
+            <tr><th style="background:#2e86c1;">机会 (Opportunities)</th><th style="background:#e67e22;">威胁 (Threats)</th></tr>
+            <tr><td>
+                <ul>
+                    <li>资本支出削减30%释放C$8亿+自由现金流</li>
+                    <li>体育资产货币化（估值C$150亿+）</li>
+                    <li>杠杆降至3.5x后恢复股息增长</li>
+                    <li>5G-Advanced和IoT新收入来源</li>
+                    <li>2026年FIFA世界杯在多伦多（体育内容受益）</li>
+                    <li>MLSE剩余25%收购后100%控制</li>
+                </ul>
+            </td><td>
+                <ul>
+                    <li>S&P降级至BB+（垃圾级）</li>
+                    <li>监管强制降价或开放网络</li>
+                    <li>竞争再次加剧（ARPU进一步下滑）</li>
+                    <li>资本支出削减损害网络质量</li>
+                    <li>经济衰退导致广告收入下滑</li>
+                    <li>利率上升增加融资成本</li>
+                </ul>
+            </td></tr>
+        </table>
+
+        <h3>7.3 投资评级与目标价</h3>
+        <div class="highlight">
+            <p><strong>投资评级：谨慎买入（高杠杆电信+体育资产转型期）</strong></p>
+            <p><strong>合理估值区间：C$55-C$65（USD $40-$47）</strong></p>
+            <p><strong>当前价格：C$53 / USD $38.75（接近合理区间下限）</strong></p>
+        </div>
+
+        <h3>7.4 投资逻辑</h3>
+        <p><strong>看多理由：</strong></p>
+        <ul>
+            <li><strong>FCF Yield 14%极具吸引力</strong>：FY2026自由现金流指引C$41-43亿，对应市值C$290亿的FCF Yield约14%。如果资本支出削减可持续，这是非常便宜的价格。</li>
+            <li><strong>寡头垄断护城河极宽</strong>：加拿大三寡头格局不会改变，Rogers可以持续赚取超额利润。无线67%和有线58%的EBITDA利润率是护城河的直接体现。</li>
+            <li><strong>体育资产是隐藏价值</strong>：公司估算体育+媒体资产价值超C$150亿，但当前市值仅C$290亿（含C$430亿净债务）。如果成功货币化30%体育资产，可回收C$45亿+用于降杠杆。</li>
+            <li><strong>从"投资期"进入"收获期"</strong>：5G建设高峰已过，资本支出从C$37亿降至C$25-27亿，自由现金流从C$34亿跳升至C$41-43亿。这是电信公司的"甜蜜期"。</li>
+        </ul>
+        <p><strong>看空理由：</strong></p>
+        <ul>
+            <li><strong>高杠杆是最大风险</strong>：净债务/EBITDA 3.8x，BBB-展望负面。如果降级至垃圾级，融资成本跳升，恶性循环。MLSE剩余25%收购将进一步增加杠杆。</li>
+            <li><strong>7年股息零增长</strong>：在通胀环境下，实际股息在缩水。BCE每年增配，Rogers不增配——这对收入型投资者没有吸引力。</li>
+            <li><strong>资本支出削减可能不可持续</strong>：电信是"不投资就衰退"的生意。如果5G网络质量下降，客户会流失。削减CapEx短期提升FCF，长期可能损害竞争力。</li>
+            <li><strong>ARPU下滑趋势</strong>：无线ARPU从C$57+降至C$55.60，如果竞争再次加剧，可能继续下滑。</li>
+        </ul>
+
+        <h3>7.5 巴菲特视角</h3>
+        <div class="highlight">
+            <p>巴菲特会喜欢Rogers的<strong>寡头垄断护城河</strong>和<strong>定价权</strong>——三寡头默契定价、手机月费全球最贵，这是典型的"不管经济好坏都能赚钱"的生意。他也会喜欢Rogers的<strong>自由现金流生成能力</strong>——FCF Yield 14%在当前估值下非常有吸引力。</p>
+            <p>但巴菲特<strong>绝不会喜欢Rogers的高杠杆</strong>。巴菲特多次强调："不要用借来的钱做投资。"Rogers的净债务/EBITDA 3.8x、BBB-评级、7年不增配股息——这些都是高杠杆的直接后果。巴菲特会说："一家公司如果需要不断借债才能维持运营，那它就不是好生意。"</p>
+            <p>更重要的是，<strong>巴菲特不会买他不完全理解的复杂资本结构</strong>。Rogers当前的财务结构极其复杂——Shaw收购+MLSE收购+Blackstone合资+次级债券+衍生品对冲——这不是巴菲特能"一眼看穿"的生意。</p>
+            <p><strong>巴菲特测试结论</strong>：Rogers是一个"好生意但不是好价格...等等，价格其实不贵（EV/EBITDA 6.5x、FCF Yield 14%），但杠杆太高"的案例。巴菲特会说："如果Rogers没有C$430亿净债务，我会很感兴趣。但有了这些债务，它就是一个'如果一切顺利就赚很多、如果出问题就亏很多'的赌注。我不赌。"</p>
+        </div>
+
+        <h3>7.6 与BCE对比</h3>
+        <table>
+            <tr><th>指标</th><th>RCI</th><th>BCE</th></tr>
+            <tr><td>市值</td><td>C$290亿</td><td>C$400亿</td></tr>
+            <tr><td>EV/EBITDA</td><td>6.5x</td><td>7.0x</td></tr>
+            <tr><td>FCF Yield (FY2026E)</td><td>14%</td><td>10%</td></tr>
+            <tr><td>股息率</td><td>3.7%</td><td>7.5%</td></tr>
+            <tr><td>股息增长</td><td>0%（7年不增）</td><td>~5%/年</td></tr>
+            <tr><td>净债务/EBITDA</td><td>3.8x</td><td>3.5x</td></tr>
+            <tr><td>信用评级</td><td>BBB-（负面）</td><td>BBB+（稳定）</td></tr>
+            <tr><td>无线EBITDA利润率</td><td>67%</td><td>62%</td></tr>
+            <tr><td>体育资产</td><td>MLSE+蓝鸟+NHL（极强）</td><td>已出售MLSE（弱）</td></tr>
+            <tr><td>资本支出削减</td><td>-30%（激进）</td><td>温和</td></tr>
+        </table>
+        <div class="highlight">
+            <p><strong>RCI vs BCE</strong>：BCE在几乎所有"安全性"维度都优于Rogers——评级更高（BBB+ vs BBB-）、杠杆更低（3.5x vs 3.8x）、股息率更高（7.5% vs 3.7%）、股息持续增长（vs 7年不增）。Rogers的优势是FCF Yield更高（14% vs 10%）和体育资产更强。如果Rogers成功降杠杆+货币化体育资产，上行空间更大；但如果降级或竞争恶化，下行风险也更大。<strong>BCE是更安全的电信股，RCI是更高风险/回报的"转型赌注"</strong>。</p>
+        </div>
+
+        <h3>7.7 关键催化剂与观察点</h3>
+        <table>
+            <tr><th>催化剂</th><th>影响</th><th>时间</th></tr>
+            <tr><td>体育资产货币化（出售MLSE 20-30%）</td><td>回收C$30-50亿用于降杠杆</td><td>2026-2027</td></tr>
+            <tr><td>杠杆降至3.5x以下</td><td>S&P展望恢复稳定，恢复股息增长</td><td>2027</td></tr>
+            <tr><td>FY2026 FCF达C$41-43亿</td><td>验证资本支出削减可持续性</td><td>2026全年</td></tr>
+            <tr><td>2026年FIFA世界杯</td><td>体育内容+广告收入提振</td><td>2026年6-7月</td></tr>
+        </table>
+        <table>
+            <tr><th>风险事件</th><th>影响</th><th>概率</th></tr>
+            <tr><td>S&P降级至BB+</td><td>融资成本跳升，股价跌15-25%</td><td>中等（20-30%）</td></tr>
+            <tr><td>竞争再次加剧（ARPU下滑5%+）</td><td>利润率压缩，FCF下降</td><td>低-中等</td></tr>
+            <tr><td>资本支出削减导致网络质量下降</td><td>客户流失加速</td><td>低</td></tr>
+            <tr><td>MLSE货币化推迟或估值低于预期</td><td>降杠杆时间表延长</td><td>中等</td></tr>
+        </table>
+
+        <h3>7.8 建议操作</h3>
+        <div class="highlight">
+            <p><strong>对于价值投资者</strong>：当前C$53（USD $38.75）处于合理估值区间下限，FCF Yield 14%有吸引力。但高杠杆风险不可忽视。建议<strong>小仓位建仓（不超过组合5%）</strong>，等待以下确认信号后加仓：(1)S&P展望恢复稳定；(2)体育资产成功货币化；(3)FY2026 FCF达到C$41亿+；(4)股息恢复增长。如果S&P降级至BB+，应立即减仓。</p>
+            <p><strong>对于收入型投资者</strong>：3.7%股息率+7年零增长，不如BCE（7.5%+年增长）。除非Rogers恢复股息增长，否则不推荐。</p>
+            <p><strong>关键观察点</strong>：FY2026 Q2-Q3财报——资本支出是否真的降至C$25-27亿/年水平，自由现金流是否达到C$41-43亿指引。如果Q2-Q3资本支出反弹，说明Q1的低资本支出不可持续，估值逻辑需要修正。</p>
+        </div>
+    </div>
+
+    <script>
+        // ROE趋势图表
+        const roeCtx = document.getElementById('roeChart').getContext('2d');
+        new Chart(roeCtx, {
+            type: 'line',
+            data: {
+                labels: ['2016','2017','2018','2019','2020','2021','2022','2023','2024','2025'],
+                datasets: [{
+                    label: '调整后ROE (%)',
+                    data: [15.9, 27.0, 25.2, 21.7, 16.6, 14.8, 16.7, 8.1, 16.7, 17.0],
+                    borderColor: 'rgba(46, 134, 193, 1)',
+                    backgroundColor: 'rgba(46, 134, 193, 0.1)',
+                    fill: true,
+                    tension: 0.3
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: { title: { display: true, text: 'Rogers Communications 调整后ROE趋势（2016-2025）' }, legend: { display: false } },
+                scales: { y: { title: { display: true, text: 'ROE (%)' }, min: 0, max: 35 } }
+            }
+        });
+
+        // 资产负债率趋势图表
+        const debtCtx = document.getElementById('debtChart').getContext('2d');
+        new Chart(debtCtx, {
+            type: 'bar',
+            data: {
+                labels: ['2016','2017','2018','2019','2020','2021','2022','2023','2024','2025'],
+                datasets: [{
+                    label: '资产负债率 (%)',
+                    data: [76, 72, 67, 66, 70, 66, 77, 79, 79, 85],
+                    backgroundColor: 'rgba(192, 57, 43, 0.7)',
+                    borderColor: 'rgba(192, 57, 43, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: { title: { display: true, text: 'Rogers Communications 资产负债率趋势' }, legend: { display: false } },
+                scales: { y: { title: { display: true, text: '资产负债率 (%)' }, min: 50, max: 90 } }
+            }
+        });
+
+        // PE趋势图表
+        const peCtx = document.getElementById('peChart').getContext('2d');
+        new Chart(peCtx, {
+            type: 'line',
+            data: {
+                labels: ['2016','2017','2018','2019','2020','2021','2022','2023','2024','2025'],
+                datasets: [{
+                    label: '调整后年末PE (x)',
+                    data: [18, 13, 14, 15, 17, 19, 15, 29, 10, 15],
+                    borderColor: 'rgba(230, 126, 34, 1)',
+                    backgroundColor: 'rgba(230, 126, 34, 0.1)',
+                    fill: true,
+                    tension: 0.3
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: { title: { display: true, text: 'Rogers Communications 调整后PE比率趋势' }, legend: { display: false } },
+                scales: { y: { title: { display: true, text: 'PE (x)' }, min: 0, max: 35 } }
+            }
+        });
+    </script>
+</body>
+</html>
