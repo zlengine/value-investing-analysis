@@ -3,142 +3,775 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alphabet公司 (GOOGL) 分析</title>
+    <title>Alphabet/Google (GOOG) 价值投资分析</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-            background-color: #f5f5f5;
-        }
-        h1 {
-            text-align: center;
-            color: #333;
-        }
-        h2 {
-            color: #4CAF50;
-            margin-top: 30px;
-        }
-        .info-box {
-            background-color: white;
-            padding: 20px;
-            margin: 20px 0;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 10px 0;
-        }
-        th, td {
-            padding: 8px;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
-        }
-        th {
-            background-color: #f2f2f2;
-        }
-        a {
-            color: #4CAF50;
-            text-decoration: none;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
-        .back-link {
-            display: inline-block;
-            margin: 20px 0;
-            padding: 10px 15px;
-            background-color: #4CAF50;
-            color: white;
-            border-radius: 5px;
-        }
-        .back-link:hover {
-            background-color: #45a049;
-            text-decoration: none;
-        }
+        body { font-family: 'Segoe UI', Arial, sans-serif; margin: 0; padding: 20px; background-color: #f0f2f5; color: #333; }
+        h1 { text-align: center; color: #1a5276; font-size: 2.2em; margin-bottom: 5px; }
+        h2 { color: #1a5276; border-bottom: 2px solid #2e86c1; padding-bottom: 8px; margin-top: 30px; }
+        h3 { color: #2c3e50; margin-top: 20px; }
+        .subtitle { text-align: center; color: #7f8c8d; font-size: 1.1em; margin-bottom: 30px; }
+        .info-box { background: white; border-radius: 10px; padding: 25px; margin: 20px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.08); }
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; background-color: white; }
+        th, td { padding: 10px 14px; text-align: left; border-bottom: 1px solid #e0e0e0; }
+        th { background-color: #1a5276; color: white; font-weight: bold; }
+        tr:nth-child(even) { background-color: #f8f9fa; }
+        tr:hover { background-color: #eaf2f8; }
+        .highlight { background: #fef9e7; border-left: 4px solid #2e86c1; padding: 15px 20px; margin: 15px 0; border-radius: 0 8px 8px 0; }
+        .chart-container { background: white; border-radius: 10px; padding: 25px; margin: 20px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.08); }
+        canvas { max-height: 400px; }
+        .tag { display: inline-block; background: #1a5276; color: white; padding: 3px 10px; border-radius: 12px; font-size: 0.85em; margin: 2px; }
+        .tag-green { background: #27ae60; }
+        .tag-orange { background: #e67e22; }
+        .tag-red { background: #c0392b; }
+        a { color: #1a5276; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+            .fixed-topbar { position: fixed; top: 0; left: 0; right: 0; z-index: 9999; background: linear-gradient(135deg, #1a5276, #2e86c1); color: white; display: flex; align-items: center; justify-content: space-between; padding: 8px 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.15); height: 48px; }
+    .fixed-topbar a { color: white; text-decoration: none; font-size: 14px; font-weight: 600; }
+    .fixed-topbar a:hover { text-decoration: underline; }
+    .topbar-left { display: flex; align-items: center; gap: 12px; }
+    .topbar-right { display: flex; align-items: center; gap: 8px; }
+    .topbar-score-label { font-size: 12px; opacity: 0.85; }
+    .topbar-score-val { font-weight: 700; font-size: 15px; min-width: 18px; text-align: center; }
+    .topbar-score-val.s1 { color: #ff6b6b; } .topbar-score-val.s2 { color: #ffa94d; } .topbar-score-val.s3 { color: #ffd43b; } .topbar-score-val.s4 { color: #69db7c; } .topbar-score-val.s5 { color: #51cf66; }
+    .topbar-select { padding: 3px 8px; border: 1px solid rgba(255,255,255,0.4); border-radius: 6px; font-size: 12px; font-weight: 600; color: white; background: rgba(255,255,255,0.15); cursor: pointer; outline: none; }
+    .topbar-select:focus { border-color: rgba(255,255,255,0.7); }
+    .topbar-select option { color: #333; background: white; }
+    .topbar-select:disabled { opacity: 0.5; cursor: not-allowed; }
+    .topbar-btn { padding: 4px 12px; border: none; border-radius: 6px; font-size: 12px; font-weight: 600; cursor: pointer; transition: background 0.2s; }
+    .topbar-btn-edit { background: rgba(255,255,255,0.2); color: white; }
+    .topbar-btn-edit:hover { background: rgba(255,255,255,0.35); }
+    .topbar-btn-save { background: #27ae60; color: white; }
+    .topbar-btn-save:hover { background: #219a52; }
+    .topbar-btn-cancel { background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.7); }
+    .topbar-btn-cancel:hover { background: rgba(255,255,255,0.2); }
+    .topbar-stars { font-size: 11px; }
+    .topbar-stars .on { color: #f39c12; }
+    .topbar-stars .off { color: rgba(255,255,255,0.3); }
+    body { padding-top: 60px !important; }
+        .moat-item { background: white; border-radius: 8px; padding: 15px 20px; margin: 10px 0; box-shadow: 0 1px 5px rgba(0,0,0,0.05); border-left: 4px solid #2e86c1; }
+        .moat-item strong { color: #1a5276; }
+        .risk-item { background: white; border-radius: 8px; padding: 15px 20px; margin: 10px 0; box-shadow: 0 1px 5px rgba(0,0,0,0.05); border-left: 4px solid #c0392b; }
+        .star { color: #f39c12; }
     </style>
 </head>
-<body>
-    <a href="index.html" class="back-link">返回索引</a>
-    <h1>Alphabet公司 (GOOGL) 分析</h1>
-    
+<body>    <div class="fixed-topbar" id="fixedTopbar">
+        <div class="topbar-left">
+            <a href="index.html">&larr; &#x8FD4;&#x56DE;&#x7D22;&#x5F15;</a>
+            <span style="font-size:14px;font-weight:700;" id="topbarCode">GOOG</span>
+        </div>
+        <div class="topbar-right" id="topbarScores">
+            <span class="topbar-score-label">&#x57FA;&#x672C;&#x9762;</span>
+            <span class="topbar-score-val" id="topbarFVal">-</span>
+            <span class="topbar-stars" id="topbarFStars"></span>
+            <select class="topbar-select" id="topbarFSel" style="display:none;"><option value="0">-</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option></select>
+            <span class="topbar-score-label" style="margin-left:12px;">&#x4EF7;&#x683C;</span>
+            <span class="topbar-score-val" id="topbarPVal">-</span>
+            <span class="topbar-stars" id="topbarPStars"></span>
+            <select class="topbar-select" id="topbarPSel" style="display:none;"><option value="0">-</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option></select>
+            <button class="topbar-btn topbar-btn-edit" id="topbarEditBtn" onclick="topbarEdit()">&#x4FEE;&#x6539;</button>
+            <button class="topbar-btn topbar-btn-save" id="topbarSaveBtn" onclick="topbarSave()" style="display:none;">&#x4FDD;&#x5B58;</button>
+            <button class="topbar-btn topbar-btn-cancel" id="topbarCancelBtn" onclick="topbarCancel()" style="display:none;">&#x53D6;&#x6D88;</button>
+        </div>
+    </div>
+    <h1>Alphabet / Google (NASDAQ: GOOG)</h1>
+    <p class="subtitle">巴菲特/芒格式价值投资基本面分析 | 更新日期：2026年6月</p>
+
+    <!-- 一、公司基本信息 -->
     <div class="info-box">
-        <h2>公司基本信息</h2>
+        <h2>一、公司基本信息</h2>
         <table>
-            <tr>
-                <th>项目</th>
-                <th>信息</th>
-            </tr>
-            <tr>
-                <td>股票代码</td>
-                <td>GOOGL</td>
-            </tr>
-            <tr>
-                <td>公司名称</td>
-                <td>Alphabet公司</td>
-            </tr>
-            <tr>
-                <td>市值</td>
-                <td>20,000亿美元</td>
-            </tr>
-            <tr>
-                <td>行业</td>
-                <td>科技</td>
-            </tr>
-            <tr>
-                <td>总部</td>
-                <td>美国加利福尼亚州山景城</td>
-            </tr>
+            <tr><td>公司全称</td><td>Alphabet Inc.</td></tr>
+            <tr><td>股票代码</td><td>NASDAQ: GOOG（C类/无投票权）、GOOGL（A类/有投票权）</td></tr>
+            <tr><td>市值</td><td>约$4.36万亿（2026年6月）≈ ¥31.6万亿</td></tr>
+            <tr><td>市值排名</td><td>全球第2（仅次于Apple）</td></tr>
+            <tr><td>企业价值（EV）</td><td>~$4.78万亿</td></tr>
+            <tr><td>成立时间</td><td>1998年（Google），2015年（Alphabet重组）</td></tr>
+            <tr><td>公司总部</td><td>美国加利福尼亚州Mountain View</td></tr>
+            <tr><td>最新收盘价</td><td>~$367（2026年6月13日）</td></tr>
+            <tr><td>CEO</td><td>Sundar Pichai（2015年任Google CEO，2019年任Alphabet CEO）</td></tr>
+            <tr><td>CFO</td><td>Anat Ashkenazi（2024年上任）</td></tr>
+            <tr><td>员工人数</td><td>约190,820人（FY2025末）</td></tr>
+            <tr><td>行业</td><td>互动媒体与服务 / 互联网 / AI基础设施</td></tr>
+            <tr><td>流通股</td><td>约12.2亿股（含A类+C类）</td></tr>
+            <tr><td>52周区间</td><td>$162.00 - $408.61</td></tr>
+            <tr><td>股息</td><td>$0.21/季度（年化$0.84，收益率~0.23%）</td></tr>
+            <tr><td>创始人</td><td>Larry Page、Sergey Brin（2019年退出日常管理，仍为大股东）</td></tr>
+            <tr><td>现金及等价物</td><td>$1,268亿（FY2025末含可交易证券）</td></tr>
+            <tr><td>长期债务</td><td>$775亿（FY2026 Q1末）</td></tr>
         </table>
     </div>
-    
+
+    <!-- 二、业务分析 -->
     <div class="info-box">
-        <h2>财务分析</h2>
+        <h2>二、业务分析</h2>
+
+        <div class="highlight">
+            <strong>一句话理解Alphabet：</strong>想象你每天早上醒来，打开手机用Google搜索"今天天气"，路上用Google Maps导航，到公司用Gmail收邮件、用Google Docs写文档，中午用YouTube看视频，下午用Google Cloud跑AI模型——这就是Alphabet。它是一家"信息基础设施"公司：帮你找到信息（搜索）、帮你传播信息（YouTube）、帮你处理信息（Cloud/AI）。广告商为触达你而付费，这就是Alphabet 73%营收的来源。
+        </div>
+
+        <h3>2.1 业务板块（FY2025）</h3>
         <table>
-            <tr>
-                <th>指标</th>
-                <th>数值</th>
-            </tr>
-            <tr>
-                <td>年收入</td>
-                <td>2,800亿美元</td>
-            </tr>
-            <tr>
-                <td>净利润</td>
-                <td>750亿美元</td>
-            </tr>
-            <tr>
-                <td>市盈率 (P/E)</td>
-                <td>26.7</td>
-            </tr>
-            <tr>
-                <td>每股收益 (EPS)</td>
-                <td>5.25美元</td>
-            </tr>
-            <tr>
-                <td>股息收益率</td>
-                <td>0%</td>
-            </tr>
+            <tr><th>业务板块</th><th>FY2025营收</th><th>占比</th><th>增速(YoY)</th><th>说明</th></tr>
+            <tr><td>Google Search & Other</td><td>$2,245亿</td><td>55.7%</td><td>+13.4%</td><td>核心搜索引擎广告，全球90%搜索份额</td></tr>
+            <tr><td>YouTube广告</td><td>$404亿</td><td>10.0%</td><td>+11.7%</td><td>视频广告（Shorts+长视频+直播）</td></tr>
+            <tr><td>Google Network</td><td>$298亿</td><td>7.4%</td><td>-1.9%</td><td>AdSense/AdMob第三方广告网络（持续萎缩）</td></tr>
+            <tr><td>订阅/平台/设备</td><td>$480亿</td><td>11.9%</td><td>+19%</td><td>Google One/YouTube Premium/Pixel/Nest</td></tr>
+            <tr><td>Google Cloud</td><td>$587亿</td><td>14.6%</td><td>+35.8%</td><td>云基础设施+AI平台+企业SaaS</td></tr>
+            <tr><td>Other Bets</td><td>$15亿</td><td>0.4%</td><td>-6.7%</td><td>Waymo/Verily等前沿项目（持续亏损）</td></tr>
         </table>
+
+        <h3>2.2 按收入类型划分</h3>
+        <table>
+            <tr><th>收入类型</th><th>占比</th><th>趋势</th></tr>
+            <tr><td>广告收入（Search+YouTube+Network）</td><td>~73%</td><td>增速放缓至10-12%，但仍是现金牛</td></tr>
+            <tr><td>云+订阅+其他</td><td>~27%</td><td>增速20-60%+，是增长引擎</td></tr>
+        </table>
+
+        <h3>2.3 按地域划分（FY2025）</h3>
+        <table>
+            <tr><th>地区</th><th>营收</th><th>占比</th><th>增速(YoY)</th></tr>
+            <tr><td>美国</td><td>$1,942亿</td><td>48.2%</td><td>+13.9%</td></tr>
+            <tr><td>EMEA（欧洲/中东/非洲）</td><td>$1,171亿</td><td>29.1%</td><td>+14.6%</td></tr>
+            <tr><td>亚太</td><td>$677亿</td><td>16.8%</td><td>+19.1%</td></tr>
+            <tr><td>其他美洲（加拿大/拉美）</td><td>$239亿</td><td>5.9%</td><td>+17.1%</td></tr>
+        </table>
+
+        <h3>2.4 FY2026 Q1最新数据</h3>
+        <div class="highlight">
+            FY2026 Q1（截至2026年3月）是Alphabet史上最强季度：<br>
+            - 营收$1,099亿（+22% YoY），连续第11个季度双位数增长<br>
+            - 净利润$626亿（+81% YoY），EPS $5.11（+82%）<br>
+            - Google Cloud营收$200亿（+63%），营业利润$66亿（利润率32.9%，去年17.8%）<br>
+            - Cloud积压订单$4,620亿（环比翻倍！），50%+预计24个月内确认为收入<br>
+            - 付费订阅用户3.5亿（YouTube+Google One驱动）<br>
+            - CapEx $357亿（单季度！），FY2026全年指引$1,800-1,900亿<br>
+            - 自由现金流$101亿（同比-46.6%，因CapEx暴增）<br>
+            - 股息提升5%
+        </div>
+
+        <h3>2.5 商业模式核心逻辑</h3>
+        <div class="moat-item">
+            <strong>"注意力→广告"飞轮：</strong><br>
+            1. 免费产品（搜索/Gmail/Maps/Android/Chrome）吸引数十亿用户<br>
+            2. 用户注意力→广告库存→广告商竞价→CPC/CPM定价<br>
+            3. 广告收入→投资AI/基础设施→产品更好→更多用户<br>
+            4. 搜索份额90%→数据飞轮→搜索质量更高→份额更稳固<br>
+            5. 新增长飞轮：AI基础设施（TPU+Gemini）→Cloud收入爆发→更多AI投资
+        </div>
     </div>
-    
+
+    <!-- 三、业务板块产品竞争力分析 -->
     <div class="info-box">
-        <h2>业务分析</h2>
-        <p>Alphabet公司主要业务包括：</p>
-        <ul>
-            <li>Google搜索</li>
-            <li>YouTube视频</li>
-            <li>Google广告</li>
-            <li>Google Cloud</li>
-            <li>Android操作系统</li>
-            <li>其他创新业务（如Waymo自动驾驶）</li>
-        </ul>
-        <p>Alphabet公司在搜索和在线广告领域占据主导地位，同时积极布局人工智能和云服务。</p>
+        <h2>三、业务板块产品竞争力分析</h2>
+
+        <!-- Google Search -->
+        <div class="moat-item">
+            <h3>Google Search 产品竞争力分析</h3>
+            <p><strong>1. 可替代性：<span class="tag tag-green">低</span></strong></p>
+            <ul>
+                <li>主要替代品：Bing（4.3%份额）、ChatGPT/AI搜索（17%数字查询份额）、DuckDuckGo、Yahoo</li>
+                <li>替代品体验差距：Bing搜索质量明显低于Google；ChatGPT擅长对话式查询但缺乏实时/商业信息；Google索引覆盖+AI Overviews+AI Mode形成组合优势</li>
+                <li>替代趋势：桌面端份额下降至79.1%（20年最低），但移动端94.6%稳固；AI搜索增长225% YoY但尚未根本性改变用户习惯</li>
+            </ul>
+            <p><strong>2. 客户转换成本：<span class="tag tag-orange">中等</span></strong></p>
+            <ul>
+                <li>财务转换成本：用户免费使用，无直接财务成本</li>
+                <li>时间转换成本：Android/Chrome默认Google搜索，切换需改设置；但切换本身只需几秒</li>
+                <li>捆绑转换成本：Google生态（Gmail/Maps/Docs/Android）深度集成，换搜索引擎不影响其他服务</li>
+                <li>综合评估：对用户转换成本极低（一键切换），但对广告商转换成本高（Google Ads是最大广告平台，离开=失去最大流量来源）</li>
+            </ul>
+            <p><strong>3. 定价权：<span class="tag tag-green">强</span></strong></p>
+            <ul>
+                <li>历史提价记录：CPC长期上涨，Google Ads每次点击成本过去5年累计上涨约30-40%</li>
+                <li>提价vs通胀：广告价格增速远超CPI，但受宏观经济周期影响</li>
+                <li>定价权来源：90%搜索份额=广告商无法绕过的平台；竞价机制让市场自动定价</li>
+                <li>定价权趋势：AI Overviews可能减少点击量（零点击搜索增加），但单次点击价值提升</li>
+                <li>巴菲特测试：Google提价10%（CPC上涨），广告商无处可去——Bing流量只有Google的1/20</li>
+            </ul>
+            <p><strong>综合竞争力评级：<span class="star">⭐⭐⭐⭐⭐</span></strong></p>
+        </div>
+
+        <!-- YouTube -->
+        <div class="moat-item">
+            <h3>YouTube 产品竞争力分析</h3>
+            <p><strong>1. 可替代性：<span class="tag tag-orange">中等</span></strong></p>
+            <ul>
+                <li>主要替代品：TikTok（短视频）、Netflix/Disney+（长视频）、Twitch（直播）、Instagram Reels</li>
+                <li>替代品体验差距：TikTok短视频体验更优但缺乏长视频/教育内容；Netflix无UGC内容；YouTube是唯一同时覆盖短视频+长视频+直播+音乐的全球平台</li>
+                <li>替代趋势：TikTok在短视频分流用户时间，但YouTube Shorts快速追赶；整体YouTube观看时长仍在增长</li>
+            </ul>
+            <p><strong>2. 客户转换成本：<span class="tag tag-orange">中等</span></strong></p>
+            <ul>
+                <li>财务转换成本：观众免费；创作者依赖YouTube广告分成（切换=收入归零）</li>
+                <li>时间转换成本：创作者积累的粉丝/品牌无法迁移</li>
+                <li>捆绑转换成本：YouTube Premium+YouTube Music+YouTube TV构成订阅生态</li>
+                <li>综合评估：观众转换成本极低，但创作者转换成本极高——这是YouTube真正的护城河</li>
+            </ul>
+            <p><strong>3. 定价权：<span class="tag tag-green">强</span></strong></p>
+            <ul>
+                <li>历史提价记录：YouTube Premium/YouTube TV多次提价；广告CPM持续上涨</li>
+                <li>提价vs通胀：跑赢CPI</li>
+                <li>定价权来源：全球20亿+月活用户+创作者生态锁定+广告商无法找到同等规模的视频平台</li>
+                <li>定价权趋势：稳定——Peak Points AI精准投放提升广告效率，支撑更高CPM</li>
+                <li>巴菲特测试：YouTube广告提价10%，广告商能去哪？没有第二个全球视频平台</li>
+            </ul>
+            <p><strong>综合竞争力评级：<span class="star">⭐⭐⭐⭐</span></strong></p>
+        </div>
+
+        <!-- Google Cloud -->
+        <div class="moat-item">
+            <h3>Google Cloud 产品竞争力分析</h3>
+            <p><strong>1. 可替代性：<span class="tag tag-orange">中等</span></strong></p>
+            <ul>
+                <li>主要替代品：AWS（31%份额）、Azure（25%份额）、Oracle Cloud、阿里云</li>
+                <li>替代品体验差距：AWS/Azure功能更全面；但Google在AI/ML领域领先（TPU+Gemini+Vertex AI）</li>
+                <li>替代趋势：AI工作负载快速增长，Google的AI原生优势正在吸引新客户</li>
+            </ul>
+            <p><strong>2. 客户转换成本：<span class="tag tag-green">高</span></strong></p>
+            <ul>
+                <li>财务转换成本：数据迁移费用、重新架构费用、合同解约费（数百万至数千万美元）</li>
+                <li>时间转换成本：6-18个月迁移周期，需要重新培训团队</li>
+                <li>捆绑转换成本：使用Google Workspace+Cloud的客户更难迁移</li>
+                <li>综合评估：云迁移是重大工程，一旦选定供应商很少更换</li>
+            </ul>
+            <p><strong>3. 定价权：<span class="tag tag-orange">中等</span></strong></p>
+            <ul>
+                <li>历史提价记录：云服务价格长期下降（摩尔定律），但AI/GPU实例价格溢价</li>
+                <li>提价vs通胀：基础云服务价格下降，AI服务价格维持溢价</li>
+                <li>定价权来源：AI差异化（TPU独有、Gemini集成）、数据生态（BigQuery）</li>
+                <li>定价权趋势：增强——AI基础设施供不应求，$4,620亿积压订单证明定价权</li>
+                <li>巴菲特测试：提价10%——AI训练客户可能转向AWS/Azure，但TPU独有工作负载无法替代</li>
+            </ul>
+            <p><strong>综合竞争力评级：<span class="star">⭐⭐⭐⭐</span></strong></p>
+        </div>
+
+        <!-- Google Network -->
+        <div class="moat-item">
+            <h3>Google Network（第三方广告网络）产品竞争力分析</h3>
+            <p><strong>1. 可替代性：<span class="tag tag-red">高</span></strong></p>
+            <ul>
+                <li>主要替代品：Meta Audience Network、Amazon Advertising、程序化广告平台（The Trade Desk）、TikTok广告</li>
+                <li>替代品体验差距：竞争平台功能接近，广告商可轻松切换</li>
+                <li>替代趋势：加速萎缩——收入连续下降，隐私政策（Cookie淘汰）持续冲击</li>
+            </ul>
+            <p><strong>2. 客户转换成本：<span class="tag tag-red">低</span></strong></p>
+            <ul>
+                <li>财务转换成本：几乎为零</li>
+                <li>时间转换成本：低——广告平台切换只需改API配置</li>
+                <li>综合评估：Network业务无护城河，是Alphabet最弱的板块</li>
+            </ul>
+            <p><strong>3. 定价权：<span class="tag tag-red">弱</span></strong></p>
+            <ul>
+                <li>历史提价记录：收入持续下降，定价权在广告商手中</li>
+                <li>定价权来源：无——依赖第三方网站流量，无法控制供给</li>
+                <li>定价权趋势：削弱——Cookie淘汰+隐私监管持续冲击</li>
+                <li>巴菲特测试：提价10%→广告商立即转向其他平台</li>
+            </ul>
+            <p><strong>综合竞争力评级：<span class="star">⭐⭐</span></strong></p>
+        </div>
+
+        <!-- 订阅/平台/设备 -->
+        <div class="moat-item">
+            <h3>订阅/平台/设备 产品竞争力分析</h3>
+            <p><strong>1. 可替代性：<span class="tag tag-orange">中等</span></strong></p>
+            <ul>
+                <li>主要替代品：iCloud/OneDrive（vs Google One）、Spotify/Apple Music（vs YouTube Music）、iPhone/Samsung（vs Pixel）</li>
+                <li>替代品体验差距：Google One存储无差异化；YouTube Music与Spotify接近；Pixel市场份额极小</li>
+                <li>替代趋势：订阅用户3.5亿快速增长，但主要靠YouTube Premium驱动</li>
+            </ul>
+            <p><strong>2. 客户转换成本：<span class="tag tag-orange">中等</span></strong></p>
+            <ul>
+                <li>财务转换成本：年订阅$20-140，切换成本低</li>
+                <li>时间转换成本：数据迁移（照片/邮件/文档）有一定摩擦</li>
+                <li>捆绑转换成本：Google One+Workspace+YouTube Premium形成生态</li>
+                <li>综合评估：中等——Google生态绑定有一定粘性</li>
+            </ul>
+            <p><strong>3. 定价权：<span class="tag tag-orange">中等</span></strong></p>
+            <ul>
+                <li>历史提价记录：YouTube Premium从$11.99提至$13.99；Google One存储价格稳定</li>
+                <li>提价vs通胀：基本跑赢CPI</li>
+                <li>定价权来源：生态绑定+便利性</li>
+                <li>定价权趋势：稳定</li>
+                <li>巴菲特测试：提价10%→部分用户可能取消，但重度用户不会离开</li>
+            </ul>
+            <p><strong>综合竞争力评级：<span class="star">⭐⭐⭐</span></strong></p>
+        </div>
     </div>
-    
+
+    <!-- 四、历史财务指标 -->
     <div class="info-box">
-        <h2>投资建议</h2>
-        <p>Alphabet公司作为全球最大的搜索引擎和在线广告公司，具有强大的现金流和创新能力。建议长期持有，适合成长投资者。</p>
+        <h2>四、历史财务指标</h2>
+
+        <h3>4.1 关键财务数据（FY2016-FY2025）</h3>
+        <table>
+            <tr><th>指标</th><th>FY2016</th><th>FY2017</th><th>FY2018</th><th>FY2019</th><th>FY2020</th><th>FY2021</th><th>FY2022</th><th>FY2023</th><th>FY2024</th><th>FY2025</th></tr>
+            <tr><td>营收($B)</td><td>90.3</td><td>110.9</td><td>136.8</td><td>161.9</td><td>182.5</td><td>257.6</td><td>282.8</td><td>307.4</td><td>350.0</td><td>402.8</td></tr>
+            <tr><td>营收增速</td><td>20.4%</td><td>22.8%</td><td>23.4%</td><td>18.3%</td><td>12.8%</td><td>41.2%</td><td>9.8%</td><td>8.7%</td><td>13.9%</td><td>15.1%</td></tr>
+            <tr><td>净利润($B)</td><td>19.5</td><td>12.7*</td><td>30.7</td><td>34.3</td><td>40.3</td><td>76.0</td><td>59.97</td><td>73.8</td><td>100.1</td><td>132.2</td></tr>
+            <tr><td>营业利润率</td><td>26.3%</td><td>23.6%</td><td>19.2%</td><td>21.1%</td><td>22.6%</td><td>30.6%</td><td>26.5%</td><td>27.4%</td><td>32.0%</td><td>32.0%</td></tr>
+            <tr><td>毛利率</td><td>61.0%</td><td>58.9%</td><td>56.5%</td><td>55.6%</td><td>55.8%</td><td>57.0%</td><td>55.4%</td><td>56.8%</td><td>58.2%</td><td>59.7%</td></tr>
+            <tr><td>ROE</td><td>13.6%</td><td>7.1%*</td><td>16.0%</td><td>17.0%</td><td>18.1%</td><td>30.8%</td><td>22.5%</td><td>24.5%</td><td>30.8%</td><td>31.8%</td></tr>
+            <tr><td>债务/权益比</td><td>0.04</td><td>0.03</td><td>0.02</td><td>0.03</td><td>0.04</td><td>0.06</td><td>0.06</td><td>0.06</td><td>0.10</td><td>0.11</td></tr>
+            <tr><td>债务/资产比</td><td>2%</td><td>2%</td><td>1%</td><td>2%</td><td>2%</td><td>3%</td><td>3%</td><td>3%</td><td>5%</td><td>5%</td></tr>
+            <tr><td>PE（年末）</td><td>27.1</td><td>56.8</td><td>23.3</td><td>26.8</td><td>29.4</td><td>25.3</td><td>19.2</td><td>23.9</td><td>23.4</td><td>28.8</td></tr>
+        </table>
+        <div class="highlight">
+            *FY2017净利润异常低（$127亿）主要因欧盟反垄断罚款$27亿及美国税改一次性费用$99亿。<br>
+            <strong>ROE趋势：</strong>从FY2016的13.6%稳步提升至FY2025的31.8%，反映盈利能力持续增强+回购减少权益。FY2021 ROE跳升至30.8%因疫情后广告复苏+利润率扩张。<br>
+            <strong>杠杆极低：</strong>债务/权益比仅0.11，几乎无杠杆——ROE完全来自经营效率而非财务工程。<br>
+            <strong>PE波动：</strong>从19x（FY2022低点）到57x（FY2017高估期），当前28x处于历史中上水平。
+        </div>
+
+        <h3>4.2 PE比率历史趋势</h3>
+        <div class="chart-container">
+            <canvas id="peChart"></canvas>
+        </div>
+
+        <h3>4.3 营收与净利润增长</h3>
+        <div class="chart-container">
+            <canvas id="revenueChart"></canvas>
+        </div>
     </div>
+
+    <!-- 五、竞争分析 -->
+    <div class="info-box">
+        <h2>五、竞争分析</h2>
+
+        <h3>5.1 主要竞争对手</h3>
+        <table>
+            <tr><th>竞争对手</th><th>市值</th><th>营收(TTM)</th><th>业务重叠</th><th>Alphabet优势</th><th>对手优势</th></tr>
+            <tr><td>Microsoft（MSFT）</td><td>$3.6T</td><td>$296B</td><td>搜索(Bing)/云(Azure)/AI</td><td>搜索份额90%碾压Bing</td><td>Azure份额更大、企业生态更深、OpenAI合作</td></tr>
+            <tr><td>Amazon（AMZN）</td><td>$2.3T</td><td>$638B</td><td>云(AWS)/广告</td><td>搜索/视频广告无可匹敌</td><td>AWS份额31%领先、电商广告增长快</td></tr>
+            <tr><td>Meta（META）</td><td>$1.6T</td><td>$180B</td><td>数字广告</td><td>搜索意图广告更精准</td><td>社交广告（FB/IG/WhatsApp）覆盖30亿+用户</td></tr>
+            <tr><td>Apple（AAPL）</td><td>$3.7T</td><td>$394B</td><td>移动生态/搜索默认</td><td>搜索/地图/云服务</td><td>控制iOS默认搜索引擎选择权</td></tr>
+            <tr><td>OpenAI/ChatGPT</td><td>$300B估</td><td>~$10B估</td><td>AI搜索/对话式AI</td><td>搜索数据飞轮+全栈AI</td><td>对话式AI体验领先、用户增长极快</td></tr>
+        </table>
+
+        <h3>5.2 市场份额</h3>
+        <table>
+            <tr><th>市场</th><th>Alphabet份额</th><th>主要对手份额</th><th>趋势</th></tr>
+            <tr><td>全球搜索</td><td>90.0%</td><td>Bing 4.3%</td><td>桌面端下滑（79.1%），移动端稳固（94.6%）</td></tr>
+            <tr><td>全球数字广告</td><td>~28%</td><td>Meta ~22%</td><td>份额稳定，Amazon广告快速追赶</td></tr>
+            <tr><td>全球公有云</td><td>~12%</td><td>AWS 31%、Azure 25%</td><td>AI驱动份额加速增长</td></tr>
+            <tr><td>全球在线视频</td><td>~80%（YouTube）</td><td>TikTok/Netflix</td><td>Shorts追赶TikTok，长视频无对手</td></tr>
+        </table>
+
+        <h3>5.3 护城河评估</h3>
+        <div class="moat-item">
+            <strong>品牌力量：<span class="tag tag-green">极强</span></strong><br>
+            "Google"已成为动词——"Google一下"=搜索。品牌认知度全球第一。Android覆盖30亿+设备。
+        </div>
+        <div class="moat-item">
+            <strong>网络效应：<span class="tag tag-green">极强</span></strong><br>
+            更多用户→更多搜索数据→更好的搜索算法→更多用户。YouTube创作者生态同样具有强网络效应：更多观众→更多创作者→更多内容→更多观众。
+        </div>
+        <div class="moat-item">
+            <strong>转换成本：<span class="tag tag-orange">中等</span></strong><br>
+            用户端转换成本极低（免费产品），但广告商端转换成本高（Google Ads是最大广告平台）。Cloud客户转换成本高。
+        </div>
+        <div class="moat-item">
+            <strong>规模优势：<span class="tag tag-green">极强</span></strong><br>
+            全球14座数据中心、自研TPU芯片、$1,800亿+年CapEx——竞争对手难以复制此规模。搜索索引规模无人可比。
+        </div>
+        <div class="moat-item">
+            <strong>成本优势：<span class="tag tag-green">强</span></strong><br>
+            自研TPU（vs 购买NVIDIA GPU）降低AI训练成本。广告业务边际成本趋近于零。
+        </div>
+
+        <h3>5.4 AI对搜索广告的冲击深度分析</h3>
+        <div class="highlight">
+            <strong>核心结论：AI对Google搜索的冲击是真实的，但Google的应对也是有效的。搜索广告收入仍在增长（+17% YoY），说明"把广告搬进AI回答"的策略初步奏效。但这是一个动态博弈——如果AI助手在商业查询领域取得突破，Google的增长引擎将面临真正考验。</strong>
+        </div>
+
+        <h4>5.4.1 冲击数据——比你想象的更严重</h4>
+        <table>
+            <tr><th>指标</th><th>数据</th><th>来源</th></tr>
+            <tr><td>ChatGPT周活跃用户</td><td>9亿</td><td>OpenAI 2026</td></tr>
+            <tr><td>AI占美国搜索类查询份额</td><td>~17%</td><td>Graphite.io/Harvard NBER 2026</td></tr>
+            <tr><td>Google信息发现总份额变化</td><td>89.3% → 57.6%（2022.12-2025.12）</td><td>Graphite.io 2026</td></tr>
+            <tr><td>Google绝对搜索量</td><td>未下降（总市场增长26%）</td><td>Graphite.io 2026</td></tr>
+            <tr><td>AI Overviews查询覆盖率</td><td>~13%（信息类40-50%）</td><td>Digital Applied 2026</td></tr>
+            <tr><td>零点击搜索占比</td><td>>60%（AI Mode中93%）</td><td>SparkToro/Seer Interactive</td></tr>
+            <tr><td>有AI Overview时Position 1 CTR下降</td><td>-58%</td><td>Ahrefs 2025</td></tr>
+            <tr><td>信息类查询有机流量下降</td><td>30-40%</td><td>Digital Applied 2026</td></tr>
+            <tr><td>ChatGPT AI搜索份额变化</td><td>87% → 68%（2025-2026）</td><td>Searchless.ai 2026</td></tr>
+            <tr><td>Google Gemini AI搜索份额</td><td>2.3% → 25.2%</td><td>Whitehat SEO 2026</td></tr>
+        </table>
+
+        <h4>5.4.2 Google的六大应对措施</h4>
+
+        <div class="moat-item">
+            <strong>措施1：AI Overviews内嵌广告（已全面铺开）</strong><br>
+            AI Overviews中的广告覆盖率从2025年1月的3%飙升至2025年11月的~40%。Google VP Dan Taylor确认：AI Overview中的广告<strong>变现率与传统搜索广告相同</strong>。FY2025 Q4搜索广告收入$631亿（+17% YoY），证明AI广告变现有效。<br>
+            <strong>关键数据：</strong>25.5%的AI Overview结果含广告（Q1 2026），较2025年初增长394%。
+        </div>
+
+        <div class="moat-item">
+            <strong>措施2：AI Mode四大新广告格式（2026年新推出）</strong><br>
+            AI Mode是完全对话式搜索界面（取代传统蓝色链接），Google在此推出4种新广告格式：<br>
+            ① <strong>Sponsored Retail Listings</strong>：AI回答中嵌入"Sponsored"标签的零售商列表<br>
+            ② <strong>Direct Offers</strong>：AI对话中直接展示个性化折扣/优惠（Petco、e.l.f.等已测试）<br>
+            ③ <strong>Native Checkout</strong>：用户在AI Mode内无需跳转即可完成购买（UCP协议，Etsy/Wayfair已接入，Shopify/Walmart即将接入）<br>
+            ④ <strong>Business Agent</strong>：企业AI代理，直接在Google内完成交易
+        </div>
+
+        <div class="moat-item">
+            <strong>措施3：Gemini生态整合（分发优势）</strong><br>
+            Gemini月活7.5亿，已嵌入Android（40亿设备）、Chrome（35亿用户）、Gmail、Google Docs。用户不需要下载新App——Gemini就在他们日常使用的工具里。这是ChatGPT/Perplexity无法复制的分发优势。Gemini在AI搜索市场份额从2.31%飙升至25.2%，已超越Perplexity成为第二大AI推荐来源。
+        </div>
+
+        <div class="moat-item">
+            <strong>措施4：Shopping Graph + Agentic Commerce</strong><br>
+            Shopping Graph拥有500亿+商品列表，每小时刷新20亿次。Universal Commerce Protocol (UCP)让AI搜索直接变成购物平台。Google Marketing Live 2026宣布：广告现在匹配<strong>AI生成的内容</strong>，而非仅匹配用户搜索词——AI每提到一个名词，都可以变成广告位。
+        </div>
+
+        <div class="moat-item">
+            <strong>措施5：广告匹配AI内容而非搜索词（2026年5月）</strong><br>
+            Google Marketing Live 2026最重要的变化：Shopping ads inside AI Overviews现在匹配AI生成的回答内容，而非仅匹配用户搜索词。例如，用户搜索"泳池变绿怎么办"，AI Overview提到"测试水质"和"清除杂物"，广告就会展示泳池吸尘器。Google不再出售用户意图的访问权，而是在出售<strong>自己AI词汇表的广告位</strong>。
+        </div>
+
+        <div class="moat-item">
+            <strong>措施6：从"搜索引擎"转型为"商业平台"</strong><br>
+            Sundar Pichai称之为"agent manager"未来——发现、回答、交易全部在Google内完成，无需跳转。Google Pay闭环支付，Native Checkout无缝结账。这意味着Google从CPC广告模式转向CPC+交易佣金混合模式，潜在市场更大。
+        </div>
+
+        <h4>5.4.3 商业模式对比：传统搜索 vs AI搜索</h4>
+        <table>
+            <tr><th>维度</th><th>传统搜索模式</th><th>AI搜索模式</th></tr>
+            <tr><td>用户路径</td><td>搜索→看蓝色链接→点击网站→网站展示广告</td><td>搜索→AI直接回答→回答中嵌入广告→用户在Google内完成交易</td></tr>
+            <tr><td>Google收入</td><td>CPC广告费</td><td>CPC广告费 + 交易佣金</td></tr>
+            <tr><td>网站/出版商</td><td>获得流量和广告收入</td><td>失去流量和广告收入</td></tr>
+            <tr><td>广告匹配逻辑</td><td>匹配用户搜索词</td><td>匹配AI生成的内容（更精准）</td></tr>
+            <tr><td>零点击率</td><td>~50%（2020年）</td><td>>60%（2026年），AI Mode中93%</td></tr>
+            <tr><td>广告库存</td><td>固定位置（顶部/侧边）</td><td>AI回答中每个名词都是潜在广告位（动态生成）</td></tr>
+        </table>
+
+        <h4>5.4.4 广告收入拆分：Gemini/AI vs 传统搜索（关键数据）</h4>
+        <div class="highlight">
+            <strong>核心发现：Google不单独披露AI广告收入，但第三方估算显示，截至Q1 2026，约97-98%的搜索广告收入仍来自传统格式，AI广告刚开始贡献收入。Gemini独立App目前零广告收入。</strong>
+        </div>
+
+        <h5>Google官方披露方式</h5>
+        <p>Alphabet财报将广告收入分为三类，<strong>不拆分AI vs 传统搜索</strong>：</p>
+        <table>
+            <tr><th>广告类别</th><th>Q1 2026收入</th><th>同比</th><th>说明</th></tr>
+            <tr><td>Google Search & Other</td><td>$604亿</td><td>+19%</td><td>包含传统搜索广告+AI Overviews广告+AI Mode广告，不拆分</td></tr>
+            <tr><td>YouTube广告</td><td>$99亿</td><td>+11%</td><td>视频广告，含Shorts变现</td></tr>
+            <tr><td>Google Network</td><td>$70亿</td><td>-4%</td><td>AdSense/AdMob，持续萎缩（AI零点击冲击出版商流量）</td></tr>
+        </table>
+        <p>CFO Anat Ashkenazi在Q1 2026财报电话会上只说"AI experiences driving usage"，拒绝给出AI广告收入的具体数字。Google刻意将AI Overviews/AI Mode的广告收入混入"Search & Other"中。</p>
+
+        <h5>AI Overviews广告收入估算（New Street Research）</h5>
+        <table>
+            <tr><th>年份</th><th>AI Overviews广告收入估算</th><th>占Google总广告收入比例</th><th>关键里程碑</th></tr>
+            <tr><td>2025</td><td>$17亿</td><td>&lt;1%</td><td>广告覆盖率从3%升至40%</td></tr>
+            <tr><td>2026（预测）</td><td>$67亿</td><td>~2.8%</td><td>20亿月活AIO用户；1亿AI Mode用户</td></tr>
+            <tr><td>2027（预测）</td><td>$169亿</td><td>~6.5%</td><td>CapEx $1,750-1,850亿</td></tr>
+        </table>
+        <p>分析师Dan Salmon称这些为"保守估计"。AI Overviews广告覆盖率8个月增长394%（3%→40%），且Google VP Dan Taylor确认<strong>AI Overview广告变现率与传统搜索广告相同</strong>。</p>
+
+        <h5>Gemini独立App：目前零广告收入</h5>
+        <div class="moat-item">
+            <strong>现状：</strong>Gemini App（独立聊天机器人）月活约4.5亿，但<strong>目前无任何广告</strong>，贡献的广告收入为零。<br>
+            <strong>计划：</strong>据Adweek 2025年12月报道，Google已私下通知广告客户，计划2026年在Gemini中引入独立广告系统（与AI Mode广告分开）。但Google VP Dan Taylor公开否认，称"no current plans"。Q1 2026财报电话会上，Schindler改口对Gemini App放广告"持开放态度"（open-minded）。<br>
+            <strong>预期：</strong>行业专家预测Gemini广告可能成为Google第三大广告收入来源，预计2027年贡献数十亿美元年收入。
+        </div>
+
+        <h5>Q1 2026广告收入结构估算</h5>
+        <table>
+            <tr><th>来源</th><th>估算收入</th><th>占总广告收入比例</th></tr>
+            <tr><td>传统搜索广告（10个蓝色链接）</td><td>~$530-540亿</td><td>~73%</td></tr>
+            <tr><td>AI Overviews + AI Mode广告</td><td>~$15-20亿</td><td>~2-3%</td></tr>
+            <tr><td>YouTube广告</td><td>$99亿</td><td>~13%</td></tr>
+            <tr><td>Google Network（AdSense等）</td><td>$70亿</td><td>~10%</td></tr>
+            <tr><td>Gemini App广告</td><td>$0</td><td>0%</td></tr>
+        </table>
+        <p><strong>关键洞察：</strong>Google搜索广告收入中，约97-98%仍来自传统搜索格式，AI广告才刚开始贡献收入。但增速惊人——AI Overviews广告覆盖率8个月增长394%，且变现率与传统广告相同。Google的策略是"温水煮青蛙"——不拆分数据，让市场无法精确追踪AI对传统广告的替代程度。随着AI Overviews覆盖率从48%继续提升（目标>80%），AI广告收入占比将在2027-2028年显著上升。</p>
+
+        <h4>5.4.5 风险评估：什么情况下Google的应对会失效？</h4>
+        <div class="risk-item">
+            <strong>风险1：商业查询迁移到Amazon/ChatGPT</strong><br>
+            信息类查询的广告价值较低，真正赚钱的是商业意图查询（"最好的降噪耳机"）。如果用户习惯从"搜索→Google"变为"购物→Amazon Rufus/ChatGPT"，Google最赚钱的查询类型将被侵蚀。目前Amazon广告收入年增速20%+，是最直接的威胁。
+        </div>
+        <div class="risk-item">
+            <strong>风险2：AI Mode 93%零点击率的变现挑战</strong><br>
+            虽然Google在AI Mode内嵌广告，但93%零点击率意味着用户几乎不离开Google。如果Native Checkout/Direct Offers的转化率不够高，广告收入可能无法完全弥补点击下降带来的损失。Seer Interactive数据显示AI Overview中付费链接CTR从13%降至6%。
+        </div>
+        <div class="risk-item">
+            <strong>风险3：AI助手成为新的商业入口</strong><br>
+            如果AI助手（ChatGPT/Perplexity/Apple Intelligence）成为用户与商业世界的默认交互界面，Google将从"入口"降级为"后端供应商"——就像当年门户网站被搜索引擎取代一样。这是最极端但并非不可能的情景。
+        </div>
+
+        <h3>5.5 其他关键威胁</h3>
+        <div class="risk-item">
+            <strong>1. 反垄断监管</strong><br>
+            美国DOJ反垄断案可能强制Google出售Chrome或解除iOS默认搜索协议。EU DMA要求开放选择。若失去iOS默认搜索地位，美国搜索份额可能从85%降至70%以下。Gemini的分发优势也将大打折扣。
+        </div>
+        <div class="risk-item">
+            <strong>2. CapEx过度投资风险</strong><br>
+            FY2026 CapEx指引$1,800-1,900亿（vs FY2023 $323亿），3年增长5倍。若AI需求不及预期，巨额折旧将侵蚀利润率。FCF已从FY2024的$733亿降至FY2026 Q1年化$404亿。
+        </div>
+        <div class="risk-item">
+            <strong>4. 广告周期性</strong><br>
+            广告占73%营收，经济衰退时广告商首先削减预算。FY2022营收增速降至9.8%即为前车之鉴。
+        </div>
+        <div class="risk-item">
+            <strong>5. 人才竞争与RSU稀释</strong><br>
+            每年RSU增发约$300-400亿，部分抵消回购效果。巴菲特曾批评这种"隐性稀释"。
+        </div>
+    </div>
+
+    <!-- 六、利润分配分析 -->
+    <div class="info-box">
+        <h2>六、利润分配分析</h2>
+
+        <h3>6.1 利润分配表（回购计入留存）</h3>
+        <table>
+            <tr><th>年度</th><th>净利润($B)</th><th>股息($B)</th><th>回购($B)</th><th>CapEx($B)</th><th>留存金额($B)</th><th>留存比率</th></tr>
+            <tr><td>FY2016</td><td>19.5</td><td>0</td><td>3.7</td><td>7.3</td><td>19.5</td><td>100%</td></tr>
+            <tr><td>FY2017</td><td>12.7</td><td>0</td><td>4.8</td><td>13.2</td><td>12.7</td><td>100%</td></tr>
+            <tr><td>FY2018</td><td>30.7</td><td>0</td><td>9.1</td><td>25.1</td><td>30.7</td><td>100%</td></tr>
+            <tr><td>FY2019</td><td>34.3</td><td>0</td><td>18.4</td><td>23.5</td><td>34.3</td><td>100%</td></tr>
+            <tr><td>FY2020</td><td>40.3</td><td>0</td><td>31.1</td><td>22.3</td><td>40.3</td><td>100%</td></tr>
+            <tr><td>FY2021</td><td>76.0</td><td>0</td><td>50.3</td><td>24.6</td><td>76.0</td><td>100%</td></tr>
+            <tr><td>FY2022</td><td>60.0</td><td>0</td><td>59.3</td><td>31.5</td><td>60.0</td><td>100%</td></tr>
+            <tr><td>FY2023</td><td>73.8</td><td>0</td><td>61.5</td><td>32.3</td><td>73.8</td><td>100%</td></tr>
+            <tr><td>FY2024</td><td>100.1</td><td>5.0</td><td>62.2</td><td>52.3</td><td>95.1</td><td>95%</td></tr>
+            <tr><td>FY2025</td><td>132.2</td><td>9.8</td><td>45.7</td><td>91.4</td><td>122.4</td><td>93%</td></tr>
+        </table>
+
+        <div class="highlight">
+            <strong>留存比率解读：</strong>Alphabet属于"高成长型"公司（留存比率93-100%），几乎全部利润用于再增长。<br>
+            <strong>留存构成：</strong>FY2025留存$1,224亿中，回购$457亿（37%）、CapEx $914亿（75%）、净现金积累/债务偿还$-147亿（-12%）。<br>
+            <strong>注意：</strong>CapEx已超过净利润的69%（FY2025），这是前所未有的资本密集度。<br>
+            <strong>可持续增长率</strong> = ROE × 留存比率 = 31.8% × 93% = 29.6%（理论值，实际受CapEx回报周期影响）<br>
+            <strong>股息历史：</strong>2024年6月首次发放股息（$0.20/季度），2025年提升5%至$0.21/季度，2026年Q1再提5%。派息率仅~7%。
+        </div>
+
+        <h3>6.2 回购时机评估</h3>
+        <table>
+            <tr><th>时期</th><th>回购金额</th><th>平均股价</th><th>PE区间</th><th>时机评价</th></tr>
+            <tr><td>FY2022</td><td>$59.3B</td><td>~$85-145</td><td>18-22x</td><td>优秀——低估值区间大举回购</td></tr>
+            <tr><td>FY2023</td><td>$61.5B</td><td>~$90-142</td><td>20-25x</td><td>良好——估值仍合理</td></tr>
+            <tr><td>FY2024</td><td>$62.2B</td><td>~$142-192</td><td>22-26x</td><td>一般——估值已回升</td></tr>
+            <tr><td>FY2025</td><td>$45.7B</td><td>~$165-193</td><td>23-29x</td><td>偏贵——回购力度下降，CapEx优先</td></tr>
+            <tr><td>FY2026 Q1</td><td>$0</td><td>~$164-175</td><td>24-27x</td><td>暂停回购——全力投入AI CapEx</td></tr>
+        </table>
+        <div class="highlight">
+            管理层在FY2022-2023低估值区间大举回购（合计$1,208亿），体现了出色的资本配置能力。但FY2025起回购力度下降，FY2026 Q1完全暂停回购——优先将现金投入AI基础设施。这是正确的战略选择（AI军备竞赛不能输），但短期牺牲了股东回报。<br>
+            <strong>10年累计回购$3,464亿</strong>，减少股数约13%，为EPS增长贡献约1.4个百分点/年。
+        </div>
+
+        <div class="chart-container">
+            <canvas id="profitChart"></canvas>
+        </div>
+    </div>
+
+    <!-- 七、投资总结 -->
+    <div class="info-box">
+        <h2>七、投资总结</h2>
+
+        <h3>7.1 估值分析</h3>
+        <table>
+            <tr><th>估值指标</th><th>当前值</th><th>5年均值</th><th>评价</th></tr>
+            <tr><td>PE（TTM）</td><td>~27.4x</td><td>~25.5x</td><td>略高于均值</td></tr>
+            <tr><td>Forward PE</td><td>~23.5x</td><td>-</td><td>合理（考虑AI增长）</td></tr>
+            <tr><td>P/S</td><td>~10.8x</td><td>~7.5x</td><td>偏高</td></tr>
+            <tr><td>EV/EBITDA</td><td>~18.5x</td><td>~16x</td><td>略高</td></tr>
+            <tr><td>P/FCF</td><td>~55x</td><td>~35x</td><td>显著偏高（因CapEx暴增）</td></tr>
+            <tr><td>FCF Yield</td><td>~1.8%</td><td>~3%</td><td>极低</td></tr>
+            <tr><td>PEG</td><td>~1.3x</td><td>-</td><td>合理</td></tr>
+        </table>
+
+        <h3>7.2 各维度评分</h3>
+        <table>
+            <tr><th>维度</th><th>评分</th><th>说明</th></tr>
+            <tr><td>业务可理解性</td><td><span class="star">⭐⭐⭐⭐</span></td><td>搜索+广告模式简单易懂，但AI/Cloud/TPU技术复杂度增加理解难度</td></tr>
+            <tr><td>护城河</td><td><span class="star">⭐⭐⭐⭐⭐</span></td><td>搜索90%份额+网络效应+规模优势+品牌=极深护城河，AI搜索是唯一变量</td></tr>
+            <tr><td>资本配置</td><td><span class="star">⭐⭐⭐⭐</span></td><td>低估值回购时机优秀，但RSU稀释严重；AI CapEx是豪赌，回报待验证</td></tr>
+            <tr><td>财务安全</td><td><span class="star">⭐⭐⭐⭐⭐</span></td><td>净现金$493亿，D/E 0.11，Altman Z-Score 17.1——几乎零破产风险</td></tr>
+            <tr><td>增长前景</td><td><span class="star">⭐⭐⭐⭐⭐</span></td><td>Cloud +63%、AI全栈领先、$4,620亿积压订单——增长引擎全开</td></tr>
+            <tr><td>估值吸引力</td><td><span class="star">⭐⭐⭐</span></td><td>PE 27x不便宜，P/FCF 55x偏高，缺乏显著安全边际</td></tr>
+        </table>
+
+        <h3>7.3 投资评级</h3>
+        <div class="highlight">
+            <strong>综合评级：<span class="star">⭐⭐⭐⭐</span>（买入/持有）</strong><br><br>
+            <strong>核心逻辑：</strong>Alphabet拥有全球最深的经济护城河之一——90%搜索份额+网络效应+规模优势+AI全栈能力。这不是一家"可能被颠覆"的公司，而是一家"正在颠覆自己"的公司（AI Overviews/AI Mode自我革命）。Cloud +63%增速和$4,620亿积压订单证明AI投资正在产生回报。<br><br>
+            <strong>但估值不便宜：</strong>PE 27x、P/FCF 55x意味着市场已经定价了AI增长预期。巴菲特要求"安全边际"——当前价格没有留下足够的犯错空间。如果AI CapEx回报不及预期，$1,800亿+年折旧将严重侵蚀利润率。<br><br>
+            <strong>关键催化剂：</strong><br>
+            ① Cloud积压订单转化为营收（$4,620亿中50%+在24个月内确认）<br>
+            ② AI Mode/AI Overviews提升搜索参与度，抵消零点击影响<br>
+            ③ 反垄断案结果好于预期（保留iOS默认搜索）<br>
+            ④ Waymo自动驾驶商业化突破<br><br>
+            <strong>关键风险：</strong><br>
+            ① AI搜索颠覆广告模式（17%查询已流向ChatGPT）<br>
+            ② 反垄断强制出售Chrome或解除iOS默认搜索<br>
+            ③ CapEx过度投资（$1,800亿+/年），FCF持续受压<br>
+            ④ 经济衰退导致广告收入大幅下滑<br><br>
+            <strong>巴菲特视角：</strong>Alphabet是"好公司+不便宜的价格"。护城河极深、增长强劲、财务安全——但PE 27x、FCF Yield 1.8%的价格没有安全边际。巴菲特2024-2025年大幅减持GOOG（从约$70亿降至~$30亿），可能正因估值缺乏吸引力。建议：当前价位可持有，但不宜大幅加仓。若股价回调至$280以下（PE ~20x），将提供充足安全边际，是更好的买入时机。
+        </div>
+
+        <h3>7.4 分析师共识</h3>
+        <table>
+            <tr><th>机构</th><th>评级</th><th>目标价</th></tr>
+            <tr><td>24/7 Wall St.</td><td>Buy</td><td>$453</td></tr>
+            <tr><td>华尔街共识</td><td>Moderate Buy</td><td>$413</td></tr>
+            <tr><td>JPMorgan</td><td>Overweight</td><td>-</td></tr>
+            <tr><td>Morgan Stanley</td><td>Overweight</td><td>-</td></tr>
+            <tr><td>Goldman Sachs</td><td>Buy</td><td>-</td></tr>
+        </table>
+
+        <h3>7.5 与MAG7同行对比</h3>
+        <table>
+            <tr><th>公司</th><th>PE(TTM)</th><th>营收增速</th><th>营业利润率</th><th>FCF Yield</th><th>特点</th></tr>
+            <tr><td>Alphabet</td><td>27.4x</td><td>+22%</td><td>32%</td><td>1.8%</td><td>搜索垄断+AI全栈+Cloud爆发</td></tr>
+            <tr><td>Apple</td><td>33x</td><td>+5%</td><td>32%</td><td>3.0%</td><td>生态锁定+高利润+低增长</td></tr>
+            <tr><td>Microsoft</td><td>35x</td><td>+15%</td><td>44%</td><td>2.5%</td><td>企业SaaS+Azure+OpenAI</td></tr>
+            <tr><td>Amazon</td><td>32x</td><td>+10%</td><td>11%</td><td>3.5%</td><td>AWS+电商+广告</td></tr>
+            <tr><td>NVIDIA</td><td>25x</td><td>+78%</td><td>62%</td><td>1.5%</td><td>AI芯片垄断+超高增长</td></tr>
+            <tr><td>Meta</td><td>26x</td><td>+22%</td><td>38%</td><td>3.2%</td><td>社交广告+AI开源</td></tr>
+        </table>
+        <div class="highlight">
+            在MAG7中，Alphabet的PE（27.4x）处于中低水平，仅高于NVIDIA（25x）和Meta（26x），低于Apple（33x）和Microsoft（35x）。但FCF Yield（1.8%）是最低的，反映AI CapEx对自由现金流的严重消耗。如果看Forward PE（~23.5x）和增速（+22%），PEG约1.3x，在MAG7中估值相对合理。
+        </div>
+    </div>
+
+    <script>
+        // PE Ratio Chart
+        const peCtx = document.getElementById('peChart').getContext('2d');
+        new Chart(peCtx, {
+            type: 'bar',
+            data: {
+                labels: ['2016','2017','2018','2019','2020','2021','2022','2023','2024','2025'],
+                datasets: [{
+                    label: 'PE Ratio（年末）',
+                    data: [27.1, 56.8, 23.3, 26.8, 29.4, 25.3, 19.2, 23.9, 23.4, 28.8],
+                    backgroundColor: 'rgba(46,134,193,0.7)',
+                    borderColor: '#2e86c1',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: { title: { display: true, text: 'PE Ratio' }, beginAtZero: true }
+                }
+            }
+        });
+
+        // Revenue & Net Income Chart
+        const revCtx = document.getElementById('revenueChart').getContext('2d');
+        new Chart(revCtx, {
+            type: 'bar',
+            data: {
+                labels: ['2016','2017','2018','2019','2020','2021','2022','2023','2024','2025'],
+                datasets: [{
+                    label: '营收 ($B)',
+                    data: [90.3, 110.9, 136.8, 161.9, 182.5, 257.6, 282.8, 307.4, 350.0, 402.8],
+                    backgroundColor: 'rgba(26,82,118,0.7)',
+                    borderColor: '#1a5276',
+                    borderWidth: 1
+                }, {
+                    label: '净利润 ($B)',
+                    data: [19.5, 12.7, 30.7, 34.3, 40.3, 76.0, 60.0, 73.8, 100.1, 132.2],
+                    backgroundColor: 'rgba(39,174,96,0.7)',
+                    borderColor: '#27ae60',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: { title: { display: true, text: '金额 ($B)' }, beginAtZero: true }
+                }
+            }
+        });
+
+        // Profit Allocation Chart
+        const profitCtx = document.getElementById('profitChart').getContext('2d');
+        new Chart(profitCtx, {
+            type: 'bar',
+            data: {
+                labels: ['FY2016','FY2017','FY2018','FY2019','FY2020','FY2021','FY2022','FY2023','FY2024','FY2025'],
+                datasets: [{
+                    label: '净利润',
+                    data: [19.5, 12.7, 30.7, 34.3, 40.3, 76.0, 60.0, 73.8, 100.1, 132.2],
+                    backgroundColor: '#1a5276'
+                }, {
+                    label: '回购',
+                    data: [3.7, 4.8, 9.1, 18.4, 31.1, 50.3, 59.3, 61.5, 62.2, 45.7],
+                    backgroundColor: '#2e86c1'
+                }, {
+                    label: 'CapEx',
+                    data: [7.3, 13.2, 25.1, 23.5, 22.3, 24.6, 31.5, 32.3, 52.3, 91.4],
+                    backgroundColor: '#e67e22'
+                }, {
+                    label: '股息',
+                    data: [0, 0, 0, 0, 0, 0, 0, 0, 5.0, 9.8],
+                    backgroundColor: '#27ae60'
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: { title: { display: true, text: '金额 ($B)' }, beginAtZero: true }
+                }
+            }
+        });
+    </script>    <script>
+    (function(){
+        var SCORE_KEY='stock_scores_v1';
+        var code=document.getElementById('topbarCode').textContent.trim();
+        function getScores(){try{var d=localStorage.getItem(SCORE_KEY);return d?JSON.parse(d):{};}catch(e){return {};}}
+        function saveScores(s){localStorage.setItem(SCORE_KEY,JSON.stringify(s));}
+        function starsHTML(val){var h='';for(var i=1;i<=5;i++){h+='<span class="'+(i<=val?'on':'off')+'">\u2605</span>';}return h;}
+        function valClass(v){return v>=5?'s5':v>=4?'s4':v>=3?'s3':v>=2?'s2':'s1';}
+        function renderDisplay(){
+            var sc=getScores()[code]||{};
+            var f=sc.fundamental||0,p=sc.price||0;
+            document.getElementById('topbarFVal').textContent=f>0?f:'-';
+            document.getElementById('topbarFVal').className='topbar-score-val'+(f>0?' '+valClass(f):'');
+            document.getElementById('topbarFStars').innerHTML=starsHTML(f);
+            document.getElementById('topbarPVal').textContent=p>0?p:'-';
+            document.getElementById('topbarPVal').className='topbar-score-val'+(p>0?' '+valClass(p):'');
+            document.getElementById('topbarPStars').innerHTML=starsHTML(p);
+        }
+        window.topbarEdit=function(){
+            var sc=getScores()[code]||{};
+            document.getElementById('topbarFSel').value=sc.fundamental||0;
+            document.getElementById('topbarPSel').value=sc.price||0;
+            document.getElementById('topbarFSel').style.display='';
+            document.getElementById('topbarPSel').style.display='';
+            document.getElementById('topbarEditBtn').style.display='none';
+            document.getElementById('topbarSaveBtn').style.display='';
+            document.getElementById('topbarCancelBtn').style.display='';
+            document.getElementById('topbarFVal').style.display='none';
+            document.getElementById('topbarPVal').style.display='none';
+            document.getElementById('topbarFStars').style.display='none';
+            document.getElementById('topbarPStars').style.display='none';
+        };
+        window.topbarSave=function(){
+            var f=parseInt(document.getElementById('topbarFSel').value);
+            var p=parseInt(document.getElementById('topbarPSel').value);
+            var sc=getScores();if(!sc[code])sc[code]={};
+            sc[code].fundamental=f;sc[code].price=p;sc[code].updated=new Date().toISOString();
+            saveScores(sc);topbarCancel();renderDisplay();
+        };
+        window.topbarCancel=function(){
+            document.getElementById('topbarFSel').style.display='none';
+            document.getElementById('topbarPSel').style.display='none';
+            document.getElementById('topbarEditBtn').style.display='';
+            document.getElementById('topbarSaveBtn').style.display='none';
+            document.getElementById('topbarCancelBtn').style.display='none';
+            document.getElementById('topbarFVal').style.display='';
+            document.getElementById('topbarPVal').style.display='';
+            document.getElementById('topbarFStars').style.display='';
+            document.getElementById('topbarPStars').style.display='';
+        };
+        renderDisplay();
+    })();
+    </script>
 </body>
 </html>

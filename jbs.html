@@ -79,14 +79,50 @@
             border-left: 4px solid #2e7d32;
             margin: 15px 0;
         }
-        .back-link {
-            text-align: center;
-            margin: 20px 0;
-        }
+            .fixed-topbar { position: fixed; top: 0; left: 0; right: 0; z-index: 9999; background: linear-gradient(135deg, #1a5276, #2e86c1); color: white; display: flex; align-items: center; justify-content: space-between; padding: 8px 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.15); height: 48px; }
+    .fixed-topbar a { color: white; text-decoration: none; font-size: 14px; font-weight: 600; }
+    .fixed-topbar a:hover { text-decoration: underline; }
+    .topbar-left { display: flex; align-items: center; gap: 12px; }
+    .topbar-right { display: flex; align-items: center; gap: 8px; }
+    .topbar-score-label { font-size: 12px; opacity: 0.85; }
+    .topbar-score-val { font-weight: 700; font-size: 15px; min-width: 18px; text-align: center; }
+    .topbar-score-val.s1 { color: #ff6b6b; } .topbar-score-val.s2 { color: #ffa94d; } .topbar-score-val.s3 { color: #ffd43b; } .topbar-score-val.s4 { color: #69db7c; } .topbar-score-val.s5 { color: #51cf66; }
+    .topbar-select { padding: 3px 8px; border: 1px solid rgba(255,255,255,0.4); border-radius: 6px; font-size: 12px; font-weight: 600; color: white; background: rgba(255,255,255,0.15); cursor: pointer; outline: none; }
+    .topbar-select:focus { border-color: rgba(255,255,255,0.7); }
+    .topbar-select option { color: #333; background: white; }
+    .topbar-select:disabled { opacity: 0.5; cursor: not-allowed; }
+    .topbar-btn { padding: 4px 12px; border: none; border-radius: 6px; font-size: 12px; font-weight: 600; cursor: pointer; transition: background 0.2s; }
+    .topbar-btn-edit { background: rgba(255,255,255,0.2); color: white; }
+    .topbar-btn-edit:hover { background: rgba(255,255,255,0.35); }
+    .topbar-btn-save { background: #27ae60; color: white; }
+    .topbar-btn-save:hover { background: #219a52; }
+    .topbar-btn-cancel { background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.7); }
+    .topbar-btn-cancel:hover { background: rgba(255,255,255,0.2); }
+    .topbar-stars { font-size: 11px; }
+    .topbar-stars .on { color: #f39c12; }
+    .topbar-stars .off { color: rgba(255,255,255,0.3); }
+    body { padding-top: 60px !important; }
     </style>
 </head>
-<body>
-    <div class="back-link"><a href="index.html">← 返回美股分析索引</a></div>
+<body>    <div class="fixed-topbar" id="fixedTopbar">
+        <div class="topbar-left">
+            <a href="index.html">&larr; &#x8FD4;&#x56DE;&#x7D22;&#x5F15;</a>
+            <span style="font-size:14px;font-weight:700;" id="topbarCode">JBS</span>
+        </div>
+        <div class="topbar-right" id="topbarScores">
+            <span class="topbar-score-label">&#x57FA;&#x672C;&#x9762;</span>
+            <span class="topbar-score-val" id="topbarFVal">-</span>
+            <span class="topbar-stars" id="topbarFStars"></span>
+            <select class="topbar-select" id="topbarFSel" style="display:none;"><option value="0">-</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option></select>
+            <span class="topbar-score-label" style="margin-left:12px;">&#x4EF7;&#x683C;</span>
+            <span class="topbar-score-val" id="topbarPVal">-</span>
+            <span class="topbar-stars" id="topbarPStars"></span>
+            <select class="topbar-select" id="topbarPSel" style="display:none;"><option value="0">-</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option></select>
+            <button class="topbar-btn topbar-btn-edit" id="topbarEditBtn" onclick="topbarEdit()">&#x4FEE;&#x6539;</button>
+            <button class="topbar-btn topbar-btn-save" id="topbarSaveBtn" onclick="topbarSave()" style="display:none;">&#x4FDD;&#x5B58;</button>
+            <button class="topbar-btn topbar-btn-cancel" id="topbarCancelBtn" onclick="topbarCancel()" style="display:none;">&#x53D6;&#x6D88;</button>
+        </div>
+    </div>
     <h1>JBS — JBS S.A.（JBS集团）价值投资分析</h1>
 
     <div class="info-box">
@@ -422,9 +458,7 @@
             <p>巴菲特最担心的会是<strong>治理风险</strong>。Batista家族通过J&F Investimentos控制公司，2017年认罪支付$34亿罚款——这在巴菲特的投资哲学中是"一票否决"的红线。他常说："我们不会与缺乏诚信的管理层做生意，无论价格多便宜。"</p>
             <p><strong>结论：</strong>JBS是一家拥有全球最大蛋白质平台的公司，当前估值极低（PE 6.8x），但存在三大"折扣"：ESG/治理、周期性和新兴市场。对于能容忍ESG风险和周期波动的价值投资者，JBS提供了一个"深度价值"机会——如果美国牛周期回暖+S&P 500纳入，上行空间可达50-80%。但巴菲特式投资者可能因治理疑虑而回避。这是一只"高风险+高回报"的深度价值股，而非"低风险+稳健回报"的巴菲特式标的。</p>
         </div>
-    </div>
-
-    <div class="back-link"><a href="index.html">← 返回美股分析索引</a></div>
+    </div>    
 
     <script>
         new Chart(document.getElementById('revenueChart'), {
@@ -546,6 +580,58 @@
                 }
             }
         });
+    </script>    <script>
+    (function(){
+        var SCORE_KEY='stock_scores_v1';
+        var code=document.getElementById('topbarCode').textContent.trim();
+        function getScores(){try{var d=localStorage.getItem(SCORE_KEY);return d?JSON.parse(d):{};}catch(e){return {};}}
+        function saveScores(s){localStorage.setItem(SCORE_KEY,JSON.stringify(s));}
+        function starsHTML(val){var h='';for(var i=1;i<=5;i++){h+='<span class="'+(i<=val?'on':'off')+'">\u2605</span>';}return h;}
+        function valClass(v){return v>=5?'s5':v>=4?'s4':v>=3?'s3':v>=2?'s2':'s1';}
+        function renderDisplay(){
+            var sc=getScores()[code]||{};
+            var f=sc.fundamental||0,p=sc.price||0;
+            document.getElementById('topbarFVal').textContent=f>0?f:'-';
+            document.getElementById('topbarFVal').className='topbar-score-val'+(f>0?' '+valClass(f):'');
+            document.getElementById('topbarFStars').innerHTML=starsHTML(f);
+            document.getElementById('topbarPVal').textContent=p>0?p:'-';
+            document.getElementById('topbarPVal').className='topbar-score-val'+(p>0?' '+valClass(p):'');
+            document.getElementById('topbarPStars').innerHTML=starsHTML(p);
+        }
+        window.topbarEdit=function(){
+            var sc=getScores()[code]||{};
+            document.getElementById('topbarFSel').value=sc.fundamental||0;
+            document.getElementById('topbarPSel').value=sc.price||0;
+            document.getElementById('topbarFSel').style.display='';
+            document.getElementById('topbarPSel').style.display='';
+            document.getElementById('topbarEditBtn').style.display='none';
+            document.getElementById('topbarSaveBtn').style.display='';
+            document.getElementById('topbarCancelBtn').style.display='';
+            document.getElementById('topbarFVal').style.display='none';
+            document.getElementById('topbarPVal').style.display='none';
+            document.getElementById('topbarFStars').style.display='none';
+            document.getElementById('topbarPStars').style.display='none';
+        };
+        window.topbarSave=function(){
+            var f=parseInt(document.getElementById('topbarFSel').value);
+            var p=parseInt(document.getElementById('topbarPSel').value);
+            var sc=getScores();if(!sc[code])sc[code]={};
+            sc[code].fundamental=f;sc[code].price=p;sc[code].updated=new Date().toISOString();
+            saveScores(sc);topbarCancel();renderDisplay();
+        };
+        window.topbarCancel=function(){
+            document.getElementById('topbarFSel').style.display='none';
+            document.getElementById('topbarPSel').style.display='none';
+            document.getElementById('topbarEditBtn').style.display='';
+            document.getElementById('topbarSaveBtn').style.display='none';
+            document.getElementById('topbarCancelBtn').style.display='none';
+            document.getElementById('topbarFVal').style.display='';
+            document.getElementById('topbarPVal').style.display='';
+            document.getElementById('topbarFStars').style.display='';
+            document.getElementById('topbarPStars').style.display='';
+        };
+        renderDisplay();
+    })();
     </script>
 </body>
 </html>
