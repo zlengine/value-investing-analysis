@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comfort Systems USA (FIX) 价值投资分析</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body { font-family: 'Segoe UI', Arial, sans-serif; margin: 0; padding: 20px; background-color: #f0f2f5; color: #333; }
+        h1 { text-align: center; color: #1a5276; font-size: 2.2em; margin-bottom: 5px; }
+        h2 { color: #1a5276; border-bottom: 2px solid #2e86c1; padding-bottom: 8px; margin-top: 30px; }
+        h3 { color: #2c3e50; margin-top: 20px; }
+        .subtitle { text-align: center; color: #7f8c8d; font-size: 1.1em; margin-bottom: 30px; }
+        .info-box { background: white; border-radius: 10px; padding: 25px; margin: 20px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.08); }
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; background-color: white; }
+        th, td { padding: 10px 14px; text-align: left; border-bottom: 1px solid #e0e0e0; }
+        th { background-color: #1a5276; color: white; font-weight: bold; }
+        tr:nth-child(even) { background-color: #f8f9fa; }
+        tr:hover { background-color: #eaf2f8; }
+        .highlight { background: #fef9e7; border-left: 4px solid #2e86c1; padding: 15px 20px; margin: 15px 0; border-radius: 0 8px 8px 0; }
+        .chart-container { background: white; border-radius: 10px; padding: 25px; margin: 20px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.08); }
+        canvas { max-height: 400px; }
+        .tag { display: inline-block; background: #1a5276; color: white; padding: 3px 10px; border-radius: 12px; font-size: 0.85em; margin: 2px; }
+        .tag-green { background: #27ae60; }
+        .tag-orange { background: #e67e22; }
+        .tag-red { background: #c0392b; }
+        a { color: #1a5276; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        .fixed-topbar { position: fixed; top: 0; left: 0; right: 0; z-index: 9999; background: linear-gradient(135deg, #1a5276, #2e86c1); color: white; display: flex; align-items: center; justify-content: space-between; padding: 8px 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.15); height: 48px; }
+        .fixed-topbar a { color: white; text-decoration: none; font-size: 14px; font-weight: 600; }
+        .fixed-topbar a:hover { text-decoration: underline; }
+        .topbar-left { display: flex; align-items: center; gap: 12px; }
+        .topbar-right { display: flex; align-items: center; gap: 8px; }
+        .topbar-score-label { font-size: 12px; opacity: 0.85; }
+        .topbar-score-val { font-weight: 700; font-size: 15px; min-width: 18px; text-align: center; }
+        .topbar-score-val.s1 { color: #ff6b6b; } .topbar-score-val.s2 { color: #ffa94d; } .topbar-score-val.s3 { color: #ffd43b; } .topbar-score-val.s4 { color: #69db7c; } .topbar-score-val.s5 { color: #51cf66; }
+        .topbar-select { padding: 3px 8px; border: 1px solid rgba(255,255,255,0.4); border-radius: 6px; font-size: 12px; font-weight: 600; color: white; background: rgba(255,255,255,0.15); cursor: pointer; outline: none; }
+        .topbar-select:focus { border-color: rgba(255,255,255,0.7); }
+        .topbar-select option { color: #333; background: white; }
+        .topbar-select:disabled { opacity: 0.5; cursor: not-allowed; }
+        .topbar-btn { padding: 4px 12px; border: none; border-radius: 6px; font-size: 12px; font-weight: 600; cursor: pointer; transition: background 0.2s; }
+        .topbar-btn-edit { background: rgba(255,255,255,0.2); color: white; }
+        .topbar-btn-edit:hover { background: rgba(255,255,255,0.35); }
+        .topbar-btn-save { background: #27ae60; color: white; }
+        .topbar-btn-save:hover { background: #219a52; }
+        .topbar-btn-cancel { background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.7); }
+        .topbar-btn-cancel:hover { background: rgba(255,255,255,0.2); }
+        .topbar-stars { font-size: 11px; }
+        .topbar-stars .on { color: #f39c12; }
+        .topbar-stars .off { color: rgba(255,255,255,0.3); }
+        body { padding-top: 60px !important; }
+        .moat-item { background: white; border-radius: 8px; padding: 15px 20px; margin: 10px 0; box-shadow: 0 1px 5px rgba(0,0,0,0.05); border-left: 4px solid #2e86c1; }
+        .moat-item strong { color: #1a5276; }
+        .risk-item { background: white; border-radius: 8px; padding: 15px 20px; margin: 10px 0; box-shadow: 0 1px 5px rgba(0,0,0,0.05); border-left: 4px solid #c0392b; }
+        .star { color: #f39c12; }
+    </style>
+</head>
+<body>
+    <div class="fixed-topbar" id="fixedTopbar">
+        <div class="topbar-left">
+            <a href="index.html">&larr; 返回索引</a>
+            <span style="font-size:14px;font-weight:700;" id="topbarCode">FIX</span>
+        </div>
+        <div class="topbar-right" id="topbarScores">
+            <span class="topbar-score-label">基本面</span>
+            <span class="topbar-score-val" id="topbarFVal">-</span>
+            <span class="topbar-stars" id="topbarFStars"></span>
+            <select class="topbar-select" id="topbarFSel" style="display:none;"><option value="0">-</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option></select>
+            <span class="topbar-score-label" style="margin-left:12px;">价格</span>
+            <span class="topbar-score-val" id="topbarPVal">-</span>
+            <span class="topbar-stars" id="topbarPStars"></span>
+            <select class="topbar-select" id="topbarPSel" style="display:none;"><option value="0">-</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option></select>
+            <button class="topbar-btn topbar-btn-edit" id="topbarEditBtn" onclick="topbarEdit()">修改</button>
+            <button class="topbar-btn topbar-btn-save" id="topbarSaveBtn" onclick="topbarSave()" style="display:none;">保存</button>
+            <button class="topbar-btn topbar-btn-cancel" id="topbarCancelBtn" onclick="topbarCancel()" style="display:none;">取消</button>
+        </div>
+    </div>
+
+    <h1>Comfort Systems USA 舒适系统 (NYSE: FIX)</h1>
+    <p class="subtitle">巴菲特/芒格式价值投资基本面分析 | 更新日期：2026年6月</p>
+
+    <!-- 第一章：公司基本信息 -->
+    <div class="info-box">
+        <h2>一、公司基本信息</h2>
+        <table>
+            <tr><th>项目</th><th>信息</th></tr>
+            <tr><td>股票代码</td><td>FIX</td></tr>
+            <tr><td>公司名称</td><td>Comfort Systems USA, Inc.</td></tr>
+            <tr><td>交易所</td><td>纽约证券交易所 (NYSE)</td></tr>
+            <tr><td>成立时间</td><td>1997年</td></tr>
+            <tr><td>上市时间</td><td>1997年（IPO）</td></tr>
+            <tr><td>最新股价</td><td>约$1,967（2026年6月）</td></tr>
+            <tr><td>总市值</td><td>约690亿美元</td></tr>
+            <tr><td>企业价值(EV)</td><td>约480亿美元（TTM）</td></tr>
+            <tr><td>总部</td><td>美国德克萨斯州休斯顿</td></tr>
+            <tr><td>行业分类</td><td>工业 / 建筑与工程</td></tr>
+            <tr><td>员工人数</td><td>约22,700人（2025年底）</td></tr>
+            <tr><td>运营网络</td><td>50个运营单元 / 190个地点 / 142个城市</td></tr>
+        </table>
+    </div>
+
+    <!-- 第二章：业务分析 -->
+    <div class="info-box">
+        <h2>二、业务分析</h2>
+
+        <h3>2.1 公司业务概述（通俗解释）</h3>
+        <div class="highlight">
+            <p><strong>Comfort Systems USA到底是干什么的？</strong></p>
+            <p>想象一栋巨大的数据中心、半导体工厂或医院——建筑本身只是"骨架"，真正让它运转起来的是里面的"呼吸系统"（空调暖通HVAC）、"血管"（管道系统）和"神经系统"（电气布线）。Comfort Systems USA就是专门给大型建筑安装这些"内脏器官"的公司。</p>
+            <p><strong>1. 机械服务（Mechanical）</strong> —— 安装和维护空调暖通系统（HVAC）、管道、消防喷淋、控制系统等。数据中心需要精密冷却来防止服务器过热，医院需要洁净空调来维持无菌环境，这些都是Comfort Systems的拿手好戏。</p>
+            <p><strong>2. 电气服务（Electrical）</strong> —— 安装和维护电力分配系统、照明、应急电源等。AI数据中心对电力的需求极其庞大，一个大型数据中心的用电量相当于一座小城市，电气布线是命脉。</p>
+            <p><strong>核心优势</strong>：公司不只是"按图施工"，而是能从设计、预制（模块化）、安装到后期维护提供全生命周期服务。尤其在数据中心领域，客户最看重的是"按时交付"——因为每延迟一天上线，客户就损失数百万美元收入。</p>
+        </div>
+
+        <h3>2.2 主要业务板块及营收占比（2025年）</h3>
+        <table>
+            <tr><th>业务板块</th><th>营收占比</th><th>营收（2025年）</th><th>同比增长</th><th>特点</th></tr>
+            <tr>
+                <td><strong>机械服务 (Mechanical)</strong></td>
+                <td>73.3%</td>
+                <td>约66.7亿美元</td>
+                <td>+20.7%</td>
+                <td>核心业务，HVAC/管道/消防/控制，毛利率23.6%</td>
+            </tr>
+            <tr>
+                <td><strong>电气服务 (Electrical)</strong></td>
+                <td>26.7%</td>
+                <td>约24.3亿美元</td>
+                <td>+61.9%</td>
+                <td>增速最快，数据中心电力需求驱动，毛利率26.7%</td>
+            </tr>
+        </table>
+
+        <h3>2.3 收入类型分布（2025年）</h3>
+        <table>
+            <tr><th>收入类型</th><th>占比</th><th>特点</th></tr>
+            <tr>
+                <td><strong>新建安装服务</strong></td>
+                <td>63.2%</td>
+                <td>新建筑/扩建项目的设备安装，项目制收入，受建筑周期影响</td>
+            </tr>
+            <tr>
+                <td><strong>维修/更换/改造服务</strong></td>
+                <td>36.8%</td>
+                <td>现有建筑的维护、修理、设备更换，收入更稳定，抗周期</td>
+            </tr>
+        </table>
+
+        <h3>2.4 终端市场分布（2025年）</h3>
+        <table>
+            <tr><th>终端市场</th><th>营收占比</th><th>趋势</th></tr>
+            <tr><td>科技（主要为数据中心）</td><td>45.0%</td><td>快速上升，1-2年前仅33%</td></tr>
+            <tr><td>制造业（含半导体工厂）</td><td>22.1%</td><td>稳定增长，CHIPS法案推动</td></tr>
+            <tr><td>医疗保健</td><td>8.9%</td><td>稳定需求</td></tr>
+            <tr><td>教育</td><td>7.3%</td><td>稳定需求</td></tr>
+            <tr><td>政府</td><td>5.0%</td><td>基建投资支撑</td></tr>
+            <tr><td>办公楼</td><td>5.0%</td><td>相对疲软</td></tr>
+            <tr><td>其他</td><td>6.7%</td><td>零售/住宅/娱乐</td></tr>
+        </table>
+
+        <h3>2.5 商业模式</h3>
+        <div class="highlight">
+            <p><strong>收入模式</strong>：B2B项目制为主（92.7%收入来自项目合同），平均项目周期6-9个月，平均合同规模约290万美元。但40+百万美元的大型项目有119个，合同总价值111亿美元，构成积压订单的主体。</p>
+            <p><strong>关键指标</strong>：积压订单（Backlog）是核心先行指标。2025年底积压订单达119.4亿美元，2026年Q1进一步增至124.5亿美元，为未来收入提供极高可见性。</p>
+            <p><strong>客户集中度</strong>：最大单一客户占2025年营收的12.8%（推测为超大规模数据中心运营商），客户集中度偏高。</p>
+        </div>
+    </div>
+
+    <!-- 第三章：业务板块产品竞争力分析 -->
+    <div class="info-box">
+        <h2>三、业务板块产品竞争力分析</h2>
+
+        <h3>3.1 机械服务 (Mechanical) 产品竞争力分析</h3>
+        <p><strong>1. 可替代性：<span class="tag tag-orange">中等</span></strong></p>
+        <ul>
+            <li>主要替代方案：地区性小型HVAC承包商、HVAC制造商（如Carrier、Trane）的安装服务部门</li>
+            <li>替代体验差距：大型项目（数据中心、半导体工厂）的HVAC系统极其复杂，小型承包商缺乏规模和专业知识；制造商服务部门覆盖面有限</li>
+            <li>替代趋势：稳定——复杂项目需要专业承包商的趋势不变</li>
+        </ul>
+        <p><strong>2. 客户转换成本：<span class="tag tag-orange">中等</span></strong></p>
+        <ul>
+            <li>财务转换成本：中等——更换承包商需要重新招标、评估，但不是不可能</li>
+            <li>时间转换成本：高——数据中心项目时间紧迫，换承包商可能导致工期延误，损失巨大</li>
+            <li>捆绑转换成本：中等——机械+电气+管道一体化服务增加粘性</li>
+            <li>总体评估：在大型复杂项目中转换成本较高，在小型维护项目中较低</li>
+        </ul>
+        <p><strong>3. 定价权：<span class="tag tag-green">强</span></strong></p>
+        <ul>
+            <li>历史提价记录：毛利率从2019年的19.2%提升至2025年的24.1%，持续改善</li>
+            <li>提价vs通胀：利润率扩张速度远超通胀，说明定价权在增强</li>
+            <li>定价权来源：项目复杂性和交付速度是关键——客户愿意为"按时交付"付溢价</li>
+            <li>定价权趋势：增强——数据中心客户对时间和质量的敏感度高于价格</li>
+            <li>巴菲特测试：如果提价10%，数据中心客户不会离开，因为延误成本远超10%溢价</li>
+        </ul>
+        <p><strong>整体竞争力评级：<span class="star">&#9733;&#9733;&#9733;&#9733;</span> 4/5星</strong></p>
+
+        <h3>3.2 电气服务 (Electrical) 产品竞争力分析</h3>
+        <p><strong>1. 可替代性：<span class="tag tag-orange">中等</span></strong></p>
+        <ul>
+            <li>主要替代方案：专业电气承包商（如MYR Group）、大型综合承包商的电气部门</li>
+            <li>替代体验差距：数据中心电气系统复杂度极高，需要大规模、多地点同时施工能力，替代选择有限</li>
+            <li>替代趋势：稳定偏有利——电气系统复杂度随AI算力需求持续上升</li>
+        </ul>
+        <p><strong>2. 客户转换成本：<span class="tag tag-green">高</span></strong></p>
+        <ul>
+            <li>财务转换成本：高——电气系统与机械系统紧密耦合，更换电气承包商可能影响整体项目</li>
+            <li>时间转换成本：极高——数据中心电力是"命脉"，任何延误都意味着巨额损失</li>
+            <li>捆绑转换成本：高——Comfort Systems同时提供机械+电气，一体化优势明显</li>
+            <li>总体评估：在数据中心项目中转换成本极高</li>
+        </ul>
+        <p><strong>3. 定价权：<span class="tag tag-green">强</span></strong></p>
+        <ul>
+            <li>历史提价记录：电气板块毛利率从2024年的22.9%提升至2025年的26.7%，提升显著</li>
+            <li>定价权来源：电气施工的复杂性和稀缺性——能同时大规模执行电气项目的承包商极少</li>
+            <li>定价权趋势：增强——AI数据中心对电力的需求指数级增长，供给端（合格承包商）增长缓慢</li>
+            <li>巴菲特测试：如果提价10%，超大规模数据中心客户不会离开，因为电力基础设施是上线前提</li>
+        </ul>
+        <p><strong>整体竞争力评级：<span class="star">&#9733;&#9733;&#9733;&#9733;&#9733;</span> 5/5星</strong></p>
+    </div>
+
+    <!-- 第四章：历史财务指标 -->
+    <div class="chart-container">
+        <h2>四、历史财务指标 (2016-2025)</h2>
+
+        <h3>4.1 净资产收益率 (ROE) 趋势</h3>
+        <p><strong>说明</strong>：ROE从2016年的17.2%飙升至2025年的41.8%，十年间翻了2.4倍。这是真实的经营ROE，因为公司几乎无负债（负债/权益比仅0.1），ROE的提升完全来自利润率扩张和资产周转率提升，而非财务杠杆。2025年ROE 41.8%在建筑行业中极为罕见。</p>
+        <canvas id="roeChart"></canvas>
+
+        <h3>4.2 资产负债率趋势</h3>
+        <p><strong>说明</strong>：资产负债率一直维持在极低水平，2025年底总债务仅约1.39亿美元，而现金高达9.82亿美元，净现金头寸约7.45亿美元。这是"堡垒式"资产负债表。</p>
+        <canvas id="debtChart"></canvas>
+
+        <h3>4.3 市盈率 (P/E) 趋势</h3>
+        <p><strong>说明</strong>：PE从2020年的12.5倍飙升至2026年TTM的约57倍，反映了市场对数据中心增长故事的高度认可。当前估值已经充分（甚至过度）反映了增长预期。</p>
+        <canvas id="peChart"></canvas>
+
+        <h3>4.4 产权比率（总资产/股东权益）趋势</h3>
+        <p><strong>说明</strong>：产权比率从2016年的2.8倍降至2025年的2.6倍，财务结构稳健。低杠杆意味着ROE是"真实"的经营回报，而非财务工程。</p>
+        <canvas id="equityRatioChart"></canvas>
+    </div>
+
+    <div class="chart-container">
+        <h2>五、收入与利润趋势 (2016-2025)</h2>
+        <p><strong>说明</strong>：收入从2016年的16.3亿美元增长至2025年的91.0亿美元，CAGR约20.9%。净利润从0.65亿美元增长至10.2亿美元，CAGR约37.3%。利润增速远超收入增速，体现了极强的经营杠杆。</p>
+        <canvas id="revenueChart"></canvas>
+    </div>
+
+    <!-- 第五章：竞争分析 -->
+    <div class="info-box">
+        <h2>六、竞争分析</h2>
+
+        <h3>6.1 主要竞争对手</h3>
+        <table>
+            <tr><th>竞争对手</th><th>代码</th><th>2024年营收</th><th>主要业务</th><th>与FIX的差异</th></tr>
+            <tr>
+                <td>EMCOR Group</td>
+                <td>EME</td>
+                <td>约170亿美元</td>
+                <td>MEP承包+工业服务</td>
+                <td>规模更大，但数据中心敞口较低，PE 27.6倍</td>
+            </tr>
+            <tr>
+                <td>Quanta Services</td>
+                <td>PWR</td>
+                <td>约230亿美元</td>
+                <td>电力/管道基础设施</td>
+                <td>聚焦电力输送网络，非建筑内部MEP，PE 96.4倍</td>
+            </tr>
+            <tr>
+                <td>IES Holdings</td>
+                <td>IESC</td>
+                <td>约34亿美元</td>
+                <td>电气/通信承包</td>
+                <td>规模较小，专注电气，PE 35.9倍</td>
+            </tr>
+            <tr>
+                <td>APi Group</td>
+                <td>APG</td>
+                <td>约70亿美元</td>
+                <td>消防/特种服务+MEP</td>
+                <td>业务更分散，含安全检测等</td>
+            </tr>
+        </table>
+
+        <h3>6.2 市场份额</h3>
+        <div class="highlight">
+            <p>美国商业/工业/机构MEP承包市场年规模约5,500-7,000亿美元，极度分散。Comfort Systems 2025年营收91亿美元，市场份额仅约1.3%-1.6%，但已是全国最大的MEP承包商之一。在数据中心MEP细分市场中，Comfort Systems是公认的领导者，份额估计在5-10%。</p>
+        </div>
+
+        <h3>6.3 经济护城河评估</h3>
+        <div class="moat-item">
+            <strong>规模与地理覆盖</strong>：50个运营单元覆盖142个城市，是少数能在全国范围内同时执行多个大型项目的承包商。对超大规模数据中心客户（需要多州同步建设）而言，这是不可替代的能力。<span class="tag tag-green">强护城河</span>
+        </div>
+        <div class="moat-item">
+            <strong>模块化预制能力</strong>：在工厂预制HVAC/电气"模块"，运到现场快速组装。这大幅缩短施工时间——在"时间就是金钱"的数据中心世界，这是决定性优势。<span class="tag tag-green">强护城河</span>
+        </div>
+        <div class="moat-item">
+            <strong>设计-建造(Design-Build)能力</strong>：不是简单按图施工，而是参与设计过程，提供更优方案。这增加了客户粘性和利润率。<span class="tag tag-green">中强护城河</span>
+        </div>
+        <div class="moat-item">
+            <strong>收购整合能力</strong>：过去十年收购了数十家地区性承包商，成功率极高。去中心化管理模式保留了被收购公司的本地关系和人才。<span class="tag tag-green">中强护城河</span>
+        </div>
+        <div class="moat-item">
+            <strong>客户关系</strong>：与超大规模数据中心运营商（推测包括Microsoft、Google等）建立了长期合作关系，从建设到维护的持续服务增加粘性。<span class="tag tag-orange">中等护城河</span>
+        </div>
+        <div class="risk-item">
+            <strong>行业进入壁垒</strong>：MEP承包行业的进入壁垒整体偏低——小型地区性承包商众多。但在大型复杂项目（数据中心、半导体工厂）领域，壁垒显著提高，需要规模、人才和执行记录。<span class="tag tag-orange">中等壁垒</span>
+        </div>
+
+        <h3>6.4 护城河可持续性评估</h3>
+        <div class="highlight">
+            <p><strong>短期（1-3年）</strong>：护城河非常稳固。数据中心建设热潮仍在早期阶段，积压订单124.5亿美元提供极高可见性。</p>
+            <p><strong>中期（3-5年）</strong>：护城河可能面临挑战。如果AI投资放缓或数据中心建设周期见顶，收入增速可能显著放缓。客户自建施工团队也是一种潜在威胁。</p>
+            <p><strong>长期（5-10年）</strong>：不确定性较高。MEP承包本质上是项目制业务，缺乏SaaS式的经常性收入。护城河的持久性取决于公司能否将更多收入转为服务/维护合同，以及在数据中心之外找到新的增长引擎。</p>
+        </div>
+    </div>
+
+    <!-- 第六章：利润分配分析 -->
+    <div class="info-box">
+        <h2>七、利润分配分析</h2>
+
+        <h3>7.1 十年利润分配表（百万美元）</h3>
+        <table>
+            <tr>
+                <th>年度</th><th>净利润</th><th>股息</th><th>回购</th><th>收购支出</th><th>资本支出</th><th>留存金额</th><th>留存比率</th>
+            </tr>
+            <tr><td>2016</td><td>65</td><td>10</td><td>5</td><td>68</td><td>12</td><td>55</td><td>84.6%</td></tr>
+            <tr><td>2017</td><td>55</td><td>11</td><td>3</td><td>32</td><td>12</td><td>44</td><td>80.0%</td></tr>
+            <tr><td>2018</td><td>113</td><td>12</td><td>5</td><td>69</td><td>15</td><td>101</td><td>89.4%</td></tr>
+            <tr><td>2019</td><td>114</td><td>15</td><td>7</td><td>85</td><td>14</td><td>99</td><td>86.8%</td></tr>
+            <tr><td>2020</td><td>150</td><td>16</td><td>4</td><td>34</td><td>16</td><td>134</td><td>89.3%</td></tr>
+            <tr><td>2021</td><td>143</td><td>17</td><td>5</td><td>93</td><td>19</td><td>126</td><td>88.1%</td></tr>
+            <tr><td>2022</td><td>246</td><td>20</td><td>8</td><td>191</td><td>23</td><td>226</td><td>91.9%</td></tr>
+            <tr><td>2023</td><td>323</td><td>31</td><td>13</td><td>223</td><td>31</td><td>292</td><td>90.4%</td></tr>
+            <tr><td>2024</td><td>522</td><td>43</td><td>92</td><td>274</td><td>105</td><td>479</td><td>91.8%</td></tr>
+            <tr><td>2025</td><td>1,023</td><td>69</td><td>92</td><td>231</td><td>142</td><td>954</td><td>93.3%</td></tr>
+        </table>
+
+        <h3>7.2 利润分配分析</h3>
+        <div class="highlight">
+            <p><strong>股息政策</strong>：连续14年增长股息，但股息率极低（约0.17%），股息支付比率仅约6-7%。管理层明确将增长投资置于股息回报之上。</p>
+            <p><strong>回购</strong>：过去10年累计回购约2.3亿美元，回购力度温和。流通股从2016年的37.8百万股缓慢减少至2025年的35.4百万股，减少约6.3%。回购金额远小于收购支出。</p>
+            <p><strong>收购</strong>：这是留存资金的主要用途。过去10年累计收购支出约13亿美元，收购了数十家地区性MEP承包商。收购整合的成功率极高，被收购公司通常在加入后业绩超出预期。</p>
+            <p><strong>资本配置质量</strong>：优秀。管理层将绝大部分利润再投资于高回报的收购和有机增长，ROE从17%提升至42%证明了资本配置的有效性。但需注意，近年收购价格可能随股价上涨而水涨船高。</p>
+            <p><strong>可持续增长率</strong> = ROE × 留存比率 = 41.8% × 93.3% ≈ 39.0%。理论上公司可以不靠外部融资实现39%的增长，但实际增速取决于市场机会。</p>
+        </div>
+    </div>
+
+    <!-- 第七章：投资总结 -->
+    <div class="info-box">
+        <h2>八、投资总结</h2>
+
+        <h3>8.1 各维度评分</h3>
+        <table>
+            <tr><th>维度</th><th>评分</th><th>说明</th></tr>
+            <tr>
+                <td>业务可理解性</td>
+                <td><span class="star">&#9733;&#9733;&#9733;&#9733;</span> 4/5</td>
+                <td>商业模式清晰——给大建筑安装"内脏"，但项目制收入的波动性需要理解</td>
+            </tr>
+            <tr>
+                <td>护城河</td>
+                <td><span class="star">&#9733;&#9733;&#9733;</span> 3/5</td>
+                <td>在数据中心MEP领域有强护城河（规模+模块化+地理覆盖），但MEP行业整体壁垒偏低，护城河持久性存疑</td>
+            </tr>
+            <tr>
+                <td>资本配置</td>
+                <td><span class="star">&#9733;&#9733;&#9733;&#9733;&#9733;</span> 5/5</td>
+                <td>过去十年ROE从17%升至42%，收购整合极其成功，去中心化管理模式堪称教科书</td>
+            </tr>
+            <tr>
+                <td>财务安全</td>
+                <td><span class="star">&#9733;&#9733;&#9733;&#9733;&#9733;</span> 5/5</td>
+                <td>净现金7.45亿美元，负债/权益比0.1，25+年连续正现金流，"堡垒式"资产负债表</td>
+            </tr>
+            <tr>
+                <td>增长前景</td>
+                <td><span class="star">&#9733;&#9733;&#9733;&#9733;</span> 4/5</td>
+                <td>AI数据中心建设仍在早期，积压订单124.5亿提供可见性；但高度依赖科技投资周期，集中度风险显著</td>
+            </tr>
+            <tr>
+                <td>估值吸引力</td>
+                <td><span class="star">&#9733;</span> 1/5</td>
+                <td>PE约57倍（TTM），远超历史均值（15-25倍），市场已充分定价增长预期，安全边际几乎为零</td>
+            </tr>
+        </table>
+
+        <h3>8.2 关键风险</h3>
+        <div class="risk-item">
+            <strong>1. 科技投资周期风险</strong>：营收45%来自科技（数据中心），如果AI投资放缓或泡沫破裂，收入可能断崖式下降。最大单一客户占12.8%营收。
+        </div>
+        <div class="risk-item">
+            <strong>2. 估值风险</strong>：PE 57倍意味着市场预期未来多年持续高增长。任何增速不及预期都可能导致股价大幅回调。股价1年涨281%，远超EPS增速。
+        </div>
+        <div class="risk-item">
+            <strong>3. 劳动力风险</strong>：熟练技工短缺是行业性挑战，22,700名员工中大量为技术工人。工资通胀可能侵蚀利润率。
+        </div>
+        <div class="risk-item">
+            <strong>4. 项目执行风险</strong>：大型项目（最大单项目4.97亿美元）的执行风险——成本超支、工期延误都可能影响利润。
+        </div>
+        <div class="risk-item">
+            <strong>5. 客户自建风险</strong>：超大规模数据中心运营商可能选择自建施工团队，绕过第三方承包商。
+        </div>
+
+        <h3>8.3 关键催化剂</h3>
+        <div class="moat-item">
+            <strong>1. AI基础设施投资持续加速</strong>：如果AI算力需求持续指数级增长，数据中心建设将维持高景气。
+        </div>
+        <div class="moat-item">
+            <strong>2. CHIPS法案推动半导体工厂建设</strong>：美国半导体制造业回流将带来大量MEP项目需求。
+        </div>
+        <div class="moat-item">
+            <strong>3. 电气业务占比持续提升</strong>：电气板块增速更快、毛利率更高，占比提升将改善整体利润率。
+        </div>
+        <div class="moat-item">
+            <strong>4. 服务收入占比提升</strong>：如果公司能将更多收入从项目制转为服务/维护合同，收入稳定性和估值倍数都将提升。
+        </div>
+
+        <h3>8.4 估值对比</h3>
+        <table>
+            <tr><th>公司</th><th>PE (TTM)</th><th>EV/EBITDA</th><th>ROE</th></tr>
+            <tr><td>Comfort Systems (FIX)</td><td>57倍</td><td>24.3倍</td><td>41.8%</td></tr>
+            <tr><td>EMCOR Group (EME)</td><td>27.6倍</td><td>17.2倍</td><td>34.6%</td></tr>
+            <tr><td>IES Holdings (IESC)</td><td>35.9倍</td><td>22.1倍</td><td>34.6%</td></tr>
+            <tr><td>Quanta Services (PWR)</td><td>96.4倍</td><td>42.5倍</td><td>12.4%</td></tr>
+        </table>
+
+        <h3>8.5 投资结论</h3>
+        <div class="highlight">
+            <p><strong>基本面评分：4/5（优秀）</strong></p>
+            <p>Comfort Systems USA拥有出色的基本面：ROE 42%、几乎零负债、连续25+年正现金流、在数据中心MEP领域的领先地位、以及教科书级的去中心化收购整合能力。过去十年EPS CAGR达37%，是真正的成长股。</p>
+            
+            <p><strong>价格评分：1/5（极度高估）</strong></p>
+            <p>PE 57倍、EV/EBITDA 24倍，股价1年涨281%——市场已经把未来3-5年的增长预期全部计入当前价格。以巴菲特/芒格的价值投资标准来看，当前价格完全没有安全边际。即使是15%的长期增长率假设，合理估值也应在PE 25-30倍（约$800-$1,000），远低于当前$1,967的股价。</p>
+            
+            <p><strong>综合评级：观望/等待</strong></p>
+            <p>这是一家优秀的公司，但不是一笔好的投资——至少在当前价格不是。芒格说："以合理价格买入优秀公司，胜过以便宜价格买入平庸公司。"但当前价格已经远超"合理"。理想买入区间：PE 25-30倍，对应股价约$800-$1,000。如果AI投资周期出现波动导致股价回调30-50%，这将是绝佳的买入机会。</p>
+        </div>
+    </div>
+
+    <script>
+        // Topbar scoring functionality
+        const topbarCode = 'FIX';
+        const storageKey = `topbar_${topbarCode}`;
+        let topbarF = 0, topbarP = 0;
+        
+        function loadTopbar() {
+            const saved = localStorage.getItem(storageKey);
+            if (saved) {
+                const d = JSON.parse(saved);
+                topbarF = d.f || 0;
+                topbarP = d.p || 0;
+            }
+            renderTopbar();
+        }
+        
+        function renderTopbar() {
+            const fVal = document.getElementById('topbarFVal');
+            const pVal = document.getElementById('topbarPVal');
+            const fStars = document.getElementById('topbarFStars');
+            const pStars = document.getElementById('topbarPStars');
+            fVal.textContent = topbarF || '-';
+            pVal.textContent = topbarP || '-';
+            fVal.className = 'topbar-score-val' + (topbarF ? ` s${topbarF}` : '');
+            pVal.className = 'topbar-score-val' + (topbarP ? ` s${topbarP}` : '');
+            fStars.innerHTML = renderStars(topbarF);
+            pStars.innerHTML = renderStars(topbarP);
+        }
+        
+        function renderStars(n) {
+            let s = '';
+            for (let i = 1; i <= 5; i++) s += `<span class="${i <= n ? 'on' : 'off'}">&#9733;</span>`;
+            return s;
+        }
+        
+        function topbarEdit() {
+            document.getElementById('topbarFSel').style.display = '';
+            document.getElementById('topbarPSel').style.display = '';
+            document.getElementById('topbarFSel').value = topbarF;
+            document.getElementById('topbarPSel').value = topbarP;
+            document.getElementById('topbarEditBtn').style.display = 'none';
+            document.getElementById('topbarSaveBtn').style.display = '';
+            document.getElementById('topbarCancelBtn').style.display = '';
+        }
+        
+        function topbarSave() {
+            topbarF = parseInt(document.getElementById('topbarFSel').value);
+            topbarP = parseInt(document.getElementById('topbarPSel').value);
+            localStorage.setItem(storageKey, JSON.stringify({ f: topbarF, p: topbarP }));
+            document.getElementById('topbarFSel').style.display = 'none';
+            document.getElementById('topbarPSel').style.display = 'none';
+            document.getElementById('topbarEditBtn').style.display = '';
+            document.getElementById('topbarSaveBtn').style.display = 'none';
+            document.getElementById('topbarCancelBtn').style.display = 'none';
+            renderTopbar();
+        }
+        
+        function topbarCancel() {
+            document.getElementById('topbarFSel').style.display = 'none';
+            document.getElementById('topbarPSel').style.display = 'none';
+            document.getElementById('topbarEditBtn').style.display = '';
+            document.getElementById('topbarSaveBtn').style.display = 'none';
+            document.getElementById('topbarCancelBtn').style.display = 'none';
+        }
+        
+        loadTopbar();
+
+        // Chart.js configurations
+        const years = ['2016','2017','2018','2019','2020','2021','2022','2023','2024','2025'];
+        
+        // ROE Chart
+        new Chart(document.getElementById('roeChart'), {
+            type: 'line',
+            data: {
+                labels: years,
+                datasets: [{
+                    label: 'ROE (%)',
+                    data: [17.2, 13.2, 22.7, 19.5, 21.6, 17.8, 24.6, 25.3, 30.6, 41.8],
+                    borderColor: '#2e86c1',
+                    backgroundColor: 'rgba(46,134,193,0.1)',
+                    fill: true,
+                    tension: 0.3
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: { y: { beginAtZero: true, title: { display: true, text: 'ROE (%)' } } }
+            }
+        });
+
+        // Debt-to-Asset Chart
+        new Chart(document.getElementById('debtChart'), {
+            type: 'bar',
+            data: {
+                labels: years,
+                datasets: [{
+                    label: '资产负债率 (%)',
+                    data: [28.5, 30.2, 27.8, 28.5, 27.0, 25.8, 24.5, 23.8, 21.5, 19.2],
+                    backgroundColor: 'rgba(231,76,60,0.6)',
+                    borderColor: '#c0392b',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: { y: { beginAtZero: true, title: { display: true, text: '资产负债率 (%)' } } }
+            }
+        });
+
+        // PE Chart
+        new Chart(document.getElementById('peChart'), {
+            type: 'line',
+            data: {
+                labels: years,
+                datasets: [{
+                    label: 'PE (年末)',
+                    data: [18.2, 28.1, 13.8, 12.5, 15.8, 20.3, 16.6, 22.6, 28.9, 36.6],
+                    borderColor: '#27ae60',
+                    backgroundColor: 'rgba(39,174,96,0.1)',
+                    fill: true,
+                    tension: 0.3
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: { y: { beginAtZero: true, title: { display: true, text: 'PE倍数' } } }
+            }
+        });
+
+        // Equity Ratio Chart
+        new Chart(document.getElementById('equityRatioChart'), {
+            type: 'line',
+            data: {
+                labels: years,
+                datasets: [{
+                    label: '产权比率 (总资产/股东权益)',
+                    data: [2.8, 3.1, 2.7, 2.6, 2.5, 2.6, 2.5, 2.4, 2.8, 2.6],
+                    borderColor: '#8e44ad',
+                    backgroundColor: 'rgba(142,68,173,0.1)',
+                    fill: true,
+                    tension: 0.3
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: { y: { beginAtZero: false, title: { display: true, text: '倍数' } } }
+            }
+        });
+
+        // Revenue & Profit Chart
+        new Chart(document.getElementById('revenueChart'), {
+            type: 'bar',
+            data: {
+                labels: years,
+                datasets: [
+                    {
+                        label: '营收 (百万美元)',
+                        data: [1634, 1788, 2183, 2615, 2857, 3074, 4140, 5207, 7027, 9102],
+                        backgroundColor: 'rgba(46,134,193,0.6)',
+                        yAxisID: 'y'
+                    },
+                    {
+                        label: '净利润 (百万美元)',
+                        data: [65, 55, 113, 114, 150, 143, 246, 323, 522, 1023],
+                        type: 'line',
+                        borderColor: '#e74c3c',
+                        backgroundColor: 'rgba(231,76,60,0.1)',
+                        fill: false,
+                        tension: 0.3,
+                        yAxisID: 'y2'
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: { beginAtZero: true, position: 'left', title: { display: true, text: '营收 (百万美元)' } },
+                    y2: { beginAtZero: true, position: 'right', title: { display: true, text: '净利润 (百万美元)' }, grid: { drawOnChartArea: false } }
+                }
+            }
+        });
+    </script>
+
+    <!-- ====== 三家MEP同行深度对比 ====== -->
+    <div class="info-box" id="peer-comparison">
+        <h2>八、MEP三巨头深度对比：FIX vs EME vs IESC</h2>
+        <p style="color:#555;line-height:1.8;">Comfort Systems (FIX)、EMCOR Group (EME)、IES Holdings (IESC) 是美国MEP（机械-电气-管道）承包行业三只最核心的上市标的。它们做的事本质上一样——给大型建筑安装"内脏"（空调、电力、管道、消防），但规模、侧重和打法差异巨大。下面从多个维度逐一拆解。</p>
+
+        <h3>8.1 一句话定位</h3>
+        <table>
+            <tr><th>维度</th><th>FIX — Comfort Systems</th><th>EME — EMCOR Group</th><th>IESC — IES Holdings</th></tr>
+            <tr><td>一句话</td><td><strong>"数据中心MEP之王"</strong>——体量适中但增速最猛，数据中心占比最高</td><td><strong>"MEP全能巨人"</strong>——行业绝对龙头，业务最全、规模最大、抗周期能力最强</td><td><strong>"数据中心电力专家+住宅电气"</strong>——体量最小但弹性最大，通信/电力+住宅双轮驱动</td></tr>
+            <tr><td>成立时间</td><td>1997年</td><td>1987年（最早）</td><td>1997年</td></tr>
+            <tr><td>总部</td><td>休斯顿, TX</td><td>诺沃克, CT</td><td>舒格兰, TX</td></tr>
+            <tr><td>员工</td><td>~22,700</td><td>~44,000</td><td>~9,500</td></tr>
+        </table>
+
+        <h3>8.2 规模与估值一览（2025年数据）</h3>
+        <table>
+            <tr><th>指标</th><th>FIX</th><th>EME</th><th>IESC</th></tr>
+            <tr><td>营收</td><td>$91亿</td><td>$170亿</td><td>$34亿</td></tr>
+            <tr><td>营收规模比</td><td>1x</td><td>1.9x</td><td>0.4x</td></tr>
+            <tr><td>净利润</td><td>$10.2亿</td><td>$12.7亿（含出售UK收益）</td><td>$3.1亿</td></tr>
+            <tr><td>市值（2026.6）</td><td>~$690亿</td><td>~$370亿</td><td>~$144亿</td></tr>
+            <tr><td>PE (TTM)</td><td>~57x</td><td>~28x</td><td>~48x</td></tr>
+            <tr><td>EV/Sales</td><td>~5.3x</td><td>~1.6x</td><td>~4.4x</td></tr>
+            <tr><td>ROE (2025)</td><td>41.8%</td><td>38.5%</td><td>34.6%</td></tr>
+            <tr><td>净利率</td><td>11.2%</td><td>7.5%</td><td>9.1%</td></tr>
+            <tr><td>资产负债率</td><td>~19%</td><td>~59%</td><td>~46%</td></tr>
+            <tr><td>积压订单/RPO</td><td>$124.5亿</td><td>$132.5亿</td><td>$23.7亿(backlog)</td></tr>
+            <tr><td>积压/营收比</td><td>1.37x</td><td>0.78x</td><td>0.70x</td></tr>
+        </table>
+        <div class="highlight"><strong>关键发现：</strong>FIX的PE远超EME（57x vs 28x），市场给FIX的估值溢价来自：①数据中心敞口最高(45%)；②增速最快(营收3年CAGR ~53%)；③净利率最高(11.2%)。EME虽然规模是FIX的近2倍，但估值反而更低，因为它更像"稳重型大盘股"。IESC体量最小但PE也高达48x，市场在为它的弹性买单。</div>
+
+        <h3>8.3 业务板块对比</h3>
+        <h4>8.3.1 FIX业务板块</h4>
+        <table>
+            <tr><th>板块</th><th>营收占比</th><th>内容</th><th>营业利润率</th></tr>
+            <tr><td>Mechanical（机械）</td><td>73.3%</td><td>HVAC、管道、消防、控制、模块化预制</td><td>~23.6%</td></tr>
+            <tr><td>Electrical（电气）</td><td>26.7%</td><td>电力系统安装与维护</td><td>~26.7%</td></tr>
+        </table>
+
+        <h4>8.3.2 EME业务板块</h4>
+        <table>
+            <tr><th>板块</th><th>营收占比</th><th>内容</th><th>营业利润率</th></tr>
+            <tr><td>US Mechanical Construction & Facilities</td><td>~44.2%</td><td>HVAC、管道、消防、制冷、洁净室</td><td>~10.5%</td></tr>
+            <tr><td>US Electrical Construction & Facilities</td><td>~29.9%</td><td>电力输配电、照明、安防、网络通信</td><td>~10.8%</td></tr>
+            <tr><td>US Building Services</td><td>~18.4%</td><td>设施维护、暖通服务、能源效率改造</td><td>~7.5%</td></tr>
+            <tr><td>US Industrial Services</td><td>~7.5%</td><td>炼油厂检修、工业维护</td><td>~8.0%</td></tr>
+        </table>
+
+        <h4>8.3.3 IESC业务板块</h4>
+        <table>
+            <tr><th>板块</th><th>营收占比</th><th>内容</th><th>营业利润率</th></tr>
+            <tr><td>Communications（通信）</td><td>33.8%</td><td>数据中心通信基础设施、网络布线、安防系统</td><td>~14.6%</td></tr>
+            <tr><td>Residential（住宅）</td><td>38.7%</td><td>独栋住宅电气、HVAC/管道安装</td><td>~9.8%</td></tr>
+            <tr><td>Infrastructure Solutions</td><td>14.8%</td><td>定制电力设备（母线槽、发电机外壳）、电机维修</td><td>~24.5%</td></tr>
+            <tr><td>Commercial & Industrial</td><td>12.7%</td><td>商业/工业电气与机械施工</td><td>~11.0%</td></tr>
+        </table>
+
+        <h3>8.4 三者相同点</h3>
+        <div style="background:#eaf7ea;border-left:4px solid #27ae60;padding:15px 20px;margin:10px 0;border-radius:0 8px 8px 0;">
+            <p><strong>1. 同一个大赛道——MEP承包</strong>：三家都是给大型建筑安装机械（空调/管道/消防）和电气（电力/照明/通信）系统的专业承包商。客户群高度重叠——数据中心、制造业、医疗、教育机构。</p>
+            <p><strong>2. 同一个增长引擎——AI数据中心</strong>：三家都在疯狂受益于超大规模数据中心的爆发式建设。FIX的Technology占比45%，EME的Network & Communications积压订单$156亿，IESC的Communications营收同比+47%。数据中心需要巨量的电力和冷却——这正是MEP承包商的活。</p>
+            <p><strong>3. 同一种打法——收购驱动增长</strong>：三家都是"收购+有机增长"双轮驱动。FIX 10年收购约13亿美元，EME收购了Miller Electric（$8.65亿），IESC收购了Gulf Island Fabrication。行业极度碎片化（数千家小公司），并购整合是做大做强的核心路径。</p>
+            <p><strong>4. 同一种组织模式——去中心化运营</strong>：三家都采用"总部管资本/战略，地方子公司管运营"的模式。FIX有50个运营单元，EME有~100个子公司，IESC也有多个独立运营单位。这保证了本地化响应速度。</p>
+            <p><strong>5. 同一个痛点——技术工人短缺</strong>：美国电工、管道工、焊工严重不足，三家都面临招人难、留人难的问题。谁能吸引和留住技术工人，谁就能接更多活。</p>
+            <p><strong>6. 同一个财务特征——高ROE、低/零负债</strong>：FIX几乎零负债，EME净现金$4亿+，IESC负债也极少。三家的ROE都在35-42%区间，是典型的"轻资产高回报"生意。</p>
+        </div>
+
+        <h3>8.5 三者差异点</h3>
+        <table>
+            <tr><th>差异维度</th><th>FIX</th><th>EME</th><th>IESC</th></tr>
+            <tr>
+                <td><strong>规模定位</strong></td>
+                <td>中型偏大，"精而快"</td>
+                <td>行业绝对龙头，"大而全"</td>
+                <td>小型，"小而灵"</td>
+            </tr>
+            <tr>
+                <td><strong>核心侧重</strong></td>
+                <td>机械(HVAC)为主，电气快速扩张中</td>
+                <td>机械+电气双核心，还有建筑服务和工业服务</td>
+                <td>电气/通信为主，住宅电气是独特板块</td>
+            </tr>
+            <tr>
+                <td><strong>数据中心敞口</strong></td>
+                <td>最高（~45%营收来自Technology）</td>
+                <td>高但更分散（Network & Comms是最大积压订单来源，但占总营收比例较低）</td>
+                <td>高且增长最快（Communications +47% YoY）</td>
+            </tr>
+            <tr>
+                <td><strong>住宅敞口</strong></td>
+                <td>极低（~1.4%）</td>
+                <td>低（Building Services中部分涉及）</td>
+                <td>最高（~38.7%，是最大单一板块）</td>
+            </tr>
+            <tr>
+                <td><strong>经常性收入</strong></td>
+                <td>较低（~7.3%来自服务/维护）</td>
+                <td>最高（Building Services ~18.4%是稳定的维护收入）</td>
+                <td>中等（Infrastructure Solutions有部分经常性维修收入）</td>
+            </tr>
+            <tr>
+                <td><strong>工业/炼油</strong></td>
+                <td>无</td>
+                <td>有（Industrial Services ~7.5%，炼油厂检修）</td>
+                <td>有（Industrial Services在Infrastructure中）</td>
+            </tr>
+            <tr>
+                <td><strong>定制制造</strong></td>
+                <td>模块化预制（skid）</td>
+                <td>预制+VDC/BIM</td>
+                <td>母线槽、发电机外壳等定制电力设备（独特）</td>
+            </tr>
+            <tr>
+                <td><strong>营业利润率</strong></td>
+                <td>最高（综合~24%）</td>
+                <td>最低（综合~9.3%）</td>
+                <td>中等（综合~11.4%）</td>
+            </tr>
+            <tr>
+                <td><strong>地理覆盖</strong></td>
+                <td>142城市/190地点</td>
+                <td>最广（~450地点，曾含UK现已出售）</td>
+                <td>最少，但集中在高增长区域</td>
+            </tr>
+            <tr>
+                <td><strong>客户集中度</strong></td>
+                <td>较高（最大客户占12.8%）</td>
+                <td>分散（无单一客户超10%）</td>
+                <td>中等</td>
+            </tr>
+            <tr>
+                <td><strong>估值水平</strong></td>
+                <td>最贵（PE ~57x）</td>
+                <td>最便宜（PE ~28x）</td>
+                <td>贵（PE ~48x）</td>
+            </tr>
+        </table>
+
+        <h3>8.6 各自竞争优势</h3>
+
+        <div style="background:white;border-radius:8px;padding:15px 20px;margin:10px 0;box-shadow:0 1px 5px rgba(0,0,0,0.05);border-left:4px solid #2e86c1;">
+            <strong style="color:#1a5276;">FIX的竞争优势</strong>
+            <p><strong>1. 数据中心MEP最高敞口</strong>：45%营收来自Technology（主要是数据中心），是三者中数据中心纯度最高的标的。当数据中心建设爆发时，FIX是"最直接的受益者"。</p>
+            <p><strong>2. 模块化预制能力（"乐高式"施工）</strong>：FIX在工厂里把冷却和电力系统做成"skid"（预制模块），运到现场"拼装"。对数据中心客户来说，"早一天通电就早一天赚钱"，这种速度优势是决定性的。</p>
+            <p><strong>3. 最高利润率</strong>：综合营业利润率~24%，远超EME的9.3%和IESC的11.4%。说明FIX在项目选择和执行效率上有显著优势——它不是什么都接，而是挑高利润的活干。</p>
+            <p><strong>4. Design-Build能力</strong>：FIX不只是按图施工，而是从设计阶段就参与，帮客户优化方案。这提高了转换成本——客户换掉FIX的成本很高。</p>
+        </div>
+
+        <div style="background:white;border-radius:8px;padding:15px 20px;margin:10px 0;box-shadow:0 1px 5px rgba(0,0,0,0.05);border-left:4px solid #e67e22;">
+            <strong style="color:#d35400;">EME的竞争优势</strong>
+            <p><strong>1. 规模与多元化——"抗周期之王"</strong>：$170亿营收是FIX的近2倍、IESC的5倍。业务横跨机械、电气、建筑服务、工业服务四大板块，覆盖数据中心、医疗、教育、工业、政府等几乎所有终端市场。当某个行业下行时，其他板块可以对冲。这是EME独有的"安全垫"。</p>
+            <p><strong>2. 经常性收入占比最高</strong>：Building Services（~18.4%营收）提供稳定的维护和设施管理收入，这些是按年签的合同，不受建筑周期影响。FIX和IESC都缺乏这种"压舱石"。</p>
+            <p><strong>3. 工业服务独占性</strong>：EME是三者中唯一有炼油厂检修（turnaround）业务的。炼油厂每3-5年必须大修，这是刚需，不受经济周期影响。</p>
+            <p><strong>4. 最强的财务实力+最低估值</strong>：PE仅28x，远低于FIX的57x。如果考虑非GAAP EPS $25.87，PE更低至~32x。对于一家ROE 38.5%、营收增速16.6%的公司来说，这是三者中最"合理"的估值。</p>
+            <p><strong>5. 最大的积压订单</strong>：$132.5亿RPO，且Network & Communications的积压在2026Q1已达$156亿（+32.9% YoY），收入可见性极强。</p>
+        </div>
+
+        <div style="background:white;border-radius:8px;padding:15px 20px;margin:10px 0;box-shadow:0 1px 5px rgba(0,0,0,0.05);border-left:4px solid #8b0000;">
+            <strong style="color:#8b0000;">IESC的竞争优势</strong>
+            <p><strong>1. 定制电力设备制造——独特的"制造+施工"组合</strong>：IESC的Infrastructure Solutions板块制造母线槽（bus duct）、发电机外壳等定制电力设备。FIX和EME都不做这种制造。这意味着IESC在数据中心电力分配上有"自产自装"的垂直整合优势。</p>
+            <p><strong>2. 住宅电气——独特的周期对冲</strong>：IESC是三者中唯一有大规模住宅业务的（~38.7%营收）。住宅电气和商业/数据中心建设周期不同步，提供了天然的多元化。但这也是双刃剑——当前住宅市场低迷正在拖累整体增速。</p>
+            <p><strong>3. 最大弹性</strong>：体量最小意味着同样的增量订单对EPS的拉动最大。Communications营收从$7.8亿增至$11.4亿（+47%），这种增速在FIX和EME的体量上不可能实现。</p>
+            <p><strong>4. Infrastructure Solutions的高利润率</strong>：该板块营业利润率~24.5%，接近FIX的综合利润率水平。定制制造的利润率远高于纯施工。</p>
+            <p><strong>5. Gulf Island收购打开新空间</strong>：收购Gulf Island Fabrication（钢铁结构制造）将IESC带入工业/能源/政府市场，这是FIX和EME工业服务之外的另一个差异化方向。</p>
+        </div>
+
+        <h3>8.7 各自核心风险</h3>
+        <table>
+            <tr><th>风险</th><th>FIX</th><th>EME</th><th>IESC</th></tr>
+            <tr>
+                <td>数据中心周期反转</td>
+                <td><span class="tag tag-red">极高风险</span> 45%营收来自Technology，如果AI投资放缓，FIX受创最重</td>
+                <td><span class="tag tag-orange">中等风险</span> 数据中心只是众多板块之一，可被其他板块对冲</td>
+                <td><span class="tag tag-orange">中高风险</span> Communications占比34%且增速最快，但住宅可部分对冲</td>
+            </tr>
+            <tr>
+                <td>客户集中度</td>
+                <td><span class="tag tag-red">高风险</span> 最大客户占12.8%</td>
+                <td><span class="tag tag-green">低风险</span> 客户极度分散</td>
+                <td><span class="tag tag-orange">中等风险</span></td>
+            </tr>
+            <tr>
+                <td>住宅市场下行</td>
+                <td><span class="tag tag-green">无影响</span> 住宅仅1.4%</td>
+                <td><span class="tag tag-green">极小影响</span></td>
+                <td><span class="tag tag-red">高风险</span> 住宅占38.7%，当前已在拖累增速</td>
+            </tr>
+            <tr>
+                <td>估值过高</td>
+                <td><span class="tag tag-red">极高风险</span> PE 57x，1年涨281%</td>
+                <td><span class="tag tag-green">低风险</span> PE 28x，相对合理</td>
+                <td><span class="tag tag-orange">高风险</span> PE 48x，1年涨157%</td>
+            </tr>
+            <tr>
+                <td>劳动力短缺</td>
+                <td><span class="tag tag-orange">中高风险</span> 22,700人，扩张快但招人难</td>
+                <td><span class="tag tag-orange">中等风险</span> 44,000人规模，品牌力更强有助于招人</td>
+                <td><span class="tag tag-red">高风险</span> 仅9,500人，规模小更难抢人</td>
+            </tr>
+        </table>
+
+        <h3>8.8 投资者视角：该选谁？</h3>
+        <div style="background:#fef9e7;border-left:4px solid #f39c12;padding:15px 20px;margin:15px 0;border-radius:0 8px 8px 0;">
+            <p><strong>如果你追求"数据中心纯度"和最高增速 → FIX</strong>，但必须接受PE 57x的极端估值和数据中心周期反转的巨大风险。FIX是三者中"进攻性最强"的标的。</p>
+            <p><strong>如果你追求"安全边际"和合理估值 → EME</strong>，PE仅28x，多元化+经常性收入+工业服务提供了最好的下行保护。EME是三者中"防御性最强"的标的。巴菲特式的投资者可能更倾向这个。</p>
+            <p><strong>如果你追求"弹性"和"独特制造能力" → IESC</strong>，但住宅拖累和小体量风险需要容忍。IESC是三者中"赌性最重"的标的——赌对了数据中心持续爆发+住宅复苏，回报惊人；赌错了，回撤也最大。</p>
+        </div>
+
+        <div class="highlight">
+            <strong>芒格会怎么说？</strong>"三家都是好生意——MEP承包是'别人建骨架、你装内脏'的刚需活，技术工人就是护城河。但好公司不等于好价格。EME在28倍PE提供了合理的安全边际；FIX和IESC的估值已经透支了太多乐观预期。耐心等待市场先生犯错的时刻，才是价值投资者该做的事。"
+        </div>
+
+        <p style="text-align:center;margin-top:20px;">
+            <a href="eme.html">查看EME详细分析 &rarr;</a> &nbsp;|&nbsp;
+            <a href="iesc.html">查看IESC详细分析 &rarr;</a>
+        </p>
+    </div>
+
+</body>
+</html>

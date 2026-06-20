@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rollins (ROL) 价值投资分析</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body { font-family: 'Segoe UI', Arial, sans-serif; margin: 0; padding: 20px; background-color: #f0f2f5; color: #333; }
+        h1 { text-align: center; color: #1a5276; font-size: 2.2em; margin-bottom: 5px; }
+        h2 { color: #1a5276; border-bottom: 2px solid #2e86c1; padding-bottom: 8px; margin-top: 30px; }
+        h3 { color: #2c3e50; margin-top: 20px; }
+        .subtitle { text-align: center; color: #7f8c8d; font-size: 1.1em; margin-bottom: 30px; }
+        .info-box { background: white; border-radius: 10px; padding: 25px; margin: 20px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.08); }
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; background-color: white; }
+        th, td { padding: 10px 14px; text-align: left; border-bottom: 1px solid #e0e0e0; }
+        th { background-color: #1a5276; color: white; font-weight: bold; }
+        tr:nth-child(even) { background-color: #f8f9fa; }
+        tr:hover { background-color: #eaf2f8; }
+        .highlight { background: #fef9e7; border-left: 4px solid #2e86c1; padding: 15px 20px; margin: 15px 0; border-radius: 0 8px 8px 0; }
+        .chart-container { background: white; border-radius: 10px; padding: 25px; margin: 20px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.08); }
+        canvas { max-height: 400px; }
+        .tag { display: inline-block; background: #1a5276; color: white; padding: 3px 10px; border-radius: 12px; font-size: 0.85em; margin: 2px; }
+        .tag-green { background: #27ae60; }
+        .tag-orange { background: #e67e22; }
+        .tag-red { background: #c0392b; }
+        a { color: #1a5276; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        .fixed-topbar { position: fixed; top: 0; left: 0; right: 0; z-index: 9999; background: linear-gradient(135deg, #1a5276, #2e86c1); color: white; display: flex; align-items: center; justify-content: space-between; padding: 8px 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.15); height: 48px; }
+        .fixed-topbar a { color: white; text-decoration: none; font-size: 14px; font-weight: 600; }
+        .fixed-topbar a:hover { text-decoration: underline; }
+        .topbar-left { display: flex; align-items: center; gap: 12px; }
+        .topbar-right { display: flex; align-items: center; gap: 8px; }
+        .topbar-score-label { font-size: 12px; opacity: 0.85; }
+        .topbar-score-val { font-weight: 700; font-size: 15px; min-width: 18px; text-align: center; }
+        .topbar-score-val.s1 { color: #ff6b6b; } .topbar-score-val.s2 { color: #ffa94d; } .topbar-score-val.s3 { color: #ffd43b; } .topbar-score-val.s4 { color: #69db7c; } .topbar-score-val.s5 { color: #51cf66; }
+        .topbar-select { padding: 3px 8px; border: 1px solid rgba(255,255,255,0.4); border-radius: 6px; font-size: 12px; font-weight: 600; color: white; background: rgba(255,255,255,0.15); cursor: pointer; outline: none; }
+        .topbar-select:focus { border-color: rgba(255,255,255,0.7); }
+        .topbar-select option { color: #333; background: white; }
+        .topbar-select:disabled { opacity: 0.5; cursor: not-allowed; }
+        .topbar-btn { padding: 4px 12px; border: none; border-radius: 6px; font-size: 12px; font-weight: 600; cursor: pointer; transition: background 0.2s; }
+        .topbar-btn-edit { background: rgba(255,255,255,0.2); color: white; }
+        .topbar-btn-edit:hover { background: rgba(255,255,255,0.35); }
+        .topbar-btn-save { background: #27ae60; color: white; }
+        .topbar-btn-save:hover { background: #219a52; }
+        .topbar-btn-cancel { background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.7); }
+        .topbar-btn-cancel:hover { background: rgba(255,255,255,0.2); }
+        .topbar-stars { font-size: 11px; }
+        .topbar-stars .on { color: #f39c12; }
+        .topbar-stars .off { color: rgba(255,255,255,0.3); }
+        body { padding-top: 60px !important; }
+        .moat-item { background: white; border-radius: 8px; padding: 15px 20px; margin: 10px 0; box-shadow: 0 1px 5px rgba(0,0,0,0.05); border-left: 4px solid #2e86c1; }
+        .moat-item strong { color: #1a5276; }
+        .risk-item { background: white; border-radius: 8px; padding: 15px 20px; margin: 10px 0; box-shadow: 0 1px 5px rgba(0,0,0,0.05); border-left: 4px solid #c0392b; }
+        .star { color: #f39c12; }
+    </style>
+</head>
+<body>
+    <div class="fixed-topbar" id="fixedTopbar">
+        <div class="topbar-left">
+            <a href="index.html">&larr; 返回索引</a>
+            <span style="font-size:14px;font-weight:700;" id="topbarCode">ROL</span>
+        </div>
+        <div class="topbar-right" id="topbarScores">
+            <span class="topbar-score-label">基本面</span>
+            <span class="topbar-score-val" id="topbarFVal">-</span>
+            <span class="topbar-stars" id="topbarFStars"></span>
+            <select class="topbar-select" id="topbarFSel" style="display:none;"><option value="0">-</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option></select>
+            <span class="topbar-score-label" style="margin-left:12px;">价格</span>
+            <span class="topbar-score-val" id="topbarPVal">-</span>
+            <span class="topbar-stars" id="topbarPStars"></span>
+            <select class="topbar-select" id="topbarPSel" style="display:none;"><option value="0">-</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option></select>
+            <button class="topbar-btn topbar-btn-edit" id="topbarEditBtn" onclick="topbarEdit()">修改</button>
+            <button class="topbar-btn topbar-btn-save" id="topbarSaveBtn" onclick="topbarSave()" style="display:none;">保存</button>
+            <button class="topbar-btn topbar-btn-cancel" id="topbarCancelBtn" onclick="topbarCancel()" style="display:none;">取消</button>
+        </div>
+    </div>
+
+    <h1>Rollins 罗林斯 (NYSE: ROL)</h1>
+    <p class="subtitle">巴菲特/芒格式价值投资基本面分析 | 更新日期：2026年6月</p>
+
+    <!-- 一、公司基本信息 -->
+    <div class="info-box">
+        <h2>一、公司基本信息</h2>
+        <table>
+            <tr><td>公司全称</td><td>Rollins, Inc.（罗林斯公司）</td></tr>
+            <tr><td>股票代码</td><td>NYSE: ROL</td></tr>
+            <tr><td>市值</td><td>约230亿美元（2026年6月）</td></tr>
+            <tr><td>企业价值（EV）</td><td>约240亿美元（净债务约$10亿）</td></tr>
+            <tr><td>成立时间</td><td>1948年2月24日，由O. Wayne Rollins和John W. Rollins兄弟创立</td></tr>
+            <tr><td>公司总部</td><td>美国佐治亚州亚特兰大（Atlanta, GA）</td></tr>
+            <tr><td>最新收盘价</td><td>约$47（2026年6月中旬）</td></tr>
+            <tr><td>52周区间</td><td>$44.43 - $66.14</td></tr>
+            <tr><td>CEO</td><td>Jerry Gahlhoff, Jr.（2023年接任）</td></tr>
+            <tr><td>CFO</td><td>Will Harkins（2026年接替Ken Krause）</td></tr>
+            <tr><td>员工人数</td><td>约21,946人</td></tr>
+            <tr><td>行业</td><td>害虫防治 / 消费与商业服务</td></tr>
+            <tr><td>流通股数</td><td>约4.81亿股</td></tr>
+            <tr><td>股息收益率</td><td>约1.5%（年度股息$0.73/股）</td></tr>
+            <tr><td>IPO时间</td><td>1961年（美国证券交易所），后转至NYSE</td></tr>
+            <tr><td>全球覆盖</td><td>900+服务点，覆盖北美、南美、欧洲、亚洲、非洲、澳洲</td></tr>
+            <tr><td>旗舰品牌</td><td>Orkin（奥金，1901年创立，120+年历史）</td></tr>
+        </table>
+    </div>
+
+    <!-- 二、业务分析 -->
+    <div class="info-box">
+        <h2>二、业务分析</h2>
+
+        <h3>2.1 公司业务概述（通俗解释）</h3>
+        <div class="highlight">
+            <p><strong>Rollins到底是干什么的？</strong></p>
+            <p>Rollins是全球最大的害虫防治公司，旗下最知名的品牌是Orkin（奥金）。简单来说，当你家里发现蟑螂、蚂蚁、老鼠，或者一家餐厅需要确保没有害虫以通过卫生检查时，你很可能就会打电话给Orkin。</p>
+            <p><strong>1. 住宅害虫防治（核心业务）</strong> —— 为家庭提供定期上门的害虫检查和防治服务。就像订阅Netflix一样，客户按月/季度付费，技术人员定期上门，发现害虫就处理，没发现就预防。大多数客户一签就是好几年，形成了高度可预测的经常性收入。</p>
+            <p><strong>2. 商业害虫防治</strong> —— 为餐厅、食品加工厂、医院、酒店、仓库等商业客户提供害虫管理服务。商业客户不仅需要灭虫，更需要"证明"他们做了灭虫——卫生检查、FDA合规、品牌保护都需要书面记录。</p>
+            <p><strong>3. 白蚁与野生动物防治</strong> —— 白蚁防治是独立的大生意（白蚁能无声无息毁掉一栋房子），野生动物（浣熊、松鼠等）入侵处理也在增长。</p>
+            <p><strong>关键特点</strong>：害虫防治是"刚需"——虫子不关心经济衰退，不管AI多厉害，还是得有人开着卡车到你家来喷药。这就是Rollins生意的本质。</p>
+        </div>
+
+        <h3>2.2 主要业务板块及营收占比（2025财年）</h3>
+        <table>
+            <tr>
+                <th>业务板块</th>
+                <th>营收（2025）</th>
+                <th>占总营收比</th>
+                <th>同比增长</th>
+                <th>特点</th>
+            </tr>
+            <tr>
+                <td><strong>住宅害虫防治</strong></td>
+                <td>约$17.0亿</td>
+                <td>~45%</td>
+                <td>+9%</td>
+                <td>经常性合同收入为主，客户留存率>80%</td>
+            </tr>
+            <tr>
+                <td><strong>商业害虫防治</strong></td>
+                <td>约$12.5亿</td>
+                <td>~33%</td>
+                <td>+11%</td>
+                <td>2-3年长期合同，合规需求驱动，毛利率更高</td>
+            </tr>
+            <tr>
+                <td><strong>白蚁与野生动物防治</strong></td>
+                <td>约$8.1亿</td>
+                <td>~22%</td>
+                <td>+14%</td>
+                <td>白蚁防治+房地产交易检查+野生动物入侵处理</td>
+            </tr>
+        </table>
+
+        <h3>2.3 经常性收入模式</h3>
+        <div class="highlight">
+            <p><strong>超过80%的收入来自经常性合同</strong></p>
+            <ul>
+                <li><strong>住宅客户</strong>：平均每年支付$600-800，按季度或双月服务，留存率超80%</li>
+                <li><strong>商业客户</strong>：2-3年长期合同，需要害虫管理记录以满足卫生检查和FDA合规</li>
+                <li><strong>白蚁客户</strong>：年度续约的防治合同，房地产交易时的一次性检查费</li>
+            </ul>
+            <p>这种"订阅式"收入模式使得Rollins的营收高度可预测，受经济周期影响极小——2020年新冠疫情期间，收入仍增长了7.2%。</p>
+        </div>
+
+        <h3>2.4 地域分布</h3>
+        <table>
+            <tr>
+                <th>地区</th>
+                <th>营收占比</th>
+                <th>特点</th>
+            </tr>
+            <tr>
+                <td>美国</td>
+                <td>约85%</td>
+                <td>核心市场，Orkin品牌认知度极高</td>
+            </tr>
+            <tr>
+                <td>国际</td>
+                <td>约15%</td>
+                <td>加拿大、澳大利亚、欧洲等，通过收购扩张</td>
+            </tr>
+        </table>
+
+        <h3>2.5 品牌矩阵</h3>
+        <div class="highlight">
+            <p>Rollins采用<strong>"多品牌、多渠道"</strong>策略，旗下拥有20+品牌：</p>
+            <ul>
+                <li><strong>Orkin</strong>：旗舰品牌，120+年历史，北美最知名的害虫防治品牌</li>
+                <li><strong>HomeTeam Pest Defense</strong>：专注于新建住宅的害虫预防</li>
+                <li><strong>Western Pest Services</strong>：美国东北部地区品牌</li>
+                <li><strong>Clark Pest Control</strong>：加州最大害虫防治公司</li>
+                <li><strong>Critter Control / Trutech</strong>：野生动物防治专家</li>
+                <li><strong>Fox Pest Control / Saela</strong>：近年收购的高增长品牌</li>
+                <li><strong>Industrial Fumigant Company</strong>：商业熏蒸专家</li>
+                <li><strong>Orkin Canada / Orkin Australia</strong>：国际市场品牌</li>
+            </ul>
+            <p>多品牌策略让Rollins能同时服务高端和大众市场，且不同品牌之间不会相互蚕食。</p>
+        </div>
+
+        <h3>2.6 增长引擎：有机增长 + 收购</h3>
+        <div class="highlight">
+            <ul>
+                <li><strong>有机增长</strong>：2025年有机增长6.9%，来自定价提升+客户增长+服务频率增加</li>
+                <li><strong>收购增长</strong>：2025年完成26笔收购（2024年44笔），贡献4.1%收入增长</li>
+                <li><strong>2025年收购支出</strong>：$3.1亿（包括Saela Pest Control等）</li>
+                <li><strong>行业高度分散</strong>：美国害虫防治行业前5名仅占30%份额，收购空间巨大</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- 三、业务板块产品竞争力分析 -->
+    <div class="info-box">
+        <h2>三、业务板块产品竞争力分析</h2>
+
+        <h3>3.1 住宅害虫防治产品竞争力分析</h3>
+
+        <p><strong>1. 可替代性：<span class="tag tag-orange">中等</span></strong></p>
+        <ul>
+            <li><strong>主要替代品</strong>：本地小型害虫防治公司（"一人一卡车"型）、DIY产品（Home Depot杀虫剂）、其他全国性品牌（Rentokil/Terminix）</li>
+            <li><strong>替代体验差距</strong>：DIY产品效果有限且需要自行操作；小型公司服务不稳定、缺乏品牌背书；但害虫防治本身并非高技术壁垒——"任何人只要有卡车、化学品和执照就能开业"</li>
+            <li><strong>替代趋势</strong>：稳定。害虫问题持续存在，但低价替代始终可行</li>
+        </ul>
+
+        <p><strong>2. 客户转换成本：<span class="tag tag-orange">中等</span></strong></p>
+        <ul>
+            <li><strong>财务转换成本</strong>：取消合同可能有取消费用，但金额不大（通常$50-150）</li>
+            <li><strong>时间转换成本</strong>：需要重新预约、重新评估房屋状况，但耗时有限</li>
+            <li><strong>心理转换成本</strong>：对Orkin品牌的信任（120年历史）提供了一定粘性，"如果没坏就别修"的心理让客户不愿更换</li>
+            <li><strong>整体评估</strong>：转换成本存在但不高，品牌信任和便利性是主要留存因素</li>
+        </ul>
+
+        <p><strong>3. 定价权：<span class="tag tag-green">强</span></strong></p>
+        <ul>
+            <li><strong>历史提价记录</strong>：过去5-10年，每年稳定提价3-5%，跑赢通胀</li>
+            <li><strong>提价vs通胀</strong>：价格增长持续跑赢CPI，且客户流失率未明显上升</li>
+            <li><strong>定价权来源</strong>：品牌信任（Orkin品牌溢价10-20% vs 独立经营者）+ 便利性（定期服务已融入生活节奏）+ 害虫问题的紧迫性（"没人想和蟑螂多待一天"）</li>
+            <li><strong>定价权趋势</strong>：稳定偏强。数字化工具（BOSS系统）提升了服务效率，支持持续提价</li>
+            <li><strong>巴菲特测试</strong>：如果Rollins提价10%，部分价格敏感客户可能转向小型公司，但大多数客户会留下——因为害虫防治费用相对于害虫带来的困扰和财产损失微不足道</li>
+        </ul>
+
+        <p><strong>住宅害虫防治整体竞争力评级：<span class="star">&#9733;&#9733;&#9733;&#9733;</span> 4/5星</strong></p>
+
+        <hr style="margin: 20px 0;">
+
+        <h3>3.2 商业害虫防治产品竞争力分析</h3>
+
+        <p><strong>1. 可替代性：<span class="tag tag-green">低</span></strong></p>
+        <ul>
+            <li><strong>主要替代品</strong>：Rentokil、Ecolab、本地小型公司</li>
+            <li><strong>替代体验差距</strong>：商业客户需要合规文档、审计记录、全国统一标准——小型公司难以提供；Ecolab更侧重卫生/水处理而非纯害虫防治</li>
+            <li><strong>替代趋势</strong>：稳定偏有利。监管趋严（食品安全、卫生标准）使专业害虫管理服务越来越不可替代</li>
+        </ul>
+
+        <p><strong>2. 客户转换成本：<span class="tag tag-green">高</span></strong></p>
+        <ul>
+            <li><strong>财务转换成本</strong>：2-3年长期合同，提前退出有违约金</li>
+            <li><strong>合规转换成本</strong>：更换服务商意味着重新建立合规文档体系，可能面临审计风险</li>
+            <li><strong>品牌风险</strong>：大型连锁餐厅/酒店更换害虫防治供应商有品牌风险——如果新供应商出问题，后果严重</li>
+            <li><strong>整体评估</strong>：商业客户的转换成本显著高于住宅客户</li>
+        </ul>
+
+        <p><strong>3. 定价权：<span class="tag tag-green">强</span></strong></p>
+        <ul>
+            <li><strong>历史提价记录</strong>：每年3-5%稳定提价，商业客户价格敏感度更低</li>
+            <li><strong>定价权来源</strong>：合规刚需（FDA、卫生检查）+ 品牌风险（害虫问题可能导致停业）+ 全国统一服务能力</li>
+            <li><strong>巴菲特测试</strong>：如果Rollins提价10%，商业客户几乎不会更换——因为害虫防治费用远低于停业一天的成本</li>
+        </ul>
+
+        <p><strong>商业害虫防治整体竞争力评级：<span class="star">&#9733;&#9733;&#9733;&#9733;&#9733;</span> 5/5星</strong></p>
+
+        <hr style="margin: 20px 0;">
+
+        <h3>3.3 白蚁与野生动物防治产品竞争力分析</h3>
+
+        <p><strong>1. 可替代性：<span class="tag tag-green">低</span></strong></p>
+        <ul>
+            <li><strong>主要替代品</strong>：其他白蚁防治公司、DIY白蚁饵剂</li>
+            <li><strong>替代体验差距</strong>：白蚁防治需要专业设备和训练，DIY效果极差；白蚁造成的损害可达数万美元，客户不敢冒险</li>
+            <li><strong>替代趋势</strong>：稳定。白蚁问题不会消失，且气候变化可能扩大白蚁活动范围</li>
+        </ul>
+
+        <p><strong>2. 客户转换成本：<span class="tag tag-orange">中等</span></strong></p>
+        <ul>
+            <li><strong>财务转换成本</strong>：白蚁防治合同通常有年度续约，更换需重新评估</li>
+            <li><strong>心理转换成本</strong>：白蚁对房屋价值的威胁使客户更倾向信任知名品牌</li>
+            <li><strong>整体评估</strong>：中等转换成本，品牌信任是关键</li>
+        </ul>
+
+        <p><strong>3. 定价权：<span class="tag tag-green">强</span></strong></p>
+        <ul>
+            <li><strong>定价权来源</strong>：白蚁损害的潜在成本极高（数万美元维修费），客户对价格不敏感</li>
+            <li><strong>巴菲特测试</strong>：提价10%不会导致客户流失——相比白蚁可能造成的损失，防治费用微不足道</li>
+        </ul>
+
+        <p><strong>白蚁与野生动物防治整体竞争力评级：<span class="star">&#9733;&#9733;&#9733;&#9733;</span> 4/5星</strong></p>
+    </div>
+
+    <!-- 四、历史财务指标 -->
+    <div class="chart-container">
+        <h2>四、历史财务指标 (2015-2025)</h2>
+
+        <h3>4.1 净资产利润率 (ROE) 趋势</h3>
+        <p><strong>说明</strong>：Rollins的ROE长期保持在25-39%的高水平，10年平均约31%。2025年ROE达38.9%，为近年高点。高ROE的驱动因素：1）经常性收入模式带来稳定高利润率；2）轻资产运营（资产周转率1.2-1.7倍）；3）适度财务杠杆。这是真实的经营ROE，而非财务工程驱动。</p>
+        <canvas id="roeChart"></canvas>
+
+        <h3>4.2 资产负债率 趋势</h3>
+        <p><strong>说明</strong>：Rollins的资产负债率在2019年前极低（<10%），2019年后因收购融资增加至30-43%区间。2025年约33%，仍处于健康水平。2019年前的"零负债"策略反映了创始人Wayne Rollins对债务的厌恶——他大萧条时期长大，一生信奉"不借债"。</p>
+        <canvas id="debtChart"></canvas>
+
+        <h3>4.3 市盈率 (P/E) 趋势</h3>
+        <p><strong>说明</strong>：Rollins长期享有溢价估值，10年PE中位数约48倍。2020年PE一度高达69.5倍（疫情推高防御性股票估值），2025年末PE约55倍。当前PE约43倍（2026年6月），低于5年均值，但仍远高于市场平均。市场愿意为Rollins的"类债券"收入特征支付溢价。</p>
+        <canvas id="peChart"></canvas>
+
+        <h3>4.4 产权比率（资产/权益）趋势</h3>
+        <p><strong>说明</strong>：产权比率反映财务杠杆水平。Rollins的产权比率从2015年的1.8倍逐步升至2025年的2.5倍，主要因收购融资增加债务。但整体杠杆水平仍属温和。</p>
+        <canvas id="equityRatioChart"></canvas>
+    </div>
+
+    <div class="chart-container">
+        <h2>四（续）、收入与利润趋势 (2015-2025)</h2>
+        <p><strong>说明</strong>：Rollins收入从2015年的14.85亿美元增长至2025年的37.61亿美元，10年CAGR约9.7%。净利润从1.52亿美元增长至5.27亿美元，10年CAGR约13.3%。连续24年营收正增长，展现了极强的抗周期性。</p>
+        <canvas id="revenueChart"></canvas>
+    </div>
+
+    <!-- 五、竞争分析 -->
+    <div class="info-box">
+        <h2>五、竞争分析与护城河</h2>
+
+        <h3>5.1 主要竞争对手</h3>
+        <table>
+            <tr>
+                <th>公司名称</th>
+                <th>竞争领域</th>
+                <th>市场份额</th>
+                <th>特点</th>
+            </tr>
+            <tr>
+                <td><strong>Rentokil Initial (RTO.L)</strong></td>
+                <td>全球害虫防治+卫生服务</td>
+                <td>全球害虫防治~18%</td>
+                <td>全球最大害虫防治公司，2022年收购Terminix后北美实力大增；但业务更分散</td>
+            </tr>
+            <tr>
+                <td><strong>Anticimex</strong></td>
+                <td>全球害虫防治</td>
+                <td>全球~8%</td>
+                <td>瑞典公司，以技术驱动（智能陷阱）著称，在北欧和亚太市场强势</td>
+            </tr>
+            <tr>
+                <td><strong>Ecolab (ECL)</strong></td>
+                <td>商业害虫防治+卫生</td>
+                <td>商业害虫防治~10%</td>
+                <td>更侧重商业客户的水处理和卫生服务，害虫防治是其中一项业务</td>
+            </tr>
+            <tr>
+                <td><strong>本地小型公司</strong></td>
+                <td>住宅害虫防治</td>
+                <td>合计~70%</td>
+                <td>数万家"一人一卡车"型公司，价格低但服务不稳定、无品牌</td>
+            </tr>
+        </table>
+
+        <h3>5.2 Rollins市场份额</h3>
+        <div class="highlight">
+            <ul>
+                <li><strong>美国害虫防治市场</strong>：2025年市场规模约$285亿，Rollins占约12.7%（$36亿），是北美最大的纯害虫防治公司</li>
+                <li><strong>住宅害虫防治</strong>：北美市场份额约15-18%</li>
+                <li><strong>商业害虫防治</strong>：市场份额约10-12%</li>
+                <li><strong>白蚁防治</strong>：市场份额约12-15%</li>
+                <li><strong>行业高度分散</strong>：前5名合计仅占约30%，Rollins是唯一市占率超10%的纯害虫防治公司</li>
+            </ul>
+        </div>
+
+        <h3>5.3 护城河分析</h3>
+
+        <div class="moat-item">
+            <strong>1. 品牌护城河（强）</strong><br>
+            Orkin是北美最知名的害虫防治品牌，拥有120+年历史。"Orkin Man"已成为美国文化符号。品牌信任使Rollins能比独立经营者收取10-20%的溢价，且客户更愿意签约长期合同。在害虫这种令人不安的问题上，客户倾向于选择"最知名"的品牌。
+        </div>
+
+        <div class="moat-item">
+            <strong>2. 规模/路线密度护城河（强）</strong><br>
+            害虫防治是路线密集型业务——每个技术服务人员每天需要访问8-12个客户。Rollins在900+地点拥有18,000+技术人员，路线密度远超竞争对手。更高的路线密度=更少的开车时间=每个技术人员每天能多服务1-2个客户=更高的利润率。新进入者无法在短期内复制这种路线密度优势。
+        </div>
+
+        <div class="moat-item">
+            <strong>3. 收购整合护城河（中等偏强）</strong><br>
+            在高度分散的行业中，Rollins是最活跃的收购者（2023-2025年完成94笔收购）。收购整合能力包括：统一后台系统（BOSS）、品牌迁移、交叉销售。小型公司创始人在退休时更愿意卖给Rollins而非竞争对手，因为Rollins保留员工和品牌文化。
+        </div>
+
+        <div class="moat-item">
+            <strong>4. 转换成本护城河（中等）</strong><br>
+            住宅客户转换成本中等（便利性和品牌信任是主要留存因素），但商业客户转换成本较高（合规文档、长期合同、品牌风险）。整体来看，转换成本提供了适度的保护，但不如软件类企业那么坚固。
+        </div>
+
+        <div class="moat-item">
+            <strong>5. 技术护城河（中等）</strong><br>
+            Rollins的BOSS（Branch Operating Support System）系统实现了实时服务追踪、路线优化、支付处理。VRM（Vehicle Route Management）系统优化了技术人员的行驶路线。这些技术工具提升了运营效率，但竞争对手也在投资类似技术，因此技术优势是暂时的而非持久的。
+        </div>
+
+        <h3>5.4 护城河可持续性评估</h3>
+        <div class="highlight">
+            <p><strong>整体评估：护城河中等偏宽</strong></p>
+            <ul>
+                <li>品牌和路线密度是Rollins最持久的竞争优势，在可预见的未来不会被侵蚀</li>
+                <li>收购整合能力在高度分散的行业中是结构性优势</li>
+                <li>主要风险：行业进入壁垒低（"一人一卡车"即可开业），价格敏感客户可能被低价竞争者抢走</li>
+                <li>AI对害虫防治行业的冲击有限——"虫子不关心AI，还是得有人开着卡车到你家来喷药"</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- 六、利润分配分析 -->
+    <div class="info-box">
+        <h2>六、利润分配分析（过去十年）</h2>
+
+        <h3>6.1 年度利润分配明细</h3>
+        <table>
+            <tr>
+                <th>年度</th>
+                <th>净利润($M)</th>
+                <th>派息($M)</th>
+                <th>回购($M)</th>
+                <th>扩张CapEx($M)</th>
+                <th>收购($M)</th>
+                <th>偿还债务($M)</th>
+                <th>留存金额($M)</th>
+                <th>留存比率</th>
+            </tr>
+            <tr>
+                <td>2015</td>
+                <td>152</td>
+                <td>82</td>
+                <td>0</td>
+                <td>16</td>
+                <td>~30</td>
+                <td>0</td>
+                <td>70</td>
+                <td>46%</td>
+            </tr>
+            <tr>
+                <td>2016</td>
+                <td>167</td>
+                <td>85</td>
+                <td>0</td>
+                <td>17</td>
+                <td>~60</td>
+                <td>0</td>
+                <td>82</td>
+                <td>49%</td>
+            </tr>
+            <tr>
+                <td>2017</td>
+                <td>179</td>
+                <td>89</td>
+                <td>0</td>
+                <td>18</td>
+                <td>~80</td>
+                <td>0</td>
+                <td>90</td>
+                <td>50%</td>
+            </tr>
+            <tr>
+                <td>2018</td>
+                <td>231</td>
+                <td>94</td>
+                <td>0</td>
+                <td>20</td>
+                <td>~120</td>
+                <td>0</td>
+                <td>137</td>
+                <td>59%</td>
+            </tr>
+            <tr>
+                <td>2019</td>
+                <td>203</td>
+                <td>103</td>
+                <td>0</td>
+                <td>22</td>
+                <td>~200</td>
+                <td>0</td>
+                <td>100</td>
+                <td>49%</td>
+            </tr>
+            <tr>
+                <td>2020</td>
+                <td>266</td>
+                <td>111</td>
+                <td>0</td>
+                <td>22</td>
+                <td>~150</td>
+                <td>0</td>
+                <td>155</td>
+                <td>58%</td>
+            </tr>
+            <tr>
+                <td>2021</td>
+                <td>356</td>
+                <td>126</td>
+                <td>0</td>
+                <td>24</td>
+                <td>~250</td>
+                <td>0</td>
+                <td>230</td>
+                <td>65%</td>
+            </tr>
+            <tr>
+                <td>2022</td>
+                <td>368</td>
+                <td>146</td>
+                <td>0</td>
+                <td>25</td>
+                <td>~180</td>
+                <td>0</td>
+                <td>222</td>
+                <td>60%</td>
+            </tr>
+            <tr>
+                <td>2023</td>
+                <td>434</td>
+                <td>264</td>
+                <td>0</td>
+                <td>26</td>
+                <td>~200</td>
+                <td>0</td>
+                <td>170</td>
+                <td>39%</td>
+            </tr>
+            <tr>
+                <td>2024</td>
+                <td>466</td>
+                <td>298</td>
+                <td>0</td>
+                <td>28</td>
+                <td>~310</td>
+                <td>0</td>
+                <td>168</td>
+                <td>36%</td>
+            </tr>
+            <tr>
+                <td>2025</td>
+                <td>527</td>
+                <td>328</td>
+                <td>~200</td>
+                <td>28</td>
+                <td>~310</td>
+                <td>0</td>
+                <td>199</td>
+                <td>38%</td>
+            </tr>
+        </table>
+
+        <h3>6.2 利润分配分析</h3>
+        <div class="highlight">
+            <h4>股息为主、回购为辅的回馈策略</h4>
+            <ul>
+                <li><strong>持续派息</strong>：Rollins已连续多年派发股息，2025年派息$3.28亿，占净利润的62%</li>
+                <li><strong>股息增长</strong>：过去4年股息年均增长约15.6%，从2021年的$0.42/股增至2025年的$0.68/股</li>
+                <li><strong>回购历史</strong>：Rollins自2013年起累计回购2.68亿股（占原股本的46.5%），总花费$233亿。但近年回购力度减小，2025年回购约$2亿</li>
+                <li><strong>留存比率</strong>：近年约36-49%，留存资金主要用于收购扩张</li>
+            </ul>
+
+            <h4>资本配置质量评估</h4>
+            <ul>
+                <li><strong>优秀</strong>：收购策略纪律性强，2023-2025年完成94笔收购，整合效果良好</li>
+                <li><strong>优秀</strong>：股息持续增长，体现管理层对现金流的信心</li>
+                <li><strong>一般</strong>：2025年商誉达$14亿，占总资产44%，收购溢价较高</li>
+                <li><strong>关注</strong>：收购融资增加了债务，利息支出上升对利润率构成压力</li>
+                <li><strong>可持续增长率</strong>：ROE(39%) x 留存比率(38%) ≈ 14.8%，理论可持续增长率较高</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- 七、投资总结 -->
+    <div class="info-box">
+        <h2>七、投资总结</h2>
+
+        <h3>7.1 各维度评分</h3>
+        <table>
+            <tr>
+                <th>维度</th>
+                <th>评分</th>
+                <th>说明</th>
+            </tr>
+            <tr>
+                <td>业务可理解性</td>
+                <td><span class="star">&#9733;&#9733;&#9733;&#9733;&#9733;</span> 5/5</td>
+                <td>害虫防治是最容易理解的生意之一——有人打电话，你派人去杀虫，定期收钱</td>
+            </tr>
+            <tr>
+                <td>护城河宽度</td>
+                <td><span class="star">&#9733;&#9733;&#9733;&#9733;</span> 4/5</td>
+                <td>品牌+路线密度+收购整合能力构成中等偏宽的护城河，但行业进入壁垒低是弱点</td>
+            </tr>
+            <tr>
+                <td>资本配置能力</td>
+                <td><span class="star">&#9733;&#9733;&#9733;&#9733;</span> 4/5</td>
+                <td>收购纪律性强，股息持续增长，但商誉占比高和收购溢价需关注</td>
+            </tr>
+            <tr>
+                <td>财务安全性</td>
+                <td><span class="star">&#9733;&#9733;&#9733;&#9733;</span> 4/5</td>
+                <td>资产负债率~33%，经营现金流强劲（$6.78亿），但流动比率偏低（0.6）</td>
+            </tr>
+            <tr>
+                <td>增长前景</td>
+                <td><span class="star">&#9733;&#9733;&#9733;&#9733;</span> 4/5</td>
+                <td>行业高度分散提供收购空间，有机增长7%+收购增长4%，但劳动力成本上升是挑战</td>
+            </tr>
+            <tr>
+                <td>估值吸引力</td>
+                <td><span class="star">&#9733;&#9733;</span> 2/5</td>
+                <td>PE~43倍，EV/EBITDA~35倍，虽从高位回落但仍属溢价估值，安全边际不足</td>
+            </tr>
+        </table>
+
+        <h3>7.2 与行业同行估值比较</h3>
+        <table>
+            <tr>
+                <th>公司</th>
+                <th>PE (TTM)</th>
+                <th>EV/EBITDA</th>
+                <th>毛利率</th>
+                <th>营业利润率</th>
+                <th>ROE</th>
+            </tr>
+            <tr>
+                <td><strong>Rollins (ROL)</strong></td>
+                <td>~43x</td>
+                <td>~35x</td>
+                <td>49.4%</td>
+                <td>19.3%</td>
+                <td>39%</td>
+            </tr>
+            <tr>
+                <td>Rentokil Initial (RTO.L)</td>
+                <td>~28x</td>
+                <td>~16x</td>
+                <td>~55%</td>
+                <td>~15%</td>
+                <td>~12%</td>
+            </tr>
+            <tr>
+                <td>Ecolab (ECL)</td>
+                <td>~34x</td>
+                <td>~22x</td>
+                <td>~52%</td>
+                <td>~17%</td>
+                <td>~20%</td>
+            </tr>
+            <tr>
+                <td>Cintas (CTAS)</td>
+                <td>~36x</td>
+                <td>~26x</td>
+                <td>~48%</td>
+                <td>~22%</td>
+                <td>~35%</td>
+            </tr>
+            <tr>
+                <td>行业平均</td>
+                <td>~26x</td>
+                <td>~18x</td>
+                <td>~45%</td>
+                <td>~15%</td>
+                <td>~15%</td>
+            </tr>
+        </table>
+        <p><strong>说明</strong>：Rollins的估值显著高于行业平均和直接竞争对手Rentokil，反映了市场对其经常性收入模式、高ROE和持续增长的溢价认可。但从价值投资角度看，当前估值缺乏安全边际。</p>
+
+        <h3>7.3 关键风险</h3>
+        <div class="risk-item">
+            <strong>1. 估值风险</strong><br>
+            PE~43倍的估值意味着任何增长不及预期都会导致股价大幅回调。2026年以来股价已从$66高位下跌约28%，部分原因就是估值压缩。
+        </div>
+        <div class="risk-item">
+            <strong>2. 劳动力成本上升</strong><br>
+            劳动力约占成本的50%，技术人员工资每年上涨4-5%。害虫防治技术员需要执照和体力，与HVAC、电工等更高薪的行业争夺人才。AI无法替代"有人到你家来喷药"这个物理动作。
+        </div>
+        <div class="risk-item">
+            <strong>3. 收购整合风险</strong><br>
+            商誉$14亿占总资产44%。如果收购后的客户留存率低于预期，可能面临商誉减值。此外，收购融资增加了债务和利息支出。
+        </div>
+        <div class="risk-item">
+            <strong>4. 行业进入壁垒低</strong><br>
+            "任何人只要有卡车、化学品和执照就能开业"——这是Rollins面临的结构性挑战。虽然小型公司在服务质量和品牌上无法与Rollins竞争，但它们在价格敏感客户群体中构成威胁。
+        </div>
+        <div class="risk-item">
+            <strong>5. 管理层交接风险</strong><br>
+            CFO Ken Krause于2026年离任，由Will Harkins接替。虽然管理层表示"战略方向不变"，但关键财务负责人更替仍需观察。
+        </div>
+
+        <h3>7.4 关键催化剂</h3>
+        <div class="moat-item">
+            <strong>1. 行业持续整合</strong><br>
+            美国害虫防治行业前5名仅占30%份额，Rollins作为最活跃的收购者，有望持续通过收购扩大市场份额。小型公司创始人在退休时更愿意卖给Rollins。
+        </div>
+        <div class="moat-item">
+            <strong>2. 商业业务扩张</strong><br>
+            2024年成立Orkin商业事业部，专注B2B市场。商业客户合同更长、利润率更高、转换成本更大，是Rollins增长最快的板块。
+        </div>
+        <div class="moat-item">
+            <strong>3. 技术驱动的效率提升</strong><br>
+            BOSS系统、VRM路线优化、智能陷阱等数字化工具可以提升每个技术人员每天的服务站数。AI路线优化可帮助每人每天多服务1-2个客户，在劳动力成本持续上升的环境下意义重大。
+        </div>
+        <div class="moat-item">
+            <strong>4. 气候变化扩大市场</strong><br>
+            气候变暖可能扩大白蚁和害虫的活动范围，增加防治需求。城市化扩张也使人类与野生动物的接触更频繁，推动野生动物防治需求。
+        </div>
+
+        <h3>7.5 投资评级</h3>
+        <div class="highlight">
+            <p><strong>基本面评分：4/5（优秀）</strong></p>
+            <p>Rollins是一家"类债券"型企业：超过80%的经常性收入、连续24年营收正增长、高ROE（39%）、抗周期性强。害虫防治是人类社会永恒的需求——"虫子不关心经济衰退，也不关心AI"。品牌和路线密度构成了中等偏宽的护城河。从业务质量角度看，这是一家巴菲特会欣赏的"简单、可预测、有护城河"的企业。</p>
+
+            <p><strong>价格评分：2/5（偏贵）</strong></p>
+            <p>当前PE约43倍，EV/EBITDA约35倍，虽从2025年末的55倍PE回落，但仍远高于合理估值水平。按照格雷厄姆-多德的安全边际原则，当前价格缺乏足够的保护。理想买入价位应在PE 30倍以下（对应股价约$33），此时才能获得足够的安全边际。但考虑到Rollins的"类债券"属性和持续增长，PE 35倍（对应股价约$38）可能是更现实的合理买入点。</p>
+
+            <p><strong>综合评级：观望/等待更好价格</strong></p>
+            <p>Rollins是一家出色的"收费桥梁"型企业——害虫问题不会消失，客户持续付费，收入可预测。但好公司不等于好投资。正如芒格所言："投资的关键不在于评估一个行业能多大程度影响社会，而在于这家公司的竞争优势能持续多久。"Rollins的竞争优势确实持久，但当前估值已经充分反映了这一点。建议投资者耐心等待市场给出更好的入场机会，如PE回落至35倍以下时积极建仓。</p>
+        </div>
+    </div>
+
+    <!-- 数据来源 -->
+    <div class="info-box">
+        <h2>数据来源</h2>
+        <ul>
+            <li>Rollins, Inc. 2025年10-K年报及Q4 2025财报新闻稿</li>
+            <li>Rollins 2024 Annual Report（公司官网）</li>
+            <li>Wisesheets - ROE历史数据（2016-2025年）</li>
+            <li>HistoricalPERatio.com - PE比率历史数据</li>
+            <li>CompaniesMarketCap - 年末PE比率数据</li>
+            <li>Macrotrends - 财务比率历史数据</li>
+            <li>Kabutan (us.kabutan.jp) - 年度营收、利润、ROE、ROA数据</li>
+            <li>DCF-Model VRIO Analysis - 市场份额与业务分析</li>
+            <li>Moatifi - 护城河分析与AI影响评估</li>
+            <li>Quartr - Rollins公司历史深度分析</li>
+            <li>StockAnalysis.com - 估值与财务数据</li>
+            <li>Fox Business / Nasdaq - 最新股价与市场数据</li>
+            <li>Rollins Share Repurchase Summary Q3 2025 - 回购历史数据</li>
+        </ul>
+        <p><strong>最后更新</strong>：2026年6月19日</p>
+    </div>
+
+    <script>
+        const roeData = {
+            labels: ['2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025'],
+            datasets: [{
+                label: 'ROE (%)',
+                data: [29.03, 29.44, 27.39, 32.54, 24.93, 28.34, 32.09, 29.09, 37.64, 35.05, 38.94],
+                borderColor: 'rgba(75, 192, 192, 1)',
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderWidth: 2,
+                tension: 0.3,
+                fill: true
+            }]
+        };
+
+        const debtData = {
+            labels: ['2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025'],
+            datasets: [{
+                label: '资产负债率 (%)',
+                data: [5, 5, 5, 5, 32, 28, 24, 4, 30, 33, 33],
+                borderColor: 'rgba(255, 99, 132, 1)',
+                backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                borderWidth: 2,
+                tension: 0.3,
+                fill: true
+            }]
+        };
+
+        const peData = {
+            labels: ['2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025'],
+            datasets: [{
+                label: '市盈率 (P/E)',
+                data: [32.2, 39.4, 51.7, 46.6, 49.1, 69.5, 45.9, 47.6, 48.5, 47.9, 55.1],
+                borderColor: 'rgba(153, 102, 255, 1)',
+                backgroundColor: 'rgba(153, 102, 255, 0.2)',
+                borderWidth: 2,
+                tension: 0.3,
+                fill: true
+            }]
+        };
+
+        const equityRatioData = {
+            labels: ['2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025'],
+            datasets: [{
+                label: '产权比率 (资产/权益)',
+                data: [1.8, 1.8, 1.9, 1.7, 2.4, 2.3, 2.2, 1.8, 2.2, 2.4, 2.5],
+                borderColor: 'rgba(255, 159, 64, 1)',
+                backgroundColor: 'rgba(255, 159, 64, 0.2)',
+                borderWidth: 2,
+                tension: 0.3,
+                fill: true
+            }]
+        };
+
+        const revenueData = {
+            labels: ['2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025'],
+            datasets: [{
+                label: '营收 (亿美元)',
+                data: [14.85, 15.73, 16.73, 18.21, 20.15, 21.61, 24.24, 26.95, 30.73, 33.88, 37.61],
+                borderColor: 'rgba(75, 192, 192, 1)',
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderWidth: 2,
+                tension: 0.3,
+                fill: true
+            }, {
+                label: '净利润 (亿美元)',
+                data: [1.52, 1.67, 1.79, 2.31, 2.03, 2.66, 3.56, 3.68, 4.34, 4.66, 5.27],
+                borderColor: 'rgba(255, 99, 132, 1)',
+                backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                borderWidth: 2,
+                tension: 0.3,
+                fill: true
+            }]
+        };
+
+        const commonOptions = {
+            responsive: true,
+            plugins: {
+                legend: {
+                    display: true,
+                    position: 'bottom'
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        };
+
+        new Chart(document.getElementById('roeChart').getContext('2d'), {
+            type: 'line',
+            data: roeData,
+            options: {
+                ...commonOptions,
+                plugins: {
+                    ...commonOptions.plugins,
+                    title: {
+                        display: true,
+                        text: 'Rollins (ROL) 净资产利润率 (ROE) 趋势 (2015-2025)'
+                    }
+                }
+            }
+        });
+
+        new Chart(document.getElementById('debtChart').getContext('2d'), {
+            type: 'line',
+            data: debtData,
+            options: {
+                ...commonOptions,
+                plugins: {
+                    ...commonOptions.plugins,
+                    title: {
+                        display: true,
+                        text: 'Rollins (ROL) 资产负债率 趋势 (2015-2025)'
+                    }
+                }
+            }
+        });
+
+        new Chart(document.getElementById('peChart').getContext('2d'), {
+            type: 'line',
+            data: peData,
+            options: {
+                ...commonOptions,
+                plugins: {
+                    ...commonOptions.plugins,
+                    title: {
+                        display: true,
+                        text: 'Rollins (ROL) 市盈率 (P/E) 趋势 (2015-2025)'
+                    }
+                }
+            }
+        });
+
+        new Chart(document.getElementById('equityRatioChart').getContext('2d'), {
+            type: 'line',
+            data: equityRatioData,
+            options: {
+                ...commonOptions,
+                plugins: {
+                    ...commonOptions.plugins,
+                    title: {
+                        display: true,
+                        text: 'Rollins (ROL) 产权比率 趋势 (2015-2025)'
+                    }
+                }
+            }
+        });
+
+        new Chart(document.getElementById('revenueChart').getContext('2d'), {
+            type: 'line',
+            data: revenueData,
+            options: {
+                ...commonOptions,
+                plugins: {
+                    ...commonOptions.plugins,
+                    title: {
+                        display: true,
+                        text: 'Rollins (ROL) 收入与利润趋势 (2015-2025)'
+                    }
+                }
+            }
+        });
+
+        // Topbar scoring logic
+        let savedScores = JSON.parse(localStorage.getItem('rol_scores') || '{}');
+        function renderStars(n) { let s=''; for(let i=1;i<=5;i++) s+=i<=n?'<span class="on">&#9733;</span>':'<span class="off">&#9733;</span>'; return s; }
+        function scoreClass(n) { return n>=4?'s5':n>=3?'s4':n>=2?'s3':n>=1?'s2':'s1'; }
+        function initTopbar() {
+            const f=savedScores.f||0, p=savedScores.p||0;
+            document.getElementById('topbarFVal').textContent=f||'-'; document.getElementById('topbarFVal').className='topbar-score-val '+(f?scoreClass(f):'');
+            document.getElementById('topbarFStars').innerHTML=renderStars(f);
+            document.getElementById('topbarPVal').textContent=p||'-'; document.getElementById('topbarPVal').className='topbar-score-val '+(p?scoreClass(p):'');
+            document.getElementById('topbarPStars').innerHTML=renderStars(p);
+        }
+        function topbarEdit() {
+            document.getElementById('topbarFSel').style.display='inline'; document.getElementById('topbarPSel').style.display='inline';
+            document.getElementById('topbarFSel').value=savedScores.f||0; document.getElementById('topbarPSel').value=savedScores.p||0;
+            document.getElementById('topbarEditBtn').style.display='none'; document.getElementById('topbarSaveBtn').style.display='inline'; document.getElementById('topbarCancelBtn').style.display='inline';
+        }
+        function topbarSave() {
+            savedScores.f=parseInt(document.getElementById('topbarFSel').value); savedScores.p=parseInt(document.getElementById('topbarPSel').value);
+            localStorage.setItem('rol_scores',JSON.stringify(savedScores)); initTopbar(); topbarCancel();
+        }
+        function topbarCancel() {
+            document.getElementById('topbarFSel').style.display='none'; document.getElementById('topbarPSel').style.display='none';
+            document.getElementById('topbarEditBtn').style.display='inline'; document.getElementById('topbarSaveBtn').style.display='none'; document.getElementById('topbarCancelBtn').style.display='none';
+        }
+        initTopbar();
+    </script>
+</body>
+</html>

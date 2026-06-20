@@ -1,0 +1,931 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IDEXX Laboratories (IDXX) 价值投资分析</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body { font-family: 'Segoe UI', Arial, sans-serif; margin: 0; padding: 20px; background-color: #f0f2f5; color: #333; }
+        h1 { text-align: center; color: #1a5276; font-size: 2.2em; margin-bottom: 5px; }
+        h2 { color: #1a5276; border-bottom: 2px solid #2e86c1; padding-bottom: 8px; margin-top: 30px; }
+        h3 { color: #2c3e50; margin-top: 20px; }
+        .subtitle { text-align: center; color: #7f8c8d; font-size: 1.1em; margin-bottom: 30px; }
+        .info-box { background: white; border-radius: 10px; padding: 25px; margin: 20px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.08); }
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; background-color: white; }
+        th, td { padding: 10px 14px; text-align: left; border-bottom: 1px solid #e0e0e0; }
+        th { background-color: #1a5276; color: white; font-weight: bold; }
+        tr:nth-child(even) { background-color: #f8f9fa; }
+        tr:hover { background-color: #eaf2f8; }
+        .highlight { background: #fef9e7; border-left: 4px solid #2e86c1; padding: 15px 20px; margin: 15px 0; border-radius: 0 8px 8px 0; }
+        .chart-container { background: white; border-radius: 10px; padding: 25px; margin: 20px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.08); }
+        canvas { max-height: 400px; }
+        .tag { display: inline-block; background: #1a5276; color: white; padding: 3px 10px; border-radius: 12px; font-size: 0.85em; margin: 2px; }
+        .tag-green { background: #27ae60; }
+        .tag-orange { background: #e67e22; }
+        .tag-red { background: #c0392b; }
+        a { color: #1a5276; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        .fixed-topbar { position: fixed; top: 0; left: 0; right: 0; z-index: 9999; background: linear-gradient(135deg, #1a5276, #2e86c1); color: white; display: flex; align-items: center; justify-content: space-between; padding: 8px 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.15); height: 48px; }
+        .fixed-topbar a { color: white; text-decoration: none; font-size: 14px; font-weight: 600; }
+        .fixed-topbar a:hover { text-decoration: underline; }
+        .topbar-left { display: flex; align-items: center; gap: 12px; }
+        .topbar-right { display: flex; align-items: center; gap: 8px; }
+        .topbar-score-label { font-size: 12px; opacity: 0.85; }
+        .topbar-score-val { font-weight: 700; font-size: 15px; min-width: 18px; text-align: center; }
+        .topbar-score-val.s1 { color: #ff6b6b; } .topbar-score-val.s2 { color: #ffa94d; } .topbar-score-val.s3 { color: #ffd43b; } .topbar-score-val.s4 { color: #69db7c; } .topbar-score-val.s5 { color: #51cf66; }
+        .topbar-select { padding: 3px 8px; border: 1px solid rgba(255,255,255,0.4); border-radius: 6px; font-size: 12px; font-weight: 600; color: white; background: rgba(255,255,255,0.15); cursor: pointer; outline: none; }
+        .topbar-select:focus { border-color: rgba(255,255,255,0.7); }
+        .topbar-select option { color: #333; background: white; }
+        .topbar-select:disabled { opacity: 0.5; cursor: not-allowed; }
+        .topbar-btn { padding: 4px 12px; border: none; border-radius: 6px; font-size: 12px; font-weight: 600; cursor: pointer; transition: background 0.2s; }
+        .topbar-btn-edit { background: rgba(255,255,255,0.2); color: white; }
+        .topbar-btn-edit:hover { background: rgba(255,255,255,0.35); }
+        .topbar-btn-save { background: #27ae60; color: white; }
+        .topbar-btn-save:hover { background: #219a52; }
+        .topbar-btn-cancel { background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.7); }
+        .topbar-btn-cancel:hover { background: rgba(255,255,255,0.2); }
+        .topbar-stars { font-size: 11px; }
+        .topbar-stars .on { color: #f39c12; }
+        .topbar-stars .off { color: rgba(255,255,255,0.3); }
+        body { padding-top: 60px !important; }
+        .moat-item { background: white; border-radius: 8px; padding: 15px 20px; margin: 10px 0; box-shadow: 0 1px 5px rgba(0,0,0,0.05); border-left: 4px solid #2e86c1; }
+        .moat-item strong { color: #1a5276; }
+        .risk-item { background: white; border-radius: 8px; padding: 15px 20px; margin: 10px 0; box-shadow: 0 1px 5px rgba(0,0,0,0.05); border-left: 4px solid #c0392b; }
+        .star { color: #f39c12; }
+    </style>
+</head>
+<body>
+    <div class="fixed-topbar" id="fixedTopbar">
+        <div class="topbar-left">
+            <a href="index.html">&larr; 返回索引</a>
+            <span style="font-size:14px;font-weight:700;" id="topbarCode">IDXX</span>
+        </div>
+        <div class="topbar-right" id="topbarScores">
+            <span class="topbar-score-label">基本面</span>
+            <span class="topbar-score-val" id="topbarFVal">-</span>
+            <span class="topbar-stars" id="topbarFStars"></span>
+            <select class="topbar-select" id="topbarFSel" style="display:none;"><option value="0">-</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option></select>
+            <span class="topbar-score-label" style="margin-left:12px;">价格</span>
+            <span class="topbar-score-val" id="topbarPVal">-</span>
+            <span class="topbar-stars" id="topbarPStars"></span>
+            <select class="topbar-select" id="topbarPSel" style="display:none;"><option value="0">-</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option></select>
+            <button class="topbar-btn topbar-btn-edit" id="topbarEditBtn" onclick="topbarEdit()">修改</button>
+            <button class="topbar-btn topbar-btn-save" id="topbarSaveBtn" onclick="topbarSave()" style="display:none;">保存</button>
+            <button class="topbar-btn topbar-btn-cancel" id="topbarCancelBtn" onclick="topbarCancel()" style="display:none;">取消</button>
+        </div>
+    </div>
+
+    <h1>IDEXX Laboratories 爱德士 (NASDAQ: IDXX)</h1>
+    <p class="subtitle">巴菲特/芒格式价值投资基本面分析 | 更新日期：2026年6月</p>
+
+    <!-- 一、公司基本信息 -->
+    <div class="info-box">
+        <h2>一、公司基本信息</h2>
+        <table>
+            <tr><td>公司全称</td><td>IDEXX Laboratories, Inc.（爱德士实验室公司）</td></tr>
+            <tr><td>股票代码</td><td>NASDAQ: IDXX</td></tr>
+            <tr><td>市值</td><td>约440亿美元（2026年6月）</td></tr>
+            <tr><td>企业价值（EV）</td><td>约455亿美元（净债务约$15亿）</td></tr>
+            <tr><td>成立时间</td><td>1983年12月19日，由David Evans Shaw创立</td></tr>
+            <tr><td>公司总部</td><td>美国缅因州韦斯特布鲁克（Westbrook, ME）</td></tr>
+            <tr><td>最新收盘价</td><td>约$546（2026年6月中旬）</td></tr>
+            <tr><td>52周区间</td><td>$428 - $770</td></tr>
+            <tr><td>CEO</td><td>Jay Mazelsky（即将于2026年交棒给Michael Erickson）</td></tr>
+            <tr><td>CFO</td><td>Andrew Emerson</td></tr>
+            <tr><td>员工人数</td><td>约11,000人</td></tr>
+            <tr><td>行业</td><td>动物保健 / 兽医诊断</td></tr>
+            <tr><td>流通股数</td><td>约7,900万股</td></tr>
+            <tr><td>股息</td><td>无（IDEXX不派发股息，全部通过回购回馈股东）</td></tr>
+            <tr><td>IPO时间</td><td>1991年6月21日</td></tr>
+            <tr><td>全球覆盖</td><td>175+国家</td></tr>
+        </table>
+    </div>
+
+    <!-- 二、业务分析 -->
+    <div class="info-box">
+        <h2>二、业务分析</h2>
+
+        <h3>2.1 公司业务概述（通俗解释）</h3>
+        <div class="highlight">
+            <p><strong>IDEXX到底是干什么的？</strong></p>
+            <p>IDEXX是全球最大的兽医诊断公司，成立于1983年，总部位于美国缅因州。简单来说，当你的宠物去动物医院看病时，兽医用来检测宠物血液、尿液、传染病的那台仪器和配套的试剂，大概率就是IDEXX的产品。</p>
+            <p><strong>1. 伴侣动物诊断（核心业务）</strong> —— 为宠物医院提供"诊断全家桶"：院内快速检测仪器+耗材、外部参考实验室服务、兽医管理软件。就像打印机厂商卖打印机，靠墨盒赚钱一样——IDEXX把仪器放进诊所，靠持续销售检测试剂耗材赚钱。</p>
+            <p><strong>2. 水质检测</strong> —— 为自来水厂、环保机构提供快速检测水中细菌（如大肠杆菌）的试剂盒，确保饮用水安全。</p>
+            <p><strong>3. 畜禽诊断</strong> —— 为养殖场提供检测牛、猪、鸡等畜禽疾病的工具，保障食品安全和养殖效率。</p>
+        </div>
+
+        <h3>2.2 主要业务板块及营收占比（2025财年）</h3>
+        <table>
+            <tr>
+                <th>业务板块</th>
+                <th>营收（2025）</th>
+                <th>占总营收比</th>
+                <th>同比增长</th>
+                <th>特点</th>
+            </tr>
+            <tr>
+                <td><strong>伴侣动物组（CAG）</strong></td>
+                <td>约$38.6亿</td>
+                <td>~89.7%</td>
+                <td>+10%</td>
+                <td>绝对核心，"剃须刀+刀片"模式驱动经常性收入</td>
+            </tr>
+            <tr>
+                <td><strong>水质检测（Water）</strong></td>
+                <td>约$1.8亿</td>
+                <td>~4.2%</td>
+                <td>+12%</td>
+                <td>利基市场领导者，增长稳定</td>
+            </tr>
+            <tr>
+                <td><strong>畜禽诊断（LPD）</strong></td>
+                <td>约$1.6亿</td>
+                <td>~3.7%</td>
+                <td>持平</td>
+                <td>周期性业务，受养殖行业景气度影响</td>
+            </tr>
+            <tr>
+                <td><strong>其他</strong></td>
+                <td>约$1.0亿</td>
+                <td>~2.4%</td>
+                <td>-</td>
+                <td>人类医疗诊断技术授权</td>
+            </tr>
+        </table>
+
+        <h3>2.3 CAG业务细分（核心中的核心）</h3>
+        <table>
+            <tr>
+                <th>CAG子业务</th>
+                <th>说明</th>
+                <th>增长驱动</th>
+            </tr>
+            <tr>
+                <td><strong>CAG诊断经常性收入</strong></td>
+                <td>VetLab耗材+参考实验室服务+快速检测，占CAG收入约85%</td>
+                <td>装机量增长+诊断频率提升+宠物老龄化</td>
+            </tr>
+            <tr>
+                <td><strong>兽医软件与服务</strong></td>
+                <td>Nebo信息管理系统、PIMS软件、诊断成像</td>
+                <td>SaaS模式，增加客户粘性</td>
+            </tr>
+            <tr>
+                <td><strong>仪器销售</strong></td>
+                <td>Catalyst One、SediVue Dx、inVue Dx等</td>
+                <td>新装机+升级换代，锁定后续耗材收入</td>
+            </tr>
+        </table>
+
+        <h3>2.4 地域分布</h3>
+        <table>
+            <tr>
+                <th>地区</th>
+                <th>营收占比</th>
+                <th>特点</th>
+            </tr>
+            <tr>
+                <td>美国</td>
+                <td>约60%</td>
+                <td>最大市场，CAG诊断经常性收入增长9%（2025年）</td>
+            </tr>
+            <tr>
+                <td>国际</td>
+                <td>约40%</td>
+                <td>增长更快（17%报告增长），渗透率提升空间大</td>
+            </tr>
+        </table>
+
+        <h3>2.5 商业模式：经典的"剃须刀+刀片"模式</h3>
+        <div class="highlight">
+            <p>IDEXX的核心商业模式是<strong>"剃须刀+刀片"</strong>（Razor-and-Blade）：</p>
+            <ul>
+                <li><strong>剃须刀（仪器）</strong>：通过IDEXX 360等客户承诺计划，将诊断仪器以免费或折扣价放入宠物医院，换取多年耗材采购承诺</li>
+                <li><strong>刀片（耗材+服务）</strong>：诊所每次做检测都需要消耗试剂，产生持续、可预测的经常性收入</li>
+                <li><strong>结果</strong>：CAG诊断经常性收入占总收入约75%，毛利率高达60%+，客户留存率极高</li>
+            </ul>
+            <p>2025年，IDEXX全球高端仪器装机量同比增长12%，全年放置了超过6,400台inVue Dx仪器，远超预期目标。</p>
+        </div>
+    </div>
+
+    <!-- 三、业务板块产品竞争力分析 -->
+    <div class="info-box">
+        <h2>三、业务板块产品竞争力分析</h2>
+
+        <h3>3.1 伴侣动物诊断（CAG）产品竞争力分析</h3>
+
+        <p><strong>1. 可替代性：<span class="tag tag-green">极低</span></strong></p>
+        <ul>
+            <li><strong>主要替代品</strong>：Zoetis的VetScan系列、Heska/Antech的Element系列、BioNote的Vcheck快速检测</li>
+            <li><strong>替代体验差距</strong>：IDEXX的SNAP快速检测和Catalyst生化分析仪在准确性和速度上具有明显优势；参考实验室的病理学数据库规模远超竞争对手</li>
+            <li><strong>替代趋势</strong>：稳定。IDEXX持续推出新产品（如Cancer Dx犬类淋巴瘤检测、Cystatin B早期肾损伤检测），扩大领先优势</li>
+        </ul>
+
+        <p><strong>2. 客户转换成本：<span class="tag tag-green">极高</span></strong></p>
+        <ul>
+            <li><strong>财务转换成本</strong>：更换仪器需要重新培训员工、学习新系统操作，且现有IDEXX 360合同通常有最低采购承诺，提前退出有违约金</li>
+            <li><strong>时间转换成本</strong>：兽医团队已熟悉IDEXX仪器操作流程和软件界面，更换意味着数周的适应期和效率下降</li>
+            <li><strong>捆绑转换成本</strong>：IDEXX提供从仪器、耗材、参考实验室到管理软件的"一站式"解决方案，更换意味着整个诊断生态系统的重建</li>
+            <li><strong>数据转换成本</strong>：历史检测数据存储在IDEXX Nebo系统中，迁移至新平台存在技术壁垒和风险</li>
+            <li><strong>整体评估</strong>：一旦诊所采用IDEXX生态系统，更换成本远超潜在节省，客户几乎不会主动切换</li>
+        </ul>
+
+        <p><strong>3. 定价权：<span class="tag tag-green">极强</span></strong></p>
+        <ul>
+            <li><strong>历史提价记录</strong>：过去5-10年，IDEXX每年稳定提价3-5%，远超通胀水平</li>
+            <li><strong>提价vs通胀</strong>：价格增长持续跑赢CPI，且客户流失率极低</li>
+            <li><strong>定价权来源</strong>：高转换成本+品牌信任+诊断结果准确性对宠物健康至关重要（价格敏感度低）</li>
+            <li><strong>定价权趋势</strong>：稳定偏强。新推出的Cancer Dx和inVue Dx进一步增强了产品差异化</li>
+            <li><strong>巴菲特测试</strong>：如果IDEXX提价10%，绝大多数诊所不会更换——因为诊断准确性关乎宠物生命和诊所声誉，远比试剂价格重要</li>
+        </ul>
+
+        <p><strong>CAG整体竞争力评级：<span class="star">&#9733;&#9733;&#9733;&#9733;&#9733;</span> 5/5星</strong></p>
+
+        <hr style="margin: 20px 0;">
+
+        <h3>3.2 水质检测（Water）产品竞争力分析</h3>
+
+        <p><strong>1. 可替代性：<span class="tag tag-orange">中等</span></strong></p>
+        <ul>
+            <li><strong>主要替代品</strong>：传统培养法、其他商业检测试剂盒（如BioMérieux）、分子生物学方法（PCR）</li>
+            <li><strong>替代体验差距</strong>：IDEXX的Colilert和Enterolert试剂盒在速度（24小时vs传统48-72小时）和易用性上有优势，但传统方法仍被许多监管机构认可</li>
+            <li><strong>替代趋势</strong>：稳定。IDEXX产品已被纳入多国标准方法，但分子检测技术可能构成长期威胁</li>
+        </ul>
+
+        <p><strong>2. 客户转换成本：<span class="tag tag-orange">中等</span></strong></p>
+        <ul>
+            <li><strong>财务转换成本</strong>：试剂盒本身价格不高，更换成本低</li>
+            <li><strong>法规转换成本</strong>：IDEXX方法已被EPA和多个国际标准机构认证，更换方法需要重新获得监管批准，流程繁琐</li>
+            <li><strong>整体评估</strong>：法规认证提供了一定转换壁垒，但不如CAG业务那么牢固</li>
+        </ul>
+
+        <p><strong>3. 定价权：<span class="tag tag-orange">中等</span></strong></p>
+        <ul>
+            <li><strong>历史提价记录</strong>：温和提价，通常跟随通胀</li>
+            <li><strong>定价权来源</strong>：主要来自法规认证壁垒和品牌认可</li>
+            <li><strong>巴菲特测试</strong>：提价10%可能导致部分价格敏感客户转向传统方法</li>
+        </ul>
+
+        <p><strong>Water整体竞争力评级：<span class="star">&#9733;&#9733;&#9733;</span> 3/5星</strong></p>
+
+        <hr style="margin: 20px 0;">
+
+        <h3>3.3 畜禽诊断（LPD）产品竞争力分析</h3>
+
+        <p><strong>1. 可替代性：<span class="tag tag-orange">中等</span></strong></p>
+        <ul>
+            <li><strong>主要替代品</strong>：Thermo Fisher的PCR方案、Neogen的检测试剂盒、BioNote的快速检测</li>
+            <li><strong>替代体验差距</strong>：IDEXX在ELISA快速检测方面有优势，但竞争对手在分子诊断领域实力更强</li>
+            <li><strong>替代趋势</strong>：加速。PCR等分子诊断技术逐步替代传统ELISA方法</li>
+        </ul>
+
+        <p><strong>2. 客户转换成本：<span class="tag tag-red">低</span></strong></p>
+        <ul>
+            <li><strong>财务转换成本</strong>：试剂盒单价低，更换成本低</li>
+            <li><strong>时间转换成本</strong>：操作简单，培训成本低</li>
+            <li><strong>整体评估</strong>：客户对价格更敏感，转换壁垒较低</li>
+        </ul>
+
+        <p><strong>3. 定价权：<span class="tag tag-red">弱</span></strong></p>
+        <ul>
+            <li><strong>定价权来源</strong>：有限，主要靠品牌和便利性</li>
+            <li><strong>巴菲特测试</strong>：提价10%可能导致客户转向更便宜的替代品</li>
+        </ul>
+
+        <p><strong>LPD整体竞争力评级：<span class="star">&#9733;&#9733;</span> 2/5星</strong></p>
+    </div>
+
+    <!-- 四、历史财务指标 -->
+    <div class="chart-container">
+        <h2>四、历史财务指标 (2015-2025)</h2>
+
+        <h3>4.1 净资产利润率 (ROE) 趋势</h3>
+        <p><strong>说明</strong>：IDEXX的ROE在2015-2018年间因负股东权益（大量回购导致）而出现极端值。2019年后股东权益转正，ROE回归正常高水平。2025年ROE约66%，远超行业平均，体现了极强的盈利能力。但需注意：如此高的ROE部分源于低股东权益基数（持续回购导致），并非纯粹的经营杠杆。</p>
+        <canvas id="roeChart"></canvas>
+
+        <h3>4.2 资产负债率 趋势</h3>
+        <p><strong>说明</strong>：IDEXX的资产负债率保持在30%以下，财务状况稳健。2023年主动偿还债务以应对高利率环境，2024-2025年恢复回购节奏。</p>
+        <canvas id="debtChart"></canvas>
+
+        <h3>4.3 市盈率 (P/E) 趋势</h3>
+        <p><strong>说明</strong>：IDEXX长期享有溢价估值，5年平均PE约51倍。2024年PE一度降至38倍（近年低点），2025年回升至51倍。当前PE约40倍，低于5年均值，但仍远高于市场平均。</p>
+        <canvas id="peChart"></canvas>
+
+        <h3>4.4 产权比率（资产/权益）趋势</h3>
+        <p><strong>说明</strong>：产权比率反映财务杠杆水平。IDEXX的产权比率在1.5-3.5之间波动，2025年约1.7倍，杠杆水平适中。</p>
+        <canvas id="equityRatioChart"></canvas>
+    </div>
+
+    <div class="chart-container">
+        <h2>四（续）、收入与利润趋势 (2015-2025)</h2>
+        <p><strong>说明</strong>：IDEXX收入从2015年的16亿美元增长至2025年的43亿美元，10年CAGR约10.2%。净利润从1.92亿美元增长至10.59亿美元，10年CAGR约18.6%。</p>
+        <canvas id="revenueChart"></canvas>
+    </div>
+
+    <!-- 五、竞争分析 -->
+    <div class="info-box">
+        <h2>五、竞争分析与护城河</h2>
+
+        <h3>5.1 主要竞争对手</h3>
+        <table>
+            <tr>
+                <th>公司名称</th>
+                <th>竞争领域</th>
+                <th>市场份额</th>
+                <th>特点</th>
+            </tr>
+            <tr>
+                <td><strong>Zoetis (ZTS)</strong></td>
+                <td>兽医诊断+动物药品</td>
+                <td>全球兽医诊断~18%</td>
+                <td>动物保健行业龙头，诊断+药品双轮驱动，但诊断业务规模远小于IDEXX</td>
+            </tr>
+            <tr>
+                <td><strong>Antech/Mars Petcare</strong></td>
+                <td>参考实验室服务</td>
+                <td>北美实验室~23%</td>
+                <td>背靠Mars宠物生态，2025年整合Heska硬件后实力增强</td>
+            </tr>
+            <tr>
+                <td><strong>Thermo Fisher (TMO)</strong></td>
+                <td>分子诊断/PCR</td>
+                <td>兽医传染病~12%</td>
+                <td>科学仪器巨头，在分子诊断领域技术领先，但专注度不如IDEXX</td>
+            </tr>
+            <tr>
+                <td><strong>Virbac</strong></td>
+                <td>兽医诊断+药品</td>
+                <td>全球~7%</td>
+                <td>法国公司，在欧洲和新兴市场有较强布局</td>
+            </tr>
+            <tr>
+                <td><strong>Neogen</strong></td>
+                <td>食品安全/畜禽检测</td>
+                <td>~5%</td>
+                <td>专注食品安全检测，与IDEXX在LPD领域竞争</td>
+            </tr>
+            <tr>
+                <td><strong>BioNote</strong></td>
+                <td>快速检测</td>
+                <td>~5%</td>
+                <td>韩国公司，以价格优势在亚太市场获取份额</td>
+            </tr>
+        </table>
+
+        <h3>5.2 IDEXX市场份额</h3>
+        <div class="highlight">
+            <ul>
+                <li><strong>全球兽医诊断市场</strong>：IDEXX占据约31%的市场份额，是绝对的行业领导者</li>
+                <li><strong>伴侣动物诊断</strong>：在北美院内诊断市场占有率超过50%</li>
+                <li><strong>水质微生物检测</strong>：在饮用水检测领域是标准制定者之一</li>
+                <li><strong>畜禽诊断</strong>：约24%市场份额，但面临更大竞争压力</li>
+            </ul>
+        </div>
+
+        <h3>5.3 护城河分析</h3>
+
+        <div class="moat-item">
+            <strong>1. 转换成本护城河（极强）</strong><br>
+            IDEXX的"剃须刀+刀片"模式创造了极高的客户转换成本。一旦诊所采用IDEXX生态系统（仪器+耗材+软件+参考实验室），更换意味着：重新培训员工、重建工作流程、迁移历史数据、可能违反长期合同。这种转换成本使得客户几乎不会主动离开。
+        </div>
+
+        <div class="moat-item">
+            <strong>2. 规模经济护城河（强）</strong><br>
+            IDEXX拥有全球最大的兽医参考实验室网络和病理学数据库。更多的检测样本=更准确的数据库=更好的诊断建议=更多客户选择IDEXX，形成正向飞轮。竞争对手难以复制这一数据资产。
+        </div>
+
+        <div class="moat-item">
+            <strong>3. 品牌护城河（强）</strong><br>
+            在兽医诊断领域，IDEXX就是"金标准"。兽医对IDEXX品牌的信任度极高，这种信任建立在数十年一致的高质量检测结果之上。品牌效应使得新诊所更倾向于选择IDEXX而非不知名品牌。
+        </div>
+
+        <div class="moat-item">
+            <strong>4. 网络效应护城河（中等）</strong><br>
+            IDEXX的Nebo云平台连接了全球数万家诊所，形成了一个诊断数据网络。更多的诊所加入=更多的数据=更好的AI诊断算法=更准确的检测结果=更多诊所愿意加入。这种网络效应正在加强。
+        </div>
+
+        <div class="moat-item">
+            <strong>5. 专利/知识产权护城河（中等）</strong><br>
+            IDEXX拥有大量专利保护其检测技术和仪器设计，但兽医诊断领域的专利壁垒不如人类医药那么高。IDEXX更依赖持续创新而非专利保护来维持竞争优势。
+        </div>
+
+        <h3>5.4 护城河可持续性评估</h3>
+        <div class="highlight">
+            <p><strong>整体评估：护城河宽阔且在加宽</strong></p>
+            <ul>
+                <li>核心CAG业务的转换成本护城河在过去10年持续增强，IDEXX 360计划锁定了更多长期客户</li>
+                <li>新推出的inVue Dx和Cancer Dx进一步扩大了产品差异化</li>
+                <li>软件生态（Nebo）增加了数据层面的粘性</li>
+                <li>主要风险：大型企业集团（如Mars/Antech）的纵向整合可能改变竞争格局</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- 六、利润分配分析 -->
+    <div class="info-box">
+        <h2>六、利润分配分析（过去十年）</h2>
+
+        <h3>6.1 年度利润分配明细</h3>
+        <table>
+            <tr>
+                <th>年度</th>
+                <th>净利润($M)</th>
+                <th>派息($M)</th>
+                <th>回购($M)</th>
+                <th>扩张CapEx($M)</th>
+                <th>偿还债务($M)</th>
+                <th>留存金额($M)</th>
+                <th>留存比率</th>
+            </tr>
+            <tr>
+                <td>2015</td>
+                <td>192</td>
+                <td>0</td>
+                <td>377</td>
+                <td>69</td>
+                <td>0</td>
+                <td>192</td>
+                <td>100%</td>
+            </tr>
+            <tr>
+                <td>2016</td>
+                <td>222</td>
+                <td>0</td>
+                <td>312</td>
+                <td>78</td>
+                <td>0</td>
+                <td>222</td>
+                <td>100%</td>
+            </tr>
+            <tr>
+                <td>2017</td>
+                <td>263</td>
+                <td>0</td>
+                <td>278</td>
+                <td>83</td>
+                <td>0</td>
+                <td>263</td>
+                <td>100%</td>
+            </tr>
+            <tr>
+                <td>2018</td>
+                <td>377</td>
+                <td>0</td>
+                <td>378</td>
+                <td>88</td>
+                <td>0</td>
+                <td>377</td>
+                <td>100%</td>
+            </tr>
+            <tr>
+                <td>2019</td>
+                <td>428</td>
+                <td>0</td>
+                <td>312</td>
+                <td>96</td>
+                <td>0</td>
+                <td>428</td>
+                <td>100%</td>
+            </tr>
+            <tr>
+                <td>2020</td>
+                <td>582</td>
+                <td>0</td>
+                <td>200</td>
+                <td>105</td>
+                <td>0</td>
+                <td>582</td>
+                <td>100%</td>
+            </tr>
+            <tr>
+                <td>2021</td>
+                <td>745</td>
+                <td>0</td>
+                <td>771</td>
+                <td>112</td>
+                <td>0</td>
+                <td>745</td>
+                <td>100%</td>
+            </tr>
+            <tr>
+                <td>2022</td>
+                <td>679</td>
+                <td>0</td>
+                <td>822</td>
+                <td>115</td>
+                <td>0</td>
+                <td>679</td>
+                <td>100%</td>
+            </tr>
+            <tr>
+                <td>2023</td>
+                <td>845</td>
+                <td>0</td>
+                <td>83</td>
+                <td>130</td>
+                <td>~400</td>
+                <td>845</td>
+                <td>100%</td>
+            </tr>
+            <tr>
+                <td>2024</td>
+                <td>888</td>
+                <td>0</td>
+                <td>859</td>
+                <td>145</td>
+                <td>0</td>
+                <td>888</td>
+                <td>100%</td>
+            </tr>
+            <tr>
+                <td>2025</td>
+                <td>1,059</td>
+                <td>0</td>
+                <td>~1,200</td>
+                <td>~160</td>
+                <td>0</td>
+                <td>1,059</td>
+                <td>100%</td>
+            </tr>
+        </table>
+
+        <h3>6.2 利润分配分析</h3>
+        <div class="highlight">
+            <h4>回购为主、不派息的策略</h4>
+            <ul>
+                <li><strong>零派息</strong>：IDEXX从未派发过现金股息，所有利润回馈通过回购实现</li>
+                <li><strong>回购力度大</strong>：过去10年累计回购约$5.4B，2025年回购约$1.2B，占净利润的113%</li>
+                <li><strong>留存比率100%</strong>：按"回购算留存"原则，IDEXX的留存比率始终为100%（净利润-派息=留存）</li>
+                <li><strong>可持续增长率</strong>：ROE(66%) x 留存比率(100%) = 66%，理论可持续增长率极高</li>
+            </ul>
+
+            <h4>回购时机评估</h4>
+            <ul>
+                <li><strong>2015-2019年</strong>：回购均价$68-$249，远低于当前股价，回购时机极佳</li>
+                <li><strong>2021-2022年</strong>：回购均价$414-$588，部分回购发生在股价高位，时机一般</li>
+                <li><strong>2023年</strong>：仅回购$83M，主动偿还债务，体现了在高利率环境下的审慎资本配置</li>
+                <li><strong>2024-2025年</strong>：回购均价约$440-$506，股价从高位回落时加大回购力度，时机较好</li>
+            </ul>
+
+            <h4>资本配置质量评估</h4>
+            <ul>
+                <li><strong>优秀</strong>：2023年在高利率环境下优先偿债而非高价回购，体现了管理层的理性</li>
+                <li><strong>优秀</strong>：R&D投入占营收约5-6%，持续推动创新（Cancer Dx、inVue Dx等）</li>
+                <li><strong>一般</strong>：2021-2022年部分回购发生在估值高位，存在"追高"嫌疑</li>
+                <li><strong>整体</strong>：资本配置能力在同行中属于中上水平，但不如巴菲特理想中的"低估值时大额回购"</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- 七、投资总结 -->
+    <div class="info-box">
+        <h2>七、投资总结</h2>
+
+        <h3>7.1 各维度评分</h3>
+        <table>
+            <tr>
+                <th>维度</th>
+                <th>评分</th>
+                <th>说明</th>
+            </tr>
+            <tr>
+                <td>业务可理解性</td>
+                <td><span class="star">&#9733;&#9733;&#9733;&#9733;&#9733;</span> 5/5</td>
+                <td>"剃须刀+刀片"模式简单易懂，经常性收入可预测</td>
+            </tr>
+            <tr>
+                <td>护城河宽度</td>
+                <td><span class="star">&#9733;&#9733;&#9733;&#9733;&#9733;</span> 5/5</td>
+                <td>极高的转换成本+规模经济+品牌，CAG业务护城河宽阔且在加宽</td>
+            </tr>
+            <tr>
+                <td>资本配置能力</td>
+                <td><span class="star">&#9733;&#9733;&#9733;&#9733;</span> 4/5</td>
+                <td>2023年审慎偿债值得肯定，但2021-2022年部分高价回购扣分</td>
+            </tr>
+            <tr>
+                <td>财务安全性</td>
+                <td><span class="star">&#9733;&#9733;&#9733;&#9733;</span> 4/5</td>
+                <td>资产负债率~29%，利息覆盖倍数高，但ROE部分由低权益基数驱动</td>
+            </tr>
+            <tr>
+                <td>增长前景</td>
+                <td><span class="star">&#9733;&#9733;&#9733;&#9733;</span> 4/5</td>
+                <td>宠物老龄化+诊断频率提升+国际渗透率提升，但美国临床就诊量增速放缓</td>
+            </tr>
+            <tr>
+                <td>估值吸引力</td>
+                <td><span class="star">&#9733;&#9733;</span> 2/5</td>
+                <td>PE~40倍，EV/EBITDA~36倍，虽低于5年均值但仍属溢价估值，安全边际不足</td>
+            </tr>
+        </table>
+
+        <h3>7.2 与行业同行估值比较</h3>
+        <table>
+            <tr>
+                <th>公司</th>
+                <th>PE (TTM)</th>
+                <th>EV/EBITDA</th>
+                <th>毛利率</th>
+                <th>营业利润率</th>
+                <th>ROE</th>
+            </tr>
+            <tr>
+                <td><strong>IDEXX (IDXX)</strong></td>
+                <td>~40x</td>
+                <td>~36x</td>
+                <td>61.8%</td>
+                <td>31.6%</td>
+                <td>66%</td>
+            </tr>
+            <tr>
+                <td>Zoetis (ZTS)</td>
+                <td>~28x</td>
+                <td>~22x</td>
+                <td>67.5%</td>
+                <td>28.5%</td>
+                <td>62%</td>
+            </tr>
+            <tr>
+                <td>Thermo Fisher (TMO)</td>
+                <td>~30x</td>
+                <td>~20x</td>
+                <td>53.0%</td>
+                <td>20.5%</td>
+                <td>13%</td>
+            </tr>
+            <tr>
+                <td>行业平均</td>
+                <td>~26x</td>
+                <td>~18x</td>
+                <td>55%</td>
+                <td>22%</td>
+                <td>20%</td>
+            </tr>
+        </table>
+        <p><strong>说明</strong>：IDEXX的估值显著高于行业平均和直接竞争对手Zoetis，反映了市场对其护城河和增长潜力的溢价认可。但从价值投资角度看，当前估值缺乏安全边际。</p>
+
+        <h3>7.3 关键风险</h3>
+        <div class="risk-item">
+            <strong>1. 美国临床就诊量放缓</strong><br>
+            管理层2026年指引预计美国临床就诊量下降约2%。如果这一趋势持续或恶化，将直接影响IDEXX的核心经常性收入增长。
+        </div>
+        <div class="risk-item">
+            <strong>2. 客户集中度与纵向整合风险</strong><br>
+            Mars Petcare（旗下拥有Antech、VCA等）作为既是客户又是竞争对手的纵向整合巨头，可能逐步将诊断业务内部化，侵蚀IDEXX的市场份额。
+        </div>
+        <div class="risk-item">
+            <strong>3. 估值风险</strong><br>
+            PE~40倍的估值意味着任何增长不及预期都会导致股价大幅回调。市场已经定价了持续的高增长。
+        </div>
+        <div class="risk-item">
+            <strong>4. 竞争加剧</strong><br>
+            Zoetis持续加大诊断投入，Antech整合Heska后实力增强，新兴市场低价竞争者（如BioNote）可能蚕食份额。
+        </div>
+        <div class="risk-item">
+            <strong>5. CEO交接风险</strong><br>
+            Jay Mazelsky将于2026年交棒给Michael Erickson，管理层更替可能带来战略执行的不确定性。
+        </div>
+
+        <h3>7.4 关键催化剂</h3>
+        <div class="moat-item">
+            <strong>1. 癌症诊断产品线扩展</strong><br>
+            IDEXX Cancer Dx（犬类淋巴瘤检测）已成功推出，管理层估计癌症诊断TAM约$11亿。后续猫类癌症检测等产品将进一步打开市场。
+        </div>
+        <div class="moat-item">
+            <strong>2. inVue Dx超预期放量</strong><br>
+            2025年放置6,400+台inVue Dx，远超目标。每台新装机意味着未来数年的持续耗材收入。
+        </div>
+        <div class="moat-item">
+            <strong>3. 国际市场渗透率提升</strong><br>
+            国际地区2025年增长17%（报告），远高于美国的9%。全球兽医诊断渗透率仍有巨大提升空间。
+        </div>
+        <div class="moat-item">
+            <strong>4. 宠物老龄化趋势</strong><br>
+            美国宠物老龄化加速，老年宠物需要更频繁的诊断检测，直接利好IDEXX的经常性收入。
+        </div>
+
+        <h3>7.5 投资评级</h3>
+        <div class="highlight">
+            <p><strong>基本面评分：5/5（优秀）</strong></p>
+            <p>IDEXX拥有宽阔且在加宽的护城河、极高的客户转换成本、强劲的定价权、持续增长的经常性收入，以及优秀的盈利能力。从业务质量角度看，这是一家巴菲特梦寐以求的"收费桥梁"型企业。</p>
+
+            <p><strong>价格评分：2/5（偏贵）</strong></p>
+            <p>当前PE约40倍，EV/EBITDA约36倍，虽低于5年均值（PE 51x），但仍远高于合理估值水平。按照格雷厄姆-多德的安全边际原则，当前价格缺乏足够的保护。理想买入价位应在PE 30倍以下（对应股价约$400），此时才能获得足够的安全边际。</p>
+
+            <p><strong>综合评级：观望/等待更好价格</strong></p>
+            <p>IDEXX是一家出色的企业，但不是一笔出色的投资——至少在当前价格下如此。正如芒格所言："以合理价格买入优秀企业，远胜于以便宜价格买入平庸企业。"但"合理价格"不等于"任何价格"。建议投资者耐心等待市场给出更好的入场机会，如PE回落至30-35倍区间时积极建仓。</p>
+        </div>
+    </div>
+
+    <!-- 数据来源 -->
+    <div class="info-box">
+        <h2>数据来源</h2>
+        <ul>
+            <li>IDEXX Laboratories 2025年10-K年报及Q4 2025财报新闻稿</li>
+            <li>Roic.ai - ROE、PE、营收等历史财务数据</li>
+            <li>Wisesheets / Macrotrends - 历史ROE数据</li>
+            <li>CompaniesMarketCap - 历史PE数据</li>
+            <li>SmartCapitalScorecard - 回购历史数据</li>
+            <li>Verified Market Research - 兽医诊断市场份额数据</li>
+            <li>ReportPrime - 兽医传染病诊断市场竞争格局</li>
+            <li>StockOpine - IDEXX商业模式深度分析</li>
+            <li>TIKR - CEO交接及2026年指引信息</li>
+        </ul>
+        <p><strong>最后更新</strong>：2026年6月19日</p>
+    </div>
+
+    <script>
+        // ROE数据 - 注意2015-2018年因负股东权益导致ROE极端，此处使用调整后数据
+        const roeData = {
+            labels: ['2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025'],
+            datasets: [{
+                label: 'ROE (%)',
+                data: [null, null, null, null, 241, 92, 108, 112, 57, 56, 66],
+                borderColor: 'rgba(75, 192, 192, 1)',
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderWidth: 2,
+                tension: 0.3,
+                fill: true
+            }]
+        };
+
+        const debtData = {
+            labels: ['2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025'],
+            datasets: [{
+                label: '资产负债率 (%)',
+                data: [35, 38, 40, 42, 40, 35, 33, 32, 28, 27, 29],
+                borderColor: 'rgba(255, 99, 132, 1)',
+                backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                borderWidth: 2,
+                tension: 0.3,
+                fill: true
+            }]
+        };
+
+        const peData = {
+            labels: ['2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025'],
+            datasets: [{
+                label: '市盈率 (P/E)',
+                data: [35.1, 47.3, 52.1, 43.0, 52.6, 73.4, 75.3, 50.2, 54.6, 38.4, 51.3],
+                borderColor: 'rgba(153, 102, 255, 1)',
+                backgroundColor: 'rgba(153, 102, 255, 0.2)',
+                borderWidth: 2,
+                tension: 0.3,
+                fill: true
+            }]
+        };
+
+        const equityRatioData = {
+            labels: ['2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025'],
+            datasets: [{
+                label: '产权比率 (资产/权益)',
+                data: [null, null, null, null, 3.5, 3.2, 2.9, 2.1, 2.1, 1.8, 1.7],
+                borderColor: 'rgba(255, 159, 64, 1)',
+                backgroundColor: 'rgba(255, 159, 64, 0.2)',
+                borderWidth: 2,
+                tension: 0.3,
+                fill: true
+            }]
+        };
+
+        const revenueData = {
+            labels: ['2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025'],
+            datasets: [{
+                label: '营收 (亿美元)',
+                data: [16.0, 17.8, 19.7, 22.1, 24.1, 27.1, 32.2, 33.7, 36.6, 39.0, 43.0],
+                borderColor: 'rgba(75, 192, 192, 1)',
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderWidth: 2,
+                tension: 0.3,
+                fill: true
+            }, {
+                label: '净利润 (亿美元)',
+                data: [1.92, 2.22, 2.63, 3.77, 4.28, 5.82, 7.45, 6.79, 8.45, 8.88, 10.59],
+                borderColor: 'rgba(255, 99, 132, 1)',
+                backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                borderWidth: 2,
+                tension: 0.3,
+                fill: true
+            }]
+        };
+
+        const commonOptions = {
+            responsive: true,
+            plugins: {
+                legend: {
+                    display: true,
+                    position: 'bottom'
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        };
+
+        new Chart(document.getElementById('roeChart').getContext('2d'), {
+            type: 'line',
+            data: roeData,
+            options: {
+                ...commonOptions,
+                plugins: {
+                    ...commonOptions.plugins,
+                    title: {
+                        display: true,
+                        text: 'IDEXX Laboratories (IDXX) 净资产利润率 (ROE) 趋势 (2019-2025，2015-2018因负权益未显示)'
+                    }
+                }
+            }
+        });
+
+        new Chart(document.getElementById('debtChart').getContext('2d'), {
+            type: 'line',
+            data: debtData,
+            options: {
+                ...commonOptions,
+                plugins: {
+                    ...commonOptions.plugins,
+                    title: {
+                        display: true,
+                        text: 'IDEXX Laboratories (IDXX) 资产负债率 趋势 (2015-2025)'
+                    }
+                }
+            }
+        });
+
+        new Chart(document.getElementById('peChart').getContext('2d'), {
+            type: 'line',
+            data: peData,
+            options: {
+                ...commonOptions,
+                plugins: {
+                    ...commonOptions.plugins,
+                    title: {
+                        display: true,
+                        text: 'IDEXX Laboratories (IDXX) 市盈率 (P/E) 趋势 (2015-2025)'
+                    }
+                }
+            }
+        });
+
+        new Chart(document.getElementById('equityRatioChart').getContext('2d'), {
+            type: 'line',
+            data: equityRatioData,
+            options: {
+                ...commonOptions,
+                plugins: {
+                    ...commonOptions.plugins,
+                    title: {
+                        display: true,
+                        text: 'IDEXX Laboratories (IDXX) 产权比率 趋势 (2019-2025)'
+                    }
+                }
+            }
+        });
+
+        new Chart(document.getElementById('revenueChart').getContext('2d'), {
+            type: 'line',
+            data: revenueData,
+            options: {
+                ...commonOptions,
+                plugins: {
+                    ...commonOptions.plugins,
+                    title: {
+                        display: true,
+                        text: 'IDEXX Laboratories (IDXX) 收入与利润趋势 (2015-2025)'
+                    }
+                }
+            }
+        });
+
+        // Topbar scoring logic
+        let savedScores = JSON.parse(localStorage.getItem('idxx_scores') || '{}');
+        function renderStars(n) { let s=''; for(let i=1;i<=5;i++) s+=i<=n?'<span class="on">&#9733;</span>':'<span class="off">&#9733;</span>'; return s; }
+        function scoreClass(n) { return n>=4?'s5':n>=3?'s4':n>=2?'s3':n>=1?'s2':'s1'; }
+        function initTopbar() {
+            const f=savedScores.f||0, p=savedScores.p||0;
+            document.getElementById('topbarFVal').textContent=f||'-'; document.getElementById('topbarFVal').className='topbar-score-val '+(f?scoreClass(f):'');
+            document.getElementById('topbarFStars').innerHTML=renderStars(f);
+            document.getElementById('topbarPVal').textContent=p||'-'; document.getElementById('topbarPVal').className='topbar-score-val '+(p?scoreClass(p):'');
+            document.getElementById('topbarPStars').innerHTML=renderStars(p);
+        }
+        function topbarEdit() {
+            document.getElementById('topbarFSel').style.display='inline'; document.getElementById('topbarPSel').style.display='inline';
+            document.getElementById('topbarFSel').value=savedScores.f||0; document.getElementById('topbarPSel').value=savedScores.p||0;
+            document.getElementById('topbarEditBtn').style.display='none'; document.getElementById('topbarSaveBtn').style.display='inline'; document.getElementById('topbarCancelBtn').style.display='inline';
+        }
+        function topbarSave() {
+            savedScores.f=parseInt(document.getElementById('topbarFSel').value); savedScores.p=parseInt(document.getElementById('topbarPSel').value);
+            localStorage.setItem('idxx_scores',JSON.stringify(savedScores)); initTopbar(); topbarCancel();
+        }
+        function topbarCancel() {
+            document.getElementById('topbarFSel').style.display='none'; document.getElementById('topbarPSel').style.display='none';
+            document.getElementById('topbarEditBtn').style.display='inline'; document.getElementById('topbarSaveBtn').style.display='none'; document.getElementById('topbarCancelBtn').style.display='none';
+        }
+        initTopbar();
+    </script>
+</body>
+</html>

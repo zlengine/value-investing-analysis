@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IES Holdings, Inc. (IESC) 价值投资分析</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body { font-family: 'Segoe UI', Arial, sans-serif; margin: 0; padding: 20px; background-color: #f0f2f5; color: #333; }
+        h1 { text-align: center; color: #8b0000; font-size: 2.2em; margin-bottom: 5px; }
+        h2 { color: #8b0000; border-bottom: 2px solid #d4af37; padding-bottom: 8px; margin-top: 30px; }
+        h3 { color: #2c3e50; margin-top: 20px; }
+        h4 { color: #2c3e50; margin-top: 15px; }
+        h5 { color: #34495e; margin-top: 12px; }
+        .subtitle { text-align: center; color: #7f8c8d; font-size: 1.1em; margin-bottom: 30px; }
+        .info-box { background: white; border-radius: 10px; padding: 25px; margin: 20px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.08); }
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; background-color: white; }
+        th, td { padding: 10px 14px; text-align: left; border-bottom: 1px solid #e0e0e0; }
+        th { background-color: #8b0000; color: white; font-weight: bold; }
+        tr:nth-child(even) { background-color: #f8f9fa; }
+        tr:hover { background-color: #fbeaea; }
+        .highlight { background: #fef9e7; border-left: 4px solid #d4af37; padding: 15px 20px; margin: 15px 0; border-radius: 0 8px 8px 0; }
+        .chart-container { background: white; border-radius: 10px; padding: 25px; margin: 20px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.08); }
+        canvas { max-height: 400px; }
+        .tag { display: inline-block; background: #8b0000; color: white; padding: 3px 10px; border-radius: 12px; font-size: 0.85em; margin: 2px; }
+        .tag-green { background: #27ae60; }
+        .tag-orange { background: #e67e22; }
+        .tag-red { background: #c0392b; }
+        a { color: #8b0000; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        .fixed-topbar { position: fixed; top: 0; left: 0; right: 0; z-index: 9999; background: linear-gradient(135deg, #1a5276, #2e86c1); color: white; display: flex; align-items: center; justify-content: space-between; padding: 8px 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.15); height: 48px; }
+        .fixed-topbar a { color: white; text-decoration: none; font-size: 14px; font-weight: 600; }
+        .fixed-topbar a:hover { text-decoration: underline; }
+        .topbar-left { display: flex; align-items: center; gap: 12px; }
+        .topbar-right { display: flex; align-items: center; gap: 8px; }
+        .topbar-score-label { font-size: 12px; opacity: 0.85; }
+        .topbar-score-val { font-weight: 700; font-size: 15px; min-width: 18px; text-align: center; }
+        .topbar-score-val.s1 { color: #ff6b6b; } .topbar-score-val.s2 { color: #ffa94d; } .topbar-score-val.s3 { color: #ffd43b; } .topbar-score-val.s4 { color: #69db7c; } .topbar-score-val.s5 { color: #51cf66; }
+        .topbar-select { padding: 3px 8px; border: 1px solid rgba(255,255,255,0.4); border-radius: 6px; font-size: 12px; font-weight: 600; color: white; background: rgba(255,255,255,0.15); cursor: pointer; outline: none; }
+        .topbar-select:focus { border-color: rgba(255,255,255,0.7); }
+        .topbar-select option { color: #333; background: white; }
+        .topbar-select:disabled { opacity: 0.5; cursor: not-allowed; }
+        .topbar-btn { padding: 4px 12px; border: none; border-radius: 6px; font-size: 12px; font-weight: 600; cursor: pointer; transition: background 0.2s; }
+        .topbar-btn-edit { background: rgba(255,255,255,0.2); color: white; }
+        .topbar-btn-edit:hover { background: rgba(255,255,255,0.35); }
+        .topbar-btn-save { background: #27ae60; color: white; }
+        .topbar-btn-save:hover { background: #219a52; }
+        .topbar-btn-cancel { background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.7); }
+        .topbar-btn-cancel:hover { background: rgba(255,255,255,0.2); }
+        .topbar-stars { font-size: 11px; }
+        .topbar-stars .on { color: #f39c12; }
+        .topbar-stars .off { color: rgba(255,255,255,0.3); }
+        body { padding-top: 60px !important; }
+        .moat-item { background: white; border-radius: 8px; padding: 15px 20px; margin: 10px 0; box-shadow: 0 1px 5px rgba(0,0,0,0.05); border-left: 4px solid #27ae60; }
+        .moat-item strong { color: #8b0000; }
+        .risk-item { background: white; border-radius: 8px; padding: 15px 20px; margin: 10px 0; box-shadow: 0 1px 5px rgba(0,0,0,0.05); border-left: 4px solid #c0392b; }
+        .star { color: #d4af37; }
+    </style>
+</head>
+<body>
+    <div class="fixed-topbar" id="fixedTopbar">
+        <div class="topbar-left">
+            <a href="index.html">&larr; &#x8FD4;&#x56DE;&#x7D22;&#x5F15;</a>
+            <span style="font-size:14px;font-weight:700;" id="topbarCode">IESC</span>
+        </div>
+        <div class="topbar-right" id="topbarScores">
+            <span class="topbar-score-label">&#x57FA;&#x672C;&#x9762;</span>
+            <span class="topbar-score-val" id="topbarFVal">-</span>
+            <span class="topbar-stars" id="topbarFStars"></span>
+            <select class="topbar-select" id="topbarFSel" style="display:none;"><option value="0">-</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option></select>
+            <span class="topbar-score-label" style="margin-left:12px;">&#x4EF7;&#x683C;</span>
+            <span class="topbar-score-val" id="topbarPVal">-</span>
+            <span class="topbar-stars" id="topbarPStars"></span>
+            <select class="topbar-select" id="topbarPSel" style="display:none;"><option value="0">-</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option></select>
+            <button class="topbar-btn topbar-btn-edit" id="topbarEditBtn" onclick="topbarEdit()">&#x4FEE;&#x6539;</button>
+            <button class="topbar-btn topbar-btn-save" id="topbarSaveBtn" onclick="topbarSave()" style="display:none;">&#x4FDD;&#x5B58;</button>
+            <button class="topbar-btn topbar-btn-cancel" id="topbarCancelBtn" onclick="topbarCancel()" style="display:none;">&#x53D6;&#x6D88;</button>
+        </div>
+    </div>
+
+    <h1>IES Holdings, Inc. (NASDAQ: IESC)</h1>
+    <p class="subtitle">巴菲特/芒格式价值投资基本面分析 | 更新日期：2026年6月</p>
+
+    <!-- 一、公司基本信息 -->
+    <div class="info-box">
+        <h2>一、公司基本信息</h2>
+        <table>
+            <tr><td>公司全称</td><td>IES Holdings, Inc.（简称IES）</td></tr>
+            <tr><td>股票代码</td><td>NASDAQ: IESC</td></tr>
+            <tr><td>市值</td><td>约$145亿（2026年6月）≈ ¥1,040亿</td></tr>
+            <tr><td>企业价值（EV）</td><td>~$143亿</td></tr>
+            <tr><td>成立时间</td><td>1997年（前身为Integrated Electrical Services, Inc.，2016年5月更名）</td></tr>
+            <tr><td>公司总部</td><td>美国得克萨斯州Sugar Land（休斯顿郊区）</td></tr>
+            <tr><td>最新收盘价</td><td>~$720（2026年6月）</td></tr>
+            <tr><td>CEO</td><td>Jeff Gendell（董事长兼CEO，2019年上任；总裁兼COO Matt Simmes）</td></tr>
+            <tr><td>员工人数</td><td>约10,262人</td></tr>
+            <tr><td>行业</td><td>工业 - 电气/技术系统承包与工程</td></tr>
+            <tr><td>流通股</td><td>约1,985万股（流通盘仅~910万股，机构持股97.2%）</td></tr>
+            <tr><td>52周区间</td><td>$259 - $745</td></tr>
+            <tr><td>股息</td><td>无（IES不派发股息，全部利润用于再投资和回购）</td></tr>
+            <tr><td>长期债务</td><td>$8,810万（FY2025末），净现金头寸~$2.5亿</td></tr>
+            <tr><td>债务/权益比</td><td>0.10（几乎无杠杆）</td></tr>
+            <tr><td>信用评级</td><td>无公开评级（净现金+低负债，财务极其保守）</td></tr>
+            <tr><td>服务网点</td><td>131个运营地点</td></tr>
+            <tr><td>控股股东</td><td>无单一控股股东，机构持股~97%，内部人持股~3.2%</td></tr>
+            <tr><td>指数成分</td><td>NASDAQ Global Market，非S&P 500成分股</td></tr>
+            <tr><td>财年</td><td>10月1日至次年9月30日</td></tr>
+            <tr><td>重大事件</td><td>2026年1月收购Gulf Island Fabrication（钢铁制造+能源/政府服务）；2024年12月收购CB&I储罐解决方案；2024年4月收购Greiner Industries</td></tr>
+        </table>
+    </div>
+
+    <!-- 二、业务分析 -->
+    <div class="info-box">
+        <h2>二、业务分析</h2>
+
+        <div class="highlight">
+            <strong>一句话理解IES：</strong>想象你正在建一个数据中心——你需要有人把电从变电站拉到机房、把光纤从运营商接到服务器机柜、把空调和消防系统装好、把备用发电机装进防风雨的外壳里。这些活儿不是"设计"（那是建筑师的事），而是"施工安装"——需要成百上千的电工、技术工人，在规定时间内按图纸把所有线缆、管道、设备装到位。IES就是干这个的——<strong>一家"电气+技术基础设施施工安装公司"</strong>。但IES不是只会拉线的电工，它已经进化成四个业务板块：①<strong>通信基础设施</strong>（数据中心的"神经系统"——光纤、网络、安防系统，增速47%），②<strong>住宅电气</strong>（给新房装电线+空调+水管，最大但增速放缓的板块），③<strong>基础设施解决方案</strong>（修电机+造发电机外壳+工业磁铁，高利润率制造业务），④<strong>商业与工业</strong>（给工厂/医院/风电场装电气系统）。FY2025，IES以10,262名员工创造了$33.7亿营收和$3.06亿净利润，净利率9.1%，ROE 41.7%——这不是一家普通施工公司的数字，而是一家搭上了"数据中心+电气化"超级风口的"特种承包商"的数字。
+        </div>
+
+        <h3>2.1 什么是电气承包？——通俗深入的行业解释</h3>
+        <div class="highlight">
+            <p><strong>电气承包（Electrical Contracting）= 建筑的"神经系统安装工"</strong></p>
+        </div>
+        <p>想象你在盖一栋大楼——建筑师设计外观，结构工程师算承重，但谁来把"生命力"注入这栋楼？是电气承包商。他们负责：</p>
+        <ul>
+            <li><strong>电力系统</strong>：从变电站拉高压电缆→配电房→楼层配电箱→每个插座和灯泡。没有电，大楼就是一堆钢筋水泥</li>
+            <li><strong>通信系统</strong>：光纤、网线、电话线、Wi-Fi接入点、数据中心内部布线。没有网络，现代建筑就是"信息孤岛"</li>
+            <li><strong>安防与消防</strong>：门禁、监控摄像头、火灾报警、喷淋系统电气控制。这些系统关乎人命，必须100%可靠</li>
+            <li><strong>暖通空调电气</strong>：中央空调的电力供应+控制系统。一栋写字楼的空调用电可能占总用电40%</li>
+        </ul>
+        <p><strong>为什么电气承包"看起来简单但实际很难"？</strong></p>
+        <ol>
+            <li><strong>技术复杂度</strong>：现代数据中心的电气系统涉及高压配电+UPS不间断电源+备用发电机+精密空调控制，需要专业工程师设计+持证电工安装</li>
+            <li><strong>劳动力约束</strong>：美国电工缺口严重，持证电工培养周期4-5年（学徒制），行业失业率仅3.5%。谁有人，谁就能接更多项目</li>
+            <li><strong>安全要求</strong>：电气施工是高危行业，OSHA监管严格。安全记录差=保险费飙升=竞争力下降</li>
+            <li><strong>项目执行能力</strong>：大型数据中心项目工期紧（6-12个月）、协调复杂（需与土建/暖通/IT团队交叉作业），执行能力是核心壁垒</li>
+        </ol>
+        <p><strong>美国电气承包市场规模</strong>：约$2,550亿（2024年），预计2030年达$2,950亿。MEP（机械/电气/管道）服务市场约$518亿（2025年），预计2033年翻倍至$1,004亿。行业极度分散，前10名合计份额<10%。</p>
+
+        <h3>2.2 商业模式核心</h3>
+        <p>IES的商业模式是<strong>"收购+整合+扩张"（Roll-up Strategy）</strong>：</p>
+        <ul>
+            <li><strong>收购引擎</strong>：IES通过收购区域性电气/技术承包商快速扩张。FY2022-2025完成10+笔收购（Greiner Industries、CB&I、Gulf Island等），每笔收购都带来新的地理市场或服务能力</li>
+            <li><strong>去中心化运营</strong>：收购后保留原管理团队和品牌，IES提供资本、安全培训、IT系统和最佳实践。这种"联邦制"模式减少整合摩擦</li>
+            <li><strong>交叉销售</strong>：在已有电气服务的市场追加HVAC/水管服务，或在已有住宅市场的区域拓展商业/工业业务</li>
+            <li><strong>劳动力投资</strong>：行业最大痛点是"缺人"。IES投资培训项目（学徒制+内部培训学校），这是长期竞争优势</li>
+            <li><strong>资本配置</strong>：净现金+强FCF，支持持续收购+回购。2024年8月授权$2亿回购计划</li>
+        </ul>
+
+        <h3>2.3 业务板块</h3>
+        <table>
+            <tr><th>业务板块</th><th>FY2025营收</th><th>占比</th><th>增长率</th><th>营业利润率</th><th>说明</th></tr>
+            <tr><td>Communications（通信）</td><td>$11.4亿</td><td>33.8%</td><td>+47%</td><td>14.6%</td><td>数据中心通信基础设施（光纤+网络+安防），最大增长引擎</td></tr>
+            <tr><td>Residential（住宅）</td><td>$13.0亿</td><td>38.7%</td><td>-2%</td><td>14.2%</td><td>新房电气+HVAC+水管安装，最大但增速放缓</td></tr>
+            <tr><td>Infrastructure Solutions（基础设施解决方案）</td><td>$4.99亿</td><td>14.8%</td><td>+12%</td><td>17.3%</td><td>电机维修+定制发电机外壳+工业磁铁，最高利润率</td></tr>
+            <tr><td>Commercial & Industrial（商业与工业）</td><td>$4.28亿</td><td>12.7%</td><td>+16%</td><td>8.9%</td><td>商业/工业电气+机械施工，利润率较低但增长快</td></tr>
+            <tr><td><strong>合计</strong></td><td><strong>$33.7亿</strong></td><td><strong>100%</strong></td><td><strong>+17%</strong></td><td><strong>11.4%</strong></td><td></td></tr>
+        </table>
+
+        <h3>2.4 终端市场分布</h3>
+        <table>
+            <tr><th>终端市场</th><th>占比（估算）</th><th>趋势</th></tr>
+            <tr><td>数据中心</td><td>~30%（快速增长）</td><td>AI驱动的超大规模建设，FY2025 Communications板块47%增长主要来自此</td></tr>
+            <tr><td>住宅（独栋+多户）</td><td>~39%</td><td>利率敏感，FY2025受负担能力压制增速-2%</td></tr>
+            <tr><td>商业建筑</td><td>~12%</td><td>温和增长，办公/医疗/教育</td></tr>
+            <tr><td>工业/能源</td><td>~10%</td><td>风电/太阳能/石油天然气设施</td></tr>
+            <tr><td>基础设施产品</td><td>~9%</td><td>电机维修+定制制造，稳定</td></tr>
+        </table>
+
+        <h3>2.5 关键经营指标</h3>
+        <ul>
+            <li><strong>积压订单（Backlog）</strong>：$23.7亿（FY2025末），同比+40%，收入可见性约8-9个月</li>
+            <li><strong>剩余履约义务（RPO）</strong>：$16.9亿，GAAP口径的未来确认收入</li>
+            <li><strong>营业利润率</strong>：11.4%（FY2025，从FY2022的2.6%大幅扩张至11.4%）</li>
+            <li><strong>自由现金流</strong>：$2.19亿（FY2025），FCF/Revenue = 6.5%</li>
+            <li><strong>ROIC</strong>：35.1%（TTM，行业顶尖）</li>
+            <li><strong>净现金头寸</strong>：~$2.5亿（FY2025末），几乎零杠杆</li>
+            <li><strong>人均营收</strong>：$32.8万/员工（施工行业领先）</li>
+            <li><strong>安全记录</strong>：TRIR（总可记录事故率）行业领先，是关键差异化因素</li>
+        </ul>
+    </div>
+
+    <!-- 三、业务板块产品竞争力分析 -->
+    <div class="info-box">
+        <h2>三、业务板块产品竞争力分析</h2>
+
+        <h3>3.1 Communications（通信基础设施）产品竞争力分析</h3>
+        <div class="moat-item">
+            <p><strong>1. 可替代性：<span class="tag tag-orange">中等</span></strong></p>
+            <ul>
+                <li><strong>主要替代品</strong>：①Quanta Services（PWR，$250亿营收，全国最大电力/通信承包商）；②Dycom Industries（DY，$50亿，专注电信基础设施）；③区域/本地电气承包商；④客户自建团队（大型hyperscaler如Google/Amazon有部分自建能力）</li>
+                <li><strong>替代品体验差距</strong>：Quanta规模更大但更偏公用事业/输配电；Dycom更偏电信运营商（5G基站/光纤到户）而非数据中心内部；区域承包商缺乏数据中心复杂项目经验；客户自建成本高且灵活性差</li>
+                <li><strong>替代趋势</strong>：数据中心通信基础设施技术门槛高（需要理解光纤+网络+安防+电力协同），IES在细分领域建立了专业声誉。但hyperscaler正在培养更多合格供应商以降低依赖</li>
+            </ul>
+        </div>
+        <div class="moat-item">
+            <p><strong>2. 客户转换成本：<span class="tag tag-orange">中等</span></strong></p>
+            <ul>
+                <li><strong>财务转换成本</strong>：中低。施工合同通常按项目签订，非长期订阅</li>
+                <li><strong>时间转换成本</strong>：中等。数据中心项目工期紧，更换承包商可能导致延期。IES对客户设施和需求的了解需要时间积累</li>
+                <li><strong>捆绑转换成本</strong>：中等。IES可提供电气+通信+安防一站式服务，客户倾向于让同一团队完成以减少协调成本</li>
+                <li><strong>综合评估</strong>：客户粘性主要来自项目执行能力和安全记录，而非合同锁定。但"做得好→下次还找你"的口碑效应在行业中很强</li>
+            </ul>
+        </div>
+        <div class="moat-item">
+            <p><strong>3. 定价权：<span class="tag tag-orange">中等</span></strong></p>
+            <ul>
+                <li><strong>历史提价记录</strong>：FY2025 Communications营业利润率14.6%（vs FY2024的11.6%），说明在需求旺盛期有定价能力。但施工行业本质上是竞标制，长期定价权有限</li>
+                <li><strong>定价权来源</strong>：劳动力稀缺（持证电工供不应求→有能力的承包商可以溢价）+ 技术复杂度（数据中心项目需要专业经验）+ 安全记录（客户不愿冒险选便宜但不安全的承包商）</li>
+                <li><strong>定价权趋势</strong>：当前数据中心需求远超供给，IES有较强定价权。但一旦hyperscaler建设周期放缓，定价权将迅速削弱</li>
+                <li><strong>巴菲特测试</strong>：如果IES提价10%，客户会离开吗？——在当前供不应求环境下，不会；在需求放缓时，会。定价权是周期性的</li>
+            </ul>
+        </div>
+        <p><strong>综合竞争力评级：⭐⭐⭐⭐（4星）</strong> — 乘数据中心东风，但定价权周期性强，护城河依赖供需格局</p>
+
+        <h3>3.2 Residential（住宅电气）产品竞争力分析</h3>
+        <div class="moat-item">
+            <p><strong>1. 可替代性：<span class="tag tag-red">高</span></strong></p>
+            <ul>
+                <li><strong>主要替代品</strong>：①数百家区域/本地电气承包商；②住宅建筑商自建电气团队（如Lennar/D.R. Horton的内部团队）；③其他全国性住宅服务公司（如Comfort Systems USA的住宅业务）</li>
+                <li><strong>替代品体验差距</strong>：住宅电气安装标准化程度高，技术门槛低，本地承包商完全可以替代</li>
+                <li><strong>替代趋势</strong>：IES自身在10-K中承认"住宅电气承包服务几乎没有进入壁垒"。这是竞争最激烈的板块</li>
+            </ul>
+        </div>
+        <div class="moat-item">
+            <p><strong>2. 客户转换成本：<span class="tag tag-red">低</span></strong></p>
+            <ul>
+                <li><strong>财务转换成本</strong>：极低。住宅电气安装是标准化服务，价格透明</li>
+                <li><strong>时间转换成本</strong>：低。建筑商可以轻松切换承包商</li>
+                <li><strong>捆绑转换成本</strong>：中等。IES提供电气+HVAC+水管一站式服务，建筑商可能因便利性而留存。但捆绑效应有限</li>
+                <li><strong>综合评估</strong>：IES住宅业务的核心竞争力是规模（批量采购折扣）+ 地理覆盖 + 服务广度（电气+HVAC+水管），而非转换成本</li>
+            </ul>
+        </div>
+        <div class="moat-item">
+            <p><strong>3. 定价权：<span class="tag tag-red">弱</span></strong></p>
+            <ul>
+                <li><strong>历史提价记录</strong>：住宅电气安装是价格竞争最激烈的领域，建筑商对成本极度敏感。IES通过交叉销售HVAC/水管提升单客户收入，而非提价</li>
+                <li><strong>定价权来源</strong>：规模效应（批量采购材料折扣）+ 服务广度（一站式减少协调成本）</li>
+                <li><strong>定价权趋势</strong>：利率高企→住房市场放缓→建筑商更压价→定价权进一步削弱</li>
+                <li><strong>巴菲特测试</strong>：如果IES住宅业务提价10%，建筑商会离开吗？——会，因为替代品众多且体验差距小</li>
+            </ul>
+        </div>
+        <p><strong>综合竞争力评级：⭐⭐（2星）</strong> — 低壁垒+低转换成本+弱定价权，依赖规模和地理覆盖而非护城河</p>
+
+        <h3>3.3 Infrastructure Solutions（基础设施解决方案）产品竞争力分析</h3>
+        <div class="moat-item">
+            <p><strong>1. 可替代性：<span class="tag tag-green">低</span></strong></p>
+            <ul>
+                <li><strong>主要替代品</strong>：①少数专业电机制修公司；②原厂维修（OEM）；③定制金属外壳制造商（如Greiner收购前的竞争对手）</li>
+                <li><strong>替代品体验差距</strong>：大型电机/发电机维修需要专业设备+经验，替代品少；定制发电机外壳（用于数据中心备用电源）需要工程能力+制造产能，壁垒高</li>
+                <li><strong>替代趋势</strong>：随着数据中心对备用电源需求激增，定制发电机外壳产能稀缺，IES（通过Greiner收购）处于有利位置</li>
+            </ul>
+        </div>
+        <div class="moat-item">
+            <p><strong>2. 客户转换成本：<span class="tag tag-green">高</span></strong></p>
+            <ul>
+                <li><strong>财务转换成本</strong>：中等。定制产品一旦设计定型，更换供应商需要重新验证</li>
+                <li><strong>时间转换成本</strong>：高。电机维修需要快速响应（停机损失巨大），建立信任关系需要时间</li>
+                <li><strong>捆绑转换成本</strong>：中等。IES提供维修+制造+现场服务一站式解决方案</li>
+                <li><strong>综合评估</strong>：专业制造+维修的组合创造了较高转换成本，客户粘性强</li>
+            </ul>
+        </div>
+        <div class="moat-item">
+            <p><strong>3. 定价权：<span class="tag tag-orange">中等偏强</span></strong></p>
+            <ul>
+                <li><strong>历史提价记录</strong>：FY2025营业利润率17.3%（四板块最高），说明定价能力较强</li>
+                <li><strong>定价权来源</strong>：专业制造产能稀缺（定制发电机外壳供不应求）+ 维修服务的紧急性（停机=巨大损失，客户对价格敏感度低）</li>
+                <li><strong>定价权趋势</strong>：数据中心备用电源需求激增→发电机外壳产能稀缺→定价权增强</li>
+                <li><strong>巴菲特测试</strong>：如果IES Infra Solutions提价10%，客户会离开吗？——对于紧急维修，不会；对于定制制造，短期不会（产能稀缺），长期可能</li>
+            </ul>
+        </div>
+        <p><strong>综合竞争力评级：⭐⭐⭐⭐（4星）</strong> — 专业制造+维修的组合壁垒高，定价权较强，是IES最有"护城河"的板块</p>
+
+        <h3>3.4 Commercial & Industrial（商业与工业）产品竞争力分析</h3>
+        <div class="moat-item">
+            <p><strong>1. 可替代性：<span class="tag tag-orange">中等偏高</span></strong></p>
+            <ul>
+                <li><strong>主要替代品</strong>：①EMCOR Group（EME，$140亿营收，最大MEP承包商）；②Quanta Services；③Comfort Systems USA（FIX）；④区域/本地承包商</li>
+                <li><strong>替代品体验差距</strong>：EMCOR规模远大于IES C&I，覆盖更广；区域承包商在本地关系更强。IES C&I的差异化在于数据中心+电力基础设施的专业能力</li>
+            </ul>
+        </div>
+        <div class="moat-item">
+            <p><strong>2. 客户转换成本：<span class="tag tag-orange">低</span></strong></p>
+            <ul>
+                <li><strong>综合评估</strong>：商业/工业施工是竞标制市场，客户按项目选择承包商。转换成本低，粘性主要来自项目执行口碑</li>
+            </ul>
+        </div>
+        <div class="moat-item">
+            <p><strong>3. 定价权：<span class="tag tag-red">弱</span></strong></p>
+            <ul>
+                <li><strong>综合评估</strong>：FY2025营业利润率仅8.9%（四板块最低），说明定价权有限。C&I是竞争最激烈的商业施工市场</li>
+            </ul>
+        </div>
+        <p><strong>综合竞争力评级：⭐⭐⭐（3星）</strong> — 竞争激烈+利润率低，但数据中心专业能力提供差异化</p>
+    </div>
+
+    <!-- 四、历史财务指标 -->
+    <div class="info-box">
+        <h2>四、历史财务指标</h2>
+
+        <h3>4.1 核心财务数据趋势（2016-2025）</h3>
+        <table>
+            <tr><th>年度</th><th>营收($M)</th><th>净利润($M)</th><th>毛利率</th><th>营业利润率</th><th>净利率</th><th>ROE</th><th>负债/资产</th><th>PE（年末）</th></tr>
+            <tr><td>2016</td><td>696</td><td>25</td><td>~18%</td><td>~2%</td><td>3.6%</td><td>74.4%</td><td>~0.42</td><td>~8x</td></tr>
+            <tr><td>2017</td><td>811</td><td>4</td><td>~17%</td><td>~0.5%</td><td>0.5%</td><td>5.9%</td><td>~0.50</td><td>N/A</td></tr>
+            <tr><td>2018</td><td>877</td><td>-18</td><td>~17%</td><td>~-2%</td><td>-2.1%</td><td>-6.0%</td><td>~0.55</td><td>N/A</td></tr>
+            <tr><td>2019</td><td>1,076</td><td>47</td><td>~17%</td><td>~3%</td><td>4.4%</td><td>14.4%</td><td>~0.42</td><td>~10x</td></tr>
+            <tr><td>2020</td><td>1,190</td><td>55</td><td>~19%</td><td>~4%</td><td>4.6%</td><td>15.7%</td><td>~0.38</td><td>~12x</td></tr>
+            <tr><td>2021</td><td>1,536</td><td>83</td><td>~19%</td><td>~5%</td><td>5.4%</td><td>21.8%</td><td>~0.35</td><td>~20x</td></tr>
+            <tr><td>2022</td><td>2,167</td><td>35</td><td>~14.7%</td><td>2.6%</td><td>1.6%</td><td>11.4%</td><td>~0.40</td><td>~15x</td></tr>
+            <tr><td>2023</td><td>2,377</td><td>108</td><td>~18.7%</td><td>6.7%</td><td>4.5%</td><td>29.5%</td><td>~0.32</td><td>~13x</td></tr>
+            <tr><td>2024</td><td>2,884</td><td>219</td><td>~24.2%</td><td>10.4%</td><td>7.6%</td><td>43.8%</td><td>~0.25</td><td>~17x</td></tr>
+            <tr><td>2025</td><td>3,371</td><td>306</td><td>~25.5%</td><td>11.4%</td><td>9.1%</td><td>41.7%</td><td>~0.20</td><td>~38x</td></tr>
+        </table>
+
+        <div class="highlight">
+            <strong>关键趋势：</strong>
+            <ul>
+                <li><strong>营收5年CAGR 23%</strong>：从$11.9亿增至$33.7亿，爆发式增长。FY2022-2025连续4年双位数增长</li>
+                <li><strong>净利润5年CAGR 41%</strong>：从$0.55亿增至$3.06亿，利润增速远超营收（经营杠杆）</li>
+                <li><strong>毛利率持续扩张</strong>：14.7%→25.5%（FY2022-2025），10.8个百分点提升！来自业务组合改善（高利润率Communications占比提升）+运营效率提升</li>
+                <li><strong>营业利润率从2.6%飙升至11.4%</strong>：FY2022仅2.6%（几乎不赚钱），3年扩张至11.4%，这是利润爆发式增长的核心驱动力</li>
+                <li><strong>ROE从11.4%升至41.7%</strong>：FY2023-2025跳升至30-44%区间（利润率扩张+回购减少权益）</li>
+                <li><strong>负债/资产从0.40降至0.20</strong>：持续去杠杆，财务越来越安全</li>
+                <li><strong>PE从~15x升至~38x</strong>：市场重新定价IES从"周期性施工公司"到"数据中心增长股"</li>
+                <li><strong>⚠️ 历史波动性极大</strong>：FY2017-2018连续亏损，FY2022净利润暴跌至$0.35亿（营业利润率仅2.6%）。这说明IES的盈利能力高度依赖终端市场景气度</li>
+            </ul>
+        </div>
+
+        <h3>4.2 ROE趋势图</h3>
+        <div class="chart-container">
+            <canvas id="roeChart"></canvas>
+        </div>
+
+        <h3>4.3 负债/资产比趋势图</h3>
+        <div class="chart-container">
+            <canvas id="debtChart"></canvas>
+        </div>
+
+        <h3>4.4 PE估值趋势图</h3>
+        <div class="chart-container">
+            <canvas id="peChart"></canvas>
+        </div>
+    </div>
+
+    <!-- 五、竞争分析 -->
+    <div class="info-box">
+        <h2>五、竞争分析</h2>
+
+        <h3>5.1 主要竞争对手</h3>
+        <table>
+            <tr><th>竞争对手</th><th>营收</th><th>营业利润率</th><th>对比分析</th></tr>
+            <tr><td><strong>IES Holdings (IESC)</strong></td><td>$33.7亿</td><td>11.4%</td><td>数据中心+住宅双轮驱动，ROIC 35%，净现金，增速最快</td></tr>
+            <tr><td>Quanta Services (PWR)</td><td>$250亿</td><td>~8%</td><td>行业巨头，公用事业/输配电为主，规模远超IES但增速较慢</td></tr>
+            <tr><td>EMCOR Group (EME)</td><td>$140亿</td><td>~9%</td><td>最大MEP承包商，业务更分散，规模优势明显</td></tr>
+            <tr><td>Comfort Systems USA (FIX)</td><td>$70亿</td><td>~12%</td><td>暖通空调为主，利润率高于IES，同样受益数据中心</td></tr>
+            <tr><td>MasTec (MTZ)</td><td>$130亿</td><td>~6%</td><td>电信+能源基础设施，规模大但利润率低</td></tr>
+            <tr><td>Dycom Industries (DY)</td><td>$50亿</td><td>~7%</td><td>电信基础设施为主（5G/光纤），与IES Communications部分竞争</td></tr>
+            <tr><td>Primoris Services (PRIM)</td><td>$60亿</td><td>~6%</td><td>能源/公用事业基础设施，利润率低于IES</td></tr>
+        </table>
+
+        <h3>5.2 经济护城河分析</h3>
+
+        <div class="moat-item">
+            <strong>1. 劳动力优势（Labor Force）—— 当前最核心竞争优势</strong>
+            <p>美国持证电工严重短缺（失业率仅3.5%），IES通过10,262名员工+培训项目建立了劳动力优势。在供不应求的市场中，"谁有人，谁就能接项目"。这是短期最硬的壁垒。</p>
+        </div>
+
+        <div class="moat-item">
+            <strong>2. 安全记录（Safety Record）</strong>
+            <p>IES的TRIR（总可记录事故率）行业领先。在电气施工这种高危行业，安全记录差=保险费飙升+客户不愿合作。安全记录是长期积累的声誉资产。</p>
+        </div>
+
+        <div class="moat-item">
+            <strong>3. 收购整合能力（M&A Platform）</strong>
+            <p>IES已完成29笔收购，建立了成熟的"收购→去中心化运营→交叉销售"模式。净现金+强FCF支持持续收购。这种"Roll-up"平台本身是一种能力壁垒。</p>
+        </div>
+
+        <div class="moat-item">
+            <strong>4. 数据中心专业能力（Data Center Expertise）</strong>
+            <p>IES在数据中心通信基础设施领域建立了专业声誉，FY2025 Communications板块47%增长证明了客户认可。但这种能力是否构成真正的护城河？——部分是，因为数据中心项目复杂度高，需要经验积累；但Quanta/EMCOR同样在积极进入。</p>
+        </div>
+
+        <h3>5.3 风险分析</h3>
+
+        <div class="risk-item">
+            <strong>1. 数据中心需求周期性（最大风险）</strong>
+            <p>IES当前估值的核心支撑是"数据中心长期增长"叙事。但hyperscaler资本开支具有周期性——2022年AI热潮前，数据中心建设曾经历放缓。如果AI投资回报不及预期，建设周期可能急剧收缩，IES Communications板块47%的增速将不可持续。历史参考：FY2022 IES营业利润率仅2.6%，说明需求放缓时利润率可以迅速崩溃。</p>
+        </div>
+
+        <div class="risk-item">
+            <strong>2. 估值风险（PE ~38x）</strong>
+            <p>当前PE ~38x，远高于施工行业平均（~17x）和IES历史均值（~15x）。12个月股价涨幅177%。市场已充分定价了"数据中心增长股"叙事。任何增速放缓都可能导致估值大幅回调。</p>
+        </div>
+
+        <div class="risk-item">
+            <strong>3. 住宅市场拖累</strong>
+            <p>Residential板块占营收38.7%，FY2025增速-2%。利率高企→住房负担能力差→新房开工下降→住宅电气安装需求萎缩。如果美联储不大幅降息，住宅板块可能持续拖累整体增速。</p>
+        </div>
+
+        <div class="risk-item">
+            <strong>4. 内部人大量卖出</strong>
+            <p>过去6个月，IES内部人32笔交易全部为卖出，0笔买入。CEO Jeff Gendell卖出26.7万股（约$4,455万），CFO卖出1万股。虽然部分可能是计划性减持，但"零买入"值得警惕。</p>
+        </div>
+
+        <div class="risk-item">
+            <strong>5. 收购整合风险</strong>
+            <p>IES的Roll-up策略依赖持续收购。Gulf Island Fabrication（2026年1月）是IES迄今最大的收购之一，涉及钢铁制造+能源/政府服务——这是IES不熟悉的新领域。整合失败可能拖累利润率。</p>
+        </div>
+
+        <div class="risk-item">
+            <strong>6. 流通盘极小（仅910万股）</strong>
+            <p>机构持股97.2%，流通盘仅~910万股。低流动性意味着股价波动可能被放大——好消息时涨得快，坏消息时跌得也快。</p>
+        </div>
+    </div>
+
+    <!-- 六、利润分配分析 -->
+    <div class="info-box">
+        <h2>六、利润分配分析</h2>
+
+        <h3>6.1 利润分配表（2016-2025）</h3>
+        <table>
+            <tr><th>年度</th><th>净利润($M)</th><th>股息($M)</th><th>回购($M)</th><th>扩张CapEx+收购($M)</th><th>债务偿还($M)</th><th>留存金额($M)</th><th>留存比率</th></tr>
+            <tr><td>2016</td><td>25</td><td>0</td><td>0.5</td><td>10</td><td>5</td><td>25</td><td>100%</td></tr>
+            <tr><td>2017</td><td>4</td><td>0</td><td>1.5</td><td>8</td><td>3</td><td>4</td><td>100%</td></tr>
+            <tr><td>2018</td><td>-18</td><td>0</td><td>4.3</td><td>12</td><td>5</td><td>-18</td><td>N/A</td></tr>
+            <tr><td>2019</td><td>47</td><td>0</td><td>8.3</td><td>15</td><td>5</td><td>47</td><td>100%</td></tr>
+            <tr><td>2020</td><td>55</td><td>0</td><td>6.4</td><td>18</td><td>5</td><td>55</td><td>100%</td></tr>
+            <tr><td>2021</td><td>83</td><td>0</td><td>8.9</td><td>45</td><td>5</td><td>83</td><td>100%</td></tr>
+            <tr><td>2022</td><td>35</td><td>0</td><td>21.2</td><td>55</td><td>5</td><td>35</td><td>100%</td></tr>
+            <tr><td>2023</td><td>108</td><td>0</td><td>1.7</td><td>70</td><td>5</td><td>108</td><td>100%</td></tr>
+            <tr><td>2024</td><td>219</td><td>0</td><td>58.5</td><td>130</td><td>5</td><td>219</td><td>100%</td></tr>
+            <tr><td>2025</td><td>306</td><td>0</td><td>~25</td><td>~200</td><td>5</td><td>306</td><td>100%</td></tr>
+            <tr><td><strong>10年合计</strong></td><td><strong>864</strong></td><td><strong>0</strong></td><td><strong>~135</strong></td><td><strong>~563</strong></td><td><strong>~48</strong></td><td><strong>864</strong></td><td><strong>100%</strong></td></tr>
+        </table>
+
+        <h3>6.2 利润分配饼图</h3>
+        <div class="chart-container">
+            <canvas id="profitChart"></canvas>
+        </div>
+
+        <h3>6.3 利润分配分析要点</h3>
+        <ul>
+            <li><strong>10年留存比率100%</strong>：IES从不派息，所有利润全部留存。属于"全再投资型"——典型的高成长公司特征</li>
+            <li><strong>留存主要用于收购+CapEx</strong>：10年累计收购+CapEx约$5.63亿（占留存65%），回购约$1.35亿（占留存16%）。IES优先将资本投入增长而非回购</li>
+            <li><strong>回购力度近年加大</strong>：FY2024回购$5,850万（2024年8月授权$2亿回购计划），但FY2025回购放缓至~$2,500万（优先用于收购Gulf Island等）</li>
+            <li><strong>巴菲特视角</strong>：1美元留存创造市值——2016至2025留存$8.64亿，市值从~$1.5亿增至~$145亿，增加~$143.5亿。1美元留存创造~16.6美元市值！远超1:1标准，但需注意这主要来自估值扩张（PE从8x→38x）而非纯盈利增长</li>
+            <li><strong>可持续增长率</strong> = ROE × 留存比率 = 41.7% × 100% = 41.7%（理论值，实际增速17%说明公司选择保守增长+大量收购）</li>
+            <li><strong>⚠️ 注意</strong>：1美元留存创造16.6美元市值的惊人数字，主要来自PE从8x扩张至38x（4.75倍）。如果PE回归均值，这个数字会大幅缩水</li>
+        </ul>
+    </div>
+
+    <!-- 七、投资总结 -->
+    <div class="info-box">
+        <h2>七、投资总结</h2>
+
+        <h3>7.1 多维度评级</h3>
+        <table>
+            <tr><th>维度</th><th>评级</th><th>说明</th></tr>
+            <tr><td>业务可理解性</td><td>⭐⭐⭐⭐</td><td>电气施工+制造，业务模式简单，但Roll-up策略和四板块组合增加复杂度</td></tr>
+            <tr><td>经济护城河</td><td>⭐⭐⭐</td><td>劳动力优势+安全记录+收购平台是竞争优势，但不是巴菲特式的"持久护城河"。施工行业本质上是竞标制，定价权周期性强</td></tr>
+            <tr><td>资本配置</td><td>⭐⭐⭐⭐</td><td>100%留存+持续收购+净现金，管理层资本配置能力优秀。但内部人大量卖出是警示信号</td></tr>
+            <tr><td>财务安全</td><td>⭐⭐⭐⭐⭐</td><td>净现金~$2.5亿，负债/资产0.20，几乎零杠杆。财务状况极其安全</td></tr>
+            <tr><td>增长前景</td><td>⭐⭐⭐⭐</td><td>数据中心超级周期+电气化长期趋势，但住宅拖累+周期性风险。FY2026指引继续增长</td></tr>
+            <tr><td>估值吸引力</td><td>⭐</td><td>PE ~38x，远高于行业平均17x和历史均值15x。12个月涨幅177%。估值已充分反映乐观预期</td></tr>
+        </table>
+
+        <h3>7.2 投资评级：回避/等待大幅回调</h3>
+        <div class="highlight">
+            <strong>合理买入区间：$250-$350（PE 15-20x FY2025 EPS $15.02）</strong><br>
+            <strong>当前价格：~$720（PE ~38x FY2025 EPS）</strong><br>
+            <strong>DCF公允价值：~$366（TickerSpark估算）</strong><br>
+            <strong>安全边际：当前价格高于合理买入区间2倍+，严重高估</strong>
+        </div>
+
+        <h3>7.3 巴菲特视角</h3>
+        <div class="highlight">
+            <p><strong>IES是一家"好公司但不是好投资"的典型案例。</strong>巴菲特会怎么看？</p>
+            <p><strong>好的方面</strong>：IES搭上了数据中心+电气化的超级风口，3年内营业利润率从2.6%扩张至11.4%，ROE 41.7%，ROIC 35.1%，净现金——这些都是优秀公司的标志。管理层通过Roll-up策略创造了巨大价值。</p>
+            <p><strong>不好的方面</strong>：IES本质上是一家<strong>施工承包商</strong>——没有持久的护城河。施工行业的特点是：①竞标制（定价权弱）；②劳动力密集（人走茶凉）；③周期性强（需求来了赚大钱，需求走了亏大钱——FY2018亏损、FY2022营业利润率仅2.6%就是明证）。IES的"劳动力优势"和"安全记录"是竞争优势，但不是巴菲特追求的"持久护城河"——它不像Visa的网络效应或Cintas的5年合同那样能穿越周期。</p>
+            <p><strong>与EMCOR/Comfort Systems对比</strong>：EME和FIX同样是施工公司，同样受益数据中心，但PE仅~20-25x。IES的PE ~38x意味着市场给了它"科技成长股"的估值，但它的本质是"周期性施工公司"——这种估值错配是最大的风险。</p>
+            <p><strong>巴菲特会说</strong>："当一位优秀的经理遇到一个没有持久护城河的行业，行业的声誉保持不变。"IES的管理层做得很好，但施工行业本身不允许持久的高回报率。在PE 38x买入一家施工公司，本质上是在赌数据中心需求永远不放缓——这不是价值投资，而是投机。</p>
+        </div>
+
+        <h3>7.4 关键催化剂与风险</h3>
+        <table>
+            <tr><th>催化剂</th><th>风险</th></tr>
+            <tr><td>数据中心需求持续超预期（AI投资加码）</td><td>数据中心建设周期放缓→Communications增速骤降</td></tr>
+            <tr><td>Gulf Island收购成功整合，打开能源/政府新市场</td><td>PE从38x回归至20x（-47%），估值杀跌</td></tr>
+            <tr><td>美联储降息→住宅市场复苏→Residential重回增长</td><td>内部人持续大量卖出（零买入）</td></tr>
+            <tr><td>Infra Solutions产能扩张（新工厂）提升利润率</td><td>劳动力成本上升压缩利润率</td></tr>
+            <tr><td>交叉销售（电气+HVAC+水管）提升单客户收入</td><td>收购整合失败（Gulf Island新领域风险）</td></tr>
+        </table>
+
+        <h3>7.5 总结</h3>
+        <p>IES Holdings是一家搭上了"数据中心+电气化"超级风口的特种承包商，3年内从一家几乎不赚钱的施工公司（FY2022营业利润率2.6%）蜕变为ROE 41.7%、ROIC 35.1%的高增长企业。管理层的Roll-up策略和资本配置能力值得肯定，净现金的资产负债表提供了安全垫。</p>
+        <p>但IES有两个巴菲特不会忽视的根本问题：<strong>①没有持久护城河</strong>（施工行业竞标制+劳动力密集+周期性强，IES的劳动力优势和安全记录是竞争优势但不是护城河）；<strong>②估值严重偏高</strong>（PE ~38x，DCF公允价值~$366，当前~$720几乎是公允价值的2倍）。12个月177%的涨幅已充分反映了数据中心增长叙事，甚至过度反映了。</p>
+        <p>对于价值投资者，IES是一个"好公司但坏价格"的典型。最佳策略是等待——等待数据中心需求周期性放缓导致股价回调至PE 15-20x的合理区间（$250-$350），那时IES才可能提供足够的安全边际。在当前价格买入，本质上是在赌"这次不一样"——而巴菲特最不喜欢听的就是这四个字。</p>
+    </div>
+
+    <script>
+    // ROE Chart
+    var ctx1 = document.getElementById('roeChart').getContext('2d');
+    new Chart(ctx1, {
+        type: 'line',
+        data: {
+            labels: ['2016','2017','2018','2019','2020','2021','2022','2023','2024','2025'],
+            datasets: [{
+                label: 'ROE (%)',
+                data: [74.4, 5.9, -6.0, 14.4, 15.7, 21.8, 11.4, 29.5, 43.8, 41.7],
+                borderColor: '#8b0000',
+                backgroundColor: 'rgba(139,0,0,0.1)',
+                fill: true,
+                tension: 0.3
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: { title: { display: true, text: 'IES Holdings ROE趋势 (2016-2025)' } },
+            scales: { y: { title: { display: true, text: 'ROE (%)' } } }
+        }
+    });
+
+    // Debt Chart
+    var ctx2 = document.getElementById('debtChart').getContext('2d');
+    new Chart(ctx2, {
+        type: 'line',
+        data: {
+            labels: ['2016','2017','2018','2019','2020','2021','2022','2023','2024','2025'],
+            datasets: [{
+                label: '负债/资产比',
+                data: [0.42, 0.50, 0.55, 0.42, 0.38, 0.35, 0.40, 0.32, 0.25, 0.20],
+                borderColor: '#2e86c1',
+                backgroundColor: 'rgba(46,134,193,0.1)',
+                fill: true,
+                tension: 0.3
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: { title: { display: true, text: 'IES Holdings 负债/资产比趋势 (2016-2025)' } },
+            scales: { y: { title: { display: true, text: '负债/资产' } } }
+        }
+    });
+
+    // PE Chart
+    var ctx3 = document.getElementById('peChart').getContext('2d');
+    new Chart(ctx3, {
+        type: 'line',
+        data: {
+            labels: ['2016','2017','2018','2019','2020','2021','2022','2023','2024','2025'],
+            datasets: [{
+                label: 'PE (年末)',
+                data: [8, 0, 0, 10, 12, 20, 15, 13, 17, 38],
+                borderColor: '#27ae60',
+                backgroundColor: 'rgba(39,174,96,0.1)',
+                fill: true,
+                tension: 0.3
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: { title: { display: true, text: 'IES Holdings PE估值趋势 (2016-2025)' } },
+            scales: { y: { title: { display: true, text: 'PE' } } }
+        }
+    });
+
+    // Profit Allocation Pie Chart
+    var ctx4 = document.getElementById('profitChart').getContext('2d');
+    new Chart(ctx4, {
+        type: 'pie',
+        data: {
+            labels: ['回购-留存 ($135M)', '收购+CapEx-留存 ($563M)', '债务偿还 ($48M)', '其他留存 ($118M)'],
+            datasets: [{
+                data: [135, 563, 48, 118],
+                backgroundColor: ['#3498db', '#27ae60', '#f39c12', '#9b59b6']
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                title: { display: true, text: 'IES Holdings 10年利润分配 (2016-2025，无股息，回购计入留存)' },
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            var total = 135 + 563 + 48 + 118;
+                            var pct = (context.parsed / total * 100).toFixed(1);
+                            return context.label + ': ' + pct + '%';
+                        }
+                    }
+                }
+            }
+        }
+    });
+    </script>
+
+    <script>
+    (function(){
+        var SCORE_KEY='stock_scores_v1';
+        var code=document.getElementById('topbarCode').textContent.trim();
+        function getScores(){try{var d=localStorage.getItem(SCORE_KEY);return d?JSON.parse(d):{};}catch(e){return {};}}
+        function saveScores(s){localStorage.setItem(SCORE_KEY,JSON.stringify(s));}
+        function starsHTML(val){var h='';for(var i=1;i<=5;i++){h+='<span class="'+(i<=val?'on':'off')+'">\u2605</span>';}return h;}
+        function valClass(v){return v>=5?'s5':v>=4?'s4':v>=3?'s3':v>=2?'s2':'s1';}
+        function renderDisplay(){
+            var sc=getScores()[code]||{};
+            var f=sc.fundamental||0,p=sc.price||0;
+            document.getElementById('topbarFVal').textContent=f>0?f:'-';
+            document.getElementById('topbarFVal').className='topbar-score-val'+(f>0?' '+valClass(f):'');
+            document.getElementById('topbarFStars').innerHTML=starsHTML(f);
+            document.getElementById('topbarPVal').textContent=p>0?p:'-';
+            document.getElementById('topbarPVal').className='topbar-score-val'+(p>0?' '+valClass(p):'');
+            document.getElementById('topbarPStars').innerHTML=starsHTML(p);
+        }
+        window.topbarEdit=function(){
+            var sc=getScores()[code]||{};
+            document.getElementById('topbarFSel').value=sc.fundamental||0;
+            document.getElementById('topbarPSel').value=sc.price||0;
+            document.getElementById('topbarFSel').style.display='';
+            document.getElementById('topbarPSel').style.display='';
+            document.getElementById('topbarEditBtn').style.display='none';
+            document.getElementById('topbarSaveBtn').style.display='';
+            document.getElementById('topbarCancelBtn').style.display='';
+            document.getElementById('topbarFVal').style.display='none';
+            document.getElementById('topbarPVal').style.display='none';
+            document.getElementById('topbarFStars').style.display='none';
+            document.getElementById('topbarPStars').style.display='none';
+        };
+        window.topbarSave=function(){
+            var f=parseInt(document.getElementById('topbarFSel').value);
+            var p=parseInt(document.getElementById('topbarPSel').value);
+            var sc=getScores();if(!sc[code])sc[code]={};
+            sc[code].fundamental=f;sc[code].price=p;sc[code].updated=new Date().toISOString();
+            saveScores(sc);topbarCancel();renderDisplay();
+        };
+        window.topbarCancel=function(){
+            document.getElementById('topbarFSel').style.display='none';
+            document.getElementById('topbarPSel').style.display='none';
+            document.getElementById('topbarEditBtn').style.display='';
+            document.getElementById('topbarSaveBtn').style.display='none';
+            document.getElementById('topbarCancelBtn').style.display='none';
+            document.getElementById('topbarFVal').style.display='';
+            document.getElementById('topbarPVal').style.display='';
+            document.getElementById('topbarFStars').style.display='';
+            document.getElementById('topbarPStars').style.display='';
+        };
+        renderDisplay();
+    })();
+    </script>
+
+    <!-- ====== 三家MEP同行深度对比 ====== -->
+    <div class="info-box" id="peer-comparison">
+        <h2>八、MEP三巨头深度对比：FIX vs EME vs IESC</h2>
+        <p style="color:#555;line-height:1.8;">Comfort Systems (FIX)、EMCOR Group (EME)、IES Holdings (IESC) 是美国MEP（机械-电气-管道）承包行业三只最核心的上市标的。它们做的事本质上一样——给大型建筑安装"内脏"（空调、电力、管道、消防），但规模、侧重和打法差异巨大。下面从多个维度逐一拆解。</p>
+
+        <h3>8.1 一句话定位</h3>
+        <table>
+            <tr><th>维度</th><th>FIX — Comfort Systems</th><th>EME — EMCOR Group</th><th>IESC — IES Holdings</th></tr>
+            <tr><td>一句话</td><td><strong>"数据中心MEP之王"</strong>——体量适中但增速最猛，数据中心占比最高</td><td><strong>"MEP全能巨人"</strong>——行业绝对龙头，业务最全、规模最大、抗周期能力最强</td><td><strong>"数据中心电力专家+住宅电气"</strong>——体量最小但弹性最大，通信/电力+住宅双轮驱动</td></tr>
+            <tr><td>成立时间</td><td>1997年</td><td>1987年（最早）</td><td>1997年</td></tr>
+            <tr><td>总部</td><td>休斯顿, TX</td><td>诺沃克, CT</td><td>舒格兰, TX</td></tr>
+            <tr><td>员工</td><td>~22,700</td><td>~44,000</td><td>~9,500</td></tr>
+        </table>
+
+        <h3>8.2 规模与估值一览（2025年数据）</h3>
+        <table>
+            <tr><th>指标</th><th>FIX</th><th>EME</th><th>IESC</th></tr>
+            <tr><td>营收</td><td>$91亿</td><td>$170亿</td><td>$34亿</td></tr>
+            <tr><td>营收规模比</td><td>1x</td><td>1.9x</td><td>0.4x</td></tr>
+            <tr><td>净利润</td><td>$10.2亿</td><td>$12.7亿（含出售UK收益）</td><td>$3.1亿</td></tr>
+            <tr><td>市值（2026.6）</td><td>~$690亿</td><td>~$370亿</td><td>~$144亿</td></tr>
+            <tr><td>PE (TTM)</td><td>~57x</td><td>~28x</td><td>~48x</td></tr>
+            <tr><td>EV/Sales</td><td>~5.3x</td><td>~1.6x</td><td>~4.4x</td></tr>
+            <tr><td>ROE (2025)</td><td>41.8%</td><td>38.5%</td><td>34.6%</td></tr>
+            <tr><td>净利率</td><td>11.2%</td><td>7.5%</td><td>9.1%</td></tr>
+            <tr><td>资产负债率</td><td>~19%</td><td>~59%</td><td>~46%</td></tr>
+            <tr><td>积压订单/RPO</td><td>$124.5亿</td><td>$132.5亿</td><td>$23.7亿(backlog)</td></tr>
+            <tr><td>积压/营收比</td><td>1.37x</td><td>0.78x</td><td>0.70x</td></tr>
+        </table>
+        <div class="highlight"><strong>关键发现：</strong>FIX的PE远超EME（57x vs 28x），市场给FIX的估值溢价来自：①数据中心敞口最高(45%)；②增速最快(营收3年CAGR ~53%)；③净利率最高(11.2%)。EME虽然规模是FIX的近2倍，但估值反而更低，因为它更像"稳重型大盘股"。IESC体量最小但PE也高达48x，市场在为它的弹性买单。</div>
+
+        <h3>8.3 业务板块对比</h3>
+        <h4>8.3.1 FIX业务板块</h4>
+        <table>
+            <tr><th>板块</th><th>营收占比</th><th>内容</th><th>营业利润率</th></tr>
+            <tr><td>Mechanical（机械）</td><td>73.3%</td><td>HVAC、管道、消防、控制、模块化预制</td><td>~23.6%</td></tr>
+            <tr><td>Electrical（电气）</td><td>26.7%</td><td>电力系统安装与维护</td><td>~26.7%</td></tr>
+        </table>
+
+        <h4>8.3.2 EME业务板块</h4>
+        <table>
+            <tr><th>板块</th><th>营收占比</th><th>内容</th><th>营业利润率</th></tr>
+            <tr><td>US Mechanical Construction & Facilities</td><td>~44.2%</td><td>HVAC、管道、消防、制冷、洁净室</td><td>~10.5%</td></tr>
+            <tr><td>US Electrical Construction & Facilities</td><td>~29.9%</td><td>电力输配电、照明、安防、网络通信</td><td>~10.8%</td></tr>
+            <tr><td>US Building Services</td><td>~18.4%</td><td>设施维护、暖通服务、能源效率改造</td><td>~7.5%</td></tr>
+            <tr><td>US Industrial Services</td><td>~7.5%</td><td>炼油厂检修、工业维护</td><td>~8.0%</td></tr>
+        </table>
+
+        <h4>8.3.3 IESC业务板块</h4>
+        <table>
+            <tr><th>板块</th><th>营收占比</th><th>内容</th><th>营业利润率</th></tr>
+            <tr><td>Communications（通信）</td><td>33.8%</td><td>数据中心通信基础设施、网络布线、安防系统</td><td>~14.6%</td></tr>
+            <tr><td>Residential（住宅）</td><td>38.7%</td><td>独栋住宅电气、HVAC/管道安装</td><td>~9.8%</td></tr>
+            <tr><td>Infrastructure Solutions</td><td>14.8%</td><td>定制电力设备（母线槽、发电机外壳）、电机维修</td><td>~24.5%</td></tr>
+            <tr><td>Commercial & Industrial</td><td>12.7%</td><td>商业/工业电气与机械施工</td><td>~11.0%</td></tr>
+        </table>
+
+        <h3>8.4 三者相同点</h3>
+        <div style="background:#eaf7ea;border-left:4px solid #27ae60;padding:15px 20px;margin:10px 0;border-radius:0 8px 8px 0;">
+            <p><strong>1. 同一个大赛道——MEP承包</strong>：三家都是给大型建筑安装机械（空调/管道/消防）和电气（电力/照明/通信）系统的专业承包商。客户群高度重叠——数据中心、制造业、医疗、教育机构。</p>
+            <p><strong>2. 同一个增长引擎——AI数据中心</strong>：三家都在疯狂受益于超大规模数据中心的爆发式建设。FIX的Technology占比45%，EME的Network & Communications积压订单$156亿，IESC的Communications营收同比+47%。数据中心需要巨量的电力和冷却——这正是MEP承包商的活。</p>
+            <p><strong>3. 同一种打法——收购驱动增长</strong>：三家都是"收购+有机增长"双轮驱动。FIX 10年收购约13亿美元，EME收购了Miller Electric（$8.65亿），IESC收购了Gulf Island Fabrication。行业极度碎片化（数千家小公司），并购整合是做大做强的核心路径。</p>
+            <p><strong>4. 同一种组织模式——去中心化运营</strong>：三家都采用"总部管资本/战略，地方子公司管运营"的模式。FIX有50个运营单元，EME有~100个子公司，IESC也有多个独立运营单位。这保证了本地化响应速度。</p>
+            <p><strong>5. 同一个痛点——技术工人短缺</strong>：美国电工、管道工、焊工严重不足，三家都面临招人难、留人难的问题。谁能吸引和留住技术工人，谁就能接更多活。</p>
+            <p><strong>6. 同一个财务特征——高ROE、低/零负债</strong>：FIX几乎零负债，EME净现金$4亿+，IESC负债也极少。三家的ROE都在35-42%区间，是典型的"轻资产高回报"生意。</p>
+        </div>
+
+        <h3>8.5 三者差异点</h3>
+        <table>
+            <tr><th>差异维度</th><th>FIX</th><th>EME</th><th>IESC</th></tr>
+            <tr>
+                <td><strong>规模定位</strong></td>
+                <td>中型偏大，"精而快"</td>
+                <td>行业绝对龙头，"大而全"</td>
+                <td>小型，"小而灵"</td>
+            </tr>
+            <tr>
+                <td><strong>核心侧重</strong></td>
+                <td>机械(HVAC)为主，电气快速扩张中</td>
+                <td>机械+电气双核心，还有建筑服务和工业服务</td>
+                <td>电气/通信为主，住宅电气是独特板块</td>
+            </tr>
+            <tr>
+                <td><strong>数据中心敞口</strong></td>
+                <td>最高（~45%营收来自Technology）</td>
+                <td>高但更分散（Network & Comms是最大积压订单来源，但占总营收比例较低）</td>
+                <td>高且增长最快（Communications +47% YoY）</td>
+            </tr>
+            <tr>
+                <td><strong>住宅敞口</strong></td>
+                <td>极低（~1.4%）</td>
+                <td>低（Building Services中部分涉及）</td>
+                <td>最高（~38.7%，是最大单一板块）</td>
+            </tr>
+            <tr>
+                <td><strong>经常性收入</strong></td>
+                <td>较低（~7.3%来自服务/维护）</td>
+                <td>最高（Building Services ~18.4%是稳定的维护收入）</td>
+                <td>中等（Infrastructure Solutions有部分经常性维修收入）</td>
+            </tr>
+            <tr>
+                <td><strong>工业/炼油</strong></td>
+                <td>无</td>
+                <td>有（Industrial Services ~7.5%，炼油厂检修）</td>
+                <td>有（Industrial Services在Infrastructure中）</td>
+            </tr>
+            <tr>
+                <td><strong>定制制造</strong></td>
+                <td>模块化预制（skid）</td>
+                <td>预制+VDC/BIM</td>
+                <td>母线槽、发电机外壳等定制电力设备（独特）</td>
+            </tr>
+            <tr>
+                <td><strong>营业利润率</strong></td>
+                <td>最高（综合~24%）</td>
+                <td>最低（综合~9.3%）</td>
+                <td>中等（综合~11.4%）</td>
+            </tr>
+            <tr>
+                <td><strong>地理覆盖</strong></td>
+                <td>142城市/190地点</td>
+                <td>最广（~450地点，曾含UK现已出售）</td>
+                <td>最少，但集中在高增长区域</td>
+            </tr>
+            <tr>
+                <td><strong>客户集中度</strong></td>
+                <td>较高（最大客户占12.8%）</td>
+                <td>分散（无单一客户超10%）</td>
+                <td>中等</td>
+            </tr>
+            <tr>
+                <td><strong>估值水平</strong></td>
+                <td>最贵（PE ~57x）</td>
+                <td>最便宜（PE ~28x）</td>
+                <td>贵（PE ~48x）</td>
+            </tr>
+        </table>
+
+        <h3>8.6 各自竞争优势</h3>
+
+        <div style="background:white;border-radius:8px;padding:15px 20px;margin:10px 0;box-shadow:0 1px 5px rgba(0,0,0,0.05);border-left:4px solid #2e86c1;">
+            <strong style="color:#1a5276;">FIX的竞争优势</strong>
+            <p><strong>1. 数据中心MEP最高敞口</strong>：45%营收来自Technology（主要是数据中心），是三者中数据中心纯度最高的标的。当数据中心建设爆发时，FIX是"最直接的受益者"。</p>
+            <p><strong>2. 模块化预制能力（"乐高式"施工）</strong>：FIX在工厂里把冷却和电力系统做成"skid"（预制模块），运到现场"拼装"。对数据中心客户来说，"早一天通电就早一天赚钱"，这种速度优势是决定性的。</p>
+            <p><strong>3. 最高利润率</strong>：综合营业利润率~24%，远超EME的9.3%和IESC的11.4%。说明FIX在项目选择和执行效率上有显著优势——它不是什么都接，而是挑高利润的活干。</p>
+            <p><strong>4. Design-Build能力</strong>：FIX不只是按图施工，而是从设计阶段就参与，帮客户优化方案。这提高了转换成本——客户换掉FIX的成本很高。</p>
+        </div>
+
+        <div style="background:white;border-radius:8px;padding:15px 20px;margin:10px 0;box-shadow:0 1px 5px rgba(0,0,0,0.05);border-left:4px solid #e67e22;">
+            <strong style="color:#d35400;">EME的竞争优势</strong>
+            <p><strong>1. 规模与多元化——"抗周期之王"</strong>：$170亿营收是FIX的近2倍、IESC的5倍。业务横跨机械、电气、建筑服务、工业服务四大板块，覆盖数据中心、医疗、教育、工业、政府等几乎所有终端市场。当某个行业下行时，其他板块可以对冲。这是EME独有的"安全垫"。</p>
+            <p><strong>2. 经常性收入占比最高</strong>：Building Services（~18.4%营收）提供稳定的维护和设施管理收入，这些是按年签的合同，不受建筑周期影响。FIX和IESC都缺乏这种"压舱石"。</p>
+            <p><strong>3. 工业服务独占性</strong>：EME是三者中唯一有炼油厂检修（turnaround）业务的。炼油厂每3-5年必须大修，这是刚需，不受经济周期影响。</p>
+            <p><strong>4. 最强的财务实力+最低估值</strong>：PE仅28x，远低于FIX的57x。如果考虑非GAAP EPS $25.87，PE更低至~32x。对于一家ROE 38.5%、营收增速16.6%的公司来说，这是三者中最"合理"的估值。</p>
+            <p><strong>5. 最大的积压订单</strong>：$132.5亿RPO，且Network & Communications的积压在2026Q1已达$156亿（+32.9% YoY），收入可见性极强。</p>
+        </div>
+
+        <div style="background:white;border-radius:8px;padding:15px 20px;margin:10px 0;box-shadow:0 1px 5px rgba(0,0,0,0.05);border-left:4px solid #8b0000;">
+            <strong style="color:#8b0000;">IESC的竞争优势</strong>
+            <p><strong>1. 定制电力设备制造——独特的"制造+施工"组合</strong>：IESC的Infrastructure Solutions板块制造母线槽（bus duct）、发电机外壳等定制电力设备。FIX和EME都不做这种制造。这意味着IESC在数据中心电力分配上有"自产自装"的垂直整合优势。</p>
+            <p><strong>2. 住宅电气——独特的周期对冲</strong>：IESC是三者中唯一有大规模住宅业务的（~38.7%营收）。住宅电气和商业/数据中心建设周期不同步，提供了天然的多元化。但这也是双刃剑——当前住宅市场低迷正在拖累整体增速。</p>
+            <p><strong>3. 最大弹性</strong>：体量最小意味着同样的增量订单对EPS的拉动最大。Communications营收从$7.8亿增至$11.4亿（+47%），这种增速在FIX和EME的体量上不可能实现。</p>
+            <p><strong>4. Infrastructure Solutions的高利润率</strong>：该板块营业利润率~24.5%，接近FIX的综合利润率水平。定制制造的利润率远高于纯施工。</p>
+            <p><strong>5. Gulf Island收购打开新空间</strong>：收购Gulf Island Fabrication（钢铁结构制造）将IESC带入工业/能源/政府市场，这是FIX和EME工业服务之外的另一个差异化方向。</p>
+        </div>
+
+        <h3>8.7 各自核心风险</h3>
+        <table>
+            <tr><th>风险</th><th>FIX</th><th>EME</th><th>IESC</th></tr>
+            <tr>
+                <td>数据中心周期反转</td>
+                <td><span class="tag tag-red">极高风险</span> 45%营收来自Technology，如果AI投资放缓，FIX受创最重</td>
+                <td><span class="tag tag-orange">中等风险</span> 数据中心只是众多板块之一，可被其他板块对冲</td>
+                <td><span class="tag tag-orange">中高风险</span> Communications占比34%且增速最快，但住宅可部分对冲</td>
+            </tr>
+            <tr>
+                <td>客户集中度</td>
+                <td><span class="tag tag-red">高风险</span> 最大客户占12.8%</td>
+                <td><span class="tag tag-green">低风险</span> 客户极度分散</td>
+                <td><span class="tag tag-orange">中等风险</span></td>
+            </tr>
+            <tr>
+                <td>住宅市场下行</td>
+                <td><span class="tag tag-green">无影响</span> 住宅仅1.4%</td>
+                <td><span class="tag tag-green">极小影响</span></td>
+                <td><span class="tag tag-red">高风险</span> 住宅占38.7%，当前已在拖累增速</td>
+            </tr>
+            <tr>
+                <td>估值过高</td>
+                <td><span class="tag tag-red">极高风险</span> PE 57x，1年涨281%</td>
+                <td><span class="tag tag-green">低风险</span> PE 28x，相对合理</td>
+                <td><span class="tag tag-orange">高风险</span> PE 48x，1年涨157%</td>
+            </tr>
+            <tr>
+                <td>劳动力短缺</td>
+                <td><span class="tag tag-orange">中高风险</span> 22,700人，扩张快但招人难</td>
+                <td><span class="tag tag-orange">中等风险</span> 44,000人规模，品牌力更强有助于招人</td>
+                <td><span class="tag tag-red">高风险</span> 仅9,500人，规模小更难抢人</td>
+            </tr>
+        </table>
+
+        <h3>8.8 投资者视角：该选谁？</h3>
+        <div style="background:#fef9e7;border-left:4px solid #f39c12;padding:15px 20px;margin:15px 0;border-radius:0 8px 8px 0;">
+            <p><strong>如果你追求"数据中心纯度"和最高增速 → FIX</strong>，但必须接受PE 57x的极端估值和数据中心周期反转的巨大风险。FIX是三者中"进攻性最强"的标的。</p>
+            <p><strong>如果你追求"安全边际"和合理估值 → EME</strong>，PE仅28x，多元化+经常性收入+工业服务提供了最好的下行保护。EME是三者中"防御性最强"的标的。巴菲特式的投资者可能更倾向这个。</p>
+            <p><strong>如果你追求"弹性"和"独特制造能力" → IESC</strong>，但住宅拖累和小体量风险需要容忍。IESC是三者中"赌性最重"的标的——赌对了数据中心持续爆发+住宅复苏，回报惊人；赌错了，回撤也最大。</p>
+        </div>
+
+        <div class="highlight">
+            <strong>芒格会怎么说？</strong>"三家都是好生意——MEP承包是'别人建骨架、你装内脏'的刚需活，技术工人就是护城河。但好公司不等于好价格。EME在28倍PE提供了合理的安全边际；FIX和IESC的估值已经透支了太多乐观预期。耐心等待市场先生犯错的时刻，才是价值投资者该做的事。"
+        </div>
+
+        <p style="text-align:center;margin-top:20px;">
+            <a href="fix.html">查看FIX详细分析 &rarr;</a> &nbsp;|&nbsp;
+            <a href="eme.html">查看EME详细分析 &rarr;</a>
+        </p>
+    </div>
+
+</body>
+</html>
