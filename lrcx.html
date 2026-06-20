@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lam Research (LRCX) 价值投资分析</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body { font-family: 'Segoe UI', Arial, sans-serif; margin: 0; padding: 20px; background-color: #f0f2f5; color: #333; }
+        h1 { text-align: center; color: #1a5276; font-size: 2.2em; margin-bottom: 5px; }
+        h2 { color: #1a5276; border-bottom: 2px solid #2e86c1; padding-bottom: 8px; margin-top: 30px; }
+        h3 { color: #2c3e50; margin-top: 20px; }
+        .subtitle { text-align: center; color: #7f8c8d; font-size: 1.1em; margin-bottom: 30px; }
+        .info-box { background: white; border-radius: 10px; padding: 25px; margin: 20px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.08); }
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; background-color: white; }
+        th, td { padding: 10px 14px; text-align: left; border-bottom: 1px solid #e0e0e0; }
+        th { background-color: #1a5276; color: white; font-weight: bold; }
+        tr:nth-child(even) { background-color: #f8f9fa; }
+        tr:hover { background-color: #eaf2f8; }
+        .highlight { background: #fef9e7; border-left: 4px solid #2e86c1; padding: 15px 20px; margin: 15px 0; border-radius: 0 8px 8px 0; }
+        .chart-container { background: white; border-radius: 10px; padding: 25px; margin: 20px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.08); }
+        canvas { max-height: 400px; }
+        .tag { display: inline-block; background: #1a5276; color: white; padding: 3px 10px; border-radius: 12px; font-size: 0.85em; margin: 2px; }
+        .tag-green { background: #27ae60; }
+        .tag-orange { background: #e67e22; }
+        .tag-red { background: #c0392b; }
+        a { color: #1a5276; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        .fixed-topbar { position: fixed; top: 0; left: 0; right: 0; z-index: 9999; background: linear-gradient(135deg, #1a5276, #2e86c1); color: white; display: flex; align-items: center; justify-content: space-between; padding: 8px 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.15); height: 48px; }
+        .fixed-topbar a { color: white; text-decoration: none; font-size: 14px; font-weight: 600; }
+        .fixed-topbar a:hover { text-decoration: underline; }
+        .topbar-left { display: flex; align-items: center; gap: 12px; }
+        .topbar-right { display: flex; align-items: center; gap: 8px; }
+        .topbar-score-label { font-size: 12px; opacity: 0.85; }
+        .topbar-score-val { font-weight: 700; font-size: 15px; min-width: 18px; text-align: center; }
+        .topbar-score-val.s1 { color: #ff6b6b; } .topbar-score-val.s2 { color: #ffa94d; } .topbar-score-val.s3 { color: #ffd43b; } .topbar-score-val.s4 { color: #69db7c; } .topbar-score-val.s5 { color: #51cf66; }
+        .topbar-select { padding: 3px 8px; border: 1px solid rgba(255,255,255,0.4); border-radius: 6px; font-size: 12px; font-weight: 600; color: white; background: rgba(255,255,255,0.15); cursor: pointer; outline: none; }
+        .topbar-select:focus { border-color: rgba(255,255,255,0.7); }
+        .topbar-select option { color: #333; background: white; }
+        .topbar-select:disabled { opacity: 0.5; cursor: not-allowed; }
+        .topbar-btn { padding: 4px 12px; border: none; border-radius: 6px; font-size: 12px; font-weight: 600; cursor: pointer; transition: background 0.2s; }
+        .topbar-btn-edit { background: rgba(255,255,255,0.2); color: white; }
+        .topbar-btn-edit:hover { background: rgba(255,255,255,0.35); }
+        .topbar-btn-save { background: #27ae60; color: white; }
+        .topbar-btn-save:hover { background: #219a52; }
+        .topbar-btn-cancel { background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.7); }
+        .topbar-btn-cancel:hover { background: rgba(255,255,255,0.2); }
+        .topbar-stars { font-size: 11px; }
+        .topbar-stars .on { color: #f39c12; }
+        .topbar-stars .off { color: rgba(255,255,255,0.3); }
+        body { padding-top: 60px !important; }
+        .moat-item { background: white; border-radius: 8px; padding: 15px 20px; margin: 10px 0; box-shadow: 0 1px 5px rgba(0,0,0,0.05); border-left: 4px solid #2e86c1; }
+        .moat-item strong { color: #1a5276; }
+        .risk-item { background: white; border-radius: 8px; padding: 15px 20px; margin: 10px 0; box-shadow: 0 1px 5px rgba(0,0,0,0.05); border-left: 4px solid #c0392b; }
+        .star { color: #f39c12; }
+    </style>
+</head>
+<body>
+    <div class="fixed-topbar" id="fixedTopbar">
+        <div class="topbar-left">
+            <a href="index.html">&larr; 返回索引</a>
+            <span style="font-size:14px;font-weight:700;" id="topbarCode">LRCX</span>
+        </div>
+        <div class="topbar-right" id="topbarScores">
+            <span class="topbar-score-label">基本面</span>
+            <span class="topbar-score-val" id="topbarFVal">-</span>
+            <span class="topbar-stars" id="topbarFStars"></span>
+            <select class="topbar-select" id="topbarFSel" style="display:none;"><option value="0">-</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option></select>
+            <span class="topbar-score-label" style="margin-left:12px;">价格</span>
+            <span class="topbar-score-val" id="topbarPVal">-</span>
+            <span class="topbar-stars" id="topbarPStars"></span>
+            <select class="topbar-select" id="topbarPSel" style="display:none;"><option value="0">-</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option></select>
+            <button class="topbar-btn topbar-btn-edit" id="topbarEditBtn" onclick="topbarEdit()">修改</button>
+            <button class="topbar-btn topbar-btn-save" id="topbarSaveBtn" onclick="topbarSave()" style="display:none;">保存</button>
+            <button class="topbar-btn topbar-btn-cancel" id="topbarCancelBtn" onclick="topbarCancel()" style="display:none;">取消</button>
+        </div>
+    </div>
+
+    <h1>Lam Research 泛林集团 (NASDAQ: LRCX)</h1>
+    <p class="subtitle">巴菲特/芒格式价值投资基本面分析 | 更新日期：2026年6月</p>
+
+    <!-- 一、公司基本信息 -->
+    <div class="info-box">
+        <h2>一、公司基本信息</h2>
+        <table>
+            <tr><td>公司全称</td><td>Lam Research Corporation（泛林集团）</td></tr>
+            <tr><td>股票代码</td><td>NASDAQ: LRCX</td></tr>
+            <tr><td>市值</td><td>约4,600亿美元（2026年6月）</td></tr>
+            <tr><td>企业价值（EV）</td><td>约2,650亿美元（TTM）</td></tr>
+            <tr><td>成立时间</td><td>1980年，由David K. Lam创立</td></tr>
+            <tr><td>公司总部</td><td>美国加利福尼亚州弗里蒙特（Fremont, CA）</td></tr>
+            <tr><td>最新收盘价</td><td>约$369（2026年6月中旬）</td></tr>
+            <tr><td>52周区间</td><td>$87.75 - $393.07</td></tr>
+            <tr><td>CEO</td><td>Tim Archer（2018年1月就任）</td></tr>
+            <tr><td>员工人数</td><td>约20,600人</td></tr>
+            <tr><td>行业</td><td>半导体制造设备 / 刻蚀与沉积</td></tr>
+            <tr><td>流通股数</td><td>约12.5亿股（2024年10月完成10:1拆股）</td></tr>
+            <tr><td>股息</td><td>$1.04/年（季息$0.26），股息率约0.28%</td></tr>
+            <tr><td>IPO时间</td><td>1984年上市</td></tr>
+            <tr><td>标普500成分股</td><td>是</td></tr>
+        </table>
+    </div>
+
+    <!-- 二、业务分析 -->
+    <div class="info-box">
+        <h2>二、业务分析</h2>
+
+        <h3>公司做什么——用大白话说</h3>
+        <p>想象你在建造一栋摩天大楼。你需要两种核心工序：一是<strong>"雕刻"</strong>——用极精密的工具在硅片上刻出纳米级的电路沟槽；二是<strong>"涂装"</strong>——在刻好的沟槽里一层一层地镀上金属和绝缘薄膜。Lam Research就是卖这种"雕刻刀"和"涂装机"的公司。芯片越做越小、越做越立体（3D NAND堆到200多层），每一层都需要反复刻蚀和沉积，所以Lam的设备在每片晶圆上的"内容量"持续增长。</p>
+        <p>除了卖新机器，Lam还有一块非常赚钱的"售后"业务——为已安装的设备提供备件、升级、维护和工艺咨询服务。这块收入像订阅费一样稳定，不太受芯片周期波动影响。</p>
+
+        <h3>业务板块与营收结构（FY2025，截至2025年6月）</h3>
+        <table>
+            <tr><th>业务板块</th><th>营收（亿美元）</th><th>占比</th><th>同比增长</th><th>说明</th></tr>
+            <tr><td>系统设备（Systems）</td><td>$114.9</td><td>62.3%</td><td>+28.8%</td><td>刻蚀、沉积、清洗等新设备销售</td></tr>
+            <tr><td>客户支持及其他（CSBG）</td><td>$69.4</td><td>37.7%</td><td>+16.1%</td><td>备件、升级、服务、Reliant翻新设备</td></tr>
+            <tr><td><strong>合计</strong></td><td><strong>$184.4</strong></td><td><strong>100%</strong></td><td><strong>+23.7%</strong></td></tr>
+        </table>
+
+        <div class="highlight">
+            <strong>关键洞察：</strong>客户支持业务（CSBG）占比近38%，且增速稳健（+16%），这为Lam提供了"逆周期缓冲垫"。当芯片厂不买新设备时，已安装的9万多台设备仍在运转，仍需要备件和服务。2025年升级业务收入同比增长超90%，创历史纪录。
+        </div>
+
+        <h3>按终端市场划分（FY2026 Q3，2026年3月季度）</h3>
+        <table>
+            <tr><th>终端市场</th><th>系统收入占比</th><th>说明</th></tr>
+            <tr><td>晶圆代工（Foundry）</td><td>59%</td><td>TSMC等代工厂的先进节点扩产</td></tr>
+            <tr><td>存储（Memory）</td><td>34%</td><td>DRAM 23%（含HBM），NAND 11%</td></tr>
+            <tr><td>逻辑及其他</td><td>7%</td><td>IDM自建逻辑产能</td></tr>
+        </table>
+
+        <h3>按地区划分（FY2026 Q3）</h3>
+        <table>
+            <tr><th>地区</th><th>收入占比</th><th>说明</th></tr>
+            <tr><td>中国大陆</td><td>34%</td><td>成熟节点扩产+国产替代需求</td></tr>
+            <tr><td>韩国</td><td>23%</td><td>三星、SK海力士存储投资</td></tr>
+            <tr><td>中国台湾</td><td>23%</td><td>TSMC先进节点扩产</td></tr>
+            <tr><td>日本</td><td>8%</td><td>存储及逻辑产能</td></tr>
+            <tr><td>美国</td><td>6%</td><td>CHIPS法案驱动的新建产能</td></tr>
+            <tr><td>东南亚</td><td>4%</td><td>封测及后段产能</td></tr>
+            <tr><td>欧洲</td><td>2%</td><td>欧洲芯片法案相关投资</td></tr>
+        </table>
+
+        <div class="highlight">
+            <strong>地缘风险警示：</strong>亚洲收入占比高达92%，其中中国大陆占34%。这是Lam最大的风险敞口——美国出口管制升级可能随时冲击中国区收入。不过，2026年中国WFE支出预计基本持平或略有上升，韧性超预期。
+        </div>
+
+        <h3>商业模式</h3>
+        <p>Lam的赚钱逻辑是"卖刀+卖磨刀石"：</p>
+        <ul>
+            <li><strong>卖刀（系统设备）：</strong>向芯片厂出售刻蚀和沉积设备，单台价格数百万美元，周期性强</li>
+            <li><strong>卖磨刀石（CSBG）：</strong>设备一旦安装，客户就锁定在Lam生态中——只有Lam能提供匹配的备件、工艺升级和软件更新。这块收入高度可预测、高利润率</li>
+            <li><strong>飞轮效应：</strong>安装基数越大→CSBG收入越高→客户越离不开→新设备订单也越倾向Lam</li>
+        </ul>
+    </div>
+
+    <!-- 三、业务板块产品竞争力分析 -->
+    <div class="info-box">
+        <h2>三、业务板块产品竞争力分析</h2>
+
+        <h3>3.1 系统设备（刻蚀+沉积）产品竞争力分析</h3>
+
+        <p><strong>1. 可替代性：<span class="tag tag-green">低</span></strong></p>
+        <ul>
+            <li><strong>主要替代品：</strong>Applied Materials的刻蚀/沉积设备、东京电子(TEL)的刻蚀设备、ASM International的ALD设备</li>
+            <li><strong>替代体验差距：</strong>Lam在等离子刻蚀领域拥有40%+市场份额，其Akara导体刻蚀系统是EUV和高深宽比刻蚀的首选量产机台。竞争对手在先进节点刻蚀精度和产能上仍有差距</li>
+            <li><strong>替代趋势：</strong>稳定。3D NAND层数从128层→200+层，GAA晶体管取代FinFET，每一步技术演进都在增加刻蚀和沉积的工艺复杂度，Lam的技术优势反而被放大</li>
+        </ul>
+
+        <p><strong>2. 客户转换成本：<span class="tag tag-green">极高</span></strong></p>
+        <ul>
+            <li><strong>财务转换成本：</strong>一台先进刻蚀设备价格数百万美元，更换供应商意味着整条产线需要重新验证（re-qualify），成本可达数千万美元</li>
+            <li><strong>时间转换成本：</strong>芯片厂将Lam设备集成到制造流程中需要数月甚至数年的工艺调试。数千条工艺配方（recipe）——气体化学、RF功率、温度、时序参数——都是与Lam设备共同开发的，无法移植到竞争对手设备上</li>
+            <li><strong>心理转换成本：</strong>良率是芯片厂的生命线。更换设备供应商意味着良率风险，没人敢在量产线上"换刀"</li>
+            <li><strong>捆绑转换成本：</strong>Lam的Equipment Intelligence软件和Dextro协作机器人与设备深度绑定，进一步增加离开Lam生态的难度</li>
+        </ul>
+
+        <p><strong>3. 定价权：<span class="tag tag-green">强</span></strong></p>
+        <ul>
+            <li><strong>历史提价记录：</strong>过去5年，Lam通过技术升级（如从Kiyo升级到Akara）实现隐性提价，新一代设备价格显著高于上一代</li>
+            <li><strong>提价vs通胀：</strong>每次技术节点迁移（如3D NAND从128层到200+层），每片晶圆需要的刻蚀/沉积步骤增加25-30%，Lam的"每片晶圆内容量"结构性增长，相当于持续涨价</li>
+            <li><strong>定价权来源：</strong>技术不可替代性+极高转换成本。客户不是在"买设备"，而是在"买良率保障"</li>
+            <li><strong>定价权趋势：</strong>增强。GAA、HBM、先进封装等新技术路线都在增加刻蚀/沉积密集度</li>
+            <li><strong>巴菲特测试：</strong>如果Lam将设备价格提高10%，客户会因为良率风险和转换成本而不会离开</li>
+        </ul>
+
+        <p><strong>系统设备整体竞争力评级：<span class="star">&#9733;&#9733;&#9733;&#9733;</span> 4/5星</strong></p>
+
+        <h3>3.2 客户支持业务（CSBG）产品竞争力分析</h3>
+
+        <p><strong>1. 可替代性：<span class="tag tag-green">极低</span></strong></p>
+        <ul>
+            <li><strong>主要替代品：</strong>第三方备件供应商、客户自建维护团队</li>
+            <li><strong>替代体验差距：</strong>Lam设备使用专有工艺配方和软件，第三方无法提供同等质量的备件和工艺支持。升级业务（如将旧设备升级到新工艺节点）更是只有原厂能做</li>
+            <li><strong>替代趋势：</strong>稳定。设备越先进、工艺越复杂，客户对原厂服务的依赖越深</li>
+        </ul>
+
+        <p><strong>2. 客户转换成本：<span class="tag tag-green">极高</span></strong></p>
+        <ul>
+            <li><strong>财务转换成本：</strong>使用非原厂备件可能导致设备故障和良率下降，损失远超备件差价</li>
+            <li><strong>时间转换成本：</strong>设备停机每小时损失数万美元，客户不会冒险尝试替代服务</li>
+            <li><strong>捆绑转换成本：</strong>Lam的预测性维护和数字孪生技术与设备绑定，形成数据护城河</li>
+        </ul>
+
+        <p><strong>3. 定价权：<span class="tag tag-green">极强</span></strong></p>
+        <ul>
+            <li><strong>历史提价记录：</strong>CSBG毛利率持续提升，升级业务2025年同比增长超90%</li>
+            <li><strong>定价权来源：</strong>对已安装设备的"垄断性"服务权——只有Lam最了解自己的设备</li>
+            <li><strong>巴菲特测试：</strong>如果Lam将服务价格提高10%，客户别无选择，因为替代方案风险太高</li>
+        </ul>
+
+        <p><strong>CSBG整体竞争力评级：<span class="star">&#9733;&#9733;&#9733;&#9733;&#9733;</span> 5/5星</strong></p>
+    </div>
+
+    <!-- 四、历史财务指标 -->
+    <div class="info-box">
+        <h2>四、历史财务指标</h2>
+
+        <h3>4.1 净资产收益率（ROE）</h3>
+        <table>
+            <tr><th>财年</th><th>2015</th><th>2016</th><th>2017</th><th>2018</th><th>2019</th><th>2020</th><th>2021</th><th>2022</th><th>2023</th><th>2024</th><th>2025</th><th>TTM</th></tr>
+            <tr><td>ROE</td><td>17.1%</td><td>20.5%</td><td>30.7%</td><td>32.8%</td><td>24.1%</td><td>21.0%</td><td>29.8%</td><td>27.8%</td><td>22.3%</td><td>16.3%</td><td>19.9%</td><td>22.2%</td></tr>
+        </table>
+        <div class="chart-container">
+            <canvas id="roeChart"></canvas>
+        </div>
+        <div class="highlight">
+            <strong>巴菲特视角：</strong>Lam的ROE长期维持在20-33%的高位，远超15%的"好公司"门槛。但需注意：高ROE部分来自大规模回购导致的股东权益缩减（财务杠杆效应），而非纯经营效率提升。即便如此，其经营ROIC（投入资本回报率）也长期在20%以上，说明核心竞争力真实存在。
+        </div>
+
+        <h3>4.2 资产负债率与权益乘数</h3>
+        <table>
+            <tr><th>财年</th><th>2016</th><th>2017</th><th>2018</th><th>2019</th><th>2020</th><th>2021</th><th>2022</th><th>2023</th><th>2024</th><th>2025</th></tr>
+            <tr><td>总资产（亿$）</td><td>136</td><td>162</td><td>176</td><td>163</td><td>157</td><td>177</td><td>189</td><td>216</td><td>213</td><td>213</td></tr>
+            <tr><td>总负债（亿$）</td><td>75</td><td>92</td><td>110</td><td>116</td><td>105</td><td>117</td><td>126</td><td>134</td><td>128</td><td>115</td></tr>
+            <tr><td>股东权益（亿$）</td><td>61</td><td>70</td><td>66</td><td>47</td><td>52</td><td>60</td><td>63</td><td>82</td><td>85</td><td>99</td></tr>
+            <tr><td>资产负债率</td><td>55%</td><td>57%</td><td>63%</td><td>71%</td><td>67%</td><td>66%</td><td>67%</td><td>62%</td><td>60%</td><td>54%</td></tr>
+            <tr><td>权益乘数</td><td>2.2x</td><td>2.3x</td><td>2.7x</td><td>3.5x</td><td>3.0x</td><td>3.0x</td><td>3.0x</td><td>2.6x</td><td>2.5x</td><td>2.2x</td></tr>
+        </table>
+        <div class="highlight">
+            <strong>财务安全评估：</strong>资产负债率从2019年的71%持续下降至2025年的54%，趋势向好。长期债务仅37亿美元，而现金及等价物约48亿美元，净现金头寸约11亿美元。对于一家周期性公司来说，这个资产负债表相当稳健。
+        </div>
+
+        <h3>4.3 市盈率（PE）</h3>
+        <table>
+            <tr><th>财年</th><th>2016</th><th>2017</th><th>2018</th><th>2019</th><th>2020</th><th>2021</th><th>2022</th><th>2023</th><th>2024</th><th>2025</th><th>当前</th></tr>
+            <tr><td>平均PE</td><td>12.9</td><td>13.2</td><td>8.4</td><td>19.2</td><td>20.3</td><td>23.9</td><td>11.9</td><td>18.9</td><td>35.1</td><td>23.9</td><td>~69</td></tr>
+        </table>
+        <div class="chart-container">
+            <canvas id="peChart"></canvas>
+        </div>
+        <div class="highlight">
+            <strong>估值警示：</strong>当前PE约69倍，远高于10年平均PE 18.8倍。即便用Forward PE（约33-49倍），也处于历史高位。对于一家周期性资本设备公司而言，周期顶点的69倍PE意味着市场已经充分定价了AI驱动的增长预期。安全边际严重不足。
+        </div>
+    </div>
+
+    <!-- 五、竞争分析 -->
+    <div class="info-box">
+        <h2>五、竞争分析</h2>
+
+        <h3>5.1 主要竞争对手</h3>
+        <table>
+            <tr><th>竞争对手</th><th>核心领域</th><th>与Lam的重叠</th><th>Lam的相对优势</th></tr>
+            <tr><td>Applied Materials (AMAT)</td><td>全品类半导体设备（沉积、刻蚀、检测、离子注入等）</td><td>刻蚀+沉积直接竞争</td><td>Lam在刻蚀领域份额更高、技术更深；AMAT产品线更广但单点不如Lam专精</td></tr>
+            <tr><td>Tokyo Electron (TEL)</td><td>涂胶显影、刻蚀、沉积、热处理</td><td>刻蚀+沉积竞争</td><td>Lam在先进节点刻蚀技术领先；TEL在日本市场有主场优势</td></tr>
+            <tr><td>ASML</td><td>光刻机（EUV/DUV垄断）</td><td>无直接竞争</td><td>互补关系——ASML的EUV需要Lam的刻蚀来"雕刻"光刻后的图案</td></tr>
+            <tr><td>KLA (KLAC)</td><td>工艺检测/量测</td><td>无直接竞争</td><td>互补关系——KLA检测良率，Lam制造芯片</td></tr>
+        </table>
+
+        <h3>5.2 市场份额</h3>
+        <table>
+            <tr><th>细分市场</th><th>市场规模（亿$）</th><th>Lam份额</th><th>排名</th><th>竞争态势</th></tr>
+            <tr><td>刻蚀（Etch）</td><td>~280</td><td>~45%</td><td>第1</td><td>与AMAT双寡头，TEL挑战中</td></tr>
+            <tr><td>沉积（Deposition）</td><td>~220-240</td><td>~25%</td><td>第2</td><td>AMAT领先，Lam在CVD/ALD强势</td></tr>
+            <tr><td>清洗（Clean）</td><td>较小</td><td>有份额</td><td>前3</td><td>细分市场</td></tr>
+        </table>
+
+        <h3>5.3 经济护城河评估</h3>
+
+        <div class="moat-item">
+            <strong>技术壁垒/知识产权：</strong><span class="tag tag-green">强</span>
+            <p>Lam拥有18,460项专利（8,778项已授权，2,088项待审），在等离子刻蚀和ALD沉积领域建立了深厚的技术壁垒。核心工艺配方与设备硬件深度绑定，竞争对手难以复制。</p>
+        </div>
+
+        <div class="moat-item">
+            <strong>转换成本：</strong><span class="tag tag-green">极强</span>
+            <p>芯片厂的制造流程围绕Lam设备开发，数千条工艺配方无法迁移。更换设备供应商意味着重新验证整条产线，风险和成本极高。这是Lam最核心的护城河。</p>
+        </div>
+
+        <div class="moat-item">
+            <strong>安装基数/规模优势：</strong><span class="tag tag-green">强</span>
+            <p>全球9万多台已安装设备形成庞大的"存量市场"，CSBG业务从中持续产生高利润率收入。安装基数越大，飞轮效应越强。</p>
+        </div>
+
+        <div class="moat-item">
+            <strong>品牌/客户关系：</strong><span class="tag tag-orange">中等偏强</span>
+            <p>与TSMC、三星、SK海力士、美光等顶级芯片厂建立了数十年联合开发关系。但半导体设备行业更看重技术性能而非品牌。</p>
+        </div>
+
+        <div class="moat-item">
+            <strong>网络效应：</strong><span class="tag tag-orange">弱</span>
+            <p>半导体设备行业不存在典型的网络效应。Lam的优势更多来自转换成本和规模，而非用户网络。</p>
+        </div>
+
+        <div class="highlight">
+            <strong>护城河综合评级：<span class="star">&#9733;&#9733;&#9733;&#9733;</span> 4/5星（宽护城河）</strong><br>
+            Lam拥有以转换成本为核心的宽护城河，但需注意：护城河在存储市场更强（刻蚀密集度更高），在逻辑/代工市场相对弱一些（AMAT和TEL的竞争更激烈）。此外，中国国产替代在成熟节点正在加速，长期可能侵蚀Lam在中低端市场的份额。
+        </div>
+    </div>
+
+    <!-- 六、利润分配分析 -->
+    <div class="info-box">
+        <h2>六、利润分配分析</h2>
+
+        <h3>6.1 过去十年利润分配表（亿美元）</h3>
+        <table>
+            <tr>
+                <th>财年</th><th>净利润</th><th>分红</th><th>回购</th><th>资本开支</th><th>留存金额</th><th>留存率</th>
+            </tr>
+            <tr><td>FY2016</td><td>9.1</td><td>2.2</td><td>10.0</td><td>3.0</td><td>6.9</td><td>76%</td></tr>
+            <tr><td>FY2017</td><td>17.0</td><td>2.9</td><td>15.0</td><td>3.7</td><td>14.1</td><td>83%</td></tr>
+            <tr><td>FY2018</td><td>23.8</td><td>5.3</td><td>25.0</td><td>4.5</td><td>18.5</td><td>78%</td></tr>
+            <tr><td>FY2019</td><td>21.9</td><td>6.9</td><td>38.0</td><td>4.5</td><td>15.0</td><td>68%</td></tr>
+            <tr><td>FY2020</td><td>22.5</td><td>7.6</td><td>22.0</td><td>4.2</td><td>14.9</td><td>66%</td></tr>
+            <tr><td>FY2021</td><td>39.1</td><td>7.4</td><td>38.0</td><td>5.5</td><td>31.7</td><td>81%</td></tr>
+            <tr><td>FY2022</td><td>46.1</td><td>9.0</td><td>55.0</td><td>6.5</td><td>37.1</td><td>80%</td></tr>
+            <tr><td>FY2023</td><td>45.1</td><td>9.2</td><td>35.0</td><td>6.8</td><td>35.9</td><td>80%</td></tr>
+            <tr><td>FY2024</td><td>38.3</td><td>8.6</td><td>25.0</td><td>5.5</td><td>29.7</td><td>78%</td></tr>
+            <tr><td>FY2025</td><td>53.6</td><td>12.0</td><td>50.0</td><td>7.5</td><td>41.6</td><td>78%</td></tr>
+        </table>
+
+        <div class="highlight">
+            <strong>资本配置评估：</strong><br>
+            <strong>1. 分红：</strong>Lam自2014年开始派息，12年连续增长，近5年年均增长14.2%。但股息率仅0.28%，分红不是Lam回报股东的主要方式。<br>
+            <strong>2. 回购：</strong>过去3年回购总额约110亿美元，是分红金额的5-6倍。2024年10月拆股同时批准100亿美元新回购计划。回购大幅减少了流通股数（从2018年的1.62亿股降至目前的1.25亿股，注：拆股前口径），显著提升了每股收益。<br>
+            <strong>3. 回购时机：</strong>Lam在2022-2023年半导体下行期加大了回购力度（PE较低时），在2024-2025年上行期也持续回购。整体来看，回购时机不算差，但当前PE 69倍时仍在回购，从价值投资角度看并不理想。<br>
+            <strong>4. 再投资：</strong>资本开支占收入比约4-5%，R&D占收入比约11-12%。Lam是轻资产模式，不需要大量资本开支，主要靠R&D驱动增长。<br>
+            <strong>5. 可持续增长率：</strong>ROE 22% × 留存率78% ≈ 17%。这意味着如果Lam能维持当前ROE和留存率，内在增长率可达17%/年。
+        </div>
+    </div>
+
+    <!-- 七、投资总结 -->
+    <div class="info-box">
+        <h2>七、投资总结</h2>
+
+        <h3>7.1 各维度评分</h3>
+        <table>
+            <tr><th>维度</th><th>评分</th><th>说明</th></tr>
+            <tr><td>业务可理解性</td><td><span class="star">&#9733;&#9733;&#9733;&#9733;</span> 4/5</td><td>商业模式清晰（卖设备+卖服务），但半导体工艺细节复杂</td></tr>
+            <tr><td>护城河强度</td><td><span class="star">&#9733;&#9733;&#9733;&#9733;</span> 4/5</td><td>转换成本极高+技术壁垒深厚，但周期性和地缘风险削弱了护城河的稳定性</td></tr>
+            <tr><td>资本配置</td><td><span class="star">&#9733;&#9733;&#9733;&#9733;</span> 4/5</td><td>回购积极且时机尚可，分红持续增长，R&D投入充足</td></tr>
+            <tr><td>财务安全</td><td><span class="star">&#9733;&#9733;&#9733;&#9733;</span> 4/5</td><td>净现金头寸，资产负债率持续下降，但周期性波动大</td></tr>
+            <tr><td>增长前景</td><td><span class="star">&#9733;&#9733;&#9733;&#9733;</span> 4/5</td><td>AI/HBM/GAA/3D NAND驱动结构性增长，但WFE支出有周期性</td></tr>
+            <tr><td>估值吸引力</td><td><span class="star">&#9733;</span> 1/5</td><td>PE 69倍，Forward PE 33-49倍，远超历史均值18.8倍，安全边际严重不足</td></tr>
+        </table>
+
+        <h3>7.2 综合投资评级</h3>
+        <div class="highlight">
+            <strong>评级：观察等待（Watch & Wait）</strong><br><br>
+            Lam Research是一家<strong>高质量企业</strong>——拥有以转换成本为核心的宽护城河、持续增长的CSBG经常性收入、AI驱动结构性增长动力、以及优秀的资本配置记录。从生意质量角度，它值得4星评价。<br><br>
+            但从价值投资角度，<strong>好公司不等于好投资</strong>。当前PE 69倍、Forward PE 33-49倍的估值，已经充分甚至过度定价了AI驱动的增长预期。12个月股价涨幅303%，6个月涨幅129%，市场情绪极度乐观。对于一家周期性资本设备公司，周期顶点的高PE是最危险的买入信号。<br><br>
+            <strong>关键风险：</strong>
+            <ul>
+                <li>半导体设备支出周期性下行（WFE不可能永远增长）</li>
+                <li>中国出口管制升级可能冲击34%的收入</li>
+                <li>存储市场供过于求导致设备订单延迟</li>
+                <li>洁净室短缺制约2026-2027年扩产节奏</li>
+            </ul>
+            <strong>关键催化剂：</strong>
+            <ul>
+                <li>GAA晶体管量产推动刻蚀密集度提升</li>
+                <li>HBM4/4E 16层堆叠驱动先进封装增长40%+</li>
+                <li>200+层3D NAND转换带来的设备更新需求</li>
+                <li>钼（Mo）材料替代铜互连的ALD沉积新市场</li>
+            </ul>
+            <strong>理想买入区间：</strong>PE回落至15-20倍（对应股价约$80-110，拆股调整后），即半导体周期下行期。耐心等待市场先生给出安全边际。
+        </div>
+
+        <h3>7.3 同业估值对比</h3>
+        <table>
+            <tr><th>公司</th><th>市值（亿$）</th><th>PE（TTM）</th><th>Forward PE</th><th>股息率</th><th>ROE</th></tr>
+            <tr><td>Lam Research (LRCX)</td><td>4,600</td><td>69x</td><td>33-49x</td><td>0.28%</td><td>22%</td></tr>
+            <tr><td>Applied Materials (AMAT)</td><td>1,600</td><td>~30x</td><td>~22x</td><td>0.7%</td><td>~50%</td></tr>
+            <tr><td>ASML</td><td>3,200</td><td>~40x</td><td>~30x</td><td>0.8%</td><td>~50%</td></tr>
+            <tr><td>KLA (KLAC)</td><td>1,000</td><td>~35x</td><td>~25x</td><td>0.3%</td><td>~90%</td></tr>
+        </table>
+        <p>LRCX的PE在半导体设备同行中最高，部分原因是2024-2025年利润受周期影响尚未完全恢复，但即便用Forward PE衡量也偏贵。</p>
+    </div>
+
+    <!-- 图表脚本 -->
+    <script>
+        // ROE Chart
+        new Chart(document.getElementById('roeChart'), {
+            type: 'line',
+            data: {
+                labels: ['2015','2016','2017','2018','2019','2020','2021','2022','2023','2024','2025','TTM'],
+                datasets: [{
+                    label: 'ROE (%)',
+                    data: [17.1, 20.5, 30.7, 32.8, 24.1, 21.0, 29.8, 27.8, 22.3, 16.3, 19.9, 22.2],
+                    borderColor: '#2e86c1',
+                    backgroundColor: 'rgba(46,134,193,0.1)',
+                    fill: true,
+                    tension: 0.3
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: { y: { beginAtZero: true, title: { display: true, text: 'ROE (%)' } } },
+                plugins: { legend: { display: false } }
+            }
+        });
+
+        // PE Chart
+        new Chart(document.getElementById('peChart'), {
+            type: 'bar',
+            data: {
+                labels: ['2016','2017','2018','2019','2020','2021','2022','2023','2024','2025','当前'],
+                datasets: [{
+                    label: 'PE Ratio',
+                    data: [12.9, 13.2, 8.4, 19.2, 20.3, 23.9, 11.9, 18.9, 35.1, 23.9, 69],
+                    backgroundColor: function(context) {
+                        var value = context.raw;
+                        if (value > 50) return '#c0392b';
+                        if (value > 25) return '#e67e22';
+                        return '#2e86c1';
+                    }
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: { y: { beginAtZero: true, title: { display: true, text: 'PE Ratio' } } },
+                plugins: { legend: { display: false } }
+            }
+        });
+    </script>
+
+    <!-- Topbar scoring logic - unified with stock_scores_v1 -->
+    <script>
+    (function(){
+        var SCORE_KEY='stock_scores_v1';
+        var code=document.getElementById('topbarCode').textContent.trim();
+        function getScores(){try{var d=localStorage.getItem(SCORE_KEY);return d?JSON.parse(d):{};}catch(e){return {};}}
+        function saveScores(s){localStorage.setItem(SCORE_KEY,JSON.stringify(s));}
+        function starsHTML(val){var h='';for(var i=1;i<=5;i++){h+='<span class="'+(i<=val?'on':'off')+'">\u2605</span>';}return h;}
+        function valClass(v){return v>=5?'s5':v>=4?'s4':v>=3?'s3':v>=2?'s2':'s1';}
+        function renderDisplay(){
+            var sc=getScores()[code]||{};
+            var f=sc.fundamental||0,p=sc.price||0;
+            document.getElementById('topbarFVal').textContent=f>0?f:'-';
+            document.getElementById('topbarFVal').className='topbar-score-val'+(f>0?' '+valClass(f):'');
+            document.getElementById('topbarFStars').innerHTML=starsHTML(f);
+            document.getElementById('topbarPVal').textContent=p>0?p:'-';
+            document.getElementById('topbarPVal').className='topbar-score-val'+(p>0?' '+valClass(p):'');
+            document.getElementById('topbarPStars').innerHTML=starsHTML(p);
+        }
+        window.topbarEdit=function(){
+            var sc=getScores()[code]||{};
+            document.getElementById('topbarFSel').value=sc.fundamental||0;
+            document.getElementById('topbarPSel').value=sc.price||0;
+            document.getElementById('topbarFSel').style.display='';
+            document.getElementById('topbarPSel').style.display='';
+            document.getElementById('topbarEditBtn').style.display='none';
+            document.getElementById('topbarSaveBtn').style.display='';
+            document.getElementById('topbarCancelBtn').style.display='';
+            document.getElementById('topbarFVal').style.display='none';
+            document.getElementById('topbarPVal').style.display='none';
+            document.getElementById('topbarFStars').style.display='none';
+            document.getElementById('topbarPStars').style.display='none';
+        };
+        window.topbarSave=function(){
+            var f=parseInt(document.getElementById('topbarFSel').value);
+            var p=parseInt(document.getElementById('topbarPSel').value);
+            var sc=getScores();if(!sc[code])sc[code]={};
+            sc[code].fundamental=f;sc[code].price=p;sc[code].updated=new Date().toISOString();
+            saveScores(sc);topbarCancel();renderDisplay();
+        };
+        window.topbarCancel=function(){
+            document.getElementById('topbarFSel').style.display='none';
+            document.getElementById('topbarPSel').style.display='none';
+            document.getElementById('topbarEditBtn').style.display='';
+            document.getElementById('topbarSaveBtn').style.display='none';
+            document.getElementById('topbarCancelBtn').style.display='none';
+            document.getElementById('topbarFVal').style.display='';
+            document.getElementById('topbarPVal').style.display='';
+            document.getElementById('topbarFStars').style.display='';
+            document.getElementById('topbarPStars').style.display='';
+        };
+        renderDisplay();
+    })();
+    </script>
+</body>
+</html>
