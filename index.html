@@ -268,27 +268,27 @@
         <tr>
             <td><a href="aapl.html">AAPL</a></td>
             <td>苹果公司</td>
-            <td>434,000</td>
+            <td>43,400</td>
         </tr>
         <tr>
             <td><a href="msft.html">MSFT</a></td>
             <td>微软公司</td>
-            <td>290,000</td>
+            <td>29,000</td>
         </tr>
         <tr>
             <td><a href="goog.html">GOOG</a></td>
             <td>Alphabet/Google - 互联网搜索/广告/AI/云服务</td>
-            <td>435,000</td>
+            <td>43,500</td>
         </tr>
         <tr>
             <td><a href="amzn.html">AMZN</a></td>
             <td>亚马逊公司</td>
-            <td>260,000</td>
+            <td>26,000</td>
         </tr>
         <tr>
             <td><a href="meta.html">META</a></td>
             <td>Meta平台公司</td>
-            <td>144,000</td>
+            <td>14,400</td>
         </tr>
         <tr>
             <td><a href="main_analysis.html">MAIN</a></td>
@@ -1031,9 +1031,7 @@
         search(q);
     }
     </script>
-    <div id="companyCount" style="position:fixed;bottom:20px;right:20px;background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);color:#fff;padding:10px 18px;border-radius:25px;box-shadow:0 4px 15px rgba(102,126,234,0.4);font-size:14px;font-weight:600;z-index:9999;cursor:default;transition:transform 0.2s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
-        📊 覆盖公司: <span id="countValue" style="font-size:18px;font-weight:800;">0</span> 家
-    </div>
+    <a id="companyCount" href="#" style="position:fixed;bottom:20px;right:30px;background:#1a5276;color:white;padding:8px 18px;border-radius:20px;text-decoration:none;font-size:14px;z-index:999;box-shadow:0 2px 8px rgba(0,0,0,0.15);transition:background 0.2s;cursor:default;" onmouseover="this.style.background='#2e86c1'" onmouseout="this.style.background='#1a5276'">📊 <span id="countValue">0</span>家覆盖</a>
     <script>
     (function(){
         function updateCount(){
