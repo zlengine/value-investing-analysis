@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frontdoor Inc. (FTDR) 详细分析</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f5f5f5;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        h2 {
+            color: #4CAF50;
+            margin-top: 30px;
+        }
+        h3 {
+            color: #333;
+            margin-top: 20px;
+        }
+        .info-box {
+            background-color: white;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border-radius: 5px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+        a {
+            color: #4CAF50;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .fixed-topbar { position: fixed; top: 0; left: 0; right: 0; z-index: 9999; background: linear-gradient(135deg, #1a5276, #2e86c1); color: white; display: flex; align-items: center; justify-content: space-between; padding: 8px 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.15); height: 48px; }
+    .fixed-topbar a { color: white; text-decoration: none; font-size: 14px; font-weight: 600; }
+    .fixed-topbar a:hover { text-decoration: underline; }
+    .topbar-left { display: flex; align-items: center; gap: 12px; }
+    .topbar-right { display: flex; align-items: center; gap: 8px; }
+    .topbar-score-label { font-size: 12px; opacity: 0.85; }
+    .topbar-score-val { font-weight: 700; font-size: 15px; min-width: 18px; text-align: center; }
+    .topbar-score-val.s1 { color: #ff6b6b; } .topbar-score-val.s2 { color: #ffa94d; } .topbar-score-val.s3 { color: #ffd43b; } .topbar-score-val.s4 { color: #69db7c; } .topbar-score-val.s5 { color: #51cf66; }
+    .topbar-select { padding: 3px 8px; border: 1px solid rgba(255,255,255,0.4); border-radius: 6px; font-size: 12px; font-weight: 600; color: white; background: rgba(255,255,255,0.15); cursor: pointer; outline: none; }
+    .topbar-select:focus { border-color: rgba(255,255,255,0.7); }
+    .topbar-select option { color: #333; background: white; }
+    .topbar-select:disabled { opacity: 0.5; cursor: not-allowed; }
+    .topbar-btn { padding: 4px 12px; border: none; border-radius: 6px; font-size: 12px; font-weight: 600; cursor: pointer; transition: background 0.2s; }
+    .topbar-btn-edit { background: rgba(255,255,255,0.2); color: white; }
+    .topbar-btn-edit:hover { background: rgba(255,255,255,0.35); }
+    .topbar-btn-save { background: #27ae60; color: white; }
+    .topbar-btn-save:hover { background: #219a52; }
+    .topbar-btn-cancel { background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.7); }
+    .topbar-btn-cancel:hover { background: rgba(255,255,255,0.2); }
+    .topbar-stars { font-size: 11px; }
+    .topbar-stars .on { color: #f39c12; }
+    .topbar-stars .off { color: rgba(255,255,255,0.3); }
+    body { padding-top: 60px !important; }
+        .chart-container {
+            background-color: white;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border-radius: 5px;
+        }
+        canvas {
+            max-width: 100%;
+            height: 400px;
+        }
+        .highlight {
+            background-color: #e8f5e9;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+        .tag { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 12px; font-weight: 600; }
+        .tag-green { background-color: #d4edda; color: #155724; }
+        .tag-orange { background-color: #fff3cd; color: #856404; }
+        .tag-red { background-color: #f8d7da; color: #721c24; }
+    </style>
+</head>
+<body>
+    <div class="fixed-topbar" id="fixedTopbar">
+        <div class="topbar-left">
+            <a href="index.html">&#8592; 首页</a>
+            <span style="font-size:14px;font-weight:700;" id="topbarCode">FTDR</span>
+        </div>
+        <div class="topbar-right" id="topbarScores">
+            <span class="topbar-score-label">基本面</span>
+            <span class="topbar-score-val" id="topbarFVal">-</span>
+            <span class="topbar-stars" id="topbarFStars"></span>
+            <select class="topbar-select" id="topbarFSel" style="display:none;"><option value="0">-</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option></select>
+            <span class="topbar-score-label" style="margin-left:12px;">价格</span>
+            <span class="topbar-score-val" id="topbarPVal">-</span>
+            <span class="topbar-stars" id="topbarPStars"></span>
+            <select class="topbar-select" id="topbarPSel" style="display:none;"><option value="0">-</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option></select>
+            <button class="topbar-btn topbar-btn-edit" id="topbarEditBtn" onclick="topbarEdit()">修改</button>
+            <button class="topbar-btn topbar-btn-save" id="topbarSaveBtn" onclick="topbarSave()" style="display:none;">保存</button>
+            <button class="topbar-btn topbar-btn-cancel" id="topbarCancelBtn" onclick="topbarCancel()" style="display:none;">取消</button>
+        </div>
+    </div>
+
+    <h1>Frontdoor Inc. (NASDAQ: FTDR)</h1>
+    <p style="text-align:center;color:#666;">巴菲特/芒格式价值投资基本面分析 | 更新日期：2026年6月</p>
+
+    <!-- 一、公司基本信息 -->
+    <div class="info-box">
+        <h2>一、公司基本信息</h2>
+        <table>
+            <tr><td>公司全称</td><td>Frontdoor, Inc.</td></tr>
+            <tr><td>股票代码</td><td>NASDAQ: FTDR</td></tr>
+            <tr><td>市值</td><td>约50亿美元（2026年6月）</td></tr>
+            <tr><td>企业价值（EV）</td><td>约55亿美元（TTM）</td></tr>
+            <tr><td>成立时间</td><td>1971年（American Home Shield品牌创立），2018年从ServiceMaster分拆独立上市</td></tr>
+            <tr><td>公司总部</td><td>美国田纳西州孟菲斯（Memphis, TN）</td></tr>
+            <tr><td>最新收盘价</td><td>约$69（2026年6月中旬）</td></tr>
+            <tr><td>52周区间</td><td>$48.47 - $71.63</td></tr>
+            <tr><td>CEO</td><td>Bill Cobb（董事长兼首席执行官）</td></tr>
+            <tr><td>CFO</td><td>Jessica Ross</td></tr>
+            <tr><td>员工人数</td><td>约2,000人</td></tr>
+            <tr><td>行业</td><td>家庭服务计划 / 家庭保修</td></tr>
+            <tr><td>流通股数</td><td>约7,020万股</td></tr>
+            <tr><td>股息</td><td>不派息</td></tr>
+            <tr><td>IPO时间</td><td>2018年9月13日（从ServiceMaster分拆）</td></tr>
+            <tr><td>运营品牌</td><td>American Home Shield、HSA、Landmark Home Warranty、OneGuard、2-10 Home Buyers Warranty、Streem</td></tr>
+        </table>
+    </div>
+
+    <!-- 二、业务分析 -->
+    <div class="info-box">
+        <h2>二、业务分析</h2>
+        <p>Frontdoor是美国最大的家庭保修（Home Warranty）服务提供商。简单来说，它就像给房子买"保险"——房主每年支付一笔费用（通常$500-$800），当家里的主要系统和电器（空调、暖气、水管、冰箱、洗碗机等）坏了的时候，Frontdoor负责安排维修或更换，房主只需支付一个固定的服务费（$75-$125）。</p>
+
+        <h3>2.1 业务板块</h3>
+        <table>
+            <tr>
+                <th>业务板块</th>
+                <th>2025年营收</th>
+                <th>占比</th>
+                <th>说明</th>
+            </tr>
+            <tr>
+                <td>续费（Renewals）</td>
+                <td>约$15.6亿</td>
+                <td>约75%</td>
+                <td>现有客户年度续费，是最核心的收入来源，续费率约79%</td>
+            </tr>
+            <tr>
+                <td>房地产渠道（Real Estate）</td>
+                <td>约$1.7亿</td>
+                <td>约8%</td>
+                <td>房屋买卖时附带的保修计划，是重要的新客户获取渠道</td>
+            </tr>
+            <tr>
+                <td>直销渠道（DTC）</td>
+                <td>约$1.8亿</td>
+                <td>约9%</td>
+                <td>直接面向消费者的首年保修计划</td>
+            </tr>
+            <tr>
+                <td>非保修及其他</td>
+                <td>约$1.8亿</td>
+                <td>约8%</td>
+                <td>包括新房屋结构保修（2-10）、HVAC更换、Moen智能水阀等增值服务</td>
+            </tr>
+            <tr style="font-weight:bold;">
+                <td>合计</td>
+                <td>$20.93亿</td>
+                <td>100%</td>
+                <td>FY2025全年营收</td>
+            </tr>
+        </table>
+
+        <h3>2.2 营收按客户渠道分布</h3>
+        <p>Frontdoor的收入按客户获取渠道分为四大类：</p>
+        <ul>
+            <li><strong>续费收入（Renewals）：</strong>占比最大，约75%。这是Frontdoor最稳定的收入来源，续费率约79%，体现了较高的客户粘性。</li>
+            <li><strong>房地产渠道（Real Estate First-Year）：</strong>约8%。在房屋交易过程中，卖方或中介通常会为买方购买一年保修，这是获取新客户的重要入口。</li>
+            <li><strong>直销渠道（DTC First-Year）：</strong>约9%。通过数字营销和Frontdoor App直接获取新客户，是增长最快的渠道之一。</li>
+            <li><strong>非保修及其他：</strong>约8%。2024年底收购2-10后新增的新房屋结构保修业务，以及HVAC更换、Moen智能水阀安装等增值服务，增长迅速（2025年同比增长66%）。</li>
+        </ul>
+
+        <h3>2.3 商业模式</h3>
+        <p>Frontdoor的商业模式有几个关键特点：</p>
+        <ul>
+            <li><strong>订阅制经常性收入：</strong>约80%的收入来自续费，现金流高度可预测。</li>
+            <li><strong>轻资产承包商模式：</strong>Frontdoor不直接雇佣维修工人，而是通过17,000+独立承包商网络提供服务，资本开支极低（CapEx仅占营收1.5%）。</li>
+            <li><strong>数据驱动定价：</strong>利用50多年的历史维修数据，通过专有算法根据地理位置、设备年龄和故障率精确定价。</li>
+            <li><strong>现金流机器：</strong>运营现金流/营收比率约19%，自由现金流/营收比率约18%，资本效率极高。</li>
+        </ul>
+
+        <h3>2.4 地理分布</h3>
+        <p>Frontdoor的业务几乎全部集中在美国，服务覆盖全部50个州，拥有约210万客户。2024年底收购2-10后，也进入了加拿大市场。非美国收入占比极小。</p>
+    </div>
+
+    <!-- 三、产品竞争力分析 -->
+    <div class="info-box">
+        <h2>三、业务板块产品竞争力分析</h2>
+
+        <h3>3.1 家庭保修服务产品竞争力分析</h3>
+        <p><strong>1. 可替代性：<span class="tag tag-green">低</span></strong></p>
+        <ul>
+            <li><strong>主要替代品：</strong>First American Home Warranty、Old Republic Home Protection、Cinch Home Services、Choice Home Warranty等</li>
+            <li><strong>替代体验差距：</strong>Frontdoor（旗下American Home Shield品牌）拥有约50%的市场份额，是行业绝对龙头。其17,000+承包商网络远超竞争对手，50年+历史数据使其定价精度和理赔管理能力远优于新进入者</li>
+            <li><strong>替代趋势：</strong>稳定。美国家庭保修渗透率仅15-20%，市场空间仍然很大。Frontdoor的规模优势在持续扩大</li>
+        </ul>
+
+        <p><strong>2. 定价权：<span class="tag tag-green">强</span></strong></p>
+        <ul>
+            <li>Frontdoor持续提价以覆盖通胀，2024年实现6%的价格增长，2025年继续3%提价</li>
+            <li>续费率维持在79%左右，说明客户对价格敏感度相对较低</li>
+            <li>84%客户使用自动扣款，减少了因价格调整导致的流失</li>
+        </ul>
+
+        <p><strong>3. 客户粘性：<span class="tag tag-green">高</span></strong></p>
+        <ul>
+            <li>79%的续费率在订阅制业务中属于较高水平</li>
+            <li>家庭保修的转换成本较高——换一家公司意味着重新等待期、重新体检设备</li>
+            <li>Frontdoor App（20万+下载）和视频聊天功能增强了客户体验和粘性</li>
+        </ul>
+
+        <h3>3.2 非保修增值服务产品竞争力分析</h3>
+        <p><strong>1. 可替代性：<span class="tag tag-orange">中等</span></strong></p>
+        <ul>
+            <li><strong>HVAC更换：</strong>面临本地HVAC承包商和Home Depot等零售商的竞争</li>
+            <li><strong>Moen智能水阀：</strong>与Moen独家合作，有一定差异化</li>
+            <li><strong>2-10新房屋结构保修：</strong>在新建房结构保修领域占据约20%市场份额（每5栋新房中有1栋使用2-10保修），竞争者较少</li>
+        </ul>
+
+        <p><strong>2. 交叉销售潜力：<span class="tag tag-green">高</span></strong></p>
+        <ul>
+            <li>2-10的结构保修客户可以转化为Frontdoor的家电保修客户</li>
+            <li>保修客户在更换HVAC时自然选择Frontdoor的服务</li>
+            <li>2025年非保修收入增长66%至$1.28亿，交叉销售效果显著</li>
+        </ul>
+    </div>
+
+    <!-- 四、历史财务指标 -->
+    <div class="info-box">
+        <h2>四、历史财务指标</h2>
+
+        <h3>4.1 净资产收益率（ROE）</h3>
+        <div class="chart-container">
+            <canvas id="roeChart"></canvas>
+        </div>
+        <p><strong>注意：</strong>Frontdoor的ROE极高（超过100%），这是因为公司股东权益极低——由于大量股票回购和分红历史，股东权益基数很小。2024年底股东权益仅$5.31亿，而净利润$2.35亿，导致ROE看似异常。这实际上反映了公司极高的资本效率和积极的股东回报策略，但也意味着财务杠杆较高。</p>
+
+        <h3>4.2 资产负债率（Debt-to-Asset）</h3>
+        <div class="chart-container">
+            <canvas id="debtChart"></canvas>
+        </div>
+        <p>Frontdoor的资产负债率在55-60%之间，2024年底因收购2-10发行$14.7亿信贷而上升。公司总债务约$12.4亿，净债务约$6亿，净债务/EBITDA约1.4倍，处于可控范围。</p>
+
+        <h3>4.3 权益乘数（Equity Multiplier）</h3>
+        <div class="chart-container">
+            <canvas id="equityChart"></canvas>
+        </div>
+        <p>权益乘数极高（5-10倍），反映了公司低权益、高杠杆的资本结构。这是由于持续的股票回购导致权益基数缩小。</p>
+
+        <h3>4.4 市盈率（PE）</h3>
+        <div class="chart-container">
+            <canvas id="peChart"></canvas>
+        </div>
+        <p>当前PE约19倍，处于历史中等水平。考虑到公司持续增长的盈利能力和现金流，估值相对合理。</p>
+
+        <h3>4.5 关键财务指标汇总</h3>
+        <table>
+            <tr>
+                <th>指标</th>
+                <th>2019</th>
+                <th>2020</th>
+                <th>2021</th>
+                <th>2022</th>
+                <th>2023</th>
+                <th>2024</th>
+                <th>2025</th>
+                <th>TTM</th>
+            </tr>
+            <tr>
+                <td>营收（$M）</td>
+                <td>1,258</td>
+                <td>1,365</td>
+                <td>1,475</td>
+                <td>1,662</td>
+                <td>1,780</td>
+                <td>1,843</td>
+                <td>2,093</td>
+                <td>2,120</td>
+            </tr>
+            <tr>
+                <td>净利润（$M）</td>
+                <td>153</td>
+                <td>112</td>
+                <td>128</td>
+                <td>71</td>
+                <td>171</td>
+                <td>235</td>
+                <td>255</td>
+                <td>260</td>
+            </tr>
+            <tr>
+                <td>毛利率</td>
+                <td>46.3%</td>
+                <td>46.8%</td>
+                <td>40.7%</td>
+                <td>47.6%</td>
+                <td>51.7%</td>
+                <td>55.0%</td>
+                <td>55.0%</td>
+                <td>53.9%</td>
+            </tr>
+            <tr>
+                <td>净利率</td>
+                <td>12.2%</td>
+                <td>8.2%</td>
+                <td>8.7%</td>
+                <td>4.3%</td>
+                <td>9.6%</td>
+                <td>12.8%</td>
+                <td>12.2%</td>
+                <td>12.3%</td>
+            </tr>
+            <tr>
+                <td>ROE</td>
+                <td>-</td>
+                <td>-</td>
+                <td>27.9%</td>
+                <td>53.4%</td>
+                <td>56.4%</td>
+                <td>44.3%</td>
+                <td>98.3%</td>
+                <td>108%</td>
+            </tr>
+            <tr>
+                <td>资产负债率</td>
+                <td>70.7%</td>
+                <td>60.2%</td>
+                <td>57.9%</td>
+                <td>56.0%</td>
+                <td>57.9%</td>
+                <td>57.9%</td>
+                <td>55.5%</td>
+                <td>55.5%</td>
+            </tr>
+            <tr>
+                <td>PE</td>
+                <td>38.2</td>
+                <td>24.4</td>
+                <td>24.0</td>
+                <td>23.9</td>
+                <td>16.6</td>
+                <td>17.9</td>
+                <td>16.1</td>
+                <td>19.0</td>
+            </tr>
+            <tr>
+                <td>自由现金流（$M）</td>
+                <td>177</td>
+                <td>162</td>
+                <td>102</td>
+                <td>102</td>
+                <td>170</td>
+                <td>231</td>
+                <td>390</td>
+                <td>390</td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- 五、竞争分析 -->
+    <div class="info-box">
+        <h2>五、竞争分析</h2>
+
+        <h3>5.1 主要竞争对手</h3>
+        <table>
+            <tr>
+                <th>竞争对手</th>
+                <th>业务领域</th>
+                <th>市场份额</th>
+                <th>竞争特点</th>
+            </tr>
+            <tr>
+                <td>First American Home Warranty</td>
+                <td>家庭保修</td>
+                <td>约10-12%</td>
+                <td>背靠First American（产权保险巨头），在房地产渠道有优势</td>
+            </tr>
+            <tr>
+                <td>Old Republic Home Protection</td>
+                <td>家庭保修</td>
+                <td>约5-8%</td>
+                <td>主要聚焦房地产交易渠道，品牌历史悠久</td>
+            </tr>
+            <tr>
+                <td>Cinch Home Services</td>
+                <td>家庭保修</td>
+                <td>约3-5%</td>
+                <td>注重用户体验和快速理赔，但规模较小</td>
+            </tr>
+            <tr>
+                <td>Choice Home Warranty</td>
+                <td>家庭保修</td>
+                <td>约2-3%</td>
+                <td>通过激进数字营销获客，但缺乏Frontdoor的规模和数据</td>
+            </tr>
+            <tr>
+                <td>ANGI/HomeAdvisor</td>
+                <td>家居服务平台</td>
+                <td>N/A</td>
+                <td>不同商业模式——连接 homeowners 和承包商的 marketplace，不提供保修</td>
+            </tr>
+        </table>
+
+        <h3>5.2 经济护城河评估</h3>
+        <table>
+            <tr>
+                <th>护城河类型</th>
+                <th>评分</th>
+                <th>分析</th>
+            </tr>
+            <tr>
+                <td>品牌力</td>
+                <td><span class="tag tag-green">强</span></td>
+                <td>American Home Shield是家庭保修品类的开创者（1971年创立），品牌认知度远超竞争对手。在美国家庭保修领域，AHS几乎等同于品类本身</td>
+            </tr>
+            <tr>
+                <td>规模优势</td>
+                <td><span class="tag tag-green">强</span></td>
+                <td>约50%的市场份额，17,000+承包商网络，4百万+年服务请求量。规模带来更低的单位服务成本和更强的议价能力</td>
+            </tr>
+            <tr>
+                <td>数据壁垒</td>
+                <td><span class="tag tag-green">强</span></td>
+                <td>50年+历史理赔数据，用于精确定价和反欺诈。新进入者无法在短期内复制这一数据资产</td>
+            </tr>
+            <tr>
+                <td>转换成本</td>
+                <td><span class="tag tag-orange">中等</span></td>
+                <td>更换保修公司需要重新等待期（通常30天），且新公司可能对已有问题不覆盖。但转换成本不如保险行业那么高</td>
+            </tr>
+            <tr>
+                <td>网络效应</td>
+                <td><span class="tag tag-orange">中等</span></td>
+                <td>更多客户→更多承包商愿意加入网络→更好的服务→更多客户。但网络效应不如平台型公司（如Airbnb）那么强</td>
+            </tr>
+            <tr>
+                <td>专利/知识产权</td>
+                <td><span class="tag tag-orange">中等</span></td>
+                <td>Streem平台（AR/AI诊断技术）有一定技术壁垒，但不是核心护城河</td>
+            </tr>
+        </table>
+
+        <h3>5.3 竞争优势可持续性</h3>
+        <p>Frontdoor的竞争优势在短期内非常稳固：</p>
+        <ul>
+            <li><strong>市场集中度：</strong>美国家庭保修市场相对分散，Frontdoor约50%的份额远超第二名，规模差距在扩大而非缩小</li>
+            <li><strong>数据积累：</strong>50年+的历史数据是新进入者无法逾越的壁垒，AI/ML的应用进一步放大了数据优势</li>
+            <li><strong>2-10收购：</strong>将Frontdoor从"家电保修"扩展到"新房结构保修"，覆盖了房屋全生命周期的保修需求，进一步加深了护城河</li>
+            <li><strong>风险：</strong>智能家居技术可能减少设备故障率；监管风险（部分州对家庭保修有严格监管）；承包商网络依赖（非雇员关系）</li>
+        </ul>
+    </div>
+
+    <!-- 六、利润分配分析 -->
+    <div class="info-box">
+        <h2>六、利润分配分析</h2>
+
+        <h3>6.1 过去十年利润分配概况</h3>
+        <table>
+            <tr>
+                <th>年份</th>
+                <th>净利润($M)</th>
+                <th>分红($M)</th>
+                <th>回购($M)</th>
+                <th>再投资($M)</th>
+                <th>还债($M)</th>
+                <th>留存收益($M)</th>
+            </tr>
+            <tr>
+                <td>2016</td>
+                <td>120</td>
+                <td>0</td>
+                <td>0</td>
+                <td>27</td>
+                <td>0</td>
+                <td>93</td>
+            </tr>
+            <tr>
+                <td>2017</td>
+                <td>124</td>
+                <td>0</td>
+                <td>0</td>
+                <td>30</td>
+                <td>0</td>
+                <td>94</td>
+            </tr>
+            <tr>
+                <td>2018</td>
+                <td>160</td>
+                <td>0</td>
+                <td>0</td>
+                <td>35</td>
+                <td>0</td>
+                <td>125</td>
+            </tr>
+            <tr>
+                <td>2019</td>
+                <td>153</td>
+                <td>0</td>
+                <td>0</td>
+                <td>32</td>
+                <td>0</td>
+                <td>121</td>
+            </tr>
+            <tr>
+                <td>2020</td>
+                <td>112</td>
+                <td>0</td>
+                <td>0</td>
+                <td>28</td>
+                <td>0</td>
+                <td>84</td>
+            </tr>
+            <tr>
+                <td>2021</td>
+                <td>128</td>
+                <td>0</td>
+                <td>59</td>
+                <td>40</td>
+                <td>0</td>
+                <td>29</td>
+            </tr>
+            <tr>
+                <td>2022</td>
+                <td>71</td>
+                <td>0</td>
+                <td>59</td>
+                <td>40</td>
+                <td>0</td>
+                <td>-28</td>
+            </tr>
+            <tr>
+                <td>2023</td>
+                <td>171</td>
+                <td>0</td>
+                <td>121</td>
+                <td>32</td>
+                <td>0</td>
+                <td>18</td>
+            </tr>
+            <tr>
+                <td>2024</td>
+                <td>235</td>
+                <td>0</td>
+                <td>161</td>
+                <td>39</td>
+                <td>616</td>
+                <td>-581</td>
+            </tr>
+            <tr>
+                <td>2025</td>
+                <td>255</td>
+                <td>0</td>
+                <td>280</td>
+                <td>33</td>
+                <td>0</td>
+                <td>-58</td>
+            </tr>
+        </table>
+
+        <h3>6.2 利润分配特点分析</h3>
+        <ul>
+            <li><strong>不派息：</strong>Frontdoor自上市以来从未派发股息，所有利润通过回购和再投资回馈股东</li>
+            <li><strong>积极回购：</strong>2021年开始大规模回购，2025年回购$2.8亿（占净利润110%），自2021年以来已减少流通股17%</li>
+            <li><strong>极低资本开支：</strong>CapEx仅占营收1.5-2%（约$3,000-3,500万/年），轻资产模式不需要大量再投资</li>
+            <li><strong>2024年收购2-10：</strong>以$5.85亿收购2-10 Home Buyers Warranty，通过$14.7亿信贷融资，是公司历史上最大的并购</li>
+            <li><strong>资本配置评价：</strong>管理层在回购时机上表现出色——在2022年股价低迷时加大回购力度。收购2-10的战略意义在于扩展到新房结构保修领域，实现交叉销售</li>
+        </ul>
+
+        <h3>6.3 自由现金流分配</h3>
+        <table>
+            <tr>
+                <th>年份</th>
+                <th>自由现金流($M)</th>
+                <th>回购占FCF%</th>
+                <th>CapEx占营收%</th>
+            </tr>
+            <tr>
+                <td>2021</td>
+                <td>102</td>
+                <td>58%</td>
+                <td>2.1%</td>
+            </tr>
+            <tr>
+                <td>2022</td>
+                <td>102</td>
+                <td>58%</td>
+                <td>2.4%</td>
+            </tr>
+            <tr>
+                <td>2023</td>
+                <td>170</td>
+                <td>71%</td>
+                <td>1.8%</td>
+            </tr>
+            <tr>
+                <td>2024</td>
+                <td>231</td>
+                <td>70%</td>
+                <td>2.1%</td>
+            </tr>
+            <tr>
+                <td>2025</td>
+                <td>390</td>
+                <td>72%</td>
+                <td>1.6%</td>
+            </tr>
+        </table>
+        <p>自由现金流的70%+用于股票回购，体现了管理层对股东回报的重视。剩余部分用于运营投资和债务管理。</p>
+    </div>
+
+    <!-- 七、投资小结 -->
+    <div class="info-box">
+        <h2>七、投资小结</h2>
+
+        <h3>7.1 核心优势</h3>
+        <ul>
+            <li><strong>行业绝对龙头：</strong>约50%市场份额，品牌认知度和规模优势远超竞争对手</li>
+            <li><strong>订阅制经常性收入：</strong>80%收入来自续费，现金流高度可预测</li>
+            <li><strong>轻资产高现金流：</strong>CapEx仅占营收1.5%，自由现金流转化率约18%</li>
+            <li><strong>50年+数据壁垒：</strong>历史理赔数据是新进入者无法复制的核心资产</li>
+            <li><strong>积极股东回报：</strong>自2021年以来减少17%流通股，2025年回购$2.8亿</li>
+        </ul>
+
+        <h3>7.2 主要风险</h3>
+        <ul>
+            <li><strong>高杠杆：</strong>债务/权益比4.95倍，2024年因收购2-10大幅举债，利息支出约$7,900万/年</li>
+            <li><strong>房地产周期依赖：</strong>房地产渠道收入受利率和房市景气度影响较大</li>
+            <li><strong>承包商依赖：</strong>17,000+独立承包商非雇员关系，服务质量和可用性存在风险</li>
+            <li><strong>通胀压力：</strong>零部件和人工成本上涨可能压缩毛利率</li>
+            <li><strong>智能家居威胁：</strong>IoT设备普及可能降低故障率，长期可能减少保修需求</li>
+            <li><strong>监管风险：</strong>部分州对家庭保修行业有严格监管要求</li>
+        </ul>
+
+        <h3>7.3 估值评估</h3>
+        <table>
+            <tr>
+                <th>指标</th>
+                <th>当前值</th>
+                <th>行业平均</th>
+                <th>评价</th>
+            </tr>
+            <tr>
+                <td>PE</td>
+                <td>约19x</td>
+                <td>约13x</td>
+                <td><span class="tag tag-orange">偏贵</span></td>
+            </tr>
+            <tr>
+                <td>P/FCF</td>
+                <td>约13x</td>
+                <td>约11x</td>
+                <td><span class="tag tag-orange">略贵</span></td>
+            </tr>
+            <tr>
+                <td>EV/EBITDA</td>
+                <td>约10x</td>
+                <td>约9x</td>
+                <td><span class="tag tag-orange">略贵</span></td>
+            </tr>
+            <tr>
+                <td>股息率</td>
+                <td>0%</td>
+                <td>N/A</td>
+                <td><span class="tag tag-orange">不派息</span></td>
+            </tr>
+        </table>
+
+        <h3>7.4 芒格式评估</h3>
+        <div class="highlight">
+            <p><strong>业务可理解性：</strong>高。家庭保修是一个简单易懂的订阅制业务——房主付年费，坏了有人修。</p>
+            <p><strong>竞争优势持久性：</strong>中高。50%市场份额+50年数据+品牌认知度构成了坚实的护城河，但智能家居技术可能长期侵蚀需求。</p>
+            <p><strong>管理层资本配置：</strong>良好。回购时机把握得当，2-10收购扩展了业务范围。但不派息且高杠杆需要警惕。</p>
+            <p><strong>安全边际：</strong>当前估值PE约19x，P/FCF约13x，对于一家轻资产、高现金流的订阅制公司来说尚可，但安全边际不够充分。理想的买入价位在PE 15x以下（约$50-55）。</p>
+        </div>
+
+        <h3>7.5 关键关注点</h3>
+        <ul>
+            <li>续费率趋势（当前79%，能否提升至80%+）</li>
+            <li>2-10收购的整合效果和交叉销售进展</li>
+            <li>非保修收入增长速度（HVAC、Moen等增值服务）</li>
+            <li>债务偿还进度（净杠杆1.4x，目标降至1x以下）</li>
+            <li>会员数量增长（2026年预计恢复正增长）</li>
+        </ul>
+    </div>
+
+    <!-- 图表脚本 -->
+    <script>
+        // Topbar scoring logic - unified with stock_scores_v1
+        (function(){
+            var SCORE_KEY='stock_scores_v1';
+            var code=document.getElementById('topbarCode').textContent.trim();
+            function getScores(){try{var d=localStorage.getItem(SCORE_KEY);return d?JSON.parse(d):{};}catch(e){return {};}}
+            function saveScores(s){localStorage.setItem(SCORE_KEY,JSON.stringify(s));}
+            function starsHTML(val){var h='';for(var i=1;i<=5;i++){h+='<span class="'+(i<=val?'on':'off')+'">\u2605</span>';}return h;}
+            function valClass(v){return v>=5?'s5':v>=4?'s4':v>=3?'s3':v>=2?'s2':'s1';}
+            function renderDisplay(){
+                var sc=getScores()[code]||{};
+                var f=sc.fundamental||0,p=sc.price||0;
+                document.getElementById('topbarFVal').textContent=f>0?f:'-';
+                document.getElementById('topbarFVal').className='topbar-score-val'+(f>0?' '+valClass(f):'');
+                document.getElementById('topbarFStars').innerHTML=starsHTML(f);
+                document.getElementById('topbarPVal').textContent=p>0?p:'-';
+                document.getElementById('topbarPVal').className='topbar-score-val'+(p>0?' '+valClass(p):'');
+                document.getElementById('topbarPStars').innerHTML=starsHTML(p);
+            }
+            window.topbarEdit=function(){
+                var sc=getScores()[code]||{};
+                document.getElementById('topbarFSel').value=sc.fundamental||0;
+                document.getElementById('topbarPSel').value=sc.price||0;
+                document.getElementById('topbarFSel').style.display='';
+                document.getElementById('topbarPSel').style.display='';
+                document.getElementById('topbarEditBtn').style.display='none';
+                document.getElementById('topbarSaveBtn').style.display='';
+                document.getElementById('topbarCancelBtn').style.display='';
+                document.getElementById('topbarFVal').style.display='none';
+                document.getElementById('topbarPVal').style.display='none';
+                document.getElementById('topbarFStars').style.display='none';
+                document.getElementById('topbarPStars').style.display='none';
+            };
+            window.topbarSave=function(){
+                var f=parseInt(document.getElementById('topbarFSel').value);
+                var p=parseInt(document.getElementById('topbarPSel').value);
+                var sc=getScores();if(!sc[code])sc[code]={};
+                sc[code].fundamental=f;sc[code].price=p;sc[code].updated=new Date().toISOString();
+                saveScores(sc);topbarCancel();renderDisplay();
+            };
+            window.topbarCancel=function(){
+                document.getElementById('topbarFSel').style.display='none';
+                document.getElementById('topbarPSel').style.display='none';
+                document.getElementById('topbarEditBtn').style.display='';
+                document.getElementById('topbarSaveBtn').style.display='none';
+                document.getElementById('topbarCancelBtn').style.display='none';
+                document.getElementById('topbarFVal').style.display='';
+                document.getElementById('topbarPVal').style.display='';
+                document.getElementById('topbarFStars').style.display='';
+                document.getElementById('topbarPStars').style.display='';
+            };
+            renderDisplay();
+        })();
+
+        // ROE Chart
+        new Chart(document.getElementById('roeChart'), {
+            type: 'line',
+            data: {
+                labels: ['2019','2020','2021','2022','2023','2024','2025','TTM'],
+                datasets: [{
+                    label: 'ROE (%)',
+                    data: [null, null, 27.9, 53.4, 56.4, 44.3, 98.3, 108],
+                    borderColor: '#2e86c1',
+                    backgroundColor: 'rgba(46,134,193,0.1)',
+                    fill: true,
+                    tension: 0.3
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: { y: { beginAtZero: true, title: { display: true, text: 'ROE (%)' } } },
+                plugins: { legend: { display: false } }
+            }
+        });
+
+        // Debt-to-Asset Chart
+        new Chart(document.getElementById('debtChart'), {
+            type: 'bar',
+            data: {
+                labels: ['2019','2020','2021','2022','2023','2024','2025','TTM'],
+                datasets: [{
+                    label: '资产负债率 (%)',
+                    data: [70.7, 60.2, 57.9, 56.0, 57.9, 57.9, 55.5, 55.5],
+                    backgroundColor: '#e67e22',
+                    borderColor: '#d35400',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: { y: { beginAtZero: true, title: { display: true, text: '资产负债率 (%)' }, max: 100 } },
+                plugins: { legend: { display: false } }
+            }
+        });
+
+        // Equity Multiplier Chart
+        new Chart(document.getElementById('equityChart'), {
+            type: 'line',
+            data: {
+                labels: ['2019','2020','2021','2022','2023','2024','2025','TTM'],
+                datasets: [{
+                    label: '权益乘数',
+                    data: [null, null, 2.4, 2.3, 2.4, 2.4, 2.3, 2.2],
+                    borderColor: '#8e44ad',
+                    backgroundColor: 'rgba(142,68,173,0.1)',
+                    fill: true,
+                    tension: 0.3
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: { y: { beginAtZero: true, title: { display: true, text: '权益乘数 (Assets/Equity)' } } },
+                plugins: { legend: { display: false } }
+            }
+        });
+
+        // PE Chart
+        new Chart(document.getElementById('peChart'), {
+            type: 'bar',
+            data: {
+                labels: ['2019','2020','2021','2022','2023','2024','2025','当前'],
+                datasets: [{
+                    label: 'PE Ratio',
+                    data: [38.2, 24.4, 24.0, 23.9, 16.6, 17.9, 16.1, 19],
+                    backgroundColor: function(context) {
+                        var value = context.raw;
+                        if (value > 30) return '#c0392b';
+                        if (value > 20) return '#e67e22';
+                        return '#2e86c1';
+                    }
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: { y: { beginAtZero: true, title: { display: true, text: 'PE Ratio' } } },
+                plugins: { legend: { display: false } }
+            }
+        });
+    </script>
+</body>
+</html>
