@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zoetis (ZTS) 价值投资分析</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body { font-family: 'Segoe UI', Arial, sans-serif; margin: 0; padding: 20px; background-color: #f0f2f5; color: #333; }
+        h1 { text-align: center; color: #1a5276; font-size: 2.2em; margin-bottom: 5px; }
+        h2 { color: #1a5276; border-bottom: 2px solid #2e86c1; padding-bottom: 8px; margin-top: 30px; }
+        h3 { color: #2c3e50; margin-top: 20px; }
+        .subtitle { text-align: center; color: #7f8c8d; font-size: 1.1em; margin-bottom: 30px; }
+        .info-box { background: white; border-radius: 10px; padding: 25px; margin: 20px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.08); }
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; background-color: white; }
+        th, td { padding: 10px 14px; text-align: left; border-bottom: 1px solid #e0e0e0; }
+        th { background-color: #1a5276; color: white; font-weight: bold; }
+        tr:nth-child(even) { background-color: #f8f9fa; }
+        tr:hover { background-color: #eaf2f8; }
+        .highlight { background: #fef9e7; border-left: 4px solid #2e86c1; padding: 15px 20px; margin: 15px 0; border-radius: 0 8px 8px 0; }
+        .chart-container { background: white; border-radius: 10px; padding: 25px; margin: 20px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.08); }
+        canvas { max-height: 400px; }
+        .tag { display: inline-block; background: #1a5276; color: white; padding: 3px 10px; border-radius: 12px; font-size: 0.85em; margin: 2px; }
+        .tag-green { background: #27ae60; }
+        .tag-orange { background: #e67e22; }
+        .tag-red { background: #c0392b; }
+        a { color: #1a5276; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        .fixed-topbar { position: fixed; top: 0; left: 0; right: 0; z-index: 9999; background: linear-gradient(135deg, #1a5276, #2e86c1); color: white; display: flex; align-items: center; justify-content: space-between; padding: 8px 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.15); height: 48px; }
+        .fixed-topbar a { color: white; text-decoration: none; font-size: 14px; font-weight: 600; }
+        .fixed-topbar a:hover { text-decoration: underline; }
+        .topbar-left { display: flex; align-items: center; gap: 12px; }
+        .topbar-right { display: flex; align-items: center; gap: 8px; }
+        .topbar-score-label { font-size: 12px; opacity: 0.85; }
+        .topbar-score-val { font-weight: 700; font-size: 15px; min-width: 18px; text-align: center; }
+        .topbar-score-val.s1 { color: #ff6b6b; } .topbar-score-val.s2 { color: #ffa94d; } .topbar-score-val.s3 { color: #ffd43b; } .topbar-score-val.s4 { color: #69db7c; } .topbar-score-val.s5 { color: #51cf66; }
+        .topbar-select { padding: 3px 8px; border: 1px solid rgba(255,255,255,0.4); border-radius: 6px; font-size: 12px; font-weight: 600; color: white; background: rgba(255,255,255,0.15); cursor: pointer; outline: none; }
+        .topbar-select:focus { border-color: rgba(255,255,255,0.7); }
+        .topbar-select option { color: #333; background: white; }
+        .topbar-select:disabled { opacity: 0.5; cursor: not-allowed; }
+        .topbar-btn { padding: 4px 12px; border: none; border-radius: 6px; font-size: 12px; font-weight: 600; cursor: pointer; transition: background 0.2s; }
+        .topbar-btn-edit { background: rgba(255,255,255,0.2); color: white; }
+        .topbar-btn-edit:hover { background: rgba(255,255,255,0.35); }
+        .topbar-btn-save { background: #27ae60; color: white; }
+        .topbar-btn-save:hover { background: #219a52; }
+        .topbar-btn-cancel { background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.7); }
+        .topbar-btn-cancel:hover { background: rgba(255,255,255,0.2); }
+        .topbar-stars { font-size: 11px; }
+        .topbar-stars .on { color: #f39c12; }
+        .topbar-stars .off { color: rgba(255,255,255,0.3); }
+        body { padding-top: 60px !important; }
+        .moat-item { background: white; border-radius: 8px; padding: 15px 20px; margin: 10px 0; box-shadow: 0 1px 5px rgba(0,0,0,0.05); border-left: 4px solid #2e86c1; }
+        .moat-item strong { color: #1a5276; }
+        .risk-item { background: white; border-radius: 8px; padding: 15px 20px; margin: 10px 0; box-shadow: 0 1px 5px rgba(0,0,0,0.05); border-left: 4px solid #c0392b; }
+        .star { color: #f39c12; }
+    </style>
+</head>
+<body>
+    <div class="fixed-topbar" id="fixedTopbar">
+        <div class="topbar-left">
+            <a href="index.html">&larr; 返回索引</a>
+            <span style="font-size:14px;font-weight:700;" id="topbarCode">ZTS</span>
+        </div>
+        <div class="topbar-right" id="topbarScores">
+            <span class="topbar-score-label">基本面</span>
+            <span class="topbar-score-val" id="topbarFVal">-</span>
+            <span class="topbar-stars" id="topbarFStars"></span>
+            <select class="topbar-select" id="topbarFSel" style="display:none;"><option value="0">-</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option></select>
+            <span class="topbar-score-label" style="margin-left:12px;">价格</span>
+            <span class="topbar-score-val" id="topbarPVal">-</span>
+            <span class="topbar-stars" id="topbarPStars"></span>
+            <select class="topbar-select" id="topbarPSel" style="display:none;"><option value="0">-</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option></select>
+            <button class="topbar-btn topbar-btn-edit" id="topbarEditBtn" onclick="topbarEdit()">修改</button>
+            <button class="topbar-btn topbar-btn-save" id="topbarSaveBtn" onclick="topbarSave()" style="display:none;">保存</button>
+            <button class="topbar-btn topbar-btn-cancel" id="topbarCancelBtn" onclick="topbarCancel()" style="display:none;">取消</button>
+        </div>
+    </div>
+
+    <h1>Zoetis 硕腾 (NYSE: ZTS)</h1>
+    <p class="subtitle">巴菲特/芒格式价值投资基本面分析 | 更新日期：2026年6月</p>
+
+    <!-- 一、公司基本信息 -->
+    <div class="info-box">
+        <h2>一、公司基本信息</h2>
+        <table>
+            <tr><td>公司全称</td><td>Zoetis Inc.（硕腾公司）</td></tr>
+            <tr><td>股票代码</td><td>NYSE: ZTS</td></tr>
+            <tr><td>市值</td><td>约680亿美元（2026年6月）</td></tr>
+            <tr><td>企业价值（EV）</td><td>约700亿美元</td></tr>
+            <tr><td>成立时间</td><td>2012年从辉瑞分拆独立，2013年IPO</td></tr>
+            <tr><td>公司总部</td><td>美国新泽西州帕西帕尼（Parsippany, NJ）</td></tr>
+            <tr><td>最新收盘价</td><td>约$155（2026年6月中旬）</td></tr>
+            <tr><td>52周区间</td><td>$130 - $200</td></tr>
+            <tr><td>CEO</td><td>Kristin Peck</td></tr>
+            <tr><td>CFO</td><td>Wetteny Joseph</td></tr>
+            <tr><td>员工人数</td><td>约14,500人</td></tr>
+            <tr><td>行业</td><td>动物保健 / 兽医药品与疫苗</td></tr>
+            <tr><td>流通股数</td><td>约4.4亿股</td></tr>
+            <tr><td>股息</td><td>$2.12/年（季息$0.53），股息率约1.4%</td></tr>
+            <tr><td>IPO时间</td><td>2013年2月1日</td></tr>
+        </table>
+        <div class="highlight">
+            <strong>一句话定位</strong>：Zoetis是全球最大的纯动物保健公司，给宠物和牲畜提供药品、疫苗、诊断和生物设备。你可以把它理解为"动物界的辉瑞"——它原本就是辉瑞的动物保健部门，2013年独立上市后一路成长为行业绝对龙头。
+        </div>
+    </div>
+
+    <!-- 二、业务分析 -->
+    <div class="info-box">
+        <h2>二、业务分析</h2>
+        <p style="line-height:1.8;">Zoetis做的事情用大白话说就是：<strong>给动物看病、防病</strong>。你家狗需要驱虫药、关节炎针、皮肤病药？Zoetis做。养牛场需要疫苗和抗生素？Zoetis也做。它的产品覆盖8个物种、15个治疗领域，在100多个国家销售。</p>
+
+        <h3>2.1 按物种划分（2025年）</h3>
+        <table>
+            <tr><th>物种</th><th>营收（亿美元）</th><th>占比</th><th>增长趋势</th></tr>
+            <tr><td>伴侣动物（狗、猫、马）</td><td>约65.9</td><td>~70%</td><td>有机增长5%，驱虫药+皮肤科+诊断驱动</td></tr>
+            <tr><td>畜牧动物（牛、猪、禽、鱼、羊）</td><td>约27.6</td><td>~29%</td><td>有机增长8%，牛用产品+疫苗驱动</td></tr>
+            <tr><td>其他（合同供应+人用诊断）</td><td>约1.1</td><td>~1%</td><td>—</td></tr>
+        </table>
+
+        <h3>2.2 按产品类别划分（2025年）</h3>
+        <table>
+            <tr><th>产品类别</th><th>代表产品</th><th>特点</th></tr>
+            <tr><td>驱虫药</td><td>Simparica Trio、Revolution/Stronghold、ProHeart</td><td>最大品类；Simparica Trio全球犬用驱虫药第一，美国销售超$10亿</td></tr>
+            <tr><td>皮肤科</td><td>Apoquel、Apoquel Chewable、Cytopoint</td><td>Key Dermatology特许经营权，2024年营收$16亿</td></tr>
+            <tr><td>骨关节炎疼痛</td><td>Librela（犬）、Solensia（猫）、Lenivia/Portela（新一代长效）</td><td>单克隆抗体革命性产品；2024年$5.81亿，增长80%</td></tr>
+            <tr><td>疫苗</td><td>各类伴侣动物和畜牧疫苗</td><td>覆盖广泛，提供稳定基础收入</td></tr>
+            <tr><td>抗感染药</td><td>Draxxin、Excenel/ceftiofur系列</td><td>畜牧抗生素核心产品</td></tr>
+            <tr><td>诊断</td><td>兽医诊断产品与设备</td><td>增长最快的板块之一</td></tr>
+            <tr><td>其他药品</td><td>镇痛、镇静等</td><td>补充性品类</td></tr>
+        </table>
+
+        <h3>2.3 按地区划分（2025年）</h3>
+        <table>
+            <tr><th>地区</th><th>营收（亿美元）</th><th>占比</th><th>物种构成</th></tr>
+            <tr><td>美国</td><td>约51.0</td><td>~54%</td><td>83%伴侣动物 + 17%畜牧</td></tr>
+            <tr><td>国际</td><td>约42.5</td><td>~45%</td><td>56%伴侣动物 + 44%畜牧</td></tr>
+        </table>
+
+        <h3>2.4 商业模式</h3>
+        <div class="highlight">
+            <strong>Zoetis的赚钱逻辑</strong>：研发创新药和疫苗 → 卖给兽医和养殖户 → 兽医开处方给宠物主人 → 宠物长期用药形成复购。核心是<strong>"创新驱动+品牌忠诚+兽医渠道"</strong>。与IDEXX的"剃须刀+刀片"模式不同，Zoetis更像传统制药公司——靠重磅药驱动，一款好药可以卖很多年。
+        </div>
+    </div>
+
+    <!-- 三、业务板块产品竞争力分析 -->
+    <div class="info-box">
+        <h2>三、业务板块产品竞争力分析</h2>
+
+        <h3>3.1 伴侣动物——核心引擎</h3>
+        <div class="moat-item">
+            <strong>驱虫药特许经营权</strong>：Simparica Trio是全球犬用驱虫药第一品牌，2025年美国销售超$10亿。ProHeart是唯一一年一次的犬心丝虫预防注射。Revolution/Stronghold是猫用驱虫药领导品牌。这个品类给Zoetis提供了最稳定的经常性收入。
+        </div>
+        <div class="moat-item">
+            <strong>皮肤科特许经营权</strong>：Apoquel（JAK抑制剂）+ Cytopoint（单抗）组合，覆盖了犬过敏性皮炎的两大治疗路径。Apoquel有超过10年的安全性和疗效数据，Apoquel Chewable咀嚼片提升了依从性。2024年Key Dermatology营收$16亿，增长17%。
+        </div>
+        <div class="moat-item">
+            <strong>骨关节炎疼痛特许经营权</strong>：Librela（犬）和Solensia（猫）是革命性的单克隆抗体产品——每月一针替代每日口服止痛药。2025年新一代长效产品Lenivia（犬）和Portela（猫）获得欧盟和加拿大批准，三个月一针，剂量降为1/10。这是Zoetis未来增长的重要引擎。
+        </div>
+
+        <h3>3.2 畜牧动物——稳定器</h3>
+        <div class="moat-item">
+            <strong>牛用产品组合</strong>：Draxxin是牛呼吸系统疾病治疗的金标准，ceftiofur系列是广谱抗生素。2025年剥离了药物饲料添加剂（MFA）业务后，畜牧组合更加聚焦高价值产品，有机增长8%。
+        </div>
+        <div class="moat-item">
+            <strong>疫苗组合</strong>：覆盖猪、禽、鱼等多种物种的疫苗，提供多元化收入来源。国际市场畜牧占比44%，是重要的增长区域。
+        </div>
+
+        <h3>3.3 研发管线——未来增长引擎</h3>
+        <div class="highlight">
+            <strong>自独立以来已投入$60亿研发</strong>，拥有12+潜在重磅产品候选：
+            <ul>
+                <li><strong>慢性肾病（CKD）</strong>：$30-40亿市场，目前几乎没有有效治疗</li>
+                <li><strong>肿瘤学</strong>：$15亿+市场，IDEXX Cancer Dx已率先进入诊断，Zoetis瞄准治疗端</li>
+                <li><strong>心脏病学</strong>：宠物心脏病治疗的新前沿</li>
+                <li><strong>焦虑症</strong>：宠物行为健康领域</li>
+                <li><strong>肥胖</strong>：宠物肥胖症治疗</li>
+            </ul>
+            预计未来几年每年至少有一个重大市场获批产品。
+        </div>
+    </div>
+
+    <!-- 四、历史财务指标 -->
+    <div class="info-box">
+        <h2>四、历史财务指标 (2015-2025)</h2>
+        <table>
+            <tr><th>年份</th><th>营收(亿$)</th><th>净利(亿$)</th><th>ROE(%)</th><th>负债/资产(%)</th><th>权益乘数</th><th>PE</th></tr>
+            <tr><td>2015</td><td>46.5</td><td>6.2</td><td>39</td><td>49</td><td>2.0</td><td>52</td></tr>
+            <tr><td>2016</td><td>49.0</td><td>8.0</td><td>42</td><td>47</td><td>1.9</td><td>42</td></tr>
+            <tr><td>2017</td><td>53.1</td><td>10.1</td><td>47</td><td>44</td><td>1.8</td><td>35</td></tr>
+            <tr><td>2018</td><td>58.3</td><td>11.6</td><td>48</td><td>42</td><td>1.7</td><td>32</td></tr>
+            <tr><td>2019</td><td>63.0</td><td>13.2</td><td>50</td><td>40</td><td>1.7</td><td>34</td></tr>
+            <tr><td>2020</td><td>66.8</td><td>14.3</td><td>47</td><td>42</td><td>1.7</td><td>38</td></tr>
+            <tr><td>2021</td><td>77.7</td><td>18.8</td><td>52</td><td>40</td><td>1.7</td><td>37</td></tr>
+            <tr><td>2022</td><td>81.0</td><td>20.1</td><td>50</td><td>39</td><td>1.6</td><td>32</td></tr>
+            <tr><td>2023</td><td>85.4</td><td>23.4</td><td>53</td><td>38</td><td>1.6</td><td>28</td></tr>
+            <tr><td>2024</td><td>92.6</td><td>24.9</td><td>51</td><td>39</td><td>1.6</td><td>27</td></tr>
+            <tr><td>2025</td><td>94.7</td><td>26.7</td><td>50</td><td>40</td><td>1.7</td><td>25</td></tr>
+        </table>
+        <div class="chart-container">
+            <canvas id="financialChart"></canvas>
+        </div>
+    </div>
+
+    <!-- 五、竞争分析与护城河 -->
+    <div class="info-box">
+        <h2>五、竞争分析与护城河</h2>
+
+        <h3>5.1 主要竞争对手</h3>
+        <table>
+            <tr><th>竞争对手</th><th>领域</th><th>对比</th></tr>
+            <tr><td>IDEXX (IDXX)</td><td>兽医诊断</td><td>诊断领域绝对龙头，Zoetis诊断业务较小</td></tr>
+            <tr><td>Elanco (ELAN)</td><td>动物保健全品类</td><td>规模第二但盈利能力远弱于Zoetis</td></tr>
+            <tr><td>Boehringer Ingelheim</td><td>动物保健（私企）</td><td>畜牧疫苗强势，私企不透明</td></tr>
+            <tr><td>Merck Animal Health</td><td>动物保健</td><td>水产和畜牧疫苗有优势</td></tr>
+            <tr><td>Heska (被Antech收购)</td><td>兽医诊断</td><td>IDEXX的小型竞争对手</td></tr>
+        </table>
+
+        <h3>5.2 护城河</h3>
+        <div class="moat-item">
+            <strong>品牌与渠道护城河</strong>：Zoetis的产品几乎都是各自品类的第一或第二。Simparica Trio全球犬用驱虫药第一，Apoquel/Cytopoint犬用皮肤科第一，Librela/Solensia开创了OA疼痛单抗品类。兽医渠道深度绑定——Zoetis在全球拥有庞大的直销团队，与兽医建立了长期信任关系。
+        </div>
+        <div class="moat-item">
+            <strong>研发与生物技术护城河</strong>：独立以来投入$60亿研发，在单克隆抗体和JAK抑制剂领域建立了显著的技术领先。12+潜在重磅管线提供了长期增长可见性。竞争对手很难在短期内复制这种生物制剂能力。
+        </div>
+        <div class="moat-item">
+            <strong>规模与多元化护城河</strong>：$95亿营收、100+国家、8物种、15治疗领域——这种规模使Zoetis在采购、制造、分销上拥有成本优势，同时多元化降低了单一产品或市场的风险。
+        </div>
+        <div class="moat-item">
+            <strong>转换成本</strong>：兽医对熟悉的产品有强烈偏好，切换到竞品需要重新学习用法、面对不确定性。特别是单抗产品（Librela/Solensia），兽医和宠物主人一旦开始使用，很少会切换。
+        </div>
+
+        <h3>5.3 风险</h3>
+        <div class="risk-item">
+            <strong>竞争加剧</strong>：皮肤科和驱虫药领域面临新进入者。Elanco的Credelio在驱虫药市场抢份额，皮肤科也有仿制药压力。
+        </div>
+        <div class="risk-item">
+            <strong>宠物消费降级</strong>：2026年Q1美国伴侣动物增速放缓，管理层下调指引。宠物主人对高价创新产品的价格敏感度上升。
+        </div>
+        <div class="risk-item">
+            <strong>Librela安全性争议</strong>：虽然FDA标签变更后有所缓解，但骨关节炎单抗的长期安全性仍是市场关注点。
+        </div>
+        <div class="risk-item">
+            <strong>畜牧周期性</strong>：虽然占比已降至29%，但畜牧业务仍受农产品周期和食品安全事件影响。
+        </div>
+    </div>
+
+    <!-- 六、利润分配分析 -->
+    <div class="info-box">
+        <h2>六、利润分配分析（过去十年）</h2>
+        <table>
+            <tr><th>年份</th><th>净利润(亿$)</th><th>股息(亿$)</th><th>回购(亿$)</th><th>资本开支(亿$)</th><th>研发(亿$)</th><th>并购(亿$)</th></tr>
+            <tr><td>2016</td><td>8.0</td><td>1.6</td><td>4.8</td><td>3.4</td><td>3.7</td><td>少量</td></tr>
+            <tr><td>2017</td><td>10.1</td><td>2.1</td><td>5.2</td><td>3.7</td><td>3.9</td><td>少量</td></tr>
+            <tr><td>2018</td><td>11.6</td><td>2.5</td><td>7.2</td><td>3.9</td><td>4.2</td><td>~5（Abaxis）</td></tr>
+            <tr><td>2019</td><td>13.2</td><td>3.0</td><td>6.6</td><td>4.5</td><td>4.5</td><td>少量</td></tr>
+            <tr><td>2020</td><td>14.3</td><td>3.3</td><td>0.4</td><td>4.7</td><td>4.7</td><td>少量</td></tr>
+            <tr><td>2021</td><td>18.8</td><td>3.8</td><td>8.1</td><td>5.2</td><td>5.1</td><td>~1</td></tr>
+            <tr><td>2022</td><td>20.1</td><td>4.3</td><td>16.3</td><td>5.8</td><td>5.4</td><td>少量</td></tr>
+            <tr><td>2023</td><td>23.4</td><td>5.4</td><td>11.7</td><td>7.3</td><td>6.1</td><td>~2</td></tr>
+            <tr><td>2024</td><td>24.9</td><td>7.9</td><td>19.0</td><td>6.6</td><td>6.9</td><td>少量</td></tr>
+            <tr><td>2025</td><td>26.7</td><td>8.5</td><td>32.5</td><td>6.2</td><td>7.0</td><td>少量</td></tr>
+        </table>
+        <div class="highlight">
+            <strong>资本配置特点</strong>：
+            <ul>
+                <li><strong>股息</strong>：持续增长，从2016年$0.28/股增至2026年$2.12/股，年复合增长率约25%。2024年派发$7.86亿，2025年约$8.5亿</li>
+                <li><strong>回购</strong>：2024年回购$19亿，2025年回购约$32.5亿（含Q4大额回购$20.6亿），董事会2024年8月批准了新的$60亿回购计划</li>
+                <li><strong>研发</strong>：持续加码，2025年$7.0亿（营收占比7.4%），独立以来累计投入$60亿</li>
+                <li><strong>并购</strong>：谨慎型，2018年收购Abaxis（诊断，约$20亿）是最大的并购，其余多为小型补充性收购</li>
+                <li><strong>2025年总股东回报超$41亿</strong>（股息+回购），占净利润的150%+</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- 七、投资总结 -->
+    <div class="info-box">
+        <h2>七、投资总结</h2>
+
+        <h3>7.1 核心优势</h3>
+        <table>
+            <tr><th>优势</th><th>说明</th></tr>
+            <tr><td><span class="tag tag-green">行业龙头</span></td><td>全球最大纯动物保健公司，$95亿营收是Elanco的2倍+</td></tr>
+            <tr><td><span class="tag tag-green">重磅药驱动</span></td><td>Simparica Trio、Apoquel/Cytopoint、Librela/Solensia三大特许经营权</td></tr>
+            <tr><td><span class="tag tag-green">管线深度</span></td><td>12+潜在重磅产品，CKD和肿瘤是$50亿+新市场</td></tr>
+            <tr><td><span class="tag tag-green">盈利能力</span></td><td>毛利率70.5%，营业利润率38%，自由现金流$22.8亿</td></tr>
+            <tr><td><span class="tag tag-green">股东回报</span></td><td>股息+回购双轮驱动，2025年回报超$41亿</td></tr>
+        </table>
+
+        <h3>7.2 核心风险</h3>
+        <table>
+            <tr><th>风险</th><th>说明</th></tr>
+            <tr><td><span class="tag tag-orange">增长放缓</span></td><td>2026年有机增长指引仅3-5%，Q1有机零增长</td></tr>
+            <tr><td><span class="tag tag-orange">竞争加剧</span></td><td>皮肤科和驱虫药面临仿制药和新进入者</td></tr>
+            <tr><td><span class="tag tag-orange">估值偏高</span></td><td>PE约25倍，虽低于历史均值但仍不便宜</td></tr>
+            <tr><td><span class="tag tag-red">宠物消费降级</span></td><td>美国宠物主对高价创新产品价格敏感度上升</td></tr>
+        </table>
+
+        <h3>7.3 估值参考</h3>
+        <div class="highlight">
+            <strong>2025年数据</strong>：营收$94.7亿，调整后EPS $6.41，自由现金流$22.8亿<br>
+            <strong>2026年指引</strong>：营收$96.8-$99.6亿，调整后EPS $6.85-$7.00<br>
+            <strong>当前PE</strong>：约25倍（基于2026E EPS $7.00）<br>
+            <strong>公允价值参考</strong>：$132（TickerSpark估值），当前价格约$155仍有溢价
+        </div>
+    </div>
+
+    <!-- 八、ZTS vs IDXX 深度对比 -->
+    <div class="info-box" id="peer-comparison">
+        <h2>八、动物保健双雄深度对比：ZTS vs IDXX</h2>
+        <p style="color:#555;line-height:1.8;">Zoetis（硕腾）和IDEXX（爱德士）是美国动物保健行业两只最核心的上市标的。它们都从宠物经济中赚钱，但赚钱的方式完全不同——Zoetis是"动物界的辉瑞"，靠卖药赚钱；IDEXX是"动物界的迈瑞"，靠卖诊断设备和耗材赚钱。下面从多个维度逐一拆解。</p>
+
+        <h3>8.1 一句话定位</h3>
+        <table>
+            <tr><th>维度</th><th>ZTS — Zoetis 硕腾</th><th>IDXX — IDEXX 爱德士</th></tr>
+            <tr><td>一句话</td><td><strong>"动物界的辉瑞"</strong>——全球最大动物保健公司，靠重磅药驱动</td><td><strong>"动物界的迈瑞+罗氏诊断"</strong>——全球兽医诊断龙头，靠剃须刀+刀片模式赚钱</td></tr>
+            <tr><td>市值</td><td>~680亿美元</td><td>~440亿美元</td></tr>
+            <tr><td>2025营收</td><td>$94.7亿</td><td>$43.0亿</td></tr>
+            <tr><td>2025净利</td><td>$26.7亿</td><td>~$10.4亿</td></tr>
+            <tr><td>营业利润率</td><td>38%</td><td>31.6%</td></tr>
+            <tr><td>自由现金流</td><td>$22.8亿</td><td>~$10亿</td></tr>
+        </table>
+
+        <h3>8.2 业务板块对比</h3>
+        <table>
+            <tr><th>业务板块</th><th>ZTS 占比</th><th>IDXX 占比</th><th>重叠？</th></tr>
+            <tr><td>伴侣动物药品/疫苗</td><td>~55%</td><td>—</td><td>IDXX无</td></tr>
+            <tr><td>伴侣动物诊断</td><td>~15%</td><td>~79%（CAG诊断）</td><td>重叠</td></tr>
+            <tr><td>畜牧动物药品/疫苗</td><td>~29%</td><td>—</td><td>IDXX无</td></tr>
+            <tr><td>畜牧/禽/奶诊断</td><td>—</td><td>~3%（LPD）</td><td>ZTS无</td></tr>
+            <tr><td>水质检测</td><td>—</td><td>~5%</td><td>ZTS无</td></tr>
+            <tr><td>兽医软件/信息管理</td><td>少量</td><td>含在CAG中</td><td>轻微重叠</td></tr>
+        </table>
+
+        <h3>8.3 相同点</h3>
+        <div class="moat-item">
+            <strong>1. 都深度绑定伴侣动物经济</strong>：ZTS 70%收入来自宠物，IDXX 79%收入来自宠物诊断。两者都受益于宠物人性化趋势——人们越来越愿意为宠物花大钱。
+        </div>
+        <div class="moat-item">
+            <strong>2. 都通过兽医渠道销售</strong>：ZTS的药品和IDEXX的诊断设备都主要卖给兽医诊所，而不是直接卖给宠物主人。这意味着两者都需要维护与兽医的深度关系。
+        </div>
+        <div class="moat-item">
+            <strong>3. 都有强大的经常性收入</strong>：ZTS的驱虫药、皮肤科药是长期用药；IDEXX的诊断耗材是持续消耗品。两者都有较高的客户留存率。
+        </div>
+        <div class="moat-item">
+            <strong>4. 都受益于宠物老龄化</strong>：老年宠物需要更多药物和更多诊断，两者都直接受益。
+        </div>
+        <div class="moat-item">
+            <strong>5. 都有极强的盈利能力和现金流</strong>：ZTS营业利润率38%，IDEXX 31.6%，两者都是"印钞机"型业务。
+        </div>
+        <div class="moat-item">
+            <strong>6. 都面临宠物消费降级风险</strong>：2025-2026年美国临床就诊量下降，对两者都有负面影响。
+        </div>
+
+        <h3>8.4 差异点</h3>
+        <table>
+            <tr><th>差异维度</th><th>ZTS 硕腾</th><th>IDXX 爱德士</th></tr>
+            <tr><td>商业模式</td><td>重磅药驱动（类似辉瑞）</td><td>剃须刀+刀片（仪器+耗材）</td></tr>
+            <tr><td>收入规模</td><td>$94.7亿（2.2倍）</td><td>$43.0亿</td></tr>
+            <tr><td>增长引擎</td><td>新药上市（管线驱动）</td><td>装机量+耗材复购</td></tr>
+            <tr><td>畜牧业务</td><td>29%——重要的多元化来源</td><td>3%——几乎可以忽略</td></tr>
+            <tr><td>水质检测</td><td>无</td><td>5%——独特的非动物业务</td></tr>
+            <tr><td>地理结构</td><td>54%美国 / 45%国际</td><td>~65%美国 / ~35%国际</td></tr>
+            <tr><td>客户粘性来源</td><td>品牌忠诚+兽医偏好</td><td>设备锁定+软件锁定+工作流嵌入</td></tr>
+            <tr><td>股息</td><td>有（$2.12/年，约1.4%收益率）</td><td>无（全部通过回购）</td></tr>
+            <tr><td>并购风格</td><td>谨慎型（最大一笔Abaxis $20亿）</td><td>谨慎型（小型补充性收购为主）</td></tr>
+            <tr><td>当前增长</td><td>放缓（2026E有机3-5%）</td><td>加速（2025有机10%，2026E 7-9%）</td></tr>
+            <tr><td>估值</td><td>PE ~25x</td><td>PE ~42x</td></tr>
+        </table>
+
+        <h3>8.5 重叠业务板块：伴侣动物诊断</h3>
+        <p style="line-height:1.8;">这是两者唯一真正重叠的领域，但竞争格局完全不对等：</p>
+        <table>
+            <tr><th>维度</th><th>ZTS 诊断</th><th>IDXX 诊断</th></tr>
+            <tr><td>市场份额</td><td>较小参与者</td><td>绝对龙头，全球兽医诊断市占率>30%</td></tr>
+            <tr><td>产品线</td><td>主要靠2018年收购Abaxis获得</td><td>自研+40年积累，SNAP、Catalyst、ProCyte全系列</td></tr>
+            <tr><td>装机量</td><td>远小于IDEXX</td><td>全球高端仪器装机量持续9%+增长</td></tr>
+            <tr><td>软件生态</td><td>有限</td><td>VetConnect PLUS深度嵌入兽医工作流</td></tr>
+            <tr><td>客户留存</td><td>中等</td><td>97%+留存率</td></tr>
+        </table>
+        <div class="highlight">
+            <strong>可替代性评估</strong>：在诊断领域，ZTS对IDEXX几乎不可替代。IDEXX的设备+软件+耗材生态系统形成了极高的转换成本——兽医诊所一旦用上IDEXX系统，换到ZTS（Abaxis）意味着重新买设备、重新培训、数据迁移，代价很大。反过来，IDEXX的客户几乎不会考虑切换到ZTS诊断。<br><br>
+            <strong>转换成本</strong>：极高。IDEXX的360承诺计划锁定客户多年，软件数据和工作流深度嵌入，更换需要数万美元的设备投入和数月的培训适应期。
+        </div>
+
+        <h3>8.6 不重叠业务板块：各自的独特竞争优势</h3>
+        <h4>ZTS独有——伴侣动物药品/疫苗 + 畜牧业务</h4>
+        <div class="moat-item">
+            <strong>伴侣动物药品</strong>：这是ZTS的核心和灵魂，IDXX完全不做。Simparica Trio（驱虫）、Apoquel/Cytopoint（皮肤科）、Librela/Solensia（OA疼痛）三大特许经营权合计贡献$40亿+营收。这些重磅药有专利保护、品牌效应和兽医渠道深度绑定，IDXX无法进入这个领域——它没有制药能力。
+        </div>
+        <div class="moat-item">
+            <strong>畜牧业务（29%）</strong>：ZTS有覆盖牛、猪、禽、鱼、羊的完整疫苗和药品组合。这提供了与宠物经济周期不完全相关的收入来源。IDXX的LPD业务仅3%，远不能比。
+        </div>
+
+        <h4>IDXX独有——兽医软件生态 + 水质检测</h4>
+        <div class="moat-item">
+            <strong>兽医软件与信息管理</strong>：IDEXX的VetConnect PLUS、VetLab Station、ezyVet、IDEXX Neo、Cornerstone等软件系统深度嵌入兽医诊所的日常运营。60%+的装机客户已迁移到云端。这种软件锁定是ZTS完全不具备的——ZTS卖的是药，不是工作流。
+        </div>
+        <div class="moat-item">
+            <strong>水质检测（5%）</strong>：Colilert等产品是全球水质检测的标准方法，与动物保健完全无关，提供了独特的多元化。ZTS没有类似业务。
+        </div>
+        <div class="moat-item">
+            <strong>参考实验室服务</strong>：IDEXX运营着全球最大的兽医参考实验室网络，诊所无法在院内做的复杂检测都送到IDEXX实验室。这是ZTS完全不做的高附加值服务。
+        </div>
+
+        <h3>8.7 管理层策略与资本配置对比</h3>
+        <table>
+            <tr><th>维度</th><th>ZTS 硕腾</th><th>IDXX 爱德士</th></tr>
+            <tr><td>CEO</td><td>Kristin Peck（2019年上任，前Zoetis高管）</td><td>Jay Mazelsky（2026年交棒给Michael Erickson）</td></tr>
+            <tr><td>发展策略</td><td>创新驱动——每年至少一个重大产品获批，管线扩张到CKD、肿瘤、心脏病</td><td>装机量驱动——扩大仪器装机基数，推高耗材复购，同时拓展Cancer Dx等新检测</td></tr>
+            <tr><td>现金流使用</td><td>股息+回购并重，2025年回报$41亿+（占净利150%+）</td><td>几乎全部回购，2025年回购约$15亿，不派股息</td></tr>
+            <tr><td>并购态度</td><td>谨慎型——最大收购Abaxis（$20亿，2018），其余多为小型补充</td><td>谨慎型——2015-2025年并购仅占自由现金流6.5%，远低于回购的79%</td></tr>
+            <tr><td>股息态度</td><td>积极——连续增长，2025年股息率约1.4%，年复合增长25%</td><td>不派息——明确表示"目前没有派息计划"，偏好回购</td></tr>
+            <tr><td>回购态度</td><td>非常积极——2024年$19亿，2025年$32.5亿，$60亿新授权</td><td>非常积极——2015-2025年回购占自由现金流79%，股本减少10.3%</td></tr>
+            <tr><td>研发投入</td><td>$7.0亿（营收7.4%），累计$60亿</td><td>~$2.2亿（营收5.2%），但创新效率极高</td></tr>
+        </table>
+
+        <h3>8.8 投资者视角：选谁？</h3>
+        <div class="highlight">
+            <strong>选ZTS的理由</strong>：
+            <ul>
+                <li>规模更大、业务更多元（畜牧29%提供缓冲）</li>
+                <li>重磅药管线更丰富（CKD、肿瘤是$50亿+新市场）</li>
+                <li>估值更合理（PE 25x vs IDXX 42x）</li>
+                <li>有股息收入（1.4%收益率）</li>
+                <li>当前增长放缓提供了更好的买入时机</li>
+            </ul>
+        </div>
+        <div class="highlight">
+            <strong>选IDXX的理由</strong>：
+            <ul>
+                <li>剃须刀+刀片模式更"粘"（97%+留存率 vs ZTS的品牌忠诚）</li>
+                <li>当前增长更快（2025有机10% vs ZTS 6%）</li>
+                <li>软件生态形成更深的护城河</li>
+                <li>诊断是兽医实践的起点——"不诊断就不开药"，IDEXX处于食物链更上游</li>
+                <li>回购力度大，股本持续缩减</li>
+            </ul>
+        </div>
+        <div class="highlight" style="border-left-color:#c0392b;">
+            <strong>核心差异总结</strong>：ZTS是"卖药的"，IDXX是"卖诊断的"。卖药的壁垒是专利和品牌，卖诊断的壁垒是设备锁定和软件嵌入。短期看，IDXX增长更猛、护城河更"硬"；长期看，ZTS管线更深、估值更合理、业务更多元。两者都是优质资产，但如果你只能选一个——<strong>追求增长选IDXX，追求价值选ZTS</strong>。
+        </div>
+
+        <p style="text-align:center;margin-top:20px;">
+            <a href="idxx.html">查看IDXX详细分析 &rarr;</a>
+        </p>
+    </div>
+
+    <!-- 数据来源 -->
+    <div class="info-box">
+        <h2>数据来源</h2>
+        <ul>
+            <li>Zoetis 2025年年报及Q4 2025财报新闻稿</li>
+            <li>Zoetis JPM 2026 Healthcare Conference Presentation</li>
+            <li>TickerSpark - ZTS深度分析报告（2026年5月）</li>
+            <li>DCF-Model - ZTS SWOT分析</li>
+            <li>BeyondSPX - ZTS竞争分析</li>
+            <li>Zoetis Dividend History - 投资者关系网站</li>
+            <li>TipRanks - ZTS回购数据</li>
+            <li>SEC 10-Q Filing (Q3 2025)</li>
+        </ul>
+        <p><strong>最后更新</strong>：2026年6月20日</p>
+    </div>
+
+    <script>
+        // ROE & Revenue Chart
+        const ctx = document.getElementById('financialChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['2015','2016','2017','2018','2019','2020','2021','2022','2023','2024','2025'],
+                datasets: [
+                    {
+                        label: '营收(亿$)',
+                        data: [46.5,49.0,53.1,58.3,63.0,66.8,77.7,81.0,85.4,92.6,94.7],
+                        backgroundColor: 'rgba(46,134,193,0.6)',
+                        yAxisID: 'y'
+                    },
+                    {
+                        label: 'ROE(%)',
+                        data: [39,42,47,48,50,47,52,50,53,51,50],
+                        type: 'line',
+                        borderColor: 'rgba(231,76,60,1)',
+                        backgroundColor: 'rgba(231,76,60,0.2)',
+                        yAxisID: 'y1',
+                        tension: 0.3
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: { position: 'left', title: { display: true, text: '营收(亿$)' } },
+                    y1: { position: 'right', title: { display: true, text: 'ROE(%)' }, grid: { drawOnChartArea: false } }
+                }
+            }
+        });
+
+        // Topbar scoring
+        function scoreClass(s){ return s>=5?'s5':s>=4?'s4':s>=3?'s3':s>=2?'s2':'s1'; }
+        function renderStars(s){ let h=''; for(let i=1;i<=5;i++) h+=`<span class="${i<=s?'on':'off'}">&#9733;</span>`; return h; }
+        let savedScores=JSON.parse(localStorage.getItem('zts_scores')||'{}');
+        function initTopbar(){
+            const f=savedScores.f, p=savedScores.p;
+            document.getElementById('topbarFVal').textContent=f||'-'; document.getElementById('topbarFVal').className='topbar-score-val '+(f?scoreClass(f):'');
+            document.getElementById('topbarFStars').innerHTML=renderStars(f);
+            document.getElementById('topbarPVal').textContent=p||'-'; document.getElementById('topbarPVal').className='topbar-score-val '+(p?scoreClass(p):'');
+            document.getElementById('topbarPStars').innerHTML=renderStars(p);
+        }
+        function topbarEdit() {
+            document.getElementById('topbarFSel').style.display='inline'; document.getElementById('topbarPSel').style.display='inline';
+            document.getElementById('topbarFSel').value=savedScores.f||0; document.getElementById('topbarPSel').value=savedScores.p||0;
+            document.getElementById('topbarEditBtn').style.display='none'; document.getElementById('topbarSaveBtn').style.display='inline'; document.getElementById('topbarCancelBtn').style.display='inline';
+        }
+        function topbarSave() {
+            savedScores.f=parseInt(document.getElementById('topbarFSel').value); savedScores.p=parseInt(document.getElementById('topbarPSel').value);
+            localStorage.setItem('zts_scores',JSON.stringify(savedScores)); initTopbar(); topbarCancel();
+        }
+        function topbarCancel() {
+            document.getElementById('topbarFSel').style.display='none'; document.getElementById('topbarPSel').style.display='none';
+            document.getElementById('topbarEditBtn').style.display='inline'; document.getElementById('topbarSaveBtn').style.display='none'; document.getElementById('topbarCancelBtn').style.display='none';
+        }
+        initTopbar();
+    </script>
+</body>
+</html>
