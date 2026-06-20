@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blue Bird Corporation (BLBD) 详细分析</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; background-color: #f5f5f5; }
+        h1 { text-align: center; color: #333; }
+        h2 { color: #4CAF50; margin-top: 30px; }
+        h3 { color: #333; margin-top: 20px; }
+        .info-box { background-color: white; padding: 20px; margin: 20px 0; box-shadow: 0 0 10px rgba(0,0,0,0.1); border-radius: 5px; }
+        table { width: 100%; border-collapse: collapse; margin: 10px 0; }
+        th, td { padding: 8px; text-align: left; border-bottom: 1px solid #ddd; }
+        th { background-color: #4CAF50; color: white; }
+        tr:hover { background-color: #f5f5f5; }
+        a { color: #4CAF50; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        .fixed-topbar { position: fixed; top: 0; left: 0; right: 0; z-index: 9999; background: linear-gradient(135deg, #1a5276, #2e86c1); color: white; display: flex; align-items: center; justify-content: space-between; padding: 8px 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.15); height: 48px; }
+        .fixed-topbar a { color: white; text-decoration: none; font-size: 14px; font-weight: 600; }
+        .fixed-topbar a:hover { text-decoration: underline; }
+        .topbar-left { display: flex; align-items: center; gap: 12px; }
+        .topbar-right { display: flex; align-items: center; gap: 8px; }
+        .topbar-score-label { font-size: 12px; opacity: 0.85; }
+        .topbar-score-val { font-weight: 700; font-size: 15px; min-width: 18px; text-align: center; }
+        .topbar-score-val.s1 { color: #ff6b6b; } .topbar-score-val.s2 { color: #ffa94d; } .topbar-score-val.s3 { color: #ffd43b; } .topbar-score-val.s4 { color: #69db7c; } .topbar-score-val.s5 { color: #51cf66; }
+        .topbar-select { padding: 3px 8px; border: 1px solid rgba(255,255,255,0.4); border-radius: 6px; font-size: 12px; font-weight: 600; color: white; background: rgba(255,255,255,0.15); cursor: pointer; outline: none; }
+        .topbar-select:focus { border-color: rgba(255,255,255,0.7); }
+        .topbar-select option { color: #333; background: white; }
+        .topbar-btn { padding: 4px 12px; border: none; border-radius: 6px; font-size: 12px; font-weight: 600; cursor: pointer; transition: background 0.2s; }
+        .topbar-btn-edit { background: rgba(255,255,255,0.2); color: white; }
+        .topbar-btn-edit:hover { background: rgba(255,255,255,0.35); }
+        .topbar-btn-save { background: #27ae60; color: white; }
+        .topbar-btn-save:hover { background: #219a52; }
+        .topbar-btn-cancel { background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.7); }
+        .topbar-btn-cancel:hover { background: rgba(255,255,255,0.2); }
+        .topbar-stars { font-size: 11px; }
+        .topbar-stars .on { color: #f39c12; }
+        .topbar-stars .off { color: rgba(255,255,255,0.3); }
+        body { padding-top: 60px !important; }
+        .chart-container { background-color: white; padding: 20px; margin: 20px 0; box-shadow: 0 0 10px rgba(0,0,0,0.1); border-radius: 5px; }
+        canvas { max-width: 100%; height: 400px; }
+        .highlight { background-color: #e8f5e9; padding: 15px; border-radius: 5px; margin: 10px 0; }
+        .tag { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 12px; font-weight: 600; }
+        .tag-green { background-color: #d4edda; color: #155724; }
+        .tag-orange { background-color: #fff3cd; color: #856404; }
+        .tag-red { background-color: #f8d7da; color: #721c24; }
+    </style>
+</head>
+<body>
+    <div class="fixed-topbar" id="fixedTopbar">
+        <div class="topbar-left">
+            <a href="index.html">&#8592; 首页</a>
+            <span style="font-size:14px;font-weight:700;" id="topbarCode">BLBD</span>
+        </div>
+        <div class="topbar-right" id="topbarScores">
+            <span class="topbar-score-label">基本面</span>
+            <span class="topbar-score-val" id="topbarFVal">-</span>
+            <span class="topbar-stars" id="topbarFStars"></span>
+            <select class="topbar-select" id="topbarFSel" style="display:none;"><option value="0">-</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option></select>
+            <span class="topbar-score-label" style="margin-left:12px;">价格</span>
+            <span class="topbar-score-val" id="topbarPVal">-</span>
+            <span class="topbar-stars" id="topbarPStars"></span>
+            <select class="topbar-select" id="topbarPSel" style="display:none;"><option value="0">-</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option></select>
+            <button class="topbar-btn topbar-btn-edit" id="topbarEditBtn" onclick="topbarEdit()">修改</button>
+            <button class="topbar-btn topbar-btn-save" id="topbarSaveBtn" onclick="topbarSave()" style="display:none;">保存</button>
+            <button class="topbar-btn topbar-btn-cancel" id="topbarCancelBtn" onclick="topbarCancel()" style="display:none;">取消</button>
+        </div>
+    </div>
+
+    <h1>Blue Bird Corporation (NASDAQ: BLBD)</h1>
+    <p style="text-align:center;color:#666;">巴菲特/芒格式价值投资基本面分析 | 更新日期：2026年6月</p>
+
+    <!-- 一、公司基本信息 -->
+    <div class="info-box">
+        <h2>一、公司基本信息</h2>
+        <table>
+            <tr><td>公司全称</td><td>Blue Bird Corporation（蓝鸟公司）</td></tr>
+            <tr><td>股票代码</td><td>NASDAQ: BLBD</td></tr>
+            <tr><td>市值</td><td>约23亿美元（2026年6月）</td></tr>
+            <tr><td>企业价值（EV）</td><td>约16.4亿美元（TTM）</td></tr>
+            <tr><td>成立时间</td><td>1927年，由Albert Laurence Luce创立</td></tr>
+            <tr><td>公司总部</td><td>美国佐治亚州梅肯（Macon, GA）</td></tr>
+            <tr><td>最新收盘价</td><td>约$73（2026年6月中旬）</td></tr>
+            <tr><td>52周区间</td><td>$41.03 - $81.51</td></tr>
+            <tr><td>CEO</td><td>John Wyskiel（总裁兼首席执行官）</td></tr>
+            <tr><td>CFO</td><td>Razvan Radulescu</td></tr>
+            <tr><td>员工人数</td><td>约2,012人</td></tr>
+            <tr><td>行业</td><td>校车制造 / 替代燃料车辆</td></tr>
+            <tr><td>流通股数</td><td>约3,165万股</td></tr>
+            <tr><td>股息</td><td>不派息</td></tr>
+            <tr><td>IPO时间</td><td>SPAC上市（Hennessy Capital Acquisition Corp.），2018年开始交易</td></tr>
+            <tr><td>制造基地</td><td>佐治亚州Fort Valley（主要校车制造厂）</td></tr>
+        </table>
+    </div>
+
+    <!-- 二、业务分析 -->
+    <div class="info-box">
+        <h2>二、业务分析</h2>
+        <p>Blue Bird是美国最大的校车制造商，专门设计和制造运送学生的黄色校车。简单来说，就是美国街头那些标志性的黄色大校车，几乎一半都是Blue Bird生产的。除了传统柴油校车，公司还是电动校车和替代燃料（丙烷、CNG）校车的市场领导者。</p>
+
+        <h3>2.1 业务板块</h3>
+        <table>
+            <tr>
+                <th>业务板块</th>
+                <th>FY2025营收</th>
+                <th>占比</th>
+                <th>说明</th>
+            </tr>
+            <tr>
+                <td>校车（Bus）</td>
+                <td>约$12.3亿</td>
+                <td>约83%</td>
+                <td>设计、制造和销售Type C和Type D校车，包括电动、丙烷、CNG和柴油动力</td>
+            </tr>
+            <tr>
+                <td>零部件（Parts）</td>
+                <td>约$2.5亿</td>
+                <td>约17%</td>
+                <td>售后零部件销售，通过经销商网络和大型车队客户销售替换零件</td>
+            </tr>
+            <tr style="font-weight:bold;">
+                <td>合计</td>
+                <td>$14.8亿</td>
+                <td>100%</td>
+                <td>FY2025全年营收（截至2025年9月）</td>
+            </tr>
+        </table>
+
+        <h3>2.2 产品组合</h3>
+        <ul>
+            <li><strong>Type C校车（常规型）：</strong>最畅销的校车类型，车头突出，载客36-72人</li>
+            <li><strong>Type D校车（平头型）：</strong>前置发动机，载客54-90人，适合大型学区</td>
+            <li><strong>电动校车（Electric Vision）：</strong>零排放电动校车，受益于EPA清洁校车计划补贴</li>
+            <li><strong>丙烷/CNG校车：</strong>替代燃料校车，运营成本低于柴油</li>
+            <li><strong>特殊需求校车：</strong>配备轮椅升降等无障碍设施</li>
+        </ul>
+
+        <h3>2.3 商业模式</h3>
+        <ul>
+            <li><strong>政府客户为主：</strong>主要客户是公立学区和私营校车运营商，受政府预算驱动</li>
+            <li><strong>经销商网络：</strong>通过约50家独立经销商销售，覆盖全美和加拿大</li>
+            <li><strong>替代燃料领先：</strong>88%校车仍为内燃机，但电动校车订单快速增长（1,100+辆在手订单）</li>
+            <li><strong>售后零部件高毛利：</strong>零部件业务毛利率高于整车，提供稳定现金流</li>
+        </ul>
+
+        <h3>2.4 地理分布</h3>
+        <p>主要市场在美国（约90%+），加拿大占小部分，少量出口至拉丁美洲和中东。</p>
+    </div>
+
+    <!-- 三、产品竞争力分析 -->
+    <div class="info-box">
+        <h2>三、业务板块产品竞争力分析</h2>
+
+        <h3>3.1 校车制造产品竞争力分析</h3>
+        <p><strong>1. 可替代性：<span class="tag tag-green">低</span></strong></p>
+        <ul>
+            <li><strong>主要竞争者：</strong>IC Bus（Navistar/Traton）、Thomas Built Buses（Daimler）、以及小型电动校车制造商Lion Electric</li>
+            <li><strong>替代体验差距：</strong>Blue Bird拥有近百年校车制造历史，在替代燃料校车领域市场份额领先。其电动校车技术成熟，已交付1,100+辆</li>
+            <li><strong>替代趋势：</strong>稳定。校车行业壁垒极高（安全法规、政府采购流程、品牌信任度），新进入者难以撼动</li>
+        </ul>
+
+        <p><strong>2. 定价权：<span class="tag tag-orange">中等</span></strong></p>
+        <ul>
+            <li>校车是政府招标采购，价格竞争存在但品牌和可靠性有溢价</li>
+            <li>电动校车ASP更高（约$35-40万 vs 柴油校车$10-15万），但依赖政府补贴</li>
+            <li>零部件业务有较强定价权（售后市场锁定效应）</li>
+        </ul>
+
+        <p><strong>3. 客户粘性：<span class="tag tag-green">高</span></strong></p>
+        <ul>
+            <li>学区一旦选定校车品牌，更换成本极高（司机培训、维修配件、安全认证）</li>
+            <li>政府采购通常倾向于长期合作的供应商</li>
+            <li>零部件锁定：Blue Bird校车的替换零件主要由Blue Bird供应</li>
+        </ul>
+
+        <h3>3.2 零部件业务产品竞争力分析</h3>
+        <p><strong>1. 可替代性：<span class="tag tag-green">低</span></strong></p>
+        <ul>
+            <li>Blue Bird校车的专用零部件具有排他性，第三方难以完全替代</li>
+            <li>零部件毛利率约30%+，远高于整车业务</li>
+            <li>随着路上Blue Bird校车保有量增长，零部件需求持续增长</li>
+        </ul>
+    </div>
+
+    <!-- 四、历史财务指标 -->
+    <div class="info-box">
+        <h2>四、历史财务指标</h2>
+
+        <h3>4.1 净资产收益率（ROE）</h3>
+        <div class="chart-container">
+            <canvas id="roeChart"></canvas>
+        </div>
+        <p>ROE从2022年的负值迅速恢复至2025年的61.6%，反映了公司盈利能力的强劲改善。但需注意ROE极高部分原因是股东权益基数较小（仅$2.98亿）。</p>
+
+        <h3>4.2 资产负债率（Debt-to-Asset）</h3>
+        <div class="chart-container">
+            <canvas id="debtChart"></canvas>
+        </div>
+        <p>资产负债率从2022年的高位持续下降至约15%，公司几乎没有净债务（净债务为负$1.88亿，即现金超过债务）。财务状况极为健康。</p>
+
+        <h3>4.3 市盈率（PE）</h3>
+        <div class="chart-container">
+            <canvas id="peChart"></canvas>
+        </div>
+        <p>当前PE约17倍，处于历史中等水平。考虑到公司强劲的盈利增长和零净债务，估值相对合理。</p>
+
+        <h3>4.4 关键财务指标汇总</h3>
+        <table>
+            <tr>
+                <th>指标</th>
+                <th>FY2022</th>
+                <th>FY2023</th>
+                <th>FY2024</th>
+                <th>FY2025</th>
+                <th>TTM</th>
+            </tr>
+            <tr>
+                <td>营收（$M）</td>
+                <td>801</td>
+                <td>1,131</td>
+                <td>1,347</td>
+                <td>1,480</td>
+                <td>1,493</td>
+            </tr>
+            <tr>
+                <td>净利润（$M）</td>
+                <td>-9</td>
+                <td>60</td>
+                <td>105</td>
+                <td>128</td>
+                <td>133</td>
+            </tr>
+            <tr>
+                <td>毛利率</td>
+                <td>4.4%</td>
+                <td>12.1%</td>
+                <td>18.9%</td>
+                <td>20.5%</td>
+                <td>21.0%</td>
+            </tr>
+            <tr>
+                <td>净利率</td>
+                <td>-1.1%</td>
+                <td>5.3%</td>
+                <td>7.8%</td>
+                <td>8.6%</td>
+                <td>8.9%</td>
+            </tr>
+            <tr>
+                <td>ROE</td>
+                <td>-4.5%</td>
+                <td>26.1%</td>
+                <td>42.8%</td>
+                <td>61.6%</td>
+                <td>61.6%</td>
+            </tr>
+            <tr>
+                <td>资产负债率</td>
+                <td>42.5%</td>
+                <td>28.9%</td>
+                <td>19.8%</td>
+                <td>14.8%</td>
+                <td>14.8%</td>
+            </tr>
+            <tr>
+                <td>PE</td>
+                <td>N/A</td>
+                <td>31.2</td>
+                <td>19.5</td>
+                <td>17.1</td>
+                <td>17.1</td>
+            </tr>
+            <tr>
+                <td>自由现金流（$M）</td>
+                <td>-12</td>
+                <td>48</td>
+                <td>110</td>
+                <td>153</td>
+                <td>153</td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- 五、竞争分析 -->
+    <div class="info-box">
+        <h2>五、竞争分析</h2>
+
+        <h3>5.1 主要竞争对手</h3>
+        <table>
+            <tr>
+                <th>竞争对手</th>
+                <th>母公司</th>
+                <th>市场份额</th>
+                <th>竞争特点</th>
+            </tr>
+            <tr>
+                <td>IC Bus</td>
+                <td>Navistar（Traton/VW集团）</td>
+                <td>约25-30%</td>
+                <td>背靠大众集团，在柴油校车领域有优势</td>
+            </tr>
+            <tr>
+                <td>Thomas Built Buses</td>
+                <td>Daimler Truck</td>
+                <td>约20-25%</td>
+                <td>戴姆勒旗下，品牌历史悠久，Saf-T-Liner系列</td>
+            </tr>
+            <tr>
+                <td>Lion Electric</td>
+                <td>独立（加拿大）</td>
+                <td>约3-5%</td>
+                <td>纯电动校车制造商，但财务状况不佳，产能受限</td>
+            </tr>
+            <tr>
+                <td>Collins Bus</td>
+                <td>REV Group</td>
+                <td>约5-8%</td>
+                <td>专注Type A小型校车，与Blue Bird定位不同</td>
+            </tr>
+        </table>
+
+        <h3>5.2 经济护城河评估</h3>
+        <table>
+            <tr>
+                <th>护城河类型</th>
+                <th>评分</th>
+                <th>分析</th>
+            </tr>
+            <tr>
+                <td>品牌力</td>
+                <td><span class="tag tag-green">强</span></td>
+                <td>Blue Bird是校车品类的代名词，近百年历史，安全性和可靠性深入人心</td>
+            </tr>
+            <tr>
+                <td>安全法规壁垒</td>
+                <td><span class="tag tag-green">强</span></td>
+                <td>校车必须通过严格的联邦安全标准（FMVSS），新进入者难以快速获得认证</td>
+            </tr>
+            <tr>
+                <td>转换成本</td>
+                <td><span class="tag tag-green">强</span></td>
+                <td>学区更换校车品牌涉及司机培训、维修体系重建、安全认证，成本极高</td>
+            </tr>
+            <tr>
+                <td>规模优势</td>
+                <td><span class="tag tag-orange">中等</span></td>
+                <td>校车市场规模有限（年需求约4万辆），Blue Bird的规模优势在制造效率上</td>
+            </tr>
+            <tr>
+                <td>政府关系</td>
+                <td><span class="tag tag-orange">中等</span></td>
+                <td>长期服务公立学区，建立了深厚的政府关系和采购渠道</td>
+            </tr>
+            <tr>
+                <td>技术壁垒</td>
+                <td><span class="tag tag-orange">中等</span></td>
+                <td>电动校车技术并非不可复制，但Blue Bird的先发优势和运营数据是壁垒</td>
+            </tr>
+        </table>
+
+        <h3>5.3 竞争优势可持续性</h3>
+        <ul>
+            <li><strong>市场地位稳固：</strong>Blue Bird在替代燃料校车领域领先，电动校车市场份额约50%</li>
+            <li><strong>EPA补贴驱动：</strong>联邦清洁校车计划提供大量补贴（每辆电动校车最高$375,000），Blue Bird是最大受益者</li>
+            <li><strong>Lion Electric困境：</strong>主要电动校车竞争对手Lion Electric财务困难，减少了竞争压力</li>
+            <li><strong>风险：</strong>政府补贴政策可能变化；原材料（钢、铝）价格波动；电动校车技术路线不确定性</li>
+        </ul>
+    </div>
+
+    <!-- 六、利润分配分析 -->
+    <div class="info-box">
+        <h2>六、利润分配分析</h2>
+
+        <h3>6.1 利润分配概况</h3>
+        <table>
+            <tr>
+                <th>年份</th>
+                <th>净利润($M)</th>
+                <th>回购($M)</th>
+                <th>CapEx($M)</th>
+                <th>自由现金流($M)</th>
+                <th>流通股变化</th>
+            </tr>
+            <tr>
+                <td>FY2022</td>
+                <td>-9</td>
+                <td>0</td>
+                <td>15</td>
+                <td>-12</td>
+                <td>不变</td>
+            </tr>
+            <tr>
+                <td>FY2023</td>
+                <td>60</td>
+                <td>0</td>
+                <td>17</td>
+                <td>48</td>
+                <td>不变</td>
+            </tr>
+            <tr>
+                <td>FY2024</td>
+                <td>105</td>
+                <td>0</td>
+                <td>14</td>
+                <td>110</td>
+                <td>不变</td>
+            </tr>
+            <tr>
+                <td>FY2025</td>
+                <td>128</td>
+                <td>0</td>
+                <td>15</td>
+                <td>153</td>
+                <td>-1%</td>
+            </tr>
+        </table>
+
+        <h3>6.2 利润分配特点</h3>
+        <ul>
+            <li><strong>不派息、不回购：</strong>Blue Bird目前不派发股息，也未进行大规模股票回购，利润主要用于偿还债务和积累现金</li>
+            <li><strong>净现金状况：</strong>公司现金$2.76亿，总债务$0.88亿，净现金$1.88亿，财务极为安全</li>
+            <li><strong>低资本开支：</strong>CapEx仅占营收1-1.5%，轻资产运营</li>
+            <li><strong>自由现金流改善：</strong>从FY2022的负值迅速改善至FY2025的$1.53亿，FCF/营收达10.3%</li>
+            <li><strong>资本配置评价：</strong>保守但合理。公司优先修复资产负债表，未来可能启动回购或派息</li>
+        </ul>
+    </div>
+
+    <!-- 七、投资小结 -->
+    <div class="info-box">
+        <h2>七、投资小结</h2>
+
+        <h3>7.1 核心优势</h3>
+        <ul>
+            <li><strong>校车行业绝对龙头：</strong>约40-45%市场份额，品牌认知度极高</li>
+            <li><strong>电动校车领先：</strong>1,100+辆电动校车在手订单，受益于EPA清洁校车计划</li>
+            <li><strong>财务健康：</strong>净现金$1.88亿，零净债务，Altman Z-score 5.42（AAA级）</li>
+            <li><strong>高ROE：</strong>61.6%的ROE反映极高的资本效率</li>
+            <li><strong>盈利改善趋势：</strong>毛利率从4.4%→20.5%，净利率从-1.1%→8.6%，改善显著</li>
+        </ul>
+
+        <h3>7.2 主要风险</h3>
+        <ul>
+            <li><strong>政府补贴依赖：</strong>电动校车销售高度依赖EPA清洁校车计划补贴，政策变化风险大</li>
+            <li><strong>周期性：</strong>校车需求受市政预算和利率影响，经济衰退时学区可能推迟更换</li>
+            <li><strong>原材料成本：</strong>钢、铝等原材料价格波动影响毛利率</li>
+            <li><strong>规模有限：</strong>校车市场规模有限（年约4万辆），增长天花板明显</li>
+            <li><strong>做空压力：</strong>约11%的流通股被做空，市场存在分歧</li>
+        </ul>
+
+        <h3>7.3 估值评估</h3>
+        <table>
+            <tr>
+                <th>指标</th>
+                <th>当前值</th>
+                <th>评价</th>
+            </tr>
+            <tr>
+                <td>PE</td>
+                <td>约17x</td>
+                <td><span class="tag tag-orange">中等</span></td>
+            </tr>
+            <tr>
+                <td>P/FCF</td>
+                <td>约15x</td>
+                <td><span class="tag tag-green">合理</span></td>
+            </tr>
+            <tr>
+                <td>EV/EBITDA</td>
+                <td>约9.7x</td>
+                <td><span class="tag tag-green">合理</span></td>
+            </tr>
+            <tr>
+                <td>股息率</td>
+                <td>0%</td>
+                <td><span class="tag tag-orange">不派息</span></td>
+            </tr>
+        </table>
+
+        <h3>7.4 芒格式评估</h3>
+        <div class="highlight">
+            <p><strong>业务可理解性：</strong>高。制造校车卖给学区，业务模式简单明了。</p>
+            <p><strong>竞争优势持久性：</strong>中高。安全法规壁垒+品牌信任+转换成本构成坚实护城河，但市场规模有限。</p>
+            <p><strong>管理层资本配置：</strong>尚可。目前保守策略合理（修复资产负债表），但长期需要证明资本配置能力。</p>
+            <p><strong>安全边际：</strong>当前PE约17x，P/FCF约15x，对于一家零净债务、高ROE的细分龙头来说估值合理，但安全边际不够充分。理想买入价位在PE 13x以下（约$50-55）。</p>
+        </div>
+    </div>
+
+    <!-- 图表脚本 -->
+    <script>
+        // Topbar scoring logic - unified with stock_scores_v1
+        (function(){
+            var SCORE_KEY='stock_scores_v1';
+            var code=document.getElementById('topbarCode').textContent.trim();
+            function getScores(){try{var d=localStorage.getItem(SCORE_KEY);return d?JSON.parse(d):{};}catch(e){return {};}}
+            function saveScores(s){localStorage.setItem(SCORE_KEY,JSON.stringify(s));}
+            function starsHTML(val){var h='';for(var i=1;i<=5;i++){h+='<span class="'+(i<=val?'on':'off')+'">\u2605</span>';}return h;}
+            function valClass(v){return v>=5?'s5':v>=4?'s4':v>=3?'s3':v>=2?'s2':'s1';}
+            function renderDisplay(){
+                var sc=getScores()[code]||{};
+                var f=sc.fundamental||0,p=sc.price||0;
+                document.getElementById('topbarFVal').textContent=f>0?f:'-';
+                document.getElementById('topbarFVal').className='topbar-score-val'+(f>0?' '+valClass(f):'');
+                document.getElementById('topbarFStars').innerHTML=starsHTML(f);
+                document.getElementById('topbarPVal').textContent=p>0?p:'-';
+                document.getElementById('topbarPVal').className='topbar-score-val'+(p>0?' '+valClass(p):'');
+                document.getElementById('topbarPStars').innerHTML=starsHTML(p);
+            }
+            window.topbarEdit=function(){
+                var sc=getScores()[code]||{};
+                document.getElementById('topbarFSel').value=sc.fundamental||0;
+                document.getElementById('topbarPSel').value=sc.price||0;
+                document.getElementById('topbarFSel').style.display='';
+                document.getElementById('topbarPSel').style.display='';
+                document.getElementById('topbarEditBtn').style.display='none';
+                document.getElementById('topbarSaveBtn').style.display='';
+                document.getElementById('topbarCancelBtn').style.display='';
+                document.getElementById('topbarFVal').style.display='none';
+                document.getElementById('topbarPVal').style.display='none';
+                document.getElementById('topbarFStars').style.display='none';
+                document.getElementById('topbarPStars').style.display='none';
+            };
+            window.topbarSave=function(){
+                var f=parseInt(document.getElementById('topbarFSel').value);
+                var p=parseInt(document.getElementById('topbarPSel').value);
+                var sc=getScores();if(!sc[code])sc[code]={};
+                sc[code].fundamental=f;sc[code].price=p;sc[code].updated=new Date().toISOString();
+                saveScores(sc);topbarCancel();renderDisplay();
+            };
+            window.topbarCancel=function(){
+                document.getElementById('topbarFSel').style.display='none';
+                document.getElementById('topbarPSel').style.display='none';
+                document.getElementById('topbarEditBtn').style.display='';
+                document.getElementById('topbarSaveBtn').style.display='none';
+                document.getElementById('topbarCancelBtn').style.display='none';
+                document.getElementById('topbarFVal').style.display='';
+                document.getElementById('topbarPVal').style.display='';
+                document.getElementById('topbarFStars').style.display='';
+                document.getElementById('topbarPStars').style.display='';
+            };
+            renderDisplay();
+        })();
+
+        // ROE Chart
+        new Chart(document.getElementById('roeChart'), {
+            type: 'line',
+            data: {
+                labels: ['FY2022','FY2023','FY2024','FY2025','TTM'],
+                datasets: [{
+                    label: 'ROE (%)',
+                    data: [-4.5, 26.1, 42.8, 61.6, 61.6],
+                    borderColor: '#2e86c1',
+                    backgroundColor: 'rgba(46,134,193,0.1)',
+                    fill: true,
+                    tension: 0.3
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: { y: { title: { display: true, text: 'ROE (%)' } } },
+                plugins: { legend: { display: false } }
+            }
+        });
+
+        // Debt-to-Asset Chart
+        new Chart(document.getElementById('debtChart'), {
+            type: 'bar',
+            data: {
+                labels: ['FY2022','FY2023','FY2024','FY2025','TTM'],
+                datasets: [{
+                    label: '资产负债率 (%)',
+                    data: [42.5, 28.9, 19.8, 14.8, 14.8],
+                    backgroundColor: '#e67e22',
+                    borderColor: '#d35400',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: { y: { beginAtZero: true, title: { display: true, text: '资产负债率 (%)' }, max: 50 } },
+                plugins: { legend: { display: false } }
+            }
+        });
+
+        // PE Chart
+        new Chart(document.getElementById('peChart'), {
+            type: 'bar',
+            data: {
+                labels: ['FY2022','FY2023','FY2024','FY2025','当前'],
+                datasets: [{
+                    label: 'PE Ratio',
+                    data: [null, 31.2, 19.5, 17.1, 17],
+                    backgroundColor: function(context) {
+                        var value = context.raw;
+                        if (value > 30) return '#c0392b';
+                        if (value > 20) return '#e67e22';
+                        return '#2e86c1';
+                    }
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: { y: { beginAtZero: true, title: { display: true, text: 'PE Ratio' } } },
+                plugins: { legend: { display: false } }
+            }
+        });
+    </script>
+</body>
+</html>
