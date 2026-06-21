@@ -3,37 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gartner (IT) 详细分析</title>
+    <title>Gartner Inc. (IT) 价值投资分析</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
-        body { font-family: Arial, sans-serif; margin: 20px; background-color: #f5f5f5; }
-        h1 { text-align: center; color: #333; }
-        h2 { color: #4CAF50; margin-top: 30px; }
-        .info-box { background-color: white; padding: 20px; margin: 20px 0; box-shadow: 0 0 10px rgba(0,0,0,0.1); border-radius: 5px; }
-        table { width: 100%; border-collapse: collapse; margin: 10px 0; }
-        th, td { padding: 8px; text-align: left; border-bottom: 1px solid #ddd; }
-        th { background-color: #4CAF50; color: white; }
-        a { color: #4CAF50; text-decoration: none; }
+        body { font-family: 'Segoe UI', Arial, sans-serif; margin: 0; padding: 20px; background-color: #f0f2f5; color: #333; }
+        h1 { text-align: center; color: #1a5276; font-size: 2.2em; margin-bottom: 5px; }
+        h2 { color: #1a5276; border-bottom: 2px solid #2e86c1; padding-bottom: 8px; margin-top: 30px; }
+        h3 { color: #2c3e50; margin-top: 20px; }
+        h4 { color: #34495e; margin-top: 16px; }
+        .subtitle { text-align: center; color: #7f8c8d; font-size: 1.1em; margin-bottom: 30px; }
+        .info-box { background: white; border-radius: 10px; padding: 25px; margin: 20px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.08); }
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; background-color: white; }
+        th, td { padding: 10px 14px; text-align: left; border-bottom: 1px solid #e0e0e0; }
+        th { background-color: #1a5276; color: white; font-weight: bold; }
+        tr:nth-child(even) { background-color: #f8f9fa; }
+        tr:hover { background-color: #eaf2f8; }
+        .highlight { background: #fef9e7; border-left: 4px solid #2e86c1; padding: 15px 20px; margin: 15px 0; border-radius: 0 8px 8px 0; }
+        .chart-container { background: white; border-radius: 10px; padding: 25px; margin: 20px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.08); }
+        canvas { max-height: 400px; }
+        .tag { display: inline-block; background: #1a5276; color: white; padding: 3px 10px; border-radius: 12px; font-size: 0.85em; margin: 2px; }
+        .tag-green { background: #27ae60; }
+        .tag-orange { background: #e67e22; }
+        .tag-red { background: #c0392b; }
+        a { color: #1a5276; text-decoration: none; }
         a:hover { text-decoration: underline; }
         .fixed-topbar { position: fixed; top: 0; left: 0; right: 0; z-index: 9999; background: linear-gradient(135deg, #1a5276, #2e86c1); color: white; display: flex; align-items: center; justify-content: space-between; padding: 8px 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.15); height: 48px; }
         .fixed-topbar a { color: white; text-decoration: none; font-size: 14px; font-weight: 600; }
+        .fixed-topbar a:hover { text-decoration: underline; }
         .topbar-left { display: flex; align-items: center; gap: 12px; }
         .topbar-right { display: flex; align-items: center; gap: 8px; }
         .topbar-score-label { font-size: 12px; opacity: 0.85; }
         .topbar-score-val { font-weight: 700; font-size: 15px; min-width: 18px; text-align: center; }
         .topbar-score-val.s1 { color: #ff6b6b; } .topbar-score-val.s2 { color: #ffa94d; } .topbar-score-val.s3 { color: #ffd43b; } .topbar-score-val.s4 { color: #69db7c; } .topbar-score-val.s5 { color: #51cf66; }
         .topbar-select { padding: 3px 8px; border: 1px solid rgba(255,255,255,0.4); border-radius: 6px; font-size: 12px; font-weight: 600; color: white; background: rgba(255,255,255,0.15); cursor: pointer; outline: none; }
+        .topbar-select:focus { border-color: rgba(255,255,255,0.7); }
         .topbar-select option { color: #333; background: white; }
-        .topbar-btn { padding: 4px 12px; border: none; border-radius: 6px; font-size: 12px; font-weight: 600; cursor: pointer; }
+        .topbar-btn { padding: 4px 12px; border: none; border-radius: 6px; font-size: 12px; font-weight: 600; cursor: pointer; transition: background 0.2s; }
         .topbar-btn-edit { background: rgba(255,255,255,0.2); color: white; }
         .topbar-btn-edit:hover { background: rgba(255,255,255,0.35); }
         .topbar-btn-save { background: #27ae60; color: white; }
+        .topbar-btn-save:hover { background: #219a52; }
         .topbar-btn-cancel { background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.7); }
+        .topbar-btn-cancel:hover { background: rgba(255,255,255,0.2); }
         .topbar-stars { font-size: 11px; }
         .topbar-stars .on { color: #f39c12; }
         .topbar-stars .off { color: rgba(255,255,255,0.3); }
         body { padding-top: 60px !important; }
-        .tag { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 12px; font-weight: 600; }
-        .tag-orange { background-color: #fff3cd; color: #856404; }
+        .moat-item { background: #eaf2f8; border-left: 4px solid #2e86c1; padding: 12px 18px; margin: 10px 0; border-radius: 0 6px 6px 0; }
+        .risk-item { background: #fdedec; border-left: 4px solid #c0392b; padding: 12px 18px; margin: 10px 0; border-radius: 0 6px 6px 0; }
+        .rating-box { display: inline-block; padding: 8px 16px; border-radius: 8px; font-weight: bold; margin: 4px; }
+        .rating-green { background: #d5f5e3; color: #1e8449; }
+        .rating-orange { background: #fdebd0; color: #ca6f1e; }
+        .rating-red { background: #fadbd8; color: #c0392b; }
     </style>
 </head>
 <body>
@@ -57,72 +78,556 @@
         </div>
     </div>
 
-    <h1>Gartner (NYSE: IT)</h1>
-    <p style="text-align:center;color:#666;">巴菲特/芒格式价值投资基本面分析 | 更新日期：2026年6月</p>
+    <h1>Gartner Inc. 高德纳 (NYSE: IT)</h1>
+    <p class="subtitle">全球最大的IT研究与咨询公司 | "企业技术决策的圣经"</p>
 
+    <!-- 第一章：公司基本信息 -->
     <div class="info-box">
         <h2>一、公司基本信息</h2>
         <table>
-            <tr><td>公司全称</td><td>Gartner</td></tr>
-            <tr><td>股票代码</td><td>NYSE: IT</td></tr>
-            <tr><td>市值</td><td>约280亿美元</td></tr>
-            <tr><td>行业</td><td>IT研究与咨询</td></tr>
+            <tr><td>股票代码</td><td>IT</td></tr>
+            <tr><td>公司名称</td><td>Gartner, Inc.</td></tr>
+            <tr><td>交易所</td><td>纽约证券交易所 (NYSE)</td></tr>
+            <tr><td>成立时间</td><td>1979年</td></tr>
+            <tr><td>总部</td><td>美国康涅狄格州斯坦福市</td></tr>
+            <tr><td>最新股价</td><td>约$142（2026年6月）</td></tr>
+            <tr><td>总市值</td><td>约100亿美元</td></tr>
+            <tr><td>企业价值(EV)</td><td>约112亿美元（含30亿美元债务）</td></tr>
+            <tr><td>员工人数</td><td>20,244人（2025年末）</td></tr>
+            <tr><td>2025年营收</td><td>65.0亿美元</td></tr>
+            <tr><td>2025年净利润</td><td>7.29亿美元</td></tr>
+            <tr><td>2025年自由现金流</td><td>12亿美元</td></tr>
         </table>
-        <p style="color:#856404;"><span class="tag tag-orange">待补充</span> 详细分析内容将在后续更新中补充。</p>
+        <div class="highlight">
+            <strong>核心定位：</strong>Gartner是全球最大的IT研究与咨询公司，为超过15,000家企业提供可执行的、客观的商业和技术洞察。约75%的财富500强企业是其客户。其著名的"魔力象限"(Magic Quadrant)和"技术成熟度曲线"(Hype Cycle)已成为企业技术采购决策的事实标准。
+        </div>
+    </div>
+
+    <!-- 第二章：业务分析 -->
+    <div class="info-box">
+        <h2>二、业务分析</h2>
+        <p><strong>Gartner到底是干什么的？</strong></p>
+        <p>想象你是一家大公司的CIO，手握数千万美元的IT预算，面对数百家供应商的推销电话——每家都说自己是最好的。你怎么选？Gartner就是那个帮你"去伪存真"的独立顾问。它雇佣2,400多名分析师，专门研究各种技术领域，然后告诉你哪些产品真的好用、哪些只是吹牛。</p>
+        <p>更关键的是，Gartner的"魔力象限"就像米其林星级一样——被列入"领导者"象限的供应商，销售会大幅增长；被列入"利基玩家"的，可能连投标资格都没有。这种影响力就是Gartner最核心的护城河。</p>
+
+        <h3>2.1 业务板块</h3>
+        <table>
+            <tr><th>业务板块</th><th>2025年营收</th><th>占比</th><th>同比增长</th><th>贡献利润率</th><th>核心特点</th></tr>
+            <tr>
+                <td><strong>Insights（洞察研究）</strong></td>
+                <td>50.73亿美元</td>
+                <td>78.1%</td>
+                <td>+5%</td>
+                <td>77%</td>
+                <td>订阅制研究服务，合同价值52亿美元，75%+多年期合同</td>
+            </tr>
+            <tr>
+                <td><strong>Conferences（会议）</strong></td>
+                <td>6.45亿美元</td>
+                <td>9.9%</td>
+                <td>+11%</td>
+                <td>~40%</td>
+                <td>56场目的地会议，75,000+参会者，高利润率</td>
+            </tr>
+            <tr>
+                <td><strong>Consulting（咨询）</strong></td>
+                <td>5.52亿美元</td>
+                <td>8.5%</td>
+                <td>-1%</td>
+                <td>~34%</td>
+                <td>920名顾问，合同优化+IT咨询，当前需求疲软</td>
+            </tr>
+            <tr>
+                <td><strong>其他</strong></td>
+                <td>2.27亿美元</td>
+                <td>3.5%</td>
+                <td>-</td>
+                <td>-</td>
+                <td>含已剥离的Digital Markets业务（2026年2月以1.1亿美元出售）</td>
+            </tr>
+        </table>
+
+        <h3>2.2 Insights细分：GTS vs GBS</h3>
+        <table>
+            <tr><th>销售渠道</th><th>合同价值</th><th>占CV比例</th><th>2025年CV增长</th><th>客户群体</th></tr>
+            <tr>
+                <td><strong>全球技术销售(GTS)</strong></td>
+                <td>39亿美元</td>
+                <td>~75%</td>
+                <td>持平（剔除联邦政府+4%）</td>
+                <td>CIO、CTO等IT领导者</td>
+            </tr>
+            <tr>
+                <td><strong>全球业务销售(GBS)</strong></td>
+                <td>12亿美元</td>
+                <td>~25%</td>
+                <td>+3%（剔除联邦政府+6%）</td>
+                <td>CFO、CHRO、供应链等非IT高管</td>
+            </tr>
+        </table>
+
+        <h3>2.3 地理分布</h3>
+        <table>
+            <tr><th>地区</th><th>2025年营收</th><th>占比</th><th>同比增长</th></tr>
+            <tr><td>美国和加拿大</td><td>40.33亿美元</td><td>62.1%</td><td>+0.4%</td></tr>
+            <tr><td>欧洲、中东和非洲(EMEA)</td><td>16.94亿美元</td><td>26.1%</td><td>+11.6%</td></tr>
+            <tr><td>其他国际地区</td><td>7.71亿美元</td><td>11.9%</td><td>+5.3%</td></tr>
+        </table>
+
+        <h3>2.4 商业模式</h3>
+        <div class="highlight">
+            <strong>Gartner的商业模式本质上是"知识订阅+网络效应"：</strong><br>
+            1. <strong>预付费订阅</strong>：客户提前付款，75%+合同为多年期，创造高度可预测的现金流<br>
+            2. <strong>极轻资产</strong>：资本支出仅占营收的1.8%，核心资产是分析师的"大脑"<br>
+            3. <strong>高经常性收入</strong>：钱包留存率97-98%，续约率极高<br>
+            4. <strong>双重收费</strong>：技术买家付订阅费获取建议，技术卖家也付费获取市场洞察和魔力象限评估<br>
+            5. <strong>飞轮效应</strong>：更多客户→更多数据→更好的洞察→更多客户
+        </div>
+    </div>
+
+    <!-- 第三章：产品竞争力分析 -->
+    <div class="info-box">
+        <h2>三、业务板块产品竞争力分析</h2>
+
+        <h3>3.1 Insights（洞察研究）产品竞争力分析</h3>
+
+        <p><strong>1. 可替代性：<span class="tag tag-green">极低</span></strong></p>
+        <ul>
+            <li><strong>主要替代品：</strong>Forrester Research（年营收~5.4亿美元）、IDC（年营收~5亿美元）、451 Research/S&P Global、Omdia/Informa、McKinsey/BCG等战略咨询</li>
+            <li><strong>替代品体验差距：</strong>巨大。Forrester覆盖面窄（偏客户体验）、IDC偏数据量化而非战略建议、McKinsey价格高10倍且不提供持续订阅。没有任何替代品能同时提供Gartner的覆盖广度（所有技术领域+所有业务职能）、深度（2,400+分析师）和影响力（魔力象限的行业标杆地位）</li>
+            <li><strong>替代趋势：</strong>稳定。AI工具（如ChatGPT）可以提供一般性技术信息，但无法替代Gartner的"权威背书"功能——CIO需要的是"我选这个供应商是因为Gartner说它是领导者"的免责理由，这是AI无法提供的</li>
+        </ul>
+
+        <p><strong>2. 客户转换成本：<span class="tag tag-green">极高</span></strong></p>
+        <ul>
+            <li><strong>财务转换成本：</strong>中等。年度订阅费从数万到数百万美元不等，但取消订阅本身没有罚金</li>
+            <li><strong>时间转换成本：</strong>极高。企业内部已将Gartner框架（魔力象限、Hype Cycle、TCO计算器等）深度嵌入采购流程，更换研究供应商意味着重新设计整个技术评估体系</li>
+            <li><strong>心理转换成本：</strong>极高。Gartner是"安全选择"——没有人会因为选了Gartner推荐的供应商而被解雇，但换一家不知名的研究公司，出了问题就是你的责任</li>
+            <li><strong>捆绑转换成本：</strong>高。Gartner提供研究+分析师咨询+会议+同行网络+基准测试的一体化平台，客户使用越多功能，越难离开</li>
+        </ul>
+
+        <p><strong>3. 定价权：<span class="tag tag-green">极强</span></strong></p>
+        <ul>
+            <li><strong>历史提价记录：</strong>过去5年Insights年均提价4-6%，持续高于通胀率</li>
+            <li><strong>提价vs流失：</strong>钱包留存率97-98%，提价几乎不导致客户流失</li>
+            <li><strong>定价权来源：</strong>品牌权威性（魔力象限=行业圣经）+ 转换成本（嵌入采购流程）+ 网络效应（越多企业用，越有话语权）</li>
+            <li><strong>定价权趋势：</strong>稳定偏强。GBS向非IT高管扩展打开了新的定价空间</li>
+            <li><strong>巴菲特测试：</strong>如果Gartner提价10%，客户会离开吗？几乎不会——因为Gartner的订阅费只占IT预算的0.1-0.5%，但影响的是数百万甚至数千万美元的采购决策，性价比极高</li>
+        </ul>
+
+        <p><strong>Insights整体竞争力评级：<span class="tag tag-green">★★★★★</span> 5星</strong></p>
+
+        <h3>3.2 Conferences（会议）产品竞争力分析</h3>
+
+        <p><strong>1. 可替代性：<span class="tag tag-orange">中等</span></strong></p>
+        <ul>
+            <li><strong>主要替代品：</strong>行业垂直会议、供应商自办大会、线上研讨会、LinkedIn等社交网络</li>
+            <li><strong>替代品体验差距：</strong>Gartner会议的独特价值在于"同行交流+分析师面对面"，这是供应商大会无法提供的（因为供应商大会是推销，Gartner会议是中立建议）</li>
+            <li><strong>替代趋势：</strong>稳定偏加速。线上会议和AI工具正在蚕食部分"信息获取"需求，但"同行社交"需求仍需面对面</li>
+        </ul>
+
+        <p><strong>2. 客户转换成本：<span class="tag tag-orange">中等</span></strong></p>
+        <ul>
+            <li><strong>财务转换成本：</strong>低。会议门票几千到上万美元，非经常性支出</li>
+            <li><strong>社交转换成本：</strong>高。多年参会同行的社交网络难以迁移</li>
+            <li><strong>品牌转换成本：</strong>中。Gartner会议的"入场券"本身就是身份象征</li>
+        </ul>
+
+        <p><strong>3. 定价权：<span class="tag tag-green">强</span></strong></p>
+        <ul>
+            <li><strong>历史提价记录：</strong>同场会议营收增长9%，参会者下降3%，说明在提价的同时维持了需求</li>
+            <li><strong>定价权来源：</strong>品牌溢价+独家分析师互动+同行社交网络</li>
+            <li><strong>巴菲特测试：</strong>提价10%可能导致部分边缘客户退出，但核心客户（大企业高管）对价格不敏感</li>
+        </ul>
+
+        <p><strong>Conferences整体竞争力评级：<span class="tag tag-green">★★★★</span> 4星</strong></p>
+
+        <h3>3.3 Consulting（咨询）产品竞争力分析</h3>
+
+        <p><strong>1. 可替代性：<span class="tag tag-red">高</span></strong></p>
+        <ul>
+            <li><strong>主要替代品：</strong>McKinsey/BCG/Bain（战略咨询）、Accenture/Deloitte（实施咨询）、独立IT顾问、内部团队</li>
+            <li><strong>替代品体验差距：</strong>中等。Gartner咨询的独特优势是与研究IP的联动，但McKinsey等在战略层面更强，Accenture在实施层面更强</li>
+            <li><strong>替代趋势：</strong>加速。AI正在使基础IT咨询商品化，客户更倾向用内部团队+Gartner研究订阅替代外部咨询</li>
+        </ul>
+
+        <p><strong>2. 客户转换成本：<span class="tag tag-orange">中等</span></strong></p>
+        <ul>
+            <li><strong>财务转换成本：</strong>中等。项目制合同，换供应商的罚金有限</li>
+            <li><strong>知识转换成本：</strong>高。Gartner咨询与Insights研究深度整合，换供应商会失去这种协同</li>
+        </ul>
+
+        <p><strong>3. 定价权：<span class="tag tag-orange">中等</span></strong></p>
+        <ul>
+            <li><strong>历史提价记录：</strong>有限。咨询业务面临价格压力，利用率从87%降至61%</li>
+            <li><strong>定价权来源：</strong>与Insights研究的协同效应</li>
+            <li><strong>定价权趋势：</strong>减弱。2026年Q1咨询营收暴跌14.7%，管理层下调全年指引</li>
+        </ul>
+
+        <p><strong>Consulting整体竞争力评级：<span class="tag tag-orange">★★★</span> 3星</strong></p>
+    </div>
+
+    <!-- 第四章：历史财务指标 -->
+    <div class="info-box">
+        <h2>四、历史财务指标</h2>
+
+        <h3>4.1 净资产收益率(ROE)</h3>
+        <div class="chart-container">
+            <canvas id="roeChart"></canvas>
+        </div>
+        <table>
+            <tr><th>年份</th><th>ROE</th><th>负债/资产</th><th>权益乘数</th><th>PE</th></tr>
+            <tr><td>2015</td><td>-132.7%</td><td>54.0%</td><td>-7.4x</td><td>35.2x</td></tr>
+            <tr><td>2016</td><td>318%</td><td>52.5%</td><td>25.7x</td><td>31.8x</td></tr>
+            <tr><td>2017</td><td>0.3%</td><td>66.2%</td><td>0.1x</td><td>N/A</td></tr>
+            <tr><td>2018</td><td>14.4%</td><td>64.0%</td><td>2.7x</td><td>56.1x</td></tr>
+            <tr><td>2019</td><td>24.9%</td><td>62.5%</td><td>3.2x</td><td>39.4x</td></tr>
+            <tr><td>2020</td><td>24.5%</td><td>62.9%</td><td>3.6x</td><td>46.2x</td></tr>
+            <tr><td>2021</td><td>214%</td><td>67.1%</td><td>5.0x</td><td>42.3x</td></tr>
+            <tr><td>2022</td><td>355%</td><td>62.2%</td><td>9.1x</td><td>26.6x</td></tr>
+            <tr><td>2023</td><td>130%</td><td>65.5%</td><td>3.6x</td><td>28.5x</td></tr>
+            <tr><td>2024</td><td>92.2%</td><td>67.0%</td><td>1.8x</td><td>16.1x</td></tr>
+            <tr><td>2025</td><td>228%</td><td>74.5%</td><td>9.3x</td><td>14.1x</td></tr>
+        </table>
+        <div class="highlight">
+            <strong>关键发现：</strong>Gartner的ROE极高（2025年228%），但这主要是财务工程的结果——大规模回购使股东权益从2024年的14亿美元压缩至2025年的3.2亿美元，而非经营利润率的提升。真正的经营ROIC约为20%，这才是衡量业务质量的更准确指标。2025年净利润从12.5亿美元骤降至7.3亿美元（-42%），主要因1.5亿美元减值+运营费用上升。
+        </div>
+
+        <h3>4.2 负债/资产比率</h3>
+        <div class="chart-container">
+            <canvas id="debtChart"></canvas>
+        </div>
+
+        <h3>4.3 PE比率</h3>
+        <div class="chart-container">
+            <canvas id="peChart"></canvas>
+        </div>
+        <div class="highlight">
+            <strong>估值剧变：</strong>Gartner的PE从2022年的26.6x降至2025年的14.1x，股价从2024年底的$400+暴跌至2026年6月的$142，跌幅超过60%。市场从"成长股定价"转向"成熟服务公司定价"，反映了合同价值增长放缓（2025年仅+1%）和咨询业务衰退的担忧。
+        </div>
+    </div>
+
+    <!-- 第五章：竞争分析 -->
+    <div class="info-box">
+        <h2>五、竞争分析</h2>
+
+        <h3>5.1 主要竞争对手</h3>
+        <table>
+            <tr><th>竞争对手</th><th>年营收</th><th>主要业务</th><th>与Gartner的差异</th></tr>
+            <tr>
+                <td><strong>Forrester Research (FORR)</strong></td>
+                <td>~5.4亿美元</td>
+                <td>IT研究/客户体验/TEI分析</td>
+                <td>规模仅为Gartner的1/12，偏重客户体验和业务转型，定价更灵活，中端市场友好</td>
+            </tr>
+            <tr>
+                <td><strong>IDC (IDG/Foundry)</strong></td>
+                <td>~5亿美元</td>
+                <td>市场数据/设备追踪/量化分析</td>
+                <td>偏重量化数据和市场份额追踪，缺乏Gartner的战略建议和魔力象限影响力，亚洲市场覆盖更强</td>
+            </tr>
+            <tr>
+                <td><strong>ISG (Everest Group)</strong></td>
+                <td>~3亿美元</td>
+                <td>外包咨询/IT基准测试</td>
+                <td>专注IT外包和服务采购，在RFP影响力上与Gartner咨询竞争</td>
+            </tr>
+            <tr>
+                <td><strong>451 Research/S&P Global</strong></td>
+                <td>-</td>
+                <td>新兴技术/电信媒体</td>
+                <td>深度覆盖新兴技术和特定垂直领域，但缺乏Gartner的全局视野和C-suite影响力</td>
+            </tr>
+            <tr>
+                <td><strong>McKinsey/BCG/Bain</strong></td>
+                <td>100亿+美元</td>
+                <td>战略咨询</td>
+                <td>价格高5-10倍，项目制而非订阅制，缺乏持续研究更新和魔力象限等标准化工具</td>
+            </tr>
+        </table>
+
+        <h3>5.2 市场份额</h3>
+        <p>Gartner在全球IT研究与咨询市场占据约<strong>35-40%</strong>的份额，远超Forrester（~3%）和IDC（~3%）。在"企业技术决策支持"这一细分市场中，Gartner几乎是垄断者——没有任何竞争对手能提供同等广度和深度的覆盖。</p>
+
+        <h3>5.3 经济护城河评估</h3>
+        <div class="moat-item">
+            <strong>品牌力量：<span class="tag tag-green">极强</span></strong> — "魔力象限"和"Hype Cycle"已成为行业通用语言，被列入"领导者"象限可以直接驱动供应商的销售。Gartner的品牌就是"权威"的代名词。
+        </div>
+        <div class="moat-item">
+            <strong>网络效应：<span class="tag tag-green">强</span></strong> — 更多企业客户使用Gartner→更多供应商希望被评估→更多数据流入→更高质量的研究→更多客户。这是一个经典的正向飞轮。
+        </div>
+        <div class="moat-item">
+            <strong>转换成本：<span class="tag tag-green">极高</span></strong> — 企业将Gartner框架深度嵌入采购流程和治理结构，替换成本远超订阅费本身。
+        </div>
+        <div class="moat-item">
+            <strong>规模优势：<span class="tag tag-green">强</span></strong> — 2,400+分析师的覆盖广度、15,000+客户的数据深度、47+场会议的社交网络，新进入者几乎不可能复制。
+        </div>
+        <div class="moat-item">
+            <strong>成本优势：<span class="tag tag-orange">中等</span></strong> — 研究业务边际成本极低（数字交付），但分析师薪酬是主要成本，规模效应有限。
+        </div>
+        <div class="moat-item">
+            <strong>知识产权：<span class="tag tag-green">强</span></strong> — 魔力象限方法论、Hype Cycle框架、TCO计算器等专有方法论构成知识产权壁垒。
+        </div>
+
+        <h3>5.4 护城河可持续性</h3>
+        <div class="highlight">
+            <strong>芒格视角：</strong>Gartner的护城河在"研究订阅"领域几乎不可逾越——它不是在卖信息，而是在卖"决策免责权"。CIO选择Gartner推荐的供应商，即使出了问题也不是CIO的错。这种心理层面的护城河比技术壁垒更持久。但AI是真正的变量：如果AI能让企业自行完成供应商评估，Gartner的"信息中介"角色可能被削弱。不过，"权威背书"功能是AI无法替代的。
+        </div>
+    </div>
+
+    <!-- 第六章：利润分配分析 -->
+    <div class="info-box">
+        <h2>六、利润分配分析（2016-2025）</h2>
+        <p>单位：亿美元</p>
+        <table>
+            <tr>
+                <th>年份</th><th>净利润</th><th>分红</th><th>回购</th><th>扩张CapEx</th><th>留存金额</th><th>留存率</th>
+            </tr>
+            <tr><td>2016</td><td>1.94</td><td>0</td><td>0.04</td><td>0.78</td><td>1.94</td><td>100%</td></tr>
+            <tr><td>2017</td><td>0.03</td><td>0</td><td>0.02</td><td>0.88</td><td>0.03</td><td>100%</td></tr>
+            <tr><td>2018</td><td>1.22</td><td>0</td><td>2.76</td><td>0.90</td><td>1.22</td><td>100%</td></tr>
+            <tr><td>2019</td><td>2.33</td><td>0</td><td>1.93</td><td>0.92</td><td>2.33</td><td>100%</td></tr>
+            <tr><td>2020</td><td>2.67</td><td>0</td><td>1.74</td><td>0.80</td><td>2.67</td><td>100%</td></tr>
+            <tr><td>2021</td><td>7.94</td><td>0</td><td>16.47</td><td>0.60</td><td>7.94</td><td>100%</td></tr>
+            <tr><td>2022</td><td>8.08</td><td>0</td><td>10.44</td><td>1.08</td><td>8.08</td><td>100%</td></tr>
+            <tr><td>2023</td><td>8.82</td><td>0</td><td>6.06</td><td>1.03</td><td>8.82</td><td>100%</td></tr>
+            <tr><td>2024</td><td>12.54</td><td>0</td><td>7.42</td><td>1.02</td><td>12.54</td><td>100%</td></tr>
+            <tr><td>2025</td><td>7.29</td><td>0</td><td>19.91</td><td>1.15</td><td>7.29</td><td>100%</td></tr>
+        </table>
+
+        <div class="highlight">
+            <strong>关键发现：</strong><br>
+            1. <strong>零分红</strong>：Gartner从不支付股息，所有利润要么再投资，要么通过回购返还股东<br>
+            2. <strong>激进回购</strong>：2021-2025年累计回购约60亿美元，远超同期净利润36亿美元。公司通过发债和消耗现金来支撑回购——2025年回购20亿美元，但经营现金流仅13亿美元<br>
+            3. <strong>回购时机评估</strong>：2021-2022年股价在$200-$400区间大量回购，目前股价$142，说明大量回购发生在高估值区间，这是糟糕的资本配置<br>
+            4. <strong>资本支出极低</strong>：CapEx仅占营收1.8%，说明业务几乎不需要资本投入，是典型的"轻资产"模式<br>
+            5. <strong>可持续增长率</strong>：ROIC ~20% × 留存率100% = 理论可持续增长率20%，但实际营收增长仅3-5%，说明大量现金被用于回购而非有机增长
+        </div>
+
+        <h3>6.1 回购时机分析</h3>
+        <table>
+            <tr><th>年份</th><th>回购金额</th><th>年末股价</th><th>回购估值水平</th></tr>
+            <tr><td>2021</td><td>16.5亿</td><td>$292</td><td><span class="tag tag-red">高估</span> PE~42x</td></tr>
+            <tr><td>2022</td><td>10.4亿</td><td>$269</td><td><span class="tag tag-orange">偏高</span> PE~27x</td></tr>
+            <tr><td>2023</td><td>6.1亿</td><td>$336</td><td><span class="tag tag-red">高估</span> PE~29x</td></tr>
+            <tr><td>2024</td><td>7.4亿</td><td>$410</td><td><span class="tag tag-red">极高估</span> PE~16x但股价历史高位</td></tr>
+            <tr><td>2025</td><td>19.9亿</td><td>$252</td><td><span class="tag tag-orange">偏高</span> PE~14x（股价已下跌）</td></tr>
+        </table>
+        <div class="highlight">
+            <strong>芒格会怎么说？</strong>"在$400回购股票，然后在$140还在回购——这至少说明管理层没有在股价下跌时恐慌停止回购。但2021年花16亿美元在PE 40倍回购，这是在毁灭股东价值。好的资本配置应该是在便宜时多买，贵的时候少买或不买。"
+        </div>
+    </div>
+
+    <!-- 第七章：投资总结 -->
+    <div class="info-box">
+        <h2>七、投资总结</h2>
+
+        <h3>7.1 各维度评分</h3>
+        <table>
+            <tr><th>维度</th><th>评分</th><th>说明</th></tr>
+            <tr>
+                <td>业务可理解性</td>
+                <td><span class="rating-box rating-green">5/5</span></td>
+                <td>卖研究订阅，收预付款，客户留存率97%+，商业模式极其清晰</td>
+            </tr>
+            <tr>
+                <td>护城河宽度</td>
+                <td><span class="rating-box rating-green">5/5</span></td>
+                <td>品牌+网络效应+转换成本三重护城河，魔力象限是行业"圣经"</td>
+            </tr>
+            <tr>
+                <td>资本配置</td>
+                <td><span class="rating-box rating-orange">3/5</span></td>
+                <td>零分红是好的，但高估值回购毁灭价值；咨询业务收缩是负面信号</td>
+            </tr>
+            <tr>
+                <td>财务安全</td>
+                <td><span class="rating-box rating-orange">3/5</span></td>
+                <td>债务30亿美元/权益3.2亿美元=9.3倍杠杆，回购驱动的"虚假ROE"需警惕</td>
+            </tr>
+            <tr>
+                <td>增长前景</td>
+                <td><span class="rating-box rating-orange">3/5</span></td>
+                <td>合同价值增长仅1%（剔除联邦政府4%），AI可能侵蚀"信息中介"角色</td>
+            </tr>
+            <tr>
+                <td>估值吸引力</td>
+                <td><span class="rating-box rating-green">4/5</span></td>
+                <td>PE 14x、FCF Yield 13%、P/S 1.5x——从历史角度看已进入价值区间</td>
+            </tr>
+        </table>
+
+        <h3>7.2 估值对比</h3>
+        <table>
+            <tr><th>指标</th><th>Gartner (IT)</th><th>Forrester (FORR)</th><th>行业平均</th></tr>
+            <tr><td>PE (TTM)</td><td>14.1x</td><td>N/A（亏损）</td><td>25-30x</td></tr>
+            <tr><td>Forward PE</td><td>11.3x</td><td>-</td><td>20-25x</td></tr>
+            <tr><td>P/S</td><td>1.5x</td><td>0.8x</td><td>3-5x</td></tr>
+            <tr><td>EV/EBITDA</td><td>14.8x</td><td>-</td><td>15-20x</td></tr>
+            <tr><td>FCF Yield</td><td>13%</td><td>-</td><td>5-8%</td></tr>
+            <tr><td>PEG</td><td>0.77</td><td>-</td><td>1.5-2.0</td></tr>
+        </table>
+
+        <h3>7.3 关键风险</h3>
+        <div class="risk-item">
+            <strong>1. AI替代风险：</strong>如果AI工具能提供足够好的技术评估，企业可能减少对Gartner研究的依赖。虽然"权威背书"功能难以替代，但"信息获取"功能可能被侵蚀。
+        </div>
+        <div class="risk-item">
+            <strong>2. 合同价值增长停滞：</strong>2025年CV仅增长1%，剔除联邦政府也仅4%。如果CV增长持续低迷，营收增长将大幅放缓。
+        </div>
+        <div class="risk-item">
+            <strong>3. 高杠杆风险：</strong>债务/权益比9.3倍，虽然EBITDA可以覆盖利息，但经济衰退时营收下滑可能导致杠杆率进一步恶化。
+        </div>
+        <div class="risk-item">
+            <strong>4. 美国联邦政府不确定性：</strong>DOGE等政府效率改革直接影响联邦合同，拖累整体CV增长3个百分点。
+        </div>
+        <div class="risk-item">
+            <strong>5. 咨询业务结构性衰退：</strong>咨询营收Q1暴跌14.7%，积压订单下降8.6%，可能反映AI对IT咨询的结构性替代。
+        </div>
+
+        <h3>7.4 关键催化剂</h3>
+        <div class="moat-item">
+            <strong>1. CV重新加速：</strong>管理层预计2026年CV增长将加速，如果实现，市场将重新给予成长股估值。
+        </div>
+        <div class="moat-item">
+            <strong>2. AI赋能而非替代：</strong>AskGartner（基于Gartner专有内容的AI工具）如果成功，可以提升客户参与度和留存率，同时降低分析师成本。
+        </div>
+        <div class="moat-item">
+            <strong>3. GBS持续扩张：</strong>非IT高管市场（CFO、CHRO等）渗透率仍低，是长期增长空间。
+        </div>
+        <div class="moat-item">
+            <strong>4. 回购在低价区间执行：</strong>当前PE 14x，回购的资本回报率远高于2021年PE 40x时的回购。
+        </div>
+
+        <h3>7.5 投资结论</h3>
+        <div class="highlight">
+            <strong>总体评级：谨慎买入（Cautious Buy）</strong><br><br>
+            Gartner拥有价值投资者最喜爱的特质——不可逾越的护城河、高经常性收入、极轻资产、强劲的自由现金流。Insights业务的竞争力评级5星，魔力象限的"行业圣经"地位短期内无法撼动。<br><br>
+            但当前面临真实挑战：CV增长从历史10%+放缓至1-4%，咨询业务结构性衰退，9.3倍杠杆率令人不安，过去5年大量高估值回购摧毁了股东价值。<br><br>
+            <strong>估值方面</strong>，PE 14x、FCF Yield 13%已进入价值区间。如果CV增长能恢复到5-8%，当前估值显著低估。但如果CV增长持续低迷，PE 14x可能就是"合理"而非"便宜"。<br><br>
+            <strong>安全边际</strong>：以当前$142的股价计算，如果2026年调整后EPS达到$13.25（管理层指引），Forward PE约10.7x，对于一家ROIC 20%+、FCF Yield 13%的企业来说，提供了合理的安全边际。但需要密切跟踪CV增长趋势——如果2026年下半年CV仍未加速，则应重新评估。<br><br>
+            <strong>芒格会怎么说？</strong>"Gartner卖的是'决策保险'——CIO付钱不是为了获取信息，而是为了在出了问题时可以说'我选的是Gartner推荐的'。这种生意本质上是反脆弱的：世界越混乱、技术变化越快，企业越需要Gartner。但9倍杠杆和过去的高估值回购让我不安。好公司不等于好价格，但好价格的好公司更值得买。当前价格开始有意思了。"
+        </div>
     </div>
 
     <script>
-        (function(){
-            var SCORE_KEY='stock_scores_v1';
-            var code=document.getElementById('topbarCode').textContent.trim();
-            function getScores(){try{var d=localStorage.getItem(SCORE_KEY);return d?JSON.parse(d):{};}catch(e){return {};}}
-            function saveScores(s){localStorage.setItem(SCORE_KEY,JSON.stringify(s));}
-            function starsHTML(val){var h='';for(var i=1;i<=5;i++){h+='<span class="'+(i<=val?'on':'off')+'">\u2605</span>';}return h;}
-            function valClass(v){return v>=5?'s5':v>=4?'s4':v>=3?'s3':v>=2?'s2':'s1';}
-            function renderDisplay(){
-                var sc=getScores()[code]||{};
-                var f=sc.fundamental||0,p=sc.price||0;
-                document.getElementById('topbarFVal').textContent=f>0?f:'-';
-                document.getElementById('topbarFVal').className='topbar-score-val'+(f>0?' '+valClass(f):'');
-                document.getElementById('topbarFStars').innerHTML=starsHTML(f);
-                document.getElementById('topbarPVal').textContent=p>0?p:'-';
-                document.getElementById('topbarPVal').className='topbar-score-val'+(p>0?' '+valClass(p):'');
-                document.getElementById('topbarPStars').innerHTML=starsHTML(p);
-            }
-            window.topbarEdit=function(){
-                var sc=getScores()[code]||{};
-                document.getElementById('topbarFSel').value=sc.fundamental||0;
-                document.getElementById('topbarPSel').value=sc.price||0;
-                document.getElementById('topbarFSel').style.display='';
-                document.getElementById('topbarPSel').style.display='';
-                document.getElementById('topbarEditBtn').style.display='none';
-                document.getElementById('topbarSaveBtn').style.display='';
-                document.getElementById('topbarCancelBtn').style.display='';
-                document.getElementById('topbarFVal').style.display='none';
-                document.getElementById('topbarPVal').style.display='none';
-                document.getElementById('topbarFStars').style.display='none';
-                document.getElementById('topbarPStars').style.display='none';
-            };
-            window.topbarSave=function(){
-                var f=parseInt(document.getElementById('topbarFSel').value);
-                var p=parseInt(document.getElementById('topbarPSel').value);
-                var sc=getScores();if(!sc[code])sc[code]={};
-                sc[code].fundamental=f;sc[code].price=p;sc[code].updated=new Date().toISOString();
-                saveScores(sc);topbarCancel();renderDisplay();
-            };
-            window.topbarCancel=function(){
-                document.getElementById('topbarFSel').style.display='none';
-                document.getElementById('topbarPSel').style.display='none';
-                document.getElementById('topbarEditBtn').style.display='';
-                document.getElementById('topbarSaveBtn').style.display='none';
-                document.getElementById('topbarCancelBtn').style.display='none';
-                document.getElementById('topbarFVal').style.display='';
-                document.getElementById('topbarPVal').style.display='';
-                document.getElementById('topbarFStars').style.display='';
-                document.getElementById('topbarPStars').style.display='';
-            };
-            renderDisplay();
-        })();
+    // Topbar scoring logic - unified with stock_scores_v1
+    (function(){
+        var SCORE_KEY='stock_scores_v1';
+        var code=document.getElementById('topbarCode').textContent.trim();
+        function getScores(){try{var d=localStorage.getItem(SCORE_KEY);return d?JSON.parse(d):{};}catch(e){return {};}}
+        function saveScores(s){localStorage.setItem(SCORE_KEY,JSON.stringify(s));}
+        function starsHTML(val){var h='';for(var i=1;i<=5;i++){h+='<span class="'+(i<=val?'on':'off')+'">\u2605</span>';}return h;}
+        function valClass(v){return v>=5?'s5':v>=4?'s4':v>=3?'s3':v>=2?'s2':'s1';}
+        function renderDisplay(){
+            var sc=getScores()[code]||{};
+            var f=sc.fundamental||0,p=sc.price||0;
+            document.getElementById('topbarFVal').textContent=f>0?f:'-';
+            document.getElementById('topbarFVal').className='topbar-score-val'+(f>0?' '+valClass(f):'');
+            document.getElementById('topbarFStars').innerHTML=starsHTML(f);
+            document.getElementById('topbarPVal').textContent=p>0?p:'-';
+            document.getElementById('topbarPVal').className='topbar-score-val'+(p>0?' '+valClass(p):'');
+            document.getElementById('topbarPStars').innerHTML=starsHTML(p);
+        }
+        window.topbarEdit=function(){
+            var sc=getScores()[code]||{};
+            document.getElementById('topbarFSel').value=sc.fundamental||0;
+            document.getElementById('topbarPSel').value=sc.price||0;
+            document.getElementById('topbarFSel').style.display='';
+            document.getElementById('topbarPSel').style.display='';
+            document.getElementById('topbarEditBtn').style.display='none';
+            document.getElementById('topbarSaveBtn').style.display='';
+            document.getElementById('topbarCancelBtn').style.display='';
+            document.getElementById('topbarFVal').style.display='none';
+            document.getElementById('topbarPVal').style.display='none';
+            document.getElementById('topbarFStars').style.display='none';
+            document.getElementById('topbarPStars').style.display='none';
+        };
+        window.topbarSave=function(){
+            var f=parseInt(document.getElementById('topbarFSel').value);
+            var p=parseInt(document.getElementById('topbarPSel').value);
+            var sc=getScores();if(!sc[code])sc[code]={};
+            sc[code].fundamental=f;sc[code].price=p;sc[code].updated=new Date().toISOString();
+            saveScores(sc);topbarCancel();renderDisplay();
+        };
+        window.topbarCancel=function(){
+            document.getElementById('topbarFSel').style.display='none';
+            document.getElementById('topbarPSel').style.display='none';
+            document.getElementById('topbarEditBtn').style.display='';
+            document.getElementById('topbarSaveBtn').style.display='none';
+            document.getElementById('topbarCancelBtn').style.display='none';
+            document.getElementById('topbarFVal').style.display='';
+            document.getElementById('topbarPVal').style.display='';
+            document.getElementById('topbarFStars').style.display='';
+            document.getElementById('topbarPStars').style.display='';
+        };
+        renderDisplay();
+    })();
+
+    // Charts
+    const years = ['2015','2016','2017','2018','2019','2020','2021','2022','2023','2024','2025'];
+    const roeData = [-132.7, 318, 0.3, 14.4, 24.9, 24.5, 214, 355, 130, 92.2, 228];
+    const debtData = [54.0, 52.5, 66.2, 64.0, 62.5, 62.9, 67.1, 62.2, 65.5, 67.0, 74.5];
+    const peData = [35.2, 31.8, 0, 56.1, 39.4, 46.2, 42.3, 26.6, 28.5, 16.1, 14.1];
+
+    new Chart(document.getElementById('roeChart'), {
+        type: 'line',
+        data: {
+            labels: years,
+            datasets: [{
+                label: 'ROE (%)',
+                data: roeData,
+                borderColor: '#2e86c1',
+                backgroundColor: 'rgba(46,134,193,0.1)',
+                fill: true,
+                tension: 0.3
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: { title: { display: true, text: 'Gartner ROE趋势（受回购影响极大）' } },
+            scales: { y: { title: { display: true, text: '%' } } }
+        }
+    });
+
+    new Chart(document.getElementById('debtChart'), {
+        type: 'bar',
+        data: {
+            labels: years,
+            datasets: [{
+                label: '负债/资产比率 (%)',
+                data: debtData,
+                backgroundColor: 'rgba(231,76,60,0.7)',
+                borderColor: '#c0392b',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: { title: { display: true, text: 'Gartner负债/资产比率' } },
+            scales: { y: { title: { display: true, text: '%' }, min: 40, max: 80 } }
+        }
+    });
+
+    new Chart(document.getElementById('peChart'), {
+        type: 'line',
+        data: {
+            labels: years,
+            datasets: [{
+                label: 'PE比率',
+                data: peData,
+                borderColor: '#27ae60',
+                backgroundColor: 'rgba(39,174,96,0.1)',
+                fill: true,
+                tension: 0.3
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: { title: { display: true, text: 'Gartner PE比率趋势' } },
+            scales: { y: { title: { display: true, text: 'x' }, min: 0, max: 60 } }
+        }
+    });
     </script>
 </body>
 </html>
