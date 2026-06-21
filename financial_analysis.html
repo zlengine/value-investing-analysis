@@ -177,9 +177,229 @@
                 <td>净利润 / 营业收入</td>
                 <td>整体经营的盈利能力</td>
             </tr>
+            <tr>
+                <td><strong>投入资本回报率 (ROIC)</strong></td>
+                <td>税后经营利润 / 投入资本</td>
+                <td>公司全部投入资本的真实经营效率</td>
+            </tr>
         </table>
-        
-        <h3>3.2 偿债能力比率</h3>
+
+        <h3>3.2 ROIC（投入资本回报率）详解</h3>
+
+        <div style="background-color:#e3f2fd; padding:15px; border-radius:5px; margin:10px 0; border-left:4px solid #2196F3;">
+            <h4>一句话理解ROIC</h4>
+            <p style="font-size:16px;"><strong>ROIC = 公司每投入1块钱资本（不管是股东的钱还是借来的钱），一年能赚回多少经营利润。</strong></p>
+            <p>如果说ROE是"股东的钱赚了多少"，那ROIC就是"公司所有投入的钱赚了多少"——它不受借钱多少的影响，是衡量公司<strong>真实经营能力</strong>的最纯粹指标。</p>
+        </div>
+
+        <h4>3.2.1 为什么需要ROIC？ROE和ROA不够用吗？</h4>
+        <p>这是理解ROIC最关键的问题。先看一个例子：</p>
+
+        <table>
+            <tr><th></th><th>公司A</th><th>公司B</th></tr>
+            <tr><td>总资产</td><td>$1000</td><td>$1000</td></tr>
+            <tr><td>负债</td><td>$200</td><td>$800</td></tr>
+            <tr><td>股东权益</td><td>$800</td><td>$200</td></tr>
+            <tr><td>净利润</td><td>$80</td><td>$80</td></tr>
+            <tr><td>利息支出</td><td>$12</td><td>$48</td></tr>
+            <tr style="background-color:#fff3e0"><td><strong>ROE</strong></td><td><strong>10%</strong></td><td><strong>40%</strong></td></tr>
+            <tr style="background-color:#e8f5e9"><td><strong>ROA</strong></td><td><strong>8%</strong></td><td><strong>8%</strong></td></tr>
+            <tr style="background-color:#e3f2fd"><td><strong>ROIC</strong></td><td><strong>10.2%</strong></td><td><strong>10.2%</strong></td></tr>
+        </table>
+
+        <div class="highlight">
+            <strong>关键发现：</strong><br>
+            - 公司B的ROE是40%，看起来远胜公司A的10%。但两家公司的<strong>真实经营能力完全一样</strong>！区别只是公司B借了更多债（$800 vs $200），用杠杆"放大"了ROE。<br>
+            - ROA都是8%，但ROA的分母是"总资产"，包含了不产生收益的闲置资产，不够精准。<br>
+            - <strong>ROIC都是10.2%</strong>——它剔除了资本结构（借钱多少）的影响，告诉你：这两家公司的<strong>核心生意赚钱能力一模一样</strong>。<br><br>
+            <strong>芒格说：</strong>"ROE是给股东看的，ROIC是给经营者看的。一家公司值不值得投，先看ROIC。"
+        </div>
+
+        <h4>3.2.2 ROIC怎么算？逐步拆解</h4>
+
+        <div style="background-color:#f3e5f5; padding:15px; border-radius:5px; margin:10px 0;">
+            <p style="font-size:18px; text-align:center;"><strong>ROIC = 税后经营利润（NOPAT） / 投入资本（Invested Capital）</strong></p>
+        </div>
+
+        <p><strong>第一步：算税后经营利润（NOPAT）</strong></p>
+        <p>NOPAT = 营业利润 x (1 - 税率)</p>
+        <p>为什么要用"营业利润"而不是"净利润"？因为净利润已经扣掉了利息——但利息是融资决策的结果，不是经营能力的体现。我们要看的是<strong>纯粹靠做生意赚了多少钱</strong>，不管钱是借的还是自己的。</p>
+
+        <table>
+            <tr><th>步骤</th><th>项目</th><th>金额</th><th>说明</th></tr>
+            <tr><td>1</td><td>营业收入</td><td>$10,000</td><td>卖东西收到的总钱数</td></tr>
+            <tr><td>2</td><td>减：营业成本</td><td>-$6,000</td><td>做产品的直接成本</td></tr>
+            <tr><td>3</td><td>= 毛利润</td><td>$4,000</td><td></td></tr>
+            <tr><td>4</td><td>减：销售+管理+研发费用</td><td>-$2,200</td><td>运营费用</td></tr>
+            <tr><td>5</td><td><strong>= 营业利润（EBIT）</strong></td><td><strong>$1,800</strong></td><td>靠做生意赚的钱（未扣税和利息）</td></tr>
+            <tr><td>6</td><td>乘：(1 - 税率)，假设25%</td><td>x 0.75</td><td>假设税率为25%</td></tr>
+            <tr><td>7</td><td><strong>= NOPAT</strong></td><td><strong>$1,350</strong></td><td>如果全用自有资金，交完税后赚的钱</td></tr>
+        </table>
+
+        <p><strong>第二步：算投入资本（Invested Capital）</strong></p>
+        <p>投入资本 = 股东权益 + 有息负债 - 多余现金</p>
+        <p>为什么是这三个部分？</p>
+        <ul>
+            <li><strong>股东权益</strong>：股东投进来的钱 + 留在公司里的利润</li>
+            <li><strong>有息负债</strong>：借来的、需要付利息的钱（银行贷款、债券等）。注意：应付账款不算，因为那是"免费"的商业信用</li>
+            <li><strong>减去多余现金</strong>：如果公司账上有大量现金躺在银行吃利息，这部分钱没有投入经营，应该扣除。只保留经营所需的现金</li>
+        </ul>
+
+        <table>
+            <tr><th>步骤</th><th>项目</th><th>金额</th><th>说明</th></tr>
+            <tr><td>1</td><td>股东权益</td><td>$4,000</td><td>股东投入+留存收益</td></tr>
+            <tr><td>2</td><td>加：有息负债</td><td>+$2,500</td><td>银行贷款$1,500 + 债券$1,000</td></tr>
+            <tr><td>3</td><td>减：多余现金</td><td>-$500</td><td>超过经营所需的现金</td></tr>
+            <tr><td>4</td><td><strong>= 投入资本</strong></td><td><strong>$6,000</strong></td><td>真正投入经营的全部资本</td></tr>
+        </table>
+
+        <p><strong>第三步：算ROIC</strong></p>
+        <p style="font-size:16px; text-align:center;"><strong>ROIC = $1,350 / $6,000 = 22.5%</strong></p>
+        <p>意思是：公司每投入$1资本，一年能赚回$0.225的经营利润。</p>
+
+        <h4>3.2.3 ROIC vs ROE vs ROA：三大指标对比</h4>
+        <table>
+            <tr><th>指标</th><th>分子</th><th>分母</th><th>受杠杆影响？</th><th>最适合什么场景</th></tr>
+            <tr>
+                <td><strong>ROE</strong></td>
+                <td>净利润</td>
+                <td>股东权益</td>
+                <td style="color:#e74c3c;"><strong>是——借债越多，权益越薄，ROE越高</strong></td>
+                <td>看股东回报；但高ROE可能是借债"虚增"的</td>
+            </tr>
+            <tr>
+                <td><strong>ROA</strong></td>
+                <td>净利润</td>
+                <td>总资产</td>
+                <td>部分——分母包含负债，但分子已扣利息</td>
+                <td>看资产效率；但分母包含闲置资产，不够精准</td>
+            </tr>
+            <tr>
+                <td><strong>ROIC</strong></td>
+                <td>NOPAT</td>
+                <td>投入资本</td>
+                <td style="color:#27ae60;"><strong>否——剔除了资本结构影响</strong></td>
+                <td>看真实经营能力；最纯粹、最可比的指标</td>
+            </tr>
+        </table>
+
+        <div class="highlight">
+            <strong>巴菲特的选择：</strong>巴菲特在年报中反复强调他最看重的是"投入资本的回报率"。他说的不是ROE，而是ROIC——因为ROE可以被杠杆扭曲。一家D/E 3.7x的公司ROE可能高达80%，但ROIC可能只有10%。巴菲特要找的是<strong>不靠借钱就能赚大钱的公司</strong>——也就是ROIC远高于资本成本（WACC）的公司。
+        </div>
+
+        <h4>3.2.4 ROIC多少算好？判断标准</h4>
+        <table>
+            <tr><th>ROIC水平</th><th>评价</th><th>含义</th><th>典型公司</th></tr>
+            <tr>
+                <td><strong>> 20%</strong></td>
+                <td style="color:#27ae60;"><strong>卓越</strong></td>
+                <td>投入$1赚$0.2+，远超资本成本，拥有极强护城河</td>
+                <td>Visa（~45%）、Cintas（~25%）、Moody's（~300%）</td>
+            </tr>
+            <tr>
+                <td><strong>15-20%</strong></td>
+                <td style="color:#2196F3;"><strong>优秀</strong></td>
+                <td>投入$1赚$0.15-0.2，远超资本成本，有较强竞争优势</td>
+                <td>可口可乐（~18%）、Lowe's（~17%）</td>
+            </tr>
+            <tr>
+                <td><strong>10-15%</strong></td>
+                <td style="color:#ff9800;"><strong>良好</strong></td>
+                <td>投入$1赚$0.1-0.15，高于资本成本，有竞争优势</td>
+                <td>Booz Allen（~12%）、Walmart（~12%）</td>
+            </tr>
+            <tr>
+                <td><strong>6-10%</strong></td>
+                <td style="color:#ff5722;"><strong>一般</strong></td>
+                <td>勉强超过资本成本，竞争优势不明显</td>
+                <td>很多制造业公司</td>
+            </tr>
+            <tr>
+                <td><strong>< 6%</strong></td>
+                <td style="color:#e74c3c;"><strong>差</strong></td>
+                <td>低于资本成本，在毁灭价值——投$1赚不到资本成本</td>
+                <td>很多航空公司、大宗商品公司</td>
+            </tr>
+        </table>
+
+        <div class="highlight">
+            <strong>关键判断标准：ROIC vs WACC（加权平均资本成本）</strong><br>
+            - <strong>ROIC > WACC</strong>：公司在创造价值。每投入$1，赚回的利润超过资本成本，多出来的就是<strong>经济利润（Economic Profit）</strong><br>
+            - <strong>ROIC = WACC</strong>：公司在"白忙活"——赚的钱刚好够付资本成本，没有创造额外价值<br>
+            - <strong>ROIC < WACC</strong>：公司在<strong>毁灭价值</strong>——赚的钱连资本成本都付不起，每投$1就亏一点<br><br>
+            <strong>大多数公司的WACC在7-10%之间。</strong>所以ROIC > 10%通常是"及格线"，ROIC > 15%才是"优秀"。
+        </div>
+
+        <h4>3.2.5 ROIC的三个核心优势</h4>
+
+        <div style="background-color:#e8f5e9; padding:15px; border-radius:5px; margin:10px 0;">
+            <h4>优势1：不受资本结构影响</h4>
+            <p>一家公司不管全用自有资金还是借80%的债，ROIC都不变。这让不同公司之间的比较变得公平——你不会因为一家公司借了很多债就误以为它经营能力更强。</p>
+            <p><strong>例子：</strong>Booz Allen Hamilton（BAH）的ROE高达80.7%，看起来极其优秀。但这是因为D/E 3.7x的高杠杆。它的ROIC只有约12%——这才是真实的经营效率，在政府承包商中属于"良好"而非"卓越"。</p>
+        </div>
+
+        <div style="background-color:#e8f5e9; padding:15px; border-radius:5px; margin:10px 0;">
+            <h4>优势2：直接衡量价值创造</h4>
+            <p>ROIC减去WACC就是<strong>经济利润率</strong>——公司每投入$1资本，在支付了所有资本成本后，还剩多少"真金白银"的额外回报。</p>
+            <p><strong>例子：</strong>如果ROIC = 15%，WACC = 8%，那经济利润率 = 7%。公司每投入$1，在付完资本成本后还能多赚$0.07。这就是巴菲特说的"经济商誉"——超额回报的来源。</p>
+        </div>
+
+        <div style="background-color:#e8f5e9; padding:15px; border-radius:5px; margin:10px 0;">
+            <h4>优势3：预测长期增长质量</h4>
+            <p>一家ROIC持续>15%的公司，增长是"高质量的"——每投入1块钱都能赚回远超成本的钱。而一家ROIC只有5%的公司，增长反而是"毁灭价值的"——越增长越亏。</p>
+            <p><strong>芒格说：</strong>"长期来看，投资者的回报率会趋近于公司的ROIC。如果一家公司ROIC只有6%，不管你买入价格多低，长期回报率也很难超过6%。"</p>
+        </div>
+
+        <h4>3.2.6 ROIC的局限性</h4>
+        <table>
+            <tr><th>局限</th><th>说明</th><th>应对方法</th></tr>
+            <tr>
+                <td>对资产密集型行业不公</td>
+                <td>银行、保险、公用事业的投入资本巨大，ROIC天然偏低</td>
+                <td>同行业内比较，不跨行业比</td>
+            </tr>
+            <tr>
+                <td>"多余现金"难以界定</td>
+                <td>多少现金算"多余"？不同人有不同算法</td>
+                <td>用总权益+有息负债的简化算法，不扣现金</td>
+            </tr>
+            <tr>
+                <td>不能捕捉表外资产</td>
+                <td>品牌、专利、客户关系等无形资产不在资产负债表上，导致投入资本被低估、ROIC被高估</td>
+                <td>结合定性分析，看品牌力和客户粘性</td>
+            </tr>
+            <tr>
+                <td>短期波动大</td>
+                <td>一次性损益（资产减值、重组费用）会大幅影响NOPAT</td>
+                <td>用3-5年平均ROIC，而非单年数据</td>
+            </tr>
+        </table>
+
+        <h4>3.2.7 实战：如何快速估算一家公司的ROIC</h4>
+        <div style="background-color:#fff3e0; padding:15px; border-radius:5px; margin:10px 0;">
+            <p><strong>简化公式（5分钟速算）：</strong></p>
+            <p style="font-size:16px; text-align:center;">ROIC ≈ 营业利润 x (1 - 25%) / (股东权益 + 有息负债)</p>
+            <p><strong>步骤：</strong></p>
+            <ol>
+                <li>从利润表找到<strong>营业利润（Operating Income / EBIT）</strong></li>
+                <li>乘以0.75（假设25%税率）得到<strong>NOPAT</strong></li>
+                <li>从资产负债表找到<strong>股东权益</strong>和<strong>有息负债</strong>（长期债务+短期债务+融资租赁）</li>
+                <li>NOPAT / (股东权益 + 有息负债) = <strong>ROIC</strong></li>
+            </ol>
+            <p><strong>注意：</strong>这是简化版，精确版需要调整非经营性资产/负债、经营租赁、递延税等。但对于快速筛选，简化版足够用。</p>
+        </div>
+
+        <h4>3.2.8 价值投资中的ROIC应用</h4>
+        <div class="highlight">
+            <strong>巴菲特-芒格框架：</strong><br>
+            1. <strong>筛选标准</strong>：只看ROIC持续>15%的公司——这些公司拥有巴菲特所说的"经济商誉"<br>
+            2. <strong>增长质量判断</strong>：ROIC > WACC的增长是"创造价值的增长"，ROIC < WACC的增长是"毁灭价值的增长"<br>
+            3. <strong>护城河验证</strong>：ROIC持续高位（5-10年>15%）是护城河存在的最强证据——竞争会拉低ROIC，只有护城河能保护它<br>
+            4. <strong>管理层评价</strong>：优秀的管理层应该把资本投向ROIC > WACC的项目，而不是低回报的扩张<br>
+            5. <strong>估值基础</strong>：ROIC x 再投资率 = 长期增长率。如果ROIC = 20%，再投资率 = 50%，长期增长率 ≈ 10%
+        </div>
+
+        <h3>3.3 偿债能力比率</h3>
         <table>
             <tr>
                 <th>比率名称</th>
@@ -203,7 +423,7 @@
             </tr>
         </table>
         
-        <h3>3.3 运营能力比率</h3>
+        <h3>3.4 运营能力比率</h3>
         <table>
             <tr>
                 <th>比率名称</th>
@@ -231,12 +451,12 @@
     <div class="info-box">
         <h2>毛利率与净利率的差异详解</h2>
         <div class="highlight">
-            <h3>3.4 一句话概括</h3>
+            <h3>3.5 一句话概括</h3>
             <p><strong>毛利率</strong>衡量的是"做这个东西本身赚不赚钱"，<strong>净利率</strong>衡量的是"公司最终到手赚了多少"。</p>
             <p>两者之间的差距，就是<strong>从"产品赚钱"到"公司赚钱"之间，被吃掉的每一分钱</strong>。</p>
         </div>
 
-        <h3>3.5 利润表的结构：从毛利到净利的"漏斗"</h3>
+        <h3>3.6 利润表的结构：从毛利到净利的"漏斗"</h3>
         <p>要理解毛利率和净利率的差异，先看利润表是如何一步步"漏掉"钱的：</p>
         <table>
             <tr><th>步骤</th><th>项目</th><th>通俗解释</th><th>典型比例</th></tr>
@@ -256,7 +476,7 @@
             <tr style="background-color:#fff3e0"><td colspan="4"><strong>↑ 以上决定净利率 ↑</strong></td></tr>
         </table>
 
-        <h3>3.6 毛利率和净利率之间的差异 = 四大"吞金兽"</h3>
+        <h3>3.7 毛利率和净利率之间的差异 = 四大"吞金兽"</h3>
         <p>毛利率到净利率之间，利润被四个大类吃掉：</p>
 
         <div style="background-color:#fff3e0; padding:15px; border-radius:5px; margin:10px 0;">
@@ -311,7 +531,7 @@
             <p><strong>价值投资视角：</strong>利息支出是"可控的差异"——同样毛利率的两家公司，一个借债多、一个借债少，净利率可能差5-10个百分点。巴菲特极度厌恶高杠杆——"如果你聪明，你不需要杠杆；如果你愚蠢，杠杆会毁了你。"高利息支出的公司在经济下行时最脆弱。</p>
         </div>
 
-        <h3>3.7 用一个真实案例说明</h3>
+        <h3>3.8 用一个真实案例说明</h3>
         <p>以三家不同行业的公司为例，看毛利率到净利率之间被什么吃掉了：</p>
         <table>
             <tr><th>项目</th><th>可口可乐（KO）<br>消费品</th><th>波音（BA）<br>制造业</th><th>Salesforce（CRM）<br>软件</th></tr>
@@ -336,7 +556,7 @@
             <p><strong>核心洞察：</strong>毛利率高不等于净利率高。软件公司毛利率最高，但净利率可能最低；消费品毛利率中等，但净利率反而可能最高。关键看"吞金兽"有多大。</p>
         </div>
 
-        <h3>3.8 毛利率与净利率差异的投资含义</h3>
+        <h3>3.9 毛利率与净利率差异的投资含义</h3>
         <table>
             <tr><th>差异模式</th><th>特征</th><th>典型行业</th><th>投资风险</th></tr>
             <tr>
