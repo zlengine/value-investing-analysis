@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>W.W. Grainger (GWW) 详细分析</title>
+    <title>W.W. Grainger (GWW) 价值投资分析</title>
     <style>
         body { font-family: Arial, sans-serif; margin: 20px; background-color: #f5f5f5; }
         h1 { text-align: center; color: #333; }
         h2 { color: #4CAF50; margin-top: 30px; }
+        h3 { color: #2e86c1; margin-top: 20px; }
         .info-box { background-color: white; padding: 20px; margin: 20px 0; box-shadow: 0 0 10px rgba(0,0,0,0.1); border-radius: 5px; }
         table { width: 100%; border-collapse: collapse; margin: 10px 0; }
         th, td { padding: 8px; text-align: left; border-bottom: 1px solid #ddd; }
@@ -33,8 +34,15 @@
         .topbar-stars .off { color: rgba(255,255,255,0.3); }
         body { padding-top: 60px !important; }
         .tag { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 12px; font-weight: 600; }
+        .tag-green { background-color: #d4edda; color: #155724; }
         .tag-orange { background-color: #fff3cd; color: #856404; }
+        .tag-red { background-color: #f8d7da; color: #721c24; }
+        .highlight { background-color: #e8f5e9; padding: 10px; border-left: 4px solid #4CAF50; margin: 10px 0; }
+        .chart-container { position: relative; height: 300px; margin: 15px 0; }
+        .moat-item { background: #f0f7ff; padding: 12px; margin: 8px 0; border-radius: 6px; border-left: 4px solid #2e86c1; }
+        .risk-item { background: #fff5f5; padding: 12px; margin: 8px 0; border-radius: 6px; border-left: 4px solid #e74c3c; }
     </style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <div class="fixed-topbar" id="fixedTopbar">
@@ -57,20 +65,400 @@
         </div>
     </div>
 
-    <h1>W.W. Grainger (NYSE: GWW)</h1>
+    <h1>W.W. Grainger, Inc. (NYSE: GWW)</h1>
     <p style="text-align:center;color:#666;">巴菲特/芒格式价值投资基本面分析 | 更新日期：2026年6月</p>
 
+    <!-- 一、公司基本信息 -->
     <div class="info-box">
         <h2>一、公司基本信息</h2>
         <table>
-            <tr><td>公司全称</td><td>W.W. Grainger</td></tr>
+            <tr><td>公司全称</td><td>W.W. Grainger, Inc.（固安捷）</td></tr>
             <tr><td>股票代码</td><td>NYSE: GWW</td></tr>
-            <tr><td>市值</td><td>约520亿美元</td></tr>
-            <tr><td>行业</td><td>工业用品分销</td></tr>
+            <tr><td>市值</td><td>约640亿美元（2026年6月）</td></tr>
+            <tr><td>企业价值（EV）</td><td>约665亿美元</td></tr>
+            <tr><td>成立时间</td><td>1927年，由William W. Grainger创立</td></tr>
+            <tr><td>公司总部</td><td>美国伊利诺伊州莱克福里斯特（Lake Forest, IL）</td></tr>
+            <tr><td>最新收盘价</td><td>约$1,365（2026年6月中旬）</td></tr>
+            <tr><td>52周区间</td><td>$906 - $1,350</td></tr>
+            <tr><td>CEO</td><td>D.G. Macpherson（董事长兼首席执行官）</td></tr>
+            <tr><td>员工人数</td><td>约25,000人</td></tr>
+            <tr><td>行业</td><td>工业用品分销 / MRO（维护、维修和运营）</td></tr>
+            <tr><td>流通股数</td><td>约4,742万股</td></tr>
+            <tr><td>股息</td><td>年化$9.04/股，收益率约0.7%</td></tr>
+            <tr><td>股息增长</td><td>连续55年增加股息（股息国王）</td></tr>
         </table>
-        <p style="color:#856404;"><span class="tag tag-orange">待补充</span> 详细分析内容将在后续更新中补充。</p>
     </div>
 
+    <!-- 二、业务分析 -->
+    <div class="info-box">
+        <h2>二、业务分析</h2>
+        <p>用最简单的话说，Grainger就是一个<strong>工业用品的"超级大超市"</strong>。想象一下，一个工厂要运转，需要安全帽、手套、电机、灯泡、清洁剂、工具……这些零零碎碎的东西，Grainger都能提供。它不生产这些东西，而是从5000多家供应商那里采购超过3500万种产品，然后通过自己的物流网络快速送到客户手中。</p>
+        <p>Grainger的客户是各种需要"维护、维修和运营"（MRO）用品的企业——工厂、医院、学校、政府部门、建筑公司等。这些客户需要的是<strong>可靠、快速、一站式</strong>的供应，而不是最便宜的价格。</p>
+
+        <h3>2.1 业务板块</h3>
+        <table>
+            <tr>
+                <th>业务板块</th>
+                <th>2025年营收</th>
+                <th>占比</th>
+                <th>调整后营业利润率</th>
+                <th>说明</th>
+            </tr>
+            <tr>
+                <td>High-Touch Solutions N.A.<br>（高触达解决方案-北美）</td>
+                <td>约$140亿</td>
+                <td>约78%</td>
+                <td>16.8%</td>
+                <td>核心业务：为大中型客户提供MRO产品+技术支持+库存管理+供应链解决方案。通过销售代表、分支机构、配送中心提供深度服务</td>
+            </tr>
+            <tr>
+                <td>Endless Assortment<br>（无尽品类）</td>
+                <td>约$36亿</td>
+                <td>约20%</td>
+                <td>9.8%</td>
+                <td>线上业务：通过Zoro.com（美国）和MonotaRO（日本）提供海量产品选择和有竞争力的价格，主要服务中小型客户</td>
+            </tr>
+            <tr>
+                <td>其他</td>
+                <td>约$3亿</td>
+                <td>约2%</td>
+                <td>-</td>
+                <td>已退出的英国Cromwell业务（2025年Q4完成出售）</td>
+            </tr>
+        </table>
+
+        <h3>2.2 地理分布</h3>
+        <table>
+            <tr><th>地区</th><th>营收占比</th><th>说明</th></tr>
+            <tr><td>美国</td><td>约75%</td><td>最大市场，High-Touch Solutions核心区域</td></tr>
+            <tr><td>加拿大</td><td>约5%</td><td>High-Touch Solutions的延伸</td></tr>
+            <tr><td>日本</td><td>约12%</td><td>MonotaRO是日本领先的MRO电商平台</td></tr>
+            <tr><td>其他</td><td>约8%</td><td>已退出英国市场（2025年Q4）</td></tr>
+        </table>
+
+        <h3>2.3 商业模式</h3>
+        <p>Grainger的商业模式是<strong>分销商模式</strong>——从供应商采购产品，加价卖给客户，赚取差价。但它的核心不是"倒买倒卖"，而是<strong>服务增值</strong>：</p>
+        <ul>
+            <li><strong>一站式采购</strong>：客户不需要找几十个供应商，Grainger一个订单搞定</li>
+            <li><strong>快速交付</strong>：33个配送中心，大部分订单次日达</li>
+            <li><strong>技术支持</strong>：专业销售代表帮助客户选型</li>
+            <li><strong>库存管理</strong>：KeepStock系统帮客户管理库存，嵌入客户运营</li>
+            <li><strong>电子采购集成</strong>：与客户ERP系统对接，成为"默认供应商"</li>
+        </ul>
+    </div>
+
+    <!-- 三、业务板块产品竞争力分析 -->
+    <div class="info-box">
+        <h2>三、业务板块产品竞争力分析</h2>
+
+        <h3>3.1 High-Touch Solutions N.A. 产品竞争力分析</h3>
+
+        <p><strong>1. 可替代性：<span class="tag tag-green">低</span></strong></p>
+        <ul>
+            <li>主要替代选项：Fastenal（现场库存模式）、MSC Industrial（金属加工专精）、Amazon Business（线上采购）、区域小型分销商</li>
+            <li>替代体验差距：Grainger提供的是"产品+服务+技术支持+库存管理"的综合方案，竞争对手很难同时复制所有维度。Fastenal擅长现场库存但品类窄；Amazon Business价格低但缺乏专业服务；MSC聚焦金属加工但覆盖面有限</li>
+            <li>替代趋势：稳定。Amazon Business虽在价格上有优势，但对大中型MRO客户而言，服务深度和可靠性远比价格重要</li>
+        </ul>
+
+        <p><strong>2. 客户转换成本：<span class="tag tag-green">高</span></strong></p>
+        <ul>
+            <li>财务转换成本：更换供应商需要重新谈判合同、重新配置采购系统、可能面临短期供应中断</li>
+            <li>时间转换成本：KeepStock库存管理系统和电子采购集成已深度嵌入客户运营，迁移需要数月；新供应商需要学习客户需求</li>
+            <li>心理转换成本：Grainger品牌在MRO领域代表"可靠"，客户不愿冒险尝试未知供应商</li>
+            <li>捆绑转换成本：Grainger提供多品类一站式采购，客户如果只换一个品类供应商，管理成本反而增加</li>
+            <li>综合评估：大型客户的转换成本极高，相当于更换核心IT系统</li>
+        </ul>
+
+        <p><strong>3. 定价权：<span class="tag tag-green">强</span></strong></p>
+        <ul>
+            <li>历史提价记录：过去10年持续每年提价，通常高于CPI。2026年Q1价格贡献约5个百分点</li>
+            <li>提价vs通胀：价格增长持续跑赢通胀，毛利率从2021年的36.3%提升至2025年的39.1%</li>
+            <li>提价vs流失：客户流失率极低，大客户留存率超过95%</li>
+            <li>定价权来源：品牌信任+服务深度+转换成本+规模优势</li>
+            <li>定价权趋势：稳定偏强。公司以"价格-成本中性"为目标管理，在通胀环境下能顺利传导成本</li>
+            <li>巴菲特测试：如果Grainger提价10%，大客户不会离开——因为更换供应商的综合成本远超10%的价格差异</li>
+        </ul>
+
+        <p><strong>High-Touch Solutions综合竞争力评级：★★★★★（5/5星）</strong></p>
+
+        <h3>3.2 Endless Assortment 产品竞争力分析</h3>
+
+        <p><strong>1. 可替代性：<span class="tag tag-orange">中等</span></strong></p>
+        <ul>
+            <li>主要替代选项：Amazon Business、各类垂直电商、传统分销商的线上渠道</li>
+            <li>替代体验差距：Amazon Business品类更广、价格可能更低，但缺乏MRO专业选品和内容；Zoro/MonotaRO在MRO品类的专业搜索和筛选体验更好</li>
+            <li>替代趋势：缓慢加速。Amazon Business在B2B领域持续扩张，但MonotaRO在日本市场有独特优势</li>
+        </ul>
+
+        <p><strong>2. 客户转换成本：<span class="tag tag-orange">中等</span></strong></p>
+        <ul>
+            <li>财务转换成本：低——线上采购无合同约束</li>
+            <li>时间转换成本：低——切换网站只需几秒</li>
+            <li>捆绑转换成本：中等——企业客户可能已将Zoro/MonotaRO集成到采购流程中</li>
+            <li>综合评估：中小客户转换成本低，但企业客户有一定粘性</li>
+        </ul>
+
+        <p><strong>3. 定价权：<span class="tag tag-orange">中等</span></strong></p>
+        <ul>
+            <li>历史提价记录：通过调整产品组合和运费策略间接提价</li>
+            <li>定价权来源：品类丰富度+专业选品+便捷体验，而非品牌溢价</li>
+            <li>定价权趋势：稳定。MonotaRO在日本有更强定价权，Zoro在美国面临更大竞争</li>
+            <li>巴菲特测试：如果Zoro提价10%，部分价格敏感的中小客户会转向Amazon Business</li>
+        </ul>
+
+        <p><strong>Endless Assortment综合竞争力评级：★★★☆☆（3/5星）</strong></p>
+    </div>
+
+    <!-- 四、历史财务指标 -->
+    <div class="info-box">
+        <h2>四、历史财务指标</h2>
+
+        <h3>4.1 净资产收益率（ROE）</h3>
+        <div class="chart-container">
+            <canvas id="roeChart"></canvas>
+        </div>
+        <table>
+            <tr><th>年份</th><th>ROE</th><th>负债/资产</th><th>权益乘数</th><th>PE</th></tr>
+            <tr><td>2016</td><td>33.7%</td><td>56%</td><td>2.3x</td><td>19.1x</td></tr>
+            <tr><td>2017</td><td>34.7%</td><td>55%</td><td>2.2x</td><td>17.7x</td></tr>
+            <tr><td>2018</td><td>40.7%</td><td>55%</td><td>2.2x</td><td>17.9x</td></tr>
+            <tr><td>2019</td><td>45.8%</td><td>53%</td><td>2.1x</td><td>17.0x</td></tr>
+            <tr><td>2020</td><td>38.0%</td><td>56%</td><td>2.3x</td><td>20.4x</td></tr>
+            <tr><td>2021</td><td>55.7%</td><td>67%</td><td>3.0x</td><td>22.0x</td></tr>
+            <tr><td>2022</td><td>63.4%</td><td>64%</td><td>2.8x</td><td>18.5x</td></tr>
+            <tr><td>2023</td><td>58.7%</td><td>58%</td><td>2.4x</td><td>22.9x</td></tr>
+            <tr><td>2024</td><td>56.9%</td><td>58%</td><td>2.4x</td><td>27.2x</td></tr>
+            <tr><td>2025</td><td>41.2%</td><td>54%</td><td>2.2x</td><td>28.5x</td></tr>
+            <tr><td>TTM</td><td>44.0%</td><td>54%</td><td>2.2x</td><td>36.8x</td></tr>
+        </table>
+        <p><strong>关键观察</strong>：</p>
+        <ul>
+            <li>ROE从2016年的33.7%攀升至2022年的63.4%峰值，主要得益于利润率扩张和股票回购提升</li>
+            <li>2025年ROE降至41.2%，主要因退出英国市场的一次性损失和税率影响</li>
+            <li>权益乘数从2021年的3.0x降至2025年的2.2x，杠杆水平趋于保守</li>
+            <li>PE从历史平均19x扩张至当前37x，估值显著抬升</li>
+        </ul>
+
+        <h3>4.2 负债/资产比率</h3>
+        <div class="chart-container">
+            <canvas id="debtChart"></canvas>
+        </div>
+
+        <h3>4.3 PE比率</h3>
+        <div class="chart-container">
+            <canvas id="peChart"></canvas>
+        </div>
+        <p>PE从2016-2022年的平均约19x，扩张至2025年的28.5x和当前的36.8x。市场对Grainger的定价已从"工业分销商"转向"高ROE+高增长"的溢价估值。</p>
+    </div>
+
+    <!-- 五、竞争分析 -->
+    <div class="info-box">
+        <h2>五、竞争分析</h2>
+
+        <h3>5.1 主要竞争对手</h3>
+        <table>
+            <tr><th>竞争对手</th><th>2025年营收</th><th>市场定位</th><th>优势领域</th></tr>
+            <tr><td>Fastenal (FAST)</td><td>约$78亿</td><td>工业紧固件+现场库存</td><td>On-site库存管理（超过1,800个现场点）、Vending自动售货机</td></tr>
+            <tr><td>MSC Industrial (MSM)</td><td>约$40亿</td><td>金属加工MRO</td><td>金属加工刀具专精、技术支持深度</td></tr>
+            <tr><td>Amazon Business</td><td>估计$500亿+B2B</td><td>全品类电商</td><td>价格竞争力、Prime配送、品类广度</td></tr>
+            <tr><td>WESCO International</td><td>约$220亿</td><td>电气/数据通信分销</td><td>全球800+分支、项目集成能力</td></tr>
+            <tr><td>Genuine Parts (GPC)</td><td>约$230亿</td><td>汽车+工业零件</td><td>Motion Industries工业部件分销</td></tr>
+        </table>
+
+        <h3>5.2 市场份额</h3>
+        <table>
+            <tr><th>公司</th><th>美国MRO市场份额</th><th>说明</th></tr>
+            <tr><td>Grainger</td><td>约7-8%</td><td>北美MRO分销商中最大</td></tr>
+            <tr><td>Fastenal</td><td>约3-4%</td><td>紧固件和现场库存细分领先</td></tr>
+            <tr><td>MSC Industrial</td><td>约2%</td><td>金属加工细分领先</td></tr>
+            <tr><td>Amazon Business</td><td>增长中</td><td>线上B2B采购份额快速提升</td></tr>
+            <tr><td>其他</td><td>约85%+</td><td>高度分散，数万家小型区域分销商</td></tr>
+        </table>
+        <p>北美MRO市场总规模约$1,700亿，高度分散。Grainger虽然只占7-8%，但已经是最大玩家。公司目标是每年跑赢市场400-500个基点，持续获取份额。</p>
+
+        <h3>5.3 经济护城河评估</h3>
+        <div class="moat-item">
+            <strong>规模优势</strong> <span class="tag tag-green">强</span>
+            <p>$179亿营收、33个配送中心、5000+供应商——这种规模让Grainger在采购议价、物流效率、库存深度上远超中小分销商。新进入者需要数十年的积累才能达到类似规模。</p>
+        </div>
+        <div class="moat-item">
+            <strong>品牌力</strong> <span class="tag tag-green">强</span>
+            <p>Grainger品牌在MRO领域等同于"可靠"。近100年历史，460万活跃客户。在工业采购中，可靠性比价格更重要——设备停机一小时的成本远超多付的采购溢价。</p>
+        </div>
+        <div class="moat-item">
+            <strong>转换成本</strong> <span class="tag tag-green">强</span>
+            <p>KeepStock库存管理系统、电子采购集成、定制化供应链方案——这些深度嵌入客户运营，更换成本极高。大客户留存率超过95%。</p>
+        </div>
+        <div class="moat-item">
+            <strong>网络效应</strong> <span class="tag tag-orange">中等</span>
+            <p>更多客户→更多采购量→更好供应商条款→更低成本→更有竞争力→更多客户。这个飞轮在运转，但不是典型的网络效应（客户间不直接互动）。</p>
+        </div>
+        <div class="moat-item">
+            <strong>成本优势</strong> <span class="tag tag-green">强</span>
+            <p>规模采购折扣、高效物流网络、数据驱动的库存管理——单位运营成本远低于小型分销商。毛利率39%在分销行业中属顶尖水平。</p>
+        </div>
+    </div>
+
+    <!-- 六、利润分配分析 -->
+    <div class="info-box">
+        <h2>六、利润分配分析</h2>
+
+        <h3>6.1 近十年利润分配表（百万美元）</h3>
+        <table>
+            <tr>
+                <th>年份</th>
+                <th>净利润</th>
+                <th>分红</th>
+                <th>回购</th>
+                <th>资本开支</th>
+                <th>留存金额</th>
+                <th>留存率</th>
+            </tr>
+            <tr><td>2016</td><td>$690</td><td>$284</td><td>$247</td><td>$224</td><td>$406</td><td>59%</td></tr>
+            <tr><td>2017</td><td>$641</td><td>$285</td><td>$356</td><td>$221</td><td>$356</td><td>56%</td></tr>
+            <tr><td>2018</td><td>$933</td><td>$301</td><td>$470</td><td>$236</td><td>$632</td><td>68%</td></tr>
+            <tr><td>2019</td><td>$927</td><td>$305</td><td>$431</td><td>$257</td><td>$622</td><td>67%</td></tr>
+            <tr><td>2020</td><td>$867</td><td>$320</td><td>$331</td><td>$260</td><td>$547</td><td>63%</td></tr>
+            <tr><td>2021</td><td>$1,041</td><td>$333</td><td>$541</td><td>$260</td><td>$708</td><td>68%</td></tr>
+            <tr><td>2022</td><td>$1,553</td><td>$347</td><td>$748</td><td>$262</td><td>$1,206</td><td>78%</td></tr>
+            <tr><td>2023</td><td>$1,834</td><td>$360</td><td>$960</td><td>$447</td><td>$1,474</td><td>80%</td></tr>
+            <tr><td>2024</td><td>$1,912</td><td>$388</td><td>$1,250</td><td>$540</td><td>$1,524</td><td>80%</td></tr>
+            <tr><td>2025</td><td>$1,706</td><td>$418</td><td>$1,100</td><td>$680</td><td>$1,288</td><td>75%</td></tr>
+        </table>
+
+        <h3>6.2 资本配置评估</h3>
+        <p><strong>分红</strong>：连续55年增加股息，股息国王。但派息率仅约25%，分红不是资本配置的重点。年化股息增长率约8%。</p>
+        <p><strong>回购</strong>：过去3年累计回购约$32亿，年均回购率约2%。流通股从2016年的5,880万股减少至2025年的4,742万股，减少约19%。回购时机总体合理，在PE较低时回购更多。</p>
+        <p><strong>再投资</strong>：资本开支从2021年的$2.6亿增至2025年的$6.8亿，主要用于新建配送中心（波特兰、休斯顿）和技术系统升级。资本开支/营收比从1.5%提升至3.8%，表明公司在加大长期投资。</p>
+        <p><strong>可持续增长率</strong> = ROE × 留存率 ≈ 44% × 75% ≈ 33%。实际增长率远低于此，说明公司有大量现金可用于回购和分红。</p>
+
+        <div class="highlight">
+            <strong>芒格视角</strong>：Grainger的资本配置堪称优秀。高ROE+适度留存+持续回购+稳健分红，这正是芒格所说的"把资本配置到回报最高的地方"。管理层没有盲目扩张或高价收购，而是把多余的现金通过回购返还给股东，同时保持对核心业务的持续投资。
+        </div>
+    </div>
+
+    <!-- 七、投资总结 -->
+    <div class="info-box">
+        <h2>七、投资总结</h2>
+
+        <h3>7.1 各维度评分</h3>
+        <table>
+            <tr><th>维度</th><th>评分</th><th>说明</th></tr>
+            <tr><td>业务可理解性</td><td><span class="tag tag-green">5/5</span></td><td>MRO分销，商业模式简单清晰：采购→加价→配送→服务</td></tr>
+            <tr><td>经济护城河</td><td><span class="tag tag-green">4/5</span></td><td>规模优势+品牌力+转换成本构成强护城河，但Amazon Business是长期威胁</td></tr>
+            <tr><td>资本配置</td><td><span class="tag tag-green">5/5</span></td><td>连续55年增息+持续回购+精准再投资，管理层资本配置能力一流</td></tr>
+            <tr><td>财务安全</td><td><span class="tag tag-green">4/5</span></td><td>负债/权益0.64，流动比率2.8，现金流充沛。杠杆适中，非常安全</td></tr>
+            <tr><td>增长前景</td><td><span class="tag tag-orange">3/5</span></td><td>High-Touch低个位数增长，Endless Assortment双位数增长但利润率低。整体中速增长</td></tr>
+            <tr><td>估值吸引力</td><td><span class="tag tag-red">1/5</span></td><td>PE 37x远高于历史平均19x，P/FCF 47x，股息率仅0.7%。当前估值几乎没有安全边际</td></tr>
+        </table>
+
+        <h3>7.2 估值对比</h3>
+        <table>
+            <tr><th>公司</th><th>PE</th><th>PS</th><th>ROE</th><th>股息率</th></tr>
+            <tr><td>Grainger (GWW)</td><td>37x</td><td>3.5x</td><td>44%</td><td>0.7%</td></tr>
+            <tr><td>Fastenal (FAST)</td><td>33x</td><td>7.5x</td><td>33%</td><td>2.2%</td></tr>
+            <tr><td>MSC Industrial (MSM)</td><td>16x</td><td>1.3x</td><td>24%</td><td>3.5%</td></tr>
+        </table>
+
+        <h3>7.3 关键风险</h3>
+        <div class="risk-item">
+            <strong>估值风险</strong>：当前PE 37x是历史平均19x的近两倍。如果增长不及预期或市场风格切换，估值压缩空间巨大。PE从37x回到25x意味着约32%的下跌。
+        </div>
+        <div class="risk-item">
+            <strong>Amazon Business威胁</strong>：Amazon在B2B领域持续扩张，对Endless Assortment业务（Zoro）构成直接威胁。中小客户对价格敏感，可能被Amazon吸引。
+        </div>
+        <div class="risk-item">
+            <strong>经济周期性</strong>：MRO需求与工业活动高度相关。经济衰退时，制造业客户削减开支会直接影响High-Touch Solutions。
+        </div>
+        <div class="risk-item">
+            <strong>关税与通胀</strong>：2025年关税相关通胀导致毛利率承压。如果贸易摩擦加剧，价格-成本传导可能滞后。
+        </div>
+
+        <h3>7.4 关键催化剂</h3>
+        <ul>
+            <li><strong>Endless Assortment加速增长</strong>：MonotaRO在日本持续高增长（2026Q1日增24.3%），Zoro美国也在改善</li>
+            <li><strong>供应链投资释放产能</strong>：新建配送中心提升服务能力和效率</li>
+            <li><strong>AI与数据能力</strong>：利用AI优化搜索、推荐、供应链和客户服务</li>
+            <li><strong>市场份额持续获取</strong>：在分散的MRO市场中每年跑赢市场400-500bps</li>
+        </ul>
+
+        <h3>7.5 投资结论</h3>
+        <div class="highlight">
+            <p><strong>公司质量：优秀</strong>。Grainger是MRO分销领域的绝对龙头，拥有深厚的护城河（规模+品牌+转换成本），一流的管理层资本配置能力，连续55年增息的记录令人敬佩。ROE长期维持在40-60%的高水平，自由现金流充沛。</p>
+            <p><strong>当前估值：昂贵</strong>。PE 37x、P/FCF 47x，远高于历史均值。市场已经将Grainger的优质属性充分定价。按照巴菲特的安全边际原则，当前价格没有提供足够的保护。如果PE回归到25x的合理水平，对应股价约$950-1,000，比当前低约30%。</p>
+            <p><strong>建议：等待更好的价格</strong>。这是一家你想要拥有的公司，但不是在当前价格。耐心等待市场给出更好的买入机会——可能是经济衰退导致的恐慌性抛售，或者是季度业绩不及预期时的回调。</p>
+        </div>
+    </div>
+
+    <!-- 图表脚本 -->
+    <script>
+        // ROE Chart
+        new Chart(document.getElementById('roeChart'), {
+            type: 'line',
+            data: {
+                labels: ['2016','2017','2018','2019','2020','2021','2022','2023','2024','2025','TTM'],
+                datasets: [{
+                    label: 'ROE (%)',
+                    data: [33.7, 34.7, 40.7, 45.8, 38.0, 55.7, 63.4, 58.7, 56.9, 41.2, 44.0],
+                    borderColor: '#2e86c1',
+                    backgroundColor: 'rgba(46,134,193,0.1)',
+                    fill: true,
+                    tension: 0.3
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: { y: { title: { display: true, text: 'ROE (%)' }, min: 20, max: 70 } },
+                plugins: { legend: { display: false } }
+            }
+        });
+
+        // Debt/Asset Chart
+        new Chart(document.getElementById('debtChart'), {
+            type: 'bar',
+            data: {
+                labels: ['2016','2017','2018','2019','2020','2021','2022','2023','2024','2025','TTM'],
+                datasets: [{
+                    label: '负债/资产 (%)',
+                    data: [56, 55, 55, 53, 56, 67, 64, 58, 58, 54, 54],
+                    backgroundColor: 'rgba(231,76,60,0.6)',
+                    borderColor: '#e74c3c',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: { y: { title: { display: true, text: '负债/资产 (%)' }, min: 40, max: 75 } },
+                plugins: { legend: { display: false } }
+            }
+        });
+
+        // PE Chart
+        new Chart(document.getElementById('peChart'), {
+            type: 'line',
+            data: {
+                labels: ['2016','2017','2018','2019','2020','2021','2022','2023','2024','2025','TTM'],
+                datasets: [{
+                    label: 'PE (x)',
+                    data: [19.1, 17.7, 17.9, 17.0, 20.4, 22.0, 18.5, 22.9, 27.2, 28.5, 36.8],
+                    borderColor: '#f39c12',
+                    backgroundColor: 'rgba(243,156,18,0.1)',
+                    fill: true,
+                    tension: 0.3
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: { y: { title: { display: true, text: 'PE (x)' }, min: 10, max: 40 } },
+                plugins: { legend: { display: false } }
+            }
+        });
+    </script>
+
+    <!-- Topbar scoring logic -->
     <script>
         (function(){
             var SCORE_KEY='stock_scores_v1';
