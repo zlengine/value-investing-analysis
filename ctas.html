@@ -4,18 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cintas Corporation (CTAS) 详细分析</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         body { font-family: Arial, sans-serif; margin: 20px; background-color: #f5f5f5; }
         h1 { text-align: center; color: #333; }
         h2 { color: #4CAF50; margin-top: 30px; }
-        .info-box { background-color: white; padding: 20px; margin: 20px 0; box-shadow: 0 0 10px rgba(0,0,0,0.1); border-radius: 5px; }
+        h3 { color: #333; margin-top: 20px; }
+        h4 { color: #555; margin-top: 15px; }
+        .info-box { background-color: white; padding: 20px; margin: 20px 0; box-shadow: 0 0 10px rgba(0,0,0,0.1); border-radius: 5px; border-left: 4px solid #4CAF50; }
         table { width: 100%; border-collapse: collapse; margin: 10px 0; }
         th, td { padding: 8px; text-align: left; border-bottom: 1px solid #ddd; }
         th { background-color: #4CAF50; color: white; }
+        tr:hover { background-color: #f5f5f5; }
         a { color: #4CAF50; text-decoration: none; }
         a:hover { text-decoration: underline; }
+        .highlight { background-color: #f8f9fa; padding: 12px 16px; border-left: 4px solid #2e86c1; margin: 12px 0; border-radius: 4px; }
+        .tag { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 12px; font-weight: 600; }
+        .tag-green { background-color: #d4edda; color: #155724; }
+        .tag-orange { background-color: #fff3cd; color: #856404; }
+        .tag-red { background-color: #f8d7da; color: #721c24; }
         .fixed-topbar { position: fixed; top: 0; left: 0; right: 0; z-index: 9999; background: linear-gradient(135deg, #1a5276, #2e86c1); color: white; display: flex; align-items: center; justify-content: space-between; padding: 8px 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.15); height: 48px; }
         .fixed-topbar a { color: white; text-decoration: none; font-size: 14px; font-weight: 600; }
+        .fixed-topbar a:hover { text-decoration: underline; }
         .topbar-left { display: flex; align-items: center; gap: 12px; }
         .topbar-right { display: flex; align-items: center; gap: 8px; }
         .topbar-score-label { font-size: 12px; opacity: 0.85; }
@@ -23,17 +33,18 @@
         .topbar-score-val.s1 { color: #ff6b6b; } .topbar-score-val.s2 { color: #ffa94d; } .topbar-score-val.s3 { color: #ffd43b; } .topbar-score-val.s4 { color: #69db7c; } .topbar-score-val.s5 { color: #51cf66; }
         .topbar-select { padding: 3px 8px; border: 1px solid rgba(255,255,255,0.4); border-radius: 6px; font-size: 12px; font-weight: 600; color: white; background: rgba(255,255,255,0.15); cursor: pointer; outline: none; }
         .topbar-select option { color: #333; background: white; }
-        .topbar-btn { padding: 4px 12px; border: none; border-radius: 6px; font-size: 12px; font-weight: 600; cursor: pointer; }
+        .topbar-btn { padding: 4px 12px; border: none; border-radius: 6px; font-size: 12px; font-weight: 600; cursor: pointer; transition: background 0.2s; }
         .topbar-btn-edit { background: rgba(255,255,255,0.2); color: white; }
         .topbar-btn-edit:hover { background: rgba(255,255,255,0.35); }
         .topbar-btn-save { background: #27ae60; color: white; }
+        .topbar-btn-save:hover { background: #219a52; }
         .topbar-btn-cancel { background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.7); }
+        .topbar-btn-cancel:hover { background: rgba(255,255,255,0.2); }
         .topbar-stars { font-size: 11px; }
         .topbar-stars .on { color: #f39c12; }
         .topbar-stars .off { color: rgba(255,255,255,0.3); }
         body { padding-top: 60px !important; }
-        .tag { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 12px; font-weight: 600; }
-        .tag-orange { background-color: #fff3cd; color: #856404; }
+        .chart-container { position: relative; height: 300px; margin: 20px 0; }
     </style>
 </head>
 <body>
@@ -60,18 +71,420 @@
     <h1>Cintas Corporation (NASDAQ: CTAS)</h1>
     <p style="text-align:center;color:#666;">巴菲特/芒格式价值投资基本面分析 | 更新日期：2026年6月</p>
 
+    <!-- 第一章：公司基本信息 -->
     <div class="info-box">
         <h2>一、公司基本信息</h2>
         <table>
             <tr><td>公司全称</td><td>Cintas Corporation</td></tr>
             <tr><td>股票代码</td><td>NASDAQ: CTAS</td></tr>
-            <tr><td>市值</td><td>约780亿美元</td></tr>
-            <tr><td>行业</td><td>企业制服/设施服务</td></tr>
+            <tr><td>市值</td><td>约700亿美元（2026年6月）</td></tr>
+            <tr><td>企业价值（EV）</td><td>约730亿美元</td></tr>
+            <tr><td>最新收盘价</td><td>约$171（2026年6月18日）</td></tr>
+            <tr><td>成立年份</td><td>1929年（前身）/ 1968年（公司化）</td></tr>
+            <tr><td>总部</td><td>俄亥俄州辛辛那提（Mason）</td></tr>
+            <tr><td>员工数</td><td>约48,300人</td></tr>
+            <tr><td>FY2025营收</td><td>$103.4亿</td></tr>
+            <tr><td>FY2025净利润</td><td>$18.12亿</td></tr>
+            <tr><td>FY2025 EPS</td><td>$4.40（拆股后）</td></tr>
+            <tr><td>股息连续增长</td><td>42年（股息贵族成员）</td></tr>
         </table>
-        <p style="color:#856404;"><span class="tag tag-orange">待补充</span> 详细分析内容将在后续更新中补充。</p>
+        <div class="highlight">
+            <strong>一句话概括：</strong>Cintas是北美制服租赁和设施服务行业的绝对龙头，为超过100万家企业提供制服、地垫、清洁、急救、消防等服务。它的商业模式本质上是一个"车轮上的订阅制"——每周上门收送、清洗、配送，客户按月付费，像SaaS一样稳定。
+        </div>
+    </div>
+
+    <!-- 第二章：业务分析 -->
+    <div class="info-box">
+        <h2>二、业务分析</h2>
+
+        <h3>2.1 通俗解读：Cintas到底做什么？</h3>
+        <p>想象你开了一家工厂，你的工人需要穿制服，但你自己洗制服太麻烦了。Cintas就是帮你解决这个问题的：他们每周派卡车来收脏制服，洗干净、修补好，下周再送回来。你只需要按月付费，不用操心洗衣、买新衣服、修补这些琐事。</p>
+        <p>除了制服，Cintas还帮你管很多"杂事"：门口的地垫、洗手间的纸巾和肥皂、急救箱的补给、灭火器的检查……这些都是企业必须做但又不想自己管的事。Cintas把这些"脏活累活"打包成订阅服务，让客户专注于自己的核心业务。</p>
+
+        <h3>2.2 业务板块</h3>
+        <table>
+            <tr><th>业务板块</th><th>FY2025营收</th><th>占比</th><th>同比增长</th><th>毛利率</th></tr>
+            <tr><td><strong>制服租赁与设施服务</strong></td><td>$79.8亿</td><td>77.1%</td><td>+7.2%（有机）</td><td>~49%</td></tr>
+            <tr><td><strong>急救与安全服务</strong></td><td>$12.2亿</td><td>11.8%</td><td>+18.5%（有机）</td><td>~56.8%</td></tr>
+            <tr><td><strong>消防保护服务</strong></td><td>$8.17亿</td><td>7.9%</td><td>+12.1%（有机）</td><td>~49.3%</td></tr>
+            <tr><td>制服直销</td><td>$3.29亿</td><td>3.2%</td><td>—</td><td>较低</td></tr>
+        </table>
+
+        <div class="highlight">
+            <strong>核心发现：</strong>制服租赁是基本盘（77%），但增长最快的是急救与安全服务（+18.5%），毛利率也最高（56.8%）。这是Cintas的"交叉销售飞轮"——先用制服服务进入客户，再卖更高利润的急救/消防服务。
+        </div>
+
+        <h3>2.3 制服租赁与设施服务细分（Q4 FY2025）</h3>
+        <table>
+            <tr><th>子业务</th><th>占比</th></tr>
+            <tr><td>制服租赁</td><td>48%</td></tr>
+            <tr><td>除尘控制/地垫</td><td>19%</td></tr>
+            <tr><td>卫生清洁服务</td><td>16%</td></tr>
+            <tr><td>布草服务</td><td>10%</td></tr>
+            <tr><td>擦手布</td><td>3%</td></tr>
+            <tr><td>目录销售</td><td>4%</td></tr>
+        </table>
+
+        <h3>2.4 地理分布</h3>
+        <table>
+            <tr><th>地区</th><th>占比</th></tr>
+            <tr><td>美国</td><td>~90%</td></tr>
+            <tr><td>加拿大</td><td>~8%</td></tr>
+            <tr><td>其他（拉美等）</td><td>~2%</td></tr>
+        </table>
+
+        <h3>2.5 商业模式核心</h3>
+        <div class="highlight">
+            <strong>"车轮上的订阅制"：</strong><br>
+            1. <strong>路线密度</strong>：每辆卡车每天服务的客户越多，单次配送成本越低——这是Cintas最核心的护城河<br>
+            2. <strong>长期合同</strong>：典型合同3-5年，客户流失率极低（历史新高留存率）<br>
+            3. <strong>交叉销售</strong>：制服客户 → 地垫 → 卫生服务 → 急救 → 消防，一个客户可以贡献多份收入<br>
+            4. <strong>价格递增</strong>：合同内置价格自动调整条款（CPI/燃料附加费），每年自然涨价2-3%
+        </div>
+    </div>
+
+    <!-- 第三章：产品竞争力分析 -->
+    <div class="info-box">
+        <h2>三、业务板块产品竞争力分析</h2>
+
+        <h3>3.1 制服租赁与设施服务</h3>
+
+        <p><strong>1. 可替代性：<span class="tag tag-green">低</span></strong></p>
+        <ul>
+            <li>主要替代方案：企业自行采购制服+自建洗衣房、员工自带衣物</li>
+            <li>替代体验差距：自建洗衣需要大量资本投入（工业洗衣机>$5000万/座），且运营效率远低于专业服务商</li>
+            <li>替代价格差距：企业外包制服管理可降低总拥有成本30-40%</li>
+            <li>替代趋势：<span class="tag tag-green">稳定偏减速</span>——越来越多企业选择外包而非自建，OSHA等法规推动专业制服需求</li>
+        </ul>
+
+        <p><strong>2. 客户转换成本：<span class="tag tag-green">高</span></strong></p>
+        <ul>
+            <li>财务转换成本：新供应商需要量体裁衣、制作新制服（$50-200/人），中断期需要临时方案</li>
+            <li>时间转换成本：新供应商上线需要2-4周，期间服务中断影响员工形象</li>
+            <li>心理转换成本：员工已习惯现有制服款式和配送节奏，更换可能引起不满</li>
+            <li>捆绑转换成本：Cintas客户通常同时使用2-4项服务（制服+地垫+卫生+急救），换供应商需要同时协调多个服务</li>
+            <li>量化评估：一个500人企业更换供应商的总成本约$5-10万，加上2-4周服务中断</li>
+        </ul>
+
+        <p><strong>3. 定价权：<span class="tag tag-green">强</span></strong></p>
+        <ul>
+            <li>历史涨价记录：合同内置CPI调整和燃料附加费，每年自然涨价2-3%</li>
+            <li>涨价vs通胀：服务价格增速通常跑赢CPI 50-100个基点</li>
+            <li>涨价vs流失：涨价后客户流失率几乎无变化（合同锁定期+转换成本高）</li>
+            <li>定价权来源：转换成本 + 服务必要性 + 合同自动调价条款</li>
+            <li>定价权趋势：<span class="tag tag-green">稳定</span>——通胀环境下反而有利于涨价</li>
+            <li>巴菲特测试：如果Cintas涨价10%，客户会走吗？——大多数不会，因为换供应商的成本和麻烦远超10%的涨价</li>
+        </ul>
+
+        <p><strong>整体竞争力评级：★★★★★（5星）</strong></p>
+
+        <h3>3.2 急救与安全服务</h3>
+
+        <p><strong>1. 可替代性：<span class="tag tag-orange">中等</span></strong></p>
+        <ul>
+            <li>主要替代方案：企业自行采购急救用品、其他急救服务供应商（如Zee Medical）、在线零售商</li>
+            <li>替代体验差距：自购无法保证合规检查和定期补货，其他供应商规模小于Cintas</li>
+            <li>替代趋势：<span class="tag tag-orange">稳定</span>——合规要求越来越严格，有利于专业服务商</li>
+        </ul>
+
+        <p><strong>2. 客户转换成本：<span class="tag tag-orange">中等</span></strong></p>
+        <ul>
+            <li>财务转换成本：较低，急救用品本身不贵</li>
+            <li>时间转换成本：中等，需要重新设置检查和补货流程</li>
+            <li>捆绑转换成本：<span class="tag tag-green">高</span>——90%+的急救客户也是制服租赁客户，换急救供应商时需要考虑与制服服务的协调</li>
+        </ul>
+
+        <p><strong>3. 定价权：<span class="tag tag-green">强</span></strong></p>
+        <ul>
+            <li>历史涨价记录：毛利率56.8%，远高于制服租赁的49%</li>
+            <li>定价权来源：合规刚需 + 交叉销售绑定 + 客户便利性</li>
+            <li>巴菲特测试：急救箱补货涨价10%？——企业不会为了省几十块钱冒OSHA罚款的风险</li>
+        </ul>
+
+        <p><strong>整体竞争力评级：★★★★☆（4星）</strong></p>
+
+        <h3>3.3 消防保护服务</h3>
+
+        <p><strong>1. 可替代性：<span class="tag tag-orange">中等</span></strong></p>
+        <ul>
+            <li>主要替代方案：小型本地消防检测公司、企业自检（仅限简单设备）</li>
+            <li>替代体验差距：小型公司无法提供全国覆盖，企业自检难以满足NFPA标准</li>
+        </ul>
+
+        <p><strong>2. 客户转换成本：<span class="tag tag-orange">中等</span></strong></p>
+        <ul>
+            <li>消防检测是法规要求（年度/季度检测），更换供应商需要重新建立合规档案</li>
+            <li>捆绑效应：与制服/急救客户高度重叠</li>
+        </ul>
+
+        <p><strong>3. 定价权：<span class="tag tag-green">强</span></strong></p>
+        <ul>
+            <li>法规驱动刚需：灭火器、喷淋系统检测是法律要求，不是可选项</li>
+            <li>巴菲特测试：消防检测涨价10%？——企业不会为了省钱而冒消防违规的风险</li>
+        </ul>
+
+        <p><strong>整体竞争力评级：★★★★☆（4星）</strong></p>
+    </div>
+
+    <!-- 第四章：历史财务指标 -->
+    <div class="info-box">
+        <h2>四、历史财务指标（FY2016-FY2025）</h2>
+
+        <h3>4.1 关键财务数据总览</h3>
+        <table>
+            <tr><th>财年</th><th>营收($M)</th><th>净利润($M)</th><th>ROE</th><th>负债/资产</th><th>权益乘数</th><th>PE</th><th>毛利率</th><th>营业利润率</th></tr>
+            <tr><td>FY2016</td><td>4,796</td><td>694</td><td>37.6%</td><td>48%</td><td>2.6x</td><td>21.4x</td><td>43.8%</td><td>16.0%</td></tr>
+            <tr><td>FY2017</td><td>5,323</td><td>481</td><td>20.9%</td><td>55%</td><td>3.2x</td><td>21.5x</td><td>44.7%</td><td>14.5%</td></tr>
+            <tr><td>FY2018</td><td>6,477</td><td>843</td><td>27.9%</td><td>51%</td><td>2.9x</td><td>27.2x</td><td>44.9%</td><td>14.7%</td></tr>
+            <tr><td>FY2019</td><td>6,892</td><td>885</td><td>29.5%</td><td>49%</td><td>2.7x</td><td>25.9x</td><td>45.4%</td><td>16.5%</td></tr>
+            <tr><td>FY2020</td><td>7,085</td><td>876</td><td>27.1%</td><td>49%</td><td>2.6x</td><td>30.8x</td><td>45.6%</td><td>16.4%</td></tr>
+            <tr><td>FY2021</td><td>7,116</td><td>1,111</td><td>30.1%</td><td>45%</td><td>2.3x</td><td>32.2x</td><td>46.6%</td><td>19.5%</td></tr>
+            <tr><td>FY2022</td><td>7,854</td><td>1,236</td><td>37.4%</td><td>44%</td><td>2.3x</td><td>35.5x</td><td>46.3%</td><td>20.2%</td></tr>
+            <tr><td>FY2023</td><td>8,816</td><td>1,348</td><td>34.9%</td><td>43%</td><td>2.2x</td><td>36.3x</td><td>47.3%</td><td>20.4%</td></tr>
+            <tr><td>FY2024</td><td>9,597</td><td>1,572</td><td>36.4%</td><td>43%</td><td>2.2x</td><td>44.2x</td><td>48.8%</td><td>21.6%</td></tr>
+            <tr><td>FY2025</td><td>10,340</td><td>1,812</td><td>38.7%</td><td>42%</td><td>2.2x</td><td>35.6x</td><td>50.0%</td><td>22.8%</td></tr>
+        </table>
+
+        <div class="chart-container">
+            <canvas id="roeChart"></canvas>
+        </div>
+        <div class="chart-container">
+            <canvas id="debtChart"></canvas>
+        </div>
+        <div class="chart-container">
+            <canvas id="peChart"></canvas>
+        </div>
+
+        <div class="highlight">
+            <strong>巴菲特/芒格视角：</strong><br>
+            1. <strong>ROE持续高企</strong>：10年平均ROE约31%，远超15%的"好公司"门槛。FY2017年ROE骤降至20.9%是因为收购G&K Services导致商誉大增、权益膨胀，之后逐步恢复<br>
+            2. <strong>杠杆适度</strong>：权益乘数从2.6x降至2.2x，说明ROE提升主要来自经营效率改善而非加杠杆——这是"真实的ROE"<br>
+            3. <strong>利润率持续扩张</strong>：营业利润率从16%升至22.8%，10年提升680个基点，体现了规模效应和定价权<br>
+            4. <strong>PE估值持续走高</strong>：从21x升至35-44x，市场给予越来越高的溢价——但这也意味着安全边际在缩小
+        </div>
+    </div>
+
+    <!-- 第五章：竞争分析 -->
+    <div class="info-box">
+        <h2>五、竞争分析</h2>
+
+        <h3>5.1 主要竞争对手</h3>
+        <table>
+            <tr><th>竞争对手</th><th>年营收</th><th>市场份额</th><th>主要业务</th><th>与Cintas的差异</th></tr>
+            <tr>
+                <td><strong>UniFirst (UNF)</strong></td>
+                <td>~$24亿</td>
+                <td>~12%</td>
+                <td>制服租赁与设施服务</td>
+                <td>规模仅为Cintas的1/4，利润率更低（营业利润率~8% vs Cintas 22.8%），但债务极低（D/E<10%）。<strong>2026年Cintas宣布以$55亿收购UniFirst，正在反垄断审查中。</strong></td>
+            </tr>
+            <tr>
+                <td><strong>Elevate Services（前Aramark Uniform）</strong></td>
+                <td>~$20亿</td>
+                <td>~10%</td>
+                <td>制服租赁</td>
+                <td>2023年Aramark制服业务分拆后与Clean Uniform合并，目前处于整合期</td>
+            </tr>
+            <tr>
+                <td><strong>Vestis (VSTS)</strong></td>
+                <td>~$28亿</td>
+                <td>~8%</td>
+                <td>制服租赁与设施服务</td>
+                <td>2023年从Aramark分拆上市，目前处于转型期，运营效率较低</td>
+            </tr>
+            <tr>
+                <td><strong>Alsco</strong></td>
+                <td>~$15亿（私有）</td>
+                <td>~5%</td>
+                <td>制服与布草租赁</td>
+                <td>家族企业，主要在餐饮和医疗布草领域</td>
+            </tr>
+            <tr>
+                <td><strong>区域小型运营商</strong></td>
+                <td>合计~$50亿</td>
+                <td>~30%</td>
+                <td>本地制服/布草服务</td>
+                <td>高度分散，是Cintas收购整合的主要对象</td>
+            </tr>
+        </table>
+
+        <h3>5.2 市场份额</h3>
+        <div class="highlight">
+            <strong>北美制服租赁市场格局（2025年）：</strong><br>
+            - 全球制服租赁市场规模约$148亿（2025年），北美占36.2%约$54亿<br>
+            - Cintas在北美市场份额约<strong>30%</strong>，是绝对的行业龙头<br>
+            - 前三大（Cintas + UniFirst + Elevate）合计占约70%<br>
+            - 其余30%由数千家小型区域运营商瓜分——高度分散，整合空间巨大
+        </div>
+
+        <h3>5.3 经济护城河分析</h3>
+        <table>
+            <tr><th>护城河维度</th><th>评级</th><th>分析</th></tr>
+            <tr><td><strong>规模优势</strong></td><td><span class="tag tag-green">极强</span></td><td>500+服务网点、48,000+员工、100万+客户，规模是第二大竞争对手的4倍。规模带来采购折扣、路线密度和品牌认知度</td></tr>
+            <tr><td><strong>路线密度</strong></td><td><span class="tag tag-green">极强</span></td><td>这是Cintas最核心的护城河。每辆卡车每天服务的客户密度越高，单次配送成本越低。新进入者无法在短期内复制这种密度</td></tr>
+            <tr><td><strong>转换成本</strong></td><td><span class="tag tag-green">强</span></td><td>更换制服供应商需要重新量体裁衣、制作新制服、协调服务切换，成本和麻烦远超节省的费用</td></tr>
+            <tr><td><strong>品牌力</strong></td><td><span class="tag tag-orange">中等</span></td><td>Cintas在B2B领域有较高知名度，但制服服务不是消费者品牌，品牌溢价有限</td></tr>
+            <tr><td><strong>网络效应</strong></td><td><span class="tag tag-red">弱</span></td><td>更多客户不直接让现有客户受益（不像社交网络），但间接通过路线密度降低成本</td></tr>
+            <tr><td><strong>专利/知识产权</strong></td><td><span class="tag tag-red">弱</span></td><td>制服清洗和配送没有专利保护，但SmartTruck路线优化系统和SAP系统构成技术壁垒</td></tr>
+        </table>
+
+        <div class="highlight">
+            <strong>护城河总结：</strong>Cintas的护城河本质上是<strong>"路线密度+规模+转换成本"</strong>的三重组合。这不是一个"科技护城河"，而是一个"运营护城河"——需要几十年时间、数十亿美元投入才能建立。正如芒格所说："有些竞争优势不是来自专利或技术，而是来自日复一日的运营积累。"
+        </div>
+    </div>
+
+    <!-- 第六章：利润分配分析 -->
+    <div class="info-box">
+        <h2>六、利润分配分析（FY2016-FY2025）</h2>
+
+        <table>
+            <tr><th>财年</th><th>净利润($M)</th><th>分红($M)</th><th>回购($M)</th><th>资本开支($M)</th><th>收购($M)</th><th>留存金额($M)</th><th>留存率</th></tr>
+            <tr><td>FY2016</td><td>694</td><td>115</td><td>312</td><td>254</td><td>2,070</td><td>579</td><td>83%</td></tr>
+            <tr><td>FY2017</td><td>481</td><td>140</td><td>440</td><td>289</td><td>2,680</td><td>341</td><td>71%</td></tr>
+            <tr><td>FY2018</td><td>843</td><td>175</td><td>530</td><td>304</td><td>—</td><td>668</td><td>79%</td></tr>
+            <tr><td>FY2019</td><td>885</td><td>220</td><td>580</td><td>331</td><td>40</td><td>665</td><td>75%</td></tr>
+            <tr><td>FY2020</td><td>876</td><td>265</td><td>490</td><td>356</td><td>20</td><td>611</td><td>70%</td></tr>
+            <tr><td>FY2021</td><td>1,111</td><td>285</td><td>490</td><td>336</td><td>85</td><td>826</td><td>74%</td></tr>
+            <tr><td>FY2022</td><td>1,236</td><td>390</td><td>620</td><td>372</td><td>130</td><td>846</td><td>68%</td></tr>
+            <tr><td>FY2023</td><td>1,348</td><td>450</td><td>660</td><td>387</td><td>155</td><td>898</td><td>67%</td></tr>
+            <tr><td>FY2024</td><td>1,572</td><td>531</td><td>1,000</td><td>410</td><td>187</td><td>1,041</td><td>66%</td></tr>
+            <tr><td>FY2025</td><td>1,812</td><td>612</td><td>679</td><td>409</td><td>233</td><td>1,200</td><td>66%</td></tr>
+        </table>
+
+        <div class="highlight">
+            <strong>资本配置评价：</strong><br>
+            1. <strong>分红</strong>：42年连续增长，股息贵族成员。但股息率仅~1%，分红占净利润约33-35%，属于"适度分红+大量回购"模式<br>
+            2. <strong>回购</strong>：10年累计回购约$53亿，FY2024年回购$10亿（平均价$609/股，拆股前约$152/股），FY2025年回购$6.79亿（平均价$179/股）。<span class="tag tag-orange">注意：当前PE 35-40x，回购价格偏高，巴菲特不赞成在高估值时大量回购</span><br>
+            3. <strong>收购</strong>：FY2016-2017年大举收购（G&K Services $20亿+），之后转为小型"补强型"收购（每年$1-2亿），策略更谨慎<br>
+            4. <strong>资本开支</strong>：维持在营收的4%左右，属于轻资本开支模式，自由现金流转化率极高（FY2025 FCF $16亿，FCF/净利润 88%）<br>
+            5. <strong>可持续增长率</strong> = ROE x 留存率 = 38.7% x 66% = <strong>25.5%</strong>——理论上Cintas可以不靠外部融资实现25%的增长
+        </div>
+
+        <div class="highlight" style="border-left-color:#e74c3c;">
+            <strong>回购时机问题：</strong>Cintas在FY2024年以平均$609/股（拆股前）回购了$10亿股票，当时PE约44x。2026年6月股价约$171（拆股后），意味着回购价约$684/股（拆股前等价），目前股价已下跌约20%。在高估值时大量回购，实质上是在"高位接盘"——这是巴菲特和芒格最反对的资本配置方式。相比之下，如果Cintas在2020年PE 30x时回购更多股票，效果会好得多。
+        </div>
+    </div>
+
+    <!-- 第七章：投资总结 -->
+    <div class="info-box">
+        <h2>七、投资总结</h2>
+
+        <h3>7.1 各维度评分</h3>
+        <table>
+            <tr><th>维度</th><th>评分</th><th>说明</th></tr>
+            <tr><td>业务可理解性</td><td><span class="tag tag-green">5/5</span></td><td>商业模式简单清晰：收脏衣服→洗干净→送回去，按月收费。任何人都能理解</td></tr>
+            <tr><td>护城河宽度</td><td><span class="tag tag-green">4/5</span></td><td>路线密度+规模+转换成本构成强护城河，但不是不可逾越的科技壁垒</td></tr>
+            <tr><td>资本配置</td><td><span class="tag tag-orange">3/5</span></td><td>整体稳健，但高估值时大量回购是明显的失误。收购策略从激进转为谨慎是正确的</td></tr>
+            <tr><td>财务安全</td><td><span class="tag tag-green">4/5</span></td><td>负债率适中（D/E 0.73），利息覆盖倍数26x，现金流充沛。但UniFirst收购将增加$55亿债务</td></tr>
+            <tr><td>增长前景</td><td><span class="tag tag-green">4/5</span></td><td>有机增长7-8%+交叉销售+收购整合+定价权，长期EPS增速9-10%可期</td></tr>
+            <tr><td>估值吸引力</td><td><span class="tag tag-red">2/5</span></td><td>PE 35-36x，远高于历史均值（25-30x），安全边际不足</td></tr>
+        </table>
+
+        <h3>7.2 估值对比</h3>
+        <table>
+            <tr><th>公司</th><th>PE</th><th>PS</th><th>营业利润率</th><th>营收增速</th></tr>
+            <tr><td><strong>Cintas (CTAS)</strong></td><td>35.6x</td><td>6.8x</td><td>22.8%</td><td>+7.7%</td></tr>
+            <tr><td>UniFirst (UNF)</td><td>25.0x</td><td>1.3x</td><td>~8%</td><td>+5%</td></tr>
+            <tr><td>Vestis (VSTS)</td><td>~15x</td><td>0.8x</td><td>~10%</td><td>+3%</td></tr>
+            <tr><td>ABM Industries</td><td>~18x</td><td>0.6x</td><td>~5%</td><td>+4%</td></tr>
+        </table>
+
+        <h3>7.3 关键风险</h3>
+        <ul>
+            <li><span class="tag tag-red">宏观经济</span>：Cintas的营收与就业人数正相关。经济衰退→企业裁员→制服需求下降。FY2020年营收仅+0.4%（疫情）</li>
+            <li><span class="tag tag-red">UniFirst收购风险</span>：$55亿收购将使债务翻倍，FTC反垄断审查可能要求剥离部分业务。整合风险也不容忽视</li>
+            <li><span class="tag tag-orange">劳动力成本</span>：48,000名员工中大量是蓝领工人，最低工资上涨和劳动力短缺推高成本</li>
+            <li><span class="tag tag-orange">能源价格</span>：洗衣和配送都是能源密集型业务，柴油和天然气价格波动影响利润率</li>
+            <li><span class="tag tag-orange">估值风险</span>：PE 35-36x隐含了持续高增长的预期，任何增长放缓都可能导致估值压缩</li>
+        </ul>
+
+        <h3>7.4 关键催化剂</h3>
+        <ul>
+            <li><span class="tag tag-green">UniFirst收购完成</span>：如果顺利通过反垄断审查并成功整合，将显著提升市场份额和路线密度</li>
+            <li><span class="tag tag-green">急救/消防交叉销售</span>：这两个高利润率板块增速15-18%，持续拉动整体利润率提升</li>
+            <li><span class="tag tag-green">SmartTruck+SAP</span>：技术投资提升路线效率和客户体验，长期降低运营成本</li>
+            <li><span class="tag tag-green">行业整合</span>：30%市场由小型运营商占据，Cintas可以持续通过小型收购提升密度</li>
+        </ul>
+
+        <h3>7.5 综合投资评级</h3>
+        <div class="highlight" style="border-left-color:#e67e22;">
+            <strong>评级：观望（Hold）</strong><br><br>
+            <strong>理由：</strong>Cintas是一家极其优秀的企业——护城河深厚、现金流充沛、管理层稳健、增长可预期。从业务质量角度看，它是巴菲特梦寐以求的"简单、可理解、有持久竞争优势"的公司。<br><br>
+            <strong>但问题在于价格。</strong>当前PE 35-36x，远高于历史均值25-30x。以FY2025 EPS $4.40计算，合理估值区间应在$110-132（25-30x PE），而当前股价$171意味着市场已经定价了未来5-7年的增长。巴菲特说："以合理的价格买入优秀的企业，远好于以优秀的价格买入平庸的企业。"但Cintas目前的价格已经超出了"合理"的范畴。<br><br>
+            <strong>理想买入价：</strong>$110-130（PE 25-30x），对应30-40%的下跌空间<br>
+            <strong>当前价格：</strong>$171（PE 35.6x）——安全边际不足<br>
+            <strong>5年目标价：</strong>$250-280（假设EPS年增9-10% + PE维持30-33x）
+        </div>
     </div>
 
     <script>
+        // ROE Chart
+        new Chart(document.getElementById('roeChart'), {
+            type: 'line',
+            data: {
+                labels: ['FY16','FY17','FY18','FY19','FY20','FY21','FY22','FY23','FY24','FY25'],
+                datasets: [{
+                    label: 'ROE (%)',
+                    data: [37.6, 20.9, 27.9, 29.5, 27.1, 30.1, 37.4, 34.9, 36.4, 38.7],
+                    borderColor: '#2e86c1',
+                    backgroundColor: 'rgba(46,134,193,0.1)',
+                    fill: true,
+                    tension: 0.3
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { title: { display: true, text: 'Cintas ROE走势（%）' } },
+                scales: { y: { min: 15, max: 45 } }
+            }
+        });
+
+        // Debt Chart
+        new Chart(document.getElementById('debtChart'), {
+            type: 'line',
+            data: {
+                labels: ['FY16','FY17','FY18','FY19','FY20','FY21','FY22','FY23','FY24','FY25'],
+                datasets: [{
+                    label: '负债/资产比 (%)',
+                    data: [48, 55, 51, 49, 49, 45, 44, 43, 43, 42],
+                    borderColor: '#e74c3c',
+                    backgroundColor: 'rgba(231,76,60,0.1)',
+                    fill: true,
+                    tension: 0.3
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { title: { display: true, text: 'Cintas负债/资产比走势（%）' } },
+                scales: { y: { min: 35, max: 60 } }
+            }
+        });
+
+        // PE Chart
+        new Chart(document.getElementById('peChart'), {
+            type: 'line',
+            data: {
+                labels: ['FY16','FY17','FY18','FY19','FY20','FY21','FY22','FY23','FY24','FY25'],
+                datasets: [{
+                    label: 'PE (x)',
+                    data: [21.4, 21.5, 27.2, 25.9, 30.8, 32.2, 35.5, 36.3, 44.2, 35.6],
+                    borderColor: '#27ae60',
+                    backgroundColor: 'rgba(39,174,96,0.1)',
+                    fill: true,
+                    tension: 0.3
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { title: { display: true, text: 'Cintas PE走势（x）' } },
+                scales: { y: { min: 15, max: 50 } }
+            }
+        });
+
+        // Topbar scoring logic - unified with stock_scores_v1
         (function(){
             var SCORE_KEY='stock_scores_v1';
             var code=document.getElementById('topbarCode').textContent.trim();
