@@ -4,3 +4,4 @@ __pycache__/
 *.csv
 .trae/
 *.ps1
+backups/

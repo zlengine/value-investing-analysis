@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>网站更新日志</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f5f5f5;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .back-link {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .back-link a {
+            color: #4CAF50;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        .back-link a:hover {
+            text-decoration: underline;
+        }
+        .log-entry {
+            background-color: white;
+            padding: 20px;
+            margin: 15px 0;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border-radius: 5px;
+            border-left: 4px solid #4CAF50;
+        }
+        .log-entry.destructive {
+            border-left-color: #e74c3c;
+        }
+        .log-entry.update {
+            border-left-color: #3498db;
+        }
+        .log-entry.create {
+            border-left-color: #27ae60;
+        }
+        .log-entry.fix {
+            border-left-color: #f39c12;
+        }
+        .log-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .log-date {
+            font-weight: 700;
+            font-size: 16px;
+            color: #333;
+        }
+        .log-type {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 600;
+            color: white;
+        }
+        .log-type.create { background-color: #27ae60; }
+        .log-type.update { background-color: #3498db; }
+        .log-type.fix { background-color: #f39c12; }
+        .log-type.destructive { background-color: #e74c3c; }
+        .log-files {
+            margin: 8px 0;
+            padding: 10px;
+            background-color: #f8f9fa;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 13px;
+        }
+        .log-files .added { color: #27ae60; }
+        .log-files .modified { color: #3498db; }
+        .log-files .deleted { color: #e74c3c; }
+        .log-desc {
+            color: #555;
+            line-height: 1.6;
+            font-size: 14px;
+        }
+        .log-desc ul {
+            margin: 5px 0;
+            padding-left: 20px;
+        }
+        .stats-bar {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 20px 0;
+            padding: 15px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border-radius: 5px;
+        }
+        .stat-item {
+            text-align: center;
+        }
+        .stat-num {
+            font-size: 24px;
+            font-weight: 700;
+            color: #4CAF50;
+        }
+        .stat-label {
+            font-size: 12px;
+            color: #888;
+        }
+        .backup-info {
+            background-color: #fff3cd;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+            border-left: 4px solid #f39c12;
+        }
+        .backup-info h3 {
+            margin-top: 0;
+            color: #856404;
+        }
+    </style>
+</head>
+<body>
+    <div class="back-link">
+        <a href="index.html">&#8592; 返回首页</a>
+    </div>
+
+    <h1>网站更新日志</h1>
+
+    <div class="stats-bar">
+        <div class="stat-item">
+            <div class="stat-num" id="totalEntries">0</div>
+            <div class="stat-label">总更新次数</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-num" id="totalFiles">0</div>
+            <div class="stat-label">涉及文件数</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-num" id="totalPages">0</div>
+            <div class="stat-label">公司页面数</div>
+        </div>
+    </div>
+
+    <div class="backup-info">
+        <h3>备份系统说明</h3>
+        <p>每次更新前自动在 <code>backups/</code> 目录创建带时间戳的备份快照。</p>
+        <p>备份命名格式：<code>backups/YYYYMMDD_HHMMSS/</code></p>
+        <p>恢复方法：将备份目录中的文件复制回项目根目录即可。</p>
+    </div>
+
+    <!-- 更新日志条目 - 按时间倒序排列，最新在最上面 -->
+
+    <div class="log-entry create">
+        <div class="log-header">
+            <span class="log-date">2026-06-21</span>
+            <span class="log-type create">新建</span>
+        </div>
+        <div class="log-desc">
+            <ul>
+                <li>创建BLBD（Blue Bird）完整价值投资分析页面</li>
+                <li>创建LII（Lennox International）完整价值投资分析页面</li>
+                <li>创建19个公司占位页面：ATMU, BAH, BR, CHH, CHKP, CTAS, EXEL, GWW, HESM, IDCC, IT, MANH, MUSA, QLYS, RACE, RCI, ROST, TJX, ULTA</li>
+                <li>修复index.html中HESM链接（hems.html → hesm.html）</li>
+                <li>更新scorer.html添加所有新公司条目</li>
+            </ul>
+        </div>
+        <div class="log-files">
+            <span class="added">+ blbd.html</span><br>
+            <span class="added">+ lii.html</span><br>
+            <span class="added">+ atmu.html, bah.html, br.html, chh.html, chkp.html, ctas.html, exel.html, gww.html, hesm.html, idcc.html, it.html, manh.html, musa.html, qlys.html, race.html, rci.html, rost.html, tjx.html, ulta.html</span><br>
+            <span class="modified">~ index.html</span><br>
+            <span class="modified">~ scorer.html</span>
+        </div>
+    </div>
+
+    <div class="log-entry create">
+        <div class="log-header">
+            <span class="log-date">2026-06-20</span>
+            <span class="log-type create">新建</span>
+        </div>
+        <div class="log-desc">
+            <ul>
+                <li>创建FTDR（Frontdoor）价值投资分析页面</li>
+            </ul>
+        </div>
+        <div class="log-files">
+            <span class="added">+ ftdr.html</span><br>
+            <span class="modified">~ index.html</span>
+        </div>
+    </div>
+
+    <div class="log-entry create">
+        <div class="log-header">
+            <span class="log-date">2026-06-20</span>
+            <span class="log-type create">新建</span>
+        </div>
+        <div class="log-desc">
+            <ul>
+                <li>创建LRCX（Lam Research）价值投资分析页面</li>
+                <li>更新scorer.html添加LRCX条目</li>
+            </ul>
+        </div>
+        <div class="log-files">
+            <span class="added">+ lrcx.html</span><br>
+            <span class="modified">~ scorer.html</span>
+        </div>
+    </div>
+
+    <div class="log-entry create">
+        <div class="log-header">
+            <span class="log-date">2026-06-20</span>
+            <span class="log-type create">新建</span>
+        </div>
+        <div class="log-desc">
+            <ul>
+                <li>创建IDXX、ROL分析页面</li>
+                <li>创建EME、FIX、IESC分析页面</li>
+                <li>index.html批量添加公司条目（BLBD, CTAS, GWW等20+公司）</li>
+                <li><strong style="color:#e74c3c;">注意：此次index添加了20+公司链接，但仅创建了5个html文件，其余页面未创建导致404</strong></li>
+            </ul>
+        </div>
+        <div class="log-files">
+            <span class="added">+ idxx.html, rol.html, eme.html, fix.html, iesc.html</span><br>
+            <span class="modified">~ index.html（添加20+公司链接，但多数无对应页面）</span>
+        </div>
+    </div>
+
+    <div class="log-entry update">
+        <div class="log-header">
+            <span class="log-date">2026-06-20</span>
+            <span class="log-type update">更新</span>
+        </div>
+        <div class="log-desc">
+            <ul>
+                <li>统一打分系统localStorage key为stock_scores_v1</li>
+                <li>创建scorer.html打分管理页面</li>
+            </ul>
+        </div>
+        <div class="log-files">
+            <span class="added">+ scorer.html</span><br>
+            <span class="modified">~ 所有公司页面（统一topbar脚本）</span>
+        </div>
+    </div>
+
+    <div class="log-entry create">
+        <div class="log-header">
+            <span class="log-date">2026-06-20</span>
+            <span class="log-type create">新建</span>
+        </div>
+        <div class="log-desc">
+            <ul>
+                <li>创建ZTS（Zoetis）分析页面</li>
+                <li>添加ZTS vs IDXX对比分析</li>
+            </ul>
+        </div>
+        <div class="log-files">
+            <span class="added">+ zts.html</span><br>
+            <span class="modified">~ index.html</span>
+        </div>
+    </div>
+
+    <div class="log-entry create">
+        <div class="log-header">
+            <span class="log-date">2026-06-19</span>
+            <span class="log-type create">新建</span>
+        </div>
+        <div class="log-desc">
+            <ul>
+                <li>创建NVO（Novo Nordisk）分析页面</li>
+            </ul>
+        </div>
+        <div class="log-files">
+            <span class="added">+ nvo.html</span><br>
+            <span class="modified">~ index.html</span>
+        </div>
+    </div>
+
+    <div class="log-entry create">
+        <div class="log-header">
+            <span class="log-date">2026-06-19</span>
+            <span class="log-type create">新建</span>
+        </div>
+        <div class="log-desc">
+            <ul>
+                <li>创建BKE（Buckle）分析页面</li>
+            </ul>
+        </div>
+        <div class="log-files">
+            <span class="added">+ bke.html</span><br>
+            <span class="modified">~ index.html</span>
+        </div>
+    </div>
+
+    <script>
+        // Count stats
+        var entries = document.querySelectorAll('.log-entry');
+        document.getElementById('totalEntries').textContent = entries.length;
+
+        var fileSet = new Set();
+        entries.forEach(function(e) {
+            var files = e.querySelectorAll('.log-files span');
+            files.forEach(function(f) {
+                var text = f.textContent.replace(/^[+~\-]\s*/, '');
+                text.split(', ').forEach(function(fname) {
+                    fname = fname.trim();
+                    if (fname.endsWith('.html') && !fname.includes(' ')) {
+                        fileSet.add(fname);
+                    }
+                });
+            });
+        });
+        document.getElementById('totalFiles').textContent = fileSet.size;
+
+        // Count company pages (html files that are not index/scorer/changelog/financial)
+        var companyPages = 0;
+        fileSet.forEach(function(f) {
+            if (f !== 'index.html' && f !== 'scorer.html' && f !== 'changelog.html' && f !== 'financial_analysis.html') {
+                companyPages++;
+            }
+        });
+        document.getElementById('totalPages').textContent = companyPages;
+    </script>
+</body>
+</html>
