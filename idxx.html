@@ -1048,26 +1048,29 @@
             }
         });
 
-        // Topbar scoring logic - unified with stock_scores_v1
-        (function(){
-            var SCORE_KEY='stock_scores_v1';
-            var code=document.getElementById('topbarCode').textContent.trim();
-            function getScores(){try{var d=localStorage.getItem(SCORE_KEY);return d?JSON.parse(d):{};}catch(e){return {};}}
-            function saveScores(s){localStorage.setItem(SCORE_KEY,JSON.stringify(s));}
-            function starsHTML(val){var h='';for(var i=1;i<=5;i++){h+='<span class="'+(i<=val?'on':'off')+'">\u2605</span>';}return h;}
-            function valClass(v){return v>=5?'s5':v>=4?'s4':v>=3?'s3':v>=2?'s2':'s1';}
-            function renderDisplay(){
-                var sc=getScores()[code]||{};
-                var f=sc.fundamental||0,p=sc.price||0;
-                document.getElementById('topbarFVal').textContent=f>0?f:'-';
-                document.getElementById('topbarFVal').className='topbar-score-val'+(f>0?' '+valClass(f):'');
-                document.getElementById('topbarFStars').innerHTML=starsHTML(f);
-                document.getElementById('topbarPVal').textContent=p>0?p:'-';
-                document.getElementById('topbarPVal').className='topbar-score-val'+(p>0?' '+valClass(p):'');
-                document.getElementById('topbarPStars').innerHTML=starsHTML(p);
-            }
-            window.topbarEdit=function(){
-                var sc=getScores()[code]||{};
+    <script src="scores_client.js"></script>
+    <script>
+    (function(){
+        var code=document.getElementById('topbarCode').textContent.trim();
+        function starsHTML(val){var h='';for(var i=1;i<=5;i++){h+='<span class="'+(i<=val?'on':'off')+'">★</span>';}return h;}
+        function valClass(v){return v>=5?'s5':v>=4?'s4':v>=3?'s3':v>=2?'s2':'s1';}
+        function renderDisplay(f,p){
+            document.getElementById('topbarFVal').textContent=f>0?f:'-';
+            document.getElementById('topbarFVal').className='topbar-score-val'+(f>0?' '+valClass(f):'');
+            document.getElementById('topbarFStars').innerHTML=starsHTML(f);
+            document.getElementById('topbarPVal').textContent=p>0?p:'-';
+            document.getElementById('topbarPVal').className='topbar-score-val'+(p>0?' '+valClass(p):'');
+            document.getElementById('topbarPStars').innerHTML=starsHTML(p);
+        }
+        function renderFromDB(){
+            ScoresDB.getAll(function(scores){
+                var sc=scores[code]||{};
+                renderDisplay(sc.fundamental||0, sc.price||0);
+            });
+        }
+        window.topbarEdit=function(){
+            ScoresDB.getAll(function(scores){
+                var sc=scores[code]||{};
                 document.getElementById('topbarFSel').value=sc.fundamental||0;
                 document.getElementById('topbarPSel').value=sc.price||0;
                 document.getElementById('topbarFSel').style.display='';
@@ -1079,27 +1082,44 @@
                 document.getElementById('topbarPVal').style.display='none';
                 document.getElementById('topbarFStars').style.display='none';
                 document.getElementById('topbarPStars').style.display='none';
-            };
-            window.topbarSave=function(){
-                var f=parseInt(document.getElementById('topbarFSel').value);
-                var p=parseInt(document.getElementById('topbarPSel').value);
-                var sc=getScores();if(!sc[code])sc[code]={};
-                sc[code].fundamental=f;sc[code].price=p;sc[code].updated=new Date().toISOString();
-                saveScores(sc);topbarCancel();renderDisplay();
-            };
-            window.topbarCancel=function(){
-                document.getElementById('topbarFSel').style.display='none';
-                document.getElementById('topbarPSel').style.display='none';
-                document.getElementById('topbarEditBtn').style.display='';
-                document.getElementById('topbarSaveBtn').style.display='none';
-                document.getElementById('topbarCancelBtn').style.display='none';
-                document.getElementById('topbarFVal').style.display='';
-                document.getElementById('topbarPVal').style.display='';
-                document.getElementById('topbarFStars').style.display='';
-                document.getElementById('topbarPStars').style.display='';
-            };
-            renderDisplay();
-        })();
+            });
+        };
+        window.topbarSave=function(){
+            var f=parseInt(document.getElementById('topbarFSel').value);
+            var p=parseInt(document.getElementById('topbarPSel').value);
+            ScoresDB.save(code, f, p, function(result){
+                if(result.success){
+                    topbarCancel();
+                    renderFromDB();
+                } else {
+                    alert('保存失败：'+result.error+'
+
+请确保已启动本地服务器：python server.py');
+                    topbarCancel();
+                }
+            });
+        };
+        window.topbarCancel=function(){
+            document.getElementById('topbarFSel').style.display='none';
+            document.getElementById('topbarPSel').style.display='none';
+            document.getElementById('topbarEditBtn').style.display='';
+            document.getElementById('topbarSaveBtn').style.display='none';
+            document.getElementById('topbarCancelBtn').style.display='none';
+            document.getElementById('topbarFVal').style.display='';
+            document.getElementById('topbarPVal').style.display='';
+            document.getElementById('topbarFStars').style.display='';
+            document.getElementById('topbarPStars').style.display='';
+        };
+        // 初始加载
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', renderFromDB);
+        } else {
+            renderFromDB();
+        }
+        // 定期刷新（同步其他页面的修改）
+        setInterval(renderFromDB, 5000);
+    })();
+    </script>
     </script>
 </body>
 </html>

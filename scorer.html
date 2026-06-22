@@ -3,58 +3,168 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>股票打分系统</title>
+    <title>股票打分系统 - 美股价值投资分析</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📊</text></svg>">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f0f2f5; color: #333; min-height: 100vh; }
-        .header { background: linear-gradient(135deg, #1a5276, #2e86c1); color: white; padding: 30px 20px; text-align: center; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: #f5f7fa;
+            color: #333;
+            padding-top: 48px;
+        }
+        .top-nav-bar {
+            position: fixed; top: 0; left: 0; right: 0;
+            background: linear-gradient(90deg, #1a5276, #2e86c1);
+            padding: 8px 20px;
+            display: flex; align-items: center; gap: 10px;
+            z-index: 1000;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+        }
+        .top-nav-link {
+            color: white; text-decoration: none;
+            padding: 6px 14px; border-radius: 6px;
+            font-size: 13px; font-weight: 500;
+            transition: background 0.2s;
+        }
+        .top-nav-link:hover { background: rgba(255,255,255,0.2); }
+        .header {
+            background: linear-gradient(135deg, #1a5276 0%, #2e86c1 100%);
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+        }
         .header h1 { font-size: 28px; margin-bottom: 8px; }
-        .header p { font-size: 14px; opacity: 0.85; }
-        .container { max-width: 1000px; margin: 0 auto; padding: 20px; }
-        .back-link { display: inline-block; margin-bottom: 15px; color: #1a5276; text-decoration: none; font-size: 14px; font-weight: 600; }
-        .back-link:hover { text-decoration: underline; }
-        .stats-bar { display: flex; gap: 15px; margin-bottom: 20px; flex-wrap: wrap; }
-        .stat-card { background: white; border-radius: 10px; padding: 15px 20px; flex: 1; min-width: 140px; box-shadow: 0 1px 4px rgba(0,0,0,0.08); text-align: center; }
-        .stat-card .stat-num { font-size: 28px; font-weight: 700; }
-        .stat-card .stat-label { font-size: 12px; color: #888; margin-top: 4px; }
-        .filter-bar { display: flex; gap: 10px; margin-bottom: 15px; flex-wrap: wrap; align-items: center; }
-        .filter-bar label { font-size: 13px; color: #666; font-weight: 600; }
-        .filter-bar select { padding: 6px 10px; border: 1px solid #ddd; border-radius: 6px; font-size: 13px; }
-        .score-table { width: 100%; border-collapse: collapse; background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,0.08); }
-        .score-table th { background: #f8f9fa; padding: 12px 15px; text-align: left; font-size: 13px; color: #555; border-bottom: 2px solid #e9ecef; cursor: pointer; user-select: none; }
-        .score-table th:hover { background: #eef1f5; }
-        .score-table td { padding: 10px 15px; border-bottom: 1px solid #f0f0f0; font-size: 14px; }
-        .score-table tr:hover { background: #f8f9ff; }
+        .header p { font-size: 14px; opacity: 0.9; }
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+        .back-link {
+            display: inline-block;
+            color: #1a5276;
+            text-decoration: none;
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+        .stats-bar {
+            display: flex; gap: 15px; flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+        .stat-card {
+            background: white;
+            padding: 15px 20px;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            flex: 1; min-width: 140px;
+            text-align: center;
+        }
+        .stat-num { font-size: 24px; font-weight: 700; color: #1a5276; }
+        .stat-label { font-size: 12px; color: #666; margin-top: 4px; }
+        .filter-bar {
+            background: white;
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            display: flex; gap: 12px; align-items: center; flex-wrap: wrap;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+        .filter-bar label { font-size: 13px; color: #555; }
+        .filter-bar select {
+            padding: 5px 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 13px;
+        }
+        .score-table {
+            width: 100%;
+            background: white;
+            border-collapse: collapse;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        .score-table th {
+            background: #1a5276;
+            color: white;
+            padding: 12px 10px;
+            text-align: left;
+            font-size: 13px;
+            cursor: pointer;
+            user-select: none;
+        }
+        .score-table th.sort-active { background: #2e86c1; }
+        .score-table th.sort-active.desc::after { content: ' ↓'; }
+        .score-table th.sort-active:not(.desc)::after { content: ' ↑'; }
+        .score-table td {
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+            font-size: 13px;
+        }
+        .score-table tr:hover { background: #f9f9f9; }
         .score-table a { color: #1a5276; text-decoration: none; font-weight: 600; }
-        .score-table a:hover { text-decoration: underline; }
-        .score-val { font-weight: 700; font-size: 16px; }
-        .score-val.s5 { color: #51cf66; } .score-val.s4 { color: #69db7c; } .score-val.s3 { color: #ffd43b; } .score-val.s2 { color: #ffa94d; } .score-val.s1 { color: #ff6b6b; }
-        .stars { font-size: 12px; }
-        .stars .on { color: #f39c12; } .stars .off { color: #ddd; }
-        .no-score { color: #ccc; font-size: 13px; }
-        .edit-btn { padding: 4px 10px; border: 1px solid #1a5276; border-radius: 5px; background: white; color: #1a5276; font-size: 12px; cursor: pointer; font-weight: 600; }
-        .edit-btn:hover { background: #1a5276; color: white; }
-        .modal-overlay { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.4); z-index: 1000; align-items: center; justify-content: center; }
+        .score-val { font-weight: 700; font-size: 14px; }
+        .s5 { color: #1a8a4a; }
+        .s4 { color: #27ae60; }
+        .s3 { color: #f39c12; }
+        .s2 { color: #e67e22; }
+        .s1 { color: #c0392b; }
+        .stars { font-size: 11px; }
+        .stars .on { color: #f39c12; }
+        .stars .off { color: #ddd; }
+        .no-score { color: #ccc; }
+        .edit-btn {
+            background: #1a5276;
+            color: white;
+            border: none;
+            padding: 5px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+        .edit-btn:hover { background: #2e86c1; }
+        .empty-msg { text-align: center; color: #999; padding: 30px; }
+        .modal-overlay {
+            display: none;
+            position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 2000;
+            justify-content: center; align-items: center;
+        }
         .modal-overlay.active { display: flex; }
-        .modal { background: white; border-radius: 12px; padding: 25px; width: 320px; box-shadow: 0 10px 40px rgba(0,0,0,0.2); }
-        .modal h3 { margin-bottom: 15px; font-size: 18px; color: #1a5276; }
-        .modal label { display: block; font-size: 13px; color: #666; margin-bottom: 5px; font-weight: 600; }
-        .modal select { width: 100%; padding: 8px 10px; border: 1px solid #ddd; border-radius: 6px; font-size: 14px; margin-bottom: 12px; }
-        .modal-btns { display: flex; gap: 10px; margin-top: 15px; }
-        .modal-btns button { flex: 1; padding: 8px; border: none; border-radius: 6px; font-size: 14px; font-weight: 600; cursor: pointer; }
-        .btn-save { background: #27ae60; color: white; } .btn-save:hover { background: #219a52; }
-        .btn-cancel { background: #eee; color: #666; } .btn-cancel:hover { background: #ddd; }
-        .btn-delete { background: #e74c3c; color: white; } .btn-delete:hover { background: #c0392b; }
-        .sort-active::after { content: ' ↑'; font-size: 11px; }
-        .sort-active.desc::after { content: ' ↓'; font-size: 11px; }
-        .empty-msg { text-align: center; color: #999; padding: 40px; font-size: 15px; }
+        .modal {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            min-width: 320px;
+            max-width: 90%;
+        }
+        .modal h3 { margin-bottom: 15px; color: #1a5276; }
+        .modal label { display: block; margin: 10px 0 5px; font-size: 13px; color: #555; }
+        .modal select {
+            width: 100%; padding: 8px; border: 1px solid #ddd;
+            border-radius: 4px; font-size: 14px; margin-bottom: 10px;
+        }
+        .modal-buttons { display: flex; gap: 10px; margin-top: 15px; }
+        .btn-save { background: #27ae60; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; }
+        .btn-cancel { background: #999; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; }
+        .btn-delete { background: #c0392b; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; margin-right: auto; }
     </style>
 </head>
 <body>
+    <div class="top-nav-bar">
+        <span class="top-nav-link" style="background:#1a5276;cursor:pointer;" onclick="window.scrollTo({top:0,behavior:'smooth'})">📊 股票打分</span>
+        <a href="index.html" class="top-nav-link" style="background:#2c3e50;">← 首页</a>
+        <a href="financial_analysis.html" class="top-nav-link" style="background:#2e7d32;">📖 财务分析</a>
+        <a href="changelog.html" class="top-nav-link" style="background:#856404;">📋 更新日志</a>
+    </div>
+
     <div class="header">
         <h1>股票打分系统</h1>
         <p>对所有已分析公司进行基本面和价格评分，统一管理</p>
     </div>
+
     <div class="container">
         <a href="index.html" class="back-link">&larr; 返回首页</a>
 
@@ -65,63 +175,8 @@
             <select id="filterF"><option value="">全部</option><option value="1">1分+</option><option value="2">2分+</option><option value="3">3分+</option><option value="4">4分+</option><option value="5">5分</option><option value="0">未评分</option></select>
             <label>价格筛选:</label>
             <select id="filterP"><option value="">全部</option><option value="1">1分+</option><option value="2">2分+</option><option value="3">3分+</option><option value="4">4分+</option><option value="5">5分</option><option value="0">未评分</option></select>
-            <button onclick="toggleDiagPanel()" style="padding:5px 12px;border:1px solid #e74c3c;border-radius:6px;font-size:13px;background:#fdf2f2;color:#e74c3c;cursor:pointer;margin-left:auto;">🔧 打分诊断</button>
+            <span id="dbStatus" style="margin-left:auto;font-size:12px;color:#999;"></span>
         </div>
-    <div id="diagPanel" style="display:none;background:#fff3cd;border:1px solid #ffeaa7;border-radius:8px;padding:15px;margin-bottom:15px;">
-        <h3 style="margin:0 0 10px;font-size:15px;color:#856404;">打分数据诊断与恢复</h3>
-        <div id="diagStatus" style="font-size:13px;margin-bottom:10px;"></div>
-        <div style="display:flex;gap:10px;flex-wrap:wrap;">
-            <button onclick="diagCheck()" style="padding:6px 14px;border:1px solid #1a5276;border-radius:6px;font-size:13px;background:#1a5276;color:white;cursor:pointer;">检查打分数据</button>
-            <button onclick="diagExport()" style="padding:6px 14px;border:1px solid #27ae60;border-radius:6px;font-size:13px;background:#27ae60;color:white;cursor:pointer;">导出打分数据</button>
-            <button onclick="diagImport()" style="padding:6px 14px;border:1px solid #f39c12;border-radius:6px;font-size:13px;background:#f39c12;color:white;cursor:pointer;">导入打分数据</button>
-            <button onclick="toggleDiagPanel()" style="padding:6px 14px;border:1px solid #999;border-radius:6px;font-size:13px;background:#eee;color:#333;cursor:pointer;">关闭</button>
-        </div>
-        <textarea id="diagTextarea" style="display:none;width:100%;height:120px;margin-top:10px;font-size:12px;border:1px solid #ddd;border-radius:6px;padding:8px;" placeholder='粘贴打分数据JSON，格式：{"AAPL":{"fundamental":4,"price":3,"updated":"2026-06-01T10:00:00Z"},...}'></textarea>
-        <button id="diagImportBtn" onclick="diagDoImport()" style="display:none;padding:6px 14px;border:1px solid #27ae60;border-radius:6px;font-size:13px;background:#27ae60;color:white;cursor:pointer;margin-top:8px;">确认导入</button>
-    </div>
-    <script>
-    function toggleDiagPanel(){
-        var p=document.getElementById('diagPanel');
-        p.style.display=p.style.display==='none'?'block':'none';
-        if(p.style.display==='block')diagCheck();
-    }
-    function diagCheck(){
-        var s=localStorage.getItem('stock_scores_v1');
-        var el=document.getElementById('diagStatus');
-        if(!s){el.innerHTML='<span style="color:#e74c3c;font-weight:700;">⚠ localStorage中没有打分数据（stock_scores_v1 为空）</span><br><span style="color:#666;">可能原因：浏览器清除了数据、使用了不同浏览器/隐私模式、或file://协议的localStorage被禁用</span>';return;}
-        try{
-            var scores=JSON.parse(s);
-            var keys=Object.keys(scores);
-            var html='<span style="color:#27ae60;font-weight:700;">✓ 找到打分数据</span><br>';
-            html+='localStorage key: <code>stock_scores_v1</code><br>';
-            html+='已打分股票数: <strong>'+keys.length+'</strong><br>';
-            html+='<details><summary style="cursor:pointer;color:#1a5276;font-size:12px;">查看详细数据</summary><div style="font-size:11px;max-height:200px;overflow:auto;background:#f9f9f9;padding:8px;border-radius:4px;margin-top:5px;">';
-            keys.forEach(function(k){var sc=scores[k];html+=k+': 基本面='+(sc.fundamental||0)+' 价格='+(sc.price||0)+(sc.updated?' ('+sc.updated.substring(0,10)+')':'')+'<br>';});
-            html+='</div></details>';
-            el.innerHTML=html;
-        }catch(e){el.innerHTML='<span style="color:#e74c3c;">解析错误: '+e.message+'</span>';}
-    }
-    function diagExport(){
-        var s=localStorage.getItem('stock_scores_v1')||'{}';
-        var ta=document.getElementById('diagTextarea');
-        ta.style.display='block';ta.value=s;
-        ta.select();document.execCommand('copy');
-        alert('打分数据已复制到剪贴板！\n请保存到安全的地方。');
-    }
-    function diagImport(){
-        document.getElementById('diagTextarea').style.display='block';
-        document.getElementById('diagImportBtn').style.display='inline-block';
-    }
-    function diagDoImport(){
-        var ta=document.getElementById('diagTextarea');
-        try{
-            JSON.parse(ta.value);
-            localStorage.setItem('stock_scores_v1',ta.value);
-            alert('导入成功！页面将刷新。');
-            location.reload();
-        }catch(e){alert('JSON格式错误: '+e.message);}
-    }
-    </script>
 
         <table class="score-table">
             <thead>
@@ -146,7 +201,7 @@
             <select id="modalF"><option value="0">未评分</option><option value="1">1 - 很差</option><option value="2">2 - 较差</option><option value="3">3 - 一般</option><option value="4">4 - 较好</option><option value="5">5 - 优秀</option></select>
             <label>价格评分 (1-5)</label>
             <select id="modalP"><option value="0">未评分</option><option value="1">1 - 极贵</option><option value="2">2 - 偏贵</option><option value="3">3 - 合理</option><option value="4">4 - 偏低</option><option value="5">5 - 极便宜</option></select>
-            <div class="modal-btns">
+            <div class="modal-buttons">
                 <button class="btn-delete" id="modalDelete">删除</button>
                 <button class="btn-cancel" id="modalCancelBtn">取消</button>
                 <button class="btn-save" id="modalSaveBtn">保存</button>
@@ -154,13 +209,13 @@
         </div>
     </div>
 
+    <script src="scores_client.js"></script>
     <script>
     (function(){
-        var SCORE_KEY = 'stock_scores_v1';
         var sortState = { field: 'total', dir: 'desc' };
         var editingCode = null;
+        var currentScores = {};
 
-        // Stock list (synced with index.html)
         var stocks = [
             {code:'AAPL',name:'Apple',href:'aapl.html'},
             {code:'ACI',name:'Albertsons',href:'aci.html'},
@@ -177,36 +232,25 @@
             {code:'CMCSA',name:'Comcast',href:'cmcsa.html'},
             {code:'DECK',name:'Deckers',href:'deck.html'},
             {code:'DXCM',name:'Dexcom',href:'dxcm.html'},
-            {code:'FIS',name:'FIS',href:'fis.html'},
-            {code:'GIS',name:'General Mills',href:'gis.html'},
-            {code:'GOOG',name:'Alphabet',href:'goog.html'},
-            {code:'HRB',name:'H&R Block',href:'hrb.html'},
-            {code:'IDXX',name:'IDEXX',href:'idxx.html'},
-            {code:'INGR',name:'Ingredion',href:'ingr.html'},
-            {code:'JBS',name:'JBS',href:'jbs.html'},
-            {code:'KGC',name:'Kinross',href:'kgc.html'},
-            {code:'KSPI',name:'Kaspi',href:'kspi.html'},
-            {code:'KTB',name:'Kontoor',href:'ktb.html'},
-            {code:'FTDR',name:'Frontdoor',href:'ftdr.html'},
+            {code:'FIX',name:'Comfort Systems',href:'fix.html'},
+            {code:'FND',name:'Floor & Decor',href:'fnd.html'},
+            {code:'FRT',name:'Federal Realty',href:'frt.html'},
+            {code:'GPN',name:'Global Payments',href:'gpn.html'},
+            {code:'ICE',name:'Intercontinental Exchange',href:'ice.html'},
+            {code:'JNJ',name:'Johnson & Johnson',href:'jnj.html'},
+            {code:'KDP',name:'Keurig Dr Pepper',href:'kdp.html'},
             {code:'LDOS',name:'Leidos',href:'ldos.html'},
-            {code:'LRCX',name:'Lam Research',href:'lrcx.html'},
-            {code:'MAT',name:'Mattel',href:'mat.html'},
-            {code:'MATX',name:'Matson',href:'matx.html'},
-            {code:'MCO',name:'Moody\'s',href:'mco.html'},
-            {code:'META',name:'Meta',href:'meta.html'},
-            {code:'MKC',name:'McCormick',href:'mkc.html'},
-            {code:'MLI',name:'Mueller',href:'mli.html'},
-            {code:'MMS',name:'MAXIMUS',href:'mms.html'},
-            {code:'MNST',name:'Monster',href:'mnst.html'},
-            {code:'MSFT',name:'Microsoft',href:'msft.html'},
-            {code:'NICE',name:'NICE',href:'nice.html'},
-            {code:'NOK',name:'Nokia',href:'nok.html'},
-            {code:'NVO',name:'Novo Nordisk',href:'nvo.html'},
-            {code:'PDD',name:'PDD',href:'pdd.html'},
-            {code:'PHI',name:'Philippines',href:'phi.html'},
-            {code:'PPC',name:'Pilgrim\'s',href:'ppc.html'},
-            {code:'RMD',name:'ResMed',href:'rmd.html'},
-            {code:'ROL',name:'Rollins',href:'rol.html'},
+            {code:'LKQ',name:'LKQ',href:'lkq.html'},
+            {code:'MA',name:'Mastercard',href:'ma.html'},
+            {code:'MKL',name:'Markel',href:'mkl.html'},
+            {code:'MSCI',name:'MSCI',href:'msci.html'},
+            {code:'NDAQ',name:'Nasdaq',href:'ndaq.html'},
+            {code:'NVR',name:'NVR',href:'nvr.html'},
+            {code:'ORI',name:'Old Republic',href:'ori.html'},
+            {code:'POOL',name:'Pool Corp',href:'pool.html'},
+            {code:'PZZA',name:"Papa John's",href:'pzza.html'},
+            {code:'RL',name:'Ralph Lauren',href:'rl.html'},
+            {code:'SCHW',name:'Charles Schwab',href:'schw.html'},
             {code:'SFM',name:'Sprouts',href:'sfm.html'},
             {code:'SHW',name:'Sherwin-Williams',href:'shw.html'},
             {code:'SPG',name:'Simon Property',href:'spg.html'},
@@ -244,12 +288,8 @@
             {code:'TJX',name:'TJX Companies',href:'tjx.html'},
             {code:'ULTA',name:'Ulta Beauty',href:'ulta.html'},
             {code:'EME',name:'EMCOR',href:'eme.html'},
-            {code:'FIX',name:'Comfort Systems',href:'fix.html'},
             {code:'IESC',name:'IES Holdings',href:'iesc.html'}
         ];
-
-        function getScores(){try{var d=localStorage.getItem(SCORE_KEY);return d?JSON.parse(d):{};}catch(e){return {};}}
-        function saveScores(s){localStorage.setItem(SCORE_KEY,JSON.stringify(s));}
 
         function starsHTML(val){
             var h='';
@@ -277,7 +317,7 @@
         }
 
         function renderStats(){
-            var scores=getScores();
+            var scores=currentScores;
             var total=stocks.length;
             var scored=0,fSum=0,pSum=0,fScored=0,pScored=0;
             stocks.forEach(function(s){
@@ -296,7 +336,7 @@
         }
 
         function renderTable(){
-            var scores=getScores();
+            var scores=currentScores;
             var filterF=document.getElementById('filterF').value;
             var filterP=document.getElementById('filterP').value;
 
@@ -311,7 +351,6 @@
                 };
             });
 
-            // Filter
             data=data.filter(function(s){
                 if(filterF!==''){
                     if(filterF==='0'){if(s.fundamental!==0) return false;}
@@ -324,7 +363,6 @@
                 return true;
             });
 
-            // Sort
             var field=sortState.field,dir=sortState.dir;
             data.sort(function(a,b){
                 var va,vb;
@@ -361,7 +399,6 @@
             }
             document.getElementById('scoreBody').innerHTML=html;
 
-            // Sort indicators
             document.querySelectorAll('.sortable').forEach(function(th){
                 th.classList.remove('sort-active','desc');
                 if(th.getAttribute('data-sort')===field){
@@ -373,7 +410,6 @@
             renderStats();
         }
 
-        // Sort click
         document.addEventListener('click',function(e){
             var th=e.target.closest('.sortable');
             if(th){
@@ -390,15 +426,12 @@
             }
         });
 
-        // Filter
         document.getElementById('filterF').addEventListener('change',renderTable);
         document.getElementById('filterP').addEventListener('change',renderTable);
 
-        // Modal
         function openModal(code){
             editingCode=code;
-            var scores=getScores();
-            var sc=scores[code]||{};
+            var sc=currentScores[code]||{};
             document.getElementById('modalTitle').textContent='编辑评分 - '+code;
             document.getElementById('modalF').value=sc.fundamental||0;
             document.getElementById('modalP').value=sc.price||0;
@@ -413,35 +446,58 @@
             if(!editingCode) return;
             var f=parseInt(document.getElementById('modalF').value);
             var p=parseInt(document.getElementById('modalP').value);
-            var sc=getScores();
-            if(!sc[editingCode]) sc[editingCode]={};
-            sc[editingCode].fundamental=f;
-            sc[editingCode].price=p;
-            sc[editingCode].updated=new Date().toISOString();
-            saveScores(sc);
-            closeModal();
-            renderTable();
+            ScoresDB.save(editingCode, f, p, function(result){
+                if(result.success){
+                    closeModal();
+                    loadScores();
+                } else {
+                    alert('保存失败：'+result.error+'\n\n请确保已启动本地服务器：python server.py');
+                }
+            });
         });
         document.getElementById('modalCancelBtn').addEventListener('click',closeModal);
         document.getElementById('modalDelete').addEventListener('click',function(){
             if(!editingCode) return;
-            var sc=getScores();
-            delete sc[editingCode];
-            saveScores(sc);
-            closeModal();
-            renderTable();
+            ScoresDB.save(editingCode, 0, 0, function(result){
+                if(result.success){
+                    closeModal();
+                    loadScores();
+                } else {
+                    alert('删除失败：'+result.error);
+                }
+            });
         });
         document.getElementById('modalOverlay').addEventListener('click',function(e){
             if(e.target===this) closeModal();
         });
 
-        // Cross-tab sync
-        window.addEventListener('storage',function(e){
-            if(e.key===SCORE_KEY) renderTable();
-        });
-        setInterval(renderTable,3000);
+        function loadScores(){
+            ScoresDB.getAll(function(scores, source){
+                currentScores = scores || {};
+                var statusEl = document.getElementById('dbStatus');
+                if (statusEl) {
+                    if (source === 'server') {
+                        statusEl.innerHTML = '🗄️ 数据库已连接 · ' + Object.keys(currentScores).length + '条打分';
+                        statusEl.style.color = '#27ae60';
+                    } else if (source === 'json') {
+                        statusEl.innerHTML = '📄 JSON文件模式（只读，需启动服务器才能修改）· ' + Object.keys(currentScores).length + '条打分';
+                        statusEl.style.color = '#f39c12';
+                    } else {
+                        statusEl.innerHTML = '💾 缓存模式 · ' + Object.keys(currentScores).length + '条打分';
+                        statusEl.style.color = '#999';
+                    }
+                }
+                renderTable();
+            });
+        }
 
-        renderTable();
+        setInterval(loadScores, 5000);
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', loadScores);
+        } else {
+            loadScores();
+        }
     })();
     </script>
 </body>

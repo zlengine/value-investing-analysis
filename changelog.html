@@ -162,6 +162,30 @@
         </div>
         <div class="log-desc">
             <ul>
+                <li>打分系统从浏览器缓存（localStorage）迁移到 SQLite 数据库存储</li>
+                <li>新增 server.py：Python HTTP 服务器，提供 REST API 和 SQLite 数据库（scores.db）</li>
+                <li>新增 scores_client.js：客户端同步脚本，支持多数据源优先级（服务器 &gt; JSON文件 &gt; 缓存）</li>
+                <li>新增 scores_data.json：供 GitHub Pages 只读访问的 JSON 数据文件，由服务器自动更新</li>
+                <li>每次打分后自动备份数据到 backups/scores 目录（保留最近50个备份）</li>
+                <li>移除打分诊断工具按钮</li>
+                <li>所有页面（index.html、scorer.html、89个公司页面）打分逻辑改为从数据库加载</li>
+                <li>页面显示数据源状态（数据库已连接/JSON只读模式/缓存模式）</li>
+                <li>重启电脑后打开本地网站或 GitHub 网站均不影响打分显示</li>
+            </ul>
+        </div>
+        <div class="log-files">
+            <span class="added">+ server.py、scores_client.js、scores_data.json</span><br>
+            <span class="modified">~ index.html、scorer.html、aapl.html 等 89 个公司页面</span>
+        </div>
+    </div>
+
+    <div class="log-entry update">
+        <div class="log-header">
+            <span class="log-date">2026-06-22</span>
+            <span class="log-type update">更新</span>
+        </div>
+        <div class="log-desc">
+            <ul>
                 <li>重构所有公司页面导航栏为双层结构：最顶部为通用导航栏（📊 股票打分、📖 财务分析、📋 更新日志），下方为原打分栏（返回索引、股票代码、基本面/价格打分）</li>
                 <li>通用导航栏固定在最顶部（top:0, z-index:9999），打分栏固定在其下方（top:44px, z-index:9998）</li>
                 <li>调整body padding-top为104px以适应双层导航栏</li>
