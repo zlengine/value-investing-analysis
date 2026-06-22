@@ -445,22 +445,12 @@
         </div>
     </div>
 
+    <script src="scores_client.js"></script>
     <script>
-        // Topbar scoring functionality
+        // Topbar scoring functionality - using ScoresDB
         const topbarCode = 'FIX';
-        const storageKey = `topbar_${topbarCode}`;
         let topbarF = 0, topbarP = 0;
-        
-        function loadTopbar() {
-            const saved = localStorage.getItem(storageKey);
-            if (saved) {
-                const d = JSON.parse(saved);
-                topbarF = d.f || 0;
-                topbarP = d.p || 0;
-            }
-            renderTopbar();
-        }
-        
+
         function renderTopbar() {
             const fVal = document.getElementById('topbarFVal');
             const pVal = document.getElementById('topbarPVal');
@@ -473,35 +463,53 @@
             fStars.innerHTML = renderStars(topbarF);
             pStars.innerHTML = renderStars(topbarP);
         }
-        
+
         function renderStars(n) {
             let s = '';
             for (let i = 1; i <= 5; i++) s += `<span class="${i <= n ? 'on' : 'off'}">&#9733;</span>`;
             return s;
         }
-        
+
+        function loadTopbar() {
+            ScoresDB.getAll(function(scores){
+                var sc = scores[topbarCode] || {};
+                topbarF = sc.fundamental || 0;
+                topbarP = sc.price || 0;
+                renderTopbar();
+            });
+        }
+
         function topbarEdit() {
-            document.getElementById('topbarFSel').style.display = '';
-            document.getElementById('topbarPSel').style.display = '';
-            document.getElementById('topbarFSel').value = topbarF;
-            document.getElementById('topbarPSel').value = topbarP;
-            document.getElementById('topbarEditBtn').style.display = 'none';
-            document.getElementById('topbarSaveBtn').style.display = '';
-            document.getElementById('topbarCancelBtn').style.display = '';
+            ScoresDB.getAll(function(scores){
+                var sc = scores[topbarCode] || {};
+                document.getElementById('topbarFSel').style.display = '';
+                document.getElementById('topbarPSel').style.display = '';
+                document.getElementById('topbarFSel').value = sc.fundamental || 0;
+                document.getElementById('topbarPSel').value = sc.price || 0;
+                document.getElementById('topbarEditBtn').style.display = 'none';
+                document.getElementById('topbarSaveBtn').style.display = '';
+                document.getElementById('topbarCancelBtn').style.display = '';
+            });
         }
-        
+
         function topbarSave() {
-            topbarF = parseInt(document.getElementById('topbarFSel').value);
-            topbarP = parseInt(document.getElementById('topbarPSel').value);
-            localStorage.setItem(storageKey, JSON.stringify({ f: topbarF, p: topbarP }));
-            document.getElementById('topbarFSel').style.display = 'none';
-            document.getElementById('topbarPSel').style.display = 'none';
-            document.getElementById('topbarEditBtn').style.display = '';
-            document.getElementById('topbarSaveBtn').style.display = 'none';
-            document.getElementById('topbarCancelBtn').style.display = 'none';
-            renderTopbar();
+            var f = parseInt(document.getElementById('topbarFSel').value);
+            var p = parseInt(document.getElementById('topbarPSel').value);
+            ScoresDB.save(topbarCode, f, p, function(result){
+                if(result.success){
+                    document.getElementById('topbarFSel').style.display = 'none';
+                    document.getElementById('topbarPSel').style.display = 'none';
+                    document.getElementById('topbarEditBtn').style.display = '';
+                    document.getElementById('topbarSaveBtn').style.display = 'none';
+                    document.getElementById('topbarCancelBtn').style.display = 'none';
+                    loadTopbar();
+                } else {
+                    alert('保存失败：'+result.error+'\n\n请确保已启动本地服务器：python server.py');
+                    topbarCancel();
+                }
+            });
         }
-        
+
         function topbarCancel() {
             document.getElementById('topbarFSel').style.display = 'none';
             document.getElementById('topbarPSel').style.display = 'none';
@@ -509,8 +517,14 @@
             document.getElementById('topbarSaveBtn').style.display = 'none';
             document.getElementById('topbarCancelBtn').style.display = 'none';
         }
-        
-        loadTopbar();
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', loadTopbar);
+        } else {
+            loadTopbar();
+        }
+        setInterval(loadTopbar, 5000);
+
 
         // Chart.js configurations
         const years = ['2016','2017','2018','2019','2020','2021','2022','2023','2024','2025'];

@@ -155,6 +155,26 @@
 
     <!-- 更新日志条目 - 按时间倒序排列，最新在最上面 -->
 
+    <div class="log-entry fix">
+        <div class="log-header">
+            <span class="log-date">2026-06-22</span>
+            <span class="log-type fix">修复</span>
+        </div>
+        <div class="log-desc">
+            <ul>
+                <li>修复打分系统迁移后部分页面导航栏消失的问题</li>
+                <li>修复 72 个公司页面缺少 scores_client.js 引用的问题</li>
+                <li>修复 10 个页面（atmu/bah/blbd/chh/ctas/ftdr/idxx/it/lii/rol）scores_client.js 引用被错误插入到 &lt;script&gt; 标签内部的问题</li>
+                <li>修复 fix.html 仍使用旧 localStorage 打分逻辑的问题，改用 ScoresDB</li>
+                <li>所有页面导航栏（股票打分/财务分析/更新日志）和打分栏现已正常显示</li>
+            </ul>
+        </div>
+        <div class="log-files">
+            <span class="modified">~ 83 个公司页面（aapl.html 至 zts.html，含 fix.html）</span><br>
+            <span class="added">+ fix_scores_ref.py、fix_ref_position.py、check_ref_pos.py（修复工具）</span>
+        </div>
+    </div>
+
     <div class="log-entry update">
         <div class="log-header">
             <span class="log-date">2026-06-22</span>
