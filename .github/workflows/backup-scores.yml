@@ -1,0 +1,65 @@
+name: 每日备份打分数据
+
+on:
+  schedule:
+    # 每天 UTC 16:00（北京时间次日 00:00）执行
+    - cron: '0 16 * * *'
+  workflow_dispatch:  # 支持手动触发
+
+permissions:
+  contents: write
+
+jobs:
+  backup:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 检出代码
+        uses: actions/checkout@v4
+
+      - name: 检查 scores_data.json 是否存在
+        id: check_file
+        run: |
+          if [ -f "scores_data.json" ]; then
+            echo "exists=true" >> $GITHUB_OUTPUT
+            echo "文件存在，准备备份"
+          else
+            echo "exists=false" >> $GITHUB_OUTPUT
+            echo "scores_data.json 不存在，跳过备份"
+          fi
+
+      - name: 创建当日备份
+        if: steps.check_file.outputs.exists == 'true'
+        run: |
+          mkdir -p backups
+          DATE=$(date -u +%Y-%m-%d)
+          BACKUP_FILE="backups/scores_${DATE}.json"
+
+          # 如果当天的备份已存在，不覆盖（避免重复运行时冲突）
+          if [ -f "$BACKUP_FILE" ]; then
+            echo "当天备份已存在: $BACKUP_FILE，跳过"
+            echo "skip=true" >> $GITHUB_OUTPUT
+          else
+            cp scores_data.json "$BACKUP_FILE"
+            echo "已创建备份: $BACKUP_FILE"
+            echo "skip=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: 清理超过 30 天的旧备份
+        if: steps.check_file.outputs.exists == 'true'
+        run: |
+          find backups -name "scores_*.json" -type f -mtime +30 -delete || true
+          echo "已清理超过 30 天的旧备份"
+
+      - name: 提交备份
+        if: steps.check_file.outputs.exists == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add backups/ 2>/dev/null || true
+          if git diff --staged --quiet; then
+            echo "无变更，跳过提交"
+          else
+            git commit -m "chore: 每日备份打分数据 $(date -u +%Y-%m-%d)"
+            git push
+            echo "备份已推送"
+          fi
