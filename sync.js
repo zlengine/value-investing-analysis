@@ -79,7 +79,8 @@ var SyncManager = (function() {
     }
 
     /**
-     * 获取 GitHub 上文件的当前 SHA
+     * 获取 GitHub 上文件的当前 SHA（带重试）
+     * 返回 { sha: string|null, exists: boolean, forbidden: boolean }
      */
     function getFileSha(callback) {
         var token = getToken();
@@ -88,19 +89,38 @@ var SyncManager = (function() {
             return;
         }
 
-        fetch(API_BASE + '/contents/' + FILE_PATH + '?ref=' + BRANCH, {
+        fetch(API_BASE + '/contents/' + FILE_PATH + '?ref=' + BRANCH + '&t=' + Date.now(), {
             headers: {
                 'Authorization': 'token ' + token,
                 'Accept': 'application/vnd.github+json'
             }
         })
         .then(function(r) {
-            if (r.status === 404) return null;
+            if (r.status === 404) {
+                // 404 可能是文件不存在，也可能是 token 无权限访问仓库
+                // 用不带 token 的请求验证仓库是否公开可访问
+                return fetch(API_BASE + '/contents/' + FILE_PATH + '?ref=' + BRANCH + '&t=' + Date.now(), {
+                    headers: { 'Accept': 'application/vnd.github+json' }
+                }).then(function(r2) {
+                    if (r2.status === 404) {
+                        // 不带 token 也是 404，说明文件确实不存在
+                        return { sha: null, exists: false, forbidden: false };
+                    } else if (r2.ok) {
+                        // 不带 token 能访问但带 token 不行，说明 token 无仓库权限
+                        return { sha: null, exists: true, forbidden: true };
+                    } else {
+                        // 其他情况，保守认为文件不存在
+                        return { sha: null, exists: false, forbidden: false };
+                    }
+                });
+            }
             if (!r.ok) throw new Error('HTTP ' + r.status);
-            return r.json();
+            return r.json().then(function(data) {
+                return { sha: data.sha, exists: true, forbidden: false };
+            });
         })
-        .then(function(data) {
-            callback(null, data ? data.sha : null);
+        .then(function(result) {
+            callback(null, result);
         })
         .catch(function(err) {
             callback(err, null);
@@ -108,9 +128,10 @@ var SyncManager = (function() {
     }
 
     /**
-     * 上传/更新文件到 GitHub
+     * 上传/更新文件到 GitHub（带 409 自动重试）
      */
-    function updateFile(content, callback) {
+    function updateFile(content, callback, retryCount) {
+        retryCount = retryCount || 0;
         var token = getToken();
         if (!token) {
             callback(new Error('未设置 token'));
@@ -118,9 +139,15 @@ var SyncManager = (function() {
         }
 
         // 先获取当前 SHA
-        getFileSha(function(err, sha) {
+        getFileSha(function(err, shaResult) {
             if (err) {
                 callback(err);
+                return;
+            }
+
+            // 检查 token 是否有仓库权限
+            if (shaResult.forbidden) {
+                callback(new Error('Token 无仓库访问权限，请检查 Token 设置：1) Repository access 选择 Only select repositories → 勾选 value-investing-analysis；2) Permissions → Repository permissions → Contents 设为 Read and write'));
                 return;
             }
 
@@ -129,7 +156,7 @@ var SyncManager = (function() {
                 content: btoa(unescape(encodeURIComponent(content))),
                 branch: BRANCH
             };
-            if (sha) body.sha = sha;
+            if (shaResult.sha) body.sha = shaResult.sha;
 
             fetch(API_BASE + '/contents/' + FILE_PATH, {
                 method: 'PUT',
@@ -141,11 +168,18 @@ var SyncManager = (function() {
                 body: JSON.stringify(body)
             })
             .then(function(r) {
+                if (r.status === 409 && retryCount < 3) {
+                    // SHA 冲突，等待后重试
+                    return new Promise(function(resolve) {
+                        setTimeout(function() {
+                            updateFile(content, callback, retryCount + 1);
+                        }, 500 * (retryCount + 1));
+                    });
+                }
                 if (!r.ok) throw new Error('HTTP ' + r.status);
-                return r.json();
-            })
-            .then(function(data) {
-                callback(null, data);
+                return r.json().then(function(data) {
+                    callback(null, data);
+                });
             })
             .catch(function(err) {
                 callback(err);
