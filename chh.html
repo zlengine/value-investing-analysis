@@ -4,18 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Choice Hotels International (CHH) 详细分析</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         body { font-family: Arial, sans-serif; margin: 20px; background-color: #f5f5f5; }
         h1 { text-align: center; color: #333; }
         h2 { color: #4CAF50; margin-top: 30px; }
-        .info-box { background-color: white; padding: 20px; margin: 20px 0; box-shadow: 0 0 10px rgba(0,0,0,0.1); border-radius: 5px; }
+        h3 { color: #333; margin-top: 20px; }
+        h4 { color: #555; margin-top: 15px; }
+        .info-box { background-color: white; padding: 20px; margin: 20px 0; box-shadow: 0 0 10px rgba(0,0,0,0.1); border-radius: 5px; border-left: 4px solid #4CAF50; }
         table { width: 100%; border-collapse: collapse; margin: 10px 0; }
         th, td { padding: 8px; text-align: left; border-bottom: 1px solid #ddd; }
         th { background-color: #4CAF50; color: white; }
+        tr:hover { background-color: #f5f5f5; }
         a { color: #4CAF50; text-decoration: none; }
         a:hover { text-decoration: underline; }
+        .highlight { background-color: #f8f9fa; padding: 12px 16px; border-left: 4px solid #2e86c1; margin: 12px 0; border-radius: 4px; }
+        .tag { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 12px; font-weight: 600; }
+        .tag-green { background-color: #d4edda; color: #155724; }
+        .tag-orange { background-color: #fff3cd; color: #856404; }
+        .tag-red { background-color: #f8d7da; color: #721c24; }
         .fixed-topbar { position: fixed; top: 0; left: 0; right: 0; z-index: 9999; background: linear-gradient(135deg, #1a5276, #2e86c1); color: white; display: flex; align-items: center; justify-content: space-between; padding: 8px 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.15); height: 48px; }
         .fixed-topbar a { color: white; text-decoration: none; font-size: 14px; font-weight: 600; }
+        .fixed-topbar a:hover { text-decoration: underline; }
         .topbar-left { display: flex; align-items: center; gap: 12px; }
         .topbar-right { display: flex; align-items: center; gap: 8px; }
         .topbar-score-label { font-size: 12px; opacity: 0.85; }
@@ -23,17 +33,18 @@
         .topbar-score-val.s1 { color: #ff6b6b; } .topbar-score-val.s2 { color: #ffa94d; } .topbar-score-val.s3 { color: #ffd43b; } .topbar-score-val.s4 { color: #69db7c; } .topbar-score-val.s5 { color: #51cf66; }
         .topbar-select { padding: 3px 8px; border: 1px solid rgba(255,255,255,0.4); border-radius: 6px; font-size: 12px; font-weight: 600; color: white; background: rgba(255,255,255,0.15); cursor: pointer; outline: none; }
         .topbar-select option { color: #333; background: white; }
-        .topbar-btn { padding: 4px 12px; border: none; border-radius: 6px; font-size: 12px; font-weight: 600; cursor: pointer; }
+        .topbar-btn { padding: 4px 12px; border: none; border-radius: 6px; font-size: 12px; font-weight: 600; cursor: pointer; transition: background 0.2s; }
         .topbar-btn-edit { background: rgba(255,255,255,0.2); color: white; }
         .topbar-btn-edit:hover { background: rgba(255,255,255,0.35); }
         .topbar-btn-save { background: #27ae60; color: white; }
+        .topbar-btn-save:hover { background: #219a52; }
         .topbar-btn-cancel { background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.7); }
+        .topbar-btn-cancel:hover { background: rgba(255,255,255,0.2); }
         .topbar-stars { font-size: 11px; }
         .topbar-stars .on { color: #f39c12; }
         .topbar-stars .off { color: rgba(255,255,255,0.3); }
         body { padding-top: 60px !important; }
-        .tag { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 12px; font-weight: 600; }
-        .tag-orange { background-color: #fff3cd; color: #856404; }
+        .chart-container { position: relative; height: 300px; margin: 20px 0; }
     </style>
 </head>
 <body>
@@ -60,69 +71,439 @@
     <h1>Choice Hotels International (NYSE: CHH)</h1>
     <p style="text-align:center;color:#666;">巴菲特/芒格式价值投资基本面分析 | 更新日期：2026年6月</p>
 
+    <!-- 第一章：公司基本信息 -->
     <div class="info-box">
         <h2>一、公司基本信息</h2>
         <table>
-            <tr><td>公司全称</td><td>Choice Hotels International</td></tr>
+            <tr><td>公司全称</td><td>Choice Hotels International, Inc.</td></tr>
             <tr><td>股票代码</td><td>NYSE: CHH</td></tr>
-            <tr><td>市值</td><td>约65亿美元</td></tr>
-            <tr><td>行业</td><td>酒店特许经营</td></tr>
+            <tr><td>市值</td><td>约52亿美元（2026年6月）</td></tr>
+            <tr><td>市值（人民币）</td><td>约377亿元</td></tr>
+            <tr><td>最新收盘价</td><td>约$115（2026年6月中旬）</td></tr>
+            <tr><td>成立时间</td><td>1939年（原名Quality Courts United）</td></tr>
+            <tr><td>总部</td><td>美国马里兰州北贝塞斯达</td></tr>
+            <tr><td>员工人数</td><td>约1,800人（公司总部）</td></tr>
+            <tr><td>CEO</td><td>Patrick Pacious（2016年起任CEO，2017年起任总裁）</td></tr>
+            <tr><td>全球酒店数</td><td>7,500+家</td></tr>
+            <tr><td>全球客房数</td><td>约660,000间</td></tr>
+            <tr><td>覆盖国家</td><td>46个</td></tr>
+            <tr><td>忠诚会员</td><td>6,300万+</td></tr>
+            <tr><td>52周区间</td><td>$84.04 - $136.45</td></tr>
+            <tr><td>所属指数</td><td>S&P 400 中盘指数、Russell 1000</td></tr>
         </table>
-        <p style="color:#856404;"><span class="tag tag-orange">待补充</span> 详细分析内容将在后续更新中补充。</p>
+        <div class="highlight" style="border-left-color:#e67e22;">
+            <strong>关键背景：</strong>Choice Hotels是全球最大的酒店特许经营商之一，拥有85年历史。公司采用纯特许经营（asset-light）模式——自己不拥有酒店物业，而是将品牌授权给独立酒店业主，收取特许经营费和版税。2022年8月收购Radisson Hotels Americas（约$6.75亿），2025年7月收购Choice Hotels Canada剩余50%股权（约$1.12亿），2024年曾尝试收购Wyndham但未成功。
+        </div>
+    </div>
+
+    <!-- 第二章：业务分析 -->
+    <div class="info-box">
+        <h2>二、业务分析</h2>
+
+        <h3>2.1 公司做什么（通俗版）</h3>
+        <p>想象你开了一家小旅馆，生意一般。这时候有个叫"Choice Hotels"的人来找你，说："你把旅馆改名换招牌，挂上我的'Comfort Inn'牌子，我帮你做广告、拉客源、搞预订系统、培训员工。作为交换，你每年收入的5%左右给我当版税。"</p>
+        <p><strong>Choice Hotels就是酒店行业的"品牌授权商"。</strong>它自己不建酒店、不买酒店、不经营酒店——它只卖品牌、卖系统、卖会员网络。酒店业主出钱建酒店，Choice出品牌和运营支持，双方各取所需。</p>
+        <p>这个模式的妙处在于：<strong>每多签一家酒店，Choice几乎不需要额外投入资本，但版税收入是持续不断的。</strong>而且酒店业主签了约就不会轻易换品牌（换品牌意味着重新装修、重新培训、流失会员客源），所以版税收入非常稳定。</p>
+
+        <h3>2.2 品牌组合</h3>
+        <table>
+            <tr><th>层级</th><th>品牌</th><th>定位</th><th>特点</th></tr>
+            <tr><td rowspan="3">高端/长住</td><td>Cambria Hotels</td><td>高端精选服务</td><td>城市/郊区商务休闲</td></tr>
+            <tr><td>Everhome Suites</td><td>高端长住</td><td>新品牌，从7家增至25家（FY2025）</td></tr>
+            <tr><td>Ascend Hotel Collection</td><td>软品牌精选</td><td>独立酒店保持个性</td></tr>
+            <tr><td rowspan="4">中端</td><td>Comfort Inn / Comfort Suites</td><td>中端核心品牌</td><td>最大品牌，全球4,000+家</td></tr>
+            <tr><td>Quality Inn</td><td>中端经济</td><td>历史悠久品牌</td></tr>
+            <tr><td>Sleep Inn</td><td>中端设计型</td><td>现代化设计</td></tr>
+            <tr><td>Clarion / Clarion Pointe</td><td>中端全服务</td><td>会议/商务</td></tr>
+            <tr><td rowspan="3">长住</td><td>WoodSpring Suites</td><td>经济长住</td><td>预算型周租</td></tr>
+            <tr><td>MainStay Suites</td><td>中端长住</td><td>厨房+工作空间</td></tr>
+            <tr><td>Suburban Studios</td><td>中端长住</td><td>灵活租期</td></tr>
+            <tr><td rowspan="2">经济</td><td>Econo Lodge</td><td>经济型</td><td>超值预算</td></tr>
+            <tr><td>Rodeway Inn</td><td>经济型</td><td>公路旅行</td></tr>
+            <tr><td>收购品牌</td><td>Radisson（美洲）</td><td>中高端至高端</td><td>2022年收购，含Radisson Blu/Red等</td></tr>
+        </table>
+
+        <h3>2.3 收入构成（FY2025）</h3>
+        <table>
+            <tr><th>收入类别</th><th>金额（$M）</th><th>占比</th><th>说明</th></tr>
+            <tr><td>特许经营费（Royalty fees）</td><td>~680</td><td>~43%</td><td>酒店收入的5.14%作为版税，<span class="tag tag-green">核心收入</span></td></tr>
+            <tr><td>特许经营费（初始/其他）</td><td>~100</td><td>~6%</td><td>新酒店签约费、技术费等</td></tr>
+            <tr><td>营销/预订系统费</td><td>~190</td><td>~12%</td><td>4%营销费+预订系统费</td></tr>
+            <tr><td>合作服务费</td><td>~114</td><td>~7%</td><td>OTA费率谈判、采购服务等</td></tr>
+            <tr><td>可报销费用</td><td>~616</td><td>~39%</td><td>代付营销/技术费用（零利润过账）</td></tr>
+            <tr><td>其他（管理/自有酒店）</td><td>~97</td><td>~6%</td><td>少量管理酒店和自有酒店收入</td></tr>
+        </table>
+        <div class="highlight">
+            <strong>核心收入 = 版税 + 营销费 + 合作服务费</strong>，合计约$9.8亿（排除可报销费用后），这是真正赚钱的部分。版税收入是"睡后收入"——只要酒店开门营业，Choice就能按比例抽成，不管酒店赚不赚钱。
+        </div>
+
+        <h3>2.4 地理分布</h3>
+        <table>
+            <tr><th>地区</th><th>客房数</th><th>占比</th><th>增长趋势</th></tr>
+            <tr><td>美国国内</td><td>~497,000</td><td>~75%</td><td>客房数同比收缩2.9%（FY2025）</td></tr>
+            <tr><td>国际</td><td>~160,000</td><td>~25%</td><td>客房数同比增长13%（FY2025）</td></tr>
+        </table>
+
+        <h3>2.5 关键运营指标</h3>
+        <table>
+            <tr><th>指标</th><th>FY2023</th><th>FY2024</th><th>FY2025</th><th>趋势</th></tr>
+            <tr><td>国内版税率</td><td>5.06%</td><td>5.06%</td><td>5.14%</td><td><span class="tag tag-green">持续提升</span></td></tr>
+            <tr><td>国内RevPAR</td><td>—</td><td>—</td><td>$52.85</td><td><span class="tag tag-red">同比-3%</span></td></tr>
+            <tr><td>国内入住率</td><td>—</td><td>—</td><td>55.6%</td><td><span class="tag tag-red">同比-80bp</span></td></tr>
+            <tr><td>特许经营商续约率</td><td>~98%</td><td>~98%</td><td>~98%</td><td><span class="tag tag-green">极高粘性</span></td></tr>
+            <tr><td>全球在建管道</td><td>—</td><td>~78,000间</td><td>~78,000间</td><td>98%集中在高端/长住/中端</td></tr>
+        </table>
+    </div>
+
+    <!-- 第三章：产品竞争力分析 -->
+    <div class="info-box">
+        <h2>三、产品竞争力分析</h2>
+
+        <h3>3.1 可替代性评估</h3>
+        <table>
+            <tr><th>服务/产品</th><th>可替代性</th><th>评分</th><th>说明</th></tr>
+            <tr><td>中端酒店特许经营</td><td><span class="tag tag-orange">中</span></td><td>3/5</td><td>Wyndham是直接竞争者，但Choice品牌力更强</td></tr>
+            <tr><td>长住酒店特许经营</td><td><span class="tag tag-green">低</span></td><td>4/5</td><td>长住细分竞争少，Choice是领导者</td></tr>
+            <tr><td>经济型酒店特许经营</td><td><span class="tag tag-red">高</span></td><td>2/5</td><td>门槛低，独立酒店/区域品牌都可替代</td></tr>
+            <tr><td>忠诚会员计划</td><td><span class="tag tag-orange">中</span></td><td>3/5</td><td>6,300万会员有粘性，但不如Marriott/Hilton的规模</td></tr>
+        </table>
+
+        <h3>3.2 客户转换成本</h3>
+        <div class="highlight">
+            <strong>转换成本高——对特许经营商而言。</strong>酒店业主一旦加入Choice体系，更换品牌意味着：（1）重新装修以符合新品牌标准（$5万-$50万）；（2）退出Choice Privileges会员网络，流失稳定客源；（3）重新培训员工和系统。98%的续约率证明了这一点。<br><br>
+            <strong>但对旅客而言转换成本极低。</strong>旅客换一家酒店住没有任何成本，品牌忠诚度主要靠积分计划维持。这意味着Choice的护城河在B端（酒店业主）而非C端（旅客）。
+        </div>
+
+        <h3>3.3 定价权</h3>
+        <table>
+            <tr><th>维度</th><th>评估</th><th>说明</th></tr>
+            <tr><td>版税率</td><td><span class="tag tag-green">较强</span></td><td>国内版税率从5.06%提升至5.14%，在RevPAR下降时仍能提价</td></tr>
+            <tr><td>初始加盟费</td><td><span class="tag tag-orange">中等</span></td><td>$50,000初始费，与Wyndham竞争时需保持吸引力</td></tr>
+            <tr><td>营销费率</td><td><span class="tag tag-green">较强</span></td><td>4%营销费是行业标准，特许经营商无议价空间</td></tr>
+        </table>
+    </div>
+
+    <!-- 第四章：历史财务指标 -->
+    <div class="info-box">
+        <h2>四、历史财务指标</h2>
+
+        <h3>4.1 核心财务数据（FY2018-FY2025）</h3>
+        <table>
+            <tr><th>指标</th><th>FY2018</th><th>FY2019</th><th>FY2020</th><th>FY2021</th><th>FY2022</th><th>FY2023</th><th>FY2024</th><th>FY2025</th></tr>
+            <tr><td>营收（$M）</td><td>1,094</td><td>1,128</td><td>1,068</td><td>1,126</td><td>1,370</td><td>1,544</td><td>1,585</td><td>1,597</td></tr>
+            <tr><td>净利润（$M）</td><td>226</td><td>224</td><td>64</td><td>304</td><td>322</td><td>259</td><td>300</td><td>370</td></tr>
+            <tr><td>调整后净利润（$M）</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>312</td><td>332</td><td>326</td></tr>
+            <tr><td>调整后EBITDA（$M）</td><td>385</td><td>370</td><td>250</td><td>519</td><td>546</td><td>540</td><td>604</td><td>626</td></tr>
+            <tr><td>营业利润率</td><td>30.6%</td><td>28.6%</td><td>15.7%</td><td>40.1%</td><td>34.1%</td><td>24.3%</td><td>29.3%</td><td>28.1%</td></tr>
+            <tr><td>净利润率</td><td>20.7%</td><td>19.9%</td><td>6.0%</td><td>27.0%</td><td>23.5%</td><td>16.8%</td><td>18.9%</td><td>23.2%</td></tr>
+        </table>
+
+        <h3>4.2 ROE与ROA</h3>
+        <table>
+            <tr><th>指标</th><th>FY2018</th><th>FY2019</th><th>FY2020</th><th>FY2021</th><th>FY2022</th><th>FY2023</th><th>FY2024</th><th>FY2025</th></tr>
+            <tr><td>ROE</td><td>-117%</td><td>-948%</td><td>-1311%</td><td>109%</td><td>215%</td><td>726%</td><td>-662%</td><td>204%</td></tr>
+            <tr><td>ROA</td><td>19.0%</td><td>16.1%</td><td>4.7%</td><td>15.0%</td><td>15.8%</td><td>10.8%</td><td>11.8%</td><td>12.7%</td></tr>
+        </table>
+        <div class="highlight" style="border-left-color:#e67e22;">
+            <strong>ROE数据严重失真！</strong>Choice Hotels的股东权益极低甚至为负（大量股票回购导致），因此ROE出现荒谬的负值或超高值。真正反映经营能力的是<strong>ROA（12.7%）</strong>和<strong>调整后EBITDA利润率（39.2%）</strong>。ROA 12.7%对于轻资产特许经营模式来说属于中等偏上水平。
+        </div>
+
+        <h3>4.3 负债与杠杆</h3>
+        <table>
+            <tr><th>指标</th><th>FY2020</th><th>FY2021</th><th>FY2022</th><th>FY2023</th><th>FY2024</th><th>FY2025</th></tr>
+            <tr><td>总债务（$B）</td><td>0.9</td><td>1.0</td><td>1.1</td><td>1.2</td><td>1.8</td><td>1.9</td></tr>
+            <tr><td>净债务/调整后EBITDA</td><td>—</td><td>—</td><td>—</td><td>—</td><td>~2.5x</td><td>3.0x</td></tr>
+            <tr><td>流动比率</td><td>1.69</td><td>1.34</td><td>0.80</td><td>0.31</td><td>0.73</td><td>0.87</td></tr>
+            <tr><td>利息覆盖倍数</td><td>—</td><td>—</td><td>—</td><td>—</td><td>~5.5x</td><td>~4.9x</td></tr>
+        </table>
+        <p>2022年收购Radisson Americas后债务从$1.1B升至$1.8B。2025年收购Choice Hotels Canada进一步增加。净杠杆3.0x在特许经营行业中属中等偏高，但低于4.5x的债务契约上限。流动比率0.87偏低，依赖循环信贷额度补充流动性。</p>
+
+        <h3>4.4 估值指标</h3>
+        <table>
+            <tr><th>指标</th><th>FY2022</th><th>FY2023</th><th>FY2024</th><th>FY2025</th><th>当前</th></tr>
+            <tr><td>PE（年报）</td><td>15.5</td><td>24.4</td><td>17.6</td><td>14.0</td><td>~15-17</td></tr>
+            <tr><td>Forward PE</td><td>—</td><td>—</td><td>—</td><td>—</td><td>~15.1</td></tr>
+            <tr><td>P/S</td><td>3.6</td><td>3.2</td><td>3.2</td><td>3.3</td><td>~3.2</td></tr>
+            <tr><td>EV/EBITDA</td><td>—</td><td>—</td><td>—</td><td>—</td><td>~14.3</td></tr>
+            <tr><td>P/B</td><td>—</td><td>—</td><td>—</td><td>—</td><td>负值</td></tr>
+            <tr><td>股息率</td><td>0.8%</td><td>0.9%</td><td>0.8%</td><td>1.0%</td><td>~1.0%</td></tr>
+        </table>
+
+        <h3>4.5 关键财务指标趋势图</h3>
+        <div class="chart-container"><canvas id="revenueChart"></canvas></div>
+        <div class="chart-container"><canvas id="marginChart"></canvas></div>
+        <div class="chart-container"><canvas id="peChart"></canvas></div>
+    </div>
+
+    <!-- 第五章：竞争分析 -->
+    <div class="info-box">
+        <h2>五、竞争分析</h2>
+
+        <h3>5.1 主要竞争对手</h3>
+        <table>
+            <tr><th>竞争对手</th><th>市值</th><th>业务重叠</th><th>Choice vs 竞争对手</th></tr>
+            <tr><td>Wyndham Hotels（WH）</td><td>~$70亿</td><td>经济型/中端特许经营</td><td>最直接竞争者，Wyndham规模更大（9,000+酒店），但Choice品牌力更强</td></tr>
+            <tr><td>Marriott International（MAR）</td><td>~$780亿</td><td>全层级特许经营</td><td>全球最大酒店集团，高端品牌远超Choice，Choice无法竞争高端市场</td></tr>
+            <tr><td>Hilton Worldwide（HLT）</td><td>~$640亿</td><td>全层级特许经营</td><td>品牌力最强，忠诚会员1.8亿+，Choice在中端以下有差异化</td></tr>
+            <tr><td>IHG Hotels（IHG）</td><td>~$150亿</td><td>中端至高端特许经营</td><td>全球布局更广，但美国中端市场Choice更强</td></tr>
+            <tr><td>Best Western</td><td>私有</td><td>中端特许经营</td><td>规模更小，品牌力弱于Choice</td></tr>
+        </table>
+
+        <h3>5.2 市场份额</h3>
+        <p>美国酒店特许经营市场中，按客房数计算：Marriott约18%、Hilton约17%、Wyndham约14%、IHG约7%、<strong>Choice约9%</strong>。在经济型和中端细分，Choice和Wyndham是两大龙头。在长住细分，Choice是领导者（WoodSpring + MainStay + Suburban + Everhome）。</p>
+
+        <h3>5.3 经济护城河评估</h3>
+        <table>
+            <tr><th>护城河维度</th><th>评分</th><th>说明</th></tr>
+            <tr><td>品牌力</td><td><span class="tag tag-orange">3/5</span></td><td>Comfort品牌在中端有认知度，但远不如Marriott/Hilton的高端品牌溢价</td></tr>
+            <tr><td>成本优势</td><td><span class="tag tag-green">4/5</span></td><td>轻资产模式天然低成本，特许经营商承担几乎所有资本开支</td></tr>
+            <tr><td>网络效应</td><td><span class="tag tag-green">4/5</span></td><td>6,300万会员→更多酒店想加入→更多会员，正向循环</td></tr>
+            <tr><td>专利/知识产权</td><td><span class="tag tag-orange">2/5</span></td><td>预订系统和AI技术有一定壁垒，但非不可逾越</td></tr>
+            <tr><td>转换成本</td><td><span class="tag tag-green">4/5</span></td><td>98%续约率证明特许经营商转换成本高（装修+系统+客源）</td></tr>
+            <tr><td>规模优势</td><td><span class="tag tag-orange">3/5</span></td><td>7,500+酒店有规模效应，但不如Marriott/Hilton的全球规模</td></tr>
+        </table>
+
+        <div class="highlight">
+            <strong>护城河总结：</strong>Choice的护城河核心是<strong>"特许经营商转换成本 + 忠诚会员网络效应"</strong>。98%的续约率意味着版税收入像"类债券"一样稳定。但这个护城河有局限性：（1）在C端（旅客）几乎没有护城河，旅客选择更多取决于价格和位置；（2）品牌力不如Marriott/Hilton，在高端市场无法竞争；（3）经济型品牌（Econo Lodge/Rodeway Inn）护城河最弱。
+        </div>
+    </div>
+
+    <!-- 第六章：利润分配分析 -->
+    <div class="info-box">
+        <h2>六、利润分配分析</h2>
+
+        <h3>6.1 利润分配表（FY2020-FY2025）</h3>
+        <table>
+            <tr><th>类别</th><th>FY2020</th><th>FY2021</th><th>FY2022</th><th>FY2023</th><th>FY2024</th><th>FY2025</th></tr>
+            <tr><td>净利润（$M）</td><td>64</td><td>304</td><td>322</td><td>259</td><td>300</td><td>370</td></tr>
+            <tr><td>分红（$M）</td><td>~26</td><td>~30</td><td>~38</td><td>~46</td><td>~56</td><td>~53</td></tr>
+            <tr><td>分红占比</td><td>41%</td><td>10%</td><td>12%</td><td>18%</td><td>19%</td><td>14%</td></tr>
+            <tr><td>股票回购（$M）</td><td>~50</td><td>~250</td><td>~365</td><td>~290</td><td>~382</td><td>~100*</td></tr>
+            <tr><td>回购占比</td><td>78%</td><td>82%</td><td>113%</td><td>112%</td><td>127%</td><td>27%*</td></tr>
+            <tr><td>资本开支（$M）</td><td>~30</td><td>~40</td><td>~50</td><td>~70</td><td>~80</td><td>~112</td></tr>
+            <tr><td>收购（$M）</td><td>0</td><td>0</td><td>~675</td><td>0</td><td>0</td><td>~112</td></tr>
+            <tr><td>债务偿还（净）</td><td>—</td><td>—</td><td>+700</td><td>—</td><td>—</td><td>—</td></tr>
+        </table>
+        <p>*FY2025回购数据为9个月数据（$100.4M），全年预计$130-150M。</p>
+
+        <h3>6.2 资本配置评价</h3>
+        <table>
+            <tr><th>决策</th><th>评价</th><th>说明</th></tr>
+            <tr><td>股票回购</td><td><span class="tag tag-orange">激进</span></td><td>2021-2024年回购总额超$12亿，远超净利润。大量回购导致股东权益为负，这是"借钱回购"的典型模式</td></tr>
+            <tr><td>分红</td><td><span class="tag tag-orange">象征性</span></td><td>$1.15/股年化，收益率仅1%，基本是象征性的。管理层明确优先回购而非提高分红</td></tr>
+            <tr><td>Radisson Americas收购</td><td><span class="tag tag-green">战略正确</span></td><td>$6.75亿收购，增加~70,000间客房，扩展至高端市场。整合进展顺利</td></tr>
+            <tr><td>Choice Hotels Canada收购</td><td><span class="tag tag-green">合理</span></td><td>$1.12亿收购剩余50%，增加26,000间客房和品牌控制权</td></tr>
+            <tr><td>Wyndham收购尝试</td><td><span class="tag tag-orange">失败</span></td><td>2024年尝试收购Wyndham（约$80亿），被Wyndham拒绝。花费$1,630万终止费</td></tr>
+            <tr><td>杠杆管理</td><td><span class="tag tag-red">需警惕</span></td><td>净杠杆3.0x，在RevPAR下降周期中可能进一步恶化</td></tr>
+        </table>
+
+        <div class="highlight" style="border-left-color:#e74c3c;">
+            <strong>资本配置核心问题：借钱回购。</strong>Choice Hotels的资本配置策略可以用"借钱回购"四个字概括。2021-2024年，公司回购了超过$12亿的股票（远超同期净利润$11.8亿），同时债务从$10亿增至$18亿。这意味着公司本质上是在<strong>用借来的钱回购股票</strong>，人为推高EPS和ROE。这种策略在利率低、RevPAR上升时没问题，但在利率上升+RevPAR下降的环境下，利息支出增加（FY2025利息$91M，同比+43%）而收入承压，形成双重挤压。
+        </div>
+    </div>
+
+    <!-- 第七章：投资总结 -->
+    <div class="info-box">
+        <h2>七、投资总结</h2>
+        <h3>7.1 各维度评分</h3>
+        <table>
+            <tr><th>维度</th><th>评分</th><th>说明</th></tr>
+            <tr><td>业务可理解性</td><td><span class="tag tag-green">5/5</span></td><td>卖品牌收版税，任何人都能理解。特许经营是最简单的商业模式之一</td></tr>
+            <tr><td>护城河宽度</td><td><span class="tag tag-orange">3/5</span></td><td>B端（特许经营商）护城河强，C端（旅客）护城河弱。品牌力不如Marriott/Hilton</td></tr>
+            <tr><td>资本配置</td><td><span class="tag tag-orange">2/5</span></td><td>借钱回购推高EPS，在利率上升+RevPAR下降环境中风险加大。收购Radisson方向正确</td></tr>
+            <tr><td>财务安全</td><td><span class="tag tag-red">2/5</span></td><td>净杠杆3.0x，流动比率0.87，股东权益为负。特许经营商应收款坏账激增145%至$43M</td></tr>
+            <tr><td>增长前景</td><td><span class="tag tag-orange">3/5</span></td><td>国际扩张+长住细分是亮点，但国内RevPAR下降3%，客房数收缩2.9%</td></tr>
+            <tr><td>估值吸引力</td><td><span class="tag tag-orange">3/5</span></td><td>PE 15-17x处于5年中位以下，但FY2025净利润含$1亿非现金收益，真实PE更高</td></tr>
+        </table>
+
+        <h3>7.2 估值对比</h3>
+        <table>
+            <tr><th>估值方法</th><th>计算</th><th>合理价值</th></tr>
+            <tr><td>PE估值（15x 调整后EPS $6.94）</td><td>$6.94 x 15</td><td>$104</td></tr>
+            <tr><td>PE估值（18x 乐观）</td><td>$6.94 x 18</td><td>$125</td></tr>
+            <tr><td>PE估值（12x 保守）</td><td>$6.94 x 12</td><td>$83</td></tr>
+            <tr><td>EV/EBITDA（12x FY2025E $626M）</td><td>($626M x 12 + $1.9B - $0.05B) / 46M股</td><td>$122</td></tr>
+            <tr><td>分析师目标价共识</td><td>15位分析师</td><td>$112.53</td></tr>
+        </table>
+
+        <h3>7.3 核心风险</h3>
+        <table>
+            <tr><th>风险</th><th>严重度</th><th>说明</th></tr>
+            <tr><td>国内RevPAR持续下滑</td><td><span class="tag tag-red">高</span></td><td>FY2025国内RevPAR降3%，入住率降80bp，版税收入基础在萎缩</td></tr>
+            <tr><td>高杠杆+利率上升</td><td><span class="tag tag-red">高</span></td><td>净杠杆3.0x，利息支出$91M（+43%），2029/2031/2034年有大量到期债务</td></tr>
+            <tr><td>特许经营商财务压力</td><td><span class="tag tag-orange">中高</span></td><td>应收款坏账准备激增82%至$20M，非计息应收款增145%至$43M，部分特许经营商陷入困境</td></tr>
+            <tr><td>国内客房数收缩</td><td><span class="tag tag-orange">中</span></td><td>FY2025国内净减少14,000间客房（-2.9%），经济型品牌持续流失</td></tr>
+            <tr><td>经济衰退风险</td><td><span class="tag tag-orange">中</span></td><td>经济型/中端酒店对经济周期敏感，但长住细分有抗周期性</td></tr>
+            <tr><td>Wyndham收购失败</td><td><span class="tag tag-orange">中</span></td><td>规模扩张路径受阻，需依靠有机增长，速度更慢</td></tr>
+        </table>
+
+        <h3>7.4 潜在催化剂</h3>
+        <table>
+            <tr><th>催化剂</th><th>说明</th></tr>
+            <tr><td>国际扩张加速</td><td>国际客房增长13%，中国/法国/加拿大/澳大利亚等市场快速拓展</td></tr>
+            <tr><td>长住细分持续增长</td><td>Everhome从7家增至25家，长住管道超40,000间，抗周期性强</td></tr>
+            <tr><td>降息周期</td><td>如果美联储降息，利息支出下降+估值倍数扩张</td></tr>
+            <tr><td>版税率持续提升</td><td>从5.06%→5.14%，每提升1bp约增加$500万版税收入</td></tr>
+            <tr><td>资产回收模型</td><td>出售自有酒店资产（如Everhome）至合资企业，回收资本</td></tr>
+        </table>
+
+        <div class="highlight" style="border-left-color:#e74c3c;">
+            <strong>评级：观望（Hold）</strong><br><br>
+            <strong>理由：</strong>Choice Hotels拥有一个优秀的商业模式——轻资产特许经营，98%续约率，版税收入像"类债券"一样稳定。但当前面临几个严峻挑战：<br><br>
+            <strong>（1）国内核心业务在萎缩：</strong>RevPAR降3%，客房数收缩2.9%，这不是一次性波动而是结构性问题——经济型品牌在老化，中端市场竞争加剧。<br>
+            <strong>（2）借钱回购的后果开始显现：</strong>净杠杆3.0x，利息支出飙升43%，股东权益为负。在RevPAR下降+利率上升的"双重挤压"下，财务弹性大幅削弱。<br>
+            <strong>（3）FY2025净利润含$1亿非现金收益：</strong>真实调整后净利润$326M（同比-1.8%），并非表面上的+23%。<br>
+            <strong>（4）特许经营商出现财务压力信号：</strong>坏账准备+82%，非计息应收款+145%，部分酒店业主可能撑不住。<br><br>
+            <strong>乐观面：</strong>国际扩张（+13%客房）和长住细分（Everhome快速增长）是真实增长引擎，版税率持续提升体现定价权。<br><br>
+            <strong>理想买入区间：$85-95</strong>（对应PE 12-14x调整后EPS），当前$115附近安全边际不足。需等待国内RevPAR企稳或杠杆明显下降后再考虑加仓。
+        </div>
     </div>
 
     <script>
-        (function(){
-            var SCORE_KEY='stock_scores_v1';
-            var code=document.getElementById('topbarCode').textContent.trim();
-            function getScores(){try{var d=localStorage.getItem(SCORE_KEY);return d?JSON.parse(d):{};}catch(e){return {};}}
-            function saveScores(s){localStorage.setItem(SCORE_KEY,JSON.stringify(s));}
-            function starsHTML(val){var h='';for(var i=1;i<=5;i++){h+='<span class="'+(i<=val?'on':'off')+'">\u2605</span>';}return h;}
-            function valClass(v){return v>=5?'s5':v>=4?'s4':v>=3?'s3':v>=2?'s2':'s1';}
-            function renderDisplay(){
-                var sc=getScores()[code]||{};
-                var f=sc.fundamental||0,p=sc.price||0;
-                document.getElementById('topbarFVal').textContent=f>0?f:'-';
-                document.getElementById('topbarFVal').className='topbar-score-val'+(f>0?' '+valClass(f):'');
-                document.getElementById('topbarFStars').innerHTML=starsHTML(f);
-                document.getElementById('topbarPVal').textContent=p>0?p:'-';
-                document.getElementById('topbarPVal').className='topbar-score-val'+(p>0?' '+valClass(p):'');
-                document.getElementById('topbarPStars').innerHTML=starsHTML(p);
+    // Topbar scoring logic - unified with stock_scores_v1
+    (function(){
+        var SCORE_KEY='stock_scores_v1';
+        var code=document.getElementById('topbarCode').textContent.trim();
+        function getScores(){try{var d=localStorage.getItem(SCORE_KEY);return d?JSON.parse(d):{};}catch(e){return {};}}
+        function saveScores(s){localStorage.setItem(SCORE_KEY,JSON.stringify(s));}
+        function starsHTML(val){var h='';for(var i=1;i<=5;i++){h+='<span class="'+(i<=val?'on':'off')+'">\u2605</span>';}return h;}
+        function valClass(v){return v>=5?'s5':v>=4?'s4':v>=3?'s3':v>=2?'s2':'s1';}
+        function renderDisplay(){
+            var sc=getScores()[code]||{};
+            var f=sc.fundamental||0,p=sc.price||0;
+            document.getElementById('topbarFVal').textContent=f>0?f:'-';
+            document.getElementById('topbarFVal').className='topbar-score-val'+(f>0?' '+valClass(f):'');
+            document.getElementById('topbarFStars').innerHTML=starsHTML(f);
+            document.getElementById('topbarPVal').textContent=p>0?p:'-';
+            document.getElementById('topbarPVal').className='topbar-score-val'+(p>0?' '+valClass(p):'');
+            document.getElementById('topbarPStars').innerHTML=starsHTML(p);
+        }
+        window.topbarEdit=function(){
+            var sc=getScores()[code]||{};
+            document.getElementById('topbarFSel').value=sc.fundamental||0;
+            document.getElementById('topbarPSel').value=sc.price||0;
+            document.getElementById('topbarFSel').style.display='';
+            document.getElementById('topbarPSel').style.display='';
+            document.getElementById('topbarEditBtn').style.display='none';
+            document.getElementById('topbarSaveBtn').style.display='';
+            document.getElementById('topbarCancelBtn').style.display='';
+            document.getElementById('topbarFVal').style.display='none';
+            document.getElementById('topbarPVal').style.display='none';
+            document.getElementById('topbarFStars').style.display='none';
+            document.getElementById('topbarPStars').style.display='none';
+        };
+        window.topbarSave=function(){
+            var f=parseInt(document.getElementById('topbarFSel').value);
+            var p=parseInt(document.getElementById('topbarPSel').value);
+            var sc=getScores();if(!sc[code])sc[code]={};
+            sc[code].fundamental=f;sc[code].price=p;sc[code].updated=new Date().toISOString();
+            saveScores(sc);topbarCancel();renderDisplay();
+        };
+        window.topbarCancel=function(){
+            document.getElementById('topbarFSel').style.display='none';
+            document.getElementById('topbarPSel').style.display='none';
+            document.getElementById('topbarEditBtn').style.display='';
+            document.getElementById('topbarSaveBtn').style.display='none';
+            document.getElementById('topbarCancelBtn').style.display='none';
+            document.getElementById('topbarFVal').style.display='';
+            document.getElementById('topbarPVal').style.display='';
+            document.getElementById('topbarFStars').style.display='';
+            document.getElementById('topbarPStars').style.display='';
+        };
+        renderDisplay();
+    })();
+
+    // Charts
+    var ctx1 = document.getElementById('revenueChart').getContext('2d');
+    new Chart(ctx1, {
+        type: 'bar',
+        data: {
+            labels: ['FY2018','FY2019','FY2020','FY2021','FY2022','FY2023','FY2024','FY2025'],
+            datasets: [{
+                label: '营收（$M）',
+                data: [1094,1128,1068,1126,1370,1544,1585,1597],
+                backgroundColor: 'rgba(46,134,193,0.7)',
+                yAxisID: 'y'
+            },{
+                label: '调整后EBITDA（$M）',
+                data: [385,370,250,519,546,540,604,626],
+                type: 'line',
+                borderColor: '#27ae60',
+                backgroundColor: 'rgba(39,174,96,0.1)',
+                fill: false,
+                tension: 0.3,
+                yAxisID: 'y'
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: { title: { display: true, text: '营收与调整后EBITDA趋势' }},
+            scales: { y: { beginAtZero: true, position: 'left' }}
+        }
+    });
+
+    var ctx2 = document.getElementById('marginChart').getContext('2d');
+    new Chart(ctx2, {
+        type: 'line',
+        data: {
+            labels: ['FY2018','FY2019','FY2020','FY2021','FY2022','FY2023','FY2024','FY2025'],
+            datasets: [{
+                label: '营业利润率（%）',
+                data: [30.6,28.6,15.7,40.1,34.1,24.3,29.3,28.1],
+                borderColor: '#2e86c1',
+                backgroundColor: 'rgba(46,134,193,0.1)',
+                fill: true,
+                tension: 0.3
+            },{
+                label: '净利润率（%）',
+                data: [20.7,19.9,6.0,27.0,23.5,16.8,18.9,23.2],
+                borderColor: '#e67e22',
+                backgroundColor: 'rgba(230,126,34,0.1)',
+                fill: true,
+                tension: 0.3
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: { title: { display: true, text: '利润率趋势（%）' }},
+            scales: { y: { beginAtZero: true, max: 50 }}
+        }
+    });
+
+    var ctx3 = document.getElementById('peChart').getContext('2d');
+    new Chart(ctx3, {
+        type: 'line',
+        data: {
+            labels: ['FY2020','FY2021','FY2022','FY2023','FY2024','FY2025'],
+            datasets: [{
+                label: 'PE（年报）',
+                data: [51.6,37.1,15.5,24.4,17.6,14.0],
+                borderColor: '#8e44ad',
+                backgroundColor: 'rgba(142,68,173,0.1)',
+                fill: true,
+                tension: 0.3
+            },{
+                label: '净杠杆（x）',
+                data: [null,null,null,null,2.5,3.0],
+                borderColor: '#e74c3c',
+                backgroundColor: 'rgba(231,76,60,0.1)',
+                fill: false,
+                tension: 0.3,
+                yAxisID: 'y1'
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: { title: { display: true, text: 'PE与杠杆趋势' }},
+            scales: {
+                y: { beginAtZero: true, position: 'left', title: { display: true, text: 'PE' }, max: 60 },
+                y1: { beginAtZero: true, position: 'right', title: { display: true, text: '净杠杆（x）' }, grid: { drawOnChartArea: false }, max: 5 }
             }
-            window.topbarEdit=function(){
-                var sc=getScores()[code]||{};
-                document.getElementById('topbarFSel').value=sc.fundamental||0;
-                document.getElementById('topbarPSel').value=sc.price||0;
-                document.getElementById('topbarFSel').style.display='';
-                document.getElementById('topbarPSel').style.display='';
-                document.getElementById('topbarEditBtn').style.display='none';
-                document.getElementById('topbarSaveBtn').style.display='';
-                document.getElementById('topbarCancelBtn').style.display='';
-                document.getElementById('topbarFVal').style.display='none';
-                document.getElementById('topbarPVal').style.display='none';
-                document.getElementById('topbarFStars').style.display='none';
-                document.getElementById('topbarPStars').style.display='none';
-            };
-            window.topbarSave=function(){
-                var f=parseInt(document.getElementById('topbarFSel').value);
-                var p=parseInt(document.getElementById('topbarPSel').value);
-                var sc=getScores();if(!sc[code])sc[code]={};
-                sc[code].fundamental=f;sc[code].price=p;sc[code].updated=new Date().toISOString();
-                saveScores(sc);topbarCancel();renderDisplay();
-            };
-            window.topbarCancel=function(){
-                document.getElementById('topbarFSel').style.display='none';
-                document.getElementById('topbarPSel').style.display='none';
-                document.getElementById('topbarEditBtn').style.display='';
-                document.getElementById('topbarSaveBtn').style.display='none';
-                document.getElementById('topbarCancelBtn').style.display='none';
-                document.getElementById('topbarFVal').style.display='';
-                document.getElementById('topbarPVal').style.display='';
-                document.getElementById('topbarFStars').style.display='';
-                document.getElementById('topbarPStars').style.display='';
-            };
-            renderDisplay();
-        })();
+        }
+    });
     </script>
 </body>
 </html>
