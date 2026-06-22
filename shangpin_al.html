@@ -5,19 +5,27 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AL沪铝期货基本面分析</title>
 <link rel="stylesheet" href="style.css">
+<style>
+.top-nav-bar { position: fixed; top: 0; left: 0; right: 0; height: 44px; background: #2c3e50; display: flex; align-items: center; justify-content: flex-end; padding: 0 20px; z-index: 9999; box-shadow: 0 2px 8px rgba(0,0,0,0.15); gap: 8px; }
+.top-nav-link { color: white; padding: 6px 16px; border-radius: 16px; text-decoration: none; font-size: 13px; transition: background 0.2s; white-space: nowrap; }
+.fixed-topbar { top: 44px !important; z-index: 9998 !important; }
+body { padding-top: 104px !important; }
+</style>
 </head>
 <body>
 <div class="header">
 <h1>AL 沪铝期货基本面分析</h1>
 <div class="subtitle">分析时间：2026年5月 | 预测区间：2026年5月-10月</div>
 </div>
+    <div class="top-nav-bar">
+        <a href="scorer.html" class="top-nav-link" style="background:#1a5276;" onmouseover="this.style.background='#2e86c1'" onmouseout="this.style.background='#1a5276'">📊 股票打分</a>
+        <a href="financial_analysis.html" class="top-nav-link" style="background:#2e7d32;" onmouseover="this.style.background='#43a047'" onmouseout="this.style.background='#2e7d32'">📖 财务分析</a>
+        <a href="changelog.html" class="top-nav-link" style="background:#856404;" onmouseover="this.style.background='#a0762a'" onmouseout="this.style.background='#856404'">📋 更新日志</a>
+    </div>
 <div class="detail-page">    <div class="fixed-topbar" id="fixedTopbar">
         <div class="topbar-left">
             <a href="index.html">&larr; &#x8FD4;&#x56DE;&#x7D22;&#x5F15;</a>
             <span style="font-size:14px;font-weight:700;" id="topbarCode">SHANGPIN_AL</span>
-            <a href="financial_analysis.html" class="topbar-nav-link" style="background:#2e7d32;" onmouseover="this.style.background='#43a047'" onmouseout="this.style.background='#2e7d32'">📖 财务分析</a>
-            <a href="changelog.html" class="topbar-nav-link" style="background:#856404;" onmouseover="this.style.background='#a0762a'" onmouseout="this.style.background='#856404'">📋 更新日志</a>
-            <a href="scorer.html" class="topbar-nav-link" style="background:#1a5276;" onmouseover="this.style.background='#2e86c1'" onmouseout="this.style.background='#1a5276'">📊 股票打分</a>
         </div>
         <div class="topbar-right" id="topbarScores">
             <span class="topbar-score-label">&#x57FA;&#x672C;&#x9762;</span>

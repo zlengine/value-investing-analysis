@@ -26,7 +26,7 @@
         .tag-red { background: #c0392b; }
         a { color: #1a5276; text-decoration: none; }
         a:hover { text-decoration: underline; }
-        .fixed-topbar { position: fixed; top: 0; left: 0; right: 0; z-index: 9999; background: linear-gradient(135deg, #1a5276, #2e86c1); color: white; display: flex; align-items: center; justify-content: space-between; padding: 8px 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.15); height: 48px; }
+        .fixed-topbar { position: fixed; top: 44px; left: 0; right: 0; z-index: 9998; background: linear-gradient(135deg, #1a5276, #2e86c1); color: white; display: flex; align-items: center; justify-content: space-between; padding: 8px 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.15); height: 48px; }
         .fixed-topbar a { color: white; text-decoration: none; font-size: 14px; font-weight: 600; }
         .fixed-topbar a:hover { text-decoration: underline; }
         .topbar-left { display: flex; align-items: center; gap: 12px; }
@@ -48,23 +48,25 @@
         .topbar-stars { font-size: 11px; }
         .topbar-stars .on { color: #f39c12; }
         .topbar-stars .off { color: rgba(255,255,255,0.3); }
-        body { padding-top: 60px !important; }
+        body { padding-top: 104px !important; }
         .moat-item { background: white; border-radius: 8px; padding: 15px 20px; margin: 10px 0; box-shadow: 0 1px 5px rgba(0,0,0,0.05); border-left: 4px solid #2e86c1; }
         .moat-item strong { color: #1a5276; }
         .risk-item { background: white; border-radius: 8px; padding: 15px 20px; margin: 10px 0; box-shadow: 0 1px 5px rgba(0,0,0,0.05); border-left: 4px solid #c0392b; }
         .star { color: #f39c12; }
-        .topbar-nav-link { color: white; padding: 4px 12px; border-radius: 14px; text-decoration: none; font-size: 12px; transition: background 0.2s; white-space: nowrap; }
-        .topbar-nav-link:hover { text-decoration: none; }
+                .top-nav-bar { position: fixed; top: 0; left: 0; right: 0; height: 44px; background: #2c3e50; display: flex; align-items: center; justify-content: flex-end; padding: 0 20px; z-index: 9999; box-shadow: 0 2px 8px rgba(0,0,0,0.15); gap: 8px; }
+        .top-nav-link { color: white; padding: 6px 16px; border-radius: 16px; text-decoration: none; font-size: 13px; transition: background 0.2s; white-space: nowrap; }
     </style>
 </head>
 <body>
+    <div class="top-nav-bar">
+        <a href="scorer.html" class="top-nav-link" style="background:#1a5276;" onmouseover="this.style.background='#2e86c1'" onmouseout="this.style.background='#1a5276'">📊 股票打分</a>
+        <a href="financial_analysis.html" class="top-nav-link" style="background:#2e7d32;" onmouseover="this.style.background='#43a047'" onmouseout="this.style.background='#2e7d32'">📖 财务分析</a>
+        <a href="changelog.html" class="top-nav-link" style="background:#856404;" onmouseover="this.style.background='#a0762a'" onmouseout="this.style.background='#856404'">📋 更新日志</a>
+    </div>
     <div class="fixed-topbar" id="fixedTopbar">
         <div class="topbar-left">
             <a href="index.html">&larr; 返回索引</a>
             <span style="font-size:14px;font-weight:700;" id="topbarCode">IDXX</span>
-            <a href="financial_analysis.html" class="topbar-nav-link" style="background:#2e7d32;" onmouseover="this.style.background='#43a047'" onmouseout="this.style.background='#2e7d32'">📖 财务分析</a>
-            <a href="changelog.html" class="topbar-nav-link" style="background:#856404;" onmouseover="this.style.background='#a0762a'" onmouseout="this.style.background='#856404'">📋 更新日志</a>
-            <a href="scorer.html" class="topbar-nav-link" style="background:#1a5276;" onmouseover="this.style.background='#2e86c1'" onmouseout="this.style.background='#1a5276'">📊 股票打分</a>
         </div>
         <div class="topbar-right" id="topbarScores">
             <span class="topbar-score-label">基本面</span>

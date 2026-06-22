@@ -162,6 +162,23 @@
         </div>
         <div class="log-desc">
             <ul>
+                <li>重构所有公司页面导航栏为双层结构：最顶部为通用导航栏（📊 股票打分、📖 财务分析、📋 更新日志），下方为原打分栏（返回索引、股票代码、基本面/价格打分）</li>
+                <li>通用导航栏固定在最顶部（top:0, z-index:9999），打分栏固定在其下方（top:44px, z-index:9998）</li>
+                <li>调整body padding-top为104px以适应双层导航栏</li>
+            </ul>
+        </div>
+        <div class="log-files">
+            <span class="modified">~ 89个公司页面（aapl.html至zts.html）</span><br>
+        </div>
+    </div>
+
+    <div class="log-entry update">
+        <div class="log-header">
+            <span class="log-date">2026-06-22</span>
+            <span class="log-type update">更新</span>
+        </div>
+        <div class="log-desc">
+            <ul>
                 <li>所有89个公司页面顶部导航栏统一化：在打分栏左侧添加通用导航链接（📖 财务分析、📋 更新日志、📊 股票打分）</li>
                 <li>导航栏固定在页面最上方，进入任何公司页面均可快速跳转到财务分析、更新日志、股票打分页面</li>
                 <li>导航链接采用胶囊按钮样式，与index主页风格一致</li>
