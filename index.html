@@ -284,7 +284,63 @@
             <option value="6">综合 6分+</option>
             <option value="4">综合 4分+</option>
         </select>
+        <button onclick="toggleDiagPanel()" style="padding:5px 12px;border:1px solid #e74c3c;border-radius:6px;font-size:13px;background:#fdf2f2;color:#e74c3c;cursor:pointer;margin-left:auto;">🔧 打分诊断</button>
     </div>
+    <div id="diagPanel" style="display:none;background:#fff3cd;border:1px solid #ffeaa7;border-radius:8px;padding:15px;margin-bottom:15px;">
+        <h3 style="margin:0 0 10px;font-size:15px;color:#856404;">打分数据诊断与恢复</h3>
+        <div id="diagStatus" style="font-size:13px;margin-bottom:10px;"></div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;">
+            <button onclick="diagCheck()" style="padding:6px 14px;border:1px solid #1a5276;border-radius:6px;font-size:13px;background:#1a5276;color:white;cursor:pointer;">检查打分数据</button>
+            <button onclick="diagExport()" style="padding:6px 14px;border:1px solid #27ae60;border-radius:6px;font-size:13px;background:#27ae60;color:white;cursor:pointer;">导出打分数据</button>
+            <button onclick="diagImport()" style="padding:6px 14px;border:1px solid #f39c12;border-radius:6px;font-size:13px;background:#f39c12;color:white;cursor:pointer;">导入打分数据</button>
+            <button onclick="toggleDiagPanel()" style="padding:6px 14px;border:1px solid #999;border-radius:6px;font-size:13px;background:#eee;color:#333;cursor:pointer;">关闭</button>
+        </div>
+        <textarea id="diagTextarea" style="display:none;width:100%;height:120px;margin-top:10px;font-size:12px;border:1px solid #ddd;border-radius:6px;padding:8px;" placeholder='粘贴打分数据JSON，格式：{"AAPL":{"fundamental":4,"price":3,"updated":"2026-06-01T10:00:00Z"},...}'></textarea>
+        <button id="diagImportBtn" onclick="diagDoImport()" style="display:none;padding:6px 14px;border:1px solid #27ae60;border-radius:6px;font-size:13px;background:#27ae60;color:white;cursor:pointer;margin-top:8px;">确认导入</button>
+    </div>
+    <script>
+    function toggleDiagPanel(){
+        var p=document.getElementById('diagPanel');
+        p.style.display=p.style.display==='none'?'block':'none';
+        if(p.style.display==='block')diagCheck();
+    }
+    function diagCheck(){
+        var s=localStorage.getItem('stock_scores_v1');
+        var el=document.getElementById('diagStatus');
+        if(!s){el.innerHTML='<span style="color:#e74c3c;font-weight:700;">⚠ localStorage中没有打分数据（stock_scores_v1 为空）</span><br><span style="color:#666;">可能原因：浏览器清除了数据、使用了不同浏览器/隐私模式、或file://协议的localStorage被禁用</span>';return;}
+        try{
+            var scores=JSON.parse(s);
+            var keys=Object.keys(scores);
+            var html='<span style="color:#27ae60;font-weight:700;">✓ 找到打分数据</span><br>';
+            html+='localStorage key: <code>stock_scores_v1</code><br>';
+            html+='已打分股票数: <strong>'+keys.length+'</strong><br>';
+            html+='<details><summary style="cursor:pointer;color:#1a5276;font-size:12px;">查看详细数据</summary><div style="font-size:11px;max-height:200px;overflow:auto;background:#f9f9f9;padding:8px;border-radius:4px;margin-top:5px;">';
+            keys.forEach(function(k){var sc=scores[k];html+=k+': 基本面='+(sc.fundamental||0)+' 价格='+(sc.price||0)+(sc.updated?' ('+sc.updated.substring(0,10)+')':'')+'<br>';});
+            html+='</div></details>';
+            el.innerHTML=html;
+        }catch(e){el.innerHTML='<span style="color:#e74c3c;">解析错误: '+e.message+'</span>';}
+    }
+    function diagExport(){
+        var s=localStorage.getItem('stock_scores_v1')||'{}';
+        var ta=document.getElementById('diagTextarea');
+        ta.style.display='block';ta.value=s;
+        ta.select();document.execCommand('copy');
+        alert('打分数据已复制到剪贴板！\n请保存到安全的地方。');
+    }
+    function diagImport(){
+        document.getElementById('diagTextarea').style.display='block';
+        document.getElementById('diagImportBtn').style.display='inline-block';
+    }
+    function diagDoImport(){
+        var ta=document.getElementById('diagTextarea');
+        try{
+            JSON.parse(ta.value);
+            localStorage.setItem('stock_scores_v1',ta.value);
+            alert('导入成功！页面将刷新。');
+            location.reload();
+        }catch(e){alert('JSON格式错误: '+e.message);}
+    }
+    </script>
     <table id="stockTable">
         <thead>
             <tr>
