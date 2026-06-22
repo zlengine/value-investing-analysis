@@ -893,26 +893,15 @@
             document.getElementById(id).addEventListener('change', renderTable);
         });
 
-        // 从数据库加载打分数据
+        // 从 localStorage 加载打分数据
         function loadScores() {
-            ScoresDB.getAll(function(scores, source) {
-                currentScores = scores || {};
-                // 更新数据源状态显示
-                var statusEl = document.getElementById('dbStatus');
-                if (statusEl) {
-                    if (source === 'server') {
-                        statusEl.innerHTML = '🗄️ 数据库已连接 · ' + Object.keys(currentScores).length + '条打分';
-                        statusEl.style.color = '#27ae60';
-                    } else if (source === 'json') {
-                        statusEl.innerHTML = '📄 JSON文件模式（只读）· ' + Object.keys(currentScores).length + '条打分';
-                        statusEl.style.color = '#f39c12';
-                    } else {
-                        statusEl.innerHTML = '💾 缓存模式 · ' + Object.keys(currentScores).length + '条打分';
-                        statusEl.style.color = '#999';
-                    }
-                }
-                renderTable();
-            });
+            currentScores = ScoresDB.getAll() || {};
+            var statusEl = document.getElementById('dbStatus');
+            if (statusEl) {
+                statusEl.innerHTML = '💾 本地存储 · ' + Object.keys(currentScores).length + '条打分';
+                statusEl.style.color = '#27ae60';
+            }
+            renderTable();
         }
 
         // Initial render
@@ -921,9 +910,6 @@
         } else {
             loadScores();
         }
-
-        // 定期刷新（从数据库拉取最新数据）
-        setInterval(loadScores, 5000);
     })();
     </script>
 

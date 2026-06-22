@@ -155,6 +155,29 @@
 
     <!-- 更新日志条目 - 按时间倒序排列，最新在最上面 -->
 
+    <div class="log-entry update">
+        <div class="log-header">
+            <span class="log-date">2026-06-22</span>
+            <span class="log-type update">更新</span>
+        </div>
+        <div class="log-desc">
+            <ul>
+                <li><strong>简化打分系统：改为纯 localStorage 存储，移除服务器依赖</strong></li>
+                <li>解决 GitHub Pages 上打分时弹出"请启动本地服务器"提示的问题</li>
+                <li>解决点击"修改"按钮延迟 2-3 秒才弹出下拉框的问题（根本原因：旧代码 topbarEdit 调用 ScoresDB.getAll()，会先 fetch localhost:8000 等待超时才回退）</li>
+                <li>新的 ScoresDB 接口：getAll/save/get/delete 全部同步操作，无网络请求，响应时间从 2-3 秒降至 &lt;1ms</li>
+                <li>移除 setInterval 定期刷新（不再需要同步服务器数据）</li>
+                <li>更新 83 个股票页面的打分脚本（topbarEdit 改用同步 ScoresDB.get()）</li>
+                <li>更新 index.html、scorer.html、fix.html 适配新的同步 API</li>
+            </ul>
+        </div>
+        <div class="log-files">
+            <span class="modified">~ scores_client.js（重写为纯 localStorage 同步存储）</span><br>
+            <span class="modified">~ 83 个股票页面（更新打分脚本）</span><br>
+            <span class="modified">~ index.html、scorer.html、fix.html（适配同步 API）</span>
+        </div>
+    </div>
+
     <div class="log-entry fix">
         <div class="log-header">
             <span class="log-date">2026-06-22</span>

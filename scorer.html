@@ -446,52 +446,30 @@
             if(!editingCode) return;
             var f=parseInt(document.getElementById('modalF').value);
             var p=parseInt(document.getElementById('modalP').value);
-            ScoresDB.save(editingCode, f, p, function(result){
-                if(result.success){
-                    closeModal();
-                    loadScores();
-                } else {
-                    alert('保存失败：'+result.error+'\n\n请确保已启动本地服务器：python server.py');
-                }
-            });
+            ScoresDB.save(editingCode, f, p);
+            closeModal();
+            loadScores();
         });
         document.getElementById('modalCancelBtn').addEventListener('click',closeModal);
         document.getElementById('modalDelete').addEventListener('click',function(){
             if(!editingCode) return;
-            ScoresDB.save(editingCode, 0, 0, function(result){
-                if(result.success){
-                    closeModal();
-                    loadScores();
-                } else {
-                    alert('删除失败：'+result.error);
-                }
-            });
+            ScoresDB.delete(editingCode);
+            closeModal();
+            loadScores();
         });
         document.getElementById('modalOverlay').addEventListener('click',function(e){
             if(e.target===this) closeModal();
         });
 
         function loadScores(){
-            ScoresDB.getAll(function(scores, source){
-                currentScores = scores || {};
-                var statusEl = document.getElementById('dbStatus');
-                if (statusEl) {
-                    if (source === 'server') {
-                        statusEl.innerHTML = '🗄️ 数据库已连接 · ' + Object.keys(currentScores).length + '条打分';
-                        statusEl.style.color = '#27ae60';
-                    } else if (source === 'json') {
-                        statusEl.innerHTML = '📄 JSON文件模式（只读，需启动服务器才能修改）· ' + Object.keys(currentScores).length + '条打分';
-                        statusEl.style.color = '#f39c12';
-                    } else {
-                        statusEl.innerHTML = '💾 缓存模式 · ' + Object.keys(currentScores).length + '条打分';
-                        statusEl.style.color = '#999';
-                    }
-                }
-                renderTable();
-            });
+            currentScores = ScoresDB.getAll() || {};
+            var statusEl = document.getElementById('dbStatus');
+            if (statusEl) {
+                statusEl.innerHTML = '💾 本地存储 · ' + Object.keys(currentScores).length + '条打分';
+                statusEl.style.color = '#27ae60';
+            }
+            renderTable();
         }
-
-        setInterval(loadScores, 5000);
 
         if (document.readyState === 'loading') {
             document.addEventListener('DOMContentLoaded', loadScores);

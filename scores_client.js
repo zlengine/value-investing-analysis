@@ -1,132 +1,106 @@
 /**
- * 打分数据客户端同步脚本
+ * 打分数据客户端（纯 localStorage 存储）
  *
- * 数据源优先级：
- * 1. 本地服务器 API (http://localhost:8000/api/scores) — 完整读写
- * 2. scores_data.json 文件 — 只读（GitHub Pages 或本地直接打开）
- * 3. localStorage 缓存 — 最后兜底
+ * 简化设计：
+ * - 所有打分数据存储在浏览器 localStorage（key: stock_scores_v1）
+ * - 同步读写，无网络请求，立即响应
+ * - 无需本地服务器，GitHub Pages 和本地均可正常使用
  *
  * 使用方式：
- *   ScoresDB.getAll(callback)           — 获取所有打分
- *   ScoresDB.save(code, f, p, callback) — 保存打分（仅本地服务器模式可写）
+ *   ScoresDB.getAll(callback)           — 获取所有打分（同步，callback 立即执行）
+ *   ScoresDB.save(code, f, p, callback) — 保存打分（同步，callback 立即执行）
+ *   ScoresDB.get(code)                  — 同步获取单个股票打分（无 callback）
+ *   ScoresDB.delete(code, callback)     — 删除打分
  */
 var ScoresDB = (function() {
 
-    var API_URL = 'http://localhost:8000/api/scores';
-    var JSON_URL = 'scores_data.json';
-    var CACHE_KEY = 'stock_scores_v1'; // 保留兼容性，作为缓存
-    var serverAvailable = null; // null=未检测, true/false
+    var CACHE_KEY = 'stock_scores_v1';
 
     /**
-     * 获取所有打分数据
-     * 优先从服务器获取，失败则从 JSON 文件获取，最后用 localStorage
+     * 读取 localStorage 中的所有打分
+     * @return {Object} 打分对象 { CODE: {fundamental: N, price: N, updated: ISO} }
+     */
+    function readAll() {
+        try {
+            return JSON.parse(localStorage.getItem(CACHE_KEY) || '{}');
+        } catch(e) {
+            return {};
+        }
+    }
+
+    /**
+     * 写入打分到 localStorage
+     */
+    function writeAll(scores) {
+        try {
+            localStorage.setItem(CACHE_KEY, JSON.stringify(scores));
+        } catch(e) {
+            console.error('localStorage 写入失败:', e);
+        }
+    }
+
+    /**
+     * 获取所有打分数据（同步，兼容 callback 风格）
      */
     function getAll(callback) {
-        callback = callback || function() {};
-
-        // 先尝试本地服务器 API
-        fetch(API_URL, { cache: 'no-store' })
-            .then(function(r) { return r.json(); })
-            .then(function(data) {
-                serverAvailable = true;
-                var scores = data.scores || {};
-                // 同步到 localStorage 作为缓存
-                try { localStorage.setItem(CACHE_KEY, JSON.stringify(scores)); } catch(e) {}
-                callback(scores, 'server');
-            })
-            .catch(function() {
-                serverAvailable = false;
-                // 服务器不可用，尝试 JSON 文件
-                fetchJsonFile(callback);
-            });
+        var scores = readAll();
+        if (typeof callback === 'function') {
+            callback(scores, 'local');
+        }
+        return scores;
     }
 
     /**
-     * 从 scores_data.json 文件获取数据
+     * 同步获取单个股票打分（无 callback）
      */
-    function fetchJsonFile(callback) {
-        fetch(JSON_URL + '?t=' + Date.now(), { cache: 'no-store' })
-            .then(function(r) {
-                if (!r.ok) throw new Error('JSON file not found');
-                return r.json();
-            })
-            .then(function(data) {
-                var scores = data.scores || {};
-                // 同步到 localStorage 作为缓存
-                try { localStorage.setItem(CACHE_KEY, JSON.stringify(scores)); } catch(e) {}
-                callback(scores, 'json');
-            })
-            .catch(function() {
-                // JSON 文件也不可用，用 localStorage 兜底
-                var scores = {};
-                try {
-                    scores = JSON.parse(localStorage.getItem(CACHE_KEY) || '{}');
-                } catch(e) {}
-                callback(scores, 'cache');
-            });
+    function get(code) {
+        var scores = readAll();
+        return scores[code] || {};
     }
 
     /**
-     * 保存打分数据
-     * 仅本地服务器模式可保存，GitHub Pages 模式只读
+     * 保存打分（同步写入 localStorage）
      */
     function save(code, fundamental, price, callback) {
-        callback = callback || function() {};
-
-        if (serverAvailable === false) {
-            callback({ success: false, error: '只读模式：请启动本地服务器 (python server.py) 后再打分' });
-            return;
+        var scores = readAll();
+        scores[code] = {
+            fundamental: parseInt(fundamental) || 0,
+            price: parseInt(price) || 0,
+            updated: new Date().toISOString()
+        };
+        writeAll(scores);
+        if (typeof callback === 'function') {
+            callback({ success: true, code: code });
         }
-
-        fetch(API_URL, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                code: code,
-                fundamental: parseInt(fundamental) || 0,
-                price: parseInt(price) || 0
-            })
-        })
-        .then(function(r) { return r.json(); })
-        .then(function(data) {
-            if (data.success) {
-                // 更新 localStorage 缓存
-                getAll(function() {}); // 静默刷新缓存
-                callback(data);
-            } else {
-                callback({ success: false, error: data.error || '保存失败' });
-            }
-        })
-        .catch(function(err) {
-            serverAvailable = false;
-            callback({ success: false, error: '无法连接服务器，请运行 python server.py' });
-        });
+        return { success: true, code: code };
     }
 
     /**
-     * 检测服务器是否可用
+     * 删除打分
      */
-    function checkServer(callback) {
-        callback = callback || function() {};
-        fetch(API_URL, { cache: 'no-store' })
-            .then(function() { serverAvailable = true; callback(true); })
-            .catch(function() { serverAvailable = false; callback(false); });
+    function remove(code, callback) {
+        var scores = readAll();
+        delete scores[code];
+        writeAll(scores);
+        if (typeof callback === 'function') {
+            callback({ success: true, code: code });
+        }
+        return { success: true, code: code };
     }
 
     /**
-     * 获取数据源状态
+     * 获取数据源状态（兼容旧代码）
      */
     function getSource() {
-        if (serverAvailable === true) return 'server';
-        if (serverAvailable === false) return 'json';
-        return 'unknown';
+        return 'local';
     }
 
     return {
         getAll: getAll,
+        get: get,
         save: save,
-        checkServer: checkServer,
+        delete: remove,
         getSource: getSource,
-        API_URL: API_URL
+        CACHE_KEY: CACHE_KEY
     };
 })();

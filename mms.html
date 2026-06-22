@@ -1002,7 +1002,7 @@
     <script>
     (function(){
         var code=document.getElementById('topbarCode').textContent.trim();
-        function starsHTML(val){var h='';for(var i=1;i<=5;i++){h+='<span class="'+(i<=val?'on':'off')+'">★</span>';}return h;}
+        function starsHTML(val){var h='';for(var i=1;i<=5;i++){h+='<span class="'+(i<=val?'on':'off')+'">\u2605</span>';}return h;}
         function valClass(v){return v>=5?'s5':v>=4?'s4':v>=3?'s3':v>=2?'s2':'s1';}
         function renderDisplay(f,p){
             document.getElementById('topbarFVal').textContent=f>0?f:'-';
@@ -1013,39 +1013,29 @@
             document.getElementById('topbarPStars').innerHTML=starsHTML(p);
         }
         function renderFromDB(){
-            ScoresDB.getAll(function(scores){
-                var sc=scores[code]||{};
-                renderDisplay(sc.fundamental||0, sc.price||0);
-            });
+            var sc=ScoresDB.get(code);
+            renderDisplay(sc.fundamental||0, sc.price||0);
         }
         window.topbarEdit=function(){
-            ScoresDB.getAll(function(scores){
-                var sc=scores[code]||{};
-                document.getElementById('topbarFSel').value=sc.fundamental||0;
-                document.getElementById('topbarPSel').value=sc.price||0;
-                document.getElementById('topbarFSel').style.display='';
-                document.getElementById('topbarPSel').style.display='';
-                document.getElementById('topbarEditBtn').style.display='none';
-                document.getElementById('topbarSaveBtn').style.display='';
-                document.getElementById('topbarCancelBtn').style.display='';
-                document.getElementById('topbarFVal').style.display='none';
-                document.getElementById('topbarPVal').style.display='none';
-                document.getElementById('topbarFStars').style.display='none';
-                document.getElementById('topbarPStars').style.display='none';
-            });
+            var sc=ScoresDB.get(code);
+            document.getElementById('topbarFSel').value=sc.fundamental||0;
+            document.getElementById('topbarPSel').value=sc.price||0;
+            document.getElementById('topbarFSel').style.display='';
+            document.getElementById('topbarPSel').style.display='';
+            document.getElementById('topbarEditBtn').style.display='none';
+            document.getElementById('topbarSaveBtn').style.display='';
+            document.getElementById('topbarCancelBtn').style.display='';
+            document.getElementById('topbarFVal').style.display='none';
+            document.getElementById('topbarPVal').style.display='none';
+            document.getElementById('topbarFStars').style.display='none';
+            document.getElementById('topbarPStars').style.display='none';
         };
         window.topbarSave=function(){
             var f=parseInt(document.getElementById('topbarFSel').value);
             var p=parseInt(document.getElementById('topbarPSel').value);
-            ScoresDB.save(code, f, p, function(result){
-                if(result.success){
-                    topbarCancel();
-                    renderFromDB();
-                } else {
-                    alert('保存失败：'+result.error+'\n请确保已启动本地服务器：python server.py');
-                    topbarCancel();
-                }
-            });
+            ScoresDB.save(code, f, p);
+            topbarCancel();
+            renderFromDB();
         };
         window.topbarCancel=function(){
             document.getElementById('topbarFSel').style.display='none';
@@ -1064,8 +1054,6 @@
         } else {
             renderFromDB();
         }
-        // 定期刷新（同步其他页面的修改）
-        setInterval(renderFromDB, 5000);
     })();
     </script>
 </body>
