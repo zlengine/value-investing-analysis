@@ -162,6 +162,25 @@
         </div>
         <div class="log-desc">
             <ul>
+                <li>修复打分栏"修改"按钮点击无反应的问题</li>
+                <li>根本原因：83 个股票页面的 alert 字符串中包含未转义的真实换行符，导致 JavaScript 语法错误，整个 IIFE 执行失败，topbarEdit/topbarSave/topbarCancel 函数未定义</li>
+                <li>修复 11 个页面的 script 标签不平衡问题（多余的 &lt;/script&gt; 或空 &lt;script&gt; 标签）</li>
+                <li>所有 89 个股票页面的打分功能现已恢复正常</li>
+            </ul>
+        </div>
+        <div class="log-files">
+            <span class="modified">~ 83 个股票页面（修复 alert 字符串换行）</span><br>
+            <span class="modified">~ 11 个页面（修复 script 标签平衡：atmu/bah/blbd/chh/ctas/ftdr/idxx/it/lii/rol/zts）</span>
+        </div>
+    </div>
+
+    <div class="log-entry fix">
+        <div class="log-header">
+            <span class="log-date">2026-06-22</span>
+            <span class="log-type fix">修复</span>
+        </div>
+        <div class="log-desc">
+            <ul>
                 <li>修复打分系统迁移后部分页面导航栏消失的问题</li>
                 <li>修复 72 个公司页面缺少 scores_client.js 引用的问题</li>
                 <li>修复 10 个页面（atmu/bah/blbd/chh/ctas/ftdr/idxx/it/lii/rol）scores_client.js 引用被错误插入到 &lt;script&gt; 标签内部的问题</li>

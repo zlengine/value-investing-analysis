@@ -664,9 +664,6 @@
         </div>
     </div>
 
-    <script>
-
-    </script>
     <script src="scores_client.js"></script>
     <script>
     (function(){
@@ -711,9 +708,7 @@
                     topbarCancel();
                     renderFromDB();
                 } else {
-                    alert('保存失败：'+result.error+'
-
-请确保已启动本地服务器：python server.py');
+                    alert('保存失败：'+result.error+'\n请确保已启动本地服务器：python server.py');
                     topbarCancel();
                 }
             });
@@ -740,6 +735,7 @@
     })();
     </script>
 
+    <script>
     // Charts
     const years = ['2015','2016','2017','2018','2019','2020','2021','2022','2023','2024','2025'];
     const roeData = [-132.7, 318, 0.3, 14.4, 24.9, 24.5, 214, 355, 130, 92.2, 228];

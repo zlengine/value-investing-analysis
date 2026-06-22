@@ -366,9 +366,6 @@
         </div>
     </div>
 
-    <script>
-
-    </script>
     <script src="scores_client.js"></script>
     <script>
     (function(){
@@ -413,9 +410,7 @@
                     topbarCancel();
                     renderFromDB();
                 } else {
-                    alert('保存失败：'+result.error+'
-
-请确保已启动本地服务器：python server.py');
+                    alert('保存失败：'+result.error+'\n请确保已启动本地服务器：python server.py');
                     topbarCancel();
                 }
             });
@@ -442,6 +437,7 @@
     })();
     </script>
 
+    <script>
     // Charts
     var ctx1 = document.getElementById('revenueChart').getContext('2d');
     new Chart(ctx1, {

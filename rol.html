@@ -955,9 +955,7 @@
                     topbarCancel();
                     renderFromDB();
                 } else {
-                    alert('保存失败：'+result.error+'
-
-请确保已启动本地服务器：python server.py');
+                    alert('保存失败：'+result.error+'\n请确保已启动本地服务器：python server.py');
                     topbarCancel();
                 }
             });
@@ -982,7 +980,7 @@
         // 定期刷新（同步其他页面的修改）
         setInterval(renderFromDB, 5000);
     })();
-    </script>
+    
     </script>
 </body>
 </html>
