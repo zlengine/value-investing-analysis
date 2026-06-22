@@ -41,6 +41,8 @@
         .chart-container { position: relative; height: 300px; margin: 15px 0; }
         .moat-item { background: #f0f7ff; padding: 12px; margin: 8px 0; border-radius: 6px; border-left: 4px solid #2e86c1; }
         .risk-item { background: #fff5f5; padding: 12px; margin: 8px 0; border-radius: 6px; border-left: 4px solid #e74c3c; }
+        .topbar-nav-link { color: white; padding: 4px 12px; border-radius: 14px; text-decoration: none; font-size: 12px; transition: background 0.2s; white-space: nowrap; }
+        .topbar-nav-link:hover { text-decoration: none; }
     </style>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
@@ -49,6 +51,9 @@
         <div class="topbar-left">
             <a href="index.html">&#8592; 首页</a>
             <span style="font-size:14px;font-weight:700;" id="topbarCode">GWW</span>
+            <a href="financial_analysis.html" class="topbar-nav-link" style="background:#2e7d32;" onmouseover="this.style.background='#43a047'" onmouseout="this.style.background='#2e7d32'">📖 财务分析</a>
+            <a href="changelog.html" class="topbar-nav-link" style="background:#856404;" onmouseover="this.style.background='#a0762a'" onmouseout="this.style.background='#856404'">📋 更新日志</a>
+            <a href="scorer.html" class="topbar-nav-link" style="background:#1a5276;" onmouseover="this.style.background='#2e86c1'" onmouseout="this.style.background='#1a5276'">📊 股票打分</a>
         </div>
         <div class="topbar-right" id="topbarScores">
             <span class="topbar-score-label">基本面</span>
