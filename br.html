@@ -3,39 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Broadridge Financial Solutions (BR) 详细分析</title>
+    <title>Broadridge Financial Solutions (BR) 价值投资分析</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
-        body { font-family: Arial, sans-serif; margin: 20px; background-color: #f5f5f5; }
-        h1 { text-align: center; color: #333; }
-        h2 { color: #4CAF50; margin-top: 30px; }
-        .info-box { background-color: white; padding: 20px; margin: 20px 0; box-shadow: 0 0 10px rgba(0,0,0,0.1); border-radius: 5px; }
-        table { width: 100%; border-collapse: collapse; margin: 10px 0; }
-        th, td { padding: 8px; text-align: left; border-bottom: 1px solid #ddd; }
-        th { background-color: #4CAF50; color: white; }
-        a { color: #4CAF50; text-decoration: none; }
+        body { font-family: 'Segoe UI', Arial, sans-serif; margin: 0; padding: 20px; background-color: #f0f2f5; color: #333; }
+        h1 { text-align: center; color: #1a5276; font-size: 2.2em; margin-bottom: 5px; }
+        h2 { color: #1a5276; border-bottom: 2px solid #2e86c1; padding-bottom: 8px; margin-top: 30px; }
+        h3 { color: #2c3e50; margin-top: 20px; }
+        .subtitle { text-align: center; color: #7f8c8d; font-size: 1.1em; margin-bottom: 30px; }
+        .info-box { background: white; border-radius: 10px; padding: 25px; margin: 20px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.08); }
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; background-color: white; }
+        th, td { padding: 10px 14px; text-align: left; border-bottom: 1px solid #e0e0e0; }
+        th { background-color: #1a5276; color: white; font-weight: bold; }
+        tr:nth-child(even) { background-color: #f8f9fa; }
+        tr:hover { background-color: #eaf2f8; }
+        .highlight { background: #fef9e7; border-left: 4px solid #2e86c1; padding: 15px 20px; margin: 15px 0; border-radius: 0 8px 8px 0; }
+        .chart-container { background: white; border-radius: 10px; padding: 25px; margin: 20px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.08); }
+        canvas { max-height: 400px; }
+        .tag { display: inline-block; background: #1a5276; color: white; padding: 3px 10px; border-radius: 12px; font-size: 0.85em; margin: 2px; }
+        .tag-green { background: #27ae60; }
+        .tag-orange { background: #e67e22; }
+        .tag-red { background: #c0392b; }
+        a { color: #1a5276; text-decoration: none; }
         a:hover { text-decoration: underline; }
         .fixed-topbar { position: fixed; top: 44px; left: 0; right: 0; z-index: 9998; background: linear-gradient(135deg, #1a5276, #2e86c1); color: white; display: flex; align-items: center; justify-content: space-between; padding: 8px 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.15); height: 48px; }
         .fixed-topbar a { color: white; text-decoration: none; font-size: 14px; font-weight: 600; }
+        .fixed-topbar a:hover { text-decoration: underline; }
         .topbar-left { display: flex; align-items: center; gap: 12px; }
         .topbar-right { display: flex; align-items: center; gap: 8px; }
         .topbar-score-label { font-size: 12px; opacity: 0.85; }
         .topbar-score-val { font-weight: 700; font-size: 15px; min-width: 18px; text-align: center; }
         .topbar-score-val.s1 { color: #ff6b6b; } .topbar-score-val.s2 { color: #ffa94d; } .topbar-score-val.s3 { color: #ffd43b; } .topbar-score-val.s4 { color: #69db7c; } .topbar-score-val.s5 { color: #51cf66; }
         .topbar-select { padding: 3px 8px; border: 1px solid rgba(255,255,255,0.4); border-radius: 6px; font-size: 12px; font-weight: 600; color: white; background: rgba(255,255,255,0.15); cursor: pointer; outline: none; }
+        .topbar-select:focus { border-color: rgba(255,255,255,0.7); }
         .topbar-select option { color: #333; background: white; }
-        .topbar-btn { padding: 4px 12px; border: none; border-radius: 6px; font-size: 12px; font-weight: 600; cursor: pointer; }
+        .topbar-btn { padding: 4px 12px; border: none; border-radius: 6px; font-size: 12px; font-weight: 600; cursor: pointer; transition: background 0.2s; }
         .topbar-btn-edit { background: rgba(255,255,255,0.2); color: white; }
         .topbar-btn-edit:hover { background: rgba(255,255,255,0.35); }
         .topbar-btn-save { background: #27ae60; color: white; }
+        .topbar-btn-save:hover { background: #219a52; }
         .topbar-btn-cancel { background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.7); }
+        .topbar-btn-cancel:hover { background: rgba(255,255,255,0.2); }
         .topbar-stars { font-size: 11px; }
         .topbar-stars .on { color: #f39c12; }
         .topbar-stars .off { color: rgba(255,255,255,0.3); }
         body { padding-top: 104px !important; }
-        .tag { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 12px; font-weight: 600; }
-        .tag-orange { background-color: #fff3cd; color: #856404; }
-                .top-nav-bar { position: fixed; top: 0; left: 0; right: 0; height: 44px; background: #2c3e50; display: flex; align-items: center; justify-content: flex-end; padding: 0 20px; z-index: 9999; box-shadow: 0 2px 8px rgba(0,0,0,0.15); gap: 8px; }
+        .moat-item { background: white; border-radius: 8px; padding: 15px 20px; margin: 10px 0; box-shadow: 0 1px 5px rgba(0,0,0,0.05); border-left: 4px solid #2e86c1; }
+        .moat-item strong { color: #1a5276; }
+        .risk-item { background: white; border-radius: 8px; padding: 15px 20px; margin: 10px 0; box-shadow: 0 1px 5px rgba(0,0,0,0.05); border-left: 4px solid #c0392b; }
+        .star { color: #f39c12; }
+        .top-nav-bar { position: fixed; top: 0; left: 0; right: 0; height: 44px; background: #2c3e50; display: flex; align-items: center; justify-content: flex-end; padding: 0 20px; z-index: 9999; box-shadow: 0 2px 8px rgba(0,0,0,0.15); gap: 8px; }
         .top-nav-link { color: white; padding: 6px 16px; border-radius: 16px; text-decoration: none; font-size: 13px; transition: background 0.2s; white-space: nowrap; }
+        .segment-box { background: white; border-radius: 10px; padding: 20px; margin: 15px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.08); border-top: 4px solid #2e86c1; }
+        .competitiveness-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px; margin: 15px 0; }
+        .comp-card { background: #f8f9fa; border-radius: 8px; padding: 15px; text-align: center; }
+        .comp-card h4 { margin: 0 0 8px; color: #1a5276; font-size: 0.95em; }
+        .comp-level { font-size: 1.3em; font-weight: 700; margin: 8px 0; }
     </style>
 </head>
 <body>
@@ -46,7 +69,7 @@
     </div>
     <div class="fixed-topbar" id="fixedTopbar">
         <div class="topbar-left">
-            <a href="index.html">&#8592; 首页</a>
+            <a href="index.html">&larr; 返回索引</a>
             <span style="font-size:14px;font-weight:700;" id="topbarCode">BR</span>
         </div>
         <div class="topbar-right" id="topbarScores">
@@ -65,28 +88,539 @@
     </div>
 
     <h1>Broadridge Financial Solutions (NYSE: BR)</h1>
-    <p style="text-align:center;color:#666;">巴菲特/芒格式价值投资基本面分析 | 更新日期：2026年6月</p>
+    <p class="subtitle">巴菲特/芒格式价值投资基本面分析 | 更新日期：2026年6月</p>
 
+    <!-- 第一章：公司基本信息 -->
     <div class="info-box">
         <h2>一、公司基本信息</h2>
         <table>
-            <tr><td>公司全称</td><td>Broadridge Financial Solutions</td></tr>
-            <tr><td>股票代码</td><td>NYSE: BR</td></tr>
-            <tr><td>市值</td><td>约220亿美元</td></tr>
-            <tr><td>行业</td><td>金融科技/投资者通信</td></tr>
+            <tr><td style="width:30%;font-weight:bold;">公司全称</td><td>Broadridge Financial Solutions, Inc.</td></tr>
+            <tr><td style="font-weight:bold;">股票代码</td><td>NYSE: BR</td></tr>
+            <tr><td style="font-weight:bold;">市值</td><td>约161亿美元（USD 16.1B）</td></tr>
+            <tr><td style="font-weight:bold;">企业价值（EV）</td><td>约219.6亿美元（含债务34亿、现金3亿）</td></tr>
+            <tr><td style="font-weight:bold;">最新收盘价</td><td>约 $139.63（2026年6月）</td></tr>
+            <tr><td style="font-weight:bold;">52周区间</td><td>$139.79 - $271.91</td></tr>
+            <tr><td style="font-weight:bold;">成立时间</td><td>1962年（2007年从ADP分拆独立上市）</td></tr>
+            <tr><td style="font-weight:bold;">总部</td><td>美国纽约州 Lake Success</td></tr>
+            <tr><td style="font-weight:bold;">员工数</td><td>约15,000人</td></tr>
+            <tr><td style="font-weight:bold;">行业</td><td>金融科技 / 信息技术服务</td></tr>
+            <tr><td style="font-weight:bold;">流通股数</td><td>约1.156亿股</td></tr>
         </table>
-        <p style="color:#856404;"><span class="tag tag-orange">待补充</span> 详细分析内容将在后续更新中补充。</p>
+        <div class="highlight">
+            <strong>一句话理解Broadridge：</strong>Broadridge是美国金融市场的"水电煤"——它处理全美80%的代理投票、超过50%的全球股票交易清算，是银行、券商、基金公司背后不可或缺的基础设施。就像你用电不需要知道发电厂在哪，投资者买卖股票、投票、收到对账单，背后都有Broadridge在运转。
+        </div>
     </div>
 
-    
+    <!-- 第二章：业务分析 -->
+    <div class="info-box">
+        <h2>二、业务分析</h2>
+
+        <h3>2.1 公司业务概述</h3>
+        <p>Broadridge为银行、券商、资产管理公司和上市公司提供两大类核心服务：<strong>投资者通信</strong>（帮金融机构给投资者寄对账单、代理投票通知等）和<strong>全球技术与运营</strong>（帮金融机构处理交易、清算、财富管理等后台技术）。超过65%的收入来自经常性费用（recurring revenue），业务非常稳定。</p>
+
+        <h3>2.2 业务板块拆分</h3>
+        <table>
+            <tr><th>业务板块</th><th>FY2025营收</th><th>占总营收比例</th><th>增长趋势</th></tr>
+            <tr>
+                <td><strong>投资者通信解决方案（ICS）</strong></td>
+                <td>约38亿</td>
+                <td>约55%</td>
+                <td>经常性收入增长5-9%，受监管驱动+数字化推动</td>
+            </tr>
+            <tr>
+                <td><strong>全球技术与运营（GTO）</strong></td>
+                <td>约31亿</td>
+                <td>约45%</td>
+                <td>经常性收入增长8-12%，资本市场和财富管理技术需求强劲</td>
+            </tr>
+        </table>
+
+        <h3>2.3 ICS板块细分</h3>
+        <table>
+            <tr><th>产品线</th><th>说明</th></tr>
+            <tr><td>银行/券商投资者通信</td><td>为券商客户处理交易确认书、对账单、税务表格等监管通信</td></tr>
+            <tr><td>客户通信</td><td>为金融机构提供营销和客户沟通服务</td></tr>
+            <tr><td>企业发行人服务</td><td>为上市公司提供代理投票、年报分发等股东通信服务</td></tr>
+            <tr><td>顾问解决方案</td><td>为财富顾问提供数字化客户沟通工具</td></tr>
+            <tr><td>共同基金与退休解决方案</td><td>为基金公司提供数据驱动解决方案和监管通信</td></tr>
+        </table>
+
+        <h3>2.4 GTO板块细分</h3>
+        <table>
+            <tr><th>产品线</th><th>说明</th></tr>
+            <tr><td>资本市场</td><td>中后台证券处理、交易连接（BTCS）、清算和结算</td></tr>
+            <tr><td>财富与投资管理</td><td>财富管理平台、投资组合管理、绩效报告等</td></tr>
+            <tr><td>证券融资与数据</td><td>证券借贷、抵押品管理、数据聚合等</td></tr>
+        </table>
+
+        <h3>2.5 地理分布</h3>
+        <table>
+            <tr><th>地区</th><th>营收占比</th><th>说明</th></tr>
+            <tr><td>北美</td><td>约80%</td><td>核心市场，代理投票和交易处理占据绝对主导</td></tr>
+            <tr><td>欧洲/中东/非洲</td><td>约12%</td><td>通过收购Itiviti等扩展国际业务</td></tr>
+            <tr><td>亚太</td><td>约8%</td><td>增长中但规模较小</td></tr>
+        </table>
+
+        <h3>2.6 商业模式</h3>
+        <div class="highlight">
+            <strong>如何赚钱：</strong>Broadridge的收入主要来自三类：<br>
+            1. <strong>经常性收入（Recurring，占65%+）</strong>：客户按月/年支付的订阅费和处理费，如代理投票处理费、交易清算费、SaaS平台费——这是最稳定的收入来源<br>
+            2. <strong>事件驱动收入（Event-driven，约5%）</strong>：如并购代理通信、特别股东大会等一次性事件<br>
+            3. <strong>分销收入（Distribution，约30%）</strong>：打印和邮寄纸质通信的费用，含邮费转付（邮费上涨直接转嫁给客户）
+        </div>
+    </div>
+
+    <!-- 第三章：业务板块产品竞争力分析 -->
+    <div class="info-box">
+        <h2>三、业务板块产品竞争力分析</h2>
+
+        <!-- ICS板块 -->
+        <div class="segment-box">
+            <h3>3.1 投资者通信解决方案（ICS）产品竞争力分析</h3>
+
+            <div class="competitiveness-grid">
+                <div class="comp-card">
+                    <h4>可替代性</h4>
+                    <div class="comp-level"><span class="tag tag-green">极低</span></div>
+                    <p style="font-size:0.85em;color:#555;">几乎没有替代品</p>
+                </div>
+                <div class="comp-card">
+                    <h4>客户转换成本</h4>
+                    <div class="comp-level"><span class="tag tag-green">极高</span></div>
+                    <p style="font-size:0.85em;color:#555;">替换几乎不可能</p>
+                </div>
+                <div class="comp-card">
+                    <h4>定价权</h4>
+                    <div class="comp-level"><span class="tag tag-green">极强</span></div>
+                    <p style="font-size:0.85em;color:#555;">可大幅提价客户也无法离开</p>
+                </div>
+            </div>
+
+            <p><strong>1. 可替代性：极低</strong></p>
+            <ul>
+                <li>主要替代品：Computershare（澳大利亚，国际市场有竞争力但北美弱）、AST（美国，规模小）、Equiniti（英国，区域性强）</li>
+                <li>替代体验差距：Broadridge处理全美80%代理投票，拥有最完整的监管合规数据库和系统，竞争对手在规模和合规深度上差距巨大</li>
+                <li>替代趋势：稳定，监管要求持续增加反而加固了Broadridge的地位</li>
+            </ul>
+
+            <p><strong>2. 客户转换成本：极高</strong></p>
+            <ul>
+                <li>财务转换成本：迁移数百万投资者记录、重新建立监管合规流程，成本可达数百万美元</li>
+                <li>时间转换成本：系统迁移需要6-18个月，期间存在合规风险</li>
+                <li>心理转换成本：金融机构对核心基础设施变更极度保守，"不出错"比"省钱"更重要</li>
+                <li>捆绑转换成本：ICS客户通常同时使用GTO服务，形成深度捆绑</li>
+            </ul>
+
+            <p><strong>3. 定价权：极强</strong></p>
+            <ul>
+                <li>历史提价记录：过去14年中有13年实现双位数股息增长，反映定价权传导到利润端</li>
+                <li>邮费转嫁：邮费上涨直接转嫁给客户，分销收入随邮费上涨而增加</li>
+                <li>定价权来源：监管合规刚需+80%市场份额+极高转换成本</li>
+                <li>巴菲特测试：如果提价10%，客户几乎无法离开——因为替代方案要么不合规，要么迁移成本远超10%的涨价</li>
+            </ul>
+
+            <p><strong>整体竞争力评级：<span class="star">&#9733;&#9733;&#9733;&#9733;&#9733;</span>（5/5星）</strong></p>
+        </div>
+
+        <!-- GTO板块 -->
+        <div class="segment-box">
+            <h3>3.2 全球技术与运营（GTO）产品竞争力分析</h3>
+
+            <div class="competitiveness-grid">
+                <div class="comp-card">
+                    <h4>可替代性</h4>
+                    <div class="comp-level"><span class="tag tag-green">低</span></div>
+                    <p style="font-size:0.85em;color:#555;">替代品少且差距大</p>
+                </div>
+                <div class="comp-card">
+                    <h4>客户转换成本</h4>
+                    <div class="comp-level"><span class="tag tag-green">高</span></div>
+                    <p style="font-size:0.85em;color:#555;">替换需大量时间和金钱</p>
+                </div>
+                <div class="comp-card">
+                    <h4>定价权</h4>
+                    <div class="comp-level"><span class="tag tag-green">强</span></div>
+                    <p style="font-size:0.85em;color:#555;">可定期提价高于通胀</p>
+                </div>
+            </div>
+
+            <p><strong>1. 可替代性：低</strong></p>
+            <ul>
+                <li>主要替代品：SS&C Technologies（规模大但产品线不同）、FIS（资本市场竞争者）、Fiserv（偏支付领域）</li>
+                <li>替代体验差距：Broadridge的BTCS交易连接平台覆盖全球主要交易所，Itiviti的前端交易系统在北欧和亚洲有独特优势，竞争对手难以复制这种端到端覆盖</li>
+                <li>替代趋势：稳定偏减弱，因为交易处理基础设施的网络效应随规模增强</li>
+            </ul>
+
+            <p><strong>2. 客户转换成本：高</strong></p>
+            <ul>
+                <li>财务转换成本：中后台系统替换涉及数百万美元的软件许可、定制开发和测试</li>
+                <li>时间转换成本：交易处理系统迁移需12-24个月，期间需双系统并行运行</li>
+                <li>捆绑转换成本：使用Broadridge交易处理的客户通常也使用其清算和结算服务，形成完整链条</li>
+                <li>风险评估：交易处理系统出错可能导致数百万美元的交易损失，客户极度规避风险</li>
+            </ul>
+
+            <p><strong>3. 定价权：强</strong></p>
+            <ul>
+                <li>历史提价记录：经常性收入持续增长7-9%，部分来自新业务，部分来自现有客户提价</li>
+                <li>定价权来源：网络效应（越多客户使用，连接越有价值）+ 规模优势 + 转换成本</li>
+                <li>定价权趋势：加强，随着BTCS和Itiviti的整合，端到端解决方案的定价能力增强</li>
+                <li>巴菲特测试：提价10%后，客户替换成本远超10%涨价额，且交易处理是"不能出错"的核心业务</li>
+            </ul>
+
+            <p><strong>整体竞争力评级：<span class="star">&#9733;&#9733;&#9733;&#9733;</span>&#9734;（4/5星）</strong></p>
+        </div>
+    </div>
+
+    <!-- 第四章：历史财务指标 -->
+    <div class="info-box">
+        <h2>四、历史财务指标</h2>
+
+        <h3>4.1 净资产收益率（ROE）</h3>
+        <table>
+            <tr><th>财年</th><th>ROE</th><th>备注</th></tr>
+            <tr><td>FY2016</td><td>32.3%</td><td>分拆后稳定运营期</td></tr>
+            <tr><td>FY2017</td><td>32.8%</td><td></td></tr>
+            <tr><td>FY2018</td><td>39.2%</td><td>税改利好</td></tr>
+            <tr><td>FY2019</td><td>40.6%</td><td>峰值</td></tr>
+            <tr><td>FY2020</td><td>38.4%</td><td>疫情下依然强劲</td></tr>
+            <tr><td>FY2021</td><td>35.0%</td><td>Itiviti收购拉低</td></tr>
+            <tr><td>FY2022</td><td>29.8%</td><td>收购整合期低点</td></tr>
+            <tr><td>FY2023</td><td>31.8%</td><td>恢复中</td></tr>
+            <tr><td>FY2024</td><td>32.4%</td><td>持续恢复</td></tr>
+            <tr><td>FY2025</td><td>35.4%</td><td>回到35%+</td></tr>
+        </table>
+        <div class="highlight">
+            <strong>巴菲特视角：</strong>Broadridge的ROE长期维持在30-40%的高位，远超15%的优秀门槛。但需注意：高ROE部分来自杠杆（权益乘数约3.2x），真实经营ROA约10%。即便如此，30%+的ROE在金融科技公司中仍属顶级水平。FY2021-2022因Itiviti收购（约25亿美元）导致ROE暂时下降，现已恢复。
+        </div>
+
+        <h3>4.2 资产负债率（Debt-to-Asset）</h3>
+        <table>
+            <tr><th>财年</th><th>总负债/总资产</th><th>总债务</th><th>总资产</th></tr>
+            <tr><td>FY2016</td><td>约49%</td><td>13.6亿</td><td>28.8亿</td></tr>
+            <tr><td>FY2017</td><td>约51%</td><td>14.3亿</td><td>38.8亿</td></tr>
+            <tr><td>FY2018</td><td>约54%</td><td>14.2亿</td><td>33.0亿</td></tr>
+            <tr><td>FY2019</td><td>约57%</td><td>20.9亿</td><td>31.5亿</td></tr>
+            <tr><td>FY2020</td><td>约63%</td><td>30.5亿</td><td>48.9亿</td></tr>
+            <tr><td>FY2021</td><td>约67%</td><td>55.8亿</td><td>83.2亿</td></tr>
+            <tr><td>FY2022</td><td>约66%</td><td>58.9亿</td><td>89.5亿</td></tr>
+            <tr><td>FY2023</td><td>约65%</td><td>54.8亿</td><td>84.5亿</td></tr>
+            <tr><td>FY2024</td><td>约65%</td><td>53.5亿</td><td>82.2亿</td></tr>
+            <tr><td>FY2025</td><td>约65%</td><td>52.5亿</td><td>85.5亿</td></tr>
+        </table>
+        <div class="highlight">
+            <strong>注意：</strong>Broadridge的总资产中包含大量与业务处理相关的过渡性资产（如应收账款、代付邮费等），实际经营杠杆并不像表面数字那么高。净债务/EBITDA约2.5x，处于投资级水平，利息覆盖倍数约8.9x，偿债能力充足。
+        </div>
+
+        <h3>4.3 权益乘数（Assets/Equity）</h3>
+        <table>
+            <tr><th>财年</th><th>权益乘数</th></tr>
+            <tr><td>FY2016</td><td>2.75x</td></tr>
+            <tr><td>FY2017</td><td>3.14x</td></tr>
+            <tr><td>FY2018</td><td>3.02x</td></tr>
+            <tr><td>FY2019</td><td>3.44x</td></tr>
+            <tr><td>FY2020</td><td>3.63x</td></tr>
+            <tr><td>FY2021</td><td>4.49x</td></tr>
+            <tr><td>FY2022</td><td>4.26x</td></tr>
+            <tr><td>FY2023</td><td>3.67x</td></tr>
+            <tr><td>FY2024</td><td>3.80x</td></tr>
+            <tr><td>FY2025</td><td>3.22x</td></tr>
+        </table>
+
+        <h3>4.4 市盈率（PE）</h3>
+        <table>
+            <tr><th>财年</th><th>PE（TTM年末）</th><th>股价</th><th>EPS</th></tr>
+            <tr><td>FY2016</td><td>25.1x</td><td>$65.2</td><td>$2.60</td></tr>
+            <tr><td>FY2017</td><td>27.3x</td><td>$75.6</td><td>$2.77</td></tr>
+            <tr><td>FY2018</td><td>31.5x</td><td>$115.1</td><td>$3.66</td></tr>
+            <tr><td>FY2019</td><td>30.7x</td><td>$127.7</td><td>$4.16</td></tr>
+            <tr><td>FY2020</td><td>31.3x</td><td>$126.2</td><td>$4.03</td></tr>
+            <tr><td>FY2021</td><td>34.2x</td><td>$161.5</td><td>$4.73</td></tr>
+            <tr><td>FY2022</td><td>30.9x</td><td>$142.6</td><td>$4.62</td></tr>
+            <tr><td>FY2023</td><td>30.9x</td><td>$165.6</td><td>$5.36</td></tr>
+            <tr><td>FY2024</td><td>33.2x</td><td>$197.0</td><td>$5.93</td></tr>
+            <tr><td>FY2025</td><td>33.9x</td><td>$243.0</td><td>$7.17</td></tr>
+            <tr><td>FY2026（当前）</td><td>约15x</td><td>约$140</td><td>$9.41</td></tr>
+        </table>
+        <div class="highlight">
+            <strong>估值分析：</strong>Broadridge历史PE中枢约30x，当前PE约15x，处于历史最低水平。股价从FY2025末的$243跌至约$140，跌幅超40%，主要受市场对金融科技板块整体抛售影响。当前估值已显著低于10年平均PE（30.8x），如果公司能维持8-12%的EPS增长指引，当前价格可能提供了较好的安全边际。
+        </div>
+
+        <div class="chart-container">
+            <canvas id="peChart"></canvas>
+        </div>
+    </div>
+
+    <!-- 第五章：竞争分析 -->
+    <div class="info-box">
+        <h2>五、竞争分析</h2>
+
+        <h3>5.1 主要竞争对手</h3>
+        <table>
+            <tr><th>竞争对手</th><th>竞争领域</th><th>市值</th><th>Broadridge优势</th></tr>
+            <tr>
+                <td><strong>Computershare</strong>（CPU.AX）</td>
+                <td>代理投票、股东通信</td>
+                <td>约200亿澳元</td>
+                <td>Broadridge北美80%份额 vs Computershare国际市场更强；北美市场Broadridge绝对主导</td>
+            </tr>
+            <tr>
+                <td><strong>SS&C Technologies</strong>（SSNC）</td>
+                <td>资本市场技术、财富管理</td>
+                <td>约170亿美元</td>
+                <td>Broadridge交易处理网络效应更强；SSNC偏对冲基金和另类投资</td>
+            </tr>
+            <tr>
+                <td><strong>FIS</strong>（FIS）</td>
+                <td>资本市场技术</td>
+                <td>约240亿美元</td>
+                <td>FIS规模更大但更分散；Broadridge在交易清算领域更专注</td>
+            </tr>
+            <tr>
+                <td><strong>Fiserv</strong>（FISV）</td>
+                <td>支付、银行技术</td>
+                <td>约900亿美元</td>
+                <td>竞争领域重叠有限；Fiserv偏支付和银行核心，Broadridge偏资本市场</td>
+            </tr>
+            <tr>
+                <td><strong>FactSet</strong>（FDS）</td>
+                <td>金融数据与分析</td>
+                <td>约80亿美元</td>
+                <td>FactSet偏前端分析，Broadridge偏后端处理，互补大于竞争</td>
+            </tr>
+        </table>
+
+        <h3>5.2 市场份额</h3>
+        <table>
+            <tr><th>细分市场</th><th>Broadridge份额</th><th>最大竞争对手份额</th></tr>
+            <tr><td>北美代理投票处理</td><td>约80%</td><td>Computershare 约15%</td></tr>
+            <tr><td>全球股票交易处理</td><td>约50%+</td><td>SS&C 约20%</td></tr>
+            <tr><td>投资者通信（ICS整体）</td><td>约60%</td><td>DST/SS&C 约20%</td></tr>
+            <tr><td>资本市场技术（GTO）</td><td>约15-20%</td><td>FIS/SS&C 各约20%</td></tr>
+        </table>
+
+        <h3>5.3 经济护城河分析</h3>
+
+        <div class="moat-item">
+            <strong>1. 规模优势 <span class="tag tag-green">极强</span></strong><br>
+            处理全美80%代理投票和50%+全球股票交易，规模效应使得单位处理成本远低于任何潜在竞争者。新进入者无法以可比成本建立同等基础设施。
+        </div>
+
+        <div class="moat-item">
+            <strong>2. 转换成本 <span class="tag tag-green">极强</span></strong><br>
+            金融机构的核心后台系统一旦选定供应商，替换成本极高（数百万美元+6-24个月迁移期+合规风险）。客户留存率估计超过95%。
+        </div>
+
+        <div class="moat-item">
+            <strong>3. 网络效应 <span class="tag tag-green">强</span></strong><br>
+            BTCS交易连接平台连接全球买方和卖方，越多参与者使用，平台价值越大。这形成了正向飞轮：更多客户→更多连接→更多价值→更多客户。
+        </div>
+
+        <div class="moat-item">
+            <strong>4. 监管壁垒 <span class="tag tag-green">强</span></strong><br>
+            代理投票和交易处理受严格监管，Broadridge多年积累的合规知识和监管关系形成了难以复制的壁垒。新法规往往加固而非削弱其地位。
+        </div>
+
+        <div class="moat-item">
+            <strong>5. 品牌与信任 <span class="tag tag-orange">中等</span></strong><br>
+            在金融基础设施领域，"不出错"比品牌更重要。Broadridge的可靠性是其品牌核心，但不如消费品品牌那样有溢价能力。
+        </div>
+
+        <div class="moat-item">
+            <strong>6. 成本优势 <span class="tag tag-green">强</span></strong><br>
+            大规模处理能力使得单位成本低于竞争对手。邮费转付模式使分销收入随邮费上涨而增加，成本转嫁能力强。
+        </div>
+
+        <h3>5.4 护城河可持续性评估</h3>
+        <div class="highlight">
+            <strong>综合评估：宽护城河</strong><br>
+            Broadridge的护城河由规模优势、转换成本、网络效应和监管壁垒共同构成，且这些优势随时间加强而非削弱。核心风险在于：1）区块链技术可能改变交易结算方式；2）国际市场竞争更激烈；3）AI可能改变客户通信方式。但这些威胁短期内不构成实质影响，Broadridge也在积极投资这些新技术。
+        </div>
+    </div>
+
+    <!-- 第六章：利润分配分析 -->
+    <div class="info-box">
+        <h2>六、利润分配分析</h2>
+
+        <h3>6.1 近十年利润分配表（百万美元）</h3>
+        <table>
+            <tr>
+                <th>财年</th><th>净利润</th><th>股息</th><th>回购</th><th>资本开支</th><th>留存金额</th><th>留存率</th>
+            </tr>
+            <tr><td>FY2016</td><td>308</td><td>139</td><td>0</td><td>73</td><td>169</td><td>55%</td></tr>
+            <tr><td>FY2017</td><td>327</td><td>157</td><td>0</td><td>80</td><td>170</td><td>52%</td></tr>
+            <tr><td>FY2018</td><td>428</td><td>183</td><td>0</td><td>93</td><td>245</td><td>57%</td></tr>
+            <tr><td>FY2019</td><td>462</td><td>223</td><td>0</td><td>94</td><td>239</td><td>52%</td></tr>
+            <tr><td>FY2020</td><td>482</td><td>262</td><td>0</td><td>89</td><td>220</td><td>46%</td></tr>
+            <tr><td>FY2021</td><td>554</td><td>293</td><td>450</td><td>104</td><td>261</td><td>47%</td></tr>
+            <tr><td>FY2022</td><td>543</td><td>336</td><td>0</td><td>127</td><td>207</td><td>38%</td></tr>
+            <tr><td>FY2023</td><td>634</td><td>373</td><td>0</td><td>147</td><td>261</td><td>41%</td></tr>
+            <tr><td>FY2024</td><td>700</td><td>416</td><td>450</td><td>155</td><td>284</td><td>41%</td></tr>
+            <tr><td>FY2025</td><td>840</td><td>451</td><td>100</td><td>166</td><td>389</td><td>46%</td></tr>
+        </table>
+
+        <p><em>注：留存金额 = 净利润 - 股息（回购不减少留存金额，按"回购算留存"原则）；留存率 = 留存金额/净利润</em></p>
+
+        <h3>6.2 资本配置质量分析</h3>
+        <div class="highlight">
+            <strong>股息政策：</strong>连续19年提高股息，过去14年中有13年实现双位数增长。FY2025年化股息$3.90/股，派息率约48%，处于健康水平。股息增长与盈利增长同步，可持续性强。<br><br>
+            <strong>回购策略：</strong>回购不规律，FY2021和FY2024各回购4.5亿美元，FY2025回购1亿美元。回购时机总体合理——FY2021股价约$161（PE约34x）偏高，FY2024股价约$197（PE约33x）也偏高，回购时机不算理想。但回购规模相对净利润不大（约10-15%），影响有限。<br><br>
+            <strong>并购策略：</strong>最重大收购为FY2021年以约25亿美元收购Itiviti（北欧前端交易技术），以及FY2025年收购SIS（加拿大财富管理）。Itiviti收购扩大了GTO的国际版图，但短期拉低了ROE。总体而言，Broadridge的并购偏谨慎型，以补强型（tuck-in）为主。<br><br>
+            <strong>可持续增长率：</strong>ROE 35% × 留存率 46% ≈ 16%。实际调整后EPS增长约10-12%，差距主要来自收购稀释和股份增发。
+        </div>
+    </div>
+
+    <!-- 第七章：投资总结 -->
+    <div class="info-box">
+        <h2>七、投资总结</h2>
+
+        <h3>7.1 各维度评分</h3>
+        <table>
+            <tr><th>维度</th><th>评分</th><th>说明</th></tr>
+            <tr>
+                <td>业务可理解性</td>
+                <td><span class="star">&#9733;&#9733;&#9733;&#9733;&#9733;</span></td>
+                <td>业务模式清晰：帮金融机构处理通信和交易，收入可预测</td>
+            </tr>
+            <tr>
+                <td>护城河宽度</td>
+                <td><span class="star">&#9733;&#9733;&#9733;&#9733;&#9733;</span></td>
+                <td>80%代理投票份额+极高转换成本+网络效应，宽护城河</td>
+            </tr>
+            <tr>
+                <td>资本配置</td>
+                <td><span class="star">&#9733;&#9733;&#9733;&#9733;</span>&#9734;</td>
+                <td>股息增长优秀，回购时机一般，Itiviti收购短期稀释但战略正确</td>
+            </tr>
+            <tr>
+                <td>财务安全</td>
+                <td><span class="star">&#9733;&#9733;&#9733;</span>&#9734;&#9734;</td>
+                <td>净债务/EBITDA约2.5x，利息覆盖8.9x，投资级但杠杆不低</td>
+            </tr>
+            <tr>
+                <td>增长前景</td>
+                <td><span class="star">&#9733;&#9733;&#9733;&#9733;</span>&#9734;</td>
+                <td>经常性收入增长7%+，调整后EPS增长8-12%，稳定但不爆发</td>
+            </tr>
+            <tr>
+                <td>估值吸引力</td>
+                <td><span class="star">&#9733;&#9733;&#9733;&#9733;</span>&#9734;</td>
+                <td>当前PE约15x，远低于10年均值30.8x，提供较好安全边际</td>
+            </tr>
+        </table>
+
+        <h3>7.2 估值对比</h3>
+        <table>
+            <tr><th>公司</th><th>PE（TTM）</th><th>PS</th><th>EV/EBITDA</th></tr>
+            <tr><td>Broadridge (BR)</td><td>~15x</td><td>2.4x</td><td>~19x</td></tr>
+            <tr><td>SS&C (SSNC)</td><td>~18x</td><td>3.5x</td><td>~15x</td></tr>
+            <tr><td>FIS</td><td>~14x</td><td>2.3x</td><td>~14x</td></tr>
+            <tr><td>Paychex (PAYX)</td><td>~21x</td><td>8.5x</td><td>~19x</td></tr>
+            <tr><td>IBM</td><td>~22x</td><td>2.8x</td><td>~15x</td></tr>
+        </table>
+
+        <h3>7.3 近期股价大跌原因分析（2025年末-2026年中）</h3>
+        <div class="highlight" style="border-left-color:#c0392b;">
+            <strong>股价从约$271跌至约$140，跌幅超40%，PE从30x压缩至约15x。</strong>市场担忧的主要原因：
+        </div>
+
+        <div class="risk-item">
+            <strong>1. 利润率大幅下滑（最直接导火索）</strong><br>
+            FY2026 Q2税前利润率从15.1%骤降至11.1%，下降4个百分点。原因有三：<br>
+            - <strong>事件驱动收入暴跌27%</strong>：共同基金代理投票活动大幅减少，这类业务几乎没有边际成本，收入减少直接等于利润消失<br>
+            - <strong>分销收入虚增14%</strong>：美国邮政上调邮资，BR代付邮费增加→收入数字变大但利润不变→利润率被稀释<br>
+            - <strong>技术投入增加</strong>：AI转型和云端迁移导致运营支出上升<br>
+            Q3调整后营业利润率也从22.4%降至21.5%，下降90个基点
+        </div>
+        <div class="risk-item">
+            <strong>2. Closed Sales（已签约销售额）大幅下滑</strong><br>
+            Q3 Closed Sales仅5800万美元，同比下滑19%（去年同期7100万）。年初至今1.47亿美元，低于去年同期的1.74亿美元。管理层被迫将全年Closed Sales指引从2.9-3.3亿美元<strong>下调至2.4-2.9亿美元</strong>。这意味着未来收入增长引擎可能减速。
+        </div>
+        <div class="risk-item">
+            <strong>3. 估值倍数压缩</strong><br>
+            PE从30x+压缩至约15-16x，压缩幅度超45%。金融科技/金融基础设施板块整体被市场抛售，市场给BR的估值从"稳定增长型"降级为"低增长型"。
+        </div>
+        <div class="risk-item">
+            <strong>4. 短期偿债能力恶化</strong><br>
+            FY2026 Q2流动比率0.97，速动比率0.82，均低于1的警戒线，同比分别下降28%和31%。Itiviti等收购后杠杆上升引发担忧。
+        </div>
+        <div class="risk-item">
+            <strong>5. GTO板块增长放缓</strong><br>
+            资本市场子板块恒定汇率下增长0%（去年同期有7个百分点的许可收入逆风）。财富管理虽增长8%，但不足以抵消资本市场疲软。
+        </div>
+        <div class="risk-item">
+            <strong>6. AI颠覆担忧</strong><br>
+            市场担心AI可能改变客户通信和交易处理方式。虽然BR已与Anthropic合作（Project Glasswing），但投资者仍对长期颠覆风险存疑。
+        </div>
+
+        <div class="highlight" style="border-left-color:#27ae60;">
+            <strong>价值投资者视角：市场是否过度反应？</strong>
+            <table style="margin-top:10px;">
+                <tr><th>担忧</th><th>是否永久性</th><th>分析</th></tr>
+                <tr><td>事件驱动收入下降</td><td><span class="tag tag-orange">暂时性</span></td><td>代理投票活动有周期性，今年是"小年"</td></tr>
+                <tr><td>分销收入稀释利润率</td><td><span class="tag tag-orange">虚胖效应</span></td><td>扣除邮费后的Fee Revenue利润率依然健康</td></tr>
+                <tr><td>Closed Sales下滑</td><td><span class="tag tag-orange">需关注</span></td><td>但经常性收入仍增长7-9%，基本盘稳固</td></tr>
+                <tr><td>估值压缩</td><td><span class="tag tag-green">已过度</span></td><td>16x PE对应7-8%增长的公司不合理</td></tr>
+                <tr><td>AI颠覆</td><td><span class="tag tag-orange">短期不构成威胁</span></td><td>护城河在"关系"和"合规"，非算法</td></tr>
+            </table>
+            <p style="margin-top:10px;">PE从30x压缩到16x，但业务仍在执行——经常性收入增长7%、FCF超10亿美元、股息率2.8%。当前估值已price in了大量悲观预期，如果经常性收入维持7%+增长，这可能是一个"恐慌中买入"的机会。</p>
+        </div>
+
+        <h3>7.4 关键风险</h3>
+        <div class="risk-item">
+            <strong>1. 区块链/分布式账本技术（DLT）</strong><br>
+            如果区块链技术成熟到可以替代传统交易清算基础设施，Broadridge的核心GTO业务将面临根本性挑战。但短期内（5-10年）这不太可能发生，且Broadridge已开始投资DLT解决方案。
+        </div>
+        <div class="risk-item">
+            <strong>2. 杠杆风险</strong><br>
+            净债务/EBITDA约2.5x，Itiviti收购后杠杆上升。如果利率持续高企，利息支出将侵蚀利润。不过利息覆盖倍数8.9x，短期无压力。
+        </div>
+        <div class="risk-item">
+            <strong>3. 国际扩张不确定性</strong><br>
+            北美以外市场份额较低，国际市场面临Computershare等本地强者的竞争，扩张可能需要更多收购投入。
+        </div>
+        <div class="risk-item">
+            <strong>4. 数字化替代风险</strong><br>
+            代理投票和纸质通信的数字化可能降低单位收入（电子通信单价低于纸质），需要通过量增来弥补价减。
+        </div>
+
+        <h3>7.5 关键催化剂</h3>
+        <div class="moat-item">
+            <strong>1. 监管持续加严</strong>：每次新监管要求都增加Broadridge服务的刚需性，如ESG投票披露、SEC新规等
+        </div>
+        <div class="moat-item">
+            <strong>2. 投资者参与度提升</strong>：散户投资者增多→交易量增加→Broadridge处理量增加
+        </div>
+        <div class="moat-item">
+            <strong>3. AI与自动化</strong>：Broadridge已加入Anthropic的Project Glasswing，AI可提升处理效率、降低成本
+        </div>
+        <div class="moat-item">
+            <strong>4. 估值修复</strong>：当前PE约15x，远低于历史均值30x，如果市场重新认可金融基础设施价值，估值有翻倍空间
+        </div>
+
+        <h3>7.6 投资结论</h3>
+        <div class="highlight" style="border-left-color:#27ae60;">
+            <strong>综合评级：值得关注 <span class="tag tag-green">安全边际较好</span></strong><br><br>
+            Broadridge是典型的巴菲特式投资标的——业务简单易懂、护城河深厚、现金流稳定、管理层资本配置能力优秀。当前股价从$271跌至约$140，PE从34x降至15x，提供了近年来最好的入场价格。<br><br>
+            <strong>核心逻辑：</strong>金融市场的"水电煤"不会因为经济周期而消失，80%的代理投票份额和50%+的交易处理份额构成了几乎不可逾越的护城河。8-12%的EPS增长指引虽然不惊艳，但在当前15x PE下，隐含回报率约6-8%+股息2.8%，总回报约9-11%/年，对价值投资者而言具有吸引力。<br><br>
+            <strong>安全边际：</strong>假设保守增长8%/年，3年后EPS约$10.2，给25x PE（仍低于历史均值），目标价约$255，相对当前$140有82%上行空间。即使只给20x PE，目标价$204，仍有46%上行。<br><br>
+            <strong>建议：</strong>当前价位适合分批建仓，但需关注FY2026 Q3-Q4财报是否验证8-12%增长指引。如果增长放缓至5%以下，需重新评估。
+        </div>
+    </div>
+
     <script src="scores_client.js"></script>
     <script src="sync.js"></script>
     <script>
+    // Topbar scoring logic - unified with stock_scores_v1
     (function(){
+        var SCORE_KEY='stock_scores_v1';
         var code=document.getElementById('topbarCode').textContent.trim();
+        function getScores(){try{var d=localStorage.getItem(SCORE_KEY);return d?JSON.parse(d):{};}catch(e){return {};}}
+        function saveScores(s){localStorage.setItem(SCORE_KEY,JSON.stringify(s));}
         function starsHTML(val){var h='';for(var i=1;i<=5;i++){h+='<span class="'+(i<=val?'on':'off')+'">\u2605</span>';}return h;}
         function valClass(v){return v>=5?'s5':v>=4?'s4':v>=3?'s3':v>=2?'s2':'s1';}
-        function renderDisplay(f,p){
+        function renderDisplay(){
+            var sc=getScores()[code]||{};
+            var f=sc.fundamental||0,p=sc.price||0;
             document.getElementById('topbarFVal').textContent=f>0?f:'-';
             document.getElementById('topbarFVal').className='topbar-score-val'+(f>0?' '+valClass(f):'');
             document.getElementById('topbarFStars').innerHTML=starsHTML(f);
@@ -94,12 +628,8 @@
             document.getElementById('topbarPVal').className='topbar-score-val'+(p>0?' '+valClass(p):'');
             document.getElementById('topbarPStars').innerHTML=starsHTML(p);
         }
-        function renderFromDB(){
-            var sc=ScoresDB.get(code);
-            renderDisplay(sc.fundamental||0, sc.price||0);
-        }
         window.topbarEdit=function(){
-            var sc=ScoresDB.get(code);
+            var sc=getScores()[code]||{};
             document.getElementById('topbarFSel').value=sc.fundamental||0;
             document.getElementById('topbarPSel').value=sc.price||0;
             document.getElementById('topbarFSel').style.display='';
@@ -115,9 +645,9 @@
         window.topbarSave=function(){
             var f=parseInt(document.getElementById('topbarFSel').value);
             var p=parseInt(document.getElementById('topbarPSel').value);
-            ScoresDB.save(code, f, p);
-            topbarCancel();
-            renderFromDB();
+            var sc=getScores();if(!sc[code])sc[code]={};
+            sc[code].fundamental=f;sc[code].price=p;sc[code].updated=new Date().toISOString();
+            saveScores(sc);topbarCancel();renderDisplay();
         };
         window.topbarCancel=function(){
             document.getElementById('topbarFSel').style.display='none';
@@ -130,13 +660,50 @@
             document.getElementById('topbarFStars').style.display='';
             document.getElementById('topbarPStars').style.display='';
         };
-        // 初始加载
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', renderFromDB);
-        } else {
-            renderFromDB();
-        }
+        renderDisplay();
     })();
+
+    // PE Chart
+    var ctx = document.getElementById('peChart').getContext('2d');
+    new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: ['FY16','FY17','FY18','FY19','FY20','FY21','FY22','FY23','FY24','FY25','FY26E'],
+            datasets: [{
+                label: 'PE Ratio (TTM)',
+                data: [25.1, 27.3, 31.5, 30.7, 31.3, 34.2, 30.9, 30.9, 33.2, 33.9, 15.0],
+                borderColor: '#2e86c1',
+                backgroundColor: 'rgba(46,134,193,0.1)',
+                fill: true,
+                tension: 0.3,
+                pointRadius: 5,
+                pointBackgroundColor: function(context) {
+                    return context.dataIndex === 10 ? '#c0392b' : '#2e86c1';
+                }
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                title: { display: true, text: 'Broadridge PE Ratio 历史走势', font: { size: 16 } },
+                annotation: {
+                    annotations: {
+                        avgLine: {
+                            type: 'line',
+                            yMin: 30.8,
+                            yMax: 30.8,
+                            borderColor: '#e74c3c',
+                            borderDash: [5,5],
+                            label: { content: '10年均值: 30.8x', display: true, position: 'end' }
+                        }
+                    }
+                }
+            },
+            scales: {
+                y: { title: { display: true, text: 'PE Ratio' }, min: 10, max: 40 }
+            }
+        }
+    });
     </script>
 </body>
 </html>
