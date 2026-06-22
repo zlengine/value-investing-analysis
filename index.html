@@ -197,6 +197,7 @@
 </head>
 <body>
     <div class="top-nav-bar">
+        <span id="companyCount" class="top-nav-link" style="background:#1a5276;cursor:default;margin-right:auto;">📊 <span id="countValue">0</span>家覆盖</span>
         <a href="financial_analysis.html" class="top-nav-link" style="background:#2e7d32;" onmouseover="this.style.background='#43a047'" onmouseout="this.style.background='#2e7d32'">📖 财务分析</a>
         <a href="changelog.html" class="top-nav-link" style="background:#856404;" onmouseover="this.style.background='#a0762a'" onmouseout="this.style.background='#856404'">📋 更新日志</a>
         <a href="scorer.html" class="top-nav-link" style="background:#1a5276;" onmouseover="this.style.background='#2e86c1'" onmouseout="this.style.background='#1a5276'">📊 股票打分</a>
@@ -1072,7 +1073,6 @@
         search(q);
     }
     </script>
-    <a id="companyCount" href="#" style="position:fixed;bottom:20px;right:30px;background:#1a5276;color:white;padding:8px 18px;border-radius:20px;text-decoration:none;font-size:14px;z-index:999;box-shadow:0 2px 8px rgba(0,0,0,0.15);transition:background 0.2s;cursor:default;" onmouseover="this.style.background='#2e86c1'" onmouseout="this.style.background='#1a5276'">📊 <span id="countValue">0</span>家覆盖</a>
     <script>
     (function(){
         function updateCount(){
