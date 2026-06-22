@@ -59,7 +59,7 @@ var ScoresDB = (function() {
     }
 
     /**
-     * 保存打分（同步写入 localStorage）
+     * 保存打分（同步写入 localStorage，异步同步到 GitHub）
      */
     function save(code, fundamental, price, callback) {
         var scores = readAll();
@@ -69,6 +69,10 @@ var ScoresDB = (function() {
             updated: new Date().toISOString()
         };
         writeAll(scores);
+        // 异步同步到 GitHub（如果 SyncManager 存在且已设置 token）
+        if (typeof SyncManager !== 'undefined' && SyncManager.hasToken()) {
+            SyncManager.syncNow();
+        }
         if (typeof callback === 'function') {
             callback({ success: true, code: code });
         }
@@ -82,6 +86,10 @@ var ScoresDB = (function() {
         var scores = readAll();
         delete scores[code];
         writeAll(scores);
+        // 异步同步到 GitHub
+        if (typeof SyncManager !== 'undefined' && SyncManager.hasToken()) {
+            SyncManager.syncNow();
+        }
         if (typeof callback === 'function') {
             callback({ success: true, code: code });
         }

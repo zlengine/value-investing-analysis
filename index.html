@@ -742,6 +742,7 @@
     </style>
 
     <script src="scores_client.js"></script>
+    <script src="sync.js"></script>
     <script>
     // === Stock Score Display with Sort & Filter ===
     (function() {
@@ -893,15 +894,57 @@
             document.getElementById(id).addEventListener('change', renderTable);
         });
 
-        // 从 localStorage 加载打分数据
+        // 从 localStorage 加载打分数据，如果为空则从 GitHub 恢复
         function loadScores() {
-            currentScores = ScoresDB.getAll() || {};
-            var statusEl = document.getElementById('dbStatus');
-            if (statusEl) {
-                statusEl.innerHTML = '💾 本地存储 · ' + Object.keys(currentScores).length + '条打分';
-                statusEl.style.color = '#27ae60';
+            var localScores = ScoresDB.getAll() || {};
+            var localCount = Object.keys(localScores).length;
+
+            if (localCount > 0) {
+                // localStorage 有数据，直接使用
+                currentScores = localScores;
+                updateDbStatus(localCount, 'local');
+                renderTable();
+            } else {
+                // localStorage 为空，尝试从 GitHub 恢复
+                updateDbStatus(0, 'restoring');
+                if (typeof SyncManager !== 'undefined') {
+                    SyncManager.restoreFromGitHub(function(err, scores) {
+                        if (err || !scores) {
+                            currentScores = {};
+                            updateDbStatus(0, 'empty');
+                            renderTable();
+                        } else {
+                            currentScores = scores;
+                            var count = Object.keys(scores).length;
+                            updateDbStatus(count, count > 0 ? 'restored' : 'empty');
+                            renderTable();
+                            console.log('[Index] 已从 GitHub 恢复 ' + count + ' 条打分');
+                        }
+                    });
+                } else {
+                    currentScores = {};
+                    updateDbStatus(0, 'empty');
+                    renderTable();
+                }
             }
-            renderTable();
+        }
+
+        function updateDbStatus(count, source) {
+            var statusEl = document.getElementById('dbStatus');
+            if (!statusEl) return;
+            if (source === 'restoring') {
+                statusEl.innerHTML = '⏳ 正在从 GitHub 恢复...';
+                statusEl.style.color = '#3498db';
+            } else if (source === 'restored') {
+                statusEl.innerHTML = '☁️ 已从 GitHub 恢复 · ' + count + '条打分';
+                statusEl.style.color = '#27ae60';
+            } else if (count > 0) {
+                statusEl.innerHTML = '💾 本地存储 · ' + count + '条打分';
+                statusEl.style.color = '#27ae60';
+            } else {
+                statusEl.innerHTML = '💾 暂无打分数据';
+                statusEl.style.color = '#999';
+            }
         }
 
         // Initial render

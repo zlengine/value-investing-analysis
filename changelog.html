@@ -155,6 +155,34 @@
 
     <!-- 更新日志条目 - 按时间倒序排列，最新在最上面 -->
 
+    <div class="log-entry create">
+        <div class="log-header">
+            <span class="log-date">2026-06-22</span>
+            <span class="log-type create">新建</span>
+        </div>
+        <div class="log-desc">
+            <ul>
+                <li><strong>新增 GitHub 同步功能：打分数据自动同步到 GitHub，跨设备/浏览器共享</strong></li>
+                <li>新增 <code>sync.js</code> 模块：通过 GitHub API 自动同步打分到 <code>scores_data.json</code></li>
+                <li>在 scorer.html 添加 GitHub Token 设置 UI（折叠面板）</li>
+                <li>支持手动同步、从 GitHub 恢复、清除 Token 等操作</li>
+                <li>打分后自动触发同步（500ms debounce，避免频繁 API 调用）</li>
+                <li>localStorage 丢失时，打开 index.html 自动从 GitHub 恢复打分数据</li>
+                <li>新增 GitHub Actions workflow：每天 UTC 16:00 自动备份 scores_data.json 到 backups/ 目录</li>
+                <li>自动清理超过 30 天的旧备份</li>
+                <li>所有 84 个股票页面引入 sync.js</li>
+            </ul>
+        </div>
+        <div class="log-files">
+            <span class="added">+ sync.js（GitHub 同步模块）</span><br>
+            <span class="added">+ .github/workflows/backup-scores.yml（每日备份 workflow）</span><br>
+            <span class="modified">~ scores_client.js（save/remove 时触发同步）</span><br>
+            <span class="modified">~ scorer.html（添加 Token 设置 UI）</span><br>
+            <span class="modified">~ index.html（添加自动恢复逻辑）</span><br>
+            <span class="modified">~ 84 个股票页面（引入 sync.js）</span>
+        </div>
+    </div>
+
     <div class="log-entry update">
         <div class="log-header">
             <span class="log-date">2026-06-22</span>
