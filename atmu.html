@@ -4,18 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Atmus Filtration Technologies (ATMU) 详细分析</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         body { font-family: Arial, sans-serif; margin: 20px; background-color: #f5f5f5; }
         h1 { text-align: center; color: #333; }
         h2 { color: #4CAF50; margin-top: 30px; }
-        .info-box { background-color: white; padding: 20px; margin: 20px 0; box-shadow: 0 0 10px rgba(0,0,0,0.1); border-radius: 5px; }
+        h3 { color: #333; margin-top: 20px; }
+        h4 { color: #555; margin-top: 15px; }
+        .info-box { background-color: white; padding: 20px; margin: 20px 0; box-shadow: 0 0 10px rgba(0,0,0,0.1); border-radius: 5px; border-left: 4px solid #4CAF50; }
         table { width: 100%; border-collapse: collapse; margin: 10px 0; }
         th, td { padding: 8px; text-align: left; border-bottom: 1px solid #ddd; }
         th { background-color: #4CAF50; color: white; }
+        tr:hover { background-color: #f5f5f5; }
         a { color: #4CAF50; text-decoration: none; }
         a:hover { text-decoration: underline; }
+        .highlight { background-color: #f8f9fa; padding: 12px 16px; border-left: 4px solid #2e86c1; margin: 12px 0; border-radius: 4px; }
+        .tag { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 12px; font-weight: 600; }
+        .tag-green { background-color: #d4edda; color: #155724; }
+        .tag-orange { background-color: #fff3cd; color: #856404; }
+        .tag-red { background-color: #f8d7da; color: #721c24; }
         .fixed-topbar { position: fixed; top: 0; left: 0; right: 0; z-index: 9999; background: linear-gradient(135deg, #1a5276, #2e86c1); color: white; display: flex; align-items: center; justify-content: space-between; padding: 8px 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.15); height: 48px; }
         .fixed-topbar a { color: white; text-decoration: none; font-size: 14px; font-weight: 600; }
+        .fixed-topbar a:hover { text-decoration: underline; }
         .topbar-left { display: flex; align-items: center; gap: 12px; }
         .topbar-right { display: flex; align-items: center; gap: 8px; }
         .topbar-score-label { font-size: 12px; opacity: 0.85; }
@@ -23,17 +33,18 @@
         .topbar-score-val.s1 { color: #ff6b6b; } .topbar-score-val.s2 { color: #ffa94d; } .topbar-score-val.s3 { color: #ffd43b; } .topbar-score-val.s4 { color: #69db7c; } .topbar-score-val.s5 { color: #51cf66; }
         .topbar-select { padding: 3px 8px; border: 1px solid rgba(255,255,255,0.4); border-radius: 6px; font-size: 12px; font-weight: 600; color: white; background: rgba(255,255,255,0.15); cursor: pointer; outline: none; }
         .topbar-select option { color: #333; background: white; }
-        .topbar-btn { padding: 4px 12px; border: none; border-radius: 6px; font-size: 12px; font-weight: 600; cursor: pointer; }
+        .topbar-btn { padding: 4px 12px; border: none; border-radius: 6px; font-size: 12px; font-weight: 600; cursor: pointer; transition: background 0.2s; }
         .topbar-btn-edit { background: rgba(255,255,255,0.2); color: white; }
         .topbar-btn-edit:hover { background: rgba(255,255,255,0.35); }
         .topbar-btn-save { background: #27ae60; color: white; }
+        .topbar-btn-save:hover { background: #219a52; }
         .topbar-btn-cancel { background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.7); }
+        .topbar-btn-cancel:hover { background: rgba(255,255,255,0.2); }
         .topbar-stars { font-size: 11px; }
         .topbar-stars .on { color: #f39c12; }
         .topbar-stars .off { color: rgba(255,255,255,0.3); }
         body { padding-top: 60px !important; }
-        .tag { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 12px; font-weight: 600; }
-        .tag-orange { background-color: #fff3cd; color: #856404; }
+        .chart-container { position: relative; height: 300px; margin: 20px 0; }
     </style>
 </head>
 <body>
@@ -60,69 +71,419 @@
     <h1>Atmus Filtration Technologies (NYSE: ATMU)</h1>
     <p style="text-align:center;color:#666;">巴菲特/芒格式价值投资基本面分析 | 更新日期：2026年6月</p>
 
+    <!-- 第一章：公司基本信息 -->
     <div class="info-box">
         <h2>一、公司基本信息</h2>
         <table>
-            <tr><td>公司全称</td><td>Atmus Filtration Technologies</td></tr>
+            <tr><td>公司全称</td><td>Atmus Filtration Technologies Inc.</td></tr>
             <tr><td>股票代码</td><td>NYSE: ATMU</td></tr>
-            <tr><td>市值</td><td>约34亿美元</td></tr>
-            <tr><td>行业</td><td>过滤系统制造商</td></tr>
+            <tr><td>市值</td><td>约41亿美元（2026年6月）</td></tr>
+            <tr><td>市值（人民币）</td><td>约297亿元</td></tr>
+            <tr><td>最新收盘价</td><td>约$51（2026年6月中旬）</td></tr>
+            <tr><td>成立时间</td><td>1958年（作为Cummins过滤业务部门）</td></tr>
+            <tr><td>总部</td><td>美国田纳西州纳什维尔</td></tr>
+            <tr><td>员工人数</td><td>约4,500人</td></tr>
+            <tr><td>上市时间</td><td>2023年5月26日（从Cummins分拆IPO）</td></tr>
+            <tr><td>完全独立运营</td><td>2025年Q3（完成与Cummins的运营分离）</td></tr>
+            <tr><td>CEO</td><td>Stephanie Juanita Disher（1976年生）</td></tr>
+            <tr><td>CFO</td><td>Jack M. Kienzler（1986年生）</td></tr>
+            <tr><td>52周区间</td><td>$33.23 - $66.50</td></tr>
         </table>
-        <p style="color:#856404;"><span class="tag tag-orange">待补充</span> 详细分析内容将在后续更新中补充。</p>
+        <div class="highlight" style="border-left-color:#e67e22;">
+            <strong>关键背景：</strong>Atmus原是Cummins（康明斯）的过滤业务部门，拥有65年以上的过滤技术历史。2023年5月IPO上市（$19.50/股），Cummins保留80.5%股份。2024年2月Cummins通过换股要约完成分拆，Atmus成为完全独立公司。2025年Q3完成与Cummins的运营分离（包括全球分销网络）。2026年1月以$4.5亿收购Koch Filter，进入工业空气过滤领域。
+        </div>
+    </div>
+
+    <!-- 第二章：业务分析 -->
+    <div class="info-box">
+        <h2>二、业务分析</h2>
+
+        <h3>2.1 公司做什么（通俗版）</h3>
+        <p>想象你有一辆大卡车或者一台挖掘机，它的发动机需要呼吸空气、燃烧柴油、循环润滑油。空气里有灰尘，柴油里有杂质，润滑油用久了会变脏——如果不把这些脏东西过滤掉，发动机就会磨损、坏掉。</p>
+        <p><strong>Atmus就是做"过滤器"的公司。</strong>它的产品就像发动机的"口罩"和"肾脏"，负责把空气、燃油、润滑油里的脏东西挡在外面，保护发动机健康运转。而且这些过滤器是消耗品——用一段时间就得换，就像汽车要定期换机油滤芯一样。</p>
+        <p>这就是Atmus最核心的商业模式：<strong>先让新设备出厂时用你的过滤器（OEM），然后设备运行过程中不断需要换新的（售后市场），形成持续不断的收入流。</strong></p>
+
+        <h3>2.2 业务板块</h3>
+        <table>
+            <tr><th>板块</th><th>简介</th><th>最近年度营收</th><th>占比</th><th>增长趋势</th></tr>
+            <tr><td>Power Solutions（动力解决方案）</td><td>商用车辆和工程机械的燃油/润滑油/空气/液压过滤器，品牌Fleetguard</td><td>~$16.7亿（FY2025）</td><td>~95%</td><td>稳健增长5-6%</td></tr>
+            <tr><td>Industrial Solutions（工业解决方案）</td><td>工业/商业HVAC、数据中心、发电厂的空气过滤系统（2026年1月收购Koch Filter后新增）</td><td>~$1.55-1.65亿（FY2026指引）</td><td>~8%</td><td>新板块，高增长潜力</td></tr>
+        </table>
+
+        <h3>2.3 产品类别细分（FY2025 Q4季度数据）</h3>
+        <table>
+            <tr><th>产品类别</th><th>营收占比</th><th>说明</th></tr>
+            <tr><td>燃油过滤器（Fuel）</td><td>~49%</td><td>柴油过滤，核心产品</td></tr>
+            <tr><td>润滑油过滤器（Lube）</td><td>~19%</td><td>发动机油过滤</td></tr>
+            <tr><td>空气过滤器（Air）</td><td>~17%</td><td>进气过滤+曲轴箱通风</td></tr>
+            <tr><td>其他（Other）</td><td>~15%</td><td>液压过滤器、冷却液、化学品等</td></tr>
+        </table>
+
+        <h3>2.4 收入模式</h3>
+        <table>
+            <tr><th>收入类型</th><th>占比</th><th>说明</th></tr>
+            <tr><td>售后市场（Aftermarket）</td><td>~86%</td><td>替换/维修用过滤器，<span class="tag tag-green">高频复购</span></td></tr>
+            <tr><td>OEM首次安装（First-fit）</td><td>~14%</td><td>新设备出厂时安装，<span class="tag tag-orange">周期性</span></td></tr>
+        </table>
+
+        <h3>2.5 终端市场</h3>
+        <table>
+            <tr><th>市场</th><th>占比</th><th>说明</th></tr>
+            <tr><td>公路（On-highway）</td><td>~58%</td><td>卡车、巴士</td></tr>
+            <tr><td>非公路（Off-highway）</td><td>~42%</td><td>农业、建筑、矿山、发电</td></tr>
+        </table>
+
+        <h3>2.6 地理分布</h3>
+        <table>
+            <tr><th>地区</th><th>占比</th><th>说明</th></tr>
+            <tr><td>北美（美国+加拿大）</td><td>~54%</td><td>最大市场，与Cummins长期合作</td></tr>
+            <tr><td>国际市场</td><td>~46%</td><td>中国/印度合资公司、欧洲、拉美、亚太</td></tr>
+        </table>
+
+        <div class="highlight">
+            <strong>商业模式核心：</strong>86%的售后市场收入 = <strong>类订阅收入</strong>。一旦设备出厂时安装了Fleetguard过滤器，后续几年甚至十几年都需要持续购买替换件。这不是一次性买卖，而是"剃须刀+刀片"模式——设备是剃须刀，过滤器是刀片，用完就得换。
+        </div>
+    </div>
+
+    <!-- 第三章：产品竞争力分析 -->
+    <div class="info-box">
+        <h2>三、产品竞争力分析</h2>
+
+        <h3>3.1 可替代性评估</h3>
+        <table>
+            <tr><th>产品线</th><th>可替代性</th><th>评分</th><th>说明</th></tr>
+            <tr><td>商用车辆燃油/润滑油过滤器</td><td><span class="tag tag-green">低</span></td><td>4/5</td><td>规格高度定制化，OEM认证壁垒高，替换件需匹配原始规格</td></tr>
+            <tr><td>工程机械液压过滤器</td><td><span class="tag tag-green">低</span></td><td>4/5</td><td>高压工况要求严格，品牌信任度高</td></tr>
+            <tr><td>工业HVAC空气过滤</td><td><span class="tag tag-orange">中</span></td><td>3/5</td><td>竞争更分散，标准化程度高，但Koch Filter品牌有客户粘性</td></tr>
+        </table>
+
+        <h3>3.2 客户转换成本</h3>
+        <div class="highlight">
+            <strong>中等转换成本。</strong>对于OEM客户：发动机过滤系统的设计是和发动机一起验证的，更换供应商需要重新测试和认证，周期6-18个月。对于售后客户：分销商和车队运营商倾向于使用原品牌替换件以保证质保和性能一致性，但价格敏感型客户可能转向第三方品牌。
+        </div>
+
+        <h3>3.3 定价权</h3>
+        <table>
+            <tr><th>维度</th><th>评估</th><th>说明</th></tr>
+            <tr><td>OEM市场</td><td><span class="tag tag-green">较强</span></td><td>过滤系统是发动机的关键安全件，OEM不会为省几块钱冒险</td></tr>
+            <tr><td>售后市场</td><td><span class="tag tag-orange">中等</span></td><td>品牌溢价有限，需与第三方品牌竞争，但Fleetguard品牌有信任度</td></tr>
+            <tr><td>工业空气过滤</td><td><span class="tag tag-orange">中等</span></td><td>Koch Filter在HVAC领域有品牌认知，但竞争更激烈</td></tr>
+        </table>
+        <p>2025年定价贡献约2%的收入增长，公司持续实施价格调整以应对原材料和关税成本上升。</p>
+    </div>
+
+    <!-- 第四章：历史财务指标 -->
+    <div class="info-box">
+        <h2>四、历史财务指标</h2>
+
+        <h3>4.1 核心财务数据（FY2020-FY2025）</h3>
+        <table>
+            <tr><th>指标</th><th>FY2020</th><th>FY2021</th><th>FY2022</th><th>FY2023</th><th>FY2024</th><th>FY2025</th></tr>
+            <tr><td>营收（$M）</td><td>1,230</td><td>1,440</td><td>1,563</td><td>1,629</td><td>1,670</td><td>1,764</td></tr>
+            <tr><td>净利润（$M）</td><td>143</td><td>171</td><td>128</td><td>171</td><td>186</td><td>207</td></tr>
+            <tr><td>毛利率</td><td>24.2%</td><td>24.3%</td><td>23.1%</td><td>26.6%</td><td>27.7%</td><td>28.9%</td></tr>
+            <tr><td>营业利润率</td><td>13.5%</td><td>15.2%</td><td>12.8%</td><td>14.3%</td><td>15.6%</td><td>16.4%</td></tr>
+            <tr><td>净利润率</td><td>11.6%</td><td>11.9%</td><td>8.2%</td><td>10.5%</td><td>11.1%</td><td>11.8%</td></tr>
+            <tr><td>Adj. EBITDA利润率</td><td>—</td><td>16.7%</td><td>14.2%</td><td>15.7%</td><td>19.7%</td><td>~20.0%</td></tr>
+        </table>
+
+        <h3>4.2 ROE（净资产收益率）</h3>
+        <table>
+            <tr><th>年份</th><th>FY2023</th><th>FY2024</th><th>FY2025</th><th>TTM</th></tr>
+            <tr><td>ROE</td><td>~45%</td><td>~52%</td><td>~60%</td><td>59.7%</td></tr>
+        </table>
+        <div class="highlight" style="border-left-color:#e67e22;">
+            <strong>注意：ROE虚高！</strong>Atmus的ROE高达60%，但这不是因为经营能力超群，而是因为股东权益极低——Cummins分拆时通过债务换股权交易，导致Atmus以高杠杆起步。真实经营能力应看ROA（16.3%）和ROIC（24.6%），这两个指标更健康。
+        </div>
+
+        <h3>4.3 负债与杠杆</h3>
+        <table>
+            <tr><th>指标</th><th>FY2023</th><th>FY2024</th><th>FY2025</th><th>Q1 2026</th></tr>
+            <tr><td>总债务（$B）</td><td>0.6</td><td>0.6</td><td>0.6</td><td>1.1</td></tr>
+            <tr><td>现金（$B）</td><td>0.2</td><td>0.2</td><td>0.2</td><td>0.2</td></tr>
+            <tr><td>净债务/Adj. EBITDA</td><td>~1.5x</td><td>~1.2x</td><td>~1.0x</td><td>2.0x</td></tr>
+            <tr><td>负债/股东权益（D/E）</td><td>—</td><td>—</td><td>1.5</td><td>~2.0</td></tr>
+        </table>
+        <p>2026年1月收购Koch Filter后，总债务从$6亿增加到$11亿（新增$5亿定期贷款），净杠杆从1.0x升至2.0x。公司预计杠杆将逐步下降。</p>
+
+        <h3>4.4 估值指标</h3>
+        <table>
+            <tr><th>指标</th><th>FY2023</th><th>FY2024</th><th>FY2025</th><th>当前</th></tr>
+            <tr><td>PE（TTM）</td><td>11.4</td><td>17.5</td><td>20.2</td><td>~19-21</td></tr>
+            <tr><td>Forward PE</td><td>—</td><td>—</td><td>—</td><td>~16.6</td></tr>
+            <tr><td>P/S</td><td>1.2</td><td>1.9</td><td>2.4</td><td>~2.2</td></tr>
+            <tr><td>EV/EBITDA</td><td>—</td><td>—</td><td>—</td><td>~14.1</td></tr>
+            <tr><td>P/B</td><td>—</td><td>—</td><td>—</td><td>~9.6</td></tr>
+        </table>
+
+        <h3>4.5 关键财务指标趋势图</h3>
+        <div class="chart-container"><canvas id="roeChart"></canvas></div>
+        <div class="chart-container"><canvas id="debtChart"></canvas></div>
+        <div class="chart-container"><canvas id="peChart"></canvas></div>
+    </div>
+
+    <!-- 第五章：竞争分析 -->
+    <div class="info-box">
+        <h2>五、竞争分析</h2>
+
+        <h3>5.1 主要竞争对手</h3>
+        <table>
+            <tr><th>竞争对手</th><th>业务重叠</th><th>规模</th><th>Atmus vs 竞争对手</th></tr>
+            <tr><td>Mann+Hummel（德国，私有）</td><td>汽车/商用车过滤</td><td>营收~€50亿+</td><td>全球汽车过滤龙头（18.8%份额），Atmus在商用车领域更强</td></tr>
+            <tr><td>Donaldson（DCI，NYSE）</td><td>发动机+工业过滤</td><td>市值~$35亿，营收~$36亿</td><td>最直接可比公司，产品线高度重叠，Donaldson工业过滤更成熟</td></tr>
+            <tr><td>Parker Hannifin（PH，NYSE）</td><td>工业过滤（部分）</td><td>市值~$800亿+</td><td>多元化工业巨头，过滤只是其一小部分，规模远超Atmus</td></tr>
+            <tr><td>Freudenberg（德国，私有）</td><td>汽车+工业过滤</td><td>营收~€100亿+</td><td>多元化家族企业，过滤业务与Atmus有竞争</td></tr>
+            <tr><td>Filtration Group（美国，私有）</td><td>工业过滤</td><td>营收~$20亿</td><td>专注工业过滤，与Atmus新Industrial Solutions竞争</td></tr>
+        </table>
+
+        <h3>5.2 市场份额</h3>
+        <p>全球过滤市场规模约$535亿（2025年），Top 5玩家（Parker Hannifin、Pall/Danaher、Donaldson、Alfa Laval、Mann+Hummel）合计占约30%份额。Atmus在<strong>商用车/非公路设备过滤</strong>细分领域是领导者之一，Fleetguard品牌在北美卡车和工程机械市场有强势地位。</p>
+
+        <h3>5.3 经济护城河评估</h3>
+        <table>
+            <tr><th>护城河维度</th><th>评分</th><th>说明</th></tr>
+            <tr><td>品牌力</td><td><span class="tag tag-green">4/5</span></td><td>Fleetguard在商用车领域是顶级品牌，65年历史，全球150+国家销售</td></tr>
+            <tr><td>成本优势</td><td><span class="tag tag-orange">3/5</span></td><td>10个制造基地+11个分销中心提供规模效应，但墨西哥供应链有关税风险</td></tr>
+            <tr><td>网络效应</td><td><span class="tag tag-red">1/5</span></td><td>过滤产品不具备网络效应</td></tr>
+            <tr><td>专利/知识产权</td><td><span class="tag tag-orange">3/5</span></td><td>过滤介质设计有技术壁垒，但不是不可逾越的专利壁垒</td></tr>
+            <tr><td>转换成本</td><td><span class="tag tag-green">4/5</span></td><td>OEM认证周期长（6-18个月），售后品牌忠诚度中等偏高</td></tr>
+            <tr><td>规模优势</td><td><span class="tag tag-orange">3/5</span></td><td>在商用车过滤细分有规模优势，但整体规模小于Mann+Hummel和Donaldson</td></tr>
+        </table>
+
+        <div class="highlight">
+            <strong>护城河总结：</strong>Atmus的护城河核心是<strong>"安装基数+转换成本"</strong>——86%售后市场收入意味着已安装的设备基数就是未来的现金流来源，OEM客户不会轻易换供应商。但这个护城河是"中等宽度"的，不是不可逾越的科技壁垒，价格竞争在售后市场始终存在。
+        </div>
+    </div>
+
+    <!-- 第六章：利润分配分析 -->
+    <div class="info-box">
+        <h2>六、利润分配分析</h2>
+
+        <h3>6.1 利润分配表（FY2023-FY2026E）</h3>
+        <table>
+            <tr><th>类别</th><th>FY2023</th><th>FY2024</th><th>FY2025</th><th>FY2026E</th></tr>
+            <tr><td>净利润（$M）</td><td>171</td><td>186</td><td>207</td><td>~230-250</td></tr>
+            <tr><td>分红（$M）</td><td>0</td><td>~4</td><td>~18</td><td>~19</td></tr>
+            <tr><td>分红占比</td><td>0%</td><td>2%</td><td>9%</td><td>~8%</td></tr>
+            <tr><td>股票回购（$M）</td><td>0</td><td>~20</td><td>~61</td><td>~20-40</td></tr>
+            <tr><td>回购占比</td><td>0%</td><td>11%</td><td>29%</td><td>~10-16%</td></tr>
+            <tr><td>资本开支（$M）</td><td>~25</td><td>~30</td><td>~38</td><td>~50-55</td></tr>
+            <tr><td>资本开支占比</td><td>15%</td><td>16%</td><td>18%</td><td>~22%</td></tr>
+            <tr><td>收购（$M）</td><td>0</td><td>0</td><td>0</td><td>~450（Koch Filter）</td></tr>
+            <tr><td>债务偿还（$M）</td><td>—</td><td>—</td><td>—</td><td>新增~$500M贷款</td></tr>
+            <tr><td>留存收益（$M）</td><td>~146</td><td>~132</td><td>~90</td><td>~-240至-260</td></tr>
+        </table>
+
+        <h3>6.2 资本配置评价</h3>
+        <table>
+            <tr><th>决策</th><th>评价</th><th>说明</th></tr>
+            <tr><td>股票回购</td><td><span class="tag tag-green">正面</span></td><td>$1.5亿回购授权（2024年7月），在PE 17-20x区间回购，价格合理</td></tr>
+            <tr><td>分红</td><td><span class="tag tag-orange">象征性</span></td><td>$0.055/股季度分红，收益率仅~0.4%，基本是象征性的</td></tr>
+            <tr><td>Koch Filter收购</td><td><span class="tag tag-green">战略正确</span></td><td>$4.5亿收购，进入HVAC/数据中心过滤，21.9% EBITDA利润率高于公司平均，预计2028年达高个位数ROIC</td></tr>
+            <tr><td>杠杆管理</td><td><span class="tag tag-orange">需关注</span></td><td>收购后净杠杆从1.0x升至2.0x，仍在可控范围，但需持续降杠杆</td></tr>
+        </table>
+
+        <div class="highlight">
+            <strong>管理层资本配置风格：审慎+进取并存。</strong>回购和分红很保守（总回报率~33%的利润），但收购Koch Filter展现了战略进取心——用$4.5亿（相当于2年多的净利润）收购一家工业空气过滤公司，押注数据中心/HVAC等高增长市场。关键看整合效果和ROIC能否达标（2028年高个位数）。
+        </div>
+    </div>
+
+    <!-- 第七章：投资总结 -->
+    <div class="info-box">
+        <h2>七、投资总结</h2>
+        <h3>7.1 各维度评分</h3>
+        <table>
+            <tr><th>维度</th><th>评分</th><th>说明</th></tr>
+            <tr><td>业务可理解性</td><td><span class="tag tag-green">5/5</span></td><td>过滤器就是发动机的"口罩"和"肾脏"，用完就得换。任何人都能理解</td></tr>
+            <tr><td>护城河宽度</td><td><span class="tag tag-orange">3/5</span></td><td>安装基数+OEM转换成本构成中等护城河，但不是不可逾越的技术壁垒</td></tr>
+            <tr><td>资本配置</td><td><span class="tag tag-orange">3/5</span></td><td>回购价格合理，Koch Filter收购战略方向正确，但整合风险存在，杠杆上升</td></tr>
+            <tr><td>财务安全</td><td><span class="tag tag-orange">3/5</span></td><td>收购后净杠杆2.0x，流动比率2.5x尚可，但独立运营历史仅3年，需持续观察</td></tr>
+            <tr><td>增长前景</td><td><span class="tag tag-green">4/5</span></td><td>售后市场稳健增长+工业空气过滤新增长曲线+数据中心主题，FY2026指引EPS $2.75-3.00（+10-20%）</td></tr>
+            <tr><td>估值吸引力</td><td><span class="tag tag-orange">3/5</span></td><td>PE ~19-21x，Forward PE ~16.6x，处于合理区间但不算便宜。EV/EBITDA 14.1x略高于行业中位数</td></tr>
+        </table>
+
+        <h3>7.2 估值对比</h3>
+        <table>
+            <tr><th>估值方法</th><th>计算</th><th>合理价值</th></tr>
+            <tr><td>PE估值（20x FY2026E EPS中值$2.875）</td><td>$2.875 x 20</td><td>$57.50</td></tr>
+            <tr><td>PE估值（15x 保守）</td><td>$2.875 x 15</td><td>$43.13</td></tr>
+            <tr><td>PE估值（25x 乐观）</td><td>$2.875 x 25</td><td>$71.88</td></tr>
+            <tr><td>分析师目标价共识</td><td>11位分析师</td><td>$69</td></tr>
+        </table>
+
+        <h3>7.3 核心风险</h3>
+        <table>
+            <tr><th>风险</th><th>严重度</th><th>说明</th></tr>
+            <tr><td>关税/贸易政策</td><td><span class="tag tag-red">高</span></td><td>墨西哥制造基地对美出口面临关税风险，公司称将"价格中性化"应对</td></tr>
+            <tr><td>Cummins依赖</td><td><span class="tag tag-orange">中</span></td><td>虽已完成运营分离，但Cummins仍是最大OEM客户，需求受卡车周期影响</td></tr>
+            <tr><td>周期性风险</td><td><span class="tag tag-orange">中</span></td><td>卡车/工程机械/矿业都是周期性行业，经济下行时需求萎缩</td></tr>
+            <tr><td>Koch Filter整合</td><td><span class="tag tag-orange">中</span></td><td>$4.5亿收购，需证明能实现高个位数ROIC（2028年目标）</td></tr>
+            <tr><td>独立运营历史短</td><td><span class="tag tag-orange">中</span></td><td>2023年IPO，2025年Q3才完全独立运营，管理团队独立运营能力待验证</td></tr>
+        </table>
+
+        <h3>7.4 潜在催化剂</h3>
+        <table>
+            <tr><th>催化剂</th><th>说明</th></tr>
+            <tr><td>数据中心/HVAC增长</td><td>Koch Filter切入数据中心空气过滤，AI数据中心建设热潮带来需求</td></tr>
+            <tr><td>杠杆下降</td><td>如果持续产生强劲自由现金流，净杠杆可从2.0x降至1.5x以下</td></tr>
+            <tr><td>更多收购</td><td>管理层明确表示工业过滤M&A是优先事项，$7.1亿流动性提供弹药</td></tr>
+            <tr><td>售后市场份额增长</td><td>公司称在售后市场持续赢得份额，数据工具提升分销效率</td></tr>
+        </table>
+
+        <div class="highlight" style="border-left-color:#e67e22;">
+            <strong>评级：谨慎买入（Cautious Buy）</strong><br><br>
+            <strong>理由：</strong>Atmus拥有一个优秀的基础业务——86%售后市场收入提供类订阅现金流，Fleetguard品牌在商用车过滤领域有强势地位，毛利率持续提升（24%→29%），ROIC 24.6%显示资本运用效率高。<br><br>
+            <strong>但有几个需要警惕的点：</strong>（1）独立运营历史太短（仅3年），管理团队尚未经历完整经济周期考验；（2）收购Koch Filter后杠杆翻倍，整合风险不可忽视；（3）PE 19-21x不算便宜，安全边际有限；（4）墨西哥供应链关税风险是悬在头上的剑。<br><br>
+            <strong>理想买入区间：$40-45</strong>（对应PE 14-16x FY2026E EPS），当前$51附近可小仓位建仓，大跌时加仓。
+        </div>
     </div>
 
     <script>
-        (function(){
-            var SCORE_KEY='stock_scores_v1';
-            var code=document.getElementById('topbarCode').textContent.trim();
-            function getScores(){try{var d=localStorage.getItem(SCORE_KEY);return d?JSON.parse(d):{};}catch(e){return {};}}
-            function saveScores(s){localStorage.setItem(SCORE_KEY,JSON.stringify(s));}
-            function starsHTML(val){var h='';for(var i=1;i<=5;i++){h+='<span class="'+(i<=val?'on':'off')+'">\u2605</span>';}return h;}
-            function valClass(v){return v>=5?'s5':v>=4?'s4':v>=3?'s3':v>=2?'s2':'s1';}
-            function renderDisplay(){
-                var sc=getScores()[code]||{};
-                var f=sc.fundamental||0,p=sc.price||0;
-                document.getElementById('topbarFVal').textContent=f>0?f:'-';
-                document.getElementById('topbarFVal').className='topbar-score-val'+(f>0?' '+valClass(f):'');
-                document.getElementById('topbarFStars').innerHTML=starsHTML(f);
-                document.getElementById('topbarPVal').textContent=p>0?p:'-';
-                document.getElementById('topbarPVal').className='topbar-score-val'+(p>0?' '+valClass(p):'');
-                document.getElementById('topbarPStars').innerHTML=starsHTML(p);
+    // Topbar scoring logic - unified with stock_scores_v1
+    (function(){
+        var SCORE_KEY='stock_scores_v1';
+        var code=document.getElementById('topbarCode').textContent.trim();
+        function getScores(){try{var d=localStorage.getItem(SCORE_KEY);return d?JSON.parse(d):{};}catch(e){return {};}}
+        function saveScores(s){localStorage.setItem(SCORE_KEY,JSON.stringify(s));}
+        function starsHTML(val){var h='';for(var i=1;i<=5;i++){h+='<span class="'+(i<=val?'on':'off')+'">\u2605</span>';}return h;}
+        function valClass(v){return v>=5?'s5':v>=4?'s4':v>=3?'s3':v>=2?'s2':'s1';}
+        function renderDisplay(){
+            var sc=getScores()[code]||{};
+            var f=sc.fundamental||0,p=sc.price||0;
+            document.getElementById('topbarFVal').textContent=f>0?f:'-';
+            document.getElementById('topbarFVal').className='topbar-score-val'+(f>0?' '+valClass(f):'');
+            document.getElementById('topbarFStars').innerHTML=starsHTML(f);
+            document.getElementById('topbarPVal').textContent=p>0?p:'-';
+            document.getElementById('topbarPVal').className='topbar-score-val'+(p>0?' '+valClass(p):'');
+            document.getElementById('topbarPStars').innerHTML=starsHTML(p);
+        }
+        window.topbarEdit=function(){
+            var sc=getScores()[code]||{};
+            document.getElementById('topbarFSel').value=sc.fundamental||0;
+            document.getElementById('topbarPSel').value=sc.price||0;
+            document.getElementById('topbarFSel').style.display='';
+            document.getElementById('topbarPSel').style.display='';
+            document.getElementById('topbarEditBtn').style.display='none';
+            document.getElementById('topbarSaveBtn').style.display='';
+            document.getElementById('topbarCancelBtn').style.display='';
+            document.getElementById('topbarFVal').style.display='none';
+            document.getElementById('topbarPVal').style.display='none';
+            document.getElementById('topbarFStars').style.display='none';
+            document.getElementById('topbarPStars').style.display='none';
+        };
+        window.topbarSave=function(){
+            var f=parseInt(document.getElementById('topbarFSel').value);
+            var p=parseInt(document.getElementById('topbarPSel').value);
+            var sc=getScores();if(!sc[code])sc[code]={};
+            sc[code].fundamental=f;sc[code].price=p;sc[code].updated=new Date().toISOString();
+            saveScores(sc);topbarCancel();renderDisplay();
+        };
+        window.topbarCancel=function(){
+            document.getElementById('topbarFSel').style.display='none';
+            document.getElementById('topbarPSel').style.display='none';
+            document.getElementById('topbarEditBtn').style.display='';
+            document.getElementById('topbarSaveBtn').style.display='none';
+            document.getElementById('topbarCancelBtn').style.display='none';
+            document.getElementById('topbarFVal').style.display='';
+            document.getElementById('topbarPVal').style.display='';
+            document.getElementById('topbarFStars').style.display='';
+            document.getElementById('topbarPStars').style.display='';
+        };
+        renderDisplay();
+    })();
+
+    // Charts
+    var ctx1 = document.getElementById('roeChart').getContext('2d');
+    new Chart(ctx1, {
+        type: 'line',
+        data: {
+            labels: ['FY2023', 'FY2024', 'FY2025', 'TTM'],
+            datasets: [{
+                label: 'ROE (%)',
+                data: [45, 52, 60, 59.7],
+                borderColor: '#2e86c1',
+                backgroundColor: 'rgba(46,134,193,0.1)',
+                fill: true,
+                tension: 0.3
+            },{
+                label: 'ROA (%)',
+                data: [12, 14, 16, 16.3],
+                borderColor: '#27ae60',
+                backgroundColor: 'rgba(39,174,96,0.1)',
+                fill: true,
+                tension: 0.3
+            },{
+                label: 'ROIC (%)',
+                data: [20, 22, 25, 24.6],
+                borderColor: '#e67e22',
+                backgroundColor: 'rgba(230,126,34,0.1)',
+                fill: true,
+                tension: 0.3
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: { title: { display: true, text: '盈利能力指标趋势（%）' }},
+            scales: { y: { beginAtZero: true, max: 70 }}
+        }
+    });
+
+    var ctx2 = document.getElementById('debtChart').getContext('2d');
+    new Chart(ctx2, {
+        type: 'bar',
+        data: {
+            labels: ['FY2023', 'FY2024', 'FY2025', 'Q1 2026'],
+            datasets: [{
+                label: '总债务（$B）',
+                data: [0.6, 0.6, 0.6, 1.1],
+                backgroundColor: '#e74c3c',
+            },{
+                label: '净债务/EBITDA（x）',
+                data: [1.5, 1.2, 1.0, 2.0],
+                backgroundColor: '#f39c12',
+                yAxisID: 'y1'
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: { title: { display: true, text: '负债与杠杆' }},
+            scales: {
+                y: { beginAtZero: true, position: 'left', title: { display: true, text: '总债务（$B）' }},
+                y1: { beginAtZero: true, position: 'right', title: { display: true, text: '净债务/EBITDA（x）' }, grid: { drawOnChartArea: false }}
             }
-            window.topbarEdit=function(){
-                var sc=getScores()[code]||{};
-                document.getElementById('topbarFSel').value=sc.fundamental||0;
-                document.getElementById('topbarPSel').value=sc.price||0;
-                document.getElementById('topbarFSel').style.display='';
-                document.getElementById('topbarPSel').style.display='';
-                document.getElementById('topbarEditBtn').style.display='none';
-                document.getElementById('topbarSaveBtn').style.display='';
-                document.getElementById('topbarCancelBtn').style.display='';
-                document.getElementById('topbarFVal').style.display='none';
-                document.getElementById('topbarPVal').style.display='none';
-                document.getElementById('topbarFStars').style.display='none';
-                document.getElementById('topbarPStars').style.display='none';
-            };
-            window.topbarSave=function(){
-                var f=parseInt(document.getElementById('topbarFSel').value);
-                var p=parseInt(document.getElementById('topbarPSel').value);
-                var sc=getScores();if(!sc[code])sc[code]={};
-                sc[code].fundamental=f;sc[code].price=p;sc[code].updated=new Date().toISOString();
-                saveScores(sc);topbarCancel();renderDisplay();
-            };
-            window.topbarCancel=function(){
-                document.getElementById('topbarFSel').style.display='none';
-                document.getElementById('topbarPSel').style.display='none';
-                document.getElementById('topbarEditBtn').style.display='';
-                document.getElementById('topbarSaveBtn').style.display='none';
-                document.getElementById('topbarCancelBtn').style.display='none';
-                document.getElementById('topbarFVal').style.display='';
-                document.getElementById('topbarPVal').style.display='';
-                document.getElementById('topbarFStars').style.display='';
-                document.getElementById('topbarPStars').style.display='';
-            };
-            renderDisplay();
-        })();
+        }
+    });
+
+    var ctx3 = document.getElementById('peChart').getContext('2d');
+    new Chart(ctx3, {
+        type: 'line',
+        data: {
+            labels: ['FY2023', 'FY2024', 'FY2025', '当前'],
+            datasets: [{
+                label: 'PE (TTM)',
+                data: [11.4, 17.5, 20.2, 19.3],
+                borderColor: '#8e44ad',
+                backgroundColor: 'rgba(142,68,173,0.1)',
+                fill: true,
+                tension: 0.3
+            },{
+                label: 'P/S',
+                data: [1.2, 1.9, 2.4, 2.2],
+                borderColor: '#16a085',
+                backgroundColor: 'rgba(22,160,133,0.1)',
+                fill: true,
+                tension: 0.3
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: { title: { display: true, text: '估值指标趋势' }},
+            scales: { y: { beginAtZero: true }}
+        }
+    });
     </script>
 </body>
 </html>
