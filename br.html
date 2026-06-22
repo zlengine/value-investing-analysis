@@ -819,8 +819,6 @@
     (function(){
         var SCORE_KEY='stock_scores_v1';
         var code=document.getElementById('topbarCode').textContent.trim();
-        function getScores(){try{var d=localStorage.getItem(SCORE_KEY);return d?JSON.parse(d):{};}catch(e){return {};}}
-        function saveScores(s){localStorage.setItem(SCORE_KEY,JSON.stringify(s));}
         function starsHTML(val){var h='';for(var i=1;i<=5;i++){h+='<span class="'+(i<=val?'on':'off')+'">\u2605</span>';}return h;}
         function valClass(v){return v>=5?'s5':v>=4?'s4':v>=3?'s3':v>=2?'s2':'s1';}
         function renderDisplay(){
@@ -833,8 +831,12 @@
             document.getElementById('topbarPVal').className='topbar-score-val'+(p>0?' '+valClass(p):'');
             document.getElementById('topbarPStars').innerHTML=starsHTML(p);
         }
+        function renderFromDB(){
+            var sc=ScoresDB.get(code);
+            renderDisplay(sc.fundamental||0, sc.price||0);
+        }
         window.topbarEdit=function(){
-            var sc=getScores()[code]||{};
+            var sc=ScoresDB.get(code);
             document.getElementById('topbarFSel').value=sc.fundamental||0;
             document.getElementById('topbarPSel').value=sc.price||0;
             document.getElementById('topbarFSel').style.display='';
@@ -850,9 +852,9 @@
         window.topbarSave=function(){
             var f=parseInt(document.getElementById('topbarFSel').value);
             var p=parseInt(document.getElementById('topbarPSel').value);
-            var sc=getScores();if(!sc[code])sc[code]={};
-            sc[code].fundamental=f;sc[code].price=p;sc[code].updated=new Date().toISOString();
-            saveScores(sc);topbarCancel();renderDisplay();
+            ScoresDB.save(code, f, p);
+            topbarCancel();
+            renderFromDB();
         };
         window.topbarCancel=function(){
             document.getElementById('topbarFSel').style.display='none';
@@ -865,7 +867,12 @@
             document.getElementById('topbarFStars').style.display='';
             document.getElementById('topbarPStars').style.display='';
         };
-        renderDisplay();
+        // 初始加载
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', renderFromDB);
+        } else {
+            renderFromDB();
+        }
     })();
 
     // Closed Sales Chart
