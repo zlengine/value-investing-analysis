@@ -155,6 +155,26 @@
 
     <!-- 更新日志条目 - 按时间倒序排列，最新在最上面 -->
 
+    <div class="log-entry fix">
+        <div class="log-header">
+            <span class="log-date">2026-06-24</span>
+            <span class="log-type fix">修复</span>
+        </div>
+        <div class="log-desc">
+            <ul>
+                <li><strong>修复打分导航栏修改按钮无反应问题</strong></li>
+                <li>根因：amat.html等5个页面缺少 scores_client.js 引入，导致 ScoresDB 未定义，stock_topbar.js 的 edit() 函数直接 return</li>
+                <li>修复：为 amat.html、agx.html、asml.html、klac.html、tjx.html 添加 scores_client.js 引入</li>
+                <li>清理：删除 klac.html、tjx.html 中残留的内联打分脚本（违反统一组件规范）</li>
+                <li>清理：删除 shangpin_index.html 错误引入的 stock_topbar.js（商品页面无需打分）</li>
+                <li>排查：全站扫描确认无"有topbar但缺scores_client.js"的页面残留</li>
+            </ul>
+        </div>
+        <div class="log-files">
+            <span class="modified">~ amat.html, agx.html, asml.html, klac.html, tjx.html, shangpin_index.html</span>
+        </div>
+    </div>
+
     <div class="log-entry create">
         <div class="log-header">
             <span class="log-date">2026-06-24</span>
