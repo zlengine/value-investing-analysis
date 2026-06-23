@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Argan (AGX) 详细分析</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; background-color: #f5f5f5; padding-top: 104px !important; }
+        h1 { text-align: center; color: #333; }
+        h2 { color: #4CAF50; margin-top: 30px; border-bottom: 2px solid #4CAF50; padding-bottom: 5px; }
+        h3 { color: #2e86c1; margin-top: 20px; }
+        .info-box { background-color: white; padding: 20px; margin: 20px 0; box-shadow: 0 0 10px rgba(0,0,0,0.1); border-radius: 5px; }
+        table { width: 100%; border-collapse: collapse; margin: 10px 0; }
+        th, td { padding: 8px; text-align: left; border-bottom: 1px solid #ddd; }
+        th { background-color: #4CAF50; color: white; }
+        a { color: #4CAF50; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        .fixed-topbar { position: fixed; top: 44px; left: 0; right: 0; z-index: 9998; background: linear-gradient(135deg, #1a5276, #2e86c1); color: white; display: flex; align-items: center; justify-content: space-between; padding: 8px 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.15); height: 48px; }
+        .fixed-topbar a { color: white; text-decoration: none; font-size: 14px; font-weight: 600; }
+        .topbar-left { display: flex; align-items: center; gap: 12px; }
+        .topbar-right { display: flex; align-items: center; gap: 8px; }
+        .topbar-score-label { font-size: 12px; opacity: 0.85; }
+        .topbar-score-val { font-weight: 700; font-size: 15px; min-width: 18px; text-align: center; }
+        .topbar-score-val.s1 { color: #ff6b6b; } .topbar-score-val.s2 { color: #ffa94d; } .topbar-score-val.s3 { color: #ffd43b; } .topbar-score-val.s4 { color: #69db7c; } .topbar-score-val.s5 { color: #51cf66; }
+        .topbar-select { padding: 3px 8px; border: 1px solid rgba(255,255,255,0.4); border-radius: 6px; font-size: 12px; font-weight: 600; color: white; background: rgba(255,255,255,0.15); cursor: pointer; outline: none; }
+        .topbar-select option { color: #333; background: white; }
+        .topbar-btn { padding: 4px 12px; border: none; border-radius: 6px; font-size: 12px; font-weight: 600; cursor: pointer; }
+        .topbar-btn-edit { background: rgba(255,255,255,0.2); color: white; }
+        .topbar-btn-edit:hover { background: rgba(255,255,255,0.35); }
+        .topbar-btn-save { background: #27ae60; color: white; }
+        .topbar-btn-cancel { background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.7); }
+        .topbar-stars { font-size: 11px; }
+        .topbar-stars .on { color: #f39c12; }
+        .topbar-stars .off { color: rgba(255,255,255,0.3); }
+        .top-nav-bar { position: fixed; top: 0; left: 0; right: 0; height: 44px; background: #2c3e50; display: flex; align-items: center; justify-content: flex-end; padding: 0 20px; z-index: 9999; box-shadow: 0 2px 8px rgba(0,0,0,0.15); gap: 8px; }
+        .top-nav-link { color: white; padding: 6px 16px; border-radius: 16px; text-decoration: none; font-size: 13px; transition: background 0.2s; white-space: nowrap; }
+        .tag { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 12px; font-weight: 600; }
+        .tag-green { background-color: #d4edda; color: #155724; }
+        .tag-orange { background-color: #fff3cd; color: #856404; }
+        .tag-red { background-color: #f8d7da; color: #721c24; }
+        .highlight { background-color: #fffde7; padding: 10px; border-left: 4px solid #fbc02d; margin: 10px 0; }
+        .moat-item { background: #e8f5e9; padding: 12px; margin: 8px 0; border-left: 4px solid #4CAF50; border-radius: 4px; }
+        .risk-item { background: #ffebee; padding: 12px; margin: 8px 0; border-left: 4px solid #c62828; border-radius: 4px; }
+        .star { color: #f39c12; }
+    </style>
+</head>
+<body>
+    <div class="top-nav-bar">
+        <a href="scorer.html" class="top-nav-link" style="background:#1a5276;" onmouseover="this.style.background='#2e86c1'" onmouseout="this.style.background='#1a5276'">📊 股票打分</a>
+        <a href="financial_analysis.html" class="top-nav-link" style="background:#2e7d32;" onmouseover="this.style.background='#43a047'" onmouseout="this.style.background='#2e7d32'">📖 财务分析</a>
+        <a href="changelog.html" class="top-nav-link" style="background:#856404;" onmouseover="this.style.background='#a0762a'" onmouseout="this.style.background='#856404'">📋 更新日志</a>
+    </div>
+    <div class="fixed-topbar" id="fixedTopbar">
+        <div class="topbar-left">
+            <a href="index.html">&#8592; 首页</a>
+            <span style="font-size:14px;font-weight:700;" id="topbarCode">AGX</span>
+        </div>
+        <div class="topbar-right" id="topbarScores">
+            <span class="topbar-score-label">基本面</span>
+            <span class="topbar-score-val" id="topbarFVal">-</span>
+            <span class="topbar-stars" id="topbarFStars"></span>
+            <select class="topbar-select" id="topbarFSel" style="display:none;"><option value="0">-</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option></select>
+            <span class="topbar-score-label" style="margin-left:12px;">价格</span>
+            <span class="topbar-score-val" id="topbarPVal">-</span>
+            <span class="topbar-stars" id="topbarPStars"></span>
+            <select class="topbar-select" id="topbarPSel" style="display:none;"><option value="0">-</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option></select>
+            <button class="topbar-btn topbar-btn-edit" id="topbarEditBtn" onclick="topbarEdit()">修改</button>
+            <button class="topbar-btn topbar-btn-save" id="topbarSaveBtn" onclick="topbarSave()" style="display:none;">保存</button>
+            <button class="topbar-btn topbar-btn-cancel" id="topbarCancelBtn" onclick="topbarCancel()" style="display:none;">取消</button>
+        </div>
+    </div>
+
+    <h1>Argan, Inc. (NYSE: AGX)</h1>
+    <p style="text-align:center;color:#666;">巴菲特/芒格式价值投资基本面分析 | 更新日期：2026年6月23日</p>
+
+    <!-- ==================== 一、公司基本信息 ==================== -->
+    <div class="info-box">
+        <h2>一、公司基本信息</h2>
+        <table>
+            <tr><td>公司全称</td><td>Argan, Inc.</td></tr>
+            <tr><td>股票代码</td><td>NYSE: AGX</td></tr>
+            <tr><td>最新收盘价</td><td>$781.05（2026年6月22日，52周新高）</td></tr>
+            <tr><td>市值</td><td>约$103.5亿美元</td></tr>
+            <tr><td>52周区间</td><td>$168.81 - $782.10</td></tr>
+            <tr><td>股息</td><td>$2.00/年（季度$0.50），股息率约0.26%</td></tr>
+            <tr><td>PE（TTM）</td><td>约64倍（基于FY2026 EPS $9.74）</td></tr>
+            <tr><td>EPS（FY2026）</td><td>$9.74（稀释），同比+58%</td></tr>
+            <tr><td>成立时间</td><td>1961年（前身），Gemma Power Systems 2006年成立</td></tr>
+            <tr><td>总部</td><td>美国马里兰州Rockville</td></tr>
+            <tr><td>员工人数</td><td>约1,500人</td></tr>
+            <tr><td>债务</td><td>零债务（Zero Debt）</td></tr>
+            <tr><td>现金及投资</td><td>$8.95亿（FY2026年末）</td></tr>
+            <tr><td>Beta</td><td>0.58（波动低于大盘）</td></tr>
+        </table>
+        <div class="highlight">
+            <strong>一句话业务：</strong>Argan是美国领先的发电厂EPC（工程、采购、施工）承包商，通过旗下Gemma Power Systems建造天然气发电厂和可再生能源设施。简单说，就是"帮电力公司盖发电站的包工头"——但不是盖普通房子，而是盖价值数亿美元的巨型天然气联合循环发电厂。AI数据中心用电需求爆发，让Argan的订单从$14亿翻倍到$29亿，股价一年涨260%。
+        </div>
+    </div>
+
+    <!-- ==================== 二、业务分析 ==================== -->
+    <div class="info-box">
+        <h2>二、业务分析</h2>
+
+        <h3>2.1 业务模式——用大白话说</h3>
+        <p>想象你家要盖一栋别墅——你需要找设计师画图纸（工程）、买砖瓦水泥（采购）、找施工队盖房子（施工）。EPC就是干这个的，只不过Argan盖的不是别墅，而是价值$5亿-$10亿的天然气发电厂。</p>
+        <p>发电厂的建设流程：开发商拿到地皮和许可 → 找Argan做EPC总包 → Argan负责设计+采购设备+施工建设+调试 → 建好后交给开发商运营发电。Argan赚的是"总包管理费"，不是卖设备，而是协调一切、确保按时按预算交付。</p>
+        <p>关键特点：<strong>项目制</strong>（做完一个项目再接下一个）、<strong>固定价格合同</strong>（预算超支自己承担）、<strong>周期性</strong>（电力建设有周期，不是每年都有大单）、<strong>客户集中</strong>（几个大客户占营收绝大部分）。</p>
+
+        <h3>2.2 三大业务板块（FY2026，截至2026年1月31日）</h3>
+        <table>
+            <tr><th>业务板块</th><th>FY2026营收($M)</th><th>占比</th><th>同比增长</th><th>核心子公司</th><th>积压订单($M)</th></tr>
+            <tr><td>Power（电力EPC）</td><td>756</td><td>80%</td><td>+9%</td><td>Gemma Power Systems / Atlantic Projects</td><td>2,700</td></tr>
+            <tr><td>Industrial（工业建设）</td><td>168</td><td>18%</td><td>+96%</td><td>The Roberts Company</td><td>253</td></tr>
+            <tr><td>Teledata（通信/数据中心）</td><td>21</td><td>2%</td><td>—</td><td>Southern Maryland Cable</td><td>—</td></tr>
+        </table>
+
+        <h3>2.3 按地区分布（FY2026）</h3>
+        <table>
+            <tr><th>地区</th><th>营收占比</th><th>说明</th></tr>
+            <tr><td>美国</td><td>90%</td><td>天然气电厂EPC主战场，得克萨斯州项目集中</td></tr>
+            <tr><td>爱尔兰</td><td>7%</td><td>APC子公司，生物燃料电厂项目</td></tr>
+            <tr><td>英国</td><td>3%</td><td>少量工业项目</td></tr>
+        </table>
+
+        <h3>2.4 Power板块核心项目（FY2026在建）</h3>
+        <table>
+            <tr><th>项目</th><th>类型</th><th>容量(MW)</th><th>地点</th><th>状态</th></tr>
+            <tr><td>Trumbull Energy Center</td><td>联合循环</td><td>~800</td><td>宾夕法尼亚</td><td>提前完工里程碑</td></tr>
+            <tr><td>CPV Basin Ranch</td><td>联合循环</td><td>1,350</td><td>得克萨斯</td><td>全面开工</td></tr>
+            <tr><td>多座简单循环/联合循环电厂</td><td>混合</td><td>~3,350</td><td>美国/爱尔兰</td><td>施工中</td></tr>
+        </table>
+        <div class="highlight">
+            <strong>关键数据：</strong>Argan目前在建约5.5吉瓦（5,500 MW）的热力发电容量，积压订单$29亿（是FY2026营收$9.45亿的3倍），提供2-3年营收可见性。FY2026新增合同价值$25亿，积压订单从$14亿翻倍至$29亿。
+        </div>
+    </div>
+
+    <!-- ==================== 三、产品竞争力分析 ==================== -->
+    <div class="info-box">
+        <h2>三、产品竞争力分析</h2>
+
+        <h3>3.1 Power EPC服务 产品竞争力</h3>
+
+        <p><strong>1. 可替代性：<span class="tag tag-orange">中等偏高</span></strong></p>
+        <ul>
+            <li><strong>直接替代品：</strong>Bechtel、Fluor、KBR、MasTec、Chicago Bridge & Iron等大型EPC承包商均可承建天然气发电厂</li>
+            <li><strong>替代品体验差距：</strong>Argan在天然气联合循环电厂领域有20年专项经验，累计建造16,000+ MW容量。大型EPC（如Bechtel）业务更分散，可能不如Argan专注</li>
+            <li><strong>替代趋势：</strong>中性。EPC是竞争性市场，客户会招标比价，Argan并非唯一选择</li>
+        </ul>
+
+        <p><strong>2. 客户转换成本：<span class="tag tag-orange">中等</span></strong></p>
+        <ul>
+            <li><strong>财务转换成本：</strong>EPC合同一旦签署，中途更换承包商代价极高（工期延误+违约金）</li>
+            <li><strong>时间转换成本：</strong>新EPC承包商导入验证6-12个月</li>
+            <li><strong>但：</strong>每个新项目都是重新招标，客户没有"必须选Argan"的理由。这不是ASML那种"没有替代品"的垄断</li>
+        </ul>
+
+        <p><strong>3. 定价权：<span class="tag tag-orange">中等偏低</span></strong></p>
+        <ul>
+            <li><strong>巴菲特测试：</strong>如果Argan涨价10%，客户会离开吗？很可能——因为EPC是竞争性招标市场，客户可以选Bechtel、KBR或MasTec</li>
+            <li><strong>定价权来源：</strong>20年专项经验+口碑+按时交付记录，但这些不足以支撑真正的定价权</li>
+            <li><strong>定价权趋势：</strong>短期有利（电力建设需求爆发，承包商供不应求），但长期回归竞争性定价</li>
+        </ul>
+
+        <p><strong>整体竞争力评级：<span class="star">&#9733;&#9733;&#9733;</span> 3/5</strong>——Argan是优秀的EPC承包商，但EPC本质上是竞争性服务行业，没有真正的垄断或定价权。护城河来自经验积累和口碑，而非不可替代的技术或专利。</p>
+
+        <h3>3.2 Industrial建设服务 产品竞争力</h3>
+
+        <p><strong>1. 可替代性：<span class="tag tag-red">高</span></strong></p>
+        <ul>
+            <li>工业建设市场竞争更激烈，The Roberts Company规模小，无显著差异化优势</li>
+        </ul>
+
+        <p><strong>2. 客户转换成本：<span class="tag tag-red">低</span></strong></p>
+        <ul>
+            <li>工业维护和检修服务替代性强，客户更换成本低</li>
+        </ul>
+
+        <p><strong>3. 定价权：<span class="tag tag-red">弱</span></strong></p>
+        <ul>
+            <li>竞争性市场，定价权有限</li>
+        </ul>
+
+        <p><strong>整体竞争力评级：<span class="star">&#9733;&#9733;</span> 2/5</strong>——但这是增长板块（积压订单从$5,300万增至$2.53亿，+378%），受益于数据中心建设热潮。</p>
+
+        <h3>3.3 Teledata通信服务 产品竞争力</h3>
+        <p><strong>整体竞争力评级：<span class="star">&#9733;</span> 1/5</strong>——占比仅2%，规模太小，对整体分析影响微乎其微。</p>
+    </div>
+
+    <!-- ==================== 四、历史财务指标 ==================== -->
+    <div class="info-box">
+        <h2>四、历史财务指标</h2>
+
+        <h3>4.1 核心财务数据（FY2017-FY2026）</h3>
+        <table>
+            <tr><th>财年</th><th>营收($M)</th><th>净利率</th><th>ROE</th><th>ROA</th><th>ROIC</th><th>负债/资产</th><th>权益乘数</th><th>PE(年末)</th><th>毛利率</th></tr>
+            <tr><td>FY2017</td><td>675</td><td>10.4%</td><td>21.5%</td><td>10.2%</td><td>16.8%</td><td>52.6%</td><td>2.11</td><td>12x</td><td>21.8%</td></tr>
+            <tr><td>FY2018</td><td>893</td><td>8.1%</td><td>18.2%</td><td>8.5%</td><td>13.5%</td><td>53.2%</td><td>2.14</td><td>10x</td><td>16.7%</td></tr>
+            <tr><td>FY2019</td><td>482</td><td>10.8%</td><td>16.8%</td><td>7.2%</td><td>11.2%</td><td>57.1%</td><td>2.33</td><td>18x</td><td>17.0%</td></tr>
+            <tr><td>FY2020</td><td>239</td><td>-18.0%</td><td>-22.5%</td><td>-9.8%</td><td>-15.2%</td><td>56.3%</td><td>2.29</td><td>N/A</td><td>-2.9%</td></tr>
+            <tr><td>FY2021</td><td>392</td><td>6.1%</td><td>10.5%</td><td>5.8%</td><td>8.2%</td><td>44.8%</td><td>1.81</td><td>28x</td><td>15.8%</td></tr>
+            <tr><td>FY2022</td><td>509</td><td>7.5%</td><td>15.2%</td><td>8.5%</td><td>12.0%</td><td>44.1%</td><td>1.79</td><td>18x</td><td>19.6%</td></tr>
+            <tr><td>FY2023</td><td>455</td><td>7.3%</td><td>14.8%</td><td>7.5%</td><td>10.5%</td><td>49.5%</td><td>1.98</td><td>25x</td><td>19.0%</td></tr>
+            <tr><td>FY2024</td><td>573</td><td>5.6%</td><td>14.2%</td><td>7.8%</td><td>10.8%</td><td>45.2%</td><td>1.82</td><td>30x</td><td>14.1%</td></tr>
+            <tr><td>FY2025</td><td>874</td><td>9.8%</td><td>24.5%</td><td>13.2%</td><td>18.5%</td><td>46.3%</td><td>1.86</td><td>40x</td><td>16.1%</td></tr>
+            <tr><td>FY2026</td><td>945</td><td>14.6%</td><td>32.2%</td><td>13.6%</td><td>25.0%</td><td>0%</td><td>2.01</td><td>64x</td><td>20.5%</td></tr>
+        </table>
+
+        <h3>4.2 关键趋势解读</h3>
+        <div class="risk-item">
+            <strong>营收极度波动：</strong>FY2018营收$8.93亿 → FY2020仅$2.39亿（-73%），这是EPC行业的典型特征——项目制营收，没有经常性收入。FY2020甚至亏损$4,300万。这种波动性是巴菲特最不喜欢的商业模式特征。
+        </div>
+        <div class="moat-item">
+            <strong>毛利率改善：</strong>从FY2024的14.1%提升至FY2026的20.5%，反映项目执行改善+有利合同组合。但20.5%的毛利率在EPC行业中已属上等（同行通常10-15%），可持续性存疑。
+        </div>
+        <div class="moat-item">
+            <strong>ROE大幅改善：</strong>从FY2024的14.2%跃升至FY2026的32.2%，主要受益于净利率从5.6%提升至14.6%。但需注意：EPC行业ROE波动极大，FY2020 ROE为-22.5%。
+        </div>
+        <div class="moat-item">
+            <strong>零债务：</strong>FY2026负债/资产比0%，现金$8.95亿，净流动性$4.21亿。这是Argan最大的财务优势——在EPC行业（高固定价格合同风险）中，零债务提供了极大的安全边际。
+        </div>
+        <div class="risk-item">
+            <strong>PE估值：</strong>FY2026年末PE高达64倍，远超10年均值20倍和5年高点40倍。股价从52周低点$168.81涨至$781.05，涨幅363%，严重脱离历史估值区间。
+        </div>
+    </div>
+
+    <!-- ==================== 五、竞争分析 ==================== -->
+    <div class="info-box">
+        <h2>五、竞争分析</h2>
+
+        <h3>5.1 主要竞争对手对比</h3>
+        <table>
+            <tr><th>公司</th><th>市值($B)</th><th>核心业务</th><th>强项</th><th>弱项</th><th>与Argan关系</th></tr>
+            <tr><td>Bechtel</td><td>私有</td><td>全球最大EPC</td><td>规模最大、全球布局</td><td>不上市，财务不透明</td><td>直接竞争（大型项目）</td></tr>
+            <tr><td>Fluor (FLR)</td><td>~10</td><td>多元化EPC</td><td>业务多元、政府合同</td><td>历史项目亏损、毛利率低</td><td>直接竞争</td></tr>
+            <tr><td>KBR (KBR)</td><td>~8</td><td>政府/能源EPC</td><td>政府合同稳定、技术方案</td><td>利润率低、业务复杂</td><td>部分竞争</td></tr>
+            <tr><td>MasTec (MTZ)</td><td>~12</td><td>基础设施EPC</td><td>电信/管道/可再生能源</td><td>杠杆高、利润率低</td><td>部分竞争（数据中心）</td></tr>
+            <tr><td>Argan (AGX)</td><td>~10</td><td>电力EPC专注</td><td>零债务、高毛利率、专注</td><td>规模小、客户集中、周期性</td><td>—</td></tr>
+        </table>
+
+        <h3>5.2 经济护城河评估</h3>
+
+        <div class="moat-item">
+            <strong>1. 专项经验与口碑（窄）</strong><br>
+            Argan通过Gemma Power Systems在天然气发电厂EPC领域积累了20年经验，累计建造16,000+ MW容量。在中小型天然气联合循环电厂项目中，Argan的按时交付记录和成本控制能力建立了口碑。但这种口碑不是专利或技术壁垒——竞争对手可以学习复制。
+        </div>
+
+        <div class="moat-item">
+            <strong>2. 零债务优势（非护城河，但重要）</strong><br>
+            零债务+现金$8.95亿是Argan的核心竞争优势，但这不是"护城河"——竞争对手也可以选择低杠杆运营。Argan的财务纪律让它在行业低谷期仍能生存（FY2020亏损$4,300万但未破产），也使它能承接更大规模的项目。
+        </div>
+
+        <div class="risk-item">
+            <strong>3. 缺乏真正的护城河</strong><br>
+            Argan没有专利、没有技术垄断、没有网络效应、没有高转换成本、没有品牌溢价。EPC是竞争性服务行业，每个项目都需要重新投标。Argan的"优势"本质上是"做得好+价格合理"，这在需求旺盛时有效，但在行业下行时无法保护利润。这不是巴菲特说的"护城河"，更像是"好口碑"。
+        </div>
+
+        <div class="risk-item">
+            <strong>4. 客户集中度风险</strong><br>
+            Power板块前几大客户占营收绝大部分。失去一个大客户或一个大项目，营收可能断崖式下降。FY2018营收$8.93亿 → FY2020仅$2.39亿就是明证——不是客户走了，而是项目做完了新项目还没接上。
+        </div>
+
+        <h3>5.3 护城河评级</h3>
+        <p><strong>整体护城河评级：窄（Narrow）</strong></p>
+        <p>Argan的"护城河"本质上是专项经验和口碑，而非不可替代的技术或垄断地位。在EPC行业，"做得好"可以赢得更多投标，但不能阻止客户选择竞争对手。与ASML的"绝对垄断型护城河"或KLAC的"技术深度型护城河"完全不同，Argan的护城河更接近"好名声"——有用但不坚固。</p>
+    </div>
+
+    <!-- ==================== 六、利润分配分析 ==================== -->
+    <div class="info-box">
+        <h2>六、利润分配分析</h2>
+
+        <h3>6.1 过去十年利润分配（FY2017-FY2026）</h3>
+        <table>
+            <tr><th>财年</th><th>净利润($M)</th><th>分红($M)</th><th>回购($M)</th><th>资本开支($M)</th><th>FCF($M)</th><th>留存金额($M)</th><th>留存率</th><th>股东回报率</th></tr>
+            <tr><td>FY2017</td><td>70</td><td>0</td><td>0</td><td>3</td><td>82</td><td>70</td><td>100%</td><td>0%</td></tr>
+            <tr><td>FY2018</td><td>72</td><td>0</td><td>0</td><td>4</td><td>68</td><td>72</td><td>100%</td><td>0%</td></tr>
+            <tr><td>FY2019</td><td>52</td><td>0</td><td>0</td><td>3</td><td>45</td><td>52</td><td>100%</td><td>0%</td></tr>
+            <tr><td>FY2020</td><td>-43</td><td>0</td><td>0</td><td>2</td><td>-35</td><td>-43</td><td>N/A</td><td>0%</td></tr>
+            <tr><td>FY2021</td><td>24</td><td>0</td><td>0</td><td>2</td><td>28</td><td>24</td><td>100%</td><td>0%</td></tr>
+            <tr><td>FY2022</td><td>38</td><td>0</td><td>0</td><td>3</td><td>42</td><td>38</td><td>100%</td><td>0%</td></tr>
+            <tr><td>FY2023</td><td>33</td><td>5</td><td>0</td><td>3</td><td>35</td><td>28</td><td>85%</td><td>15%</td></tr>
+            <tr><td>FY2024</td><td>32</td><td>12</td><td>0</td><td>3</td><td>30</td><td>20</td><td>63%</td><td>38%</td></tr>
+            <tr><td>FY2025</td><td>85</td><td>18</td><td>8</td><td>4</td><td>95</td><td>59</td><td>69%</td><td>31%</td></tr>
+            <tr><td>FY2026</td><td>138</td><td>24</td><td>10</td><td>5</td><td>411</td><td>104</td><td>75%</td><td>25%</td></tr>
+        </table>
+
+        <h3>6.2 资本配置评价</h3>
+        <div class="moat-item">
+            <strong>分红历史短但增长快：</strong>Argan从FY2023才开始分红，3年内季度分红从$0.25增至$0.50（+100%）。FY2026年度分红$24M，派息率仅17.6%，远低于行业均值，分红增长空间大。
+        </div>
+        <div class="moat-item">
+            <strong>回购谨慎：</strong>FY2026回购$10M，2026年4月批准新$200M回购计划（可回购2.5%流通股）。累计回购$115M（自2021年11月起），规模不大。
+        </div>
+        <div class="risk-item">
+            <strong>现金堆积：</strong>FY2026末现金$8.95亿，占市值$103.5亿的8.7%。大量现金未用于分红/回购/并购，说明管理层在等待机会——但也可能是"不知道怎么花"的信号。巴菲特喜欢管理层能高效配置资本，$8.95亿现金的回报率（主要是短期国债）远低于业务ROE。
+        </div>
+        <div class="risk-item">
+            <strong>内部人减持：</strong>董事Griffin William Jr.自2026年6月以来累计减持8万股（约$5,400万），董事Getsinger Peter也减持3,000股。大量内部人在高位减持，需警惕。
+        </div>
+        <div class="moat-item">
+            <strong>可持续增长率：</strong>ROE 32.2% × 留存率 75% = 24.2%。理论上Argan可以不靠外部融资实现24%的增长，但EPC行业营收受项目制限制，实际增速波动极大。
+        </div>
+    </div>
+
+    <!-- ==================== 七、投资总结 ==================== -->
+    <div class="info-box">
+        <h2>七、投资总结</h2>
+
+        <h3>7.1 各维度评分</h3>
+        <table>
+            <tr><th>维度</th><th>评分</th><th>说明</th></tr>
+            <tr><td>业务可理解性</td><td><span class="star">&#9733;&#9733;&#9733;&#9733;&#9733;</span> 5/5</td><td>"帮电力公司盖发电站"——业务模式极其简单易懂，巴菲特最爱的类型</td></tr>
+            <tr><td>护城河强度</td><td><span class="star">&#9733;&#9733;</span> 2/5</td><td>EPC是竞争性服务行业，没有专利/垄断/高转换成本，"好口碑"不是真正的护城河</td></tr>
+            <tr><td>资本配置</td><td><span class="star">&#9733;&#9733;</span> 2/5</td><td>零债务+低派息率是优点，但$8.95亿现金堆积+高估值时回购+内部人减持是警示信号</td></tr>
+            <tr><td>财务安全</td><td><span class="star">&#9733;&#9733;&#9733;&#9733;&#9733;</span> 5/5</td><td>零债务+现金$8.95亿+净流动性$4.21亿，财务安全边际极高</td></tr>
+            <tr><td>增长前景</td><td><span class="star">&#9733;&#9733;&#9733;&#9733;</span> 4/5</td><td>AI数据中心驱动电力需求爆发，积压订单$29亿，但EPC行业周期性不可忽视</td></tr>
+            <tr><td>估值吸引力</td><td><span class="star">&#9733;</span> 1/5</td><td>PE 64x远超10年均值20x和5年高点40x，严重高估</td></tr>
+        </table>
+
+        <h3>7.2 关键风险</h3>
+        <div class="risk-item">
+            <strong>1. 项目制营收的周期性（最大风险）：</strong>Argan没有经常性收入，每个项目做完就没了。FY2018营收$8.93亿 → FY2020仅$2.39亿（-73%）就是明证。当前积压订单$29亿提供2-3年可见性，但之后呢？如果AI数据中心建设放缓，Argan可能再次面临营收断崖。
+        </div>
+        <div class="risk-item">
+            <strong>2. 固定价格合同风险：</strong>EPC合同通常是固定价格，预算超支由承包商承担。一个大型项目超支可能吞噬全年利润。FY2020亏损$4,300万就是项目亏损的结果。随着项目规模增大（CPV Basin Ranch 1,350 MW），单项目风险也在增加。
+        </div>
+        <div class="risk-item">
+            <strong>3. 客户集中度：</strong>Power板块前几大客户占营收绝大部分。失去一个大客户或项目延期，影响巨大。
+        </div>
+        <div class="risk-item">
+            <strong>4. 估值泡沫风险：</strong>PE 64x意味着市场预期Argan将长期维持20%+增速。但EPC行业历史上从未有公司能持续做到——周期性是行业本质。一旦AI数据中心投资放缓或项目延期，股价可能大幅回调。
+        </div>
+        <div class="risk-item">
+            <strong>5. 内部人减持：</strong>多位董事在$630-$780区间大量减持，这是"聪明钱"在高位离场的信号。
+        </div>
+
+        <h3>7.3 关键催化剂</h3>
+        <div class="moat-item">
+            <strong>1. AI数据中心电力需求：</strong>AI训练和推理需要大量电力，美国数据中心电力需求预计2030年前增长3-5倍。联邦监管机构加快数据中心供电审批，Argan直接受益。
+        </div>
+        <div class="moat-item">
+            <strong>2. 电气化大趋势：</strong>电动车充电、制造业回流、电网老化替换——多个趋势叠加，天然气发电厂建设需求可能持续5-10年。
+        </div>
+        <div class="moat-item">
+            <strong>3. 积压订单翻倍：</strong>$29亿积压订单是FY2026营收的3倍，提供强劲营收可见性。FY2027 EPS预期$11.44（+17.5%），FY2028预期$15.95（+39.5%）。
+        </div>
+        <div class="moat-item">
+            <strong>4. Industrial板块爆发：</strong>积压订单从$5,300万增至$2.53亿（+378%），数据中心/水处理/回收设施项目增多，可能成为第二增长曲线。
+        </div>
+
+        <h3>7.4 估值分析</h3>
+        <table>
+            <tr><th>估值指标</th><th>当前</th><th>5年均值</th><th>5年高点</th><th>5年低点</th></tr>
+            <tr><td>PE（TTM）</td><td>64x</td><td>~20x</td><td>40x</td><td>10x</td></tr>
+            <tr><td>PS（TTM）</td><td>9.9x</td><td>~2.0x</td><td>4.0x</td><td>0.5x</td></tr>
+            <tr><td>P/FCF</td><td>~25x</td><td>~15x</td><td>25x</td><td>8x</td></tr>
+            <tr><td>EV/EBITDA</td><td>~55x</td><td>~12x</td><td>20x</td><td>5x</td></tr>
+        </table>
+
+        <h3>7.5 投资评级</h3>
+        <div class="risk-item">
+            <strong>评级：观望（Wait）</strong>
+            <p>Argan是一家<strong>财务极其稳健</strong>的公司——零债务、现金$8.95亿、净利率14.6%、ROE 32.2%。在EPC行业中，这种财务质量极为罕见。AI数据中心驱动的电力需求爆发也是真实的，积压订单$29亿提供了强劲的短期增长可见性。</p>
+            <p>但Argan有两个巴菲特不会喜欢的核心问题：</p>
+            <p><strong>1. 没有真正的护城河。</strong>EPC是竞争性服务行业，Argan的"优势"是经验和口碑，不是专利或垄断。每个项目都要重新投标，客户没有"必须选Argan"的理由。这与ASML的EUV 100%垄断完全不同。</p>
+            <p><strong>2. 营收极度波动。</strong>FY2018→FY2020营收跌73%并亏损$4,300万。当前需求旺盛不代表永远旺盛。巴菲特喜欢"可预测的"盈利，Argan的盈利完全不可预测。</p>
+        </div>
+        <div class="highlight">
+            <strong>理想买入区间：</strong>PE 15-20倍，对应价格约$145-$195，基于FY2026 EPS $9.74<br>
+            <strong>当前价格：</strong>$781<br>
+            <strong>溢价：</strong>约300-440%，严重高估<br><br>
+            <strong>巴菲特会怎么说：</strong>"Argan是一家管理良好、财务稳健的EPC公司，在电力建设热潮中表现出色。但EPC行业的周期性和缺乏护城河让我不安——FY2020的亏损$4,300万提醒我们，好时光不会永远持续。在PE 64x买入一个周期性行业的公司，这不是价值投资，这是投机。在$145-195，我会认真考虑。在$781，我选择等待。"
+        </div>
+    </div>
+
+    <!-- ==================== Topbar Scoring Script ==================== -->
+    <script>
+    // Topbar scoring logic - unified with stock_scores_v1
+    (function(){
+        var SCORE_KEY='stock_scores_v1';
+        var code=document.getElementById('topbarCode').textContent.trim();
+        function getScores(){try{var d=localStorage.getItem(SCORE_KEY);return d?JSON.parse(d):{};}catch(e){return {};}}
+        function saveScores(s){localStorage.setItem(SCORE_KEY,JSON.stringify(s));}
+        function starsHTML(val){var h='';for(var i=1;i<=5;i++){h+='<span class="'+(i<=val?'on':'off')+'">\u2605</span>';}return h;}
+        function valClass(v){return v>=5?'s5':v>=4?'s4':v>=3?'s3':v>=2?'s2':'s1';}
+        function renderDisplay(){
+            var sc=getScores()[code]||{};
+            var f=sc.fundamental||0,p=sc.price||0;
+            document.getElementById('topbarFVal').textContent=f>0?f:'-';
+            document.getElementById('topbarFVal').className='topbar-score-val'+(f>0?' '+valClass(f):'');
+            document.getElementById('topbarFStars').innerHTML=starsHTML(f);
+            document.getElementById('topbarPVal').textContent=p>0?p:'-';
+            document.getElementById('topbarPVal').className='topbar-score-val'+(p>0?' '+valClass(p):'');
+            document.getElementById('topbarPStars').innerHTML=starsHTML(p);
+        }
+        window.topbarEdit=function(){
+            var sc=getScores()[code]||{};
+            document.getElementById('topbarFSel').value=sc.fundamental||0;
+            document.getElementById('topbarPSel').value=sc.price||0;
+            document.getElementById('topbarFSel').style.display='';
+            document.getElementById('topbarPSel').style.display='';
+            document.getElementById('topbarEditBtn').style.display='none';
+            document.getElementById('topbarSaveBtn').style.display='';
+            document.getElementById('topbarCancelBtn').style.display='';
+            document.getElementById('topbarFVal').style.display='none';
+            document.getElementById('topbarPVal').style.display='none';
+            document.getElementById('topbarFStars').style.display='none';
+            document.getElementById('topbarPStars').style.display='none';
+        };
+        window.topbarSave=function(){
+            var f=parseInt(document.getElementById('topbarFSel').value);
+            var p=parseInt(document.getElementById('topbarPSel').value);
+            var sc=getScores();if(!sc[code])sc[code]={};
+            sc[code].fundamental=f;sc[code].price=p;sc[code].updated=new Date().toISOString();
+            saveScores(sc);topbarCancel();renderDisplay();
+        };
+        window.topbarCancel=function(){
+            document.getElementById('topbarFSel').style.display='none';
+            document.getElementById('topbarPSel').style.display='none';
+            document.getElementById('topbarEditBtn').style.display='';
+            document.getElementById('topbarSaveBtn').style.display='none';
+            document.getElementById('topbarCancelBtn').style.display='none';
+            document.getElementById('topbarFVal').style.display='';
+            document.getElementById('topbarPVal').style.display='';
+            document.getElementById('topbarFStars').style.display='';
+            document.getElementById('topbarPStars').style.display='';
+        };
+        renderDisplay();
+    })();
+    </script>
+</body>
+</html>
