@@ -59,7 +59,8 @@ var ScoresDB = (function() {
     }
 
     /**
-     * 从 JSONBin 云端拉取最新数据
+     * 从 JSONBin 云端拉取最新数据，与本地合并（不覆盖本地新数据）
+     * 合并策略：以更新时间(updated)最新的为准
      */
     function syncFromRemote(callback) {
         callback = callback || function() {};
@@ -75,14 +76,34 @@ var ScoresDB = (function() {
             return r.json();
         })
         .then(function(data) {
-            var scores = data.record || {};
+            var remoteScores = data.record || {};
+            var localScores = readAll();
+            // 合并：以更新时间最新的为准
+            var merged = {};
+            var allCodes = {};
+            Object.keys(remoteScores).forEach(function(c) { allCodes[c] = true; });
+            Object.keys(localScores).forEach(function(c) { allCodes[c] = true; });
+            Object.keys(allCodes).forEach(function(code) {
+                var r = remoteScores[code];
+                var l = localScores[code];
+                if (r && l) {
+                    // 都有，以更新时间最新的为准
+                    var rTime = r.updated || '';
+                    var lTime = l.updated || '';
+                    merged[code] = rTime >= lTime ? r : l;
+                } else if (r) {
+                    merged[code] = r;
+                } else {
+                    merged[code] = l;
+                }
+            });
             // 更新本地缓存
-            writeAll(scores);
+            writeAll(merged);
             syncStatus = 'success';
             lastSyncTime = new Date().toISOString();
             try { localStorage.setItem('scores_last_sync', lastSyncTime); } catch(e) {}
             notifyStatusChange();
-            callback(null, scores);
+            callback(null, merged);
         })
         .catch(function(err) {
             syncStatus = 'error';

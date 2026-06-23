@@ -918,52 +918,39 @@
             document.getElementById(id).addEventListener('change', renderTable);
         });
 
-        // 从 localStorage 加载打分数据，如果为空则从 GitHub 恢复
+        // 从 JSONBin 云端加载打分数据
         function loadScores() {
-            var localScores = ScoresDB.getAll() || {};
+            // 先用本地缓存立即显示
+            var localScores = ScoresDB.getAllLocal() || {};
             var localCount = Object.keys(localScores).length;
+            currentScores = localScores;
+            updateDbStatus(localCount, 'local');
+            renderTable();
 
-            if (localCount > 0) {
-                // localStorage 有数据，直接使用
-                currentScores = localScores;
-                updateDbStatus(localCount, 'local');
-                renderTable();
-            } else {
-                // localStorage 为空，尝试从 GitHub 恢复
-                updateDbStatus(0, 'restoring');
-                if (typeof SyncManager !== 'undefined') {
-                    SyncManager.restoreFromGitHub(function(err, scores) {
-                        if (err || !scores) {
-                            currentScores = {};
-                            updateDbStatus(0, 'empty');
-                            renderTable();
-                        } else {
-                            currentScores = scores;
-                            var count = Object.keys(scores).length;
-                            updateDbStatus(count, count > 0 ? 'restored' : 'empty');
-                            renderTable();
-                            console.log('[Index] 已从 GitHub 恢复 ' + count + ' 条打分');
-                        }
-                    });
-                } else {
-                    currentScores = {};
-                    updateDbStatus(0, 'empty');
-                    renderTable();
+            // 异步从云端拉取最新数据并刷新
+            ScoresDB.syncFromRemote(function(err, scores) {
+                if (err || !scores) {
+                    updateDbStatus(localCount, 'error');
+                    return;
                 }
-            }
+                currentScores = scores;
+                var count = Object.keys(scores).length;
+                updateDbStatus(count, count > 0 ? 'synced' : 'empty');
+                renderTable();
+            });
         }
 
         function updateDbStatus(count, source) {
             var statusEl = document.getElementById('dbStatus');
             if (!statusEl) return;
-            if (source === 'restoring') {
-                statusEl.innerHTML = '⏳ 正在从 GitHub 恢复...';
-                statusEl.style.color = '#3498db';
-            } else if (source === 'restored') {
-                statusEl.innerHTML = '☁️ 已从 GitHub 恢复 · ' + count + '条打分';
+            if (source === 'synced') {
+                statusEl.innerHTML = '☁️ 云端同步 · ' + count + '条打分';
                 statusEl.style.color = '#27ae60';
+            } else if (source === 'error') {
+                statusEl.innerHTML = '⚠️ 云端同步失败，显示本地缓存 · ' + count + '条';
+                statusEl.style.color = '#e67e22';
             } else if (count > 0) {
-                statusEl.innerHTML = '💾 本地存储 · ' + count + '条打分';
+                statusEl.innerHTML = '💾 本地缓存 · ' + count + '条打分';
                 statusEl.style.color = '#27ae60';
             } else {
                 statusEl.innerHTML = '💾 暂无打分数据';
