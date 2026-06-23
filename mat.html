@@ -126,6 +126,28 @@
         
                 .top-nav-bar { position: fixed; top: 0; left: 0; right: 0; height: 44px; background: #2c3e50; display: flex; align-items: center; justify-content: flex-end; padding: 0 20px; z-index: 9999; box-shadow: 0 2px 8px rgba(0,0,0,0.15); gap: 8px; }
         .top-nav-link { color: white; padding: 6px 16px; border-radius: 16px; text-decoration: none; font-size: 13px; transition: background 0.2s; white-space: nowrap; }
+            .section-nav {
+            background: white;
+            border-radius: 10px;
+            padding: 15px 25px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+        .section-nav a {
+            display: inline-block;
+            margin: 5px 10px;
+            padding: 6px 14px;
+            background: #eaf2f8;
+            color: #1a5276;
+            text-decoration: none;
+            border-radius: 15px;
+            font-size: 0.9em;
+        }
+        .section-nav a:hover {
+            background: #2e86c1;
+            color: white;
+        }
     </style>
 </head>
 <body>
@@ -135,8 +157,18 @@
     <h1>美泰 (Mattel, Inc.)</h1>
     <p class="subtitle">NASDAQ: MAT | 价值投资基本面分析 | 更新日期：2026年5月8日</p>
 
+    <div class="section-nav">
+        <a href="#chapter1">公司基本信息</a>
+        <a href="#chapter2">业务分析</a>
+        <a href="#chapter3">历史财务指标</a>
+        <a href="#chapter4">竞争分析</a>
+        <a href="#chapter5">利润分配分析（过去十年）</a>
+        <a href="#chapter6">投资结论</a>
+        <a href="#chapter7">2026年Q1季报快报</a>
+    </div>
+
     <div class="info-box">
-        <h2>一、公司基本信息</h2>
+        <h2 id="chapter1">一、公司基本信息</h2>
         <table>
             <tr><th>项目</th><th>详情</th></tr>
             <tr><td>公司名称</td><td>Mattel, Inc.（美泰）</td></tr>
@@ -157,8 +189,7 @@
         </table>
     </div>
 
-    <div class="info-box">
-        <h2>二、业务分析</h2>
+    <div class="info-<h2 id="chapter2">二、业务分析</h2>h2>二、业务分析</h2>
 
         <h3>2.1 公司是做什么的？</h3>
         <p>用最简单的话说：<strong>美泰就是那个做芭比娃娃和风火轮小汽车的公司</strong>。如果你有一个女儿，她大概率有过一个芭比娃娃；如果你有一个儿子，他大概率玩过风火轮轨道车。美泰是全球第二大玩具公司，旗下拥有芭比（Barbie）、风火轮（Hot Wheels）、费雪（Fisher-Price）、美国女孩（American Girl）、UNO纸牌等家喻户晓的品牌。美泰的产品销往全球150多个国家。</p>
@@ -192,7 +223,7 @@
         </ul>
     </div>
 
-    <div class="info-box">
+    <di<h2 id="chapter3">三、历史财务指标</h2>">
         <h2>三、历史财务指标</h2>
 
         <h3>3.1 净资产收益率（ROE）年度数据</h3>
@@ -481,9 +512,7 @@
             <strong>③ 品牌生命周期：</strong>American Girl和Fisher-Price都进入了品牌衰退期。American Girl在2000年代的文化影响力已经消散，Fisher-Price面临的安全危机和出生率下降双重打击使其难以恢复。一个品牌一旦失去文化相关性，恢复的难度和成本极高。<br><br>
             <strong>展望：</strong>美泰正在通过三条路径尝试突破营收天花板：①<strong>内容化</strong>（Barbie电影、16部电影在开发）；②<strong>数字化</strong>（Mattel163移动游戏工作室）；③<strong>国际扩张</strong>（2025年国际收入+6.2%）。但短期内（2026-2028年），营收大概率仍在$53-55亿区间波动，突破$60亿需要Hot Wheels持续强劲+Barbie找到新的增长曲线+数字游戏贡献显著收入——这三个条件同时满足的概率不高。
         </div>
-    </div>
-
-    <div class="info-box">
+    <<h2 id="chapter4">四、竞争分析</h2> class="info-box">
         <h2>四、竞争分析</h2>
 
         <h3>4.1 主要竞争对手</h3>
@@ -537,10 +566,7 @@
         <div class="warning">
             <strong>⚠️ 关键风险：Hasbro的数字游戏领先优势正在拉大</strong><br>
             Hasbro的Wizards of the Coast部门2025年Q4营收飙升86%，Magic: The Gathering年收入达$17亿（+59%），其"Universes Beyond"策略（将外部IP融入卡牌游戏）创造了强大的平台效应。相比之下，美泰的数字游戏战略刚刚起步（2026年Q1完成Mattel163全资收购），差距明显。如果美泰不能在数字游戏领域快速追赶，长期竞争地位可能被削弱。
-        </div>
-    </div>
-
-    <div class="info-box">
+      <h2 id="chapter5">五、利润分配分析（过去十年）</h2>  <div class="info-box">
         <h2>五、利润分配分析（过去十年）</h2>
 
         <h3>5.1 利润分配明细表（单位：百万美元）</h3>
@@ -659,8 +685,7 @@
         <div class="highlight">
             <strong>资本配置评价：</strong><br>
             <strong>正面：</strong>①2023年以来积极回购股票（$12亿+，占流通股18%），显示管理层对公司价值的信心；②停止低效的股息发放（2017年$3.12/股的股息在公司亏损时不可持续）；③完成Mattel163全资收购，推进数字战略。<br>
-            <strong>负面：</strong>①2017-2019年连续亏损期间仍派发股息（2017年$3.12/股），这是糟糕的资本配置；②长期债务水平偏高（$23亿+），利息支出侵蚀利润；③战略投资$1.5亿（2026年）的回报尚不确定。
-        </div>
+            <strong>负面：</strong>①2017-2019年连续亏损期间仍派发股息（2017年$3.12/股），这是糟糕的资本配置；②长期债务水平偏高（$23亿+），利息支出侵蚀利润；③战略投资$1.5亿（2026年）的<h2 id="chapter6">六、投资结论</h2> </div>
     </div>
 
     <div class="info-box">
@@ -716,8 +741,7 @@
             ① <strong>PE估值法：</strong>若2026年调整后EPS达$1.33（中值），给予15x合理PE（行业均值），目标价约$20。当前$15有约33%上涨空间。<br>
             ② <strong>EV/EBITDA估值法：</strong>2026年调整后EBITDA指引约$9-9.5亿，给予8-9x EV/EBITDA，企业价值约$72-85亿，减净债务$13.6亿，股权价值约$58-72亿，每股约$20-25。<br>
             ③ <strong>TIKR模型：</strong>目标价$22.83，隐含50%上涨空间。<br><br>
-            <strong>综合判断：</strong>在$15附近，MAT提供了一定的安全边际，但关税风险和战略投资的不确定性意味着安全边际不够"宽"。芒格可能会说："这是一家拥有伟大品牌但面临结构性挑战的公司，价格合理但不够便宜。"
-        </div>
+            <strong>综合判断：</strong>在$15附近，MAT提供了一定的安全边际，但关税风险和战略投资的不确定性意味着安全边际不够"宽"。芒格可能会说："这是一家拥有伟大品牌但面<h2 id="chapter7">七、2026年Q1季报快报</h2>        </div>
     </div>
 
     <div class="info-box">

@@ -103,6 +103,28 @@
         }
                 .top-nav-bar { position: fixed; top: 0; left: 0; right: 0; height: 44px; background: #2c3e50; display: flex; align-items: center; justify-content: flex-end; padding: 0 20px; z-index: 9999; box-shadow: 0 2px 8px rgba(0,0,0,0.15); gap: 8px; }
         .top-nav-link { color: white; padding: 6px 16px; border-radius: 16px; text-decoration: none; font-size: 13px; transition: background 0.2s; white-space: nowrap; }
+            .section-nav {
+            background: white;
+            border-radius: 10px;
+            padding: 15px 25px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+        .section-nav a {
+            display: inline-block;
+            margin: 5px 10px;
+            padding: 6px 14px;
+            background: #eaf2f8;
+            color: #1a5276;
+            text-decoration: none;
+            border-radius: 15px;
+            font-size: 0.9em;
+        }
+        .section-nav a:hover {
+            background: #2e86c1;
+            color: white;
+        }
     </style>
 </head>
 <body>
@@ -110,9 +132,20 @@
     <script src="nav_bar.js"></script>
     <span id="topbarCode" style="display:none;">ACI</span>
     <h1>Albertsons (ACI) 详细分析</h1>
+
+    <div class="section-nav">
+        <a href="#chapter1">公司基本信息</a>
+        <a href="#chapter2">历史财务指标 (2018-2025)</a>
+        <a href="#chapter3">收入与利润趋势 (2018-2025)</a>
+        <a href="#chapter4">业务分析</a>
+        <a href="#chapter5">竞争分析与护城河</a>
+        <a href="#chapter6">高负债率应对措施与财务优化策略</a>
+        <a href="#chapter7">投资建议</a>
+        <a href="#chapter8">与Walmart的差异化分析</a>
+    </div>
     
     <div class="info-box">
-        <h2>一、公司基本信息</h2>
+        <h2 id="chapter1">一、公司基本信息</h2>
         <table>
             <tr>
                 <th>项目</th>
@@ -165,8 +198,7 @@
         </table>
     </div>
     
-    <div class="chart-container">
-        <h2>二、历史财务指标 (2018-2025)</h2>
+    <div class="chart-contai<h2 id="chapter2">二、历史财务指标 (2018-2025)</h2>018-2025)</h2>
         <h3>2.1 净资产利润率 (ROE) 趋势</h3>
         <p><strong>说明</strong>：ROE在15-25%之间波动，显示公司盈利能力较强。</p>
         <canvas id="roeChart"></canvas>
@@ -180,13 +212,10 @@
         <canvas id="peChart"></canvas>
     </div>
     
-    <div class="chart-container">
-        <h2>三、收入与利润趋势 (2018-2025)</h2>
+    <div class<h2 id="chapter3">三、收入与利润趋势 (2018-2025)</h2>2>三、收入与利润趋势 (2018-2025)</h2>
         <p><strong>说明</strong>：Albertsons作为美国大型零售超市公司，收入和利润保持稳定。</p>
         <canvas id="revenueChart"></canvas>
-    </div>
-    
-    <div class="info-box">
+    </div<h2 id="chapter4">四、业务分析</h2> class="info-box">
         <h2>四、业务分析</h2>
         
         <h3>4.1 公司业务概述（通俗解释）</h3>
@@ -276,9 +305,7 @@
                 <td>主要市场，全国性布局</td>
             </tr>
         </table>
-        <p><strong>说明</strong>：Albertsons主要在美国市场运营，是美国最大的传统超市运营商之一。</p>
-    </div>
-    
+        <p><strong>说明</strong>：Albertsons主要在美国市场运营，是美国最大的传统超市运营商之一。<h2 id="chapter5">五、竞争分析与护城河</h2> 
     <div class="info-box">
         <h2>五、竞争分析与护城河</h2>
         
@@ -336,9 +363,7 @@
             <ul>
                 <li><strong>区域化配送网络</strong>：ACI拥有22家战略布局的配送中心，其中约36%为自有或租赁，能为运营区域提供约63%的产品。这种网络确保了区域供应链的效率和韧性。</li>
                 <li><strong>"区域定制+中心协同"的运营模式</strong>：ACI在保持集中化采购和物流管理优势的同时，赋予门店区域选品的灵活性，使商品组合更贴近当地消费习惯，提升了库存周转效率。</li>
-            </ul>
-        </div>
-    </div>
+            </<h2 id="chapter6">六、高负债率应对措施与财务优化策略</h2>iv>
     
     <div class="info-box">
         <h2>六、高负债率应对措施与财务优化策略</h2>
@@ -421,7 +446,7 @@
                 <td>战略投资</td>
                 <td>20-22亿美元资本支出</td>
                 <td>维持未来增长动力</td>
-            </tr>
+  <h2 id="chapter7">七、投资建议</h2>
         </table>
     </div>
     
@@ -447,8 +472,7 @@
                 <li>零售行业竞争激烈，面临Walmart、Costco等的挑战</li>
                 <li>电子商务的冲击</li>
                 <li>劳动力成本上升</li>
-                <li>供应链风险</li>
-            </ul>
+                <<h2 id="chapter8">八、与Walmart的差异化分析</h2> </ul>
         </div>
     </div>
     

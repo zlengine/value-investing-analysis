@@ -47,6 +47,28 @@
         .chart-container { position: relative; height: 300px; margin: 20px 0; }
         .top-nav-bar { position: fixed; top: 0; left: 0; right: 0; height: 44px; background: #2c3e50; display: flex; align-items: center; justify-content: flex-end; padding: 0 20px; z-index: 9999; box-shadow: 0 2px 8px rgba(0,0,0,0.15); gap: 8px; }
         .top-nav-link { color: white; padding: 6px 16px; border-radius: 16px; text-decoration: none; font-size: 13px; transition: background 0.2s; white-space: nowrap; }
+            .section-nav {
+            background: white;
+            border-radius: 10px;
+            padding: 15px 25px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+        .section-nav a {
+            display: inline-block;
+            margin: 5px 10px;
+            padding: 6px 14px;
+            background: #eaf2f8;
+            color: #1a5276;
+            text-decoration: none;
+            border-radius: 15px;
+            font-size: 0.9em;
+        }
+        .section-nav a:hover {
+            background: #2e86c1;
+            color: white;
+        }
     </style>
 </head>
 <body>
@@ -56,9 +78,19 @@
     <h1>Choice Hotels International (NYSE: CHH)</h1>
     <p style="text-align:center;color:#666;">巴菲特/芒格式价值投资基本面分析 | 更新日期：2026年6月</p>
 
+    <div class="section-nav">
+        <a href="#chapter1">公司基本信息</a>
+        <a href="#chapter2">业务分析</a>
+        <a href="#chapter3">产品竞争力分析</a>
+        <a href="#chapter4">历史财务指标</a>
+        <a href="#chapter5">竞争分析</a>
+        <a href="#chapter6">利润分配分析</a>
+        <a href="#chapter7">投资总结</a>
+    </div>
+
     <!-- 第一章：公司基本信息 -->
     <div class="info-box">
-        <h2>一、公司基本信息</h2>
+        <h2 id="chapter1">一、公司基本信息</h2>
         <table>
             <tr><td>公司全称</td><td>Choice Hotels International, Inc.</td></tr>
             <tr><td>股票代码</td><td>NYSE: CHH</td></tr>
@@ -82,8 +114,7 @@
     </div>
 
     <!-- 第二章：业务分析 -->
-    <div class="info-box">
-        <h2>二、业务分析</h2>
+    <div class="info-<h2 id="chapter2">二、业务分析</h2>h2>二、业务分析</h2>
 
         <h3>2.1 公司做什么（通俗版）</h3>
         <p>想象你开了一家小旅馆，生意一般。这时候有个叫"Choice Hotels"的人来找你，说："你把旅馆改名换招牌，挂上我的'Comfort Inn'牌子，我帮你做广告、拉客源、搞预订系统、培训员工。作为交换，你每年收入的5%左右给我当版税。"</p>
@@ -141,7 +172,7 @@
     </div>
 
     <!-- 第三章：产品竞争力分析 -->
-    <div class="info-box">
+    <di<h2 id="chapter3">三、产品竞争力分析</h2>>
         <h2>三、产品竞争力分析</h2>
 
         <h3>3.1 可替代性评估</h3>
@@ -168,8 +199,7 @@
         </table>
     </div>
 
-    <!-- 第四章：历史财务指标 -->
-    <div class="info-box">
+    <!-- 第四章：历史财务<h2 id="chapter4">四、历史财务指标</h2>lass="info-box">
         <h2>四、历史财务指标</h2>
 
         <h3>4.1 核心财务数据（FY2018-FY2025）</h3>
@@ -220,7 +250,7 @@
         <div class="chart-container"><canvas id="peChart"></canvas></div>
     </div>
 
-    <!-- 第五章：竞争分析 -->
+ <h2 id="chapter5">五、竞争分析</h2>析 -->
     <div class="info-box">
         <h2>五、竞争分析</h2>
 
@@ -251,9 +281,7 @@
         <div class="highlight">
             <strong>护城河总结：</strong>Choice的护城河核心是<strong>"特许经营商转换成本 + 忠诚会员网络效应"</strong>。98%的续约率意味着版税收入像"类债券"一样稳定。但这个护城河有局限性：（1）在C端（旅客）几乎没有护城河，旅客选择更多取决于价格和位置；（2）品牌力不如Marriott/Hilton，在高端市场无法竞争；（3）经济型品牌（Econo Lodge/Rodeway Inn）护城河最弱。
         </div>
-    </div>
-
-    <!-- 第六章：利润分配分析 -->
+ <h2 id="chapter6">六、利润分配分析</h2>-- 第六章：利润分配分析 -->
     <div class="info-box">
         <h2>六、利润分配分析</h2>
 
@@ -284,8 +312,7 @@
 
         <div class="highlight" style="border-left-color:#e74c3c;">
             <strong>资本配置核心问题：借钱回购。</strong>Choice Hotels的资本配置策略可以用"借钱回购"四个字概括。2021-2024年，公司回购了超过$12亿的股票（远超同期净利润$11.8亿），同时债务从$10亿增至$18亿。这意味着公司本质上是在<strong>用借来的钱回购股票</strong>，人为推高EPS和ROE。这种策略在利率低、RevPAR上升时没问题，但在利率上升+RevPAR下降的环境下，利息支出增加（FY2025利息$91M，同比+43%）而收入承压，形成双重挤压。
-        </div>
-    </div>
+<h2 id="chapter7">七、投资总结</h2>    </div>
 
     <!-- 第七章：投资总结 -->
     <div class="info-box">

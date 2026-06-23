@@ -162,6 +162,28 @@
         }
                 .top-nav-bar { position: fixed; top: 0; left: 0; right: 0; height: 44px; background: #2c3e50; display: flex; align-items: center; justify-content: flex-end; padding: 0 20px; z-index: 9999; box-shadow: 0 2px 8px rgba(0,0,0,0.15); gap: 8px; }
         .top-nav-link { color: white; padding: 6px 16px; border-radius: 16px; text-decoration: none; font-size: 13px; transition: background 0.2s; white-space: nowrap; }
+            .section-nav {
+            background: white;
+            border-radius: 10px;
+            padding: 15px 25px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+        .section-nav a {
+            display: inline-block;
+            margin: 5px 10px;
+            padding: 6px 14px;
+            background: #eaf2f8;
+            color: #1a5276;
+            text-decoration: none;
+            border-radius: 15px;
+            font-size: 0.9em;
+        }
+        .section-nav a:hover {
+            background: #2e86c1;
+            color: white;
+        }
     </style>
 </head>
 <body>
@@ -171,9 +193,19 @@
     <h1>Chesapeake Granite Wash Trust (OTC: CHKR)</h1>
     <p class="subtitle">巴菲特/芒格式价值投资基本面分析 | 更新日期：2026年5月</p>
 
+    <div class="section-nav">
+        <a href="#chapter1">公司基本信息</a>
+        <a href="#chapter2">业务分析</a>
+        <a href="#chapter3">业务板块产品竞争力分析</a>
+        <a href="#chapter4">历史财务指标（2012-2026）</a>
+        <a href="#chapter5">竞争分析</a>
+        <a href="#chapter6">利润分配分析（FY2016-FY2025）</a>
+        <a href="#chapter7">综合评估与投资结论</a>
+    </div>
+
     <!-- 一、公司基本信息 -->
     <div class="info-box">
-        <h2>一、公司基本信息</h2>
+        <h2 id="chapter1">一、公司基本信息</h2>
         <table>
             <tr><td>公司全称</td><td>Chesapeake Granite Wash Trust</td></tr>
             <tr><td>股票代码</td><td>OTC: CHKR（粉单市场）</td></tr>
@@ -199,8 +231,7 @@
     </div>
 
     <!-- 二、业务分析 -->
-    <div class="info-box">
-        <h2>二、业务分析</h2>
+    <div class="info-<h2 id="chapter2">二、业务分析</h2>h2>二、业务分析</h2>
 
         <h3>2.1 通俗解释：CHKR是干什么的？</h3>
         <p>用最简单的话说，<strong>CHKR就是一个"油井收租公司"</strong>。想象一下：有人在俄克拉荷马州打了很多油井和气井，然后把这些井产出的一部分收入"卖"给了这个信托。你买CHKR的单位，就相当于买了这些油井的一小份"收租权"——井里出油出气，你就按比例分钱。</p>
@@ -273,8 +304,7 @@
     </div>
 
     <!-- 三、业务板块产品竞争力分析 -->
-    <div class="info-box">
-        <h2>三、业务板块产品竞争力分析</h2>
+    <di<h2 id="chapter3">三、业务板块产品竞争力分析</h2>      <h2>三、业务板块产品竞争力分析</h2>
 
         <div class="competitiveness-box">
             <h3>3.1 石油天然气特许权收入 产品竞争力分析</h3>
@@ -314,8 +344,7 @@
         </div>
     </div>
 
-    <!-- 四、历史财务指标 -->
-    <div class="info-box">
+    <!-- 四、历史财务<h2 id="chapter4">四、历史财务指标（2012-2026）</h2>box">
         <h2>四、历史财务指标（2012-2026）</h2>
 
         <h3>4.1 净资产收益率 (ROE) 趋势</h3>
@@ -402,8 +431,7 @@
             <tr><td>2024</td><td>~1.20x</td><td>几乎零杠杆</td></tr>
         </table>
     </div>
-
-    <!-- 五、竞争分析 -->
+<h2 id="chapter5">五、竞争分析</h2>析 -->
     <div class="info-box">
         <h2>五、竞争分析</h2>
 
@@ -543,10 +571,7 @@
         <div class="highlight">
             <strong>综合护城河评级：无护城河</strong><br>
             CHKR是巴菲特最不喜欢的那类投资——<strong>大宗商品价格接受者，零定价权，零护城河</strong>。它的收入完全取决于它无法控制的两个变量：油气价格和物理递减率。巴菲特多次强调："在商业中，我寻找的是有经济护城河保护的业务。大宗商品业务没有护城河。"
-        </div>
-    </div>
-
-    <!-- 六、利润分配分析 -->
+        </div><h2 id="chapter6">六、利润分配分析（FY2016-FY2025）</h2>->
     <div class="info-box">
         <h2>六、利润分配分析（FY2016-FY2025）</h2>
 
@@ -596,9 +621,7 @@
             CHKR的利润分配模式与普通公司完全不同——<strong>它不是"赚了钱然后决定分多少"，而是"收了多少钱就分多少"</strong>。留存比率（10-27%）不是管理层的主动决策，而是信托管理费和现金储备的被动结果。<br><br>
             <strong>关键洞察：CHKR的高股息率（16.5%）是"陷阱"而非"福利"。</strong>高股息率的本质是：<strong>本金在快速消耗，分配中很大一部分是你自己的钱在还给你</strong>。这就像一个储蓄账户每年付你16%利息，但本金每年缩水20%——你实际上在亏钱。<br><br>
             <strong>可持续增长率 = ROE × 留存比率：</strong>以FY2025为例，36% × 17.5% = 6.3%。但这个数字毫无意义——因为CHKR的"留存"不能用于增长投资，产量注定递减。<br><br>
-            <strong>芒格会说：</strong>"这不是投资，这是在消耗资产。你买的是一堆正在枯竭的油井的收租权，每年分到你手里的钱中，很大一部分就是你的本金在缩水。"
-        </div>
-    </div>
+            <strong>芒格会说：</strong>"这不是投资，这是在消耗资产。你买的是一堆正在枯竭的油井的收租权，每年分到你手里的钱中，很大一部分就是你的本金在缩水。<h2 id="chapter7">七、综合评估与投资结论</h2> </div>
 
     <!-- 七、综合评估 -->
     <div class="info-box">

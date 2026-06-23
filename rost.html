@@ -36,6 +36,28 @@
         .tag-orange { background-color: #fff3cd; color: #856404; }
                 .top-nav-bar { position: fixed; top: 0; left: 0; right: 0; height: 44px; background: #2c3e50; display: flex; align-items: center; justify-content: flex-end; padding: 0 20px; z-index: 9999; box-shadow: 0 2px 8px rgba(0,0,0,0.15); gap: 8px; }
         .top-nav-link { color: white; padding: 6px 16px; border-radius: 16px; text-decoration: none; font-size: 13px; transition: background 0.2s; white-space: nowrap; }
+            .section-nav {
+            background: white;
+            border-radius: 10px;
+            padding: 15px 25px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+        .section-nav a {
+            display: inline-block;
+            margin: 5px 10px;
+            padding: 6px 14px;
+            background: #eaf2f8;
+            color: #1a5276;
+            text-decoration: none;
+            border-radius: 15px;
+            font-size: 0.9em;
+        }
+        .section-nav a:hover {
+            background: #2e86c1;
+            color: white;
+        }
     </style>
 </head>
 <body>
@@ -45,8 +67,12 @@
     <h1>Ross Stores (NASDAQ: ROST)</h1>
     <p style="text-align:center;color:#666;">巴菲特/芒格式价值投资基本面分析 | 更新日期：2026年6月</p>
 
+    <div class="section-nav">
+        <a href="#chapter1">公司基本信息</a>
+    </div>
+
     <div class="info-box">
-        <h2>一、公司基本信息</h2>
+        <h2 id="chapter1">一、公司基本信息</h2>
         <table>
             <tr><td>公司全称</td><td>Ross Stores</td></tr>
             <tr><td>股票代码</td><td>NASDAQ: ROST</td></tr>

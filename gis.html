@@ -142,6 +142,28 @@
         }
                 .top-nav-bar { position: fixed; top: 0; left: 0; right: 0; height: 44px; background: #2c3e50; display: flex; align-items: center; justify-content: flex-end; padding: 0 20px; z-index: 9999; box-shadow: 0 2px 8px rgba(0,0,0,0.15); gap: 8px; }
         .top-nav-link { color: white; padding: 6px 16px; border-radius: 16px; text-decoration: none; font-size: 13px; transition: background 0.2s; white-space: nowrap; }
+            .section-nav {
+            background: white;
+            border-radius: 10px;
+            padding: 15px 25px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+        .section-nav a {
+            display: inline-block;
+            margin: 5px 10px;
+            padding: 6px 14px;
+            background: #eaf2f8;
+            color: #1a5276;
+            text-decoration: none;
+            border-radius: 15px;
+            font-size: 0.9em;
+        }
+        .section-nav a:hover {
+            background: #2e86c1;
+            color: white;
+        }
     </style>
 </head>
 <body>
@@ -151,9 +173,18 @@
     <h1>通用磨坊 General Mills (NYSE: GIS)</h1>
     <p class="subtitle">巴菲特/芒格式价值投资基本面分析 | 更新日期：2026年4月</p>
 
+    <div class="section-nav">
+        <a href="#chapter1">公司基本信息</a>
+        <a href="#chapter2">业务分析</a>
+        <a href="#chapter3">历史财务指标（2000-2025）</a>
+        <a href="#chapter4">竞争分析</a>
+        <a href="#chapter5">利润分配分析（过去十年 FY2016-FY2025）</a>
+        <a href="#chapter6">综合评估与投资结论</a>
+    </div>
+
     <!-- 一、公司基本信息 -->
     <div class="info-box">
-        <h2>一、公司基本信息</h2>
+        <h2 id="chapter1">一、公司基本信息</h2>
         <table>
             <tr><td>公司全称</td><td>General Mills, Inc.</td></tr>
             <tr><td>股票代码</td><td>NYSE: GIS</td></tr>
@@ -173,8 +204,7 @@
     </div>
 
     <!-- 二、业务分析 -->
-    <div class="info-box">
-        <h2>二、业务分析</h2>
+    <div class="info-<h2 id="chapter2">二、业务分析</h2>h2>二、业务分析</h2>
         
         <h3>2.1 通俗解释：通用磨坊是干什么的？</h3>
         <p>用最简单的话说，<strong>通用磨坊就是美国人的"厨房粮仓"</strong>。当你走进任何一家美国超市，从早餐桌上的Cheerios麦片，到冰箱里的Pillsbury面团，从零食架上的Nature Valley燕麦棒，到冰柜里的Häagen-Dazs冰淇淋，再到宠物区的Blue Buffalo猫粮狗粮——这些全都是通用磨坊的产品。据统计，<strong>每10个美国人中就有9个家中拥有通用磨坊的产品</strong>。</p>
@@ -263,8 +293,7 @@
     </div>
 
     <!-- 三、历史财务指标 -->
-    <div class="info-box">
-        <h2>三、历史财务指标（2000-2025）</h2>
+    <di<h2 id="chapter3">三、历史财务指标（2000-2025）</h2><h2>三、历史财务指标（2000-2025）</h2>
         
         <h3>3.1 净资产收益率 (ROE) 趋势</h3>
         <div class="chart-container">
@@ -367,8 +396,7 @@
         </div>
     </div>
 
-    <!-- 四、竞争分析 -->
-    <div class="info-box">
+    <!-- 四、竞争<h2 id="chapter4">四、竞争分析</h2> class="info-box">
         <h2>四、竞争分析</h2>
         
         <h3>4.1 主要竞争对手</h3>
@@ -601,8 +629,7 @@
         </div>
     </div>
 
-    <!-- 五、利润分配分析 -->
-    <div class="info-box">
+ <h2 id="chapter5">五、利润分配分析（过去十年 FY2016-FY2025）</h2>info-box">
         <h2>五、利润分配分析（过去十年 FY2016-FY2025）</h2>
         
         <h3>5.1 利润分配总览</h3>
@@ -694,10 +721,7 @@
             <strong>优点：</strong>①连续127年不间断支付股息，体现了对股东回报的承诺；②FY2022-2025年积极回购，流通股从6.07亿减至5.42亿（减少10.7%），有效提升每股价值；③剥离低增长酸奶业务、加码宠物食品的战略转型方向正确。<br>
             <strong>缺点：</strong>①FY2018-2020年暂停回购以支付Blue Buffalo收购（约$80亿），收购时机和价格值得商榷——Blue Buffalo的增速已从收购时的双位数放缓至低个位数；②债务从FY2022的$120亿增至FY2025的$153亿，在利率上升环境下增加了利息负担（利息支出从$3.82亿增至$5.24亿）；③FY2019-2020年零股息增长，对依赖股息的长期投资者不够友好。<br>
             <strong>总体评价：</strong>资本配置能力中等偏上。股息回报稳定，但收购Blue Buffalo的整合效果尚未完全兑现，债务管理需要更多关注。
-        </div>
-    </div>
-
-    <!-- 六、综合评估 -->
+        </di<h2 id="chapter6">六、综合评估与投资结论</h2>!-- 六、综合评估 -->
     <div class="info-box">
         <h2>六、综合评估与投资结论</h2>
         

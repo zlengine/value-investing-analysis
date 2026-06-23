@@ -102,6 +102,28 @@
     
                 .top-nav-bar { position: fixed; top: 0; left: 0; right: 0; height: 44px; background: #2c3e50; display: flex; align-items: center; justify-content: flex-end; padding: 0 20px; z-index: 9999; box-shadow: 0 2px 8px rgba(0,0,0,0.15); gap: 8px; }
         .top-nav-link { color: white; padding: 6px 16px; border-radius: 16px; text-decoration: none; font-size: 13px; transition: background 0.2s; white-space: nowrap; }
+            .section-nav {
+            background: white;
+            border-radius: 10px;
+            padding: 15px 25px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+        .section-nav a {
+            display: inline-block;
+            margin: 5px 10px;
+            padding: 6px 14px;
+            background: #eaf2f8;
+            color: #1a5276;
+            text-decoration: none;
+            border-radius: 15px;
+            font-size: 0.9em;
+        }
+        .section-nav a:hover {
+            background: #2e86c1;
+            color: white;
+        }
     </style>
 </head>
 <body>
@@ -109,8 +131,20 @@
     <script src="nav_bar.js"></script>
     <span id="topbarCode" style="display:none;">ANF</span>
     <h1>ANF (Abercrombie & Fitch 阿贝克隆比&费奇) 详细分析</h1>
+
+    <div class="section-nav">
+        <a href="#chapter1">公司基本信息</a>
+        <a href="#chapter2">业务分析</a>
+        <a href="#chapter3">历史财务指标</a>
+        <a href="#chapter4">竞争分析</a>
+        <a href="#chapter5">利润分配分析（2015-2025）</a>
+        <a href="#chapter6">战略展望："Always Forward Plan"</a>
+        <a href="#chapter7">价值投资评估</a>
+        <a href="#chapter8">与American Eagle的对比——最直接的竞争对手</a>
+        <a href="#chapter9">数据来源</a>
+    </div>
     <div class="info-box">
-        <h2>一、公司基本信息</h2>
+        <h2 id="chapter1">一、公司基本信息</h2>
         <table>
             <tr><th>项目</th><th>详情</th></tr>
             <tr><td>公司全称</td><td>Abercrombie & Fitch Co.</td></tr>
@@ -137,8 +171,7 @@
         </div>
     </div>
 
-    <div class="info-box">
-        <h2>二、业务分析</h2>
+    <div class="info-<h2 id="chapter2">二、业务分析</h2>h2>二、业务分析</h2>
 
         <h3>2.1 公司是做什么的？</h3>
         <p>
@@ -242,7 +275,7 @@
         </div>
     </div>
 
-    <div class="info-box">
+    <di<h2 id="chapter3">三、历史财务指标</h2>">
         <h2>三、历史财务指标</h2>
 
         <h3>3.1 净资产收益率（ROE）</h3>
@@ -359,9 +392,7 @@
         <div class="chart-container">
             <canvas id="debtChart"></canvas>
         </div>
-    </div>
-
-    <div class="info-box">
+    <<h2 id="chapter4">四、竞争分析</h2> class="info-box">
         <h2>四、竞争分析</h2>
 
         <h3>4.1 服装零售市场竞争格局</h3>
@@ -470,10 +501,7 @@
                 <li><strong>数字渠道优势不持久</strong>：44%的数字渠道占比在2025年已不再是差异化优势——所有服装零售商都在做电商</li>
             </ul>
             <strong>芒格会说：</strong>"服装零售是最难建立持久护城河的行业之一。今天的热门品牌可能明天就被遗忘——看看Gap、J.Crew、Forever 21的命运就知道了。ANF的品牌转型令人印象深刻，但'曾经成功转型'不等于'永远能保持竞争力'。在服装行业，你需要每隔3-5年就重新证明自己。"
-        </div>
-    </div>
-
-    <div class="info-box">
+      <h2 id="chapter5">五、利润分配分析（2015-2025）</h2>v class="info-box">
         <h2>五、利润分配分析（2015-2025）</h2>
 
         <h3>5.1 过去十年利润分配明细</h3>
@@ -631,11 +659,7 @@
                 <li><strong>增长投入不足</strong>：资本支出/收入比仅4.5%，远低于Inditex的6-7%。在国际扩张关键期，投入可能不够</li>
             </ul>
 
-            <strong>巴菲特会说：</strong>"ANF的资本配置策略是'把所有鸡蛋放在回购篮子里'。在股价低于内在价值时回购是好事——FY2022-2023年的回购显然创造了价值。但在FY2024股价高达$150-196时继续回购，就值得商榷了。更重要的是，一家正在国际扩张的公司，是否应该把88%的净利润用于回购，而不是投资于增长？这就像一个年轻人在事业上升期把所有工资都用来买自家股票——也许聪明，也许短视。"
-        </div>
-    </div>
-
-    <div class="info-box">
+            <strong>巴菲特会说：</strong>"ANF的资本配置策略是'把所有鸡蛋放在回购篮子里'。在股价低于内在价值时回购是好事——FY2022-2023年的回购显然创造了价值。但在FY2024股价高达$150-196时继续回购，就值得商榷了。更重要的是，一家正在国际扩张的公司，是否应该把88%的净利润用于回购，而不是投资于增长？这就像一个年轻人在事业上升期把所有工资都用来买自家股票——也许聪明<h2 id="chapter6">六、战略展望："Always Forward Plan"</h2>  <div class="info-box">
         <h2>六、战略展望："Always Forward Plan"</h2>
 
         <h3>6.1 战略框架</h3>
@@ -709,8 +733,7 @@
                 <li><strong>利润率回落</strong>：运营利润率从15.0%（FY2024）降至13.3%（FY2025），FY2026指引进一步降至12.0-12.5%。促销增加和投资加大正在侵蚀利润</li>
                 <li><strong>消费者支出风险</strong>：通胀和利率高企可能压缩青少年和年轻成年人的可支配支出</li>
                 <li><strong>快时尚竞争</strong>：Shein、Zara等快时尚品牌以更低价格和更快速度蚕食市场份额</li>
-                <li><strong>品牌周期风险</strong>：服装品牌的流行周期通常3-5年，ANF的"包容多元"定位可能面临审美疲劳</li>
-            </ul>
+                <li><strong>品牌周期风险</strong>：服装品牌的流行周期通常3-5年，ANF的"包容多元"定位可能面临审美疲劳</<h2 id="chapter7">七、价值投资评估</h2>/ul>
         </div>
     </div>
 
@@ -774,8 +797,7 @@
 
             <strong>悲观情景（25%概率）：</strong>Hollister增速大幅放缓，Abercrombie品牌持续衰退，利润率降至10%以下，EPS跌至$7-8。市场给予5-6x PE → 股价$40-50（下跌35-50%）<br><br>
 
-            <strong>巴菲特式忠告：</strong>"ANF是一家'经营良好但护城河有限'的公司。Fran Horowitz的转型令人钦佩，7x PE看起来很便宜——但便宜不等于有价值。在服装零售行业，今天的赢家可能明天就输——Gap曾经是美国最酷的品牌，J.Crew曾经是中产阶级的标配，它们都曾拥有'不可撼动'的地位。ANF目前的低估值可能反映了市场对'品牌周期性'的合理担忧。如果你要投资ANF，请确保你理解这个风险：服装零售不是'买入并持有'的行业，它是'买入并密切监控'的行业。"
-        </div>
+            <strong>巴菲特式忠告：</strong>"ANF是一家'经营良好但护城河有限'的公司。Fran Horowitz的转型令人钦佩，7x PE看起来很便宜——但便宜不等于有价值。在服装零售行业，今天的赢家可能明天就输——Gap曾经是美国最酷的品牌，J.Crew曾经是中产阶级的标配，它们都曾拥有'不可撼动'的地位。ANF目前的低估值可能反映了市场对'品牌周期性'的合理担忧。如果你要投资ANF，请确保你理解这个风<h2 id="chapter8">八、与American Eagle的对比——最直接的竞争对手</h2>     </div>
     </div>
 
     <div class="info-box">
@@ -804,7 +826,7 @@
                 <li>市场认为ANF的增长将大幅放缓（FY2026指引3-5%）</li>
                 <li>市场对ANF从$196跌至$77的股价崩盘仍心有余悸</li>
             </ul>
-            如果ANF能证明利润率可以稳定在12-13%，当前7.3x PE就是明显低估。但如果利润率继续下滑，7.3x PE可能只是"合理偏低"。
+            如果ANF能证明利润率可以稳定在12-<h2 id="chapter9">九、数据来源</h2>明显低估。但如果利润率继续下滑，7.3x PE可能只是"合理偏低"。
         </div>
     </div>
 

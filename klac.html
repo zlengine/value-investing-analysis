@@ -43,6 +43,28 @@
         .risk-item { background: #ffebee; padding: 12px; margin: 8px 0; border-left: 4px solid #c62828; border-radius: 4px; }
         .star { color: #f39c12; }
         .chart-placeholder { background: #f0f0f0; padding: 15px; text-align: center; border-radius: 5px; margin: 10px 0; font-family: monospace; }
+            .section-nav {
+            background: white;
+            border-radius: 10px;
+            padding: 15px 25px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+        .section-nav a {
+            display: inline-block;
+            margin: 5px 10px;
+            padding: 6px 14px;
+            background: #eaf2f8;
+            color: #1a5276;
+            text-decoration: none;
+            border-radius: 15px;
+            font-size: 0.9em;
+        }
+        .section-nav a:hover {
+            background: #2e86c1;
+            color: white;
+        }
     </style>
 </head>
 <body>
@@ -52,9 +74,19 @@
     <h1>KLA Corporation (NASDAQ: KLAC)</h1>
     <p style="text-align:center;color:#666;">巴菲特/芒格式价值投资基本面分析 | 更新日期：2026年6月23日</p>
 
+    <div class="section-nav">
+        <a href="#chapter1">公司基本信息</a>
+        <a href="#chapter2">业务分析</a>
+        <a href="#chapter3">产品竞争力分析</a>
+        <a href="#chapter4">历史财务指标</a>
+        <a href="#chapter5">竞争分析</a>
+        <a href="#chapter6">利润分配分析（近10年）</a>
+        <a href="#chapter7">投资总结</a>
+    </div>
+
     <!-- ==================== 一、公司基本信息 ==================== -->
     <div class="info-box">
-        <h2>一、公司基本信息</h2>
+        <h2 id="chapter1">一、公司基本信息</h2>
         <table>
             <tr><td>公司全称</td><td>KLA Corporation</td></tr>
             <tr><td>股票代码</td><td>NASDAQ: KLAC</td></tr>
@@ -77,8 +109,7 @@
     </div>
 
     <!-- ==================== 二、业务分析 ==================== -->
-    <div class="info-box">
-        <h2>二、业务分析</h2>
+    <div class="info-<h2 id="chapter2">二、业务分析</h2>h2>二、业务分析</h2>
 
         <h3>2.1 业务模式——用大白话说</h3>
         <p>想象你在造一座精密的大楼，每一层楼建完后都需要有人来检查：墙壁是否歪了？钢筋是否到位？层高是否精确到毫米？KLA就是半导体工厂里的这个"质检员"。芯片制造需要数百道工序，每一步都可能出错，KLA的设备就是在每一步后检查芯片有没有缺陷、尺寸是否精确。制程越先进（3nm、2nm），检查步骤越多、精度要求越高，KLA的设备就越不可或缺。</p>
@@ -139,7 +170,7 @@
     </div>
 
     <!-- ==================== 三、产品竞争力分析 ==================== -->
-    <div class="info-box">
+    <di<h2 id="chapter3">三、产品竞争力分析</h2>>
         <h2>三、产品竞争力分析</h2>
 
         <h3>3.1 半导体工艺控制板块 产品竞争力</h3>
@@ -209,8 +240,7 @@
         </div>
     </div>
 
-    <!-- ==================== 四、历史财务指标 ==================== -->
-    <div class="info-box">
+    <!-- ==================== 四、历史财务指标 ==================<h2 id="chapter4">四、历史财务指标</h2>lass="info-box">
         <h2>四、历史财务指标</h2>
 
         <h3>4.1 ROE（净资产收益率）历史</h3>
@@ -245,7 +275,7 @@
         </div>
     </div>
 
-    <!-- ==================== 五、竞争分析 ==================== -->
+    <!-- ==================== 五、竞争分析 ====<h2 id="chapter5">五、竞争分析</h2>= -->
     <div class="info-box">
         <h2>五、竞争分析</h2>
 
@@ -316,7 +346,7 @@
         <p>KLA拥有半导体设备行业中最宽的护城河。其55%+市占率、近乎100%的先进节点渗透率、极高转换成本和数据飞轮效应，使其地位在可预见的未来几乎不可撼动。即使AMAT这样的巨头也无法在工艺控制领域对KLA构成实质性威胁。</p>
     </div>
 
-    <!-- ==================== 六、利润分配分析 ==================== -->
+    <!-- ====================<h2 id="chapter6">六、利润分配分析（近10年）</h2>======= -->
     <div class="info-box">
         <h2>六、利润分配分析（近10年）</h2>
 
@@ -358,7 +388,7 @@
         <p>公司目标：长期资本回报占自由现金流85%以上。FY2025为82%，略低于目标但接近。</p>
     </div>
 
-    <!-- ==================== 七、投资总结 ==================== -->
+    <!-- ====<h2 id="chapter7">七、投资总结</h2>= 七、投资总结 ==================== -->
     <div class="info-box">
         <h2>七、投资总结</h2>
 

@@ -118,13 +118,44 @@
     
                 .top-nav-bar { position: fixed; top: 0; left: 0; right: 0; height: 44px; background: #2c3e50; display: flex; align-items: center; justify-content: flex-end; padding: 0 20px; z-index: 9999; box-shadow: 0 2px 8px rgba(0,0,0,0.15); gap: 8px; }
         .top-nav-link { color: white; padding: 6px 16px; border-radius: 16px; text-decoration: none; font-size: 13px; transition: background 0.2s; white-space: nowrap; }
+            .section-nav {
+            background: white;
+            border-radius: 10px;
+            padding: 15px 25px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+        .section-nav a {
+            display: inline-block;
+            margin: 5px 10px;
+            padding: 6px 14px;
+            background: #eaf2f8;
+            color: #1a5276;
+            text-decoration: none;
+            border-radius: 15px;
+            font-size: 0.9em;
+        }
+        .section-nav a:hover {
+            background: #2e86c1;
+            color: white;
+        }
     </style>
 </head>
 <body>
     <h1>Sherwin-Williams (SHW) 价值投资分析</h1>
 
+    <div class="section-nav">
+        <a href="#chapter1">公司基本信息</a>
+        <a href="#chapter2">业务分析</a>
+        <a href="#chapter3">历史财务指标</a>
+        <a href="#chapter4">竞争分析</a>
+        <a href="#chapter5">利润分配分析（过去十年）</a>
+        <a href="#chapter6">投资总结</a>
+    </div>
+
     <div class="info-box">
-        <h2>一、公司基本信息</h2>
+        <h2 id="chapter1">一、公司基本信息</h2>
         <table>
             <tr><th>项目</th><th>详情</th></tr>
             <tr><td>公司全称</td><td>The Sherwin-Williams Company（宣伟公司）</td></tr>
@@ -151,8 +182,7 @@
         </table>
     </div>
 
-    <div class="info-box">
-        <h2>二、业务分析</h2>
+    <div class="info-<h2 id="chapter2">二、业务分析</h2>h2>二、业务分析</h2>
         <h3>2.1 通俗解释：宣伟是干什么的？</h3>
         <p>
             用最简单的话说，<strong>宣伟是全世界最大的"卖油漆"的公司</strong>。想象一下，你家房子要重新刷漆，你叫了一个专业油漆工来干活。这个油漆工不会去家得宝（Home Depot）买漆——他会去宣伟的专卖店买。为什么？因为宣伟的专卖店就像油漆工的"大本营"：那里有他熟悉的品牌（Sherwin-Williams）、专业的颜色匹配系统、随时可以送货到工地的物流服务、还有能帮他解决技术问题的店员。
@@ -349,7 +379,7 @@
         </table>
     </div>
 
-    <div class="info-box">
+    <di<h2 id="chapter3">三、历史财务指标</h2>">
         <h2>三、历史财务指标</h2>
 
         <h3>3.1 净资产收益率（ROE）</h3>
@@ -471,9 +501,7 @@
                 <td>自由现金流</td><td>$22.1亿</td><td>$20.9亿</td><td>$25.8亿</td><td>$26.5亿</td><td>$26.6亿</td>
             </tr>
         </table>
-    </div>
-
-    <div class="info-box">
+    <<h2 id="chapter4">四、竞争分析</h2> class="info-box">
         <h2>四、竞争分析</h2>
 
         <h3>4.1 主要竞争对手</h3>
@@ -622,10 +650,7 @@
             <tr>
                 <td>品牌与规模</td><td><span class="tag tag-orange">中等偏强</span></td><td>中高</td><td>158年品牌；全球最大采购量；但涂料非奢侈品</td>
             </tr>
-        </table>
-    </div>
-
-    <div class="info-box">
+        <h2 id="chapter5">五、利润分配分析（过去十年）</h2>  <div class="info-box">
         <h2>五、利润分配分析（过去十年）</h2>
 
         <h3>5.1 资本回报概况</h3>
@@ -848,8 +873,7 @@
             <p><strong>巴菲特式评价</strong>：宣伟的资本配置策略是"回购驱动+精准收购"的典范：</p>
             <p><strong>正面</strong>：1）<strong>回购纪律性极强</strong>——10年回购5,030万股，流通股缩减17%，这是最"安静"但最有效的价值创造方式；2）<strong>收购策略精准</strong>——2017年$113亿收购Valspar使宣伟跃居全球第一，获得工业涂料能力和家得宝渠道；2025年$11.5亿收购Suvinil进入拉美最大市场；3）<strong>股息增长稳健</strong>——连续47年增加，但派息率仅12%，既回报股东又不影响增长投资；4）<strong>逆势投资</strong>——在需求疲软期反而加大门店扩张和销售团队投入，抢占竞争对手退缩留下的市场份额；5）<strong>自由现金流强劲</strong>——FY2025经营现金流$34.5亿，自由现金流$26.6亿，自由现金流利润率11.3%。</p>
             <p><strong>关注点</strong>：1）FY2025回购$20.8亿，但自由现金流仅$26.6亿——回购+股息合计$24亿，几乎消耗了全部自由现金流，这意味着如果需求进一步恶化，回购可能需要减速；2）FY2025资本支出$7.9亿，远高于历史水平（$4-5亿），主要因为新总部和R&D大楼建设——这些是一次性投入还是持续性投入需要关注；3）Suvinil收购$11.5亿增加了债务负担，D/E从1.87回升至2.03；4）利息支出从FY2020的$3.40亿增至FY2025的$4.65亿，利率上升的负面影响正在显现。</p>
-            <p><strong>总体评价</strong>：宣伟的资本配置策略体现了"在护城河保护下大胆投资"的哲学——在竞争对手退缩时加大门店扩张和客户获取投入，同时通过持续回购提升每股价值。这种策略在涂料这种"慢变量"行业中效果极佳——市场份额一旦获取，就很难被夺回。管理层对"Success by Design"战略的执行力令人印象深刻。</p>
-        </div>
+            <p><strong>总体评价</strong>：宣伟的资本配置策略体现了"在护城河保护下大胆投资"的哲学——在竞争对手退缩时加大门店扩张和客户获取投入，同时通过持续回购提升每股价值。这种策略在涂料这种"慢变量"行业中效果极佳——市场份额一旦获取，就很难被夺回。管理层对"Success by Design"战略的执行力令人印象<h2 id="chapter6">六、投资总结</h2> </div>
     </div>
 
     <div class="info-box">

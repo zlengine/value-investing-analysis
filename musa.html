@@ -43,6 +43,28 @@
         .risk-item { background: #ffebee; padding: 12px; margin: 8px 0; border-left: 4px solid #c62828; border-radius: 4px; }
         .star { color: #f39c12; }
         .chart-placeholder { background: #f0f0f0; padding: 15px; text-align: center; border-radius: 5px; margin: 10px 0; font-family: monospace; }
+            .section-nav {
+            background: white;
+            border-radius: 10px;
+            padding: 15px 25px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+        .section-nav a {
+            display: inline-block;
+            margin: 5px 10px;
+            padding: 6px 14px;
+            background: #eaf2f8;
+            color: #1a5276;
+            text-decoration: none;
+            border-radius: 15px;
+            font-size: 0.9em;
+        }
+        .section-nav a:hover {
+            background: #2e86c1;
+            color: white;
+        }
     </style>
 </head>
 <body>
@@ -52,8 +74,19 @@
     <h1>Murphy USA Inc. (NYSE: MUSA)</h1>
     <p style="text-align:center;color:#666;">巴菲特/芒格式价值投资基本面分析 | 更新日期：2026年6月23日</p>
 
+    <div class="section-nav">
+        <a href="#chapter1">公司基本信息</a>
+        <a href="#chapter2">业务分析</a>
+        <a href="#chapter3">业务板块产品竞争力分析</a>
+        <a href="#chapter4">历史财务指标</a>
+        <a href="#chapter5">竞争分析</a>
+        <a href="#chapter6">利润分配分析（过去6年）</a>
+        <a href="#chapter7">投资总结</a>
+        <a href="#chapter8">数据来源</a>
+    </div>
+
     <div class="info-box">
-        <h2>一、公司基本信息</h2>
+        <h2 id="chapter1">一、公司基本信息</h2>
         <table>
             <tr><td>公司全称</td><td>Murphy USA Inc.</td></tr>
             <tr><td>股票代码</td><td>NYSE: MUSA</td></tr>
@@ -76,8 +109,7 @@
         </div>
     </div>
 
-    <div class="info-box">
-        <h2>二、业务分析</h2>
+    <div class="info-<h2 id="chapter2">二、业务分析</h2>h2>二、业务分析</h2>
 
         <h3>2.1 业务模式（通俗解释）</h3>
         <p>想象一下你去沃尔玛购物，停好车后发现旁边就有一家加油站——这就是Murphy USA。它的核心逻辑是：</p>
@@ -115,8 +147,7 @@
         <p><em>注：营收下降主要因油价回落，并非销量下滑；燃油销量基本持平（48亿加仑）。</em></p>
     </div>
 
-    <div class="info-box">
-        <h2>三、业务板块产品竞争力分析</h2>
+    <di<h2 id="chapter3">三、业务板块产品竞争力分析</h2>      <h2>三、业务板块产品竞争力分析</h2>
 
         <h3>3.1 燃油零售板块</h3>
 
@@ -171,9 +202,7 @@
         <div class="highlight">
             <strong>关键洞察：</strong>Murphy USA的产品本身没有定价权和客户粘性，其竞争力完全来自<strong>结构性成本优势</strong>（沃尔玛选址+规模采购），而非产品本身。这是典型的"弱护城河"——一旦沃尔玛关系生变或EV普及加速，商业模式将受到根本性冲击。
         </div>
-    </div>
-
-    <div class="info-box">
+    <<h2 id="chapter4">四、历史财务指标</h2>lass="info-box">
         <h2>四、历史财务指标</h2>
 
         <h3>4.1 ROE（净资产收益率）历史</h3>
@@ -201,8 +230,7 @@
 
         <div class="highlight">
             <strong>巴菲特视角：</strong>2020-2024年ROE飙升至50-105%并非经营改善，而是<strong>财务工程</strong>——公司通过大规模债务融资回购股票，将权益基数压缩至极低水平（每股账面价值仅$35.61）。这是"虚假的高ROE"，需警惕。真实经营回报率（ROA）仅约10-12%，远没有ROE那么耀眼。
-        </div>
-    </div>
+      <h2 id="chapter5">五、竞争分析</h2>div>
 
     <div class="info-box">
         <h2>五、竞争分析</h2>
@@ -247,8 +275,7 @@
         </div>
 
         <p><strong>护城河综合评级：<span class="star">&#9733;</span>&#9733; 2/5（窄护城河）</strong></p>
-        <p>护城河主要来自沃尔玛关系和规模，而非产品本身。这是典型的"低成本运营商"护城河，但被EV转型和沃尔玛自身开燃油中心的风险所威胁。</p>
-    </div>
+        <p>护城河主要来自沃尔玛关系和规模，而非产品本身。这是典型的"低成本运营商"护城河，但被EV转型<h2 id="chapter6">六、利润分配分析（过去6年）</h2>    </div>
 
     <div class="info-box">
         <h2>六、利润分配分析（过去6年）</h2>
@@ -276,7 +303,7 @@
         </ul>
 
         <div class="highlight">
-            <strong>芒格视角：</strong>管理层资本配置激进但有问题。回购金额超过净利润，靠举债维持，这是"用借来的钱推高EPS"。短期EPS好看，但资产负债表在恶化。可持续增长率 = ROE × 留存率 = 64% × 15% ≈ <strong>9.6%</strong>，看似不错，但前提是ROE不回落——而ROE的高位本身是财务工程的结果。
+            <strong>芒格视角：</strong>管理层资本配置激进但有问题。回购金额超过净利润，靠举债维持，这是"用借来的钱推高EPS"。短期EPS好看，但资产负债表在恶化。可持续增长率 = ROE × 留存率 = 64% × 15% ≈ <strong>9.6%</strong>，看似不错，但前提是ROE不回<h2 id="chapter7">七、投资总结</h2>工程的结果。
         </div>
     </div>
 
@@ -339,7 +366,7 @@
         </div>
 
         <h3>7.7 结论</h3>
-        <p>Murphy USA是典型的"好公司但不是好价格"。其沃尔玛选址模式确实创造了结构性成本优势，运营效率出色。但产品本身无定价权、无客户粘性，护城河窄且脆弱。更令人担忧的是，管理层通过债务融资回购推高EPS，制造了"高ROE假象"，而真实经营回报率（ROA 10-12%）平庸。叠加EV转型的长期威胁和当前24倍PE的估值，<strong>不符合巴菲特/芒格价值投资的安全边际要求</strong>。建议观察等待，理想买入区间为$290-$365。</p>
+        <p>Murphy USA是典型的"好公司但不是好价格"。其沃尔玛选址模式确实创造了结构性成本优势，运营效率出色。但产品本身无定价权、无客户粘性，护城河窄且脆弱。更令人担忧的是，管理层通过债务融资回购推高EPS，制造了"高ROE假象"，而真实经营回报率（ROA 10-12%）平庸。叠加EV转型的长期威胁和当前24倍PE的估值，<strong>不符合巴菲特/芒<h2 id="chapter8">数据来源</h2>/strong>。建议观察等待，理想买入区间为$290-$365。</p>
     </div>
 
     <div class="info-box">

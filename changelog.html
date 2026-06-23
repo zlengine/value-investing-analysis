@@ -162,6 +162,26 @@
         </div>
         <div class="log-desc">
             <ul>
+                <li><strong>全站添加章节目录导航条 + 更新项目规则</strong></li>
+                <li>更新项目规则文件：新增"章节目录导航"规范，更新"共享组件架构"规范（nav_bar.js + stock_topbar.js + scores_client.js）</li>
+                <li>为 85 个公司页面添加章节目录导航条（section-nav），点击词条自动跳转到对应章节</li>
+                <li>自动扫描每个页面的 &lt;h2&gt; 标题生成目录条目，并给每个 h2 添加 id 属性</li>
+                <li>目录样式：圆角胶囊按钮，浅蓝背景，hover变深蓝，居中排列</li>
+                <li>以后新增公司页面必须包含章节目录导航（已写入项目规则）</li>
+            </ul>
+        </div>
+        <div class="log-files">
+            <span class="modified">~ .trae/rules/project_rules.md, 85个公司页面</span>
+        </div>
+    </div>
+
+    <div class="log-entry create">
+        <div class="log-header">
+            <span class="log-date">2026-06-24</span>
+            <span class="log-type create">新建</span>
+        </div>
+        <div class="log-desc">
+            <ul>
                 <li><strong>抽取个股共享打分导航栏组件 stock_topbar.js，全站统一管理</strong></li>
                 <li>新建 stock_topbar.js：动态渲染个股页面打分导航栏，自动读取股票代码、显示分数、编辑笔记</li>
                 <li>导航栏加宽至64px，放大打分按钮和字体（分数20px，按钮14px）</li>

@@ -104,6 +104,28 @@
     
                 .top-nav-bar { position: fixed; top: 0; left: 0; right: 0; height: 44px; background: #2c3e50; display: flex; align-items: center; justify-content: flex-end; padding: 0 20px; z-index: 9999; box-shadow: 0 2px 8px rgba(0,0,0,0.15); gap: 8px; }
         .top-nav-link { color: white; padding: 6px 16px; border-radius: 16px; text-decoration: none; font-size: 13px; transition: background 0.2s; white-space: nowrap; }
+            .section-nav {
+            background: white;
+            border-radius: 10px;
+            padding: 15px 25px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+        .section-nav a {
+            display: inline-block;
+            margin: 5px 10px;
+            padding: 6px 14px;
+            background: #eaf2f8;
+            color: #1a5276;
+            text-decoration: none;
+            border-radius: 15px;
+            font-size: 0.9em;
+        }
+        .section-nav a:hover {
+            background: #2e86c1;
+            color: white;
+        }
     </style>
 </head>
 <body>
@@ -112,8 +134,17 @@
     <span id="topbarCode" style="display:none;">SPG</span>
     <h1>SPG — Simon Property Group（西蒙地产集团）价值投资分析</h1>
 
+    <div class="section-nav">
+        <a href="#chapter1">公司基本信息</a>
+        <a href="#chapter2">业务分析</a>
+        <a href="#chapter3">历史财务指标</a>
+        <a href="#chapter4">竞争分析</a>
+        <a href="#chapter5">利润分配分析（2016-2025）</a>
+        <a href="#chapter6">投资总结</a>
+    </div>
+
     <div class="info-box">
-        <h2>一、公司基本信息</h2>
+        <h2 id="chapter1">一、公司基本信息</h2>
         <table>
             <tr><th>项目</th><th>详情</th></tr>
             <tr><td>公司全称</td><td>Simon Property Group, Inc.（西蒙地产集团）</td></tr>
@@ -143,8 +174,7 @@
         </table>
     </div>
 
-    <div class="info-box">
-        <h2>二、业务分析</h2>
+    <div class="info-<h2 id="chapter2">二、业务分析</h2>h2>二、业务分析</h2>
 
         <h3>2.1 公司是做什么的？（通俗解释）</h3>
         <div class="highlight">
@@ -188,7 +218,7 @@
         </div>
     </div>
 
-    <div class="info-box">
+    <di<h2 id="chapter3">三、历史财务指标</h2>">
         <h2>三、历史财务指标</h2>
 
         <h3>3.1 核心运营指标（2016-2025）</h3>
@@ -268,9 +298,7 @@
         <div class="chart-container">
             <canvas id="peChart" height="100"></canvas>
         </div>
-    </div>
-
-    <div class="info-box">
+    <<h2 id="chapter4">四、竞争分析</h2> class="info-box">
         <h2>四、竞争分析</h2>
 
         <h3>4.1 主要竞争对手</h3>
@@ -331,10 +359,7 @@
                 <li>利率上升周期增加再融资成本</li>
                 <li>消费者支出波动影响租户健康</li>
             </ul>
-        </div>
-    </div>
-
-    <div class="info-box">
+      <h2 id="chapter5">五、利润分配分析（2016-2025）</h2>v class="info-box">
         <h2>五、利润分配分析（2016-2025）</h2>
 
         <h3>5.1 十年利润分配表</h3>
@@ -381,8 +406,7 @@
         </div>
 
         <div class="chart-container">
-            <canvas id="allocationChart" height="100"></canvas>
-        </div>
+            <canvas id="allocationChart" height="100"></<h2 id="chapter6">六、投资总结</h2> </div>
     </div>
 
     <div class="info-box">

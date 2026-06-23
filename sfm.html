@@ -154,6 +154,28 @@
         }
                 .top-nav-bar { position: fixed; top: 0; left: 0; right: 0; height: 44px; background: #2c3e50; display: flex; align-items: center; justify-content: flex-end; padding: 0 20px; z-index: 9999; box-shadow: 0 2px 8px rgba(0,0,0,0.15); gap: 8px; }
         .top-nav-link { color: white; padding: 6px 16px; border-radius: 16px; text-decoration: none; font-size: 13px; transition: background 0.2s; white-space: nowrap; }
+            .section-nav {
+            background: white;
+            border-radius: 10px;
+            padding: 15px 25px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+        .section-nav a {
+            display: inline-block;
+            margin: 5px 10px;
+            padding: 6px 14px;
+            background: #eaf2f8;
+            color: #1a5276;
+            text-decoration: none;
+            border-radius: 15px;
+            font-size: 0.9em;
+        }
+        .section-nav a:hover {
+            background: #2e86c1;
+            color: white;
+        }
     </style>
 </head>
 <body>
@@ -163,8 +185,18 @@
     <h1>Sprouts Farmers Market (NASDAQ: SFM)</h1>
     <p class="subtitle">巴菲特/芒格式价值投资基本面分析 | 更新日期：2026年5月</p>
 
+    <div class="section-nav">
+        <a href="#chapter1">公司基本信息</a>
+        <a href="#chapter2">业务分析</a>
+        <a href="#chapter3">业务板块产品竞争力分析</a>
+        <a href="#chapter4">历史财务指标（2011-2025）</a>
+        <a href="#chapter5">竞争分析</a>
+        <a href="#chapter6">利润分配分析（FY2016-FY2025）</a>
+        <a href="#chapter7">综合评估与投资结论</a>
+    </div>
+
     <div class="info-box">
-        <h2>一、公司基本信息</h2>
+        <h2 id="chapter1">一、公司基本信息</h2>
         <table>
             <tr><td>公司全称</td><td>Sprouts Farmers Market, Inc.</td></tr>
             <tr><td>股票代码</td><td>NASDAQ: SFM</td></tr>
@@ -187,8 +219,7 @@
         </table>
     </div>
 
-    <div class="info-box">
-        <h2>二、业务分析</h2>
+    <div class="info-<h2 id="chapter2">二、业务分析</h2>h2>二、业务分析</h2>
         
         <h3>2.1 通俗解释：Sprouts Farmers Market是干什么的？</h3>
         <p>用最简单的话说，<strong>Sprouts Farmers Market就是一家"专卖健康食品的超市"</strong>。想象一下，你走进一家超市，门口就是堆满新鲜蔬果的农贸市场摊位，有机蔬菜、本地水果琳琅满目；往里走是散装坚果和谷物区，你可以按需称重；再往里是维生素和保健品专区，种类比药房还多；最后是肉类、海鲜、乳制品和冷冻食品——但所有产品都主打"天然"、"有机"、"无添加"。</p>
@@ -297,8 +328,7 @@
         <p>Sprouts的盈利模式可以概括为：<strong>精选差异化商品（天然/有机/特色品牌）→ 在小型社区式门店中创造"寻宝体验"→ 以高于传统超市的毛利率（37-39%）和高效周转实现盈利</strong>。公司近年来战略重点包括：①门店扩张（目标年增10%门店，FY2025新开37家，FY2026计划新开40+家）；②自有品牌渗透（Sprouts Brand毛利率更高，持续扩大SKU）；③生鲜自配送转型（降低采购成本、提升新鲜度）；④电商渠道拓展（与Instacart、DoorDash、Uber Eats合作，电商约占15%营收）。</p>
     </div>
 
-    <div class="info-box">
-        <h2>三、业务板块产品竞争力分析</h2>
+    <di<h2 id="chapter3">三、业务板块产品竞争力分析</h2>      <h2>三、业务板块产品竞争力分析</h2>
 
         <h3>3.1 生鲜农产品（Produce）产品竞争力分析</h3>
         <div class="moat-item">
@@ -424,9 +454,7 @@
             <strong>综合竞争力总结</strong><br>
             Sprouts所有业务板块的可替代性均为"中等"，客户转换成本均为"低"，定价权均为"中等"。这反映了<strong>食品零售行业的本质——这是一个低转换成本、高竞争的行业</strong>。Sprouts的竞争力不来自任何单一产品的不可替代性，而来自<strong>整体购物体验的差异化组合</strong>：农贸市场式布局 + 精选有机/天然商品 + 亲民价格 + 社区感。这种"组合差异化"比单一产品差异化更难被复制，但也更容易被侵蚀。
         </div>
-    </div>
-
-    <div class="info-box">
+    <<h2 id="chapter4">四、历史财务指标（2011-2025）</h2>box">
         <h2>四、历史财务指标（2011-2025）</h2>
         
         <h3>4.1 净资产收益率 (ROE) 趋势</h3>
@@ -524,8 +552,7 @@
         </table>
         <div class="highlight">
             <strong>芒格视角：</strong>产权比率从2020年的13.8x降至2024年的7.1x是积极信号，但7x仍意味着每1美元股东权益对应7美元资产，其余6美元来自负债。对于一家食品零售商来说，这个杠杆水平偏高。对比Kroger的产权比率约3-4x，Sprouts的财务杠杆明显更激进。好消息是趋势在改善，坏消息是改善速度不够快。
-        </div>
-    </div>
+      <h2 id="chapter5">五、竞争分析</h2>div>
 
     <div class="info-box">
         <h2>五、竞争分析</h2>
@@ -647,9 +674,7 @@
         <div class="highlight">
             <strong>综合护城河评级：窄/极窄</strong><br>
             Sprouts Farmers Market的护城河非常有限。食品零售本质上是一个<strong>低转换成本、低差异化、高竞争</strong>的行业。Sprouts的"差异化"主要来自商品组合和购物体验，而非任何结构性壁垒。Whole Foods有Amazon的生态加持，Trader Joe's有独特的全自有品牌模式，Kroger有规模优势——Sprouts在这三者之间寻找生存空间，但缺乏任何一种"不可逾越"的竞争优势。<br><br>
-            <strong>芒格会说：</strong>"在商品零售行业，护城河是最难建立的。除非你有Costco那样的规模和会员粘性，或者Whole Foods那样的品牌溢价，否则你只是在跟所有人打一场价格战。"Sprouts目前的"健康生活低价"定位是有效的差异化策略，但这个定位本身也可以被Kroger的Simple Truth或Target的Good & Gather模仿。
-        </div>
-    </div>
+            <strong>芒格会说：</strong>"在商品零售行业，护城河是最难建立的。除非你有Costco那样的规模和会员粘性，或者Whole Foods那样的品牌溢价，否则你只是在跟所有人打一场价格战。"Sprouts目前的"健康生活低价"定位是有效的差异化策略，但这个定位本身也可以被Kroger的Simple Truth或Target的Good & Ga<h2 id="chapter6">六、利润分配分析（FY2016-FY2025）</h2>>
 
     <div class="info-box">
         <h2>六、利润分配分析（FY2016-FY2025）</h2>
@@ -735,7 +760,7 @@
             <strong>巴菲特视角：管理层资本配置评估</strong><br>
             <strong>优点：</strong>①不支付股息，100%利润留存用于增长和回购，符合高速增长期公司的资本配置逻辑；②FY2016-2019年大规模回购，流通股从1.56亿减至1.20亿（减少23%），有效提升每股价值；③FY2025年授权新的$10亿回购计划，显示管理层对未来的信心；④门店扩张纪律性强，新店单位经济效益良好。<br>
             <strong>缺点：</strong>①FY2019年举债$1.15B用于回购，在股价约$22时回购——虽然事后看价格合理，但举债回购增加了财务风险；②FY2024年回购金额仅$175M，而当年股价从$48涨至$159——管理层在股价暴涨时反而放慢了回购，这实际上是好信号（不在高估值时激进回购）；③FY2025年回购$472M，股价在$88-180区间——部分回购可能在高价位执行，需关注回购均价。<br>
-            <strong>总体评价：</strong>资本配置能力中等偏上。回购节奏总体合理（低估值时加速、高估值时放缓），但FY2019年的举债回购是争议性决策。不支付股息的策略对增长期公司是正确的。
+            <strong>总体评价：</strong>资本配置能力中等偏上。回购节奏总体合理（低估值时加速、高估值时放缓），但FY2019年的举债回购是争议性决<h2 id="chapter7">七、综合评估与投资结论</h2>。
         </div>
     </div>
 

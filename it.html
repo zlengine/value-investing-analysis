@@ -57,6 +57,28 @@
         .rating-red { background: #fadbd8; color: #c0392b; }
                 .top-nav-bar { position: fixed; top: 0; left: 0; right: 0; height: 44px; background: #2c3e50; display: flex; align-items: center; justify-content: flex-end; padding: 0 20px; z-index: 9999; box-shadow: 0 2px 8px rgba(0,0,0,0.15); gap: 8px; }
         .top-nav-link { color: white; padding: 6px 16px; border-radius: 16px; text-decoration: none; font-size: 13px; transition: background 0.2s; white-space: nowrap; }
+            .section-nav {
+            background: white;
+            border-radius: 10px;
+            padding: 15px 25px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+        .section-nav a {
+            display: inline-block;
+            margin: 5px 10px;
+            padding: 6px 14px;
+            background: #eaf2f8;
+            color: #1a5276;
+            text-decoration: none;
+            border-radius: 15px;
+            font-size: 0.9em;
+        }
+        .section-nav a:hover {
+            background: #2e86c1;
+            color: white;
+        }
     </style>
 </head>
 <body>
@@ -66,9 +88,19 @@
     <h1>Gartner Inc. 高德纳 (NYSE: IT)</h1>
     <p class="subtitle">全球最大的IT研究与咨询公司 | "企业技术决策的圣经"</p>
 
+    <div class="section-nav">
+        <a href="#chapter1">公司基本信息</a>
+        <a href="#chapter2">业务分析</a>
+        <a href="#chapter3">业务板块产品竞争力分析</a>
+        <a href="#chapter4">历史财务指标</a>
+        <a href="#chapter5">竞争分析</a>
+        <a href="#chapter6">利润分配分析（2016-2025）</a>
+        <a href="#chapter7">投资总结</a>
+    </div>
+
     <!-- 第一章：公司基本信息 -->
     <div class="info-box">
-        <h2>一、公司基本信息</h2>
+        <h2 id="chapter1">一、公司基本信息</h2>
         <table>
             <tr><td>股票代码</td><td>IT</td></tr>
             <tr><td>公司名称</td><td>Gartner, Inc.</td></tr>
@@ -89,8 +121,7 @@
     </div>
 
     <!-- 第二章：业务分析 -->
-    <div class="info-box">
-        <h2>二、业务分析</h2>
+    <div class="info-<h2 id="chapter2">二、业务分析</h2>h2>二、业务分析</h2>
         <p><strong>Gartner到底是干什么的？</strong></p>
         <p>想象你是一家大公司的CIO，手握数千万美元的IT预算，面对数百家供应商的推销电话——每家都说自己是最好的。你怎么选？Gartner就是那个帮你"去伪存真"的独立顾问。它雇佣2,400多名分析师，专门研究各种技术领域，然后告诉你哪些产品真的好用、哪些只是吹牛。</p>
         <p>更关键的是，Gartner的"魔力象限"就像米其林星级一样——被列入"领导者"象限的供应商，销售会大幅增长；被列入"利基玩家"的，可能连投标资格都没有。这种影响力就是Gartner最核心的护城河。</p>
@@ -188,8 +219,7 @@
     </div>
 
     <!-- 第三章：产品竞争力分析 -->
-    <div class="info-box">
-        <h2>三、业务板块产品竞争力分析</h2>
+    <di<h2 id="chapter3">三、业务板块产品竞争力分析</h2>      <h2>三、业务板块产品竞争力分析</h2>
 
         <h3>3.1 Insights（洞察研究）产品竞争力分析</h3>
 
@@ -269,8 +299,7 @@
         <p><strong>Consulting整体竞争力评级：<span class="tag tag-orange">★★★</span> 3星</strong></p>
     </div>
 
-    <!-- 第四章：历史财务指标 -->
-    <div class="info-box">
+    <!-- 第四章：历史财务<h2 id="chapter4">四、历史财务指标</h2>lass="info-box">
         <h2>四、历史财务指标</h2>
 
         <h3>4.1 净资产收益率(ROE)</h3>
@@ -381,7 +410,7 @@
         </div>
     </div>
 
-    <!-- 第五章：竞争分析 -->
+ <h2 id="chapter5">五、竞争分析</h2>析 -->
     <div class="info-box">
         <h2>五、竞争分析</h2>
 
@@ -505,9 +534,7 @@
         <div class="highlight">
             <strong>芒格视角：</strong>Gartner的护城河在"研究订阅"领域几乎不可逾越——它不是在卖信息，而是在卖"决策免责权"。CIO选择Gartner推荐的供应商，即使出了问题也不是CIO的错。这种心理层面的护城河比技术壁垒更持久。但AI是真正的变量：如果AI能让企业自行完成供应商评估，Gartner的"信息中介"角色可能被削弱。不过，"权威背书"功能是AI无法替代的。
         </div>
-    </div>
-
-    <!-- 第六章：利润分配分析 -->
+ <h2 id="chapter6">六、利润分配分析（2016-2025）</h2>分析 -->
     <div class="info-box">
         <h2>六、利润分配分析（2016-2025）</h2>
         <p>单位：亿美元</p>
@@ -547,8 +574,7 @@
         </table>
         <div class="highlight">
             <strong>芒格会怎么说？</strong>"在$400回购股票，然后在$140还在回购——这至少说明管理层没有在股价下跌时恐慌停止回购。但2021年花16亿美元在PE 40倍回购，这是在毁灭股东价值。好的资本配置应该是在便宜时多买，贵的时候少买或不买。"
-        </div>
-    </div>
+<h2 id="chapter7">七、投资总结</h2>    </div>
 
     <!-- 第七章：投资总结 -->
     <div class="info-box">

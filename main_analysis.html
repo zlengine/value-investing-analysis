@@ -83,14 +83,46 @@
             border-radius: 5px;
             margin: 10px 0;
         }
+            .section-nav {
+            background: white;
+            border-radius: 10px;
+            padding: 15px 25px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+        .section-nav a {
+            display: inline-block;
+            margin: 5px 10px;
+            padding: 6px 14px;
+            background: #eaf2f8;
+            color: #1a5276;
+            text-decoration: none;
+            border-radius: 15px;
+            font-size: 0.9em;
+        }
+        .section-nav a:hover {
+            background: #2e86c1;
+            color: white;
+        }
     </style>
 </head>
 <body>
     <a href="index.html" class="back-link">返回索引</a>
     <h1>Main Street Capital (MAIN) 详细分析</h1>
+
+    <div class="section-nav">
+        <a href="#chapter1">公司基本信息</a>
+        <a href="#chapter2">BDC和RIC的详细解释</a>
+        <a href="#chapter3">历史财务指标 (2007-2025)</a>
+        <a href="#chapter4">业务分析</a>
+        <a href="#chapter5">竞争分析与护城河</a>
+        <a href="#chapter6">财务摘要 (2025年)</a>
+        <a href="#chapter7">投资建议</a>
+    </div>
     
     <div class="info-box">
-        <h2>一、公司基本信息</h2>
+        <h2 id="chapter1">一、公司基本信息</h2>
         <table>
             <tr>
                 <th>项目</th>
@@ -143,8 +175,7 @@
         </table>
     </div>
     
-    <div class="info-box">
-        <h2>二、BDC和RIC的详细解释</h2>
+    <div class="info-<h2 id="chapter2">二、BDC和RIC的详细解释</h2>和RIC的详细解释</h2>
         <h3>2.1 BDC (Business Development Company)</h3>
         <div class="highlight">
             <p><strong>定义</strong>：BDC是美国证券交易委员会(SEC)专门监管的一种投资公司类型，全称为Business Development Company（企业发展公司）。</p>
@@ -179,8 +210,7 @@
         </ul>
     </div>
     
-    <div class="chart-container">
-        <h2>三、历史财务指标 (2007-2025)</h2>
+    <div class<h2 id="chapter3">三、历史财务指标 (2007-2025)</h2>h2>三、历史财务指标 (2007-2025)</h2>
         <h3>3.1 净资产利润率 (ROE) 趋势</h3>
         <p><strong>说明</strong>：净资产利润率衡量公司运用股东资本的效率，计算公式为净利润除以股东权益。MAIN作为BDC公司，ROE是评估其投资绩效的关键指标。</p>
         <canvas id="roeChart"></canvas>
@@ -192,9 +222,7 @@
         <h3>3.3 市盈率 (P/E) 趋势</h3>
         <p><strong>说明</strong>：市盈率是评估股票估值的重要指标。对于BDC公司，市盈率结合股息率可以判断其投资价值。</p>
         <canvas id="peChart"></canvas>
-    </div>
-    
-    <div class="info-box">
+    </div<h2 id="chapter4">四、业务分析</h2> class="info-box">
         <h2>四、业务分析</h2>
         
         <h3>4.1 公司业务概述（通俗解释）</h3>
@@ -238,9 +266,7 @@
                 <td>100%</td>
             </tr>
         </table>
-        <p><strong>说明</strong>：Main Street的投资全部集中在美国市场，专注于美国本土的中小企业融资需求。</p>
-    </div>
-    
+        <p><strong>说明</strong>：Main Street的投资全部集中在美国市场，专注于美国本土的中小企业融资需求。<h2 id="chapter5">五、竞争分析与护城河</h2> 
     <div class="info-box">
         <h2>五、竞争分析与护城河</h2>
         
@@ -294,9 +320,7 @@
                 <li><strong>专业能力护城河</strong>：对中低端市场企业的深入了解，能够准确评估风险和价值，这是新进入者难以复制的。</li>
                 <li><strong>规模经济护城河</strong>：88亿美元的管理资本规模，提供了成本优势和更强的议价能力。</li>
                 <li><strong>税收效率护城河</strong>：作为BDC和RIC的双重身份，享受税收优惠的同时保持高股息分发能力。</li>
-            </ul>
-        </div>
-    </div>
+            </<h2 id="chapter6">六、财务摘要 (2025年)</h2></div>
     
     <div class="info-box">
         <h2>六、财务摘要 (2025年)</h2>
@@ -340,7 +364,7 @@
             <tr>
                 <td>年化ROE</td>
                 <td>16.5%-17.7%</td>
-            </tr>
+  <h2 id="chapter7">七、投资建议</h2>
         </table>
     </div>
     

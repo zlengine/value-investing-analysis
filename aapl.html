@@ -97,6 +97,28 @@
         }
                 .top-nav-bar { position: fixed; top: 0; left: 0; right: 0; height: 44px; background: #2c3e50; display: flex; align-items: center; justify-content: flex-end; padding: 0 20px; z-index: 9999; box-shadow: 0 2px 8px rgba(0,0,0,0.15); gap: 8px; }
         .top-nav-link { color: white; padding: 6px 16px; border-radius: 16px; text-decoration: none; font-size: 13px; transition: background 0.2s; white-space: nowrap; }
+            .section-nav {
+            background: white;
+            border-radius: 10px;
+            padding: 15px 25px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+        .section-nav a {
+            display: inline-block;
+            margin: 5px 10px;
+            padding: 6px 14px;
+            background: #eaf2f8;
+            color: #1a5276;
+            text-decoration: none;
+            border-radius: 15px;
+            font-size: 0.9em;
+        }
+        .section-nav a:hover {
+            background: #2e86c1;
+            color: white;
+        }
     </style>
 </head>
 <body>
@@ -104,9 +126,18 @@
     <script src="nav_bar.js"></script>
     <span id="topbarCode" style="display:none;">AAPL</span>
     <h1>苹果公司 (AAPL) 详细分析</h1>
+
+    <div class="section-nav">
+        <a href="#chapter1">公司基本信息</a>
+        <a href="#chapter2">历史财务指标 (2011-2025)</a>
+        <a href="#chapter3">业务分析</a>
+        <a href="#chapter4">竞争分析与护城河</a>
+        <a href="#chapter5">财务摘要 (FY2025)</a>
+        <a href="#chapter6">投资建议</a>
+    </div>
     
     <div class="info-box">
-        <h2>一、公司基本信息</h2>
+        <h2 id="chapter1">一、公司基本信息</h2>
         <table>
             <tr>
                 <th>项目</th>
@@ -163,8 +194,7 @@
         </table>
     </div>
     
-    <div class="chart-container">
-        <h2>二、历史财务指标 (2011-2025)</h2>
+    <div class="chart-contai<h2 id="chapter2">二、历史财务指标 (2011-2025)</h2>011-2025)</h2>
         <h3>2.1 净资产利润率 (ROE) 趋势</h3>
         <p><strong>说明</strong>：净资产利润率衡量公司运用股东资本的效率。苹果的ROE一直保持在较高水平，反映出其强大的盈利能力。</p>
         <canvas id="roeChart"></canvas>
@@ -178,7 +208,7 @@
         <canvas id="peChart"></canvas>
     </div>
     
-    <div class="info-box">
+    <di<h2 id="chapter3">三、业务分析</h2>ox">
         <h2>三、业务分析</h2>
         
         <h3>3.1 公司业务概述（通俗解释）</h3>
@@ -263,9 +293,7 @@
                 <td>增长超5%</td>
             </tr>
         </table>
-    </div>
-    
-    <div class="info-box">
+    </div<h2 id="chapter4">四、竞争分析与护城河</h2>ss="info-box">
         <h2>四、竞争分析与护城河</h2>
         
         <h3>4.1 主要竞争对手</h3>
@@ -320,10 +348,7 @@
                 <li><strong>服务收入护城河</strong>：订阅服务提供稳定、可预测的收入流，且随着用户基数增长而持续扩大。</li>
                 <li><strong>现金流护城河</strong>：苹果拥有数千亿美元现金储备，能够持续投入研发、收购和股东回报。</li>
             </ul>
-        </div>
-    </div>
-    
-    <div class="info-box">
+        </<h2 id="chapter5">五、财务摘要 (FY2025)</h2> <div class="info-box">
         <h2>五、财务摘要 (FY2025)</h2>
         <table>
             <tr>
@@ -365,8 +390,7 @@
             <tr>
                 <td>资产负债率</td>
                 <td>约50-60%</td>
-            </tr>
-        </table>
+            </tr<h2 id="chapter6">六、投资建议</h2>le>
     </div>
     
     <div class="info-box">

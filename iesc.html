@@ -57,6 +57,28 @@
         .star { color: #d4af37; }
                 .top-nav-bar { position: fixed; top: 0; left: 0; right: 0; height: 44px; background: #2c3e50; display: flex; align-items: center; justify-content: flex-end; padding: 0 20px; z-index: 9999; box-shadow: 0 2px 8px rgba(0,0,0,0.15); gap: 8px; }
         .top-nav-link { color: white; padding: 6px 16px; border-radius: 16px; text-decoration: none; font-size: 13px; transition: background 0.2s; white-space: nowrap; }
+            .section-nav {
+            background: white;
+            border-radius: 10px;
+            padding: 15px 25px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+        .section-nav a {
+            display: inline-block;
+            margin: 5px 10px;
+            padding: 6px 14px;
+            background: #eaf2f8;
+            color: #1a5276;
+            text-decoration: none;
+            border-radius: 15px;
+            font-size: 0.9em;
+        }
+        .section-nav a:hover {
+            background: #2e86c1;
+            color: white;
+        }
     </style>
 </head>
 <body>
@@ -66,9 +88,20 @@
     <h1>IES Holdings, Inc. (NASDAQ: IESC)</h1>
     <p class="subtitle">巴菲特/芒格式价值投资基本面分析 | 更新日期：2026年6月</p>
 
+    <div class="section-nav">
+        <a href="#chapter1">公司基本信息</a>
+        <a href="#chapter2">业务分析</a>
+        <a href="#chapter3">业务板块产品竞争力分析</a>
+        <a href="#chapter4">历史财务指标</a>
+        <a href="#chapter5">竞争分析</a>
+        <a href="#chapter6">利润分配分析</a>
+        <a href="#chapter7">投资总结</a>
+        <a href="#chapter8">MEP三巨头深度对比：FIX vs EME vs IESC</a>
+    </div>
+
     <!-- 一、公司基本信息 -->
     <div class="info-box">
-        <h2>一、公司基本信息</h2>
+        <h2 id="chapter1">一、公司基本信息</h2>
         <table>
             <tr><td>公司全称</td><td>IES Holdings, Inc.（简称IES）</td></tr>
             <tr><td>股票代码</td><td>NASDAQ: IESC</td></tr>
@@ -95,8 +128,7 @@
     </div>
 
     <!-- 二、业务分析 -->
-    <div class="info-box">
-        <h2>二、业务分析</h2>
+    <div class="info-<h2 id="chapter2">二、业务分析</h2>h2>二、业务分析</h2>
 
         <div class="highlight">
             <strong>一句话理解IES：</strong>想象你正在建一个数据中心——你需要有人把电从变电站拉到机房、把光纤从运营商接到服务器机柜、把空调和消防系统装好、把备用发电机装进防风雨的外壳里。这些活儿不是"设计"（那是建筑师的事），而是"施工安装"——需要成百上千的电工、技术工人，在规定时间内按图纸把所有线缆、管道、设备装到位。IES就是干这个的——<strong>一家"电气+技术基础设施施工安装公司"</strong>。但IES不是只会拉线的电工，它已经进化成四个业务板块：①<strong>通信基础设施</strong>（数据中心的"神经系统"——光纤、网络、安防系统，增速47%），②<strong>住宅电气</strong>（给新房装电线+空调+水管，最大但增速放缓的板块），③<strong>基础设施解决方案</strong>（修电机+造发电机外壳+工业磁铁，高利润率制造业务），④<strong>商业与工业</strong>（给工厂/医院/风电场装电气系统）。FY2025，IES以10,262名员工创造了$33.7亿营收和$3.06亿净利润，净利率9.1%，ROE 41.7%——这不是一家普通施工公司的数字，而是一家搭上了"数据中心+电气化"超级风口的"特种承包商"的数字。
@@ -166,8 +198,7 @@
     </div>
 
     <!-- 三、业务板块产品竞争力分析 -->
-    <div class="info-box">
-        <h2>三、业务板块产品竞争力分析</h2>
+    <di<h2 id="chapter3">三、业务板块产品竞争力分析</h2>      <h2>三、业务板块产品竞争力分析</h2>
 
         <h3>3.1 Communications（通信基础设施）产品竞争力分析</h3>
         <div class="moat-item">
@@ -279,8 +310,7 @@
         <p><strong>综合竞争力评级：⭐⭐⭐（3星）</strong> — 竞争激烈+利润率低，但数据中心专业能力提供差异化</p>
     </div>
 
-    <!-- 四、历史财务指标 -->
-    <div class="info-box">
+    <!-- 四、历史财务<h2 id="chapter4">四、历史财务指标</h2>lass="info-box">
         <h2>四、历史财务指标</h2>
 
         <h3>4.1 核心财务数据趋势（2016-2025）</h3>
@@ -327,8 +357,7 @@
             <canvas id="peChart"></canvas>
         </div>
     </div>
-
-    <!-- 五、竞争分析 -->
+<h2 id="chapter5">五、竞争分析</h2>析 -->
     <div class="info-box">
         <h2>五、竞争分析</h2>
 
@@ -396,10 +425,7 @@
         <div class="risk-item">
             <strong>6. 流通盘极小（仅910万股）</strong>
             <p>机构持股97.2%，流通盘仅~910万股。低流动性意味着股价波动可能被放大——好消息时涨得快，坏消息时跌得也快。</p>
-        </div>
-    </div>
-
-    <!-- 六、利润分配分析 -->
+        </div><h2 id="chapter6">六、利润分配分析</h2><!-- 六、利润分配分析 -->
     <div class="info-box">
         <h2>六、利润分配分析</h2>
 
@@ -431,8 +457,7 @@
             <li><strong>回购力度近年加大</strong>：FY2024回购$5,850万（2024年8月授权$2亿回购计划），但FY2025回购放缓至~$2,500万（优先用于收购Gulf Island等）</li>
             <li><strong>巴菲特视角</strong>：1美元留存创造市值——2016至2025留存$8.64亿，市值从~$1.5亿增至~$145亿，增加~$143.5亿。1美元留存创造~16.6美元市值！远超1:1标准，但需注意这主要来自估值扩张（PE从8x→38x）而非纯盈利增长</li>
             <li><strong>可持续增长率</strong> = ROE × 留存比率 = 41.7% × 100% = 41.7%（理论值，实际增速17%说明公司选择保守增长+大量收购）</li>
-            <li><strong>⚠️ 注意</strong>：1美元留存创造16.6美元市值的惊人数字，主要来自PE从8x扩张至38x（4.75倍）。如果PE回归均值，这个数字会大幅缩水</li>
-        </ul>
+            <li><strong>⚠️ 注意</strong>：1美元留存创造16.6美元市值的惊人数字，主要来自PE从8x扩张至38x（4.75倍）。如果PE回归均值，这个数字会大幅缩水</l<h2 id="chapter7">七、投资总结</h2>>
     </div>
 
     <!-- 七、投资总结 -->
@@ -638,9 +663,7 @@
             renderFromDB();
         }
     })();
-    </script>
-
-    <!-- ====== 三家MEP同行深度对比 ====== -->
+    </script<h2 id="chapter8">八、MEP三巨头深度对比：FIX vs EME vs IESC</h2>>
     <div class="info-box" id="peer-comparison">
         <h2>八、MEP三巨头深度对比：FIX vs EME vs IESC</h2>
         <p style="color:#555;line-height:1.8;">Comfort Systems (FIX)、EMCOR Group (EME)、IES Holdings (IESC) 是美国MEP（机械-电气-管道）承包行业三只最核心的上市标的。它们做的事本质上一样——给大型建筑安装"内脏"（空调、电力、管道、消防），但规模、侧重和打法差异巨大。下面从多个维度逐一拆解。</p>

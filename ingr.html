@@ -134,6 +134,28 @@
         }
                 .top-nav-bar { position: fixed; top: 0; left: 0; right: 0; height: 44px; background: #2c3e50; display: flex; align-items: center; justify-content: flex-end; padding: 0 20px; z-index: 9999; box-shadow: 0 2px 8px rgba(0,0,0,0.15); gap: 8px; }
         .top-nav-link { color: white; padding: 6px 16px; border-radius: 16px; text-decoration: none; font-size: 13px; transition: background 0.2s; white-space: nowrap; }
+            .section-nav {
+            background: white;
+            border-radius: 10px;
+            padding: 15px 25px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+        .section-nav a {
+            display: inline-block;
+            margin: 5px 10px;
+            padding: 6px 14px;
+            background: #eaf2f8;
+            color: #1a5276;
+            text-decoration: none;
+            border-radius: 15px;
+            font-size: 0.9em;
+        }
+        .section-nav a:hover {
+            background: #2e86c1;
+            color: white;
+        }
     </style>
 </head>
 <body>
@@ -143,8 +165,17 @@
     <h1>Ingredion Incorporated</h1>
     <p class="subtitle">NYSE: INGR | 价值投资基本面分析 | 更新日期：2026年5月11日</p>
 
+    <div class="section-nav">
+        <a href="#chapter1">公司基本信息</a>
+        <a href="#chapter2">业务分析</a>
+        <a href="#chapter3">历史财务指标</a>
+        <a href="#chapter4">竞争分析与护城河</a>
+        <a href="#chapter5">利润分配分析（近十年）</a>
+        <a href="#chapter6">投资结论</a>
+    </div>
+
     <div class="info-box">
-        <h2>一、公司基本信息</h2>
+        <h2 id="chapter1">一、公司基本信息</h2>
         <table>
             <tr><th>项目</th><th>详情</th></tr>
             <tr><td>公司名称</td><td>Ingredion Incorporated（宜瑞安）</td></tr>
@@ -169,8 +200,7 @@
         </table>
     </div>
 
-    <div class="info-box">
-        <h2>二、业务分析</h2>
+    <div class="info-<h2 id="chapter2">二、业务分析</h2>h2>二、业务分析</h2>
 
         <h3>2.1 公司是做什么的？</h3>
         <p>用最简单的话说：<strong>Ingredion就是把玉米、木薯、土豆等农作物变成食品配料的公司</strong>。你吃的酸奶为什么那么丝滑？你喝的无糖饮料为什么是甜的？你吃的薯片为什么那么脆？这些口感和味道，很可能都来自Ingredion生产的淀粉、甜味剂和质构解决方案。</p>
@@ -208,7 +238,7 @@
         </div>
     </div>
 
-    <div class="info-box">
+    <di<h2 id="chapter3">三、历史财务指标</h2>">
         <h2>三、历史财务指标</h2>
 
         <h3>3.1 净资产收益率（ROE）趋势</h3>
@@ -307,9 +337,7 @@
         <div class="highlight">
             <p><strong>营收趋势分析</strong>：Ingredion过去10年营收从$56亿增长至$72亿，年复合增长率约2.5%，属于低增长特征。营收波动主要受原材料价格传导影响——2021-2022年营收大幅增长（+15%）主要因为玉米等原材料涨价推高了产品售价，而非真实需求增长。2023-2025年原材料价格回落，营收相应下降。剔除价格因素后，公司实际销量增长更为温和。值得注意的是，净利润率从2021年的1.7%大幅提升至2025年的10.1%，体现了公司向高附加值产品转型的成效。</p>
         </div>
-    </div>
-
-    <div class="info-box">
+    <<h2 id="chapter4">四、竞争分析与护城河</h2>ss="info-box">
         <h2>四、竞争分析与护城河</h2>
 
         <h3>4.1 主要竞争对手</h3>
@@ -361,10 +389,7 @@
             <p><strong>2. 大客户议价能力</strong>：食品饮料行业集中度高，大客户（如雀巢、可口可乐）具有较强的议价能力，可能压缩Ingredion的利润空间。</p>
             <p><strong>3. 替代技术威胁</strong>：精密发酵、细胞培养等新技术可能在未来提供替代方案，降低对传统植物提取配料的依赖。</p>
             <p><strong>4. 运营风险</strong>：Argo工厂火灾及持续运营问题在2025年造成约$4,000万的负面影响，暴露了单一工厂依赖的风险。</p>
-        </div>
-    </div>
-
-    <div class="info-box">
+      <h2 id="chapter5">五、利润分配分析（近十年）</h2>   <div class="info-box">
         <h2>五、利润分配分析（近十年）</h2>
 
         <h3>5.1 利润分配明细</h3>
@@ -413,8 +438,7 @@
             <p>4. <strong>债务管理审慎</strong>：2024-2025年持续偿还债务，总债务从2022年的$25.3亿降至2025年的$18亿，资产负债率降至48.9%。</p>
             <p><strong>不足</strong>：</p>
             <p>1. <strong>2018年大规模回购时机欠佳</strong>：当年回购$6.56亿，但股价处于相对高位，随后2019-2020年股价下跌。</p>
-            <p>2. <strong>2021年净利润不足以覆盖股息</strong>：当年净利润仅$1.17亿，但支付了$1.72亿股息，动用了留存收益。</p>
-        </div>
+            <p>2. <strong>2021年净利润不足以覆盖股息</strong>：当年净利润仅$1.17亿，但支付了$1.72亿股息，动用了留存<h2 id="chapter6">六、投资结论</h2> </div>
     </div>
 
     <div class="info-box">

@@ -55,6 +55,28 @@
         .star { color: #f39c12; }
                 .top-nav-bar { position: fixed; top: 0; left: 0; right: 0; height: 44px; background: #2c3e50; display: flex; align-items: center; justify-content: flex-end; padding: 0 20px; z-index: 9999; box-shadow: 0 2px 8px rgba(0,0,0,0.15); gap: 8px; }
         .top-nav-link { color: white; padding: 6px 16px; border-radius: 16px; text-decoration: none; font-size: 13px; transition: background 0.2s; white-space: nowrap; }
+            .section-nav {
+            background: white;
+            border-radius: 10px;
+            padding: 15px 25px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+        .section-nav a {
+            display: inline-block;
+            margin: 5px 10px;
+            padding: 6px 14px;
+            background: #eaf2f8;
+            color: #1a5276;
+            text-decoration: none;
+            border-radius: 15px;
+            font-size: 0.9em;
+        }
+        .section-nav a:hover {
+            background: #2e86c1;
+            color: white;
+        }
     </style>
 </head>
 <body>
@@ -64,9 +86,19 @@
     <h1>Lam Research 泛林集团 (NASDAQ: LRCX)</h1>
     <p class="subtitle">巴菲特/芒格式价值投资基本面分析 | 更新日期：2026年6月23日</p>
 
+    <div class="section-nav">
+        <a href="#chapter1">公司基本信息</a>
+        <a href="#chapter2">业务分析</a>
+        <a href="#chapter3">业务板块产品竞争力分析</a>
+        <a href="#chapter4">历史财务指标</a>
+        <a href="#chapter5">竞争分析</a>
+        <a href="#chapter6">利润分配分析</a>
+        <a href="#chapter7">投资总结</a>
+    </div>
+
     <!-- 一、公司基本信息 -->
     <div class="info-box">
-        <h2>一、公司基本信息</h2>
+        <h2 id="chapter1">一、公司基本信息</h2>
         <table>
             <tr><td>公司全称</td><td>Lam Research Corporation（泛林集团）</td></tr>
             <tr><td>股票代码</td><td>NASDAQ: LRCX</td></tr>
@@ -87,8 +119,7 @@
     </div>
 
     <!-- 二、业务分析 -->
-    <div class="info-box">
-        <h2>二、业务分析</h2>
+    <div class="info-<h2 id="chapter2">二、业务分析</h2>h2>二、业务分析</h2>
 
         <h3>公司做什么——用大白话说</h3>
         <p>想象你在建造一栋摩天大楼。你需要两种核心工序：一是<strong>"雕刻"</strong>——用极精密的工具在硅片上刻出纳米级的电路沟槽；二是<strong>"涂装"</strong>——在刻好的沟槽里一层一层地镀上金属和绝缘薄膜。Lam Research就是卖这种"雕刻刀"和"涂装机"的公司。芯片越做越小、越做越立体（3D NAND堆到200多层），每一层都需要反复刻蚀和沉积，所以Lam的设备在每片晶圆上的"内容量"持续增长。</p>
@@ -140,8 +171,7 @@
     </div>
 
     <!-- 三、业务板块产品竞争力分析 -->
-    <div class="info-box">
-        <h2>三、业务板块产品竞争力分析</h2>
+    <di<h2 id="chapter3">三、业务板块产品竞争力分析</h2>      <h2>三、业务板块产品竞争力分析</h2>
 
         <h3>3.1 系统设备（刻蚀+沉积）产品竞争力分析</h3>
 
@@ -197,8 +227,7 @@
         <p><strong>CSBG整体竞争力评级：<span class="star">&#9733;&#9733;&#9733;&#9733;&#9733;</span> 5/5星</strong></p>
     </div>
 
-    <!-- 四、历史财务指标 -->
-    <div class="info-box">
+    <!-- 四、历史财务<h2 id="chapter4">四、历史财务指标</h2>lass="info-box">
         <h2>四、历史财务指标</h2>
 
         <h3>4.1 净资产收益率（ROE）</h3>
@@ -238,8 +267,7 @@
             <strong>估值警示：</strong>当前PE约69倍，远高于10年平均PE 18.8倍。即便用Forward PE（约33-49倍），也处于历史高位。对于一家周期性资本设备公司而言，周期顶点的69倍PE意味着市场已经充分定价了AI驱动的增长预期。安全边际严重不足。
         </div>
     </div>
-
-    <!-- 五、竞争分析 -->
+<h2 id="chapter5">五、竞争分析</h2>析 -->
     <div class="info-box">
         <h2>五、竞争分析</h2>
 
@@ -290,10 +318,7 @@
         <div class="highlight">
             <strong>护城河综合评级：<span class="star">&#9733;&#9733;&#9733;&#9733;</span> 4/5星（宽护城河）</strong><br>
             Lam拥有以转换成本为核心的宽护城河，但需注意：护城河在存储市场更强（刻蚀密集度更高），在逻辑/代工市场相对弱一些（AMAT和TEL的竞争更激烈）。此外，中国国产替代在成熟节点正在加速，长期可能侵蚀Lam在中低端市场的份额。
-        </div>
-    </div>
-
-    <!-- 六、利润分配分析 -->
+        </div><h2 id="chapter6">六、利润分配分析</h2><!-- 六、利润分配分析 -->
     <div class="info-box">
         <h2>六、利润分配分析</h2>
 
@@ -320,8 +345,7 @@
             <strong>2. 回购：</strong>过去3年回购总额约93亿美元，是分红金额的3-4倍。2024年10月拆股同时批准100亿美元新回购计划。回购大幅减少了流通股数（从2018年的1.62亿股降至目前的1.25亿股，注：拆股前口径），显著提升了每股收益。<br>
             <strong>3. 回购时机：</strong>Lam在2022-2023年半导体下行期加大了回购力度（PE较低时），在2024-2025年上行期也持续回购。整体来看，回购时机不算差，但当前PE 77倍时仍在回购，从价值投资角度看并不理想。<br>
             <strong>4. 再投资：</strong>资本开支占收入比约4-5%，R&D占收入比约11-12%。Lam是轻资产模式，不需要大量资本开支，主要靠R&D驱动增长。<br>
-            <strong>5. 可持续增长率：</strong>ROE 22% × 留存率78% ≈ 17%。这意味着如果Lam能维持当前ROE和留存率，内在增长率可达17%/年。
-        </div>
+            <strong>5. 可持续增长率：</strong>ROE 22% × 留存率78% ≈ 17%。这意味着如果Lam能维持当前ROE和留存率，内在增长率可达17%/年<h2 id="chapter7">七、投资总结</h2>>
     </div>
 
     <!-- 七、投资总结 -->

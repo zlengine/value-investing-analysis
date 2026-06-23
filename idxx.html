@@ -55,6 +55,28 @@
         .star { color: #f39c12; }
                 .top-nav-bar { position: fixed; top: 0; left: 0; right: 0; height: 44px; background: #2c3e50; display: flex; align-items: center; justify-content: flex-end; padding: 0 20px; z-index: 9999; box-shadow: 0 2px 8px rgba(0,0,0,0.15); gap: 8px; }
         .top-nav-link { color: white; padding: 6px 16px; border-radius: 16px; text-decoration: none; font-size: 13px; transition: background 0.2s; white-space: nowrap; }
+            .section-nav {
+            background: white;
+            border-radius: 10px;
+            padding: 15px 25px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+        .section-nav a {
+            display: inline-block;
+            margin: 5px 10px;
+            padding: 6px 14px;
+            background: #eaf2f8;
+            color: #1a5276;
+            text-decoration: none;
+            border-radius: 15px;
+            font-size: 0.9em;
+        }
+        .section-nav a:hover {
+            background: #2e86c1;
+            color: white;
+        }
     </style>
 </head>
 <body>
@@ -64,9 +86,22 @@
     <h1>IDEXX Laboratories 爱德士 (NASDAQ: IDXX)</h1>
     <p class="subtitle">巴菲特/芒格式价值投资基本面分析 | 更新日期：2026年6月</p>
 
+    <div class="section-nav">
+        <a href="#chapter1">公司基本信息</a>
+        <a href="#chapter2">业务分析</a>
+        <a href="#chapter3">业务板块产品竞争力分析</a>
+        <a href="#chapter4">历史财务指标 (2015-2025)</a>
+        <a href="#chapter5">四（续）、收入与利润趋势 (2015-2025)</a>
+        <a href="#chapter6">竞争分析与护城河</a>
+        <a href="#chapter7">利润分配分析（过去十年）</a>
+        <a href="#chapter8">投资总结</a>
+        <a href="#chapter9">动物保健双雄深度对比：ZTS vs IDXX</a>
+        <a href="#chapter10">数据来源</a>
+    </div>
+
     <!-- 一、公司基本信息 -->
     <div class="info-box">
-        <h2>一、公司基本信息</h2>
+        <h2 id="chapter1">一、公司基本信息</h2>
         <table>
             <tr><td>公司全称</td><td>IDEXX Laboratories, Inc.（爱德士实验室公司）</td></tr>
             <tr><td>股票代码</td><td>NASDAQ: IDXX</td></tr>
@@ -88,8 +123,7 @@
     </div>
 
     <!-- 二、业务分析 -->
-    <div class="info-box">
-        <h2>二、业务分析</h2>
+    <div class="info-<h2 id="chapter2">二、业务分析</h2>h2>二、业务分析</h2>
 
         <h3>2.1 公司业务概述（通俗解释）</h3>
         <div class="highlight">
@@ -195,8 +229,7 @@
     </div>
 
     <!-- 三、业务板块产品竞争力分析 -->
-    <div class="info-box">
-        <h2>三、业务板块产品竞争力分析</h2>
+    <di<h2 id="chapter3">三、业务板块产品竞争力分析</h2>      <h2>三、业务板块产品竞争力分析</h2>
 
         <h3>3.1 伴侣动物诊断（CAG）产品竞争力分析</h3>
 
@@ -282,7 +315,7 @@
     </div>
 
     <!-- 四、历史财务指标 -->
-    <div class="chart-container">
+<h2 id="chapter4">四、历史财务指标 (2015-2025)</h2>er">
         <h2>四、历史财务指标 (2015-2025)</h2>
 
         <h3>4.1 净资产利润率 (ROE) 趋势</h3>
@@ -299,16 +332,10 @@
 
         <h3>4.4 产权比率（资产/权益）趋势</h3>
         <p><strong>说明</strong>：产权比率反映财务杠杆水平。IDEXX的产权比率在1.5-3.5之间波动，2025年约1.7倍，杠杆水平适中。</p>
-        <canvas id="equityRatioChart"></canvas>
-    </div>
-
-    <div class="chart-container">
+        <canvas id="equityRatioChart"></canvas<h2 id="chapter5">四（续）、收入与利润趋势 (2015-2025)</h2>rt-container">
         <h2>四（续）、收入与利润趋势 (2015-2025)</h2>
         <p><strong>说明</strong>：IDEXX收入从2015年的16亿美元增长至2025年的43亿美元，10年CAGR约10.2%。净利润从1.92亿美元增长至10.59亿美元，10年CAGR约18.6%。</p>
-        <canvas id="revenueChart"></canvas>
-    </div>
-
-    <!-- 五、竞争分析 -->
+        <canvas id="revenueChart"></canva<h2 id="chapter6">五、竞争分析与护城河</h2><!-- 五、竞争分析 -->
     <div class="info-box">
         <h2>五、竞争分析与护城河</h2>
 
@@ -404,8 +431,7 @@
                 <li>软件生态（Nebo）增加了数据层面的粘性</li>
                 <li>主要风险：大型企业集团（如Mars/Antech）的纵向整合可能改变竞争格局</li>
             </ul>
-        </div>
-    </div>
+<h2 id="chapter7">六、利润分配分析（过去十年）</h2>v>
 
     <!-- 六、利润分配分析 -->
     <div class="info-box">
@@ -559,7 +585,7 @@
                 <li><strong>优秀</strong>：R&D投入占营收约5-6%，持续推动创新（Cancer Dx、inVue Dx等）</li>
                 <li><strong>一般</strong>：2021-2022年部分回购发生在估值高位，存在"追高"嫌疑</li>
                 <li><strong>整体</strong>：资本配置能力在同行中属于中上水平，但不如巴菲特理想中的"低估值时大额回购"</li>
-            </ul>
+  <h2 id="chapter8">七、投资总结</h2>
         </div>
     </div>
 
@@ -701,10 +727,7 @@
 
             <p><strong>综合评级：观望/等待更好价格</strong></p>
             <p>IDEXX是一家出色的企业，但不是一笔出色的投资——至少在当前价格下如此。正如芒格所言："以合理价格买入优秀企业，远胜于以便宜价格买入平庸企业。"但"合理价格"不等于"任何价格"。建议投资者耐心等待市场给出更好的入场机会，如PE回落至30-35倍区间时积极建仓。</p>
-        </div>
-    </div>
-
-    <!-- 八、ZTS vs IDXX 深度对比 -->
+   <h2 id="chapter9">八、动物保健双雄深度对比：ZTS vs IDXX</h2>八、ZTS vs IDXX 深度对比 -->
     <div class="info-box" id="peer-comparison">
         <h2>八、动物保健双雄深度对比：ZTS vs IDXX</h2>
         <p style="color:#555;line-height:1.8;">Zoetis（硕腾）和IDEXX（爱德士）是美国动物保健行业两只最核心的上市标的。它们都从宠物经济中赚钱，但赚钱的方式完全不同——Zoetis是"动物界的辉瑞"，靠卖药赚钱；IDEXX是"动物界的迈瑞"，靠卖诊断设备和耗材赚钱。下面从多个维度逐一拆解。</p>
@@ -840,7 +863,7 @@
         </div>
 
         <p style="text-align:center;margin-top:20px;">
-            <a href="zts.html">查看ZTS详细分析 &rarr;</a>
+    <h2 id="chapter10">数据来源</h2>ef="zts.html">查看ZTS详细分析 &rarr;</a>
         </p>
     </div>
 

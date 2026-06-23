@@ -43,6 +43,28 @@
         .risk-item { background: #ffebee; padding: 12px; margin: 8px 0; border-left: 4px solid #c62828; border-radius: 4px; }
         .star { color: #f39c12; }
         .chart-placeholder { background: #f0f0f0; padding: 15px; text-align: center; border-radius: 5px; margin: 10px 0; font-family: monospace; }
+            .section-nav {
+            background: white;
+            border-radius: 10px;
+            padding: 15px 25px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+        .section-nav a {
+            display: inline-block;
+            margin: 5px 10px;
+            padding: 6px 14px;
+            background: #eaf2f8;
+            color: #1a5276;
+            text-decoration: none;
+            border-radius: 15px;
+            font-size: 0.9em;
+        }
+        .section-nav a:hover {
+            background: #2e86c1;
+            color: white;
+        }
     </style>
 </head>
 <body>
@@ -52,9 +74,19 @@
     <h1>ASML Holding (NASDAQ: ASML)</h1>
     <p style="text-align:center;color:#666;">巴菲特/芒格式价值投资基本面分析 | 更新日期：2026年6月23日</p>
 
+    <div class="section-nav">
+        <a href="#chapter1">公司基本信息</a>
+        <a href="#chapter2">业务分析</a>
+        <a href="#chapter3">产品竞争力分析</a>
+        <a href="#chapter4">历史财务指标</a>
+        <a href="#chapter5">竞争分析</a>
+        <a href="#chapter6">利润分配分析</a>
+        <a href="#chapter7">投资总结</a>
+    </div>
+
     <!-- ==================== 一、公司基本信息 ==================== -->
     <div class="info-box">
-        <h2>一、公司基本信息</h2>
+        <h2 id="chapter1">一、公司基本信息</h2>
         <table>
             <tr><td>公司全称</td><td>ASML Holding N.V.</td></tr>
             <tr><td>股票代码</td><td>NASDAQ: ASML / Euronext: ASML</td></tr>
@@ -76,8 +108,7 @@
     </div>
 
     <!-- ==================== 二、业务分析 ==================== -->
-    <div class="info-box">
-        <h2>二、业务分析</h2>
+    <div class="info-<h2 id="chapter2">二、业务分析</h2>h2>二、业务分析</h2>
 
         <h3>2.1 业务模式——用大白话说</h3>
         <p>想象你要在一张A4纸上画出整座城市的地图——每条街道、每栋楼、每个红绿灯都要精确到毫米。光刻机就是干这个的：把芯片设计师画好的电路图，用光"印"到硅片上。光刻机就像一台超级精密的"投影仪"——把电路图案投影到硅片上，然后用化学方法把图案刻出来。</p>
@@ -114,7 +145,7 @@
     </div>
 
     <!-- ==================== 三、产品竞争力分析 ==================== -->
-    <div class="info-box">
+    <di<h2 id="chapter3">三、产品竞争力分析</h2>>
         <h2>三、产品竞争力分析</h2>
 
         <h3>3.1 EUV光刻系统 产品竞争力</h3>
@@ -190,8 +221,7 @@
         <p><strong>整体竞争力评级：<span class="star">&#9733;&#9733;&#9733;&#9733;&#9733;</span> 5/5</strong></p>
     </div>
 
-    <!-- ==================== 四、历史财务指标 ==================== -->
-    <div class="info-box">
+    <!-- ==================== 四、历史财务指标 ==================<h2 id="chapter4">四、历史财务指标</h2>lass="info-box">
         <h2>四、历史财务指标</h2>
 
         <h3>4.1 核心财务数据（FY2016-FY2025）</h3>
@@ -224,7 +254,7 @@
         </div>
     </div>
 
-    <!-- ==================== 五、竞争分析 ==================== -->
+    <!-- ==================== 五、竞争分析 ====<h2 id="chapter5">五、竞争分析</h2>= -->
     <div class="info-box">
         <h2>五、竞争分析</h2>
 
@@ -275,7 +305,7 @@
         <p>ASML拥有全球科技行业中最宽的护城河之一——EUV 100%垄断 + 1,000+核心专利 + 不可复制的供应链生态 + 极高客户转换成本。与AMAT的"广度型护城河"和KLAC的"单项深度护城河"不同，ASML的护城河是"绝对垄断型"——不是"几乎垄断"，而是"完全垄断"。这是巴菲特最梦寐以求的商业模式。</p>
     </div>
 
-    <!-- ==================== 六、利润分配分析 ==================== -->
+    <!-- ====================<h2 id="chapter6">六、利润分配分析</h2>============= -->
     <div class="info-box">
         <h2>六、利润分配分析</h2>
 
@@ -309,7 +339,7 @@
         </div>
     </div>
 
-    <!-- ==================== 七、投资总结 ==================== -->
+    <!-- ====<h2 id="chapter7">七、投资总结</h2>= 七、投资总结 ==================== -->
     <div class="info-box">
         <h2>七、投资总结</h2>
 

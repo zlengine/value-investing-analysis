@@ -102,6 +102,28 @@
     
                 .top-nav-bar { position: fixed; top: 0; left: 0; right: 0; height: 44px; background: #2c3e50; display: flex; align-items: center; justify-content: flex-end; padding: 0 20px; z-index: 9999; box-shadow: 0 2px 8px rgba(0,0,0,0.15); gap: 8px; }
         .top-nav-link { color: white; padding: 6px 16px; border-radius: 16px; text-decoration: none; font-size: 13px; transition: background 0.2s; white-space: nowrap; }
+            .section-nav {
+            background: white;
+            border-radius: 10px;
+            padding: 15px 25px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+        .section-nav a {
+            display: inline-block;
+            margin: 5px 10px;
+            padding: 6px 14px;
+            background: #eaf2f8;
+            color: #1a5276;
+            text-decoration: none;
+            border-radius: 15px;
+            font-size: 0.9em;
+        }
+        .section-nav a:hover {
+            background: #2e86c1;
+            color: white;
+        }
     </style>
 </head>
 <body>
@@ -109,8 +131,19 @@
     <script src="nav_bar.js"></script>
     <span id="topbarCode" style="display:none;">VIPS</span>
     <h1>VIPS (唯品会 Vipshop Holdings) 详细分析</h1>
+
+    <div class="section-nav">
+        <a href="#chapter1">公司基本信息</a>
+        <a href="#chapter2">业务分析</a>
+        <a href="#chapter3">历史财务指标</a>
+        <a href="#chapter4">竞争分析</a>
+        <a href="#chapter5">利润分配分析（2015-2025）</a>
+        <a href="#chapter6">价值投资评估</a>
+        <a href="#chapter7">与TJ Maxx/TJX的对比——为什么唯品会值得研究</a>
+        <a href="#chapter8">数据来源</a>
+    </div>
     <div class="info-box">
-        <h2>一、公司基本信息</h2>
+        <h2 id="chapter1">一、公司基本信息</h2>
         <table>
             <tr><th>项目</th><th>详情</th></tr>
             <tr><td>公司全称</td><td>Vipshop Holdings Limited</td></tr>
@@ -132,8 +165,7 @@
         </table>
     </div>
 
-    <div class="info-box">
-        <h2>二、业务分析</h2>
+    <div class="info-<h2 id="chapter2">二、业务分析</h2>h2>二、业务分析</h2>
 
         <h3>2.1 公司是做什么的？</h3>
         <p>
@@ -213,7 +245,7 @@
         </table>
     </div>
 
-    <div class="info-box">
+    <di<h2 id="chapter3">三、历史财务指标</h2>">
         <h2>三、历史财务指标</h2>
 
         <h3>3.1 净资产收益率（ROE）</h3>
@@ -301,9 +333,7 @@
         <div class="chart-container">
             <canvas id="peChart"></canvas>
         </div>
-    </div>
-
-    <div class="info-box">
+    <<h2 id="chapter4">四、竞争分析</h2> class="info-box">
         <h2>四、竞争分析</h2>
 
         <h3>4.1 特卖电商市场竞争格局</h3>
@@ -410,10 +440,7 @@
                 <li><strong>增长天花板</strong>：特卖电商市场规模约1.2-1.5万亿，唯品会已占38%，进一步增长空间有限</li>
             </ul>
             芒格会说："在一个增长缓慢的行业里拥有护城河，比在一个快速增长的行业里没有护城河要好。唯品会的护城河是真实的，但护城河内的城堡不会变得更大。"
-        </div>
-    </div>
-
-    <div class="info-box">
+      <h2 id="chapter5">五、利润分配分析（2015-2025）</h2>v class="info-box">
         <h2>五、利润分配分析（2015-2025）</h2>
 
         <h3>5.1 过去十年利润分配明细</h3>
@@ -547,8 +574,7 @@
                 <li><strong>跨境业务投入较晚</strong>：东南亚布局2025年才初步起量，错失了更早的窗口期</li>
             </ul>
 
-            <strong>芒格会说：</strong>"如果一家公司无法以高回报率将利润再投资，那么把利润还给股东就是最好的资本配置。唯品会显然属于这种情况——它的增长空间有限，但盈利能力很强，把钱还给股东是正确的选择。"
-        </div>
+            <strong>芒格会说：</strong>"如果一家公司无法以高回报率将利润再投资，那么把利润还给股东就是最好的资本配置。唯品会显然属于这种情况——它的增长空间有限，但盈利能力很强，把钱还给股东是<h2 id="chapter6">六、价值投资评估</h2>/div>
     </div>
 
     <div class="info-box">
@@ -602,9 +628,7 @@
         <div class="highlight">
             <strong>结论：</strong>当前股价$14.99对应PE约7.4倍，自由现金流收益率约12.9%，股息率4%。如果扣除净现金（约$9/ADS），实际业务PE仅约4倍。这是典型的<strong>"被低估的价值股"</strong>——市场因为增长担忧而给了极低的估值，但公司的盈利能力、现金流和股东回报都非常健康。<br><br>
             <strong>核心矛盾</strong>：唯品会是一家"好公司"（高ROE、强现金流、净现金、高分红），但可能不是一支"好股票"——如果营收持续零增长或负增长，估值修复的催化剂在哪里？<br><br>
-            <strong>巴菲特式忠告</strong>："以合理价格买入一家好公司，远胜于以好价格买入一家平庸公司。唯品会是一家好公司，当前价格也足够便宜。但你需要接受一个事实：这可能是一支'收息股'而非'成长股'。如果4%的股息率+每年5-10%的回购能让你满意，这就是一个好的投资。如果你期待股价翻倍，你需要等待增长回归。"
-        </div>
-    </div>
+            <strong>巴菲特式忠告</strong>："以合理价格买入一家好公司，远胜于以好价格买入一家平庸公司。唯品会是一家好公司，当前价格也足够便宜。但你需要接受一个事实：这可能是一支'收息股'而非'成长股'。如果4%的股息率+每年5-10%的回购能让你满意，这就是一个好的投资。<h2 id="chapter7">七、与TJ Maxx/TJX的对比——为什么唯品会值得研究</h2>   </div>
 
     <div class="info-box">
         <h2>七、与TJ Maxx/TJX的对比——为什么唯品会值得研究</h2>
@@ -623,7 +647,7 @@
             <tr><td>市值</td><td>$70亿</td><td>$1,400亿</td></tr>
         </table>
         <div class="highlight">
-            <strong>关键差异</strong>：TJX的ROE远高于唯品会（55% vs 20%），主要因为TJX通过高杠杆和持续回购将股东权益压到极低水平。TJX的PE是唯品会的3-4倍，反映了市场对线下零售"稳如磐石"的信任，以及对中概电商的折价。如果唯品会能证明其增长回归，估值从7倍修复到12-15倍并非不可能，这意味着60-100%的上涨空间。
+            <strong>关键差异</strong>：TJX的ROE远高于唯品会（55% vs 20%），主要因为TJX通过高杠杆和持续回购将股东权益压到极低水平。TJX的PE是唯品会的3-4倍，反映了市场对线下零售"稳如磐石"的信任，以及对中概电商的折价。如果唯品会能证明其增长回归，估值<h2 id="chapter8">八、数据来源</h2>可能，这意味着60-100%的上涨空间。
         </div>
     </div>
 

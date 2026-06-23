@@ -162,6 +162,28 @@
         }
                 .top-nav-bar { position: fixed; top: 0; left: 0; right: 0; height: 44px; background: #2c3e50; display: flex; align-items: center; justify-content: flex-end; padding: 0 20px; z-index: 9999; box-shadow: 0 2px 8px rgba(0,0,0,0.15); gap: 8px; }
         .top-nav-link { color: white; padding: 6px 16px; border-radius: 16px; text-decoration: none; font-size: 13px; transition: background 0.2s; white-space: nowrap; }
+            .section-nav {
+            background: white;
+            border-radius: 10px;
+            padding: 15px 25px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+        .section-nav a {
+            display: inline-block;
+            margin: 5px 10px;
+            padding: 6px 14px;
+            background: #eaf2f8;
+            color: #1a5276;
+            text-decoration: none;
+            border-radius: 15px;
+            font-size: 0.9em;
+        }
+        .section-nav a:hover {
+            background: #2e86c1;
+            color: white;
+        }
     </style>
 </head>
 <body>
@@ -171,9 +193,19 @@
     <h1>Buckle Inc. (NYSE: BKE)</h1>
     <p class="subtitle">巴菲特/芒格式价值投资基本面分析 | 更新日期：2026年5月</p>
 
+    <div class="section-nav">
+        <a href="#chapter1">公司基本信息</a>
+        <a href="#chapter2">业务分析</a>
+        <a href="#chapter3">业务板块产品竞争力分析</a>
+        <a href="#chapter4">历史财务指标（2000-2026）</a>
+        <a href="#chapter5">竞争分析</a>
+        <a href="#chapter6">利润分配分析（过去十年 FY2016-FY2025）</a>
+        <a href="#chapter7">综合评估与投资结论</a>
+    </div>
+
     <!-- 一、公司基本信息 -->
     <div class="info-box">
-        <h2>一、公司基本信息</h2>
+        <h2 id="chapter1">一、公司基本信息</h2>
         <table>
             <tr><td>公司全称</td><td>The Buckle, Inc.</td></tr>
             <tr><td>股票代码</td><td>NYSE: BKE</td></tr>
@@ -195,8 +227,7 @@
     </div>
 
     <!-- 二、业务分析 -->
-    <div class="info-box">
-        <h2>二、业务分析</h2>
+    <div class="info-<h2 id="chapter2">二、业务分析</h2>h2>二、业务分析</h2>
 
         <h3>2.1 通俗解释：Buckle是干什么的？</h3>
         <p>用最简单的话说，<strong>Buckle就是美国年轻人的"牛仔裤专卖店"</strong>。当你走进美国中西部的购物中心，很可能会看到一家Buckle门店——门口摆满了各种品牌和款式的牛仔裤，店员热情地为你推荐搭配。Buckle的核心理念是：<strong>用专业的服务帮你找到最合身的牛仔裤，然后顺便把上衣、外套、鞋子和配饰也一起卖了</strong>。</p>
@@ -277,8 +308,7 @@
     </div>
 
     <!-- 三、业务板块产品竞争力分析 -->
-    <div class="info-box">
-        <h2>三、业务板块产品竞争力分析</h2>
+    <di<h2 id="chapter3">三、业务板块产品竞争力分析</h2>      <h2>三、业务板块产品竞争力分析</h2>
 
         <div class="competitiveness-box">
             <h3>3.1 牛仔服饰 (Denim) 产品竞争力分析</h3>
@@ -372,8 +402,7 @@
         </div>
     </div>
 
-    <!-- 四、历史财务指标 -->
-    <div class="info-box">
+    <!-- 四、历史财务<h2 id="chapter4">四、历史财务指标（2000-2026）</h2>box">
         <h2>四、历史财务指标（2000-2026）</h2>
 
         <h3>4.1 净资产收益率 (ROE) 趋势</h3>
@@ -478,8 +507,7 @@
             <strong>巴菲特视角：</strong>产权比率从2017年的1.4x升至2019年的2.2x，完全是会计准则变更导致的，而非实际杠杆增加。BKE的真实财务杠杆极低——没有任何有息负债，$3亿+现金储备。巴菲特会说："这是我最喜欢的资产负债表——没有债务，大量现金，赚钱的生意。"
         </div>
     </div>
-
-    <!-- 五、竞争分析 -->
+<h2 id="chapter5">五、竞争分析</h2>析 -->
     <div class="info-box">
         <h2>五、竞争分析</h2>
 
@@ -635,11 +663,7 @@
             <strong>综合护城河评级：窄/几乎无</strong><br>
             Buckle是一家<strong>运营优秀但护城河极浅</strong>的公司。它的超高ROE和利润率来自精细的运营管理（牛仔专业选品、高比例私有品牌、极致成本控制），而非结构性竞争优势。巴菲特会说："这是一匹跑得很快的马，但赛道没有围栏——任何竞争对手都可以进入。" <br><br>
             <strong>BKE最接近"护城河"的是其门店服务体验</strong>——免费裁裤脚、个性化造型建议、热情的店员——这些是线上购物无法复制的。但这种"服务护城河"非常脆弱：①需要持续投入人力成本；②可以被竞争对手模仿；③年轻消费者越来越习惯自助购物。
-        </div>
-    </div>
-
-    <!-- 六、利润分配分析 -->
-    <div class="info-box">
+        </div><h2 id="chapter6">六、利润分配分析（过去十年 FY2016-FY2025）</h2>  <div class="info-box">
         <h2>六、利润分配分析（过去十年 FY2016-FY2025）</h2>
 
         <h3>6.1 利润分配总览（回购计入留存）</h3>
@@ -722,9 +746,7 @@
             <strong>优点：</strong>①零负债+大量现金储备，财务极其稳健；②通过特别股息将多余现金返还股东，而非低效囤积或盲目扩张；③常规股息派息率仅34%，安全性极高；④FY2022-2023年留存比率为正，说明在盈利高峰期适度留存。<br>
             <strong>缺点：</strong>①过去10年中7年留存比率为负，意味着公司长期来看在"吃老本"——分配的利润超过了当年赚取的利润；②几乎没有股票回购——在PE仅8-12x的低估值时期，回购股票可能是比发放特别股息更高效的资本配置方式；③门店扩张极其保守（每年仅开6-14家新店），可能错失增长机会。<br>
             <strong>可持续增长率 = ROE × 留存比率：</strong>以FY2025为例，49.4% × (-7.2%) = -3.6%。负的可持续增长率意味着公司当前的增长完全依赖存量资产运营效率的提升，而非新增投资。长期来看，如果BKE不增加再投资，营收增长将趋于停滞。<br><br>
-            <strong>总体评价：</strong>资本配置能力中等。特别股息策略对收入型投资者极具吸引力，但从巴菲特的角度看，<strong>在低估值时回购股票比发放特别股息更能创造长期价值</strong>。1美元留存应至少创造1美元市值——BKE的留存为负，意味着它选择将利润全部分配，而非再投资创造复利增长。
-        </div>
-    </div>
+            <strong>总体评价：</strong>资本配置能力中等。特别股息策略对收入型投资者极具吸引力，但从巴菲特的角度看，<strong>在低估值时回购股票比发放特别股息更能创造长期价值</strong>。1美元留存应至少创造1美元市值——BKE的留存为负，意味着它选择将利润全部分配，而非再投资创造复利增长<h2 id="chapter7">七、综合评估与投资结论</h2> </div>
 
     <!-- 七、综合评估 -->
     <div class="info-box">

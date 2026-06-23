@@ -118,13 +118,44 @@
     
                 .top-nav-bar { position: fixed; top: 0; left: 0; right: 0; height: 44px; background: #2c3e50; display: flex; align-items: center; justify-content: flex-end; padding: 0 20px; z-index: 9999; box-shadow: 0 2px 8px rgba(0,0,0,0.15); gap: 8px; }
         .top-nav-link { color: white; padding: 6px 16px; border-radius: 16px; text-decoration: none; font-size: 13px; transition: background 0.2s; white-space: nowrap; }
+            .section-nav {
+            background: white;
+            border-radius: 10px;
+            padding: 15px 25px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+        .section-nav a {
+            display: inline-block;
+            margin: 5px 10px;
+            padding: 6px 14px;
+            background: #eaf2f8;
+            color: #1a5276;
+            text-decoration: none;
+            border-radius: 15px;
+            font-size: 0.9em;
+        }
+        .section-nav a:hover {
+            background: #2e86c1;
+            color: white;
+        }
     </style>
 </head>
 <body>
     <h1>Moody's Corporation (MCO) 价值投资分析</h1>
 
+    <div class="section-nav">
+        <a href="#chapter1">公司基本信息</a>
+        <a href="#chapter2">业务分析</a>
+        <a href="#chapter3">历史财务指标</a>
+        <a href="#chapter4">竞争分析</a>
+        <a href="#chapter5">利润分配分析（过去十年）</a>
+        <a href="#chapter6">投资总结</a>
+    </div>
+
     <div class="info-box">
-        <h2>一、公司基本信息</h2>
+        <h2 id="chapter1">一、公司基本信息</h2>
         <table>
             <tr><th>项目</th><th>详情</th></tr>
             <tr><td>公司全称</td><td>Moody's Corporation（穆迪公司）</td></tr>
@@ -152,8 +183,7 @@
         </table>
     </div>
 
-    <div class="info-box">
-        <h2>二、业务分析</h2>
+    <div class="info-<h2 id="chapter2">二、业务分析</h2>h2>二、业务分析</h2>
         <h3>2.1 通俗解释：穆迪是干什么的？</h3>
         <p>
             用最简单的话说，<strong>穆迪是一家"给借钱的人打分"的公司</strong>。想象一下，你想借钱给一个陌生人，但你不知道他靠不靠谱、还不还得上。这时候你需要一个"信用侦探"帮你调查这个人的还款能力和意愿，然后给他一个分数——AAA表示超级靠谱，D表示已经赖账了。穆迪就是全球最权威的"信用侦探"之一。
@@ -367,7 +397,7 @@
         </table>
     </div>
 
-    <div class="info-box">
+    <di<h2 id="chapter3">三、历史财务指标</h2>">
         <h2>三、历史财务指标</h2>
 
         <h3>3.1 净资产收益率（ROE）</h3>
@@ -466,9 +496,7 @@
                 <td>净利率</td><td>35.6%</td><td>25.1%</td><td>27.2%</td><td>29.0%</td><td>31.9%</td>
             </tr>
         </table>
-    </div>
-
-    <div class="info-box">
+    <<h2 id="chapter4">四、竞争分析</h2> class="info-box">
         <h2>四、竞争分析</h2>
 
         <h3>4.1 主要竞争对手</h3>
@@ -616,10 +644,7 @@
             <tr>
                 <td>成本优势</td><td><span class="tag tag-green">强</span></td><td>高</td><td>轻资产模式，边际成本极低，规模效应显著</td>
             </tr>
-        </table>
-    </div>
-
-    <div class="info-box">
+        <h2 id="chapter5">五、利润分配分析（过去十年）</h2>  <div class="info-box">
         <h2>五、利润分配分析（过去十年）</h2>
 
         <h3>5.1 资本回报概况</h3>
@@ -842,8 +867,7 @@
             <p><strong>巴菲特式评价</strong>：穆迪的资本配置堪称教科书级别，这也是巴菲特自2000年持有至今的核心原因：</p>
             <p><strong>正面</strong>：1）<strong>回购纪律性极强</strong>——25年持续回购，流通股缩减30%，这是最"安静"但最有效的价值创造方式；2）<strong>收购策略精准</strong>——RDC（KYC合规）、RMS（保险风险建模）、CAPE Analytics（AI+气候风险）等收购都精准补强了MA的能力版图，而非盲目多元化；3）<strong>股息增长稳健</strong>——10年年均增长10.7%，派息率控制在25-28%，既回报股东又不影响增长投资；4）<strong>自由现金流转化率超100%</strong>——轻资产模式的极致体现，赚到的利润几乎全部变成可自由支配的现金。</p>
             <p><strong>关注点</strong>：1）2026年Q1单季回购$15亿，年化$60亿——这个速度不可持续（超过自由现金流的2倍），意味着公司可能在动用现金储备或增加债务来回购；2）回购时机——2025年股价在$400-530区间波动，2026年Q1在$430-470区间回购，估值并不便宜（PE 30x+），但管理层显然认为当前股价仍有吸引力；3）收购整合风险——RMS、CAPE等收购需要时间验证协同效应。</p>
-            <p><strong>总体评价</strong>：穆迪的资本配置策略是"回购驱动型"——将自由现金流的大部分用于回购股票，辅以稳健的股息增长和精准的小型收购。这种策略在穆迪这种轻资产、高利润率、强护城河的公司上效果极佳——因为穆迪几乎不需要保留大量现金用于资本开支，自由现金流可以放心地回报股东。巴菲特2000年买入时PE仅12倍，如今PE 32倍——估值扩张了2.7倍，叠加盈利增长和回购缩股，总回报惊人。</p>
-        </div>
+            <p><strong>总体评价</strong>：穆迪的资本配置策略是"回购驱动型"——将自由现金流的大部分用于回购股票，辅以稳健的股息增长和精准的小型收购。这种策略在穆迪这种轻资产、高利润率、强护城河的公司上效果极佳——因为穆迪几乎不需要保留大量现金用于资本开支，自由现金流可以放心地回报股东。巴菲特2000年买入时PE仅12倍，如今PE 32倍——估值扩张了2.7倍，叠加盈利增长和回购缩股，总回报<h2 id="chapter6">六、投资总结</h2> </div>
     </div>
 
     <div class="info-box">

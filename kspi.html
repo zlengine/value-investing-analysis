@@ -97,6 +97,28 @@
         }
                 .top-nav-bar { position: fixed; top: 0; left: 0; right: 0; height: 44px; background: #2c3e50; display: flex; align-items: center; justify-content: flex-end; padding: 0 20px; z-index: 9999; box-shadow: 0 2px 8px rgba(0,0,0,0.15); gap: 8px; }
         .top-nav-link { color: white; padding: 6px 16px; border-radius: 16px; text-decoration: none; font-size: 13px; transition: background 0.2s; white-space: nowrap; }
+            .section-nav {
+            background: white;
+            border-radius: 10px;
+            padding: 15px 25px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+        .section-nav a {
+            display: inline-block;
+            margin: 5px 10px;
+            padding: 6px 14px;
+            background: #eaf2f8;
+            color: #1a5276;
+            text-decoration: none;
+            border-radius: 15px;
+            font-size: 0.9em;
+        }
+        .section-nav a:hover {
+            background: #2e86c1;
+            color: white;
+        }
     </style>
 </head>
 <body>
@@ -104,9 +126,19 @@
     <script src="nav_bar.js"></script>
     <span id="topbarCode" style="display:none;">KSPI</span>
     <h1>Kaspi.kz (KSPI) 详细分析</h1>
+
+    <div class="section-nav">
+        <a href="#chapter1">公司基本信息</a>
+        <a href="#chapter2">上市以来财务指标 (2018-2025)</a>
+        <a href="#chapter3">收入与利润趋势 (2018-2025)</a>
+        <a href="#chapter4">业务分析</a>
+        <a href="#chapter5">竞争分析与护城河</a>
+        <a href="#chapter6">财务摘要 (2025年)</a>
+        <a href="#chapter7">投资建议</a>
+    </div>
     
     <div class="info-box">
-        <h2>一、公司基本信息</h2>
+        <h2 id="chapter1">一、公司基本信息</h2>
         <table>
             <tr>
                 <th>项目</th>
@@ -159,8 +191,7 @@
         </table>
     </div>
     
-    <div class="chart-container">
-        <h2>二、上市以来财务指标 (2018-2025)</h2>
+    <div class="chart-contai<h2 id="chapter2">二、上市以来财务指标 (2018-2025)</h2>018-2025)</h2>
         <h3>2.1 净资产利润率 (ROE) 趋势</h3>
         <p><strong>说明</strong>：ROE保持在40%左右的高水平，反映公司强大的盈利能力。</p>
         <canvas id="roeChart"></canvas>
@@ -174,13 +205,10 @@
         <canvas id="peChart"></canvas>
     </div>
     
-    <div class="chart-container">
-        <h2>三、收入与利润趋势 (2018-2025)</h2>
+    <div class<h2 id="chapter3">三、收入与利润趋势 (2018-2025)</h2>2>三、收入与利润趋势 (2018-2025)</h2>
         <p><strong>说明</strong>：Kaspi.kz保持高速增长，营收从2018年的375亿坚戈增长到2025年的4,043亿坚戈。</p>
         <canvas id="revenueChart"></canvas>
-    </div>
-    
-    <div class="info-box">
+    </div<h2 id="chapter4">四、业务分析</h2> class="info-box">
         <h2>四、业务分析</h2>
         
         <h3>4.1 公司业务概述（通俗解释）</h3>
@@ -270,9 +298,7 @@
                 <td>主要市场，几乎垄断地位</td>
             </tr>
         </table>
-        <p><strong>说明</strong>：Kaspi.kz目前主要专注于哈萨克斯坦市场，但正在通过与AliPay+的合作拓展国际支付业务，并计划中期内向中亚和高加索地区的部分国家扩张。</p>
-    </div>
-    
+        <p><strong>说明</strong>：Kaspi.kz目前主要专注于哈萨克斯坦市场，但正在通过与AliPay+的合作拓展国际支付业务，并计划中期内向中亚和高加索地区的部分国家扩张。<h2 id="chapter5">五、竞争分析与护城河</h2> 
     <div class="info-box">
         <h2>五、竞争分析与护城河</h2>
         
@@ -322,9 +348,7 @@
                 <li><strong>品牌护城河</strong>：Kaspi是哈萨克斯坦最知名的金融服务和电商公司，品牌认知度极高，用户信任度强</li>
                 <li><strong>整合生态护城河</strong>：将支付、电商、金融服务整合在一个App中，用户迁移成本极高。用户一旦使用Kaspi，就很难再使用其他分散的服务</li>
                 <li><strong>数据护城河</strong>：通过平台积累的海量用户行为数据，能够更好地理解用户需求，提供个性化服务，同时用于风控和精准营销</li>
-            </ul>
-        </div>
-    </div>
+            </<h2 id="chapter6">六、财务摘要 (2025年)</h2></div>
     
     <div class="info-box">
         <h2>六、财务摘要 (2025年)</h2>
@@ -368,7 +392,7 @@
             <tr>
                 <td>市值</td>
                 <td>约140.2亿美元</td>
-            </tr>
+  <h2 id="chapter7">七、投资建议</h2>
         </table>
     </div>
     

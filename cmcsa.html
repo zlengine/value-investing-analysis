@@ -171,6 +171,28 @@
         }
                 .top-nav-bar { position: fixed; top: 0; left: 0; right: 0; height: 44px; background: #2c3e50; display: flex; align-items: center; justify-content: flex-end; padding: 0 20px; z-index: 9999; box-shadow: 0 2px 8px rgba(0,0,0,0.15); gap: 8px; }
         .top-nav-link { color: white; padding: 6px 16px; border-radius: 16px; text-decoration: none; font-size: 13px; transition: background 0.2s; white-space: nowrap; }
+            .section-nav {
+            background: white;
+            border-radius: 10px;
+            padding: 15px 25px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+        .section-nav a {
+            display: inline-block;
+            margin: 5px 10px;
+            padding: 6px 14px;
+            background: #eaf2f8;
+            color: #1a5276;
+            text-decoration: none;
+            border-radius: 15px;
+            font-size: 0.9em;
+        }
+        .section-nav a:hover {
+            background: #2e86c1;
+            color: white;
+        }
     </style>
 </head>
 <body>
@@ -180,9 +202,19 @@
     <h1>Comcast Corporation (NASDAQ: CMCSA)</h1>
     <p class="subtitle">巴菲特/芒格式价值投资基本面分析 | 更新日期：2026年5月</p>
 
+    <div class="section-nav">
+        <a href="#chapter1">公司基本信息</a>
+        <a href="#chapter2">业务分析</a>
+        <a href="#chapter3">业务板块产品竞争力分析</a>
+        <a href="#chapter4">历史财务指标（2016-2025）</a>
+        <a href="#chapter5">竞争分析</a>
+        <a href="#chapter6">利润分配分析（2016-2025）</a>
+        <a href="#chapter7">投资总结</a>
+    </div>
+
     <!-- 一、公司基本信息 -->
     <div class="info-box">
-        <h2>一、公司基本信息</h2>
+        <h2 id="chapter1">一、公司基本信息</h2>
         <table>
             <tr><td>公司全称</td><td>Comcast Corporation</td></tr>
             <tr><td>股票代码</td><td>NASDAQ: CMCSA</td></tr>
@@ -203,8 +235,7 @@
     </div>
 
     <!-- 二、业务分析 -->
-    <div class="info-box">
-        <h2>二、业务分析</h2>
+    <div class="info-<h2 id="chapter2">二、业务分析</h2>h2>二、业务分析</h2>
         
         <h3>2.1 通俗解释：Comcast是干什么的？</h3>
         <p>用最简单的话说，<strong>Comcast就是美国的"宽带+电视+手机+电影+主题公园"超级帝国</strong>。如果你住在美国，你家上网用的Xfinity宽带、手机用的Xfinity Mobile、看的NBC电视、在Peacock上看的英超和NBA、去奥兰多玩的环球影城——这些全都是Comcast的生意。在欧洲，它还通过Sky品牌提供宽带和电视服务。</p>
@@ -290,8 +321,7 @@
     </div>
 
     <!-- 三、业务板块产品竞争力分析 -->
-    <div class="info-box">
-        <h2>三、业务板块产品竞争力分析</h2>
+    <di<h2 id="chapter3">三、业务板块产品竞争力分析</h2>      <h2>三、业务板块产品竞争力分析</h2>
 
         <div class="competitiveness-box">
             <h3>3.1 住宅宽带 (Residential Broadband) 产品竞争力分析</h3>
@@ -453,8 +483,7 @@
         </div>
     </div>
 
-    <!-- 四、历史财务指标 -->
-    <div class="info-box">
+    <!-- 四、历史财务<h2 id="chapter4">四、历史财务指标（2016-2025）</h2>box">
         <h2>四、历史财务指标（2016-2025）</h2>
         
         <h3>4.1 净资产收益率 (ROE) 趋势</h3>
@@ -526,8 +555,7 @@
             <strong>巴菲特视角：</strong>当前PE 4.7x看似极低，但这是因为2025年净收入含$94亿Hulu出售一次性收益。调整后EPS $4.31，对应正常化PE约5.9x。即使按正常化PE，CMCSA也处于历史低位——市场正在为宽带用户流失和媒体业务不确定性定价。与同行相比：Charter (CHTR) PE约11x，AT&T约10x，Verizon约9x。CMCSA的估值折让反映了市场对其转型不确定性的担忧，但也可能意味着安全边际。
         </div>
     </div>
-
-    <!-- 五、竞争分析 -->
+<h2 id="chapter5">五、竞争分析</h2>析 -->
     <div class="info-box">
         <h2>五、竞争分析</h2>
         
@@ -670,10 +698,7 @@
         </table>
         <div class="highlight">
             <strong>巴菲特视角：</strong>宽带用户流失是Comcast投资者必须面对的核心问题。2022年净增5.5万→2025年净减71.1万，流失速度在加速。这不是周期性波动，而是<strong>结构性变化</strong>——5G FWA（T-Mobile/Verizon）和光纤入户（AT&T）正在为消费者提供真正的替代选择。Comcast的应对策略是：（1）5年价格保证留住价格敏感客户；（2）免费无线1年吸引新客户；（3）升级多千兆网络提升产品竞争力。但巴菲特会问：如果宽带用户持续流失，Comcast的"现金牛"还能产多少奶？这是决定CMCSA投资价值的关键变量。
-        </div>
-    </div>
-
-    <!-- 六、利润分配分析 -->
+        </div><h2 id="chapter6">六、利润分配分析（2016-2025）</h2>分析 -->
     <div class="info-box">
         <h2>六、利润分配分析（2016-2025）</h2>
 
@@ -728,8 +753,7 @@
         </div>
 
         <div class="highlight">
-            <strong>股息政策评估：</strong>Comcast的股息率约5.2%（TTM $1.32/股），在大型通信公司中属于较高水平（AT&T约4.5%，Verizon约6.5%）。派息率约25%（正常化净利润），股息安全性较高。连续16年增加股息，年复合增长率约10%。但2022年派息率一度超过100%（净利润仅$54亿但分红$46亿），说明在极端情况下股息可能面临压力。对于追求股息收入的投资者，CMCSA的5.2%股息率+低PE组合具有吸引力，但需关注宽带用户流失对长期现金流的影响。
-        </div>
+            <strong>股息政策评估：</strong>Comcast的股息率约5.2%（TTM $1.32/股），在大型通信公司中属于较高水平（AT&T约4.5%，Verizon约6.5%）。派息率约25%（正常化净利润），股息安全性较高。连续16年增加股息，年复合增长率约10%。但2022年派息率一度超过100%（净利润仅$54亿但分红$46亿），说明在极端情况下股息可能面临压力。对于追求股息收入的投资者，CMCSA的5.2%股息率+低PE组合具有吸引力，但需关注宽带用户流失对长期现金流的影响<h2 id="chapter7">七、投资总结</h2>>
     </div>
 
     <!-- 七、投资总结 -->

@@ -134,6 +134,28 @@
         }
                 .top-nav-bar { position: fixed; top: 0; left: 0; right: 0; height: 44px; background: #2c3e50; display: flex; align-items: center; justify-content: flex-end; padding: 0 20px; z-index: 9999; box-shadow: 0 2px 8px rgba(0,0,0,0.15); gap: 8px; }
         .top-nav-link { color: white; padding: 6px 16px; border-radius: 16px; text-decoration: none; font-size: 13px; transition: background 0.2s; white-space: nowrap; }
+            .section-nav {
+            background: white;
+            border-radius: 10px;
+            padding: 15px 25px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+        .section-nav a {
+            display: inline-block;
+            margin: 5px 10px;
+            padding: 6px 14px;
+            background: #eaf2f8;
+            color: #1a5276;
+            text-decoration: none;
+            border-radius: 15px;
+            font-size: 0.9em;
+        }
+        .section-nav a:hover {
+            background: #2e86c1;
+            color: white;
+        }
     </style>
 </head>
 <body>
@@ -143,8 +165,18 @@
     <h1>H&R Block, Inc.</h1>
     <p class="subtitle">NYSE: HRB | 价值投资基本面分析 | 更新日期：2026年5月11日</p>
 
+    <div class="section-nav">
+        <a href="#chapter1">公司基本信息</a>
+        <a href="#chapter2">业务分析</a>
+        <a href="#chapter3">历史财务指标</a>
+        <a href="#chapter4">竞争分析与护城河</a>
+        <a href="#chapter5">利润分配分析（过去十年）</a>
+        <a href="#chapter6">投资结论</a>
+        <a href="#chapter7">数据来源</a>
+    </div>
+
     <div class="info-box">
-        <h2>一、公司基本信息</h2>
+        <h2 id="chapter1">一、公司基本信息</h2>
         <table>
             <tr><th>项目</th><th>详情</th></tr>
             <tr><td>公司名称</td><td>H&R Block, Inc.（H&R布洛克）</td></tr>
@@ -169,8 +201,7 @@
         </table>
     </div>
 
-    <div class="info-box">
-        <h2>二、业务分析</h2>
+    <div class="info-<h2 id="chapter2">二、业务分析</h2>h2>二、业务分析</h2>
 
         <h3>2.1 公司是做什么的？</h3>
         <p>用最简单的话说：<strong>H&R Block就是那个帮你报税的公司</strong>。每年报税季（1-4月），数百万美国人走进H&R Block的门店，或者使用它的在线软件，让专业人士帮自己填写和提交税务申报表。如果你在美国工作过，你大概率见过H&R Block的绿色招牌——它在美国有约10,300家门店，比星巴克还多。</p>
@@ -214,7 +245,7 @@
         </div>
     </div>
 
-    <div class="info-box">
+    <di<h2 id="chapter3">三、历史财务指标</h2>">
         <h2>三、历史财务指标</h2>
 
         <h3>3.1 净资产收益率（ROE）趋势</h3>
@@ -345,9 +376,7 @@
         <div class="highlight">
             <p><strong>营收趋势分析</strong>：HRB过去15年营收基本在$29-38亿之间波动，年复合增长率仅约1.5%。这是一个典型的<strong>低增长成熟业务</strong>。2020年因COVID-19导致报税季延期，营收大幅下降14.7%。2021年因延期效应恢复增长29.3%，但之后增速回归低个位数。公司主要通过提价（NAC增长）而非量增来驱动收入增长。</p>
         </div>
-    </div>
-
-    <div class="info-box">
+    <<h2 id="chapter4">四、竞争分析与护城河</h2>ss="info-box">
         <h2>四、竞争分析与护城河</h2>
 
         <h3>4.1 主要竞争对手</h3>
@@ -403,10 +432,7 @@
             <p>AI技术正在简化报税流程，可能减少对人工税务专家的需求。TurboTax已推出AI驱动的报税助手，H&R Block也在跟进，但AI可能降低整个行业的收费水平。</p>
             <h4>3. 税法简化风险</h4>
             <p>如果美国税法大幅简化（如推行统一税率），报税需求将大幅减少。虽然短期内不太可能，但这是长期结构性风险。</p>
-        </div>
-    </div>
-
-    <div class="info-box">
+      <h2 id="chapter5">五、利润分配分析（过去十年）</h2>  <div class="info-box">
         <h2>五、利润分配分析（过去十年）</h2>
 
         <h3>5.1 资本配置总览</h3>
@@ -459,8 +485,7 @@
         <div class="highlight">
             <p><strong>资本配置评价</strong>：</p>
             <p><strong class="positive">优点</strong>：管理层在资本配置上表现出高度纪律性。自2016年以来，以均价约$30-35回购了43%的流通股，远低于当前股价（$37-55），说明回购时机选择较好。股息连续8年增长，支付率维持在30-40%的健康水平。</p>
-            <p><strong class="negative">风险</strong>：公司通过借债回购股票，将股东权益压至接近零。虽然这提升了EPS和ROE，但也使公司在经济下行时缺乏缓冲。2020年COVID期间净利润几乎为零，如果持续更久可能面临偿债压力。此外，加盟店收购是近年新增的资本配置方向，回报率尚待验证。</p>
-        </div>
+            <p><strong class="negative">风险</strong>：公司通过借债回购股票，将股东权益压至接近零。虽然这提升了EPS和ROE，但也使公司在经济下行时缺乏缓冲。2020年COVID期间净利润几乎为零，如果持续更久可能面临偿债压力。此外，加盟店收购是近年新增的资本配置方向，回报率尚待<h2 id="chapter6">六、投资结论</h2> </div>
     </div>
 
     <div class="info-box">
@@ -516,7 +541,7 @@
             <p><strong>内在价值估算</strong>：</p>
             <p>假设FY2026调整后EPS为$4.85（公司指引中值），给予12x PE（略低于历史均值），合理价值约$58。当前股价约$37，存在约<strong>57%的安全边际</strong>。</p>
             <p>但需注意：12x PE假设需要公司维持当前盈利水平并实现温和增长。如果IRS Direct File全面推广或AI大幅降低报税需求，EPS可能下降，安全边际将缩小。</p>
-            <p><strong>结论</strong>：H&R Block是一个典型的<strong>低估值、高股息、低增长</strong>的价值股。适合追求稳定现金流的收益型投资者，但不适合追求资本增值的成长型投资者。投资者需密切关注IRS免费报税政策和AI技术对行业的长期影响。</p>
+            <p><strong>结论</strong>：H&R Block是一个典型的<strong>低估值、高股息、低增长</strong>的价值股。适合追求稳定现金流的收益型投资者，但不适合追求资本增值的成长型投资者。投资者需密切关注IRS免费报<h2 id="chapter7">七、数据来源</h2>响。</p>
         </div>
     </div>
 

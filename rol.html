@@ -55,6 +55,28 @@
         .star { color: #f39c12; }
                 .top-nav-bar { position: fixed; top: 0; left: 0; right: 0; height: 44px; background: #2c3e50; display: flex; align-items: center; justify-content: flex-end; padding: 0 20px; z-index: 9999; box-shadow: 0 2px 8px rgba(0,0,0,0.15); gap: 8px; }
         .top-nav-link { color: white; padding: 6px 16px; border-radius: 16px; text-decoration: none; font-size: 13px; transition: background 0.2s; white-space: nowrap; }
+            .section-nav {
+            background: white;
+            border-radius: 10px;
+            padding: 15px 25px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+        .section-nav a {
+            display: inline-block;
+            margin: 5px 10px;
+            padding: 6px 14px;
+            background: #eaf2f8;
+            color: #1a5276;
+            text-decoration: none;
+            border-radius: 15px;
+            font-size: 0.9em;
+        }
+        .section-nav a:hover {
+            background: #2e86c1;
+            color: white;
+        }
     </style>
 </head>
 <body>
@@ -64,9 +86,21 @@
     <h1>Rollins 罗林斯 (NYSE: ROL)</h1>
     <p class="subtitle">巴菲特/芒格式价值投资基本面分析 | 更新日期：2026年6月</p>
 
+    <div class="section-nav">
+        <a href="#chapter1">公司基本信息</a>
+        <a href="#chapter2">业务分析</a>
+        <a href="#chapter3">业务板块产品竞争力分析</a>
+        <a href="#chapter4">历史财务指标 (2015-2025)</a>
+        <a href="#chapter5">四（续）、收入与利润趋势 (2015-2025)</a>
+        <a href="#chapter6">竞争分析与护城河</a>
+        <a href="#chapter7">利润分配分析（过去十年）</a>
+        <a href="#chapter8">投资总结</a>
+        <a href="#chapter9">数据来源</a>
+    </div>
+
     <!-- 一、公司基本信息 -->
     <div class="info-box">
-        <h2>一、公司基本信息</h2>
+        <h2 id="chapter1">一、公司基本信息</h2>
         <table>
             <tr><td>公司全称</td><td>Rollins, Inc.（罗林斯公司）</td></tr>
             <tr><td>股票代码</td><td>NYSE: ROL</td></tr>
@@ -89,8 +123,7 @@
     </div>
 
     <!-- 二、业务分析 -->
-    <div class="info-box">
-        <h2>二、业务分析</h2>
+    <div class="info-<h2 id="chapter2">二、业务分析</h2>h2>二、业务分析</h2>
 
         <h3>2.1 公司业务概述（通俗解释）</h3>
         <div class="highlight">
@@ -192,8 +225,7 @@
     </div>
 
     <!-- 三、业务板块产品竞争力分析 -->
-    <div class="info-box">
-        <h2>三、业务板块产品竞争力分析</h2>
+    <di<h2 id="chapter3">三、业务板块产品竞争力分析</h2>      <h2>三、业务板块产品竞争力分析</h2>
 
         <h3>3.1 住宅害虫防治产品竞争力分析</h3>
 
@@ -279,7 +311,7 @@
     </div>
 
     <!-- 四、历史财务指标 -->
-    <div class="chart-container">
+<h2 id="chapter4">四、历史财务指标 (2015-2025)</h2>er">
         <h2>四、历史财务指标 (2015-2025)</h2>
 
         <h3>4.1 净资产利润率 (ROE) 趋势</h3>
@@ -296,16 +328,10 @@
 
         <h3>4.4 产权比率（资产/权益）趋势</h3>
         <p><strong>说明</strong>：产权比率反映财务杠杆水平。Rollins的产权比率从2015年的1.8倍逐步升至2025年的2.5倍，主要因收购融资增加债务。但整体杠杆水平仍属温和。</p>
-        <canvas id="equityRatioChart"></canvas>
-    </div>
-
-    <div class="chart-container">
+        <canvas id="equityRatioChart"></canvas<h2 id="chapter5">四（续）、收入与利润趋势 (2015-2025)</h2>rt-container">
         <h2>四（续）、收入与利润趋势 (2015-2025)</h2>
         <p><strong>说明</strong>：Rollins收入从2015年的14.85亿美元增长至2025年的37.61亿美元，10年CAGR约9.7%。净利润从1.52亿美元增长至5.27亿美元，10年CAGR约13.3%。连续24年营收正增长，展现了极强的抗周期性。</p>
-        <canvas id="revenueChart"></canvas>
-    </div>
-
-    <!-- 五、竞争分析 -->
+        <canvas id="revenueChart"></canva<h2 id="chapter6">五、竞争分析与护城河</h2><!-- 五、竞争分析 -->
     <div class="info-box">
         <h2>五、竞争分析与护城河</h2>
 
@@ -390,8 +416,7 @@
                 <li>主要风险：行业进入壁垒低（"一人一卡车"即可开业），价格敏感客户可能被低价竞争者抢走</li>
                 <li>AI对害虫防治行业的冲击有限——"虫子不关心AI，还是得有人开着卡车到你家来喷药"</li>
             </ul>
-        </div>
-    </div>
+<h2 id="chapter7">六、利润分配分析（过去十年）</h2>v>
 
     <!-- 六、利润分配分析 -->
     <div class="info-box">
@@ -550,7 +575,7 @@
                 <li><strong>一般</strong>：2025年商誉达$14亿，占总资产44%，收购溢价较高</li>
                 <li><strong>关注</strong>：收购融资增加了债务，利息支出上升对利润率构成压力</li>
                 <li><strong>可持续增长率</strong>：ROE(39%) x 留存比率(38%) ≈ 14.8%，理论可持续增长率较高</li>
-            </ul>
+  <h2 id="chapter8">七、投资总结</h2>
         </div>
     </div>
 
@@ -699,7 +724,7 @@
             <p>当前PE约43倍，EV/EBITDA约35倍，虽从2025年末的55倍PE回落，但仍远高于合理估值水平。按照格雷厄姆-多德的安全边际原则，当前价格缺乏足够的保护。理想买入价位应在PE 30倍以下（对应股价约$33），此时才能获得足够的安全边际。但考虑到Rollins的"类债券"属性和持续增长，PE 35倍（对应股价约$38）可能是更现实的合理买入点。</p>
 
             <p><strong>综合评级：观望/等待更好价格</strong></p>
-            <p>Rollins是一家出色的"收费桥梁"型企业——害虫问题不会消失，客户持续付费，收入可预测。但好公司不等于好投资。正如芒格所言："投资的关键不在于评估一个行业能多大程度影响社会，而在于这家公司的竞争优势能持续多久。"Rollins的竞争优势确实持久，但当前估值已经充分反映了这一点。建议投资者耐心等待市场给出更好的入场机会，如PE回落至35倍以下时积极建仓。</p>
+            <p>Rollins是一家出色的"收费桥梁"型企业——害虫问题不会消失，客户持续付费，收入可预测。但好公司不等于好投资。正如芒格所言："投资的关键不在于评估一个行业能多大程度影响社会，而在于这家公司的竞争优势能持续多久。"Rollins的竞争优势确实持久，但当前估值已经充分反映了这一点。建议投资者耐心等待市场<h2 id="chapter9">数据来源</h2>回落至35倍以下时积极建仓。</p>
         </div>
     </div>
 

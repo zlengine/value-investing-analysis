@@ -97,6 +97,28 @@
         }
                 .top-nav-bar { position: fixed; top: 0; left: 0; right: 0; height: 44px; background: #2c3e50; display: flex; align-items: center; justify-content: flex-end; padding: 0 20px; z-index: 9999; box-shadow: 0 2px 8px rgba(0,0,0,0.15); gap: 8px; }
         .top-nav-link { color: white; padding: 6px 16px; border-radius: 16px; text-decoration: none; font-size: 13px; transition: background 0.2s; white-space: nowrap; }
+            .section-nav {
+            background: white;
+            border-radius: 10px;
+            padding: 15px 25px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+        .section-nav a {
+            display: inline-block;
+            margin: 5px 10px;
+            padding: 6px 14px;
+            background: #eaf2f8;
+            color: #1a5276;
+            text-decoration: none;
+            border-radius: 15px;
+            font-size: 0.9em;
+        }
+        .section-nav a:hover {
+            background: #2e86c1;
+            color: white;
+        }
     </style>
 </head>
 <body>
@@ -104,9 +126,20 @@
     <script src="nav_bar.js"></script>
     <span id="topbarCode" style="display:none;">PPC</span>
     <h1>Pilgrim's Pride (PPC) 详细分析</h1>
+
+    <div class="section-nav">
+        <a href="#chapter1">公司基本信息</a>
+        <a href="#chapter2">历史财务指标 (2018-2025)</a>
+        <a href="#chapter3">收入与利润趋势 (2018-2025)</a>
+        <a href="#chapter4">业务分析</a>
+        <a href="#chapter5">竞争分析与护城河</a>
+        <a href="#chapter6">2013-2023年利润分配分析</a>
+        <a href="#chapter7">财务摘要 (2025年)</a>
+        <a href="#chapter8">投资建议</a>
+    </div>
     
     <div class="info-box">
-        <h2>一、公司基本信息</h2>
+        <h2 id="chapter1">一、公司基本信息</h2>
         <table>
             <tr>
                 <th>项目</th>
@@ -159,8 +192,7 @@
         </table>
     </div>
     
-    <div class="chart-container">
-        <h2>二、历史财务指标 (2018-2025)</h2>
+    <div class="chart-contai<h2 id="chapter2">二、历史财务指标 (2018-2025)</h2>018-2025)</h2>
         <h3>2.1 净资产利润率 (ROE) 趋势</h3>
         <p><strong>说明</strong>：ROE从低位大幅提升至29.4%，显示公司盈利能力显著改善。</p>
         <canvas id="roeChart"></canvas>
@@ -174,13 +206,10 @@
         <canvas id="peChart"></canvas>
     </div>
     
-    <div class="chart-container">
-        <h2>三、收入与利润趋势 (2018-2025)</h2>
+    <div class<h2 id="chapter3">三、收入与利润趋势 (2018-2025)</h2>2>三、收入与利润趋势 (2018-2025)</h2>
         <p><strong>说明</strong>：Pilgrim's Pride的收入和利润保持稳定增长。</p>
         <canvas id="revenueChart"></canvas>
-    </div>
-    
-    <div class="info-box">
+    </div<h2 id="chapter4">四、业务分析</h2> class="info-box">
         <h2>四、业务分析</h2>
         
         <h3>4.1 公司业务概述（通俗解释）</h3>
@@ -303,9 +332,7 @@
                     <td>1.56倍</td>
                 </tr>
             </table>
-        </div>
-    </div>
-    
+        </<h2 id="chapter5">五、竞争分析与护城河</h2> 
     <div class="info-box">
         <h2>五、竞争分析与护城河</h2>
         
@@ -353,9 +380,7 @@
                 <li><strong>分销网络护城河</strong>：强大的分销网络，覆盖全美及国际市场</li>
                 <li><strong>品牌护城河</strong>：知名品牌，消费者信任度高</li>
                 <li><strong>成本优势护城河</strong>：规模化生产带来的成本优势</li>
-            </ul>
-        </div>
-    </div>
+            </<h2 id="chapter6">六、2013-2023年利润分配分析</h2>v>
     
     <div class="info-box">
         <h2>六、2013-2023年利润分配分析</h2>
@@ -429,8 +454,7 @@
                 </tr>
             </table>
             
-            <p><strong>结论</strong>：PPC公司虽然2013-2023年持续盈利，但由于采取了高派息政策（派息率超过100%），大部分利润被用于支付股息，而不是留存用于偿还债务。同时，公司需要持续的资本支出维持运营和扩张，这导致资产负债率没有下降。公司通过平衡股息支付、债务管理和业务需求，维持了稳定的财务状况和股东回报。</p>
-        </div>
+            <p><strong>结论</strong>：PPC公司虽然2013-2023年持续盈利，但由于采取了高派息政策（派息率超过100%），大部分利润被用于支付股息，而不是留存用于偿还债务。同时，公司需要持续的资本支出维持运营和扩张，这导致资产负债率没有下降。公司通过平衡股息支付、债务管理和业务需求，维持了<h2 id="chapter7">七、财务摘要 (2025年)</h2>   </div>
     </div>
     
     <div class="info-box">
@@ -494,8 +518,7 @@
             </tr>
             <tr>
                 <td>经营现金流</td>
-                <td>13.72亿美元</td>
-            </tr>
+                <td>13<h2 id="chapter8">八、投资建议</h2>         </tr>
         </table>
     </div>
     

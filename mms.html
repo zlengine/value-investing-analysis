@@ -131,6 +131,28 @@
     
                 .top-nav-bar { position: fixed; top: 0; left: 0; right: 0; height: 44px; background: #2c3e50; display: flex; align-items: center; justify-content: flex-end; padding: 0 20px; z-index: 9999; box-shadow: 0 2px 8px rgba(0,0,0,0.15); gap: 8px; }
         .top-nav-link { color: white; padding: 6px 16px; border-radius: 16px; text-decoration: none; font-size: 13px; transition: background 0.2s; white-space: nowrap; }
+            .section-nav {
+            background: white;
+            border-radius: 10px;
+            padding: 15px 25px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+        .section-nav a {
+            display: inline-block;
+            margin: 5px 10px;
+            padding: 6px 14px;
+            background: #eaf2f8;
+            color: #1a5276;
+            text-decoration: none;
+            border-radius: 15px;
+            font-size: 0.9em;
+        }
+        .section-nav a:hover {
+            background: #2e86c1;
+            color: white;
+        }
     </style>
 </head>
 <body>
@@ -140,8 +162,19 @@
     <h1>Maximus, Inc. (NYSE: MMS)</h1>
     <p class="subtitle">巴菲特式价值投资基本面分析 | 更新日期：2026年4月27日</p>
 
+    <div class="section-nav">
+        <a href="#chapter1">公司基本信息</a>
+        <a href="#chapter2">业务分析</a>
+        <a href="#chapter3">关键财务指标（2000-2025）</a>
+        <a href="#chapter4">竞争对手与护城河分析</a>
+        <a href="#chapter5">利润分配去向 (2016-2025)</a>
+        <a href="#chapter6">财务摘要 (FY2025)</a>
+        <a href="#chapter7">投资建议</a>
+        <a href="#chapter8">AI发展对MMS业务的影响分析</a>
+    </div>
+
     <div class="info-box">
-        <h2>一、公司基本信息</h2>
+        <h2 id="chapter1">一、公司基本信息</h2>
         <table>
             <tr><td>公司全称</td><td>Maximus, Inc.</td></tr>
             <tr><td>股票代码</td><td>NYSE: MMS</td></tr>
@@ -157,8 +190,7 @@
         </table>
     </div>
 
-    <div class="info-box">
-        <h2>二、业务分析</h2>
+    <div class="info-<h2 id="chapter2">二、业务分析</h2>h2>二、业务分析</h2>
         <h3>2.1 通俗解释：Maximus是干什么的？</h3>
         <p>用最简单的话说，<strong>Maximus就是政府的"外包服务商"</strong>。当政府需要管理各种面向公民的服务项目——比如退伍军人的医疗检查、低收入家庭的医疗补助（Medicaid）资格审核、联邦健康保险（Medicare）的呼叫中心——但政府自己没有足够的人手或技术能力来做这些事情时，就会把这些工作外包给Maximus。</p>
         <p>你可以把Maximus想象成一个"帮政府办事的专业机构"：它雇佣了数万名社工、医疗评估师、客服代表和技术专家，专门帮政府运营那些关系到老百姓切身利益的公共服务项目。从你拨打Medicare咨询热线，到退伍军人做残疾等级评估，背后可能都是Maximus的员工在服务。</p>
@@ -233,8 +265,7 @@
         </table>
     </div>
 
-    <div class="chart-container">
-        <h2>三、关键财务指标（2000-2025）</h2>
+    <div class<h2 id="chapter3">三、关键财务指标（2000-2025）</h2><h2>三、关键财务指标（2000-2025）</h2>
         <h3>3.1 净资产利润率 (ROE) 趋势</h3>
         <canvas id="roeChart"></canvas>
         
@@ -295,9 +326,7 @@
                 <li><strong>PE处于历史低位</strong>：当前PE约10倍，远低于历史均值17-20倍，可能被低估</li>
             </ul>
         </div>
-    </div>
-
-    <div class="info-box">
+    <<h2 id="chapter4">四、竞争对手与护城河分析</h2>="info-box">
         <h2>四、竞争对手与护城河分析</h2>
         
         <h3>4.1 各业务板块竞争对手</h3>
@@ -387,10 +416,7 @@
         
         <div class="highlight">
             <p><strong>护城河总结</strong>：Maximus拥有<strong>中等偏强的经济护城河</strong>，主要来源于高转换成本和政府关系形成的无形资产。其核心护城河是"在位者优势"——一旦赢得政府合同，续约率极高，竞争对手很难抢走。但需注意：大型合同重新竞标时仍有失去风险，且政府预算变化可能影响业务规模。</p>
-        </div>
-    </div>
-
-    <div class="chart-container">
+        </div<h2 id="chapter5">五、利润分配去向 (2016-2025)</h2>"chart-container">
         <h2>五、利润分配去向 (2016-2025)</h2>
         <h3>5.1 过去十年利润分配总览</h3>
         <table>
@@ -518,9 +544,7 @@
                 <li><strong>债务偿还</strong>：FY2021-2024期间，公司优先偿还收购产生的债务，净杠杆率从2.2x降至1.4x（FY2024末），目前为1.5x（FY2025末），低于2-3x的目标区间。</li>
                 <li><strong>资本支出</strong>：相对稳定在$6,000-9,000万/年，主要用于IT系统和办公设施，属于轻资本支出模式。</li>
                 <li><strong>整体分配策略</strong>：利润分配呈现"收购期→偿债期→回购期"的周期性。当前处于积极回购阶段，FY2025回购金额超过净利润，表明管理层认为股票被低估。</li>
-            </ul>
-        </div>
-    </div>
+          <h2 id="chapter6">六、财务摘要 (FY2025)</h2>   </div>
 
     <div class="info-box">
         <h2>六、财务摘要 (FY2025)</h2>
@@ -535,7 +559,7 @@
             <tr><td>合同积压</td><td>约$160亿</td></tr>
             <tr><td>销售渠道</td><td>$513亿</td></tr>
             <tr><td>股息收益率</td><td>约1.9%</td></tr>
-            <tr><td>当前PE</td><td>约10倍</td></tr>
+            <tr><td>当前PE</td<h2 id="chapter7">七、投资建议</h2>/tr>
         </table>
     </div>
 
@@ -565,8 +589,7 @@
                 <li>✅ 管理层诚信：持续回购、保守杠杆、稳定派息</li>
                 <li>✅ 价格合理：PE约10倍，低于内在价值</li>
                 <li>⚠️ ROE波动：受收购和一次性事件影响，需关注ROE稳定性</li>
-                <li>⚠️ 增长有限：政府服务市场增速温和（3-5%），缺乏爆发性增长</li>
-            </ul>
+                <li>⚠️ 增长有限：政府服务市场增速温和（3<h2 id="chapter8">八、AI发展对MMS业务的影响分析</h2>    </ul>
         </div>
     </div>
 

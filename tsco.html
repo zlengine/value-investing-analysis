@@ -154,6 +154,28 @@
         }
                 .top-nav-bar { position: fixed; top: 0; left: 0; right: 0; height: 44px; background: #2c3e50; display: flex; align-items: center; justify-content: flex-end; padding: 0 20px; z-index: 9999; box-shadow: 0 2px 8px rgba(0,0,0,0.15); gap: 8px; }
         .top-nav-link { color: white; padding: 6px 16px; border-radius: 16px; text-decoration: none; font-size: 13px; transition: background 0.2s; white-space: nowrap; }
+            .section-nav {
+            background: white;
+            border-radius: 10px;
+            padding: 15px 25px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+        .section-nav a {
+            display: inline-block;
+            margin: 5px 10px;
+            padding: 6px 14px;
+            background: #eaf2f8;
+            color: #1a5276;
+            text-decoration: none;
+            border-radius: 15px;
+            font-size: 0.9em;
+        }
+        .section-nav a:hover {
+            background: #2e86c1;
+            color: white;
+        }
     </style>
 </head>
 <body>
@@ -163,8 +185,18 @@
     <h1>Tractor Supply Company (NASDAQ: TSCO)</h1>
     <p class="subtitle">巴菲特/芒格式价值投资基本面分析 | 更新日期：2026年5月</p>
 
+    <div class="section-nav">
+        <a href="#chapter1">公司基本信息</a>
+        <a href="#chapter2">业务分析</a>
+        <a href="#chapter3">业务板块产品竞争力分析</a>
+        <a href="#chapter4">历史财务指标</a>
+        <a href="#chapter5">竞争分析</a>
+        <a href="#chapter6">利润分配分析</a>
+        <a href="#chapter7">投资总结</a>
+    </div>
+
     <div class="info-box">
-        <h2>一、公司基本信息</h2>
+        <h2 id="chapter1">一、公司基本信息</h2>
         <table>
             <tr><td>公司全称</td><td>Tractor Supply Company</td></tr>
             <tr><td>股票代码</td><td>NASDAQ: TSCO</td></tr>
@@ -191,8 +223,7 @@
         </div>
     </div>
 
-    <div class="info-box">
-        <h2>二、业务分析</h2>
+    <div class="info-<h2 id="chapter2">二、业务分析</h2>h2>二、业务分析</h2>
         
         <h3>2.1 通俗解释：Tractor Supply是干什么的？</h3>
         <p>用最简单的话说，<strong>Tractor Supply就是美国乡村版的大型综合超市</strong>。想象一下，你住在一个小镇上，方圆50英里内没有沃尔玛，更没有Home Depot。你需要买鸡饲料、狗粮、栅栏、除草机、工作靴、花园水管——这些在城里要去三四个不同店才能买齐的东西，在Tractor Supply一家店就能全部搞定。</p>
@@ -289,8 +320,7 @@
         </ul>
     </div>
 
-    <div class="info-box">
-        <h2>三、业务板块产品竞争力分析</h2>
+    <di<h2 id="chapter3">三、业务板块产品竞争力分析</h2>      <h2>三、业务板块产品竞争力分析</h2>
 
         <h3>3.1 家畜、马匹与农业（Livestock, Equine & Agriculture）产品竞争力分析</h3>
         
@@ -455,9 +485,7 @@
         </div>
 
         <p><strong>综合竞争力评级：⭐</strong>（1/5星）——完全竞争品类，仅作为"顺便购买"补充</p>
-    </div>
-
-    <div class="info-box">
+    <<h2 id="chapter4">四、历史财务指标</h2>lass="info-box">
         <h2>四、历史财务指标</h2>
         <p>注：Tractor Supply于1994年上市，2024年12月进行5:1拆股。以下每股数据均已按拆股后调整。</p>
 
@@ -608,8 +636,7 @@
         <h3>4.2 营收与净利润趋势图</h3>
         <div class="chart-container">
             <canvas id="revenueChart"></canvas>
-        </div>
-    </div>
+      <h2 id="chapter5">五、竞争分析</h2>div>
 
     <div class="info-box">
         <h2>五、竞争分析</h2>
@@ -683,8 +710,7 @@
         <h3>5.3 护城河综合评估</h3>
         <div class="highlight">
             <strong>护城河评级：宽（Wide Moat）</strong>
-            <p>TSCO拥有真正的经济护城河，核心来源是<strong>地理独占性+规模优势</strong>。在乡村零售市场，TSCO已经建立了2,435家门店的网络密度，新竞争者复制这一网络的成本极高且ROI不经济。消耗品（饲料、宠物食品）的刚需属性+地理独占性赋予了TSCO在核心品类上的强定价权。但需注意：在线零售正在缓慢侵蚀地理独占性的价值，季节性/大件品类的护城河较窄，整体护城河宽度面临缓慢缩窄的风险。</p>
-        </div>
+            <p>TSCO拥有真正的经济护城河，核心来源是<strong>地理独占性+规模优势</strong>。在乡村零售市场，TSCO已经建立了2,435家门店的网络密度，新竞争者复制这一网络的成本极高且ROI不经济。消耗品（饲料、宠物食品）的刚需属性+地理独占性赋予了TSCO在核心品类上的强定价权。但需注意：在线零售正在缓慢侵蚀地理独占性的价值，季节性/大件品类的护城河较窄，整体护城河宽度面临缓慢缩窄的<h2 id="chapter6">六、利润分配分析</h2>/div>
     </div>
 
     <div class="info-box">
@@ -818,7 +844,7 @@
 
         <h3>6.3 利润分配饼图（2025年）</h3>
         <div class="chart-container">
-            <canvas id="profitAllocationChart"></canvas>
+            <canvas id="profitAlloc<h2 id="chapter7">七、投资总结</h2>anvas>
         </div>
     </div>
 

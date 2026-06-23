@@ -97,6 +97,28 @@
         }
                 .top-nav-bar { position: fixed; top: 0; left: 0; right: 0; height: 44px; background: #2c3e50; display: flex; align-items: center; justify-content: flex-end; padding: 0 20px; z-index: 9999; box-shadow: 0 2px 8px rgba(0,0,0,0.15); gap: 8px; }
         .top-nav-link { color: white; padding: 6px 16px; border-radius: 16px; text-decoration: none; font-size: 13px; transition: background 0.2s; white-space: nowrap; }
+            .section-nav {
+            background: white;
+            border-radius: 10px;
+            padding: 15px 25px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+        .section-nav a {
+            display: inline-block;
+            margin: 5px 10px;
+            padding: 6px 14px;
+            background: #eaf2f8;
+            color: #1a5276;
+            text-decoration: none;
+            border-radius: 15px;
+            font-size: 0.9em;
+        }
+        .section-nav a:hover {
+            background: #2e86c1;
+            color: white;
+        }
     </style>
 </head>
 <body>
@@ -104,9 +126,23 @@
     <script src="nav_bar.js"></script>
     <span id="topbarCode" style="display:none;">NICE</span>
     <h1>NICE Ltd. (NICE) 详细分析</h1>
+
+    <div class="section-nav">
+        <a href="#chapter1">公司基本信息</a>
+        <a href="#chapter2">历史财务指标 (2018-2025)</a>
+        <a href="#chapter3">收入与利润趋势 (2018-2025)</a>
+        <a href="#chapter4">业务分析</a>
+        <a href="#chapter5">竞争分析与护城河</a>
+        <a href="#chapter6">财务摘要 (2025年)</a>
+        <a href="#chapter7">投资建议</a>
+        <a href="#chapter8">为什么客户选择CXone而不是Genesys或Five9？</a>
+        <a href="#chapter9">NICE过去十年利润分配情况</a>
+        <a href="#chapter10">数据来源</a>
+        <a href="#chapter11">2026年Q1季报深度分析：营收增长为何伴随净利润大幅下滑？</a>
+    </div>
     
     <div class="info-box">
-        <h2>一、公司基本信息</h2>
+        <h2 id="chapter1">一、公司基本信息</h2>
         <table>
             <tr>
                 <th>项目</th>
@@ -151,8 +187,7 @@
         </table>
     </div>
     
-    <div class="chart-container">
-        <h2>二、历史财务指标 (2018-2025)</h2>
+    <div class="chart-contai<h2 id="chapter2">二、历史财务指标 (2018-2025)</h2>018-2025)</h2>
         <h3>2.1 净资产利润率 (ROE) 趋势</h3>
         <p><strong>说明</strong>：ROE保持在15-20%之间，显示公司盈利能力良好。2025年ROE为20.22%（Roic.ai数据）。</p>
         <canvas id="roeChart"></canvas>
@@ -170,13 +205,10 @@
         <canvas id="equityRatioChart"></canvas>
     </div>
     
-    <div class="chart-container">
-        <h2>三、收入与利润趋势 (2018-2025)</h2>
+    <div class<h2 id="chapter3">三、收入与利润趋势 (2018-2025)</h2>2>三、收入与利润趋势 (2018-2025)</h2>
         <p><strong>说明</strong>：NICE的收入和利润保持稳定增长。</p>
         <canvas id="revenueChart"></canvas>
-    </div>
-    
-    <div class="info-box">
+    </div<h2 id="chapter4">四、业务分析</h2> class="info-box">
         <h2>四、业务分析</h2>
         
         <h3>4.1 公司业务概述（通俗解释）</h3>
@@ -335,9 +367,7 @@
                 <td>包括中东、拉美等</td>
             </tr>
         </table>
-        <p><strong>说明</strong>：NICE业务覆盖全球多个地区，是一家国际化的软件公司。</p>
-    </div>
-    
+        <p><strong>说明</strong>：NICE业务覆盖全球多个地区，是一家国际化的软件公司。<h2 id="chapter5">五、竞争分析与护城河</h2> 
     <div class="info-box">
         <h2>五、竞争分析与护城河</h2>
         
@@ -435,9 +465,7 @@
                 <li><strong>规模经济护城河</strong>：全球业务布局，研发投入规模效应</li>
                 <li><strong>品牌护城河</strong>：行业领先地位，良好的市场声誉</li>
                 <li><strong>合规护城河</strong>：唯一拥有完整FEDRamp认证的CCaaS供应商，符合20多项国际合规标准</li>
-            </ul>
-        </div>
-    </div>
+            </<h2 id="chapter6">六、财务摘要 (2025年)</h2></div>
     
     <div class="info-box">
         <h2>六、财务摘要 (2025年)</h2>
@@ -477,7 +505,7 @@
             <tr>
                 <td>市值</td>
                 <td>约73.2亿美元</td>
-            </tr>
+  <h2 id="chapter7">七、投资建议</h2>
         </table>
     </div>
     
@@ -506,9 +534,7 @@
                 <li>技术快速迭代风险</li>
                 <li>全球经济不确定性</li>
                 <li>汇率波动风险（国际业务）</li>
-                <li>云业务转型挑战</li>
-            </ul>
-        </div>
+                <li<h2 id="chapter8">七、为什么客户选择CXone而不是Genesys或Five9？</h2></div>
     </div>
     
     <div class="info-box">
@@ -547,7 +573,7 @@
             <h4>5. 合规认证更全面</h4>
             <ul>
                 <li>符合GDPR、CCPA、PCI DSS等20多项国际合规标准</li>
-                <li>尤其受金融、医疗等强监管行业青睐</li>
+              <h2 id="chapter9">八、NICE过去十年利润分配情况</h2>i>
             </ul>
         </div>
     </div>
@@ -669,7 +695,7 @@
             <li><strong>优先通过回购回报股东</strong>：近五年回购总额超过10亿美元</li>
             <li><strong>持续投资研发</strong>：保持4%左右的资本支出占收入比</li>
             <li><strong>战略性收购</strong>：通过大型收购快速获得新技术和市场</li>
-            <li><strong>停止派息</strong>：2017年后停止派息，将资金用于业务发展</li>
+   <h2 id="chapter10">九、数据来源</h2>trong>停止派息</strong>：2017年后停止派息，将资金用于业务发展</li>
         </ul>
     </div>
     
@@ -847,8 +873,7 @@
                     ...commonOptions.plugins,
                     title: {
                         display: true,
-                        text: 'NICE Ltd. (NICE) 收入与利润趋势 (2018-2025)'
-                    }
+                        text: 'NICE Ltd. (NI<h2 id="chapter11">八、2026年Q1季报深度分析：营收增长为何伴随净利润大幅下滑？</h2>    }
                 }
             }
         });

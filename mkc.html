@@ -131,6 +131,28 @@
     
                 .top-nav-bar { position: fixed; top: 0; left: 0; right: 0; height: 44px; background: #2c3e50; display: flex; align-items: center; justify-content: flex-end; padding: 0 20px; z-index: 9999; box-shadow: 0 2px 8px rgba(0,0,0,0.15); gap: 8px; }
         .top-nav-link { color: white; padding: 6px 16px; border-radius: 16px; text-decoration: none; font-size: 13px; transition: background 0.2s; white-space: nowrap; }
+            .section-nav {
+            background: white;
+            border-radius: 10px;
+            padding: 15px 25px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+        .section-nav a {
+            display: inline-block;
+            margin: 5px 10px;
+            padding: 6px 14px;
+            background: #eaf2f8;
+            color: #1a5276;
+            text-decoration: none;
+            border-radius: 15px;
+            font-size: 0.9em;
+        }
+        .section-nav a:hover {
+            background: #2e86c1;
+            color: white;
+        }
     </style>
 </head>
 <body>
@@ -140,8 +162,20 @@
     <h1>McCormick & Company (NYSE: MKC)</h1>
     <p class="subtitle">巴菲特式价值投资基本面分析 | 更新日期：2026年4月27日</p>
 
+    <div class="section-nav">
+        <a href="#chapter1">公司基本信息</a>
+        <a href="#chapter2">业务分析</a>
+        <a href="#chapter3">关键财务指标（2000-2025）</a>
+        <a href="#chapter4">竞争对手与护城河分析</a>
+        <a href="#chapter5">利润分配去向 (2016-2025)</a>
+        <a href="#chapter6">⚡ 重要事件：FY2026 Q1利润"暴增"解读</a>
+        <a href="#chapter7">🔍 深度分析：ROE下降的真相——杜邦分析法</a>
+        <a href="#chapter8">财务摘要 (FY2025)</a>
+        <a href="#chapter9">投资建议</a>
+    </div>
+
     <div class="info-box">
-        <h2>一、公司基本信息</h2>
+        <h2 id="chapter1">一、公司基本信息</h2>
         <table>
             <tr><td>公司全称</td><td>McCormick & Company, Incorporated</td></tr>
             <tr><td>股票代码</td><td>NYSE: MKC（无投票权股：MKC.V）</td></tr>
@@ -158,8 +192,7 @@
         </table>
     </div>
 
-    <div class="info-box">
-        <h2>二、业务分析</h2>
+    <div class="info-<h2 id="chapter2">二、业务分析</h2>h2>二、业务分析</h2>
         <h3>2.1 通俗解释：McCormick是干什么的？</h3>
         <p>用最简单的话说，<strong>McCormick（味好美）就是全球最大的"调料公司"</strong>。当你走进任何一家美国超市的调料区，那些红色瓶盖的小瓶子——黑胡椒、蒜粉、意大利调味料——十有八九就是McCormick的。它还拥有Frank's RedHot辣椒酱和French's芥末酱这两个家喻户晓的品牌。</p>
         <p>但McCormick不只是卖瓶装调料给家庭主妇。它还有一条庞大的B2B业务线——<strong>风味解决方案（Flavor Solutions）</strong>，专门为食品制造商（如百事可乐、麦当劳）和餐饮连锁提供定制化的调味配方。你吃到的快餐薯条上的调味粉、速食汤包里的香料混合物，很可能就是McCormick调配的。</p>
@@ -242,8 +275,7 @@
         </div>
     </div>
 
-    <div class="chart-container">
-        <h2>三、关键财务指标（2000-2025）</h2>
+    <div class<h2 id="chapter3">三、关键财务指标（2000-2025）</h2><h2>三、关键财务指标（2000-2025）</h2>
         <h3>3.1 净资产利润率 (ROE) 趋势</h3>
         <canvas id="roeChart"></canvas>
         
@@ -304,9 +336,7 @@
                 <li><strong>PE大幅回落</strong>：从2022年的28倍降至当前18倍，接近历史均值下限，估值趋于合理</li>
             </ul>
         </div>
-    </div>
-
-    <div class="info-box">
+    <<h2 id="chapter4">四、竞争对手与护城河分析</h2>="info-box">
         <h2>四、竞争对手与护城河分析</h2>
         
         <h3>4.1 各业务板块竞争对手</h3>
@@ -407,10 +437,7 @@
         
         <div class="highlight">
             <p><strong>护城河总结</strong>：McCormick拥有<strong>强大的经济护城河</strong>，核心来源于品牌力和成本优势。它是典型的巴菲特式"消费者垄断"企业——产品单价低、购买频率高、品牌忠诚度强、替代品有限。香料是一个"赢家通吃"的品类：消费者不会为了省几毛钱而换一个不熟悉的香料品牌。这种定价权+品牌力+渠道力的组合，构成了McCormick持久竞争优势的基石。</p>
-        </div>
-    </div>
-
-    <div class="chart-container">
+        </div<h2 id="chapter5">五、利润分配去向 (2016-2025)</h2>"chart-container">
         <h2>五、利润分配去向 (2016-2025)</h2>
         <h3>5.1 过去十年利润分配总览</h3>
         <table>
@@ -542,7 +569,7 @@
         </div>
     </div>
 
-    <div class="info-box" style="border: 2px solid #D2691E;">
+<h2 id="chapter6">⚡ 重要事件：FY2026 Q1利润"暴增"解读</h2>border: 2px solid #D2691E;">
         <h2>⚡ 重要事件：FY2026 Q1利润"暴增"解读</h2>
         <h3>表面数据 vs 真实经营</h3>
         <table>
@@ -617,10 +644,7 @@
                 <li>✅ <strong>墨西哥收购的战略价值</strong>：获得生产设施控制权，墨西哥是重要增长市场和低成本生产基地</li>
                 <li>⚠️ <strong>资产负债表负担加重</strong>：$7.5亿现金支出 + $25亿新增无形资产和商誉</li>
             </ul>
-        </div>
-    </div>
-
-    <div class="info-box" style="border: 2px solid #8B0000;">
+        </div<h2 id="chapter7">🔍 深度分析：ROE下降的真相——杜邦分析法</h2>nfo-box" style="border: 2px solid #8B0000;">
         <h2>🔍 深度分析：ROE下降的真相——杜邦分析法</h2>
         
         <h3>问题的核心</h3>
@@ -1298,8 +1322,7 @@
                 <li><strong>定期贷款是"过渡性融资"</strong>：$15亿浮动利率定期贷款利率较低（≈2.7%），但有季度摊销要求，公司计划用经营现金流逐步偿还，2017年已偿还$2.688亿</li>
                 <li><strong>股权融资稀释了约5%</strong>：635万股新股约占发行前总股本的5%，对每股收益有一定稀释</li>
                 <li><strong>收购使杠杆率翻倍</strong>：D/E从0.92升至1.87，资产负债率从48%升至65%，公司从"低杠杆"变为"中等杠杆"</li>
-                <li><strong>年利息支出增加约$1.21亿（税前）</strong>：这是收购后净利润承压的重要原因之一</li>
-            </ul>
+                <li><strong>年利息支出增加约$1.21亿（税前）</strong>：这是收购后<h2 id="chapter8">六、财务摘要 (FY2025)</h2>      </ul>
         </div>
     </div>
 
@@ -1318,7 +1341,7 @@
             <tr><td>产权比率(D/E)</td><td>1.22</td></tr>
             <tr><td>股息收益率</td><td>约3.6%</td></tr>
             <tr><td>当前PE(TTM)</td><td>约18倍</td></tr>
-            <tr><td>剩余回购授权</td><td>$4.14亿</td></tr>
+    <h2 id="chapter9">七、投资建议</h2>>剩余回购授权</td><td>$4.14亿</td></tr>
         </table>
     </div>
 

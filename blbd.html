@@ -48,6 +48,28 @@
         .tag-red { background-color: #f8d7da; color: #721c24; }
                 .top-nav-bar { position: fixed; top: 0; left: 0; right: 0; height: 44px; background: #2c3e50; display: flex; align-items: center; justify-content: flex-end; padding: 0 20px; z-index: 9999; box-shadow: 0 2px 8px rgba(0,0,0,0.15); gap: 8px; }
         .top-nav-link { color: white; padding: 6px 16px; border-radius: 16px; text-decoration: none; font-size: 13px; transition: background 0.2s; white-space: nowrap; }
+            .section-nav {
+            background: white;
+            border-radius: 10px;
+            padding: 15px 25px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+        .section-nav a {
+            display: inline-block;
+            margin: 5px 10px;
+            padding: 6px 14px;
+            background: #eaf2f8;
+            color: #1a5276;
+            text-decoration: none;
+            border-radius: 15px;
+            font-size: 0.9em;
+        }
+        .section-nav a:hover {
+            background: #2e86c1;
+            color: white;
+        }
     </style>
 </head>
 <body>
@@ -57,9 +79,19 @@
     <h1>Blue Bird Corporation (NASDAQ: BLBD)</h1>
     <p style="text-align:center;color:#666;">巴菲特/芒格式价值投资基本面分析 | 更新日期：2026年6月</p>
 
+    <div class="section-nav">
+        <a href="#chapter1">公司基本信息</a>
+        <a href="#chapter2">业务分析</a>
+        <a href="#chapter3">业务板块产品竞争力分析</a>
+        <a href="#chapter4">历史财务指标</a>
+        <a href="#chapter5">竞争分析</a>
+        <a href="#chapter6">利润分配分析</a>
+        <a href="#chapter7">投资小结</a>
+    </div>
+
     <!-- 一、公司基本信息 -->
     <div class="info-box">
-        <h2>一、公司基本信息</h2>
+        <h2 id="chapter1">一、公司基本信息</h2>
         <table>
             <tr><td>公司全称</td><td>Blue Bird Corporation（蓝鸟公司）</td></tr>
             <tr><td>股票代码</td><td>NASDAQ: BLBD</td></tr>
@@ -81,8 +113,7 @@
     </div>
 
     <!-- 二、业务分析 -->
-    <div class="info-box">
-        <h2>二、业务分析</h2>
+    <div class="info-<h2 id="chapter2">二、业务分析</h2>h2>二、业务分析</h2>
         <p>Blue Bird是美国最大的校车制造商，专门设计和制造运送学生的黄色校车。简单来说，就是美国街头那些标志性的黄色大校车，几乎一半都是Blue Bird生产的。除了传统柴油校车，公司还是电动校车和替代燃料（丙烷、CNG）校车的市场领导者。</p>
 
         <h3>2.1 业务板块</h3>
@@ -135,8 +166,7 @@
     </div>
 
     <!-- 三、产品竞争力分析 -->
-    <div class="info-box">
-        <h2>三、业务板块产品竞争力分析</h2>
+    <di<h2 id="chapter3">三、业务板块产品竞争力分析</h2>      <h2>三、业务板块产品竞争力分析</h2>
 
         <h3>3.1 校车制造产品竞争力分析</h3>
         <p><strong>1. 可替代性：<span class="tag tag-green">低</span></strong></p>
@@ -169,8 +199,7 @@
         </ul>
     </div>
 
-    <!-- 四、历史财务指标 -->
-    <div class="info-box">
+    <!-- 四、历史财务<h2 id="chapter4">四、历史财务指标</h2>lass="info-box">
         <h2>四、历史财务指标</h2>
 
         <h3>4.1 净资产收益率（ROE）</h3>
@@ -267,8 +296,7 @@
             </tr>
         </table>
     </div>
-
-    <!-- 五、竞争分析 -->
+<h2 id="chapter5">五、竞争分析</h2>析 -->
     <div class="info-box">
         <h2>五、竞争分析</h2>
 
@@ -351,10 +379,7 @@
             <li><strong>EPA补贴驱动：</strong>联邦清洁校车计划提供大量补贴（每辆电动校车最高$375,000），Blue Bird是最大受益者</li>
             <li><strong>Lion Electric困境：</strong>主要电动校车竞争对手Lion Electric财务困难，减少了竞争压力</li>
             <li><strong>风险：</strong>政府补贴政策可能变化；原材料（钢、铝）价格波动；电动校车技术路线不确定性</li>
-        </ul>
-    </div>
-
-    <!-- 六、利润分配分析 -->
+        </ul><h2 id="chapter6">六、利润分配分析</h2><!-- 六、利润分配分析 -->
     <div class="info-box">
         <h2>六、利润分配分析</h2>
 
@@ -408,8 +433,7 @@
             <li><strong>净现金状况：</strong>公司现金$2.76亿，总债务$0.88亿，净现金$1.88亿，财务极为安全</li>
             <li><strong>低资本开支：</strong>CapEx仅占营收1-1.5%，轻资产运营</li>
             <li><strong>自由现金流改善：</strong>从FY2022的负值迅速改善至FY2025的$1.53亿，FCF/营收达10.3%</li>
-            <li><strong>资本配置评价：</strong>保守但合理。公司优先修复资产负债表，未来可能启动回购或派息</li>
-        </ul>
+            <li><strong>资本配置评价：</strong>保守但合理。公司优先修复资产负债表，未来可能启动回购或派息</l<h2 id="chapter7">七、投资小结</h2>>
     </div>
 
     <!-- 七、投资小结 -->

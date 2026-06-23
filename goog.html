@@ -55,6 +55,28 @@
         .star { color: #f39c12; }
                 .top-nav-bar { position: fixed; top: 0; left: 0; right: 0; height: 44px; background: #2c3e50; display: flex; align-items: center; justify-content: flex-end; padding: 0 20px; z-index: 9999; box-shadow: 0 2px 8px rgba(0,0,0,0.15); gap: 8px; }
         .top-nav-link { color: white; padding: 6px 16px; border-radius: 16px; text-decoration: none; font-size: 13px; transition: background 0.2s; white-space: nowrap; }
+            .section-nav {
+            background: white;
+            border-radius: 10px;
+            padding: 15px 25px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+        .section-nav a {
+            display: inline-block;
+            margin: 5px 10px;
+            padding: 6px 14px;
+            background: #eaf2f8;
+            color: #1a5276;
+            text-decoration: none;
+            border-radius: 15px;
+            font-size: 0.9em;
+        }
+        .section-nav a:hover {
+            background: #2e86c1;
+            color: white;
+        }
     </style>
 </head>
 <body>
@@ -64,9 +86,19 @@
     <h1>Alphabet / Google (NASDAQ: GOOG)</h1>
     <p class="subtitle">巴菲特/芒格式价值投资基本面分析 | 更新日期：2026年6月</p>
 
+    <div class="section-nav">
+        <a href="#chapter1">公司基本信息</a>
+        <a href="#chapter2">业务分析</a>
+        <a href="#chapter3">业务板块产品竞争力分析</a>
+        <a href="#chapter4">历史财务指标</a>
+        <a href="#chapter5">竞争分析</a>
+        <a href="#chapter6">利润分配分析</a>
+        <a href="#chapter7">投资总结</a>
+    </div>
+
     <!-- 一、公司基本信息 -->
     <div class="info-box">
-        <h2>一、公司基本信息</h2>
+        <h2 id="chapter1">一、公司基本信息</h2>
         <table>
             <tr><td>公司全称</td><td>Alphabet Inc.</td></tr>
             <tr><td>股票代码</td><td>NASDAQ: GOOG（C类/无投票权）、GOOGL（A类/有投票权）</td></tr>
@@ -90,8 +122,7 @@
     </div>
 
     <!-- 二、业务分析 -->
-    <div class="info-box">
-        <h2>二、业务分析</h2>
+    <div class="info-<h2 id="chapter2">二、业务分析</h2>h2>二、业务分析</h2>
 
         <div class="highlight">
             <strong>一句话理解Alphabet：</strong>想象你每天早上醒来，打开手机用Google搜索"今天天气"，路上用Google Maps导航，到公司用Gmail收邮件、用Google Docs写文档，中午用YouTube看视频，下午用Google Cloud跑AI模型——这就是Alphabet。它是一家"信息基础设施"公司：帮你找到信息（搜索）、帮你传播信息（YouTube）、帮你处理信息（Cloud/AI）。广告商为触达你而付费，这就是Alphabet 73%营收的来源。
@@ -149,8 +180,7 @@
     </div>
 
     <!-- 三、业务板块产品竞争力分析 -->
-    <div class="info-box">
-        <h2>三、业务板块产品竞争力分析</h2>
+    <di<h2 id="chapter3">三、业务板块产品竞争力分析</h2>      <h2>三、业务板块产品竞争力分析</h2>
 
         <!-- Google Search -->
         <div class="moat-item">
@@ -286,8 +316,7 @@
         </div>
     </div>
 
-    <!-- 四、历史财务指标 -->
-    <div class="info-box">
+    <!-- 四、历史财务<h2 id="chapter4">四、历史财务指标</h2>lass="info-box">
         <h2>四、历史财务指标</h2>
 
         <h3>4.1 关键财务数据（FY2016-FY2025）</h3>
@@ -320,8 +349,7 @@
             <canvas id="revenueChart"></canvas>
         </div>
     </div>
-
-    <!-- 五、竞争分析 -->
+<h2 id="chapter5">五、竞争分析</h2>析 -->
     <div class="info-box">
         <h2>五、竞争分析</h2>
 
@@ -506,10 +534,7 @@
         <div class="risk-item">
             <strong>5. 人才竞争与RSU稀释</strong><br>
             每年RSU增发约$300-400亿，部分抵消回购效果。巴菲特曾批评这种"隐性稀释"。
-        </div>
-    </div>
-
-    <!-- 六、利润分配分析 -->
+        </div><h2 id="chapter6">六、利润分配分析</h2><!-- 六、利润分配分析 -->
     <div class="info-box">
         <h2>六、利润分配分析</h2>
 
@@ -551,8 +576,7 @@
         </div>
 
         <div class="chart-container">
-            <canvas id="profitChart"></canvas>
-        </div>
+            <canvas id="profitChart"></canvas<h2 id="chapter7">七、投资总结</h2>>
     </div>
 
     <!-- 七、投资总结 -->

@@ -51,6 +51,28 @@
         
                 .top-nav-bar { position: fixed; top: 0; left: 0; right: 0; height: 44px; background: #2c3e50; display: flex; align-items: center; justify-content: flex-end; padding: 0 20px; z-index: 9999; box-shadow: 0 2px 8px rgba(0,0,0,0.15); gap: 8px; }
         .top-nav-link { color: white; padding: 6px 16px; border-radius: 16px; text-decoration: none; font-size: 13px; transition: background 0.2s; white-space: nowrap; }
+            .section-nav {
+            background: white;
+            border-radius: 10px;
+            padding: 15px 25px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+        .section-nav a {
+            display: inline-block;
+            margin: 5px 10px;
+            padding: 6px 14px;
+            background: #eaf2f8;
+            color: #1a5276;
+            text-decoration: none;
+            border-radius: 15px;
+            font-size: 0.9em;
+        }
+        .section-nav a:hover {
+            background: #2e86c1;
+            color: white;
+        }
     </style>
 </head>
 <body>
@@ -59,9 +81,18 @@
     <span id="topbarCode" style="display:none;">STNE</span>
     <h1>StoneCo Ltd. (STNE) 价值投资分析</h1>
 
+    <div class="section-nav">
+        <a href="#chapter1">公司基本信息</a>
+        <a href="#chapter2">业务分析</a>
+        <a href="#chapter3">历史财务指标（2018-2024）</a>
+        <a href="#chapter4">竞争对手与护城河分析</a>
+        <a href="#chapter5">过去十年利润分配去向</a>
+        <a href="#chapter6">投资分析总结</a>
+    </div>
+
     <!-- 第一部分：基本信息 -->
     <div class="section">
-        <h2>一、公司基本信息</h2>
+        <h2 id="chapter1">一、公司基本信息</h2>
         <table>
             <tr><th style="width:30%">项目</th><th>内容</th></tr>
             <tr><td>公司名称</td><td>StoneCo Ltd.</td></tr>
@@ -82,8 +113,7 @@
     </div>
 
     <!-- 第二部分：业务分析 -->
-    <div class="section">
-        <h2>二、业务分析</h2>
+    <div class="sect<h2 id="chapter2">二、业务分析</h2>h2>二、业务分析</h2>
         <h3>2.1 公司是做什么的？</h3>
         <p>用通俗的话说，StoneCo就像巴西版的"支付宝+拉卡拉+用友"的结合体。它主要做三件事：</p>
         <ul>
@@ -169,8 +199,7 @@
     </div>
 
     <!-- 第三部分：财务指标 -->
-    <div class="section">
-        <h2>三、历史财务指标（2018-2024）</h2>
+    <d<h2 id="chapter3">三、历史财务指标（2018-2024）</h2><h2>三、历史财务指标（2018-2024）</h2>
 
         <h3>3.1 核心财务数据总览</h3>
         <table>
@@ -271,8 +300,7 @@
         </div>
     </div>
 
-    <!-- 第四部分：竞争对手和护城河 -->
-    <div class="section">
+    <!-- 第四部分：竞争对手和<h2 id="chapter4">四、竞争对手与护城河分析</h2>s="section">
         <h2>四、竞争对手与护城河分析</h2>
 
         <h3>4.1 金融服务板块竞争对手</h3>
@@ -378,7 +406,7 @@
         </table>
     </div>
 
-    <!-- 第五部分：利润分配去向 -->
+   <h2 id="chapter5">五、过去十年利润分配去向</h2>
     <div class="section">
         <h2>五、过去十年利润分配去向</h2>
 
@@ -457,9 +485,7 @@
                 <li><strong>再投资优先：</strong>在2023年之前，所有利润都投入业务扩张，包括获取银行牌照、拓展信贷和数字银行业务、收购Linx等。</li>
             </ul>
         </div>
-    </div>
-
-    <!-- 第六部分：投资分析总结 -->
+ <h2 id="chapter6">六、投资分析总结</h2>-- 第六部分：投资分析总结 -->
     <div class="section">
         <h2>六、投资分析总结</h2>
 

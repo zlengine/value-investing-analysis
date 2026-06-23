@@ -55,6 +55,28 @@
         .star { color: #f39c12; }
                 .top-nav-bar { position: fixed; top: 0; left: 0; right: 0; height: 44px; background: #2c3e50; display: flex; align-items: center; justify-content: flex-end; padding: 0 20px; z-index: 9999; box-shadow: 0 2px 8px rgba(0,0,0,0.15); gap: 8px; }
         .top-nav-link { color: white; padding: 6px 16px; border-radius: 16px; text-decoration: none; font-size: 13px; transition: background 0.2s; white-space: nowrap; }
+            .section-nav {
+            background: white;
+            border-radius: 10px;
+            padding: 15px 25px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+        .section-nav a {
+            display: inline-block;
+            margin: 5px 10px;
+            padding: 6px 14px;
+            background: #eaf2f8;
+            color: #1a5276;
+            text-decoration: none;
+            border-radius: 15px;
+            font-size: 0.9em;
+        }
+        .section-nav a:hover {
+            background: #2e86c1;
+            color: white;
+        }
     </style>
 </head>
 <body>
@@ -64,9 +86,22 @@
     <h1>Zoetis 硕腾 (NYSE: ZTS)</h1>
     <p class="subtitle">巴菲特/芒格式价值投资基本面分析 | 更新日期：2026年6月</p>
 
+    <div class="section-nav">
+        <a href="#chapter1">公司基本信息</a>
+        <a href="#chapter2">业务分析</a>
+        <a href="#chapter3">业务板块产品竞争力分析</a>
+        <a href="#chapter4">历史财务指标 (2015-2025)</a>
+        <a href="#chapter5">竞争分析与护城河</a>
+        <a href="#chapter6">利润分配分析（过去十年）</a>
+        <a href="#chapter7">投资总结</a>
+        <a href="#chapter8">动物保健双雄深度对比：ZTS vs IDXX</a>
+        <a href="#chapter9">ZTS增速放缓深度拆解：兽药龙头为什么突然"跑不动了"？</a>
+        <a href="#chapter10">数据来源</a>
+    </div>
+
     <!-- 一、公司基本信息 -->
     <div class="info-box">
-        <h2>一、公司基本信息</h2>
+        <h2 id="chapter1">一、公司基本信息</h2>
         <table>
             <tr><td>公司全称</td><td>Zoetis Inc.（硕腾公司）</td></tr>
             <tr><td>股票代码</td><td>NYSE: ZTS</td></tr>
@@ -90,8 +125,7 @@
     </div>
 
     <!-- 二、业务分析 -->
-    <div class="info-box">
-        <h2>二、业务分析</h2>
+    <div class="info-<h2 id="chapter2">二、业务分析</h2>h2>二、业务分析</h2>
         <p style="line-height:1.8;">Zoetis做的事情用大白话说就是：<strong>给动物看病、防病</strong>。你家狗需要驱虫药、关节炎针、皮肤病药？Zoetis做。养牛场需要疫苗和抗生素？Zoetis也做。它的产品覆盖8个物种、15个治疗领域，在100多个国家销售。</p>
 
         <h3>2.1 按物种划分（2025年）</h3>
@@ -128,8 +162,7 @@
     </div>
 
     <!-- 三、业务板块产品竞争力分析 -->
-    <div class="info-box">
-        <h2>三、业务板块产品竞争力分析</h2>
+    <di<h2 id="chapter3">三、业务板块产品竞争力分析</h2>      <h2>三、业务板块产品竞争力分析</h2>
 
         <h3>3.1 伴侣动物——核心引擎</h3>
         <div class="moat-item">
@@ -164,8 +197,7 @@
         </div>
     </div>
 
-    <!-- 四、历史财务指标 -->
-    <div class="info-box">
+    <!-- 四、历史财务<h2 id="chapter4">四、历史财务指标 (2015-2025)</h2>ox">
         <h2>四、历史财务指标 (2015-2025)</h2>
         <table>
             <tr><th>年份</th><th>营收(亿$)</th><th>净利(亿$)</th><th>ROE(%)</th><th>负债/资产(%)</th><th>权益乘数</th><th>PE</th></tr>
@@ -186,7 +218,7 @@
         </div>
     </div>
 
-    <!-- 五、竞争分析与护城河 -->
+   <h2 id="chapter5">五、竞争分析与护城河</h2>>
     <div class="info-box">
         <h2>五、竞争分析与护城河</h2>
 
@@ -226,10 +258,7 @@
         </div>
         <div class="risk-item">
             <strong>畜牧周期性</strong>：虽然占比已降至29%，但畜牧业务仍受农产品周期和食品安全事件影响。
-        </div>
-    </div>
-
-    <!-- 六、利润分配分析 -->
+        </div><h2 id="chapter6">六、利润分配分析（过去十年）</h2>、利润分配分析 -->
     <div class="info-box">
         <h2>六、利润分配分析（过去十年）</h2>
         <table>
@@ -253,8 +282,7 @@
                 <li><strong>研发</strong>：持续加码，2025年$7.0亿（营收占比7.4%），独立以来累计投入$60亿</li>
                 <li><strong>并购</strong>：谨慎型，2018年收购Abaxis（诊断，约$20亿）是最大的并购，其余多为小型补充性收购</li>
                 <li><strong>2025年总股东回报超$41亿</strong>（股息+回购），占净利润的150%+</li>
-            </ul>
-        </div>
+            </ul<h2 id="chapter7">七、投资总结</h2>>
     </div>
 
     <!-- 七、投资总结 -->
@@ -287,9 +315,7 @@
             <strong>当前PE</strong>：约25倍（基于2026E EPS $7.00）<br>
             <strong>公允价值参考</strong>：$132（TickerSpark估值），当前价格约$155仍有溢价
         </div>
-    </div>
-
-    <!-- 八、ZTS vs IDXX 深度对比 -->
+  <h2 id="chapter8">八、动物保健双雄深度对比：ZTS vs IDXX</h2>深度对比 -->
     <div class="info-box" id="peer-comparison">
         <h2>八、动物保健双雄深度对比：ZTS vs IDXX</h2>
         <p style="color:#555;line-height:1.8;">Zoetis（硕腾）和IDEXX（爱德士）是美国动物保健行业两只最核心的上市标的。它们都从宠物经济中赚钱，但赚钱的方式完全不同——Zoetis是"动物界的辉瑞"，靠卖药赚钱；IDEXX是"动物界的迈瑞"，靠卖诊断设备和耗材赚钱。下面从多个维度逐一拆解。</p>
@@ -425,11 +451,7 @@
         </div>
 
         <p style="text-align:center;margin-top:20px;">
-            <a href="idxx.html">查看IDXX详细分析 &rarr;</a>
-        </p>
-    </div>
-
-    <!-- 增速放缓深度分析 -->
+            <a href="idxx.html">查看IDXX详细分析 &r<h2 id="chapter9">九、ZTS增速放缓深度拆解：兽药龙头为什么突然"跑不动了"？</h2>!-- 增速放缓深度分析 -->
     <div class="info-box" id="growth-slowdown">
         <h2>九、ZTS增速放缓深度拆解：兽药龙头为什么突然"跑不动了"？</h2>
         <p style="color:#555;line-height:1.8;">2026年5月7日，Zoetis发布Q1财报——营收$22.6亿，有机增长<strong>0%</strong>，调整后EPS $1.53，双双miss预期。股价当天暴跌21%，从$170+一路跌到$80区间，市值蒸发近半。很多人不理解：兽药市场不是很稳定吗？ZTS不是绝对龙头吗？为什么增速突然断崖？下面逐层拆解。</p>
@@ -599,7 +621,7 @@
         </div>
 
         <p style="text-align:center;margin-top:20px;">
-            <a href="#peer-comparison">&uarr; 返回ZTS vs IDXX对比</a>
+            <a hre<h2 id="chapter10">数据来源</h2>arison">&uarr; 返回ZTS vs IDXX对比</a>
         </p>
     </div>
 

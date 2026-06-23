@@ -55,6 +55,28 @@
         .star { color: #f39c12; }
                 .top-nav-bar { position: fixed; top: 0; left: 0; right: 0; height: 44px; background: #2c3e50; display: flex; align-items: center; justify-content: flex-end; padding: 0 20px; z-index: 9999; box-shadow: 0 2px 8px rgba(0,0,0,0.15); gap: 8px; }
         .top-nav-link { color: white; padding: 6px 16px; border-radius: 16px; text-decoration: none; font-size: 13px; transition: background 0.2s; white-space: nowrap; }
+            .section-nav {
+            background: white;
+            border-radius: 10px;
+            padding: 15px 25px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+        .section-nav a {
+            display: inline-block;
+            margin: 5px 10px;
+            padding: 6px 14px;
+            background: #eaf2f8;
+            color: #1a5276;
+            text-decoration: none;
+            border-radius: 15px;
+            font-size: 0.9em;
+        }
+        .section-nav a:hover {
+            background: #2e86c1;
+            color: white;
+        }
     </style>
 </head>
 <body>
@@ -64,9 +86,21 @@
     <h1>Comfort Systems USA 舒适系统 (NYSE: FIX)</h1>
     <p class="subtitle">巴菲特/芒格式价值投资基本面分析 | 更新日期：2026年6月</p>
 
+    <div class="section-nav">
+        <a href="#chapter1">公司基本信息</a>
+        <a href="#chapter2">业务分析</a>
+        <a href="#chapter3">业务板块产品竞争力分析</a>
+        <a href="#chapter4">历史财务指标 (2016-2025)</a>
+        <a href="#chapter5">收入与利润趋势 (2016-2025)</a>
+        <a href="#chapter6">竞争分析</a>
+        <a href="#chapter7">利润分配分析</a>
+        <a href="#chapter8">投资总结</a>
+        <a href="#chapter9">MEP三巨头深度对比：FIX vs EME vs IESC</a>
+    </div>
+
     <!-- 第一章：公司基本信息 -->
     <div class="info-box">
-        <h2>一、公司基本信息</h2>
+        <h2 id="chapter1">一、公司基本信息</h2>
         <table>
             <tr><th>项目</th><th>信息</th></tr>
             <tr><td>股票代码</td><td>FIX</td></tr>
@@ -85,8 +119,7 @@
     </div>
 
     <!-- 第二章：业务分析 -->
-    <div class="info-box">
-        <h2>二、业务分析</h2>
+    <div class="info-<h2 id="chapter2">二、业务分析</h2>h2>二、业务分析</h2>
 
         <h3>2.1 公司业务概述（通俗解释）</h3>
         <div class="highlight">
@@ -152,8 +185,7 @@
     </div>
 
     <!-- 第三章：业务板块产品竞争力分析 -->
-    <div class="info-box">
-        <h2>三、业务板块产品竞争力分析</h2>
+    <di<h2 id="chapter3">三、业务板块产品竞争力分析</h2>      <h2>三、业务板块产品竞争力分析</h2>
 
         <h3>3.1 机械服务 (Mechanical) 产品竞争力分析</h3>
         <p><strong>1. 可替代性：<span class="tag tag-orange">中等</span></strong></p>
@@ -204,7 +236,7 @@
     </div>
 
     <!-- 第四章：历史财务指标 -->
-    <div class="chart-container">
+<h2 id="chapter4">四、历史财务指标 (2016-2025)</h2>er">
         <h2>四、历史财务指标 (2016-2025)</h2>
 
         <h3>4.1 净资产收益率 (ROE) 趋势</h3>
@@ -221,16 +253,10 @@
 
         <h3>4.4 产权比率（总资产/股东权益）趋势</h3>
         <p><strong>说明</strong>：产权比率从2016年的2.8倍降至2025年的2.6倍，财务结构稳健。低杠杆意味着ROE是"真实"的经营回报，而非财务工程。</p>
-        <canvas id="equityRatioChart"></canvas>
-    </div>
-
-    <div class="chart-container">
+        <canvas id="equityRatioChart"></canvas<h2 id="chapter5">五、收入与利润趋势 (2016-2025)</h2>chart-container">
         <h2>五、收入与利润趋势 (2016-2025)</h2>
         <p><strong>说明</strong>：收入从2016年的16.3亿美元增长至2025年的91.0亿美元，CAGR约20.9%。净利润从0.65亿美元增长至10.2亿美元，CAGR约37.3%。利润增速远超收入增速，体现了极强的经营杠杆。</p>
-        <canvas id="revenueChart"></canvas>
-    </div>
-
-    <!-- 第五章：竞争分析 -->
+        <canvas id="revenueChart"></canvas><h2 id="chapter6">六、竞争分析</h2>  <!-- 第五章：竞争分析 -->
     <div class="info-box">
         <h2>六、竞争分析</h2>
 
@@ -297,8 +323,7 @@
             <p><strong>短期（1-3年）</strong>：护城河非常稳固。数据中心建设热潮仍在早期阶段，积压订单124.5亿美元提供极高可见性。</p>
             <p><strong>中期（3-5年）</strong>：护城河可能面临挑战。如果AI投资放缓或数据中心建设周期见顶，收入增速可能显著放缓。客户自建施工团队也是一种潜在威胁。</p>
             <p><strong>长期（5-10年）</strong>：不确定性较高。MEP承包本质上是项目制业务，缺乏SaaS式的经常性收入。护城河的持久性取决于公司能否将更多收入转为服务/维护合同，以及在数据中心之外找到新的增长引擎。</p>
-        </div>
-    </div>
+  <h2 id="chapter7">七、利润分配分析</h2></div>
 
     <!-- 第六章：利润分配分析 -->
     <div class="info-box">
@@ -327,8 +352,7 @@
             <p><strong>回购</strong>：过去10年累计回购约2.3亿美元，回购力度温和。流通股从2016年的37.8百万股缓慢减少至2025年的35.4百万股，减少约6.3%。回购金额远小于收购支出。</p>
             <p><strong>收购</strong>：这是留存资金的主要用途。过去10年累计收购支出约13亿美元，收购了数十家地区性MEP承包商。收购整合的成功率极高，被收购公司通常在加入后业绩超出预期。</p>
             <p><strong>资本配置质量</strong>：优秀。管理层将绝大部分利润再投资于高回报的收购和有机增长，ROE从17%提升至42%证明了资本配置的有效性。但需注意，近年收购价格可能随股价上涨而水涨船高。</p>
-            <p><strong>可持续增长率</strong> = ROE × 留存比率 = 41.8% × 93.3% ≈ 39.0%。理论上公司可以不靠外部融资实现39%的增长，但实际增速取决于市场机会。</p>
-        </div>
+            <p><strong>可持续增长率</strong> = ROE × 留存比率 = 41.8% × 93.3% ≈ 39.0%。理论上公司可以不靠外部融资实现39%的增长，但实际增<h2 id="chapter8">八、投资总结</h2>       </div>
     </div>
 
     <!-- 第七章：投资总结 -->
@@ -607,10 +631,7 @@
                     y2: { beginAtZero: true, position: 'right', title: { display: true, text: '净利润 (百万美元)' }, grid: { drawOnChartArea: false } }
                 }
             }
-        });
-    </script>
-
-    <!-- ====== 三家MEP同行深度对比 ====== -->
+        })<h2 id="chapter9">八、MEP三巨头深度对比：FIX vs EME vs IESC</h2>深度对比 ====== -->
     <div class="info-box" id="peer-comparison">
         <h2>八、MEP三巨头深度对比：FIX vs EME vs IESC</h2>
         <p style="color:#555;line-height:1.8;">Comfort Systems (FIX)、EMCOR Group (EME)、IES Holdings (IESC) 是美国MEP（机械-电气-管道）承包行业三只最核心的上市标的。它们做的事本质上一样——给大型建筑安装"内脏"（空调、电力、管道、消防），但规模、侧重和打法差异巨大。下面从多个维度逐一拆解。</p>

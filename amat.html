@@ -43,6 +43,28 @@
         .risk-item { background: #ffebee; padding: 12px; margin: 8px 0; border-left: 4px solid #c62828; border-radius: 4px; }
         .star { color: #f39c12; }
         .chart-placeholder { background: #f0f0f0; padding: 15px; text-align: center; border-radius: 5px; margin: 10px 0; font-family: monospace; }
+            .section-nav {
+            background: white;
+            border-radius: 10px;
+            padding: 15px 25px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+        .section-nav a {
+            display: inline-block;
+            margin: 5px 10px;
+            padding: 6px 14px;
+            background: #eaf2f8;
+            color: #1a5276;
+            text-decoration: none;
+            border-radius: 15px;
+            font-size: 0.9em;
+        }
+        .section-nav a:hover {
+            background: #2e86c1;
+            color: white;
+        }
     </style>
 </head>
 <body>
@@ -52,9 +74,19 @@
     <h1>Applied Materials (NASDAQ: AMAT)</h1>
     <p style="text-align:center;color:#666;">巴菲特/芒格式价值投资基本面分析 | 更新日期：2026年6月23日</p>
 
+    <div class="section-nav">
+        <a href="#chapter1">公司基本信息</a>
+        <a href="#chapter2">业务分析</a>
+        <a href="#chapter3">产品竞争力分析</a>
+        <a href="#chapter4">历史财务指标</a>
+        <a href="#chapter5">竞争分析</a>
+        <a href="#chapter6">利润分配分析</a>
+        <a href="#chapter7">投资总结</a>
+    </div>
+
     <!-- ==================== 一、公司基本信息 ==================== -->
     <div class="info-box">
-        <h2>一、公司基本信息</h2>
+        <h2 id="chapter1">一、公司基本信息</h2>
         <table>
             <tr><td>公司全称</td><td>Applied Materials, Inc.</td></tr>
             <tr><td>股票代码</td><td>NASDAQ: AMAT</td></tr>
@@ -77,8 +109,7 @@
     </div>
 
     <!-- ==================== 二、业务分析 ==================== -->
-    <div class="info-box">
-        <h2>二、业务分析</h2>
+    <div class="info-<h2 id="chapter2">二、业务分析</h2>h2>二、业务分析</h2>
 
         <h3>2.1 业务模式——用大白话说</h3>
         <p>想象你在盖一栋超精密的大楼。你需要各种工具：抹泥刀（铺材料）、雕刻刀（刻图案）、砂纸（磨平表面）、放大镜（检查缺陷）。Applied Materials就是卖这些"工具"的公司。芯片制造需要几百道工序，每一步都需要专门的设备——在硅片上沉积一层材料、把多余的部分刻掉、把表面抛光、检查有没有缺陷。AMAT的产品覆盖了其中最核心的步骤。</p>
@@ -117,7 +148,7 @@
     </div>
 
     <!-- ==================== 三、产品竞争力分析 ==================== -->
-    <div class="info-box">
+    <di<h2 id="chapter3">三、产品竞争力分析</h2>>
         <h2>三、产品竞争力分析</h2>
 
         <h3>3.1 半导体系统板块 产品竞争力</h3>
@@ -171,8 +202,7 @@
         <p><strong>整体竞争力评级：<span class="star">&#9733;&#9733;&#9733;&#9733;&#9733;</span> 5/5</strong></p>
     </div>
 
-    <!-- ==================== 四、历史财务指标 ==================== -->
-    <div class="info-box">
+    <!-- ==================== 四、历史财务指标 ==================<h2 id="chapter4">四、历史财务指标</h2>lass="info-box">
         <h2>四、历史财务指标</h2>
 
         <h3>4.1 核心财务数据（FY2016-FY2025）</h3>
@@ -205,7 +235,7 @@
         </div>
     </div>
 
-    <!-- ==================== 五、竞争分析 ==================== -->
+    <!-- ==================== 五、竞争分析 ====<h2 id="chapter5">五、竞争分析</h2>= -->
     <div class="info-box">
         <h2>五、竞争分析</h2>
 
@@ -250,7 +280,7 @@
         <p>AMAT拥有半导体设备行业最宽的"产品线护城河"——覆盖工艺步骤最广，在CMP/PVD/离子注入三大领域准垄断。但与KLAC的"单项深度护城河"不同，AMAT的护城河是"广度型"的——覆盖广但不处处最深。刻蚀和量检测是明显的薄弱环节。</p>
     </div>
 
-    <!-- ==================== 六、利润分配分析 ==================== -->
+    <!-- ====================<h2 id="chapter6">六、利润分配分析</h2>============= -->
     <div class="info-box">
         <h2>六、利润分配分析</h2>
 
@@ -284,7 +314,7 @@
         </div>
     </div>
 
-    <!-- ==================== 七、投资总结 ==================== -->
+    <!-- ====<h2 id="chapter7">七、投资总结</h2>= 七、投资总结 ==================== -->
     <div class="info-box">
         <h2>七、投资总结</h2>
 

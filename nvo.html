@@ -162,6 +162,28 @@
         }
                 .top-nav-bar { position: fixed; top: 0; left: 0; right: 0; height: 44px; background: #2c3e50; display: flex; align-items: center; justify-content: flex-end; padding: 0 20px; z-index: 9999; box-shadow: 0 2px 8px rgba(0,0,0,0.15); gap: 8px; }
         .top-nav-link { color: white; padding: 6px 16px; border-radius: 16px; text-decoration: none; font-size: 13px; transition: background 0.2s; white-space: nowrap; }
+            .section-nav {
+            background: white;
+            border-radius: 10px;
+            padding: 15px 25px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+        .section-nav a {
+            display: inline-block;
+            margin: 5px 10px;
+            padding: 6px 14px;
+            background: #eaf2f8;
+            color: #1a5276;
+            text-decoration: none;
+            border-radius: 15px;
+            font-size: 0.9em;
+        }
+        .section-nav a:hover {
+            background: #2e86c1;
+            color: white;
+        }
     </style>
 </head>
 <body>
@@ -171,9 +193,19 @@
     <h1>诺和诺德 Novo Nordisk (NYSE: NVO)</h1>
     <p class="subtitle">巴菲特/芒格式价值投资基本面分析 | 更新日期：2026年5月</p>
 
+    <div class="section-nav">
+        <a href="#chapter1">公司基本信息</a>
+        <a href="#chapter2">业务分析</a>
+        <a href="#chapter3">业务板块产品竞争力分析</a>
+        <a href="#chapter4">历史财务指标（2000-2026）</a>
+        <a href="#chapter5">竞争分析</a>
+        <a href="#chapter6">利润分配分析（过去十年 FY2016-FY2025）</a>
+        <a href="#chapter7">综合评估与投资结论</a>
+    </div>
+
     <!-- 一、公司基本信息 -->
     <div class="info-box">
-        <h2>一、公司基本信息</h2>
+        <h2 id="chapter1">一、公司基本信息</h2>
         <table>
             <tr><td>公司全称</td><td>Novo Nordisk A/S</td></tr>
             <tr><td>股票代码</td><td>NYSE: NVO（ADR，1 ADR = 1 B股）</td></tr>
@@ -196,8 +228,7 @@
     </div>
 
     <!-- 二、业务分析 -->
-    <div class="info-box">
-        <h2>二、业务分析</h2>
+    <div class="info-<h2 id="chapter2">二、业务分析</h2>h2>二、业务分析</h2>
 
         <h3>2.1 通俗解释：诺和诺德是干什么的？</h3>
         <p>用最简单的话说，<strong>诺和诺德就是"糖尿病+减肥药之王"</strong>。如果你最近听说过"减肥针"或"司美格鲁肽"，那就是诺和诺德的产品。这家丹麦公司用一种叫做GLP-1的分子，做出了三种药：给糖尿病人用的Ozempic（降糖针）、给糖尿病人吃的Rybelsus（降糖药片）、给想减肥的人用的Wegovy（减肥针）。这三种药本质上都是同一个分子——司美格鲁肽，只是剂量和剂型不同。</p>
@@ -333,8 +364,7 @@
     </div>
 
     <!-- 三、业务板块产品竞争力分析 -->
-    <div class="info-box">
-        <h2>三、业务板块产品竞争力分析</h2>
+    <di<h2 id="chapter3">三、业务板块产品竞争力分析</h2>      <h2>三、业务板块产品竞争力分析</h2>
 
         <div class="competitiveness-box">
             <h3>3.1 GLP-1糖尿病药物（Ozempic/Rybelsus）产品竞争力分析</h3>
@@ -434,8 +464,7 @@
         </div>
     </div>
 
-    <!-- 四、历史财务指标 -->
-    <div class="info-box">
+    <!-- 四、历史财务<h2 id="chapter4">四、历史财务指标（2000-2026）</h2>box">
         <h2>四、历史财务指标（2000-2026）</h2>
 
         <h3>4.1 净资产收益率 (ROE) 趋势</h3>
@@ -528,8 +557,7 @@
             <tr><td>2025</td><td>~3.3x</td><td>高杠杆状态</td></tr>
         </table>
     </div>
-
-    <!-- 五、竞争分析 -->
+<h2 id="chapter5">五、竞争分析</h2>析 -->
     <div class="info-box">
         <h2>五、竞争分析</h2>
 
@@ -662,11 +690,7 @@
             ❸ <strong>管线受挫：</strong>CagriSema头对头试验失败，未能证明非劣效于替尔泊肽<br>
             ❹ <strong>定价压力：</strong>IRA药价谈判+竞争加剧=净价下行<br><br>
             <strong>巴菲特会说：</strong>"一家护城河正在变窄的公司，即便当前利润丰厚，也不是理想的投资标的。我宁愿以合理的价格买一家护城河正在变宽的公司，也不愿以便宜的价格买一家护城河正在变窄的公司。"
-        </div>
-    </div>
-
-    <!-- 六、利润分配分析 -->
-    <div class="info-box">
+        </div><h2 id="chapter6">六、利润分配分析（过去十年 FY2016-FY2025）</h2>  <div class="info-box">
         <h2>六、利润分配分析（过去十年 FY2016-FY2025）</h2>
 
         <h3>6.1 利润分配总览（回购计入留存）</h3>
@@ -721,9 +745,7 @@
             <strong>优点：</strong>①派息率仅29%，在盈利暴增期保留了大部分利润用于再投资；②2024年Catalent收购是战略性决策，垂直整合制造能力是长期竞争优势；③股息连续29年增长，体现了对股东回报的承诺；④FY2025年自由现金流转正，说明Catalent收购的一次性冲击已消化。<br>
             <strong>缺点：</strong>①CagriSema头对头试验失败意味着$5.2亿收购Akero的MASH药物efruxifermin可能是更好的资本配置方向；②FY2024年自由现金流为负（-$14.7B DKK），说明Catalent收购对短期现金流冲击极大；③在PE仅10-14x的低估值时期，回购力度（FY2025年约$20亿DKK）相对保守，可能错失了低价回购的机会。<br>
             <strong>可持续增长率 = ROE × 留存比率：</strong>以FY2025为例，53% × 71% = 37.7%。极高的可持续增长率说明诺和诺德有强大的内生增长能力——前提是营收不下滑。2026年营收预计下滑4-12%，这将使高留存比率变成"利润囤积"而非"增长投资"。<br><br>
-            <strong>总体评价：</strong>资本配置能力中等偏上。Catalent收购是大胆但合理的战略决策，但CagriSema的临床失败和下一代管线的不确定性，使得未来的资本配置面临更大挑战。巴菲特会关注：<strong>在营收下滑期，管理层是否会继续大额回购（在低估值时），还是会保守囤积现金？</strong>
-        </div>
-    </div>
+            <strong>总体评价：</strong>资本配置能力中等偏上。Catalent收购是大胆但合理的战略决策，但CagriSema的临床失败和下一代管线的不确定性，使得未来的资本配置面临更大挑战。巴菲特会关注：<strong>在营收下滑期，管理层是否会继续大额回购（在低估值时），还是会保守囤积现金？</strong<h2 id="chapter7">七、综合评估与投资结论</h2> </div>
 
     <!-- 七、综合评估 -->
     <div class="info-box">

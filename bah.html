@@ -47,6 +47,28 @@
         .chart-container { position: relative; height: 300px; margin: 20px 0; }
                 .top-nav-bar { position: fixed; top: 0; left: 0; right: 0; height: 44px; background: #2c3e50; display: flex; align-items: center; justify-content: flex-end; padding: 0 20px; z-index: 9999; box-shadow: 0 2px 8px rgba(0,0,0,0.15); gap: 8px; }
         .top-nav-link { color: white; padding: 6px 16px; border-radius: 16px; text-decoration: none; font-size: 13px; transition: background 0.2s; white-space: nowrap; }
+            .section-nav {
+            background: white;
+            border-radius: 10px;
+            padding: 15px 25px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+        .section-nav a {
+            display: inline-block;
+            margin: 5px 10px;
+            padding: 6px 14px;
+            background: #eaf2f8;
+            color: #1a5276;
+            text-decoration: none;
+            border-radius: 15px;
+            font-size: 0.9em;
+        }
+        .section-nav a:hover {
+            background: #2e86c1;
+            color: white;
+        }
     </style>
 </head>
 <body>
@@ -56,9 +78,19 @@
     <h1>Booz Allen Hamilton (NYSE: BAH)</h1>
     <p style="text-align:center;color:#666;">巴菲特/芒格式价值投资基本面分析 | 更新日期：2026年6月</p>
 
+    <div class="section-nav">
+        <a href="#chapter1">公司基本信息</a>
+        <a href="#chapter2">业务分析</a>
+        <a href="#chapter3">业务板块产品竞争力分析</a>
+        <a href="#chapter4">历史财务指标（FY2017-FY2026）</a>
+        <a href="#chapter5">竞争分析</a>
+        <a href="#chapter6">利润分配分析（FY2017-FY2026）</a>
+        <a href="#chapter7">投资总结</a>
+    </div>
+
     <!-- 第一章：公司基本信息 -->
     <div class="info-box">
-        <h2>一、公司基本信息</h2>
+        <h2 id="chapter1">一、公司基本信息</h2>
         <table>
             <tr><td>公司全称</td><td>Booz Allen Hamilton Holding Corporation</td></tr>
             <tr><td>股票代码</td><td>NYSE: BAH</td></tr>
@@ -80,8 +112,7 @@
     </div>
 
     <!-- 第二章：业务分析 -->
-    <div class="info-box">
-        <h2>二、业务分析</h2>
+    <div class="info-<h2 id="chapter2">二、业务分析</h2>h2>二、业务分析</h2>
 
         <h3>2.1 通俗解读：Booz Allen到底做什么？</h3>
         <p>想象你是一个国家的情报机构，你需要分析卫星图像、监控网络攻击、开发AI系统来预测恐怖袭击。但你自己没有足够的技术人才来做这些事，于是你雇佣Booz Allen——他们有3万多名持有最高安全许可的技术专家，专门帮你解决这些最敏感、最复杂的技术问题。</p>
@@ -131,8 +162,7 @@
     </div>
 
     <!-- 第三章：产品竞争力分析 -->
-    <div class="info-box">
-        <h2>三、业务板块产品竞争力分析</h2>
+    <di<h2 id="chapter3">三、业务板块产品竞争力分析</h2>      <h2>三、业务板块产品竞争力分析</h2>
 
         <h3>3.1 国家安全服务（国防+情报）</h3>
 
@@ -189,8 +219,7 @@
         <p><strong>整体竞争力评级：★★★☆☆（3星）</strong></p>
     </div>
 
-    <!-- 第四章：历史财务指标 -->
-    <div class="info-box">
+    <!-- 第四章：历史财务<h2 id="chapter4">四、历史财务指标（FY2017-FY2026）</h2>>
         <h2>四、历史财务指标（FY2017-FY2026）</h2>
         <p style="color:#856404;font-size:13px;">注：BAH财年截止日为3月31日。FY2026为截至2026年3月31日的年度。</p>
 
@@ -228,7 +257,7 @@
         </div>
     </div>
 
-    <!-- 第五章：竞争分析 -->
+ <h2 id="chapter5">五、竞争分析</h2>析 -->
     <div class="info-box">
         <h2>五、竞争分析</h2>
 
@@ -297,9 +326,7 @@
         <div class="highlight" style="border-left-color:#e74c3c;">
             <strong>护城河侵蚀风险：</strong>Palantir和Anduril代表了一种新的竞争范式——"软件优先"vs"人力优先"。如果政府采购从"按人头付费"转向"按产品/平台付费"，BAH的人力密集型模式将面临结构性挑战。这不是短期风险，而是5-10年的长期威胁。
         </div>
-    </div>
-
-    <!-- 第六章：利润分配分析 -->
+ <h2 id="chapter6">六、利润分配分析（FY2017-FY2026）</h2>->
     <div class="info-box">
         <h2>六、利润分配分析（FY2017-FY2026）</h2>
 
@@ -328,8 +355,7 @@
 
         <div class="highlight" style="border-left-color:#e74c3c;">
             <strong>高杠杆回购的隐忧：</strong>BAH在D/E 3.7x的情况下仍然大量回购（FY2026回购$8.12亿 vs 净利润$8.51亿），实质上是在用借来的钱回购股票。虽然当前PE低（10-11x），回购价格合理，但高杠杆+大回购的组合在经济衰退或政府预算大幅削减时可能面临流动性压力。巴菲特更倾向于"先还债、再回购"的保守策略。
-        </div>
-    </div>
+<h2 id="chapter7">七、投资总结</h2>    </div>
 
     <!-- 第七章：投资总结 -->
     <div class="info-box">

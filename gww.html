@@ -43,6 +43,28 @@
         .risk-item { background: #fff5f5; padding: 12px; margin: 8px 0; border-radius: 6px; border-left: 4px solid #e74c3c; }
                 .top-nav-bar { position: fixed; top: 0; left: 0; right: 0; height: 44px; background: #2c3e50; display: flex; align-items: center; justify-content: flex-end; padding: 0 20px; z-index: 9999; box-shadow: 0 2px 8px rgba(0,0,0,0.15); gap: 8px; }
         .top-nav-link { color: white; padding: 6px 16px; border-radius: 16px; text-decoration: none; font-size: 13px; transition: background 0.2s; white-space: nowrap; }
+            .section-nav {
+            background: white;
+            border-radius: 10px;
+            padding: 15px 25px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+        .section-nav a {
+            display: inline-block;
+            margin: 5px 10px;
+            padding: 6px 14px;
+            background: #eaf2f8;
+            color: #1a5276;
+            text-decoration: none;
+            border-radius: 15px;
+            font-size: 0.9em;
+        }
+        .section-nav a:hover {
+            background: #2e86c1;
+            color: white;
+        }
     </style>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
@@ -53,9 +75,19 @@
     <h1>W.W. Grainger, Inc. (NYSE: GWW)</h1>
     <p style="text-align:center;color:#666;">巴菲特/芒格式价值投资基本面分析 | 更新日期：2026年6月</p>
 
+    <div class="section-nav">
+        <a href="#chapter1">公司基本信息</a>
+        <a href="#chapter2">业务分析</a>
+        <a href="#chapter3">业务板块产品竞争力分析</a>
+        <a href="#chapter4">历史财务指标</a>
+        <a href="#chapter5">竞争分析</a>
+        <a href="#chapter6">利润分配分析</a>
+        <a href="#chapter7">投资总结</a>
+    </div>
+
     <!-- 一、公司基本信息 -->
     <div class="info-box">
-        <h2>一、公司基本信息</h2>
+        <h2 id="chapter1">一、公司基本信息</h2>
         <table>
             <tr><td>公司全称</td><td>W.W. Grainger, Inc.（固安捷）</td></tr>
             <tr><td>股票代码</td><td>NYSE: GWW</td></tr>
@@ -75,8 +107,7 @@
     </div>
 
     <!-- 二、业务分析 -->
-    <div class="info-box">
-        <h2>二、业务分析</h2>
+    <div class="info-<h2 id="chapter2">二、业务分析</h2>h2>二、业务分析</h2>
         <p>用最简单的话说，Grainger就是一个<strong>工业用品的"超级大超市"</strong>。想象一下，一个工厂要运转，需要安全帽、手套、电机、灯泡、清洁剂、工具……这些零零碎碎的东西，Grainger都能提供。它不生产这些东西，而是从5000多家供应商那里采购超过3500万种产品，然后通过自己的物流网络快速送到客户手中。</p>
         <p>Grainger的客户是各种需要"维护、维修和运营"（MRO）用品的企业——工厂、医院、学校、政府部门、建筑公司等。这些客户需要的是<strong>可靠、快速、一站式</strong>的供应，而不是最便宜的价格。</p>
 
@@ -133,8 +164,7 @@
     </div>
 
     <!-- 三、业务板块产品竞争力分析 -->
-    <div class="info-box">
-        <h2>三、业务板块产品竞争力分析</h2>
+    <di<h2 id="chapter3">三、业务板块产品竞争力分析</h2>      <h2>三、业务板块产品竞争力分析</h2>
 
         <h3>3.1 High-Touch Solutions N.A. 产品竞争力分析</h3>
 
@@ -194,8 +224,7 @@
         <p><strong>Endless Assortment综合竞争力评级：★★★☆☆（3/5星）</strong></p>
     </div>
 
-    <!-- 四、历史财务指标 -->
-    <div class="info-box">
+    <!-- 四、历史财务<h2 id="chapter4">四、历史财务指标</h2>lass="info-box">
         <h2>四、历史财务指标</h2>
 
         <h3>4.1 净资产收益率（ROE）</h3>
@@ -235,8 +264,7 @@
         </div>
         <p>PE从2016-2022年的平均约19x，扩张至2025年的28.5x和当前的36.8x。市场对Grainger的定价已从"工业分销商"转向"高ROE+高增长"的溢价估值。</p>
     </div>
-
-    <!-- 五、竞争分析 -->
+<h2 id="chapter5">五、竞争分析</h2>析 -->
     <div class="info-box">
         <h2>五、竞争分析</h2>
 
@@ -281,10 +309,7 @@
         <div class="moat-item">
             <strong>成本优势</strong> <span class="tag tag-green">强</span>
             <p>规模采购折扣、高效物流网络、数据驱动的库存管理——单位运营成本远低于小型分销商。毛利率39%在分销行业中属顶尖水平。</p>
-        </div>
-    </div>
-
-    <!-- 六、利润分配分析 -->
+        </div><h2 id="chapter6">六、利润分配分析</h2><!-- 六、利润分配分析 -->
     <div class="info-box">
         <h2>六、利润分配分析</h2>
 
@@ -318,8 +343,7 @@
         <p><strong>可持续增长率</strong> = ROE × 留存率 ≈ 44% × 75% ≈ 33%。实际增长率远低于此，说明公司有大量现金可用于回购和分红。</p>
 
         <div class="highlight">
-            <strong>芒格视角</strong>：Grainger的资本配置堪称优秀。高ROE+适度留存+持续回购+稳健分红，这正是芒格所说的"把资本配置到回报最高的地方"。管理层没有盲目扩张或高价收购，而是把多余的现金通过回购返还给股东，同时保持对核心业务的持续投资。
-        </div>
+            <strong>芒格视角</strong>：Grainger的资本配置堪称优秀。高ROE+适度留存+持续回购+稳健分红，这正是芒格所说的"把资本配置到回报最高的地方"。管理层没有盲目扩张或高价收购，而是把多余的现金通过回购返还给股东，同时保持对核心业务的持续投资<h2 id="chapter7">七、投资总结</h2>>
     </div>
 
     <!-- 七、投资总结 -->

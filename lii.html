@@ -48,6 +48,28 @@
         .tag-red { background-color: #f8d7da; color: #721c24; }
                 .top-nav-bar { position: fixed; top: 0; left: 0; right: 0; height: 44px; background: #2c3e50; display: flex; align-items: center; justify-content: flex-end; padding: 0 20px; z-index: 9999; box-shadow: 0 2px 8px rgba(0,0,0,0.15); gap: 8px; }
         .top-nav-link { color: white; padding: 6px 16px; border-radius: 16px; text-decoration: none; font-size: 13px; transition: background 0.2s; white-space: nowrap; }
+            .section-nav {
+            background: white;
+            border-radius: 10px;
+            padding: 15px 25px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+        .section-nav a {
+            display: inline-block;
+            margin: 5px 10px;
+            padding: 6px 14px;
+            background: #eaf2f8;
+            color: #1a5276;
+            text-decoration: none;
+            border-radius: 15px;
+            font-size: 0.9em;
+        }
+        .section-nav a:hover {
+            background: #2e86c1;
+            color: white;
+        }
     </style>
 </head>
 <body>
@@ -57,9 +79,19 @@
     <h1>Lennox International Inc. (NYSE: LII)</h1>
     <p style="text-align:center;color:#666;">巴菲特/芒格式价值投资基本面分析 | 更新日期：2026年6月</p>
 
+    <div class="section-nav">
+        <a href="#chapter1">公司基本信息</a>
+        <a href="#chapter2">业务分析</a>
+        <a href="#chapter3">业务板块产品竞争力分析</a>
+        <a href="#chapter4">历史财务指标</a>
+        <a href="#chapter5">竞争分析</a>
+        <a href="#chapter6">利润分配分析</a>
+        <a href="#chapter7">投资小结</a>
+    </div>
+
     <!-- 一、公司基本信息 -->
     <div class="info-box">
-        <h2>一、公司基本信息</h2>
+        <h2 id="chapter1">一、公司基本信息</h2>
         <table>
             <tr><td>公司全称</td><td>Lennox International Inc.（伦诺克斯国际）</td></tr>
             <tr><td>股票代码</td><td>NYSE: LII</td></tr>
@@ -81,8 +113,7 @@
     </div>
 
     <!-- 二、业务分析 -->
-    <div class="info-box">
-        <h2>二、业务分析</h2>
+    <div class="info-<h2 id="chapter2">二、业务分析</h2>h2>二、业务分析</h2>
         <p>Lennox International是美国领先的暖通空调（HVAC）制造商。简单来说，就是制造你家和办公楼里用的空调、暖气和通风设备。公司还生产超市和冷链用的制冷设备。Lennox品牌在北美HVAC市场拥有极高的认知度，以高效节能著称。</p>
 
         <h3>2.1 业务板块</h3>
@@ -126,8 +157,7 @@
     </div>
 
     <!-- 三、产品竞争力分析 -->
-    <div class="info-box">
-        <h2>三、业务板块产品竞争力分析</h2>
+    <di<h2 id="chapter3">三、业务板块产品竞争力分析</h2>      <h2>三、业务板块产品竞争力分析</h2>
 
         <h3>3.1 住宅HVAC产品竞争力分析</h3>
         <p><strong>1. 可替代性：<span class="tag tag-orange">中等</span></strong></p>
@@ -160,8 +190,7 @@
         </ul>
     </div>
 
-    <!-- 四、历史财务指标 -->
-    <div class="info-box">
+    <!-- 四、历史财务<h2 id="chapter4">四、历史财务指标</h2>lass="info-box">
         <h2>四、历史财务指标</h2>
 
         <h3>4.1 净资产收益率（ROE）</h3>
@@ -267,8 +296,7 @@
             </tr>
         </table>
     </div>
-
-    <!-- 五、竞争分析 -->
+<h2 id="chapter5">五、竞争分析</h2>析 -->
     <div class="info-box">
         <h2>五、竞争分析</h2>
 
@@ -357,10 +385,7 @@
             <li><strong>利润率领先：</strong>2025年首次实现年度利润率超20%，体现运营效率提升</li>
             <li><strong>三星合资：</strong>与Samsung的合资企业将扩展VRF（变制冷剂流量）产品线</li>
             <li><strong>风险：</strong>住宅市场疲软（高利率抑制需求）；渠道去库存；原材料和关税成本上升</li>
-        </ul>
-    </div>
-
-    <!-- 六、利润分配分析 -->
+        </ul><h2 id="chapter6">六、利润分配分析</h2><!-- 六、利润分配分析 -->
     <div class="info-box">
         <h2>六、利润分配分析</h2>
 
@@ -430,8 +455,7 @@
             <li><strong>适度派息：</strong>股息率约1.0%，派息率约21.5%，保守但稳步增长</li>
             <li><strong>资本开支适中：</strong>CapEx占营收约2-2.5%，轻资产运营</li>
             <li><strong>自由现金流强劲：</strong>FCF/营收约12-13%，资本效率高</li>
-            <li><strong>资本配置评价：</strong>优秀。管理层在2022年股价低迷时加大回购力度，体现了良好的时机把握能力</li>
-        </ul>
+            <li><strong>资本配置评价：</strong>优秀。管理层在2022年股价低迷时加大回购力度，体现了良好的时机把握能力</l<h2 id="chapter7">七、投资小结</h2>>
     </div>
 
     <!-- 七、投资小结 -->

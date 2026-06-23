@@ -97,6 +97,28 @@
         }
                 .top-nav-bar { position: fixed; top: 0; left: 0; right: 0; height: 44px; background: #2c3e50; display: flex; align-items: center; justify-content: flex-end; padding: 0 20px; z-index: 9999; box-shadow: 0 2px 8px rgba(0,0,0,0.15); gap: 8px; }
         .top-nav-link { color: white; padding: 6px 16px; border-radius: 16px; text-decoration: none; font-size: 13px; transition: background 0.2s; white-space: nowrap; }
+            .section-nav {
+            background: white;
+            border-radius: 10px;
+            padding: 15px 25px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+        .section-nav a {
+            display: inline-block;
+            margin: 5px 10px;
+            padding: 6px 14px;
+            background: #eaf2f8;
+            color: #1a5276;
+            text-decoration: none;
+            border-radius: 15px;
+            font-size: 0.9em;
+        }
+        .section-nav a:hover {
+            background: #2e86c1;
+            color: white;
+        }
     </style>
 </head>
 <body>
@@ -104,9 +126,20 @@
     <script src="nav_bar.js"></script>
     <span id="topbarCode" style="display:none;">SUZ</span>
     <h1>Suzano S.A. (SUZ) 详细分析</h1>
+
+    <div class="section-nav">
+        <a href="#chapter1">公司基本信息</a>
+        <a href="#chapter2">历史财务指标 (2018-2025)</a>
+        <a href="#chapter3">收入与利润趋势 (2018-2025)</a>
+        <a href="#chapter4">业务分析</a>
+        <a href="#chapter5">竞争分析与护城河</a>
+        <a href="#chapter6">利润分配去向 (2016-2025)</a>
+        <a href="#chapter7">财务摘要 (2025年)</a>
+        <a href="#chapter8">投资建议</a>
+    </div>
     
     <div class="info-box">
-        <h2>一、公司基本信息</h2>
+        <h2 id="chapter1">一、公司基本信息</h2>
         <table>
             <tr>
                 <th>项目</th>
@@ -163,8 +196,7 @@
         </table>
     </div>
     
-    <div class="chart-container">
-        <h2>二、历史财务指标 (2018-2025)</h2>
+    <div class="chart-contai<h2 id="chapter2">二、历史财务指标 (2018-2025)</h2>018-2025)</h2>
         <h3>2.1 净资产利润率 (ROE) 趋势</h3>
         <p><strong>说明</strong>：ROE从低位回升，2026年TTM达到16.52%，显示公司盈利能力改善。</p>
         <canvas id="roeChart"></canvas>
@@ -178,13 +210,10 @@
         <canvas id="peChart"></canvas>
     </div>
     
-    <div class="chart-container">
-        <h2>三、收入与利润趋势 (2018-2025)</h2>
+    <div class<h2 id="chapter3">三、收入与利润趋势 (2018-2025)</h2>2>三、收入与利润趋势 (2018-2025)</h2>
         <p><strong>说明</strong>：Suzano保持稳定增长，2025年业绩亮眼，销量和营收双创新高。</p>
         <canvas id="revenueChart"></canvas>
-    </div>
-    
-    <div class="info-box">
+    </div<h2 id="chapter4">四、业务分析</h2> class="info-box">
         <h2>四、业务分析</h2>
         
         <h3>4.1 公司业务概述（通俗解释）</h3>
@@ -282,9 +311,7 @@
                 <td>全球其他地区</td>
             </tr>
         </table>
-        <p><strong>说明</strong>：Suzano业务覆盖约60个国家，是真正的全球化公司。</p>
-    </div>
-    
+        <p><strong>说明</strong>：Suzano业务覆盖约60个国家，是真正的全球化公司。<h2 id="chapter5">五、竞争分析与护城河</h2> 
     <div class="info-box">
         <h2>五、竞争分析与护城河</h2>
         
@@ -345,10 +372,7 @@
                 <li><strong>垂直整合护城河</strong>：从种树到造纸的全产业链整合，控制成本，确保产品质量</li>
                 <li><strong>可持续发展护城河</strong>：采用可持续森林管理 practices，符合环保要求，获得市场认可</li>
             </ul>
-        </div>
-    </div>
-    
-    <div class="chart-container">
+   <h2 id="chapter6">六、利润分配去向 (2016-2025)</h2>   <div class="chart-container">
         <h2>六、利润分配去向 (2016-2025)</h2>
         <h3>6.1 过去十年利润分配总览</h3>
         <table>
@@ -485,9 +509,7 @@
             <tr>
                 <td>流动性储备</td>
                 <td>维持充足的现金和市场证券储备以应对行业周期</td>
-                <td>2024年末现金+证券约R$220亿</td>
-            </tr>
-        </table>
+                <td>2024年末现金+证券约R$220亿</td<h2 id="chapter7">七、财务摘要 (2025年)</h2>     </table>
     </div>
 
     <div class="info-box">
@@ -535,8 +557,7 @@
             </tr>
             <tr>
                 <td>市值</td>
-                <td>约116.9亿美元</td>
-            </tr>
+                <td>约11<h2 id="chapter8">八、投资建议</h2>         </tr>
         </table>
     </div>
     

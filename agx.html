@@ -42,6 +42,28 @@
         .moat-item { background: #e8f5e9; padding: 12px; margin: 8px 0; border-left: 4px solid #4CAF50; border-radius: 4px; }
         .risk-item { background: #ffebee; padding: 12px; margin: 8px 0; border-left: 4px solid #c62828; border-radius: 4px; }
         .star { color: #f39c12; }
+            .section-nav {
+            background: white;
+            border-radius: 10px;
+            padding: 15px 25px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+        .section-nav a {
+            display: inline-block;
+            margin: 5px 10px;
+            padding: 6px 14px;
+            background: #eaf2f8;
+            color: #1a5276;
+            text-decoration: none;
+            border-radius: 15px;
+            font-size: 0.9em;
+        }
+        .section-nav a:hover {
+            background: #2e86c1;
+            color: white;
+        }
     </style>
 </head>
 <body>
@@ -51,9 +73,19 @@
     <h1>Argan, Inc. (NYSE: AGX)</h1>
     <p style="text-align:center;color:#666;">巴菲特/芒格式价值投资基本面分析 | 更新日期：2026年6月23日</p>
 
+    <div class="section-nav">
+        <a href="#chapter1">公司基本信息</a>
+        <a href="#chapter2">业务分析</a>
+        <a href="#chapter3">产品竞争力分析</a>
+        <a href="#chapter4">历史财务指标</a>
+        <a href="#chapter5">竞争分析</a>
+        <a href="#chapter6">利润分配分析</a>
+        <a href="#chapter7">投资总结</a>
+    </div>
+
     <!-- ==================== 一、公司基本信息 ==================== -->
     <div class="info-box">
-        <h2>一、公司基本信息</h2>
+        <h2 id="chapter1">一、公司基本信息</h2>
         <table>
             <tr><td>公司全称</td><td>Argan, Inc.</td></tr>
             <tr><td>股票代码</td><td>NYSE: AGX</td></tr>
@@ -76,8 +108,7 @@
     </div>
 
     <!-- ==================== 二、业务分析 ==================== -->
-    <div class="info-box">
-        <h2>二、业务分析</h2>
+    <div class="info-<h2 id="chapter2">二、业务分析</h2>h2>二、业务分析</h2>
 
         <h3>2.1 业务模式——用大白话说</h3>
         <p>想象你家要盖一栋别墅——你需要找设计师画图纸（工程）、买砖瓦水泥（采购）、找施工队盖房子（施工）。EPC就是干这个的，只不过Argan盖的不是别墅，而是价值$5亿-$10亿的天然气发电厂。</p>
@@ -113,7 +144,7 @@
     </div>
 
     <!-- ==================== 三、产品竞争力分析 ==================== -->
-    <div class="info-box">
+    <di<h2 id="chapter3">三、产品竞争力分析</h2>>
         <h2>三、产品竞争力分析</h2>
 
         <h3>3.1 Power EPC服务 产品竞争力</h3>
@@ -164,8 +195,7 @@
         <p><strong>整体竞争力评级：<span class="star">&#9733;</span> 1/5</strong>——占比仅2%，规模太小，对整体分析影响微乎其微。</p>
     </div>
 
-    <!-- ==================== 四、历史财务指标 ==================== -->
-    <div class="info-box">
+    <!-- ==================== 四、历史财务指标 ==================<h2 id="chapter4">四、历史财务指标</h2>lass="info-box">
         <h2>四、历史财务指标</h2>
 
         <h3>4.1 核心财务数据（FY2017-FY2026）</h3>
@@ -201,7 +231,7 @@
         </div>
     </div>
 
-    <!-- ==================== 五、竞争分析 ==================== -->
+    <!-- ==================== 五、竞争分析 ====<h2 id="chapter5">五、竞争分析</h2>= -->
     <div class="info-box">
         <h2>五、竞争分析</h2>
 
@@ -242,7 +272,7 @@
         <p>Argan的"护城河"本质上是专项经验和口碑，而非不可替代的技术或垄断地位。在EPC行业，"做得好"可以赢得更多投标，但不能阻止客户选择竞争对手。与ASML的"绝对垄断型护城河"或KLAC的"技术深度型护城河"完全不同，Argan的护城河更接近"好名声"——有用但不坚固。</p>
     </div>
 
-    <!-- ==================== 六、利润分配分析 ==================== -->
+    <!-- ====================<h2 id="chapter6">六、利润分配分析</h2>============= -->
     <div class="info-box">
         <h2>六、利润分配分析</h2>
 
@@ -279,7 +309,7 @@
         </div>
     </div>
 
-    <!-- ==================== 七、投资总结 ==================== -->
+    <!-- ====<h2 id="chapter7">七、投资总结</h2>= 七、投资总结 ==================== -->
     <div class="info-box">
         <h2>七、投资总结</h2>
 
