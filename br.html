@@ -26,28 +26,28 @@
         .tag-red { background: #c0392b; }
         a { color: #1a5276; text-decoration: none; }
         a:hover { text-decoration: underline; }
-        .fixed-topbar { position: fixed; top: 44px; left: 0; right: 0; z-index: 9998; background: linear-gradient(135deg, #1a5276, #2e86c1); color: white; display: flex; align-items: center; justify-content: space-between; padding: 8px 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.15); height: 48px; }
-        .fixed-topbar a { color: white; text-decoration: none; font-size: 14px; font-weight: 600; }
+        
+        
         .fixed-topbar a:hover { text-decoration: underline; }
-        .topbar-left { display: flex; align-items: center; gap: 12px; }
-        .topbar-right { display: flex; align-items: center; gap: 8px; }
-        .topbar-score-label { font-size: 12px; opacity: 0.85; }
-        .topbar-score-val { font-weight: 700; font-size: 15px; min-width: 18px; text-align: center; }
-        .topbar-score-val.s1 { color: #ff6b6b; } .topbar-score-val.s2 { color: #ffa94d; } .topbar-score-val.s3 { color: #ffd43b; } .topbar-score-val.s4 { color: #69db7c; } .topbar-score-val.s5 { color: #51cf66; }
-        .topbar-select { padding: 3px 8px; border: 1px solid rgba(255,255,255,0.4); border-radius: 6px; font-size: 12px; font-weight: 600; color: white; background: rgba(255,255,255,0.15); cursor: pointer; outline: none; }
+        
+        
+        
+        
+            
+        
         .topbar-select:focus { border-color: rgba(255,255,255,0.7); }
-        .topbar-select option { color: #333; background: white; }
-        .topbar-btn { padding: 4px 12px; border: none; border-radius: 6px; font-size: 12px; font-weight: 600; cursor: pointer; transition: background 0.2s; }
-        .topbar-btn-edit { background: rgba(255,255,255,0.2); color: white; }
-        .topbar-btn-edit:hover { background: rgba(255,255,255,0.35); }
-        .topbar-btn-save { background: #27ae60; color: white; }
+        
+        
+        
+        
+        
         .topbar-btn-save:hover { background: #219a52; }
-        .topbar-btn-cancel { background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.7); }
+        
         .topbar-btn-cancel:hover { background: rgba(255,255,255,0.2); }
-        .topbar-stars { font-size: 11px; }
-        .topbar-stars .on { color: #f39c12; }
-        .topbar-stars .off { color: rgba(255,255,255,0.3); }
-        body { padding-top: 104px !important; }
+        
+        
+        
+        
         .moat-item { background: white; border-radius: 8px; padding: 15px 20px; margin: 10px 0; box-shadow: 0 1px 5px rgba(0,0,0,0.05); border-left: 4px solid #2e86c1; }
         .moat-item strong { color: #1a5276; }
         .risk-item { background: white; border-radius: 8px; padding: 15px 20px; margin: 10px 0; box-shadow: 0 1px 5px rgba(0,0,0,0.05); border-left: 4px solid #c0392b; }
@@ -64,26 +64,7 @@
 <body>
     <div class="top-nav-bar"></div>
     <script src="nav_bar.js"></script>
-    <div class="fixed-topbar" id="fixedTopbar">
-        <div class="topbar-left">
-            <a href="index.html">&larr; 返回索引</a>
-            <span style="font-size:14px;font-weight:700;" id="topbarCode">BR</span>
-        </div>
-        <div class="topbar-right" id="topbarScores">
-            <span class="topbar-score-label">基本面</span>
-            <span class="topbar-score-val" id="topbarFVal">-</span>
-            <span class="topbar-stars" id="topbarFStars"></span>
-            <select class="topbar-select" id="topbarFSel" style="display:none;"><option value="0">-</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option></select>
-            <span class="topbar-score-label" style="margin-left:12px;">价格</span>
-            <span class="topbar-score-val" id="topbarPVal">-</span>
-            <span class="topbar-stars" id="topbarPStars"></span>
-            <select class="topbar-select" id="topbarPSel" style="display:none;"><option value="0">-</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option></select>
-            <button class="topbar-btn topbar-btn-edit" id="topbarEditBtn" onclick="topbarEdit()">修改</button>
-            <button class="topbar-btn topbar-btn-save" id="topbarSaveBtn" onclick="topbarSave()" style="display:none;">保存</button>
-            <button class="topbar-btn topbar-btn-cancel" id="topbarCancelBtn" onclick="topbarCancel()" style="display:none;">取消</button>
-        </div>
-    </div>
-
+    <span id="topbarCode" style="display:none;">BR</span>
     <h1>Broadridge Financial Solutions (NYSE: BR)</h1>
     <p class="subtitle">巴菲特/芒格式价值投资基本面分析 | 更新日期：2026年6月</p>
 
@@ -810,243 +791,6 @@
     </div>
 
     <script src="scores_client.js"></script>
-    <script>
-    // Topbar scoring logic - unified with stock_scores_v1
-    (function(){
-        var SCORE_KEY='stock_scores_v1';
-        var code=document.getElementById('topbarCode').textContent.trim();
-        function getScores(){try{var d=localStorage.getItem(SCORE_KEY);return d?JSON.parse(d):{};}catch(e){return {};}}
-        function saveScores(s){localStorage.setItem(SCORE_KEY,JSON.stringify(s));}
-        function starsHTML(val){var h='';for(var i=1;i<=5;i++){h+='<span class="'+(i<=val?'on':'off')+'">\u2605</span>';}return h;}
-        function valClass(v){return v>=5?'s5':v>=4?'s4':v>=3?'s3':v>=2?'s2':'s1';}
-        function renderDisplay(){
-            var sc=getScores()[code]||{};
-            var f=sc.fundamental||0,p=sc.price||0;
-            document.getElementById('topbarFVal').textContent=f>0?f:'-';
-            document.getElementById('topbarFVal').className='topbar-score-val'+(f>0?' '+valClass(f):'');
-            document.getElementById('topbarFStars').innerHTML=starsHTML(f);
-            document.getElementById('topbarPVal').textContent=p>0?p:'-';
-            document.getElementById('topbarPVal').className='topbar-score-val'+(p>0?' '+valClass(p):'');
-            document.getElementById('topbarPStars').innerHTML=starsHTML(p);
-        }
-        window.topbarEdit=function(){
-            var sc=getScores()[code]||{};
-            document.getElementById('topbarFSel').value=sc.fundamental||0;
-            document.getElementById('topbarPSel').value=sc.price||0;
-            document.getElementById('topbarFSel').style.display='';
-            document.getElementById('topbarPSel').style.display='';
-            document.getElementById('topbarEditBtn').style.display='none';
-            document.getElementById('topbarSaveBtn').style.display='';
-            document.getElementById('topbarCancelBtn').style.display='';
-            document.getElementById('topbarFVal').style.display='none';
-            document.getElementById('topbarPVal').style.display='none';
-            document.getElementById('topbarFStars').style.display='none';
-            document.getElementById('topbarPStars').style.display='none';
-        };
-        window.topbarSave=function(){
-            var f=parseInt(document.getElementById('topbarFSel').value);
-            var p=parseInt(document.getElementById('topbarPSel').value);
-            var sc=getScores();if(!sc[code])sc[code]={};
-            sc[code].fundamental=f;sc[code].price=p;sc[code].updated=new Date().toISOString();
-            saveScores(sc);topbarCancel();renderDisplay();
-        };
-        window.topbarCancel=function(){
-            document.getElementById('topbarFSel').style.display='none';
-            document.getElementById('topbarPSel').style.display='none';
-            document.getElementById('topbarEditBtn').style.display='';
-            document.getElementById('topbarSaveBtn').style.display='none';
-            document.getElementById('topbarCancelBtn').style.display='none';
-            document.getElementById('topbarFVal').style.display='';
-            document.getElementById('topbarPVal').style.display='';
-            document.getElementById('topbarFStars').style.display='';
-            document.getElementById('topbarPStars').style.display='';
-        };
-        renderDisplay();
-    })();
-
-    // Closed Sales Chart
-    (function(){
-        var csLabels = [
-            'FY17-Q1','FY17-Q2','FY17-Q3','FY17-Q4',
-            'FY18-Q1','FY18-Q2','FY18-Q3','FY18-Q4',
-            'FY19-Q1','FY19-Q2','FY19-Q3','FY19-Q4',
-            'FY20-Q1','FY20-Q2','FY20-Q3','FY20-Q4',
-            'FY21-Q1','FY21-Q2','FY21-Q3','FY21-Q4',
-            'FY22-Q1','FY22-Q2','FY22-Q3','FY22-Q4',
-            'FY23-Q1','FY23-Q2','FY23-Q3','FY23-Q4',
-            'FY24-Q1','FY24-Q2','FY24-Q3','FY24-Q4',
-            'FY25-Q1','FY25-Q2','FY25-Q3','FY25-Q4',
-            'FY26-Q1','FY26-Q2'
-        ];
-        var csData = [22,56,48,145, 18,39,38,186, 18,106,37,72, 38,45,44,112, 32,44,46,113, 30,83,58,112, 32,65,62,90, 48,58,80,157, 57,46,71,114, 33,57];
-
-        // YoY growth (same quarter previous year)
-        var yoyData = [];
-        for(var i=0;i<csData.length;i++){
-            if(i>=4 && csData[i]!==null && csData[i-4]!==null && csData[i-4]!==0){
-                yoyData.push(Math.round((csData[i]/csData[i-4]-1)*1000)/10);
-            } else {
-                yoyData.push(null);
-            }
-        }
-
-        // QoQ growth (previous quarter)
-        var qoqData = [];
-        for(var i=0;i<csData.length;i++){
-            if(i>=1 && csData[i]!==null && csData[i-1]!==null && csData[i-1]!==0){
-                qoqData.push(Math.round((csData[i]/csData[i-1]-1)*1000)/10);
-            } else {
-                qoqData.push(null);
-            }
-        }
-
-        // Bar colors: highlight FY26 Q1 (index 36) in red
-        var barColors = csData.map(function(v,i){
-            if(i===36) return 'rgba(192,57,43,0.7)'; // FY26 Q1 - red
-            if(i>=36) return 'rgba(230,126,34,0.6)'; // FY26 - orange
-            if(i>=32 && i<36) return 'rgba(39,174,96,0.5)'; // FY25 - green
-            return 'rgba(54,162,235,0.5)'; // default blue
-        });
-        var barBorders = csData.map(function(v,i){
-            if(i===36) return 'rgba(192,57,43,1)';
-            if(i>=36) return 'rgba(230,126,34,1)';
-            if(i>=32 && i<36) return 'rgba(39,174,96,1)';
-            return 'rgba(54,162,235,1)';
-        });
-
-        var csCtx = document.getElementById('closedSalesChart').getContext('2d');
-        new Chart(csCtx, {
-            type: 'bar',
-            data: {
-                labels: csLabels,
-                datasets: [
-                    {
-                        label: 'Closed Sales (百万美元)',
-                        data: csData,
-                        backgroundColor: barColors,
-                        borderColor: barBorders,
-                        borderWidth: 1,
-                        yAxisID: 'y',
-                        order: 2
-                    },
-                    {
-                        label: '同比增长(%)',
-                        type: 'line',
-                        data: yoyData,
-                        borderColor: 'rgba(231,76,60,1)',
-                        backgroundColor: 'rgba(231,76,60,0.1)',
-                        pointRadius: 3,
-                        pointBackgroundColor: 'rgba(231,76,60,1)',
-                        borderWidth: 2,
-                        fill: false,
-                        tension: 0.2,
-                        yAxisID: 'y1',
-                        order: 1
-                    },
-                    {
-                        label: '环比增长(%)',
-                        type: 'line',
-                        data: qoqData,
-                        borderColor: 'rgba(39,174,96,1)',
-                        backgroundColor: 'rgba(39,174,96,0.1)',
-                        pointRadius: 3,
-                        pointBackgroundColor: 'rgba(39,174,96,1)',
-                        borderWidth: 2,
-                        fill: false,
-                        tension: 0.2,
-                        yAxisID: 'y1',
-                        order: 1
-                    }
-                ]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                interaction: { mode: 'index', intersect: false },
-                plugins: {
-                    title: { display: true, text: 'Broadridge 季度 Closed Sales 及同比/环比增长率', font: { size: 16 } },
-                    tooltip: {
-                        callbacks: {
-                            label: function(ctx) {
-                                var label = ctx.dataset.label || '';
-                                if(label.indexOf('Closed Sales')>=0){
-                                    return label + ': $' + ctx.parsed.y + 'M';
-                                } else {
-                                    return label + ': ' + ctx.parsed.y + '%';
-                                }
-                            }
-                        }
-                    }
-                },
-                scales: {
-                    x: {
-                        ticks: {
-                            maxRotation: 60,
-                            minRotation: 45,
-                            font: { size: 10 }
-                        }
-                    },
-                    y: {
-                        type: 'linear',
-                        position: 'left',
-                        beginAtZero: true,
-                        title: { display: true, text: 'Closed Sales (百万美元)' },
-                        max: 200
-                    },
-                    y1: {
-                        type: 'linear',
-                        position: 'right',
-                        title: { display: true, text: '增长率(%)' },
-                        grid: { drawOnChartArea: false },
-                        suggestedMin: -100,
-                        suggestedMax: 200
-                    }
-                }
-            }
-        });
-    })();
-
-    // PE Chart
-    var ctx = document.getElementById('peChart').getContext('2d');
-    new Chart(ctx, {
-        type: 'line',
-        data: {
-            labels: ['FY16','FY17','FY18','FY19','FY20','FY21','FY22','FY23','FY24','FY25','FY26E'],
-            datasets: [{
-                label: 'PE Ratio (TTM)',
-                data: [25.1, 27.3, 31.5, 30.7, 31.3, 34.2, 30.9, 30.9, 33.2, 33.9, 15.0],
-                borderColor: '#2e86c1',
-                backgroundColor: 'rgba(46,134,193,0.1)',
-                fill: true,
-                tension: 0.3,
-                pointRadius: 5,
-                pointBackgroundColor: function(context) {
-                    return context.dataIndex === 10 ? '#c0392b' : '#2e86c1';
-                }
-            }]
-        },
-        options: {
-            responsive: true,
-            plugins: {
-                title: { display: true, text: 'Broadridge PE Ratio 历史走势', font: { size: 16 } },
-                annotation: {
-                    annotations: {
-                        avgLine: {
-                            type: 'line',
-                            yMin: 30.8,
-                            yMax: 30.8,
-                            borderColor: '#e74c3c',
-                            borderDash: [5,5],
-                            label: { content: '10年均值: 30.8x', display: true, position: 'end' }
-                        }
-                    }
-                }
-            },
-            scales: {
-                y: { title: { display: true, text: 'PE Ratio' }, min: 10, max: 40 }
-            }
-        }
-    });
-    </script>
-</body>
+    <script src="stock_topbar.js"></script>
+    </body>
 </html>

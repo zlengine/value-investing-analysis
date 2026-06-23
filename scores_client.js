@@ -183,6 +183,35 @@ var ScoresDB = (function() {
     }
 
     /**
+     * 保存笔记（本地立即保存 + 异步推送云端）
+     */
+    function saveNote(code, note, callback) {
+        var scores = readAll();
+        if (!scores[code]) scores[code] = {};
+        scores[code].note = note || '';
+        scores[code].noteUpdated = new Date().toISOString();
+        // 如果没有updated字段，补一个
+        if (!scores[code].updated) scores[code].updated = scores[code].noteUpdated;
+        // 1. 立即写入本地
+        writeAll(scores);
+        // 2. 异步推送云端
+        pushToRemote(scores, function(err) {
+            if (typeof callback === 'function') {
+                callback({ success: !err, code: code, error: err ? err.message : null });
+            }
+        });
+        return { success: true, code: code };
+    }
+
+    /**
+     * 获取笔记
+     */
+    function getNote(code) {
+        var scores = readAll();
+        return (scores[code] && scores[code].note) || '';
+    }
+
+    /**
      * 保存打分（本地立即保存 + 异步推送云端）
      */
     function save(code, fundamental, price, callback) {
@@ -266,6 +295,8 @@ var ScoresDB = (function() {
         getAllLocal: getAllLocal,
         get: get,
         save: save,
+        saveNote: saveNote,
+        getNote: getNote,
         delete: remove,
         syncFromRemote: syncFromRemote,
         initAutoSync: initAutoSync,

@@ -79,54 +79,37 @@
             border-left: 4px solid #2e7d32;
             margin: 15px 0;
         }
-            .fixed-topbar { position: fixed; top: 44px; left: 0; right: 0; z-index: 9998; background: linear-gradient(135deg, #1a5276, #2e86c1); color: white; display: flex; align-items: center; justify-content: space-between; padding: 8px 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.15); height: 48px; }
-    .fixed-topbar a { color: white; text-decoration: none; font-size: 14px; font-weight: 600; }
+            
+    
     .fixed-topbar a:hover { text-decoration: underline; }
-    .topbar-left { display: flex; align-items: center; gap: 12px; }
-    .topbar-right { display: flex; align-items: center; gap: 8px; }
-    .topbar-score-label { font-size: 12px; opacity: 0.85; }
-    .topbar-score-val { font-weight: 700; font-size: 15px; min-width: 18px; text-align: center; }
-    .topbar-score-val.s1 { color: #ff6b6b; } .topbar-score-val.s2 { color: #ffa94d; } .topbar-score-val.s3 { color: #ffd43b; } .topbar-score-val.s4 { color: #69db7c; } .topbar-score-val.s5 { color: #51cf66; }
-    .topbar-select { padding: 3px 8px; border: 1px solid rgba(255,255,255,0.4); border-radius: 6px; font-size: 12px; font-weight: 600; color: white; background: rgba(255,255,255,0.15); cursor: pointer; outline: none; }
+    
+    
+    
+    
+        
+    
     .topbar-select:focus { border-color: rgba(255,255,255,0.7); }
-    .topbar-select option { color: #333; background: white; }
+    
     .topbar-select:disabled { opacity: 0.5; cursor: not-allowed; }
-    .topbar-btn { padding: 4px 12px; border: none; border-radius: 6px; font-size: 12px; font-weight: 600; cursor: pointer; transition: background 0.2s; }
-    .topbar-btn-edit { background: rgba(255,255,255,0.2); color: white; }
-    .topbar-btn-edit:hover { background: rgba(255,255,255,0.35); }
-    .topbar-btn-save { background: #27ae60; color: white; }
+    
+    
+    
+    
     .topbar-btn-save:hover { background: #219a52; }
-    .topbar-btn-cancel { background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.7); }
+    
     .topbar-btn-cancel:hover { background: rgba(255,255,255,0.2); }
-    .topbar-stars { font-size: 11px; }
-    .topbar-stars .on { color: #f39c12; }
-    .topbar-stars .off { color: rgba(255,255,255,0.3); }
-    body { padding-top: 104px !important; }
+    
+    
+    
+    
                 .top-nav-bar { position: fixed; top: 0; left: 0; right: 0; height: 44px; background: #2c3e50; display: flex; align-items: center; justify-content: flex-end; padding: 0 20px; z-index: 9999; box-shadow: 0 2px 8px rgba(0,0,0,0.15); gap: 8px; }
         .top-nav-link { color: white; padding: 6px 16px; border-radius: 16px; text-decoration: none; font-size: 13px; transition: background 0.2s; white-space: nowrap; }
     </style>
 </head>
 <body>
     <div class="top-nav-bar"></div>
-    <script src="nav_bar.js"></script>    <div class="fixed-topbar" id="fixedTopbar">
-        <div class="topbar-left">
-            <a href="index.html">&larr; &#x8FD4;&#x56DE;&#x7D22;&#x5F15;</a>
-            <span style="font-size:14px;font-weight:700;" id="topbarCode">DXCM</span>
-        </div>
-        <div class="topbar-right" id="topbarScores">
-            <span class="topbar-score-label">&#x57FA;&#x672C;&#x9762;</span>
-            <span class="topbar-score-val" id="topbarFVal">-</span>
-            <span class="topbar-stars" id="topbarFStars"></span>
-            <select class="topbar-select" id="topbarFSel" style="display:none;"><option value="0">-</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option></select>
-            <span class="topbar-score-label" style="margin-left:12px;">&#x4EF7;&#x683C;</span>
-            <span class="topbar-score-val" id="topbarPVal">-</span>
-            <span class="topbar-stars" id="topbarPStars"></span>
-            <select class="topbar-select" id="topbarPSel" style="display:none;"><option value="0">-</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option></select>
-            <button class="topbar-btn topbar-btn-edit" id="topbarEditBtn" onclick="topbarEdit()">&#x4FEE;&#x6539;</button>
-            <button class="topbar-btn topbar-btn-save" id="topbarSaveBtn" onclick="topbarSave()" style="display:none;">&#x4FDD;&#x5B58;</button>
-            <button class="topbar-btn topbar-btn-cancel" id="topbarCancelBtn" onclick="topbarCancel()" style="display:none;">&#x53D6;&#x6D88;</button>
-        </div>
-    </div>
+    <script src="nav_bar.js"></script>
+    <span id="topbarCode" style="display:none;">DXCM</span>
     <h1>DXCM — DexCom, Inc.（德康医疗）价值投资分析</h1>
 
     <div class="info-box">
@@ -605,6 +588,7 @@
         });
     </script>    
     <script src="scores_client.js"></script>
+    <script src="stock_topbar.js"></script>
     <script>
     (function(){
         var code=document.getElementById('topbarCode').textContent.trim();

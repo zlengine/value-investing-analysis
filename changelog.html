@@ -157,6 +157,29 @@
 
     <div class="log-entry create">
         <div class="log-header">
+            <span class="log-date">2026-06-24</span>
+            <span class="log-type create">新建</span>
+        </div>
+        <div class="log-desc">
+            <ul>
+                <li><strong>抽取个股共享打分导航栏组件 stock_topbar.js，全站统一管理</strong></li>
+                <li>新建 stock_topbar.js：动态渲染个股页面打分导航栏，自动读取股票代码、显示分数、编辑笔记</li>
+                <li>导航栏加宽至64px，放大打分按钮和字体（分数20px，按钮14px）</li>
+                <li>中间新增笔记功能：点击📝笔记按钮可编辑投资见解，保存后在导航栏中间显示（超出省略）</li>
+                <li>笔记数据通过 ScoresDB 同步到 JSONBin 云端，跨设备共享</li>
+                <li>scores_client.js 新增 saveNote/getNote 方法支持笔记存储</li>
+                <li>改造 89 个公司页面：移除内联 fixed-topbar HTML和打分脚本，改用 stock_topbar.js</li>
+                <li>以后修改打分导航栏只需改 stock_topbar.js 一个文件，全站自动生效</li>
+            </ul>
+        </div>
+        <div class="log-files">
+            <span class="added">+ stock_topbar.js</span><br>
+            <span class="modified">~ scores_client.js, 89个公司页面</span>
+        </div>
+    </div>
+
+    <div class="log-entry create">
+        <div class="log-header">
             <span class="log-date">2026-06-23</span>
             <span class="log-type create">新建</span>
         </div>
