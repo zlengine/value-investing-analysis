@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KLA Corporation (KLAC) 详细分析</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; background-color: #f5f5f5; padding-top: 104px !important; }
+        h1 { text-align: center; color: #333; }
+        h2 { color: #4CAF50; margin-top: 30px; border-bottom: 2px solid #4CAF50; padding-bottom: 5px; }
+        h3 { color: #2e86c1; margin-top: 20px; }
+        .info-box { background-color: white; padding: 20px; margin: 20px 0; box-shadow: 0 0 10px rgba(0,0,0,0.1); border-radius: 5px; }
+        table { width: 100%; border-collapse: collapse; margin: 10px 0; }
+        th, td { padding: 8px; text-align: left; border-bottom: 1px solid #ddd; }
+        th { background-color: #4CAF50; color: white; }
+        a { color: #4CAF50; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        .fixed-topbar { position: fixed; top: 44px; left: 0; right: 0; z-index: 9998; background: linear-gradient(135deg, #1a5276, #2e86c1); color: white; display: flex; align-items: center; justify-content: space-between; padding: 8px 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.15); height: 48px; }
+        .fixed-topbar a { color: white; text-decoration: none; font-size: 14px; font-weight: 600; }
+        .topbar-left { display: flex; align-items: center; gap: 12px; }
+        .topbar-right { display: flex; align-items: center; gap: 8px; }
+        .topbar-score-label { font-size: 12px; opacity: 0.85; }
+        .topbar-score-val { font-weight: 700; font-size: 15px; min-width: 18px; text-align: center; }
+        .topbar-score-val.s1 { color: #ff6b6b; } .topbar-score-val.s2 { color: #ffa94d; } .topbar-score-val.s3 { color: #ffd43b; } .topbar-score-val.s4 { color: #69db7c; } .topbar-score-val.s5 { color: #51cf66; }
+        .topbar-select { padding: 3px 8px; border: 1px solid rgba(255,255,255,0.4); border-radius: 6px; font-size: 12px; font-weight: 600; color: white; background: rgba(255,255,255,0.15); cursor: pointer; outline: none; }
+        .topbar-select option { color: #333; background: white; }
+        .topbar-btn { padding: 4px 12px; border: none; border-radius: 6px; font-size: 12px; font-weight: 600; cursor: pointer; }
+        .topbar-btn-edit { background: rgba(255,255,255,0.2); color: white; }
+        .topbar-btn-edit:hover { background: rgba(255,255,255,0.35); }
+        .topbar-btn-save { background: #27ae60; color: white; }
+        .topbar-btn-cancel { background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.7); }
+        .topbar-stars { font-size: 11px; }
+        .topbar-stars .on { color: #f39c12; }
+        .topbar-stars .off { color: rgba(255,255,255,0.3); }
+        .top-nav-bar { position: fixed; top: 0; left: 0; right: 0; height: 44px; background: #2c3e50; display: flex; align-items: center; justify-content: flex-end; padding: 0 20px; z-index: 9999; box-shadow: 0 2px 8px rgba(0,0,0,0.15); gap: 8px; }
+        .top-nav-link { color: white; padding: 6px 16px; border-radius: 16px; text-decoration: none; font-size: 13px; transition: background 0.2s; white-space: nowrap; }
+        .tag { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 12px; font-weight: 600; }
+        .tag-green { background-color: #d4edda; color: #155724; }
+        .tag-orange { background-color: #fff3cd; color: #856404; }
+        .tag-red { background-color: #f8d7da; color: #721c24; }
+        .highlight { background-color: #fffde7; padding: 10px; border-left: 4px solid #fbc02d; margin: 10px 0; }
+        .moat-item { background: #e8f5e9; padding: 12px; margin: 8px 0; border-left: 4px solid #4CAF50; border-radius: 4px; }
+        .risk-item { background: #ffebee; padding: 12px; margin: 8px 0; border-left: 4px solid #c62828; border-radius: 4px; }
+        .star { color: #f39c12; }
+        .chart-placeholder { background: #f0f0f0; padding: 15px; text-align: center; border-radius: 5px; margin: 10px 0; font-family: monospace; }
+    </style>
+</head>
+<body>
+    <div class="top-nav-bar">
+        <a href="scorer.html" class="top-nav-link" style="background:#1a5276;" onmouseover="this.style.background='#2e86c1'" onmouseout="this.style.background='#1a5276'">📊 股票打分</a>
+        <a href="financial_analysis.html" class="top-nav-link" style="background:#2e7d32;" onmouseover="this.style.background='#43a047'" onmouseout="this.style.background='#2e7d32'">📖 财务分析</a>
+        <a href="changelog.html" class="top-nav-link" style="background:#856404;" onmouseover="this.style.background='#a0762a'" onmouseout="this.style.background='#856404'">📋 更新日志</a>
+    </div>
+    <div class="fixed-topbar" id="fixedTopbar">
+        <div class="topbar-left">
+            <a href="index.html">&#8592; 首页</a>
+            <span style="font-size:14px;font-weight:700;" id="topbarCode">KLAC</span>
+        </div>
+        <div class="topbar-right" id="topbarScores">
+            <span class="topbar-score-label">基本面</span>
+            <span class="topbar-score-val" id="topbarFVal">-</span>
+            <span class="topbar-stars" id="topbarFStars"></span>
+            <select class="topbar-select" id="topbarFSel" style="display:none;"><option value="0">-</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option></select>
+            <span class="topbar-score-label" style="margin-left:12px;">价格</span>
+            <span class="topbar-score-val" id="topbarPVal">-</span>
+            <span class="topbar-stars" id="topbarPStars"></span>
+            <select class="topbar-select" id="topbarPSel" style="display:none;"><option value="0">-</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option></select>
+            <button class="topbar-btn topbar-btn-edit" id="topbarEditBtn" onclick="topbarEdit()">修改</button>
+            <button class="topbar-btn topbar-btn-save" id="topbarSaveBtn" onclick="topbarSave()" style="display:none;">保存</button>
+            <button class="topbar-btn topbar-btn-cancel" id="topbarCancelBtn" onclick="topbarCancel()" style="display:none;">取消</button>
+        </div>
+    </div>
+
+    <h1>KLA Corporation (NASDAQ: KLAC)</h1>
+    <p style="text-align:center;color:#666;">巴菲特/芒格式价值投资基本面分析 | 更新日期：2026年6月23日</p>
+
+    <!-- ==================== 一、公司基本信息 ==================== -->
+    <div class="info-box">
+        <h2>一、公司基本信息</h2>
+        <table>
+            <tr><td>公司全称</td><td>KLA Corporation</td></tr>
+            <tr><td>股票代码</td><td>NASDAQ: KLAC</td></tr>
+            <tr><td>最新收盘价</td><td>$237.34（2026年6月17日，拆股后）</td></tr>
+            <tr><td>拆股前等效价格</td><td>~$2,373（2026年6月12日完成10:1拆股）</td></tr>
+            <tr><td>市值</td><td>约3,107亿美元</td></tr>
+            <tr><td>企业价值（EV）</td><td>约3,120亿美元（净债务约$13亿，极低杠杆）</td></tr>
+            <tr><td>52周区间（拆股后）</td><td>$77.36 - $226.28</td></tr>
+            <tr><td>股息</td><td>$9.20/年（季息$2.30，拆股后$0.92/年），股息率约0.39%</td></tr>
+            <tr><td>PE（TTM）</td><td>约35倍（基于FY2025 EPS $30.37）</td></tr>
+            <tr><td>EPS（FY2025 GAAP）</td><td>$30.37（拆股后$3.037）</td></tr>
+            <tr><td>成立时间</td><td>1975年（KLA Instruments），1997年与Tencor合并</td></tr>
+            <tr><td>总部</td><td>美国加州Milpitas</td></tr>
+            <tr><td>员工人数</td><td>约16,000人</td></tr>
+            <tr><td>信用评级</td><td>穆迪A2 / 标普A- / 惠誉A（投资级）</td></tr>
+        </table>
+        <div class="highlight">
+            <strong>一句话业务：</strong>KLA是全球半导体工艺控制（检测+量测）设备的绝对龙头，市占率超55%。芯片制造中每一道工序后都需要KLA的设备来"质检"——找缺陷、量尺寸、控良率。没有KLA，台积电、三星、英特尔就无法以现有良率量产先进芯片。KLA是半导体工厂的"质量守门人"。
+        </div>
+    </div>
+
+    <!-- ==================== 二、业务分析 ==================== -->
+    <div class="info-box">
+        <h2>二、业务分析</h2>
+
+        <h3>2.1 业务模式——用大白话说</h3>
+        <p>想象你在造一座精密的大楼，每一层楼建完后都需要有人来检查：墙壁是否歪了？钢筋是否到位？层高是否精确到毫米？KLA就是半导体工厂里的这个"质检员"。芯片制造需要数百道工序，每一步都可能出错，KLA的设备就是在每一步后检查芯片有没有缺陷、尺寸是否精确。制程越先进（3nm、2nm），检查步骤越多、精度要求越高，KLA的设备就越不可或缺。</p>
+        <p>赚钱方式有两块：<strong>卖设备</strong>（一次性大单，占78%）和<strong>服务费</strong>（持续性的维护+软件订阅，占22%）。服务费像"年费"一样，只要工厂在运转就会持续流入，已连续52个季度同比增长。</p>
+
+        <h3>2.2 三大业务板块</h3>
+        <table>
+            <tr><th>业务板块</th><th>FY2025营收</th><th>占比</th><th>同比增长</th><th>简介</th></tr>
+            <tr>
+                <td>半导体工艺控制（Semi Process Control）</td>
+                <td>$109.5亿</td>
+                <td>90%</td>
+                <td>+25%</td>
+                <td>晶圆检测、掩膜版检测、量测三大产品线，是核心中的核心</td>
+            </tr>
+            <tr>
+                <td>特种半导体工艺（Specialty Semi Process）</td>
+                <td>~$6亿</td>
+                <td>5%</td>
+                <td>+11%</td>
+                <td>先进沉积和刻蚀工艺设备（2019年收购Orbotech获得）</td>
+            </tr>
+            <tr>
+                <td>PCB及元件检测（PCB & Component Inspection）</td>
+                <td>~$5.6亿</td>
+                <td>5%</td>
+                <td>+13%</td>
+                <td>印刷电路板和电子元件检测，受消费电子疲软拖累</td>
+            </tr>
+        </table>
+
+        <h3>2.3 产品 vs 服务收入</h3>
+        <table>
+            <tr><th>类别</th><th>FY2025营收</th><th>占比</th><th>同比增长</th></tr>
+            <tr><td>产品收入</td><td>$94.7亿</td><td>78%</td><td>+26%</td></tr>
+            <tr><td>服务收入</td><td>$26.8亿</td><td>22%</td><td>+15%</td></tr>
+        </table>
+        <div class="highlight">
+            <strong>关键洞察：</strong>服务收入中超过75%来自"类订阅"合同，具有极强的经常性特征。服务业务已连续52个季度同比增长，自2019年突破10亿美元以来已增长2.5倍。这是KLA业务模式中最被低估的部分——它为高度周期性的设备销售提供了稳定器。
+        </div>
+
+        <h3>2.4 地域分布（FY2025）</h3>
+        <table>
+            <tr><th>地区</th><th>营收占比</th><th>趋势</th></tr>
+            <tr><td>中国</td><td>33%</td><td>从FY2024的43%大幅下降，出口管制收紧</td></tr>
+            <tr><td>台湾</td><td>27%</td><td>台积电扩产驱动，大幅增长</td></tr>
+            <tr><td>韩国</td><td>12%</td><td>三星/SK海力士HBM投资</td></tr>
+            <tr><td>日本</td><td>6%</td><td>稳定</td></tr>
+            <tr><td>美国</td><td>8%</td><td>Intel扩产+CHIPS法案</td></tr>
+            <tr><td>其他</td><td>14%</td><td>—</td></tr>
+        </table>
+        <div class="risk-item">
+            <strong>地缘政治风险：</strong>中国收入从43%降至33%，预计进一步降至高20%区间。美国出口管制可能影响$3-3.5亿收入。但中国份额下降被台湾/韩国AI投资增长充分抵消。
+        </div>
+
+        <h3>2.5 先进封装——新增长极</h3>
+        <p>FY2025先进封装收入超过$9.25亿，KLA有望在2026年成为先进封装工艺控制市场的领导者。AI芯片（CoWoS、HBM堆叠）对封装检测需求激增，这是KLA从"前道检测"向"后道封装"扩张的战略性突破。</p>
+    </div>
+
+    <!-- ==================== 三、产品竞争力分析 ==================== -->
+    <div class="info-box">
+        <h2>三、产品竞争力分析</h2>
+
+        <h3>3.1 半导体工艺控制板块 产品竞争力</h3>
+
+        <p><strong>1. 可替代性：<span class="tag tag-green">极低</span></strong></p>
+        <ul>
+            <li><strong>直接替代品：</strong>Applied Materials的检测/量测部门、Onto Innovation、Hitachi High-Tech（CD-SEM）、Lasertec（EUV掩膜版检测）</li>
+            <li><strong>替代品体验差距：</strong>巨大。KLA在先进逻辑<10nm节点的市占率据CEO透露"接近100%"，竞争对手在先进制程上无法提供同等精度的检测能力</li>
+            <li><strong>替代品价格差距：</strong>KLA设备单价虽高（数百万美元/台），但替换成本远高于设备差价——换设备意味着历史检测数据全部失效、工程师需重新培训、产线需重新验证</li>
+            <li><strong>替代趋势：</strong>稳定甚至进一步有利于KLA。制程越先进，检测步骤越多、精度要求越高，KLA的技术领先优势反而扩大</li>
+        </ul>
+
+        <p><strong>2. 客户转换成本：<span class="tag tag-green">极高</span></strong></p>
+        <ul>
+            <li><strong>财务转换成本：</strong>一座先进晶圆厂通常部署数百台KLA设备，总价值数十亿美元。替换为竞品需要重新采购全部设备、重新验证工艺流程，成本以亿计</li>
+            <li><strong>时间转换成本：</strong>新设备验证周期6-18个月，期间产线良率可能波动，对芯片厂而言时间就是金钱</li>
+            <li><strong>数据转换成本：</strong>这是最关键的壁垒。KLA的Klarity和5D Analyzer平台积累了数十年的缺陷数据库和工艺知识，客户一旦切换，所有历史检测数据和分析模型全部作废</li>
+            <li><strong>捆绑转换成本：</strong>KLA提供从检测到量测到数据分析的全栈解决方案，客户通常同时使用多类KLA设备，形成生态锁定</li>
+        </ul>
+
+        <p><strong>3. 定价权：<span class="tag tag-green">极强</span></strong></p>
+        <ul>
+            <li><strong>历史提价记录：</strong>毛利率从FY2016的57%提升至FY2025的61%，在设备行业极为罕见</li>
+            <li><strong>提价vs通胀：</strong>毛利率提升幅度远超通胀，说明定价权来自技术溢价而非成本转嫁</li>
+            <li><strong>定价权来源：</strong>①近乎垄断的市场地位（55%+市占率）②客户无法承受不用KLA的代价（良率下降1%可能损失数亿美元）③检测成本占晶圆总成本比例仅7-9%，客户对价格不敏感</li>
+            <li><strong>定价权趋势：</strong>增强。制程升级使检测步骤增加、每步检测价值提升，KLA的"工艺控制强度"从7.4%向9%提升</li>
+            <li><strong>巴菲特测试：</strong>如果KLA涨价10%，客户会离开吗？不会。因为离开KLA意味着良率风险，而良率下降1%的损失远超设备涨价。客户是"不得不买"，不是"想不想买"。</li>
+        </ul>
+
+        <p><strong>整体竞争力评级：<span class="star">&#9733;&#9733;&#9733;&#9733;&#9733;</span> 5/5</strong></p>
+
+        <h3>3.2 特种半导体工艺板块 产品竞争力</h3>
+
+        <p><strong>1. 可替代性：<span class="tag tag-orange">中等</span></strong></p>
+        <ul>
+            <li>沉积/刻蚀领域竞争对手众多：AMAT（沉积龙头）、LRCX（刻蚀龙头）、TEL</li>
+            <li>KLA在此领域规模小（仅$6亿），主要服务利基市场</li>
+        </ul>
+
+        <p><strong>2. 客户转换成本：<span class="tag tag-orange">中等</span></strong></p>
+        <ul>
+            <li>与工艺控制设备相比，沉积/刻蚀设备的客户锁定度较低</li>
+        </ul>
+
+        <p><strong>3. 定价权：<span class="tag tag-orange">中等</span></strong></p>
+        <ul>
+            <li>利基市场有一定定价权，但无法与工艺控制板块相比</li>
+        </ul>
+
+        <p><strong>整体竞争力评级：<span class="star">&#9733;&#9733;&#9733;</span> 3/5</strong></p>
+
+        <h3>3.3 PCB及元件检测板块 产品竞争力</h3>
+
+        <p><strong>1. 可替代性：<span class="tag tag-orange">中等</span></strong></p>
+        <ul>
+            <li>竞争对手包括Viscom、Saki等，但KLA在高端市场领先</li>
+        </ul>
+
+        <p><strong>2. 客户转换成本：<span class="tag tag-orange">中等</span></strong></p>
+
+        <p><strong>3. 定价权：<span class="tag tag-orange">中等</span></strong></p>
+
+        <p><strong>整体竞争力评级：<span class="star">&#9733;&#9733;&#9733;</span> 3/5</strong></p>
+
+        <div class="highlight">
+            <strong>核心结论：</strong>KLA的竞争力几乎完全来自半导体工艺控制板块（90%营收），该板块拥有"准垄断"地位+极高转换成本+极强定价权，是教科书级的经济护城河。其他两个板块是补充性的，不影响整体评级。
+        </div>
+    </div>
+
+    <!-- ==================== 四、历史财务指标 ==================== -->
+    <div class="info-box">
+        <h2>四、历史财务指标</h2>
+
+        <h3>4.1 ROE（净资产收益率）历史</h3>
+        <table>
+            <tr><th>年份</th><th>2014</th><th>2015</th><th>2016</th><th>2017</th><th>2018</th><th>2019</th><th>2020</th><th>2021</th><th>2022</th><th>2023</th><th>2024</th><th>2025</th></tr>
+            <tr><td>ROE</td><td>24%</td><td>亏损</td><td>—</td><td>163%</td><td>84%</td><td>133%</td><td>178%</td><td>215%</td><td>404%</td><td>557%</td><td>278%</td><td>245%</td></tr>
+        </table>
+        <div class="highlight">
+            <strong>巴菲特视角：</strong>ROE从2017年起飙升到100-500%+，这同样是<strong>财务工程</strong>——大规模回购将权益基数压缩至极低水平（FY2025权益仅$46.9亿，而市值$3,107亿，P/B高达66倍）。真实经营回报率应看ROA（25.8%）或ROIC（41.3%），这两个指标在半导体设备行业中已是顶级水平，完全不需要靠财务工程粉饰。
+        </div>
+
+        <h3>4.2 资产负债率历史</h3>
+        <table>
+            <tr><th>年份</th><th>2014</th><th>2015</th><th>2016</th><th>2017</th><th>2018</th><th>2019</th><th>2020</th><th>2021</th><th>2022</th><th>2023</th><th>2024</th><th>2025</th></tr>
+            <tr><td>负债率</td><td>52%</td><td>72%</td><td>79%</td><td>61%</td><td>60%</td><td>41%</td><td>53%</td><td>55%</td><td>85%</td><td>72%</td><td>66%</td><td>69%</td></tr>
+        </table>
+        <p>注：2022年负债率飙升至85%主要因回购导致权益缩减，而非债务激增。FY2025总债务$60.9亿，现金$44.9亿，净债务仅$16亿，相对$40.6亿净利润和$37.5亿自由现金流，杠杆极低。</p>
+
+        <h3>4.3 权益乘数（资产/权益）历史</h3>
+        <table>
+            <tr><th>年份</th><th>2014</th><th>2015</th><th>2016</th><th>2017</th><th>2018</th><th>2019</th><th>2020</th><th>2021</th><th>2022</th><th>2023</th><th>2024</th><th>2025</th></tr>
+            <tr><td>权益乘数</td><td>2.1x</td><td>3.6x</td><td>4.8x</td><td>2.6x</td><td>2.5x</td><td>1.7x</td><td>2.1x</td><td>2.2x</td><td>6.7x</td><td>3.6x</td><td>2.9x</td><td>3.2x</td></tr>
+        </table>
+
+        <h3>4.4 PE比率历史</h3>
+        <table>
+            <tr><th>年份</th><th>2016</th><th>2017</th><th>2018</th><th>2019</th><th>2020</th><th>2021</th><th>2022</th><th>2023</th><th>2024</th><th>2025</th><th>当前</th></tr>
+            <tr><td>PE</td><td>13.6x</td><td>14.1x</td><td>13.6x</td><td>14.4x</td><td>18.7x</td><td>22.1x</td><td>15.2x</td><td>19.1x</td><td>34.8x</td><td>27.0x</td><td>~35x</td></tr>
+        </table>
+        <div class="highlight">
+            <strong>估值警示：</strong>当前PE约35倍，远高于5年中位数25.7倍和10年均值18.8倍。GuruFocus GF Value仅$931.65（拆股前），当前价格溢价86%+。估值评级1/10（GuruFocus），是该公司基本面中最弱的一环。
+        </div>
+    </div>
+
+    <!-- ==================== 五、竞争分析 ==================== -->
+    <div class="info-box">
+        <h2>五、竞争分析</h2>
+
+        <h3>5.1 竞争格局</h3>
+        <table>
+            <tr><th>竞争对手</th><th>领域</th><th>市占率</th><th>vs KLA</th></tr>
+            <tr>
+                <td>Applied Materials (AMAT)</td>
+                <td>检测/量测（附带业务）</td>
+                <td>~10-15%</td>
+                <td>平台型巨头但检测非核心，技术深度不及KLA</td>
+            </tr>
+            <tr>
+                <td>Onto Innovation (ONTO)</td>
+                <td>量测/检测</td>
+                <td>~5-8%</td>
+                <td>规模小，聚焦中低端和利基市场</td>
+            </tr>
+            <tr>
+                <td>Hitachi High-Tech</td>
+                <td>CD-SEM</td>
+                <td>~15-20%</td>
+                <td>仅在CD-SEM细分领域有竞争力</td>
+            </tr>
+            <tr>
+                <td>Lasertec (6920.T)</td>
+                <td>EUV掩膜版检测</td>
+                <td>~30%</td>
+                <td>日本公司，EUV掩膜版检测有独特优势，但当前代工具采用率低于预期</td>
+            </tr>
+            <tr>
+                <td><strong>KLA</strong></td>
+                <td><strong>全栈工艺控制</strong></td>
+                <td><strong>55%+</strong></td>
+                <td><strong>绝对龙头，先进逻辑节点接近100%</strong></td>
+            </tr>
+        </table>
+
+        <h3>5.2 经济护城河评估</h3>
+
+        <div class="moat-item">
+            <strong>1. 技术领先与专利壁垒 <span class="star">&#9733;&#9733;&#9733;&#9733;&#9733;</span></strong><br>
+            KLA每年投入$13.6亿研发（FY2025），占营收11%。在光学检测、电子束检测、计算光刻等领域积累了数千项专利。制程越先进，KLA的技术优势越大——在<10nm先进逻辑节点，KLA市占率据CEO透露"接近100%"。
+        </div>
+
+        <div class="moat-item">
+            <strong>2. 转换成本 <span class="star">&#9733;&#9733;&#9733;&#9733;&#9733;</span></strong><br>
+            客户一旦采用KLA设备，其检测数据、工艺知识、工程师培训全部与KLA生态绑定。更换设备意味着历史数据全部作废、产线重新验证，代价以亿计。这是KLA最深的护城河。
+        </div>
+
+        <div class="moat-item">
+            <strong>3. 规模优势 <span class="star">&#9733;&#9733;&#9733;&#9733;</span></strong><br>
+            55%+市占率意味着KLA拥有行业最大的缺陷数据库，AI检测算法的训练数据远超竞争对手，形成数据飞轮效应——数据越多→算法越准→客户越依赖→数据更多。
+        </div>
+
+        <div class="moat-item">
+            <strong>4. 客户关系深度 <span class="star">&#9733;&#9733;&#9733;&#9733;</span></strong><br>
+            KLA与台积电、三星、Intel等顶级客户联合开发下一代检测方案，这种"co-development"模式使KLA的技术路线与客户需求深度绑定，新进入者无法复制。
+        </div>
+
+        <div class="moat-item">
+            <strong>5. 网络效应（数据飞轮）<span class="star">&#9733;&#9733;&#9733;&#9733;</span></strong><br>
+            KLA的Klarity平台连接全球晶圆厂的检测数据，形成"数据越多→算法越准→良率越高→更多客户选择"的正循环。这是一种独特的B2B网络效应。
+        </div>
+
+        <h3>5.3 护城河评级</h3>
+        <p><strong>宽护城河（Wide Moat）—— 5/5</strong></p>
+        <p>KLA拥有半导体设备行业中最宽的护城河。其55%+市占率、近乎100%的先进节点渗透率、极高转换成本和数据飞轮效应，使其地位在可预见的未来几乎不可撼动。即使AMAT这样的巨头也无法在工艺控制领域对KLA构成实质性威胁。</p>
+    </div>
+
+    <!-- ==================== 六、利润分配分析 ==================== -->
+    <div class="info-box">
+        <h2>六、利润分配分析（近10年）</h2>
+
+        <table>
+            <tr>
+                <th>年份</th><th>净利润</th><th>分红</th><th>回购</th><th>资本开支</th><th>留存金额</th><th>留存率</th>
+            </tr>
+            <tr><td>FY2016</td><td>$7.0亿</td><td>$3.3亿</td><td>$3.5亿</td><td>$1.7亿</td><td>$3.7亿</td><td>53%</td></tr>
+            <tr><td>FY2017</td><td>$9.3亿</td><td>$3.4亿</td><td>$7.5亿</td><td>$1.8亿</td><td>$5.9亿</td><td>63%</td></tr>
+            <tr><td>FY2018</td><td>$8.0亿</td><td>$4.0亿</td><td>$10.0亿</td><td>$2.0亿</td><td>$4.0亿</td><td>50%</td></tr>
+            <tr><td>FY2019</td><td>$11.8亿</td><td>$5.2亿</td><td>$12.5亿</td><td>$2.3亿</td><td>$6.6亿</td><td>56%</td></tr>
+            <tr><td>FY2020</td><td>$12.2亿</td><td>$5.3亿</td><td>$8.0亿</td><td>$2.5亿</td><td>$6.9亿</td><td>57%</td></tr>
+            <tr><td>FY2021</td><td>$20.8亿</td><td>$5.6亿</td><td>$16.5亿</td><td>$3.0亿</td><td>$15.2亿</td><td>73%</td></tr>
+            <tr><td>FY2022</td><td>$33.2亿</td><td>$6.3亿</td><td>$27.0亿</td><td>$3.5亿</td><td>$26.9亿</td><td>81%</td></tr>
+            <tr><td>FY2023</td><td>$33.9亿</td><td>$7.2亿</td><td>$20.0亿</td><td>$4.0亿</td><td>$26.7亿</td><td>79%</td></tr>
+            <tr><td>FY2024</td><td>$27.6亿</td><td>$7.8亿</td><td>$18.0亿</td><td>$3.8亿</td><td>$19.8亿</td><td>72%</td></tr>
+            <tr><td>FY2025</td><td>$40.6亿</td><td>$9.0亿</td><td>$21.5亿</td><td>$3.3亿</td><td>$31.6亿</td><td>78%</td></tr>
+        </table>
+
+        <div class="highlight">
+            <strong>资本配置评估：</strong>
+            <ul>
+                <li><strong>分红：</strong>连续16年增长，CAGR约15%，但股息率仅0.4%，分红更多是信号意义而非实质回报</li>
+                <li><strong>回购：</strong>过去5年累计回购约$100亿，流通股从1.56亿股降至1.32亿股（-15%）。回购执行质量中等——在PE 15-20x时回购是好的，但在PE 30x+时回购有高估风险</li>
+                <li><strong>资本开支：</strong>维持在营收3-4%的轻资产水平，这是高利润率设备公司的特征</li>
+                <li><strong>留存率：</strong>50-81%，留存金额主要用于回购（按"回购即留存"原则，回购不影响留存金额计算）</li>
+                <li><strong>可持续增长率：</strong>ROIC 41% × 留存率78% ≈ 32%，远高于实际增速，说明公司有大量超额现金用于回购</li>
+            </ul>
+        </div>
+
+        <h3>6.1 FY2025资本回报详情</h3>
+        <table>
+            <tr><th>项目</th><th>金额</th><th>占自由现金流比</th></tr>
+            <tr><td>分红</td><td>$9.0亿</td><td>24%</td></tr>
+            <tr><td>回购</td><td>$21.5亿</td><td>57%</td></tr>
+            <tr><td>合计资本回报</td><td>$30.5亿</td><td>82%</td></tr>
+            <tr><td>自由现金流</td><td>$37.5亿</td><td>100%</td></tr>
+        </table>
+        <p>公司目标：长期资本回报占自由现金流85%以上。FY2025为82%，略低于目标但接近。</p>
+    </div>
+
+    <!-- ==================== 七、投资总结 ==================== -->
+    <div class="info-box">
+        <h2>七、投资总结</h2>
+
+        <h3>7.1 各维度评分</h3>
+        <table>
+            <tr><th>维度</th><th>评分</th><th>说明</th></tr>
+            <tr><td>业务可理解性</td><td><span class="star">&#9733;&#9733;&#9733;&#9733;&#9733;</span> 5/5</td><td>芯片质检——简单易懂，"工厂的质检员"</td></tr>
+            <tr><td>护城河强度</td><td><span class="star">&#9733;&#9733;&#9733;&#9733;&#9733;</span> 5/5</td><td>55%+市占率、近乎100%先进节点渗透、极高转换成本、数据飞轮</td></tr>
+            <tr><td>资本配置</td><td><span class="star">&#9733;&#9733;&#9733;&#9733;</span> 4/5</td><td>连续16年分红增长、85%+FCF回报率，但在高PE时回购质量存疑</td></tr>
+            <tr><td>财务安全</td><td><span class="star">&#9733;&#9733;&#9733;&#9733;</span> 4/5</td><td>净债务极低、投资级评级、FCF利润率31%，但周期性是隐忧</td></tr>
+            <tr><td>增长前景</td><td><span class="star">&#9733;&#9733;&#9733;&#9733;&#9733;</span> 5/5</td><td>AI基础设施+先进封装+工艺控制强度提升三重驱动</td></tr>
+            <tr><td>估值吸引力</td><td><span class="star">&#9733;</span> 1/5</td><td>PE 35x远高于历史均值，GF Value溢价86%，安全边际严重不足</td></tr>
+        </table>
+
+        <h3>7.2 核心风险</h3>
+        <div class="risk-item">
+            <ol>
+                <li><strong>估值风险（最大风险）：</strong>当前PE 35x，5年中位数25.7x，10年均值18.8x。GuruFocus GF Value仅$931（拆股前），当前价格溢价86%+。Henry Fund估算公允价值$1,172，仍有36%下行空间</li>
+                <li><strong>半导体周期性：</strong>设备销售高度依赖晶圆厂资本开支，历史上每3-4年一个周期。下行期营收可能下降20-30%</li>
+                <li><strong>中国出口管制：</strong>可能影响$3-3.5亿年收入，且长期看中国自研替代将缩小KLA在华增长空间</li>
+                <li><strong>客户集中度：</strong>Intel和台积电各占>10%营收，大客户砍单风险</li>
+                <li><strong>拆股后投机风险：</strong>10:1拆股后股价降至$237，可能吸引短期投机资金，增加波动性</li>
+            </ol>
+        </div>
+
+        <h3>7.3 核心催化剂</h3>
+        <div class="moat-item">
+            <ol>
+                <li><strong>AI基础设施持续扩张：</strong>台积电、三星、Intel的2nm/3nm扩产驱动设备需求</li>
+                <li><strong>先进封装爆发：</strong>FY2025先进封装收入$9.25亿，有望成为第二增长曲线</li>
+                <li><strong>工艺控制强度提升：</strong>从7.4%向9%提升，意味着每$100设备投资中KLA的份额从$7.4增至$9</li>
+                <li><strong>服务业务复利增长：</strong>52个季度连续增长，75%+经常性收入</li>
+            </ol>
+        </div>
+
+        <h3>7.4 投资评级</h3>
+        <div class="risk-item">
+            <strong>评级：观望（Wait）</strong>
+            <p>KLA是一家<strong>极其优秀</strong>的公司——拥有半导体设备行业最宽的护城河、最顶级的利润率、最刚性的需求。但"好公司"不等于"好价格"。</p>
+            <p>当前估值已充分甚至过度反映了AI驱动的增长预期。PE 35x意味着市场预期KLA将长期维持25%+的增速，这在半导体周期性行业中是不现实的。Henry Fund的DCF分析显示，即使假设FCF从$37.5亿增长至FY2032年的$108亿（7年翻3倍），在合理WACC下仍无法支撑当前股价。</p>
+        </div>
+
+        <div class="highlight">
+            <strong>理想买入区间：</strong>PE 18-22倍，对应拆股前价格约$550-$670（拆股后$55-$67），基于FY2025 EPS $30.37<br>
+            <strong>当前价格：</strong>拆股前约$2,373（拆股后$237.34）<br>
+            <strong>溢价：</strong>约250-330%，严重高估<br><br>
+            <strong>巴菲特会怎么看？</strong>"以合理的价格买入一家优秀的公司，远胜于以优秀的价格买入一家平庸的公司。"但KLA当前不是"合理的价格"——它是"疯狂的价格"。等待半导体周期下行带来的恐慌性抛售，才是价值投资者的入场时机。
+        </div>
+
+        <h3>7.5 与同业对比</h3>
+        <table>
+            <tr><th>指标</th><th>KLA (KLAC)</th><th>Applied Materials (AMAT)</th><th>Lam Research (LRCX)</th></tr>
+            <tr><td>核心赛道</td><td>工艺控制/检测量测</td><td>薄膜沉积/CMP/封装</td><td>刻蚀/沉积</td></tr>
+            <tr><td>核心市占率</td><td>55%+</td><td>沉积30%+</td><td>刻蚀48%</td></tr>
+            <tr><td>毛利率</td><td>61%</td><td>~50%</td><td>~50%</td></tr>
+            <tr><td>营业利润率</td><td>41%</td><td>~32%</td><td>~35%</td></tr>
+            <tr><td>PE (TTM)</td><td>~35x</td><td>~25x</td><td>~22x</td></tr>
+            <tr><td>护城河</td><td>最宽（准垄断）</td><td>宽（平台化）</td><td>宽（技术壁垒）</td></tr>
+            <tr><td>周期性</td><td>弱（刚性最强）</td><td>中（抗周期最强）</td><td>强（弹性最大）</td></tr>
+        </table>
+        <div class="highlight">
+            <strong>结论：</strong>KLA在盈利质量（毛利率61% vs 同行50%）和需求刚性（检测是"不得不买"）上优于AMAT和LRCX，但估值也最贵（PE 35x vs 22-25x）。如果三选一，KLA是最好的生意，但当前不是最好的价格。
+        </div>
+    </div>
+
+    <!-- Topbar scoring logic - unified with stock_scores_v1 -->
+    <script>
+    (function(){
+        var SCORE_KEY='stock_scores_v1';
+        var code=document.getElementById('topbarCode').textContent.trim();
+        function getScores(){try{var d=localStorage.getItem(SCORE_KEY);return d?JSON.parse(d):{};}catch(e){return {};}}
+        function saveScores(s){localStorage.setItem(SCORE_KEY,JSON.stringify(s));}
+        function starsHTML(val){var h='';for(var i=1;i<=5;i++){h+='<span class="'+(i<=val?'on':'off')+'">\u2605</span>';}return h;}
+        function valClass(v){return v>=5?'s5':v>=4?'s4':v>=3?'s3':v>=2?'s2':'s1';}
+        function renderDisplay(){
+            var sc=getScores()[code]||{};
+            var f=sc.fundamental||0,p=sc.price||0;
+            document.getElementById('topbarFVal').textContent=f>0?f:'-';
+            document.getElementById('topbarFVal').className='topbar-score-val'+(f>0?' '+valClass(f):'');
+            document.getElementById('topbarFStars').innerHTML=starsHTML(f);
+            document.getElementById('topbarPVal').textContent=p>0?p:'-';
+            document.getElementById('topbarPVal').className='topbar-score-val'+(p>0?' '+valClass(p):'');
+            document.getElementById('topbarPStars').innerHTML=starsHTML(p);
+        }
+        window.topbarEdit=function(){
+            var sc=getScores()[code]||{};
+            document.getElementById('topbarFSel').value=sc.fundamental||0;
+            document.getElementById('topbarPSel').value=sc.price||0;
+            document.getElementById('topbarFSel').style.display='';
+            document.getElementById('topbarPSel').style.display='';
+            document.getElementById('topbarEditBtn').style.display='none';
+            document.getElementById('topbarSaveBtn').style.display='';
+            document.getElementById('topbarCancelBtn').style.display='';
+            document.getElementById('topbarFVal').style.display='none';
+            document.getElementById('topbarPVal').style.display='none';
+            document.getElementById('topbarFStars').style.display='none';
+            document.getElementById('topbarPStars').style.display='none';
+        };
+        window.topbarSave=function(){
+            var f=parseInt(document.getElementById('topbarFSel').value);
+            var p=parseInt(document.getElementById('topbarPSel').value);
+            var sc=getScores();if(!sc[code])sc[code]={};
+            sc[code].fundamental=f;sc[code].price=p;sc[code].updated=new Date().toISOString();
+            saveScores(sc);topbarCancel();renderDisplay();
+        };
+        window.topbarCancel=function(){
+            document.getElementById('topbarFSel').style.display='none';
+            document.getElementById('topbarPSel').style.display='none';
+            document.getElementById('topbarEditBtn').style.display='';
+            document.getElementById('topbarSaveBtn').style.display='none';
+            document.getElementById('topbarCancelBtn').style.display='none';
+            document.getElementById('topbarFVal').style.display='';
+            document.getElementById('topbarPVal').style.display='';
+            document.getElementById('topbarFStars').style.display='';
+            document.getElementById('topbarPStars').style.display='';
+        };
+        renderDisplay();
+    })();
+    </script>
+</body>
+</html>
