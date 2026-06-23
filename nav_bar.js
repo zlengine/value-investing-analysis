@@ -31,8 +31,13 @@
         document.head.appendChild(style);
     }
 
+    // 股票总数（每次新增公司时更新此数字）
+    var STOCK_COUNT = 89;
+
     // 导航栏HTML（统一模板，所有页面共用）
-    var navBarHTML = '<a href="index.html" class="top-nav-link" style="background:#2c3e50;">← 首页</a>'
+    // 布局：左侧[首页][股票数量] —— 右侧[财务分析][更新日志][股票打分][价值计算]
+    var navBarHTML = '<a href="index.html" class="top-nav-link" style="background:#2c3e50;" onmouseover="this.style.background=\'#34495e\'" onmouseout="this.style.background=\'#2c3e50\'">← 首页</a>'
+        + '<span id="companyCount" class="top-nav-link" style="background:#1a5276;cursor:pointer;margin-right:auto;" onclick="window.scrollTo({top:0,behavior:\'smooth\'})">📊 <span id="countValue">' + STOCK_COUNT + '</span>家覆盖</span>'
         + '<a href="financial_analysis.html" class="top-nav-link" style="background:#2e7d32;" onmouseover="this.style.background=\'#43a047\'" onmouseout="this.style.background=\'#2e7d32\'">📖 财务分析</a>'
         + '<a href="changelog.html" class="top-nav-link" style="background:#856404;" onmouseover="this.style.background=\'#a0762a\'" onmouseout="this.style.background=\'#856404\'">📋 更新日志</a>'
         + '<a href="scorer.html" class="top-nav-link" style="background:#1a5276;" onmouseover="this.style.background=\'#2e86c1\'" onmouseout="this.style.background=\'#1a5276\'">📊 股票打分</a>'
@@ -92,17 +97,8 @@
             navBar.className = 'top-nav-bar';
             document.body.insertBefore(navBar, document.body.firstChild);
         }
-        // 清除已有的导航链接（保留非导航内容，如公司计数span）
-        var existingLinks = navBar.querySelectorAll('.top-nav-link[data-nav-shared="1"]');
-        existingLinks.forEach(function(el) { el.remove(); });
-
-        // 追加共享导航链接
-        var tempDiv = document.createElement('div');
-        tempDiv.innerHTML = navBarHTML;
-        Array.prototype.slice.call(tempDiv.children).forEach(function(el) {
-            el.setAttribute('data-nav-shared', '1');
-            navBar.appendChild(el);
-        });
+        // 完全替换导航栏内容（统一管理所有链接）
+        navBar.innerHTML = navBarHTML;
 
         // 添加计算器弹窗（仅添加一次）
         if (!document.getElementById('navCalcModal')) {
