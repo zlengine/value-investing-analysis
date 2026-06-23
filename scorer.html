@@ -179,19 +179,14 @@
         </div>
 
         <details class="sync-settings" style="margin:10px 0;padding:10px;background:#f8f9fa;border:1px solid #e0e0e0;border-radius:6px;">
-            <summary style="cursor:pointer;font-weight:bold;color:#555;">☁️ GitHub 同步设置</summary>
+            <summary style="cursor:pointer;font-weight:bold;color:#555;">☁️ JSONBin 云端同步状态</summary>
             <div style="margin-top:12px;font-size:13px;color:#666;line-height:1.6;">
-                <p style="margin:0 0 8px;">设置 GitHub Token 后，打分会自动同步到 <code>scores_data.json</code>，跨设备/浏览器共享。localStorage 丢失时会自动从 GitHub 恢复。</p>
-                <p style="margin:0 0 8px;color:#e74c3c;"><strong>⚠️ Token 安全提示：</strong>仅使用 fine-grained token，只授予本仓库的 Contents: Read and write 权限，有效期建议 90 天。</p>
+                <p style="margin:0 0 8px;">打分数据自动同步到 <strong>JSONBin.io</strong> 云端，跨设备/浏览器实时共享。无需手动设置 Token，开箱即用。</p>
+                <p style="margin:0 0 8px;color:#27ae60;"><strong>✓ 数据源：</strong>JSONBin.io（Bin ID: <code>6a3a9819da38895dfef1fe31</code>）</p>
                 <div style="display:flex;gap:8px;align-items:center;margin:10px 0;">
-                    <input type="password" id="githubTokenInput" placeholder="github_pat_..." style="flex:1;padding:6px 10px;border:1px solid #ccc;border-radius:4px;font-size:13px;">
-                    <button id="saveTokenBtn" style="padding:6px 14px;background:#27ae60;color:#fff;border:none;border-radius:4px;cursor:pointer;">保存 Token</button>
-                    <button id="clearTokenBtn" style="padding:6px 14px;background:#e74c3c;color:#fff;border:none;border-radius:4px;cursor:pointer;display:none;">清除</button>
-                </div>
-                <div style="display:flex;gap:8px;align-items:center;margin:10px 0;">
-                    <button id="syncNowBtn" style="padding:6px 14px;background:#3498db;color:#fff;border:none;border-radius:4px;cursor:pointer;">立即同步到 GitHub</button>
-                    <button id="restoreBtn" style="padding:6px 14px;background:#f39c12;color:#fff;border:none;border-radius:4px;cursor:pointer;">从 GitHub 恢复</button>
-                    <span id="syncStatus" style="font-size:12px;color:#999;"></span>
+                    <button id="syncNowBtn" style="padding:6px 14px;background:#3498db;color:#fff;border:none;border-radius:4px;cursor:pointer;">立即从云端同步</button>
+                    <button id="restoreBtn" style="padding:6px 14px;background:#f39c12;color:#fff;border:none;border-radius:4px;cursor:pointer;">强制覆盖本地</button>
+                    <span id="syncStatus" style="font-size:12px;color:#999;">就绪</span>
                 </div>
                 <p id="lastSyncInfo" style="margin:8px 0 0;font-size:12px;color:#999;"></p>
             </div>
@@ -229,7 +224,6 @@
     </div>
 
     <script src="scores_client.js"></script>
-    <script src="sync.js"></script>
     <script>
     (function(){
         var sortState = { field: 'total', dir: 'desc' };
@@ -487,13 +481,25 @@
         });
 
         function loadScores(){
-            currentScores = ScoresDB.getAll() || {};
+            // 先用本地缓存立即显示
+            currentScores = ScoresDB.getAllLocal() || {};
             var statusEl = document.getElementById('dbStatus');
             if (statusEl) {
-                statusEl.innerHTML = '💾 本地存储 · ' + Object.keys(currentScores).length + '条打分';
+                statusEl.innerHTML = '💾 本地缓存 · ' + Object.keys(currentScores).length + '条打分';
                 statusEl.style.color = '#27ae60';
             }
             renderTable();
+            // 异步从云端拉取最新数据并刷新
+            ScoresDB.syncFromRemote(function(err, scores){
+                if(!err){
+                    currentScores = scores || {};
+                    if (statusEl) {
+                        statusEl.innerHTML = '☁️ 云端同步 · ' + Object.keys(currentScores).length + '条打分';
+                        statusEl.style.color = '#27ae60';
+                    }
+                    renderTable();
+                }
+            });
         }
 
         if (document.readyState === 'loading') {
@@ -502,28 +508,15 @@
             loadScores();
         }
 
-        // ===== GitHub 同步设置 =====
+        // ===== JSONBin 云端同步 =====
         function updateSyncUI() {
-            var status = SyncManager.getStatus();
+            var status = ScoresDB.getStatus();
             var statusEl = document.getElementById('syncStatus');
             var lastSyncEl = document.getElementById('lastSyncInfo');
-            var clearBtn = document.getElementById('clearTokenBtn');
-            var input = document.getElementById('githubTokenInput');
-
-            if (status.hasToken) {
-                input.value = '';
-                input.placeholder = '已设置 Token（输入新值可覆盖）';
-                clearBtn.style.display = '';
-            } else {
-                input.placeholder = 'github_pat_...';
-                clearBtn.style.display = 'none';
-            }
 
             var statusText = '';
             var color = '#999';
-            if (!status.hasToken) {
-                statusText = '未设置 Token（仅本地存储）';
-            } else if (status.status === 'syncing') {
+            if (status.status === 'syncing') {
                 statusText = '同步中...';
                 color = '#3498db';
             } else if (status.status === 'success') {
@@ -532,8 +525,6 @@
             } else if (status.status === 'error') {
                 statusText = '✗ 同步失败：' + (status.error || '');
                 color = '#e74c3c';
-            } else if (status.status === 'no-token') {
-                statusText = '未设置 Token';
             } else {
                 statusText = '就绪';
                 color = '#27ae60';
@@ -549,43 +540,26 @@
             }
         }
 
-        document.getElementById('saveTokenBtn').addEventListener('click', function() {
-            var token = document.getElementById('githubTokenInput').value.trim();
-            if (!token) {
-                alert('请输入 Token');
-                return;
-            }
-            SyncManager.setToken(token);
-            updateSyncUI();
-            // 保存后立即同步一次
-            SyncManager.syncNow();
-            setTimeout(updateSyncUI, 1000);
-            setTimeout(updateSyncUI, 3000);
-        });
-
-        document.getElementById('clearTokenBtn').addEventListener('click', function() {
-            if (confirm('确定清除 Token？清除后将不会自动同步到 GitHub。')) {
-                SyncManager.setToken('');
-                updateSyncUI();
-            }
-        });
-
         document.getElementById('syncNowBtn').addEventListener('click', function() {
-            if (!SyncManager.hasToken()) {
-                alert('请先设置 GitHub Token');
-                return;
-            }
-            SyncManager.syncNow();
-            updateSyncUI();
-            setTimeout(updateSyncUI, 1500);
-            setTimeout(updateSyncUI, 4000);
+            document.getElementById('syncStatus').textContent = '同步中...';
+            document.getElementById('syncStatus').style.color = '#3498db';
+            ScoresDB.syncFromRemote(function(err, scores) {
+                if (err) {
+                    document.getElementById('syncStatus').textContent = '✗ 同步失败：' + err.message;
+                    document.getElementById('syncStatus').style.color = '#e74c3c';
+                } else {
+                    document.getElementById('syncStatus').textContent = '✓ 已同步 ' + Object.keys(scores).length + ' 条打分';
+                    document.getElementById('syncStatus').style.color = '#27ae60';
+                    loadScores();
+                }
+            });
         });
 
         document.getElementById('restoreBtn').addEventListener('click', function() {
-            if (!confirm('从 GitHub 恢复会覆盖当前 localStorage 数据，确定继续？')) return;
+            if (!confirm('从云端恢复会覆盖当前本地数据，确定继续？')) return;
             document.getElementById('syncStatus').textContent = '恢复中...';
             document.getElementById('syncStatus').style.color = '#3498db';
-            SyncManager.restoreFromGitHub(function(err, scores) {
+            ScoresDB.syncFromRemote(function(err, scores) {
                 if (err) {
                     document.getElementById('syncStatus').textContent = '✗ 恢复失败：' + err.message;
                     document.getElementById('syncStatus').style.color = '#e74c3c';
@@ -598,7 +572,7 @@
         });
 
         // 监听同步状态变化
-        SyncManager.onStatusChange(updateSyncUI);
+        ScoresDB.onStatusChange(updateSyncUI);
 
         if (document.readyState === 'loading') {
             document.addEventListener('DOMContentLoaded', updateSyncUI);

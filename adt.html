@@ -558,7 +558,6 @@
         });
     </script>    
     <script src="scores_client.js"></script>
-    <script src="sync.js"></script>
     <script>
     (function(){
         var code=document.getElementById('topbarCode').textContent.trim();
@@ -610,9 +609,10 @@
         };
         // 初始加载
         if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', renderFromDB);
+            document.addEventListener('DOMContentLoaded', function(){ renderFromDB(); ScoresDB.initAutoSync(function(){ renderFromDB(); }); });
         } else {
             renderFromDB();
+            ScoresDB.initAutoSync(function(){ renderFromDB(); });
         }
     })();
     </script>

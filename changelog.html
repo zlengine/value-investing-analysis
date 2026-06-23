@@ -162,6 +162,30 @@
         </div>
         <div class="log-desc">
             <ul>
+                <li><strong>重大架构升级：打分系统从 localStorage-only 改为 JSONBin.io 云端同步</strong></li>
+                <li>改造 scores_client.js：新增 ScoresDB.syncFromRemote()、pushToRemote()、initAutoSync() 等云端API</li>
+                <li>批量改造 85 个公司页面 topbar 脚本：页面加载时自动从 JSONBin 拉取最新打分并刷新显示</li>
+                <li>改造 scorer.html：移除 GitHub Token 设置区域，改为 JSONBin 云端同步状态显示</li>
+                <li>移除所有页面的 sync.js 引用（不再需要 GitHub API 同步）</li>
+                <li>数据流：打分→localStorage立即保存→异步PUT到JSONBin云端；读取→localStorage立即显示→异步从JSONBin拉取刷新</li>
+                <li>跨设备同步：手机打分后电脑打开页面立即看到最新分数（无CDN缓存延迟）</li>
+            </ul>
+        </div>
+        <div class="log-files">
+            <span class="modified">~ scores_client.js（重写为JSONBin后端）</span><br>
+            <span class="modified">~ scorer.html（同步设置区域改造）</span><br>
+            <span class="modified">~ 85个公司页面（topbar脚本批量更新）</span><br>
+            <span class="deleted">- sync.js 引用已从所有页面移除</span>
+        </div>
+    </div>
+
+    <div class="log-entry update">
+        <div class="log-header">
+            <span class="log-date">2026-06-23</span>
+            <span class="log-type update">更新</span>
+        </div>
+        <div class="log-desc">
+            <ul>
                 <li>更新Qualys (QLYS)分析页面，从占位页面升级为完整7章价值投资分析</li>
                 <li>关键数据：市值$40亿、PE 20x、净利率29.6%、ROE 35.34%、净现金$6.2亿、资产负债率5%</li>
                 <li>核心结论：中等护城河3/5（切换成本+品牌但面临平台化挤压），财务安全5/5，资本配置4/5，评级"持有"</li>
