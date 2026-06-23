@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chipotle Mexican Grill (CMG) 价值投资分析</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body { font-family: 'Segoe UI', Arial, sans-serif; margin: 0; padding: 20px; padding-top: 70px; background-color: #f0f2f5; color: #333; }
+        h1 { text-align: center; color: #1a5276; font-size: 2.2em; margin-bottom: 5px; }
+        h2 { color: #1a5276; border-bottom: 2px solid #2e86c1; padding-bottom: 8px; margin-top: 30px; }
+        h3 { color: #2c3e50; margin-top: 20px; }
+        h4 { color: #2c3e50; margin-top: 15px; }
+        .subtitle { text-align: center; color: #7f8c8d; font-size: 1.1em; margin-bottom: 30px; }
+        .info-box { background: white; border-radius: 10px; padding: 25px; margin: 20px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.08); }
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; background-color: white; }
+        th, td { padding: 10px 14px; text-align: left; border-bottom: 1px solid #e0e0e0; }
+        th { background-color: #1a5276; color: white; font-weight: bold; }
+        tr:nth-child(even) { background-color: #f8f9fa; }
+        tr:hover { background-color: #eaf2f8; }
+        .highlight { background: #fef9e7; border-left: 4px solid #2e86c1; padding: 15px 20px; margin: 15px 0; border-radius: 0 8px 8px 0; }
+        .chart-container { background: white; border-radius: 10px; padding: 25px; margin: 20px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.08); }
+        canvas { max-height: 400px; }
+        .tag { display: inline-block; background: #1a5276; color: white; padding: 3px 10px; border-radius: 12px; font-size: 0.85em; margin: 2px; }
+        .tag-green { background: #27ae60; }
+        .tag-orange { background: #e67e22; }
+        .tag-red { background: #c0392b; }
+        a { color: #1a5276; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        .moat-item { background: white; border-radius: 8px; padding: 15px 20px; margin: 10px 0; box-shadow: 0 1px 5px rgba(0,0,0,0.05); border-left: 4px solid #2e86c1; }
+        .moat-item strong { color: #1a5276; }
+        .risk-item { background: white; border-radius: 8px; padding: 15px 20px; margin: 10px 0; box-shadow: 0 1px 5px rgba(0,0,0,0.05); border-left: 4px solid #c0392b; }
+        .star { color: #f39c12; }
+        .top-nav-bar { position: fixed; top: 0; left: 0; right: 0; height: 44px; background: #2c3e50; display: flex; align-items: center; justify-content: flex-end; padding: 0 20px; z-index: 9999; box-shadow: 0 2px 8px rgba(0,0,0,0.15); gap: 8px; }
+        .top-nav-link { color: white; padding: 6px 16px; border-radius: 16px; text-decoration: none; font-size: 13px; transition: background 0.2s; white-space: nowrap; }
+        .section-nav {
+            background: white;
+            border-radius: 10px;
+            padding: 15px 25px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+        .section-nav a {
+            display: inline-block;
+            margin: 5px 10px;
+            padding: 6px 14px;
+            background: #eaf2f8;
+            color: #1a5276;
+            text-decoration: none;
+            border-radius: 15px;
+            font-size: 0.9em;
+        }
+        .section-nav a:hover {
+            background: #2e86c1;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="top-nav-bar"></div>
+    <script src="nav_bar.js"></script>
+    <span id="topbarCode" style="display:none;">CMG</span>
+    <h1>Chipotle Mexican Grill 墨式烧烤 (NYSE: CMG)</h1>
+    <p class="subtitle">巴菲特/芒格式价值投资基本面分析 | 更新日期：2026年6月</p>
+
+    <div class="section-nav">
+        <a href="#chapter1">公司基本信息</a>
+        <a href="#chapter2">业务分析</a>
+        <a href="#chapter3">业务板块产品竞争力分析</a>
+        <a href="#chapter4">历史财务指标</a>
+        <a href="#chapter5">竞争分析与护城河</a>
+        <a href="#chapter6">利润分配分析</a>
+        <a href="#chapter7">投资总结</a>
+        <a href="#chapter8">数据来源</a>
+    </div>
+
+    <h2 id="chapter1">一、公司基本信息</h2>
+    <div class="info-box">
+        <table>
+            <tr><th>项目</th><th>详情</th></tr>
+            <tr><td>公司名称</td><td>Chipotle Mexican Grill, Inc.</td></tr>
+            <tr><td>股票代码</td><td>CMG（纽约证券交易所 NYSE）</td></tr>
+            <tr><td>成立年份</td><td>1993年</td></tr>
+            <tr><td>总部</td><td>美国加利福尼亚州纽波特比奇（Newport Beach, CA）</td></tr>
+            <tr><td>创始人</td><td>Steve Ells</td></tr>
+            <tr><td>现任CEO</td><td>Scott Boatwright（2026年）</td></tr>
+            <tr><td>最新股价</td><td>约 $32（2026年6月）</td></tr>
+            <tr><td>市值</td><td>约 $400亿美元（约 2,900亿人民币）</td></tr>
+            <tr><td>企业价值(EV)</td><td>约 $400亿美元（基本无长期债务，EV≈市值）</td></tr>
+            <tr><td>门店数量</td><td>3,700+家（截至2025年底，主要为公司直营）</td></tr>
+            <tr><td>员工数</td><td>约 11万人</td></tr>
+            <tr><td>所属行业</td><td>非必需消费 / 快休闲餐饮（Fast-Casual Restaurants）</td></tr>
+        </table>
+    </div>
+
+    <div class="highlight">
+        <strong>巴菲特视角速览：</strong>CMG 是一家"用真材实料做墨西哥卷饼"的快休闲餐饮连锁。它最特别的地方是<u>几乎全部直营</u>（不靠加盟），且<u>几乎没有长期债务</u>。2024年6月进行了50:1拆股，使股价从$3,000+降至$60区间，目前因业绩短期承压回落至$32附近。
+    </div>
+
+    <h2 id="chapter2">二、业务分析</h2>
+
+    <h3>2.1 公司是做什么的（大白话版）</h3>
+    <div class="info-box">
+        <p>想象一下：你走进一家餐厅，队伍排成长龙，厨师在你面前用不锈钢锅现炒鸡肉、牛肉，配上新鲜的米饭、豆子、牛油果酱，卷进一个大号墨西哥卷饼（Burrito）里——这就是 Chipotle。</p>
+        <p>它的核心卖点是：<strong>"Food with Integrity"（食物的诚信）</strong>——使用<u>有机食材</u>、<u>无抗生素/无激素的肉类</u>、<u>当日现做</u>（不用微波炉、不用冷冻加工品）。这一定位让它在快餐和正餐之间开辟了"快休闲"赛道。</p>
+        <p>菜单极简：卷饼、卷饼碗（Burrito Bowl，没饼的卷饼）、墨西哥夹饼（Tacos）、凯撒迪亚（Quesadilla）、沙拉。这种"少而精"的菜单让运营效率极高。</p>
+    </div>
+
+    <h3>2.2 业务板块与营收结构</h3>
+    <p>CMG 在财报中将业务合并为<strong>单一报告分部</strong>（所有餐厅运营），但可从地理和渠道维度拆解：</p>
+
+    <div class="info-box">
+        <table>
+            <tr><th>业务维度</th><th>2025年营收</th><th>占比</th><th>说明</th></tr>
+            <tr><td>美国公司直营餐厅</td><td>约 $11.5B</td><td>~96%</td><td>3,600+家美国门店，绝对核心</td></tr>
+            <tr><td>国际公司直营餐厅</td><td>约 $0.3B</td><td>~3%</td><td>加拿大、英国、法国、德国等100+家</td></tr>
+            <tr><td>特许经营/授权</td><td>约 $0.05B</td><td>~1%</td><td>中东等地14家授权店</td></tr>
+            <tr><td><strong>合计</strong></td><td><strong>$11.93B</strong></td><td><strong>100%</strong></td><td>2025年总营收</td></tr>
+        </table>
+    </div>
+
+    <h3>2.3 渠道结构（数字化占比）</h3>
+    <div class="info-box">
+        <table>
+            <tr><th>销售渠道</th><th>2026Q1占比</th><th>趋势</th></tr>
+            <tr><td>数字订单（Digital Sales）</td><td>38.6%</td><td>稳定高位</td></tr>
+            <tr><td>店内就餐（Dine-in）</td><td>约 35%</td><td>疫后回升</td></tr>
+            <tr><td>外带/Drive-thru（Chipotlane）</td><td>约 26%</td><td>快速上升</td></tr>
+        </table>
+        <p><strong>Chipotlane</strong>（汽车穿梭通道）是 CMG 的关键创新：新店中约 86% 配备 Chipotlane，能显著提升新店销售额、利润率和投资回报率。</p>
+    </div>
+
+    <h3>2.4 商业模式与赚钱方式</h3>
+    <div class="info-box">
+        <p><strong>收入来源：</strong>几乎全部来自餐厅食品和饮料销售（不靠加盟费、不靠房地产）。</p>
+        <p><strong>盈利逻辑：</strong></p>
+        <ul>
+            <li><strong>高单位经济性</strong>：单店年均营收约 $300万，餐厅级营业利润率约 23-26%（2025年）</li>
+            <li><strong>新店回报快</strong>：单店开造成本约 $150万，投资回报率约 60%（即约1.7年回本）</li>
+            <li><strong>规模效应</strong>：3,700+家门店的采购规模带来食材成本优势</li>
+            <li><strong>无加盟稀释</strong>：100%直营意味着所有利润归股东，不像麦当劳有加盟商分润</li>
+        </ul>
+    </div>
+
+    <h3>2.5 增长趋势</h3>
+    <div class="info-box">
+        <table>
+            <tr><th>年份</th><th>营收($B)</th><th>同比</th><th>净利润($M)</th><th>同比</th><th>同店销售</th></tr>
+            <tr><td>2015</td><td>4.50</td><td>-</td><td>476</td><td>-</td><td>+6.4%</td></tr>
+            <tr><td>2016</td><td>3.90</td><td>-13.3%</td><td>23</td><td>-95.2%</td><td>-29.6%★</td></tr>
+            <tr><td>2017</td><td>4.48</td><td>+14.9%</td><td>176</td><td>+665%</td><td>-0.1%</td></tr>
+            <tr><td>2018</td><td>4.86</td><td>+8.7%</td><td>176</td><td>0%</td><td>+4.6%</td></tr>
+            <tr><td>2019</td><td>5.59</td><td>+14.8%</td><td>350</td><td>+98.9%</td><td>+8.7%</td></tr>
+            <tr><td>2020</td><td>5.99</td><td>+7.1%</td><td>356</td><td>+1.7%</td><td>+1.8%</td></tr>
+            <tr><td>2021</td><td>7.55</td><td>+26.1%</td><td>652</td><td>+83.1%</td><td>+19.3%</td></tr>
+            <tr><td>2022</td><td>8.64</td><td>+14.4%</td><td>897</td><td>+37.6%</td><td>+7.9%</td></tr>
+            <tr><td>2023</td><td>9.87</td><td>+14.3%</td><td>1,230</td><td>+37.1%</td><td>+7.9%</td></tr>
+            <tr><td>2024</td><td>11.31</td><td>+14.6%</td><td>1,530</td><td>+24.4%</td><td>+7.0%</td></tr>
+            <tr><td>2025</td><td>11.93</td><td>+5.4%</td><td>1,539</td><td>+0.6%</td><td>-0.4%★</td></tr>
+        </table>
+        <p>★ 2016年因食品安全危机暴跌；2025年因消费疲软+GLP-1减肥药影响首次出现同店负增长。</p>
+    </div>
+
+    <h2 id="chapter3">三、业务板块产品竞争力分析</h2>
+
+    <h3>3.1 快休闲墨西哥餐饮（核心业务，~96%营收）</h3>
+
+    <h4>维度1：可替代性</h4>
+    <p><span class="tag tag-orange">中等可替代性（Medium）</span></p>
+    <div class="info-box">
+        <p><strong>主要替代品：</strong></p>
+        <ul>
+            <li><strong>直接替代</strong>：Qdoba、Moe's Southwest Grill、Taco Bell（墨西哥风味快餐）、CAVA（地中海快休闲）、Sweetgreen（健康碗）</li>
+            <li><strong>间接替代</strong>：Panera Bread、Shake Shack、Chipotle 之外的所有快休闲品牌；便利店熟食；外卖平台上的其他选择</li>
+            <li><strong>家庭替代</strong>：超市半成品、HelloFresh 等 meal kit</li>
+        </ul>
+        <p><strong>体验差距：</strong>Chipotle 的"现做+真材实料+可定制"体验在快餐中独树一帜，但 CAVA、Sweetgreen 等新贵在"健康"维度已接近。</p>
+        <p><strong>替代趋势：</strong><span class="tag tag-orange">加速中</span>——CAVA 增长迅猛，GLP-1 减肥药用户减少外出就餐，消费降级趋势下部分客群流向 Taco Bell 等更便宜选项。</p>
+    </div>
+
+    <h4>维度2：客户转换成本</h4>
+    <p><span class="tag tag-red">极低转换成本（Extremely Low）</span></p>
+    <div class="info-box">
+        <p><strong>财务转换成本：</strong>零。顾客无需订阅、无需押金，下次换一家店吃饭没有任何成本。</p>
+        <p><strong>时间转换成本：</strong>几乎为零。换一家餐厅可能更近、更快。</p>
+        <p><strong>心理转换成本：</strong>低。品牌忠诚度存在但脆弱——主要靠"习惯"和"地理位置便利性"维系。</p>
+        <p><strong>捆绑转换成本：</strong>低。Chipotle Rewards 会员计划提供一定粘性，但竞争对手也有类似计划。</p>
+        <p><strong>巴菲特测试：</strong>顾客从 Chipotle 换到 Qdoba 或 CAVA，<u>几乎零成本</u>。这是餐饮业的共性弱点。</p>
+    </div>
+
+    <h4>维度3：定价权</h4>
+    <p><span class="tag tag-orange">中等定价权（Medium）</span></p>
+    <div class="info-box">
+        <p><strong>历史提价记录：</strong></p>
+        <ul>
+            <li>2018-2024年累计提价约 30-35%（远超 CPI 通胀）</li>
+            <li>2022年连续三次提价（共约 13%）应对通胀，客流未明显流失</li>
+            <li>2025年提价后出现同店销售负增长（-0.4%），显示提价天花板已现</li>
+        </ul>
+        <p><strong>提价 vs 通胀：</strong>2020-2024年提价幅度跑赢 CPI，但 2025 年的负同店表明<u>"提价驱动增长"模式已接近极限"</u>。</p>
+        <p><strong>定价权来源：</strong>品牌溢价（"Food with Integrity"）+ 便利性（Chipotlane）+ 数字化体验。但<u>非垄断、非刚需</u>，定价权有限。</p>
+        <p><strong>定价权趋势：</strong><span class="tag tag-red">减弱中</span>——2025年同店负增长、客流量下滑，表明消费者对价格敏感度上升。</p>
+        <p><strong>巴菲特测试：</strong>"如果卷饼涨价10%（从$10到$11），顾客会离开吗？"——<u>会有一部分离开</u>，尤其是价格敏感型客群。这不符合巴菲特对"强定价权"的定义。</p>
+    </div>
+
+    <h4>整体竞争力评级：<span class="star">★★★</span>☆☆（3/5星）</h4>
+    <div class="highlight">
+        CMG 在快休闲赛道是<strong>品类领导者</strong>，品牌力强、单位经济性好，但<u>餐饮业的天然弱点（低转换成本、中等定价权、可替代性高）</u>限制了其护城河深度。它不是"不可替代"的生意。
+    </div>
+
+    <h2 id="chapter4">四、历史财务指标 (2015-2025)</h2>
+
+    <div class="chart-container">
+        <canvas id="roeChart"></canvas>
+    </div>
+
+    <div class="info-box">
+        <table>
+            <tr><th>年份</th><th>ROE(%)</th><th>负债/资产(%)</th><th>权益乘数</th><th>PE(年末)</th><th>净利润率(%)</th><th>营收($B)</th></tr>
+            <tr><td>2015</td><td>22.35</td><td>~25</td><td>1.33</td><td>~40</td><td>10.57</td><td>4.50</td></tr>
+            <tr><td>2016★</td><td>1.64</td><td>~30</td><td>1.44</td><td>~600</td><td>0.59</td><td>3.90</td></tr>
+            <tr><td>2017</td><td>12.92</td><td>~33</td><td>1.50</td><td>~60</td><td>3.94</td><td>4.48</td></tr>
+            <tr><td>2018</td><td>12.25</td><td>~36</td><td>1.57</td><td>~50</td><td>3.63</td><td>4.86</td></tr>
+            <tr><td>2019</td><td>20.81</td><td>~33</td><td>1.50</td><td>~45</td><td>6.27</td><td>5.59</td></tr>
+            <tr><td>2020</td><td>17.61</td><td>~34</td><td>1.51</td><td>~70</td><td>5.94</td><td>5.99</td></tr>
+            <tr><td>2021</td><td>28.42</td><td>~34</td><td>1.52</td><td>~55</td><td>8.65</td><td>7.55</td></tr>
+            <tr><td>2022</td><td>37.97</td><td>~34</td><td>1.51</td><td>~40</td><td>10.41</td><td>8.64</td></tr>
+            <tr><td>2023</td><td>40.13</td><td>~38</td><td>1.61</td><td>~45</td><td>12.45</td><td>9.87</td></tr>
+            <tr><td>2024</td><td>41.97</td><td>~40</td><td>1.66</td><td>~45</td><td>13.56</td><td>11.31</td></tr>
+            <tr><td>2025</td><td>54.26</td><td>~31</td><td>1.45</td><td>~29</td><td>12.88</td><td>11.93</td></tr>
+        </table>
+        <p>★ 2016年因食品安全危机（大肠杆菌、诺如病毒事件）ROE 暴跌至 1.64%，是公司历史上的至暗时刻。</p>
+    </div>
+
+    <div class="highlight">
+        <strong>巴菲特/芒格视角解读：</strong>
+        <ul>
+            <li><strong>ROE 真实性：</strong>CMG 的 ROE 从 2022 年的 38% 飙升至 2025 年的 54%，<u>但这是"真实经营ROE"而非"财务工程ROE"</u>——因为公司几乎没有长期债务，高 ROE 完全来自高净利润率（13%）和较高的资产周转率（1.23x），而非杠杆。这是高质量的高 ROE。</li>
+            <li><strong>负债率：</strong>负债/资产比长期维持在 25-40% 之间，且主要是经营性负债（租金、应付账款），<u>几乎没有有息长期债务</u>。财务极其稳健。</li>
+            <li><strong>2016 年的教训：</strong>食品安全危机让 ROE 从 22% 跌到 1.6%，证明餐饮业的<u>品牌护城河在食品安全事件面前非常脆弱</u>——这是 CMG 最大的尾部风险。</li>
+            <li><strong>PE 估值：</strong>当前 PE 约 29x，处于历史低位区间（历史平均 50-60x），但相对于 2025 年 0.6% 的净利润增速，仍不算便宜。</li>
+        </ul>
+    </div>
+
+    <h2 id="chapter5">五、竞争分析与护城河</h2>
+
+    <h3>5.1 主要竞争对手</h3>
+    <div class="info-box">
+        <table>
+            <tr><th>竞争对手</th><th>定位</th><th>门店数</th><th>与CMG对比</th></tr>
+            <tr><td>McDonald's (MCD)</td><td>传统快餐巨头</td><td>~41,000</td><td>规模碾压，但定位不同（快餐 vs 快休闲）</td></tr>
+            <tr><td>Taco Bell (YUM)</td><td>墨西哥快餐</td><td>~7,800</td><td>价格更低，食材标准更低，直接竞争有限</td></tr>
+            <tr><td>Qdoba</td><td>快休闲墨西哥</td><td>~750</td><td>最直接竞争者，但规模仅 CMG 的 1/5</td></tr>
+            <tr><td>CAVA (CAVA)</td><td>快休闲地中海</td><td>~350</td><td>增长最快的新贵，抢"健康快餐"客群</td></tr>
+            <tr><td>Sweetgreen (SG)</td><td>快休闲健康碗</td><td>~225</td><td>定位健康沙拉碗，部分客群重叠</td></tr>
+            <tr><td>Panera Bread (JAB)</td><td>快休闲烘焙</td><td>~2,200</td><td>已私有化，定位相近</td></tr>
+            <tr><td>Shake Shack (SHAK)</td><td>快休闲汉堡</td><td>~500</td><td>同属快休闲赛道，但品类不同</td></tr>
+        </table>
+    </div>
+
+    <h3>5.2 市场份额</h3>
+    <div class="info-box">
+        <p>美国快休闲餐饮市场规模约 $700亿，CMG 占比约 16-17%，是该细分赛道的<strong>品类领导者</strong>。但在整个餐饮业（$1万亿+）中占比不到 1.5%。</p>
+        <p>墨西哥风味快休闲细分市场中，CMG 份额约 60-65%，Qdoba 约 15%，其余分散。</p>
+    </div>
+
+    <h3>5.3 经济护城河分析</h3>
+
+    <div class="moat-item">
+        <strong>1. 品牌力（Brand Power）— 中等护城河</strong>
+        <p>"Food with Integrity" 定位深入人心，是"健康快休闲"的品类代名词。但 2015-2016 年食品安全危机证明品牌力<u>可被食品安全事件瞬间击穿</u>。品牌力真实但非坚不可摧。</p>
+    </div>
+
+    <div class="moat-item">
+        <strong>2. 规模优势（Scale）— 中等护城河</strong>
+        <p>3,700+ 直营门店带来采购规模优势（26个区域配送中心）、数字化投入摊薄、品牌广告效率。但相比麦当劳 41,000 店，CMG 规模优势有限。</p>
+    </div>
+
+    <div class="moat-item">
+        <strong>3. 单位经济性（Unit Economics）— 强护城河</strong>
+        <p>单店开造成本 $150万，年营收 $300万，餐厅级利润率 23-26%，投资回报率约 60%（1.7年回本）。这是<u>同业最优</u>的单位经济性，使 CMG 能以更快的速度开新店且每家店都赚钱。</p>
+    </div>
+
+    <div class="moat-item">
+        <strong>4. 数字化与 Chipotlane — 新兴护城河</strong>
+        <p>数字销售占比 38.6%，Chipotlane（汽车穿梭）使新店回报率提升 15-20%。这是 CMG 独有的运营创新，竞争对手难以快速复制（需新店设计配合）。</p>
+    </div>
+
+    <div class="moat-item">
+        <strong>5. 直营模式 — 双刃剑</strong>
+        <p>100% 直营意味着利润不稀释、品质可控，但也意味着扩张速度受资本约束（vs 加盟模式可轻资产快速扩张）。这是<strong>战略选择而非护城河</strong>。</p>
+    </div>
+
+    <div class="moat-item">
+        <strong>6. 转换成本 — 几乎无护城河</strong>
+        <p>如前述分析，餐饮业客户转换成本极低，CMG 无法锁定客户。</p>
+    </div>
+
+    <div class="highlight">
+        <strong>护城河总结：</strong>CMG 拥有<strong>中等强度</strong>的经济护城河，主要来自品牌力+单位经济性+数字化创新。<u>但它不是"不可替代"的生意</u>——没有网络效应、没有专利、没有高转换成本、没有垄断地位。芒格可能会说："这是一门好生意，但不是伟大的生意。"
+    </div>
+
+    <h3>5.4 关键风险</h3>
+    <div class="risk-item">
+        <strong>1. 食品安全风险（尾部风险）</strong>
+        <p>2015 年大肠杆菌事件让股价暴跌 40%、同店销售跌 30%。CMG 的"现做+新鲜食材"模式天然比中央厨房预制模式更易出问题。一次重大食安事件可摧毁品牌。</p>
+    </div>
+    <div class="risk-item">
+        <strong>2. GLP-1 减肥药影响</strong>
+        <p>Ozempic、Wegovy 等减肥药使用者外出就餐频率下降 30%+，且更倾向健康轻食。CMG 虽定位健康，但卷饼热量并不低（一个卷饼约 1,000卡），长期需求承压。</p>
+    </div>
+    <div class="risk-item">
+        <strong>3. 消费降级</strong>
+        <p>CMG 客单价约 $12-15，高于 Taco Bell（$8-10）。经济下行时价格敏感客群可能下移。</p>
+    </div>
+    <div class="risk-item">
+        <strong>4. 同店销售增长放缓</strong>
+        <p>2025 年同店首次负增长（-0.4%），2026Q1 仅 +0.5%，显示成熟市场增长见顶。未来增长更依赖新开店而非同店提升。</p>
+    </div>
+    <div class="risk-item">
+        <strong>5. 劳动力成本通胀</strong>
+        <p>2026Q1 人工成本占比从 25.0% 升至 26.1%，最低工资上涨持续挤压利润率。</p>
+    </div>
+
+    <h2 id="chapter6">六、利润分配分析（过去十年）</h2>
+
+    <div class="info-box">
+        <table>
+            <tr><th>年份</th><th>净利润($M)</th><th>分红($M)</th><th>回购($M)</th><th>资本开支($M)</th><th>留存额($M)</th><th>留存率(%)</th></tr>
+            <tr><td>2016</td><td>23</td><td>0</td><td>814</td><td>~200</td><td>23</td><td>100%</td></tr>
+            <tr><td>2017</td><td>176</td><td>0</td><td>282</td><td>~230</td><td>176</td><td>100%</td></tr>
+            <tr><td>2018</td><td>176</td><td>0</td><td>161</td><td>~250</td><td>176</td><td>100%</td></tr>
+            <tr><td>2019</td><td>350</td><td>0</td><td>199</td><td>~280</td><td>350</td><td>100%</td></tr>
+            <tr><td>2020</td><td>356</td><td>0</td><td>102</td><td>~280</td><td>356</td><td>100%</td></tr>
+            <tr><td>2021</td><td>652</td><td>0</td><td>474</td><td>~400</td><td>652</td><td>100%</td></tr>
+            <tr><td>2022</td><td>897</td><td>0</td><td>826</td><td>~500</td><td>897</td><td>100%</td></tr>
+            <tr><td>2023</td><td>1,230</td><td>0</td><td>657</td><td>~600</td><td>1,230</td><td>100%</td></tr>
+            <tr><td>2024</td><td>1,530</td><td>0</td><td>996</td><td>~700</td><td>1,530</td><td>100%</td></tr>
+            <tr><td>2025</td><td>1,539</td><td>0</td><td>2,418</td><td>~750</td><td>1,539</td><td>100%</td></tr>
+            <tr><td><strong>10年合计</strong></td><td><strong>6,929</strong></td><td><strong>0</strong></td><td><strong>6,929</strong></td><td><strong>~4,190</strong></td><td><strong>6,929</strong></td><td><strong>100%</strong></td></tr>
+        </table>
+        <p>注：留存额 = 净利润 - 分红（回购不计入留存减少，按"回购即留存"原则）。资本开支为估算值。</p>
+    </div>
+
+    <div class="chart-container">
+        <canvas id="allocationChart"></canvas>
+    </div>
+
+    <div class="highlight">
+        <strong>资本配置质量分析（巴菲特视角）：</strong>
+        <ul>
+            <li><strong>零分红政策：</strong>CMG 成立至今从未支付现金股息。对于一家 ROE 高达 40-54% 且无债务的公司，<u>不分红是合理的</u>——资金再投资回报远高于分红。</li>
+            <li><strong>激进回购策略：</strong>2025 年回购 $24亿，相当于净利润的 157%！这是<u>用现金储备+经营现金流回购</u>。2020-2025 累计回购约 $55亿，显著减少流通股本（拆股前已减 30%+）。</li>
+            <li><strong>回购时机评估：</strong>2025 年回购均价约 $36-50，而当前股价 $32——<span class="tag tag-red">回购时机偏贵</span>，部分回购发生在高位。巴菲特原则："回购应在股价低于内在价值时进行"，CMG 2025 年的回购时机不算理想。</li>
+            <li><strong>再投资质量：</strong>资本开支主要用于新开店（每年 250-350 家），单店回报率 60%，这是<u>高质量的再投资</u>。</li>
+            <li><strong>可持续增长率 = ROE × 留存率 = 54% × 100% = 54%</strong>（理论值，实际受市场容量限制）。</li>
+        </ul>
+    </div>
+
+    <div class="info-box">
+        <strong>管理层资本配置评分：</strong>
+        <table>
+            <tr><th>维度</th><th>评分</th><th>说明</th></tr>
+            <tr><td>再投资回报率</td><td><span class="star">★★★★★</span></td><td>新店回报率60%，优秀</td></tr>
+            <tr><td>回购时机</td><td><span class="star">★★☆☆☆</span></td><td>2025年高位回购，时机欠佳</td></tr>
+            <tr><td>财务保守度</td><td><span class="star">★★★★★</span></td><td>零债务，极度稳健</td></tr>
+            <tr><td>股东回报意愿</td><td><span class="star">★★★★☆</span></td><td>积极回购，但无分红</td></tr>
+            <tr><td>并购纪律</td><td><span class="star">★★★★★</span></td><td>几乎不并购，专注主业</td></tr>
+        </table>
+    </div>
+
+    <h2 id="chapter7">七、投资总结</h2>
+
+    <div class="info-box">
+        <h3>7.1 各维度评分</h3>
+        <table>
+            <tr><th>维度</th><th>评分</th><th>说明</th></tr>
+            <tr><td>业务可理解性</td><td><span class="star">★★★★★</span></td><td>卖卷饼，简单易懂，符合巴菲特"能力圈"原则</td></tr>
+            <tr><td>护城河强度</td><td><span class="star">★★★☆☆</span></td><td>品牌+单位经济性，但无高转换成本，可替代性中等</td></tr>
+            <tr><td>资本配置</td><td><span class="star">★★★★☆</span></td><td>再投资优秀，但回购时机欠佳</td></tr>
+            <tr><td>财务安全</td><td><span class="star">★★★★★</span></td><td>零债务，高ROE，现金充裕</td></tr>
+            <tr><td>增长前景</td><td><span class="star">★★★☆☆</span></td><td>新开店增长确定，但同店增长见顶，GLP-1风险</td></tr>
+            <tr><td>估值吸引力</td><td><span class="star">★★☆☆☆</span></td><td>PE 29x，历史低位但绝对值不便宜，安全边际不足</td></tr>
+        </table>
+    </div>
+
+    <div class="info-box">
+        <h3>7.2 估值对比</h3>
+        <table>
+            <tr><th>公司</th><th>PE</th><th>PS</th><th>净利润率</th><th>ROE</th><th>负债率</th></tr>
+            <tr><td><strong>CMG</strong></td><td><strong>29x</strong></td><td><strong>3.4x</strong></td><td><strong>12.9%</strong></td><td><strong>54%</strong></td><td><strong>极低</strong></td></tr>
+            <tr><td>MCD</td><td>25x</td><td>8x</td><td>33%</td><td>-</td><td>高</td></tr>
+            <tr><td>SHAK</td><td>50x+</td><td>2x</td><td>5%</td><td>8%</td><td>中</td></tr>
+            <tr><td>CAVA</td><td>200x+</td><td>8x</td><td>3%</td><td>5%</td><td>低</td></tr>
+            <tr><td>SG</td><td>亏损</td><td>3x</td><td>-</td><td>-</td><td>中</td></tr>
+        </table>
+        <p>CMG 估值在快休闲同业中处于中等，PE 低于 CAVA/SHAK 但高于 MCD。考虑到 CMG 的 ROE 远高于同业，估值相对合理。</p>
+    </div>
+
+    <div class="info-box">
+        <h3>7.3 关键催化剂</h3>
+        <ul>
+            <li><strong>新开店加速</strong>：2026年计划开 350+ 家新店，86% 配 Chipotlane，直接驱动营收增长 8-10%</li>
+            <li><strong>菜单创新</strong>：新推牛油果青柠酱、蛋白扩展、儿童餐等，提升客单价</li>
+            <li><strong>国际扩张</strong>：加拿大、欧洲、中东市场潜力，长期可至 7,000+ 店</li>
+            <li><strong>数字化深化</strong>：团体订餐、餐饮服务（目前<3%营收，有望达双位数）</li>
+            <li><strong>回购支撑</strong>：剩余 $10亿回购授权，持续减少股本</li>
+        </ul>
+    </div>
+
+    <div class="info-box">
+        <h3>7.4 安全边际评估</h3>
+        <p><strong>内在价值估算：</strong></p>
+        <ul>
+            <li>2025年净利润 $15.4亿，假设未来5年 CAGR 10%（新开店驱动），2030年净利润约 $25亿</li>
+            <li>给予 25x PE（考虑增长放缓+GLP-1风险折价），2030年内在价值约 $625亿</li>
+            <li>折现回当前（10%折现率）：约 $388亿</li>
+            <li>当前市值 $400亿——<span class="tag tag-orange">基本合理，无安全边际</span></li>
+        </ul>
+        <p><strong>巴菲特/芒格结论：</strong>CMG 是一门<strong>好生意</strong>（高ROE、零债务、可理解），但<u>不是"伟大的生意"</u>（无强护城河、低转换成本、定价权受限）。当前估值 $400亿基本反映内在价值，<strong>缺乏安全边际</strong>。理想买入价位应在 $25以下（对应市值 $320亿，PE 22x），那时才有足够安全边际。</p>
+    </div>
+
+    <div class="highlight">
+        <strong>最终投资评级：观望（Hold）</strong><br>
+        <strong>评级理由：</strong>CMG 是优质公司，但当前价格不具备巴菲特式安全边际。建议等待以下机会之一：
+        <ol>
+            <li>股价回落至 $25 以下（PE<22x）</li>
+            <li>同店销售恢复正增长且持续 2 个季度</li>
+            <li>食品安全事件导致错杀（逆向机会）</li>
+        </ol>
+    </div>
+
+    <h2 id="chapter8">八、数据来源</h2>
+    <div class="info-box">
+        <ul>
+            <li>Chipotle 官方投资者关系：<a href="https://ir.chipotle.com/" target="_blank">ir.chipotle.com</a></li>
+            <li>2026年Q1财报新闻稿（2026年4月29日）</li>
+            <li>2024年10-K年报（SEC EDGAR）</li>
+            <li>Macrotrends 历史财务比率</li>
+            <li>MarketBeat 年度财务数据</li>
+            <li>TipRanks 回购历史数据</li>
+            <li>Trefis 估值数据</li>
+            <li>SimplyWall.St 股票报告</li>
+            <li>Fidelity 利润率与估值数据</li>
+        </ul>
+    </div>
+
+    <script>
+        // ROE 历史图表
+        const roeCtx = document.getElementById('roeChart').getContext('2d');
+        new Chart(roeCtx, {
+            type: 'bar',
+            data: {
+                labels: ['2015','2016','2017','2018','2019','2020','2021','2022','2023','2024','2025'],
+                datasets: [{
+                    label: 'ROE (%)',
+                    data: [22.35, 1.64, 12.92, 12.25, 20.81, 17.61, 28.42, 37.97, 40.13, 41.97, 54.26],
+                    backgroundColor: function(context) {
+                        const value = context.parsed.y;
+                        if (value < 5) return '#c0392b';
+                        if (value < 20) return '#e67e22';
+                        return '#27ae60';
+                    }
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: { display: true, text: 'Chipotle ROE 历史 (2015-2025) - 注意2016年食品安全危机' }
+                },
+                scales: { y: { title: { display: true, text: 'ROE (%)' } } }
+            }
+        });
+
+        // 利润分配图表
+        const allocCtx = document.getElementById('allocationChart').getContext('2d');
+        new Chart(allocCtx, {
+            type: 'bar',
+            data: {
+                labels: ['2016','2017','2018','2019','2020','2021','2022','2023','2024','2025'],
+                datasets: [
+                    {
+                        label: '净利润 ($M)',
+                        data: [23, 176, 176, 350, 356, 652, 897, 1230, 1530, 1539],
+                        backgroundColor: '#27ae60'
+                    },
+                    {
+                        label: '回购 ($M)',
+                        data: [814, 282, 161, 199, 102, 474, 826, 657, 996, 2418],
+                        backgroundColor: '#2e86c1'
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: { display: true, text: 'Chipotle 净利润 vs 回购 (2016-2025) - 零分红策略' }
+                },
+                scales: { y: { title: { display: true, text: '金额 ($M)' } } }
+            }
+        });
+    </script>
+
+    <script src="scores_client.js"></script>
+    <script src="stock_topbar.js"></script>
+</body>
+</html>
