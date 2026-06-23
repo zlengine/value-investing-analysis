@@ -5,9 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TJX Companies (TJX) 详细分析</title>
     <style>
-        body { font-family: Arial, sans-serif; margin: 20px; background-color: #f5f5f5; }
+        body { font-family: Arial, sans-serif; margin: 20px; background-color: #f5f5f5; padding-top: 104px !important; }
         h1 { text-align: center; color: #333; }
-        h2 { color: #4CAF50; margin-top: 30px; }
+        h2 { color: #4CAF50; margin-top: 30px; border-bottom: 2px solid #4CAF50; padding-bottom: 5px; }
+        h3 { color: #2e86c1; margin-top: 20px; }
         .info-box { background-color: white; padding: 20px; margin: 20px 0; box-shadow: 0 0 10px rgba(0,0,0,0.1); border-radius: 5px; }
         table { width: 100%; border-collapse: collapse; margin: 10px 0; }
         th, td { padding: 8px; text-align: left; border-bottom: 1px solid #ddd; }
@@ -31,11 +32,16 @@
         .topbar-stars { font-size: 11px; }
         .topbar-stars .on { color: #f39c12; }
         .topbar-stars .off { color: rgba(255,255,255,0.3); }
-        body { padding-top: 104px !important; }
-        .tag { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 12px; font-weight: 600; }
-        .tag-orange { background-color: #fff3cd; color: #856404; }
-                .top-nav-bar { position: fixed; top: 0; left: 0; right: 0; height: 44px; background: #2c3e50; display: flex; align-items: center; justify-content: flex-end; padding: 0 20px; z-index: 9999; box-shadow: 0 2px 8px rgba(0,0,0,0.15); gap: 8px; }
+        .top-nav-bar { position: fixed; top: 0; left: 0; right: 0; height: 44px; background: #2c3e50; display: flex; align-items: center; justify-content: flex-end; padding: 0 20px; z-index: 9999; box-shadow: 0 2px 8px rgba(0,0,0,0.15); gap: 8px; }
         .top-nav-link { color: white; padding: 6px 16px; border-radius: 16px; text-decoration: none; font-size: 13px; transition: background 0.2s; white-space: nowrap; }
+        .tag { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 12px; font-weight: 600; }
+        .tag-green { background-color: #d4edda; color: #155724; }
+        .tag-orange { background-color: #fff3cd; color: #856404; }
+        .tag-red { background-color: #f8d7da; color: #721c24; }
+        .highlight { background-color: #fffde7; padding: 10px; border-left: 4px solid #fbc02d; margin: 10px 0; }
+        .moat-item { background: #e8f5e9; padding: 12px; margin: 8px 0; border-left: 4px solid #4CAF50; border-radius: 4px; }
+        .risk-item { background: #ffebee; padding: 12px; margin: 8px 0; border-left: 4px solid #c62828; border-radius: 4px; }
+        .star { color: #f39c12; }
     </style>
 </head>
 <body>
@@ -64,29 +70,338 @@
         </div>
     </div>
 
-    <h1>TJX Companies (NYSE: TJX)</h1>
-    <p style="text-align:center;color:#666;">巴菲特/芒格式价值投资基本面分析 | 更新日期：2026年6月</p>
+    <h1>The TJX Companies, Inc. (NYSE: TJX)</h1>
+    <p style="text-align:center;color:#666;">巴菲特/芒格式价值投资基本面分析 | 更新日期：2026年6月23日</p>
 
+    <!-- ==================== 一、公司基本信息 ==================== -->
     <div class="info-box">
         <h2>一、公司基本信息</h2>
         <table>
-            <tr><td>公司全称</td><td>TJX Companies</td></tr>
-            <tr><td>股票代码</td><td>NYSE: TJX</td></tr>
-            <tr><td>市值</td><td>约1280亿美元</td></tr>
-            <tr><td>行业</td><td>折扣零售/TJ Maxx</td></tr>
+            <tr><td>公司全称</td><td>The TJX Companies, Inc.</td></tr>
+            <tr><td>股票代码</td><td>TJX（NYSE）</td></tr>
+            <tr><td>总部</td><td>美国马萨诸塞州弗雷明汉</td></tr>
+            <tr><td>成立时间</td><td>1977年（前身可追溯至1956年）</td></tr>
+            <tr><td>最新收盘价</td><td>$164.17（2026/6/22）</td></tr>
+            <tr><td>市值</td><td>$1,814亿（约¥13,140亿）</td></tr>
+            <tr><td>市值（美元）</td><td>$181.4B</td></tr>
+            <tr><td>PE（TTM）</td><td>31.5x</td></tr>
+            <tr><td>PE（静态）</td><td>33.3x</td></tr>
+            <tr><td>每股收益（TTM）</td><td>$5.22</td></tr>
+            <tr><td>股息率</td><td>1.17%</td></tr>
+            <tr><td>市净率</td><td>17.4x</td></tr>
+            <tr><td>Beta</td><td>0.32（极低波动）</td></tr>
+            <tr><td>员工人数</td><td>约377,000人</td></tr>
+            <tr><td>门店数量</td><td>5,200+家（9个国家）</td></tr>
+            <tr><td>财富500强排名</td><td>第80位</td></tr>
         </table>
-        <p style="color:#856404;"><span class="tag tag-orange">待补充</span> 详细分析内容将在后续更新中补充。</p>
     </div>
 
-    
-    <script src="scores_client.js"></script>
-    <script src="sync.js"></script>
+    <!-- ==================== 二、业务分析 ==================== -->
+    <div class="info-box">
+        <h2>二、业务分析</h2>
+        <div class="highlight">
+            <strong>一句话业务：</strong>TJX是全球最大的"折扣零售商"——从21,000多家供应商那里以超低价买入品牌过剩库存，然后在T.J. Maxx、Marshalls、HomeGoods等门店以比正价低20%-60%的价格卖给消费者。简单说，就是"品牌商品的清仓代购"——但不是小打小闹，而是年销售额600亿美元的全球帝国。你每次走进T.J. Maxx发现"哇，这个牌子居然这么便宜"，那就是TJX的商业模式在起作用。
+        </div>
+
+        <h3>2.1 业务板块</h3>
+        <table>
+            <tr><th>板块</th><th>品牌</th><th>FY26营收</th><th>占比</th><th>同店增长</th><th>调整后利润率</th></tr>
+            <tr><td>Marmaxx（美国）</td><td>T.J. Maxx, Marshalls, Sierra</td><td>$365.9亿</td><td>60.6%</td><td>+4%</td><td>14.4%</td></tr>
+            <tr><td>HomeGoods（美国）</td><td>HomeGoods, Homesense</td><td>$101.7亿</td><td>16.8%</td><td>+5%</td><td>12.0%</td></tr>
+            <tr><td>TJX Canada</td><td>Winners, HomeSense, Marshalls</td><td>$56.3亿</td><td>9.3%</td><td>+7%</td><td>13.8%</td></tr>
+            <tr><td>TJX International</td><td>TK Maxx, Homesense（欧洲/澳洲）</td><td>$79.9亿</td><td>13.2%</td><td>+4%</td><td>7.3%</td></tr>
+        </table>
+
+        <h3>2.2 地理分布</h3>
+        <table>
+            <tr><th>地区</th><th>营收占比</th><th>门店数</th><th>市场地位</th></tr>
+            <tr><td>美国</td><td>~78%</td><td>3,578+</td><td>绝对领导者</td></tr>
+            <tr><td>加拿大</td><td>~9%</td><td>576+</td><td>市场领导者</td></tr>
+            <tr><td>欧洲（英/德/爱/波/荷/奥/捷/西）</td><td>~11%</td><td>730+</td><td>最大实体折扣零售商</td></tr>
+            <tr><td>澳大利亚</td><td>~2%</td><td>84+</td><td>增长中</td></tr>
+        </table>
+
+        <h3>2.3 商业模式核心</h3>
+        <div class="moat-item">
+            <strong>机会性采购（Opportunistic Buying）</strong>：TJX不预先下订单生产商品，而是等品牌商、百货公司有"过剩库存"时以2-4折买入。1,400+专业买手每周在市场采购，从21,000+供应商、100+国家进货。这种"别人卖不掉的我低价收"的模式，让TJX的采购成本远低于正价零售商。
+        </div>
+        <div class="moat-item">
+            <strong>寻宝式购物体验（Treasure Hunt）</strong>：每次进店商品都不同，顾客永远不知道会发现什么好东西。这种"不确定性带来的惊喜感"是电商无法复制的——你在亚马逊上搜"便宜运动鞋"，结果千篇一律；但走进T.J. Maxx，可能今天就有Nike、Coach、Ralph Lauren的尾货，明天就没了。这种"错过就没了"的心理驱动回头客。
+        </div>
+        <div class="moat-item">
+            <strong>零广告定价策略</strong>：TJX几乎不做传统广告，省下的营销费用让利给消费者。定价永远比正价零售商低20%-60%，不需要打折促销来吸引顾客——因为"天天低价"本身就是TJX的品牌。
+        </div>
+    </div>
+
+    <!-- ==================== 三、产品竞争力分析 ==================== -->
+    <div class="info-box">
+        <h2>三、产品竞争力分析</h2>
+
+        <h3>3.1 护城河评估</h3>
+        <table>
+            <tr><th>护城河类型</th><th>评分</th><th>说明</th></tr>
+            <tr><td>规模优势</td><td><span class="tag tag-green">★★★★☆</span></td><td>5,200+门店、$600亿营收的全球最大折扣零售商，采购议价能力远超任何竞争对手</td></tr>
+            <tr><td>品牌认知</td><td><span class="tag tag-green">★★★★☆</span></td><td>T.J. Maxx/Marshalls在美国几乎等同于"折扣购物"的代名词，49年品牌积淀</td></tr>
+            <tr><td>网络效应</td><td><span class="tag tag-orange">★★☆☆☆</span></td><td>零售业无典型网络效应，但供应商网络（21,000+家）形成间接壁垒</td></tr>
+            <tr><td>转换成本</td><td><span class="tag tag-orange">★★☆☆☆</span></td><td>消费者转换成本极低——但"寻宝体验"创造情感粘性，回头率极高</td></tr>
+            <tr><td>成本优势</td><td><span class="tag tag-green">★★★★★</span></td><td>机会性采购模式+零广告+低装修成本=结构性成本优势，正价零售商无法复制</td></tr>
+            <tr><td>无形资产</td><td><span class="tag tag-green">★★★★☆</span></td><td>1,400+买手团队48年积累的采购诀窍、供应商关系、库存管理能力——无法速成</td></tr>
+        </table>
+
+        <div class="highlight">
+            <strong>护城河总评：4/5（宽护城河）</strong><br>
+            TJX的护城河不是某一项"垄断专利"，而是"规模+采购诀窍+寻宝体验+成本结构"的组合壁垒。单独看每一项都不是不可逾越，但组合在一起形成了极难复制的商业模式。Ross Stores和Burlington可以模仿折扣模式，但永远达不到TJX的规模和采购优势。电商对TJX的冲击极小——"寻宝体验"必须在实体店才能感受。
+        </div>
+
+        <h3>3.2 抗电商冲击能力</h3>
+        <div class="moat-item">
+            <strong>电商免疫力的秘密：</strong>TJX的"寻宝式购物"天然抗电商。原因有三：<br>
+            1. <strong>稀缺性</strong>：每件商品数量有限，网上搜不到同款，必须到店才能发现<br>
+            2. <strong>触感需求</strong>：服装、家居用品需要触摸、试穿、感受质感<br>
+            3. <strong>冲动消费</strong>：走进店里"意外发现"好东西的快感，是浏览网页无法替代的<br>
+            TJX 49年历史中，同店销售额只有2年下降（其中1年是2020年疫情强制关门），这证明了其商业模式的韧性。
+        </div>
+
+        <h3>3.3 主要风险</h3>
+        <div class="risk-item">
+            <strong>供应商集中风险：</strong>如果品牌商改善自身库存管理，减少过剩库存，TJX的货源可能受影响。但48年历史中"产品供应从未成为问题"，因为全球品牌过剩库存是结构性现象。
+        </div>
+        <div class="risk-item">
+            <strong>关税影响：</strong>进口商品关税可能推高采购成本。但TJX的灵活性使其能将关税压力转化为机会——品牌商为清库存更愿意低价出售给TJX。
+        </div>
+        <div class="risk-item">
+            <strong>国际扩张执行风险：</strong>西班牙新市场、墨西哥合资企业、中东投资需要时间验证。TJX International利润率仅7.3%，远低于美国Marmaxx的14.4%。
+        </div>
+    </div>
+
+    <!-- ==================== 四、历史财务指标 ==================== -->
+    <div class="info-box">
+        <h2>四、历史财务指标</h2>
+
+        <h3>4.1 ROE（净资产收益率）</h3>
+        <table>
+            <tr><th>财年</th><th>ROE</th><th>趋势</th></tr>
+            <tr><td>2008</td><td>36.2%</td><td></td></tr>
+            <tr><td>2009</td><td>41.3%</td><td>↑ 金融危机中逆势上升</td></tr>
+            <tr><td>2010</td><td>48.3%</td><td>↑</td></tr>
+            <tr><td>2011</td><td>44.9%</td><td>↓</td></tr>
+            <tr><td>2012</td><td>47.4%</td><td>↑</td></tr>
+            <tr><td>2013</td><td>55.5%</td><td>↑</td></tr>
+            <tr><td>2014</td><td>54.1%</td><td>↓</td></tr>
+            <tr><td>2015</td><td>52.2%</td><td>↓</td></tr>
+            <tr><td>2016</td><td>53.2%</td><td>↑</td></tr>
+            <tr><td>2017</td><td>52.1%</td><td>↓</td></tr>
+            <tr><td>2018</td><td>54.0%</td><td>↑</td></tr>
+            <tr><td>2019</td><td>60.6%</td><td>↑ 突破60%</td></tr>
+            <tr><td>2020</td><td>55.0%</td><td>↓</td></tr>
+            <tr><td>2021</td><td>1.5%</td><td>↓↓↓ 疫情关门</td></tr>
+            <tr><td>2022</td><td>54.7%</td><td>↑↑↑ 强劲复苏</td></tr>
+            <tr><td>2023</td><td>55.0%</td><td>→</td></tr>
+            <tr><td>2024</td><td>61.3%</td><td>↑ 历史新高</td></tr>
+            <tr><td>2025</td><td>58.0%</td><td>↓</td></tr>
+            <tr><td>2026</td><td>53.9%</td><td>↓（TTM）</td></tr>
+        </table>
+        <div class="highlight">
+            <strong>ROE分析：</strong>TJX的ROE常年保持在45%-60%区间，这在零售业中极为罕见。排除2021年疫情异常值，过去18年ROE从未低于36%。这意味着TJX每1美元股东权益能产生0.5美元以上的利润——资本效率极高。ROE高的原因：1）高资产周转率（~1.8x），2）稳定的净利率（~9%），3）适度的财务杠杆。这是巴菲特最爱的"高ROE+稳定"组合。
+        </div>
+
+        <h3>4.2 资产负债率</h3>
+        <table>
+            <tr><th>财年</th><th>负债/权益比</th><th>长期债务/资本</th></tr>
+            <tr><td>2012</td><td>0.25</td><td>0.20</td></tr>
+            <tr><td>2013</td><td>0.21</td><td>0.17</td></tr>
+            <tr><td>2014</td><td>0.30</td><td>0.23</td></tr>
+            <tr><td>2015</td><td>0.38</td><td>0.28</td></tr>
+            <tr><td>2016</td><td>0.38</td><td>0.27</td></tr>
+            <tr><td>2017</td><td>0.49</td><td>0.33</td></tr>
+            <tr><td>2018</td><td>0.43</td><td>0.30</td></tr>
+            <tr><td>2019</td><td>0.44</td><td>0.31</td></tr>
+            <tr><td>2020</td><td>0.38</td><td>0.27</td></tr>
+            <tr><td>2021</td><td>1.04</td><td>0.48</td><td>← 疫情借债</td></tr>
+            <tr><td>2022</td><td>0.56</td><td>0.36</td></tr>
+            <tr><td>2023</td><td>0.53</td><td>0.31</td></tr>
+            <tr><td>2024</td><td>0.39</td><td>0.28</td></tr>
+            <tr><td>2025</td><td>0.34</td><td>0.25</td></tr>
+            <tr><td>2026</td><td>0.18</td><td>~0.15</td><td>← 大幅去杠杆</td></tr>
+        </table>
+        <div class="highlight">
+            <strong>债务分析：</strong>TJX的杠杆管理极为审慎。2021年疫情期间短暂借债（D/E 1.04），此后持续去杠杆，到2026年D/E降至0.18——这是公司历史最低水平之一。当前长期债务仅约$28.7亿，而年经营现金流$69亿，偿债毫无压力。巴菲特会喜欢这种"不依赖借债也能赚大钱"的公司。
+        </div>
+
+        <h3>4.3 权益乘数</h3>
+        <table>
+            <tr><th>财年</th><th>总资产/股东权益</th></tr>
+            <tr><td>2019</td><td>2.72</td></tr>
+            <tr><td>2020</td><td>1.73</td></tr>
+            <tr><td>2021</td><td>1.04</td><td>← 疫情亏损致权益骤降</td></tr>
+            <tr><td>2022</td><td>1.71</td></tr>
+            <tr><td>2023</td><td>1.76</td></tr>
+            <tr><td>2024</td><td>1.82</td></tr>
+            <tr><td>2025</td><td>1.78</td></tr>
+            <tr><td>2026</td><td>~1.70</td></tr>
+        </table>
+
+        <h3>4.4 市盈率（PE）</h3>
+        <table>
+            <tr><th>财年</th><th>PE</th><th>说明</th></tr>
+            <tr><td>2008</td><td>21.1x</td><td>金融危机前</td></tr>
+            <tr><td>2009</td><td>9.2x</td><td>← 危机低谷，绝佳买点</td></tr>
+            <tr><td>2010</td><td>13.0x</td><td>复苏</td></tr>
+            <tr><td>2012</td><td>17.2x</td><td></td></tr>
+            <tr><td>2014</td><td>19.1x</td><td></td></tr>
+            <tr><td>2016</td><td>21.0x</td><td></td></tr>
+            <tr><td>2018</td><td>19.5x</td><td></td></tr>
+            <tr><td>2019</td><td>20.1x</td><td></td></tr>
+            <tr><td>2020</td><td>21.8x</td><td></td></tr>
+            <tr><td>2021</td><td>854x</td><td>← 疫情利润接近零</td></tr>
+            <tr><td>2022</td><td>26.3x</td><td></td></tr>
+            <tr><td>2023</td><td>27.3x</td><td></td></tr>
+            <tr><td>2024</td><td>24.3x</td><td></td></tr>
+            <tr><td>2025</td><td>29.0x</td><td></td></tr>
+            <tr><td>2026</td><td>31.5x</td><td>← 当前，历史高位</td></tr>
+        </table>
+        <div class="highlight">
+            <strong>PE分析：</strong>排除2021年疫情异常值，TJX过去20年PE中枢约20-22x。当前31.5x比历史均值高出约45%。2016-2020年PE在19-22x区间，2022年后逐步抬升到30x+，主要受：1）AI/科技股外溢估值效应，2）TJX业绩持续超预期，3）防御性消费股在不确定宏观环境中获溢价。对价值投资者而言，当前估值缺乏安全边际。
+        </div>
+    </div>
+
+    <!-- ==================== 五、竞争分析 ==================== -->
+    <div class="info-box">
+        <h2>五、竞争分析</h2>
+
+        <h3>5.1 主要竞争对手</h3>
+        <table>
+            <tr><th>公司</th><th>市值</th><th>门店数</th><th>FY26营收</th><th>ROE</th><th>净利率</th><th>PE</th></tr>
+            <tr><td><strong>TJX Companies</strong></td><td>$1,814亿</td><td>5,200+</td><td>$604亿</td><td>53.9%</td><td>9.1%</td><td>31.5x</td></tr>
+            <tr><td>Ross Stores (ROST)</td><td>$703亿</td><td>2,000+</td><td>~$210亿</td><td>34.7%</td><td>~9%</td><td>~25x</td></tr>
+            <tr><td>Burlington (BURL)</td><td>$194亿</td><td>1,000+</td><td>~$100亿</td><td>33.8%</td><td>~4%</td><td>~40x</td></tr>
+            <tr><td>Gap Inc (GAP)</td><td>$81亿</td><td>3,500+</td><td>~$150亿</td><td>21.5%</td><td>~5%</td><td>~12x</td></tr>
+        </table>
+
+        <h3>5.2 竞争优势对比</h3>
+        <div class="moat-item">
+            <strong>vs Ross Stores：</strong>Ross是美国第二大折扣零售商，但规模仅为TJX的1/3。Ross只做美国市场（无国际业务），采购团队和供应商网络远小于TJX。Ross的优势是更小的门店面积→更低租金，但品类丰富度和品牌吸引力不及TJX。TJX的ROE（54%）远超Ross（35%），证明规模优势带来更高资本效率。
+        </div>
+        <div class="moat-item">
+            <strong>vs Burlington Stores：</strong>Burlington规模更小，正在从电商转型回纯实体店模式。净利率仅4%左右，盈利能力远不及TJX。Burlington更像是"缩小版Ross"，对TJX构不成实质威胁。
+        </div>
+        <div class="moat-item">
+            <strong>vs 传统百货（Macy's, Nordstrom等）：</strong>传统百货是TJX的"供应商"而非竞争对手——它们的过剩库存正是TJX的货源。百货公司越困难，TJX的货源越充足。这是一种"寄生式"竞争优势——宿主越弱，寄生者越强。
+        </div>
+        <div class="moat-item">
+            <strong>vs 电商（Amazon等）：</strong>TJX的"寻宝体验"天然抗电商。Amazon解决的是"我知道我要什么"的需求，TJX解决的是"我不知道我要什么但我想看看有什么好东西"的需求。这两种需求根本不同。TJX的电商业务（tjmaxx.com等）仅是补充，不追求线上化。
+        </div>
+
+        <h3>5.3 市场份额</h3>
+        <table>
+            <tr><th>市场</th><th>TJX份额</th><th>主要竞争者</th><th>说明</th></tr>
+            <tr><td>美国折扣服装零售</td><td>~35%</td><td>Ross ~15%, Burlington ~7%</td><td>TJX绝对领先</td></tr>
+            <tr><td>美国折扣家居零售</td><td>~25%</td><td>At Home, HomeGoods</td><td>HomeGoods快速增长</td></tr>
+            <tr><td>加拿大折扣零售</td><td>~40%</td><td>无主要竞争者</td><td>Winners近乎垄断</td></tr>
+            <tr><td>欧洲折扣零售</td><td>~15%</td><td>本土品牌</td><td>最大实体折扣商</td></tr>
+        </table>
+    </div>
+
+    <!-- ==================== 六、利润分配分析 ==================== -->
+    <div class="info-box">
+        <h2>六、利润分配分析（近10年）</h2>
+
+        <h3>6.1 利润分配表</h3>
+        <table>
+            <tr><th>财年</th><th>净利润($亿)</th><th>股息($亿)</th><th>回购($亿)</th><th>资本开支($亿)</th><th>股东回报率</th><th>派息率</th></tr>
+            <tr><td>FY2017</td><td>22.98</td><td>6.76</td><td>12.57</td><td>8.87</td><td>84%</td><td>29%</td></tr>
+            <tr><td>FY2018</td><td>26.08</td><td>7.90</td><td>13.22</td><td>10.46</td><td>81%</td><td>30%</td></tr>
+            <tr><td>FY2019</td><td>30.60</td><td>9.77</td><td>17.20</td><td>14.57</td><td>88%</td><td>32%</td></tr>
+            <tr><td>FY2020</td><td>32.72</td><td>11.22</td><td>17.87</td><td>15.87</td><td>89%</td><td>34%</td></tr>
+            <tr><td>FY2021</td><td>0.90</td><td>3.16</td><td>0.00</td><td>5.28</td><td>351%</td><td>351%</td><td>← 疫情暂停回购</td></tr>
+            <tr><td>FY2022</td><td>32.83</td><td>12.56</td><td>20.01</td><td>10.45</td><td>99%</td><td>38%</td></tr>
+            <tr><td>FY2023</td><td>34.98</td><td>13.37</td><td>18.56</td><td>14.57</td><td>91%</td><td>38%</td></tr>
+            <tr><td>FY2024</td><td>44.74</td><td>15.32</td><td>25.09</td><td>17.22</td><td>90%</td><td>34%</td></tr>
+            <tr><td>FY2025</td><td>48.64</td><td>17.12</td><td>26.06</td><td>19.18</td><td>89%</td><td>35%</td></tr>
+            <tr><td>FY2026</td><td>54.94</td><td>18.91</td><td>24.32</td><td>19.57</td><td>79%</td><td>34%</td></tr>
+        </table>
+
+        <h3>6.2 资本配置评价</h3>
+        <div class="moat-item">
+            <strong>股东回报优先：</strong>TJX过去10年向股东返还超过$2,500亿（股息+回购），占净利润的85%以上。FY26返还$43亿（股息$19亿+回购$24亿），FY27计划回购$25-27.5亿+股息提升13%至$1.92/股。这是典型的"成熟现金牛"资本配置——赚到的钱大部分还给股东。
+        </div>
+        <div class="moat-item">
+            <strong>持续回购：</strong>TJX过去10年持续回购股票，流通股从FY2016的13.27亿股降至FY2026的11.05亿股，减少17%。回购均价远低于当前股价，说明管理层在合理价位回购（不像某些公司高位追涨）。
+        </div>
+        <div class="moat-item">
+            <strong>股息增长：</strong>季度股息从FY2016的$0.42/股增至FY2027的$1.92/股（年化），10年增长4.6倍，年复合增长率约16%。派息率稳定在34-38%，可持续性强。
+        </div>
+        <div class="highlight">
+            <strong>资本配置评分：4/5</strong><br>
+            优点：高比例股东回报、持续回购、股息稳定增长、去杠杆至历史低位<br>
+            不足：国际扩张投资回报率偏低（TJX International利润率仅7.3%），西班牙新市场风险未验证
+        </div>
+    </div>
+
+    <!-- ==================== 七、投资总结 ==================== -->
+    <div class="info-box">
+        <h2>七、投资总结</h2>
+
+        <h3>7.1 综合评分</h3>
+        <table>
+            <tr><th>维度</th><th>评分</th><th>说明</th></tr>
+            <tr><td>业务可理解性</td><td><span class="tag tag-green">5/5</span></td><td>"低价买品牌货再卖出去"，极其简单</td></tr>
+            <tr><td>护城河强度</td><td><span class="tag tag-green">4/5</span></td><td>规模+采购诀窍+寻宝体验+成本结构=宽护城河</td></tr>
+            <tr><td>资本配置</td><td><span class="tag tag-green">4/5</span></td><td>85%+利润返还股东，持续回购+股息增长</td></tr>
+            <tr><td>财务安全</td><td><span class="tag tag-green">4/5</span></td><td>D/E 0.18，现金$62亿，经营现金流$69亿/年</td></tr>
+            <tr><td>增长前景</td><td><span class="tag tag-green">4/5</span></td><td>7,000店长期目标（当前5,200+），西班牙/墨西哥/中东扩张</td></tr>
+            <tr><td>估值</td><td><span class="tag tag-red">2/5</span></td><td>PE 31.5x，比20年均值22x溢价43%</td></tr>
+        </table>
+
+        <h3>7.2 巴菲特/芒格视角</h3>
+        <div class="moat-item">
+            <strong>巴菲特会怎么看？</strong><br>
+            ✅ "我喜欢的生意"——简单、可理解、有持久竞争优势<br>
+            ✅ "合理的价格买好生意"——但当前价格不太合理<br>
+            ✅ ROE常年50%+——巴菲特最爱的指标<br>
+            ✅ 49年只有2年同店下降——证明商业模式穿越周期<br>
+            ✅ 电商免疫力——"寻宝体验"是护城河的源泉<br>
+            ❌ 当前PE 31.5x——巴菲特通常在PE 15-20x买入<br>
+            ❌ 零售业不是巴菲特最偏好的行业——低进入壁垒
+        </div>
+
+        <div class="highlight">
+            <strong>投资评级：<span class="tag tag-orange">观望</span></strong><br><br>
+            <strong>核心逻辑：</strong>TJX是一家极好的公司——全球折扣零售霸主，49年历史证明其商业模式穿越周期，ROE常年50%+，电商免疫力极强，资本配置优秀。但好公司不等于好价格。当前PE 31.5x，比20年历史均值22x溢价43%。FY27 EPS指引$5.12，对应远期PE约32x。<br><br>
+            <strong>理想买入区间：</strong>PE 20-24x，对应股价$104-$125（基于FY27E EPS $5.12）。当前$164溢价32-58%。<br><br>
+            <strong>安全边际：</strong>当前几乎为零。如果同店增速放缓至2%以下或利润率承压，PE可能从31x压缩至22x，意味着30%的下行风险。<br><br>
+            <strong>与ROST对比：</strong>Ross Stores PE约25x，ROE 35%，虽然规模较小但估值更合理。如果要在折扣零售中选一个，ROST当前性价比更高。
+        </div>
+
+        <h3>7.3 关键监控指标</h3>
+        <table>
+            <tr><th>指标</th><th>当前</th><th>警戒线</th></tr>
+            <tr><td>同店销售增速</td><td>+5%（FY26）</td><td>低于+2%</td></tr>
+            <tr><td>调整后税前利润率</td><td>11.7%</td><td>低于10%</td></tr>
+            <tr><td>Marmaxx利润率</td><td>14.4%</td><td>低于12%</td></tr>
+            <tr><td>库存增速vs销售增速</td><td>库存+14% vs 销售+7%</td><td>库存增速持续>2x销售增速</td></tr>
+            <tr><td>PE</td><td>31.5x</td><td>高于35x</td></tr>
+        </table>
+
+        <h3>7.4 相关公司</h3>
+        <p>
+            <a href="rost.html">Ross Stores (ROST)</a> |
+            <a href="index.html">返回首页</a>
+        </p>
+    </div>
+
+    <!-- Topbar scoring logic - unified with stock_scores_v1 -->
     <script>
     (function(){
+        var SCORE_KEY='stock_scores_v1';
         var code=document.getElementById('topbarCode').textContent.trim();
+        function getScores(){try{var d=localStorage.getItem(SCORE_KEY);return d?JSON.parse(d):{};}catch(e){return {};}}
+        function saveScores(s){localStorage.setItem(SCORE_KEY,JSON.stringify(s));}
         function starsHTML(val){var h='';for(var i=1;i<=5;i++){h+='<span class="'+(i<=val?'on':'off')+'">\u2605</span>';}return h;}
         function valClass(v){return v>=5?'s5':v>=4?'s4':v>=3?'s3':v>=2?'s2':'s1';}
-        function renderDisplay(f,p){
+        function renderDisplay(){
+            var sc=getScores()[code]||{};
+            var f=sc.fundamental||0,p=sc.price||0;
             document.getElementById('topbarFVal').textContent=f>0?f:'-';
             document.getElementById('topbarFVal').className='topbar-score-val'+(f>0?' '+valClass(f):'');
             document.getElementById('topbarFStars').innerHTML=starsHTML(f);
@@ -94,12 +409,8 @@
             document.getElementById('topbarPVal').className='topbar-score-val'+(p>0?' '+valClass(p):'');
             document.getElementById('topbarPStars').innerHTML=starsHTML(p);
         }
-        function renderFromDB(){
-            var sc=ScoresDB.get(code);
-            renderDisplay(sc.fundamental||0, sc.price||0);
-        }
         window.topbarEdit=function(){
-            var sc=ScoresDB.get(code);
+            var sc=getScores()[code]||{};
             document.getElementById('topbarFSel').value=sc.fundamental||0;
             document.getElementById('topbarPSel').value=sc.price||0;
             document.getElementById('topbarFSel').style.display='';
@@ -115,9 +426,9 @@
         window.topbarSave=function(){
             var f=parseInt(document.getElementById('topbarFSel').value);
             var p=parseInt(document.getElementById('topbarPSel').value);
-            ScoresDB.save(code, f, p);
-            topbarCancel();
-            renderFromDB();
+            var sc=getScores();if(!sc[code])sc[code]={};
+            sc[code].fundamental=f;sc[code].price=p;sc[code].updated=new Date().toISOString();
+            saveScores(sc);topbarCancel();renderDisplay();
         };
         window.topbarCancel=function(){
             document.getElementById('topbarFSel').style.display='none';
@@ -130,12 +441,7 @@
             document.getElementById('topbarFStars').style.display='';
             document.getElementById('topbarPStars').style.display='';
         };
-        // 初始加载
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', renderFromDB);
-        } else {
-            renderFromDB();
-        }
+        renderDisplay();
     })();
     </script>
 </body>
