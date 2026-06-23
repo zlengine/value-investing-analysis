@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASML Holding (ASML) 详细分析</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; background-color: #f5f5f5; padding-top: 104px !important; }
+        h1 { text-align: center; color: #333; }
+        h2 { color: #4CAF50; margin-top: 30px; border-bottom: 2px solid #4CAF50; padding-bottom: 5px; }
+        h3 { color: #2e86c1; margin-top: 20px; }
+        .info-box { background-color: white; padding: 20px; margin: 20px 0; box-shadow: 0 0 10px rgba(0,0,0,0.1); border-radius: 5px; }
+        table { width: 100%; border-collapse: collapse; margin: 10px 0; }
+        th, td { padding: 8px; text-align: left; border-bottom: 1px solid #ddd; }
+        th { background-color: #4CAF50; color: white; }
+        a { color: #4CAF50; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        .fixed-topbar { position: fixed; top: 44px; left: 0; right: 0; z-index: 9998; background: linear-gradient(135deg, #1a5276, #2e86c1); color: white; display: flex; align-items: center; justify-content: space-between; padding: 8px 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.15); height: 48px; }
+        .fixed-topbar a { color: white; text-decoration: none; font-size: 14px; font-weight: 600; }
+        .topbar-left { display: flex; align-items: center; gap: 12px; }
+        .topbar-right { display: flex; align-items: center; gap: 8px; }
+        .topbar-score-label { font-size: 12px; opacity: 0.85; }
+        .topbar-score-val { font-weight: 700; font-size: 15px; min-width: 18px; text-align: center; }
+        .topbar-score-val.s1 { color: #ff6b6b; } .topbar-score-val.s2 { color: #ffa94d; } .topbar-score-val.s3 { color: #ffd43b; } .topbar-score-val.s4 { color: #69db7c; } .topbar-score-val.s5 { color: #51cf66; }
+        .topbar-select { padding: 3px 8px; border: 1px solid rgba(255,255,255,0.4); border-radius: 6px; font-size: 12px; font-weight: 600; color: white; background: rgba(255,255,255,0.15); cursor: pointer; outline: none; }
+        .topbar-select option { color: #333; background: white; }
+        .topbar-btn { padding: 4px 12px; border: none; border-radius: 6px; font-size: 12px; font-weight: 600; cursor: pointer; }
+        .topbar-btn-edit { background: rgba(255,255,255,0.2); color: white; }
+        .topbar-btn-edit:hover { background: rgba(255,255,255,0.35); }
+        .topbar-btn-save { background: #27ae60; color: white; }
+        .topbar-btn-cancel { background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.7); }
+        .topbar-stars { font-size: 11px; }
+        .topbar-stars .on { color: #f39c12; }
+        .topbar-stars .off { color: rgba(255,255,255,0.3); }
+        .top-nav-bar { position: fixed; top: 0; left: 0; right: 0; height: 44px; background: #2c3e50; display: flex; align-items: center; justify-content: flex-end; padding: 0 20px; z-index: 9999; box-shadow: 0 2px 8px rgba(0,0,0,0.15); gap: 8px; }
+        .top-nav-link { color: white; padding: 6px 16px; border-radius: 16px; text-decoration: none; font-size: 13px; transition: background 0.2s; white-space: nowrap; }
+        .tag { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 12px; font-weight: 600; }
+        .tag-green { background-color: #d4edda; color: #155724; }
+        .tag-orange { background-color: #fff3cd; color: #856404; }
+        .tag-red { background-color: #f8d7da; color: #721c24; }
+        .highlight { background-color: #fffde7; padding: 10px; border-left: 4px solid #fbc02d; margin: 10px 0; }
+        .moat-item { background: #e8f5e9; padding: 12px; margin: 8px 0; border-left: 4px solid #4CAF50; border-radius: 4px; }
+        .risk-item { background: #ffebee; padding: 12px; margin: 8px 0; border-left: 4px solid #c62828; border-radius: 4px; }
+        .star { color: #f39c12; }
+        .chart-placeholder { background: #f0f0f0; padding: 15px; text-align: center; border-radius: 5px; margin: 10px 0; font-family: monospace; }
+    </style>
+</head>
+<body>
+    <div class="top-nav-bar">
+        <a href="scorer.html" class="top-nav-link" style="background:#1a5276;" onmouseover="this.style.background='#2e86c1'" onmouseout="this.style.background='#1a5276'">📊 股票打分</a>
+        <a href="financial_analysis.html" class="top-nav-link" style="background:#2e7d32;" onmouseover="this.style.background='#43a047'" onmouseout="this.style.background='#2e7d32'">📖 财务分析</a>
+        <a href="changelog.html" class="top-nav-link" style="background:#856404;" onmouseover="this.style.background='#a0762a'" onmouseout="this.style.background='#856404'">📋 更新日志</a>
+    </div>
+    <div class="fixed-topbar" id="fixedTopbar">
+        <div class="topbar-left">
+            <a href="index.html">&#8592; 首页</a>
+            <span style="font-size:14px;font-weight:700;" id="topbarCode">ASML</span>
+        </div>
+        <div class="topbar-right" id="topbarScores">
+            <span class="topbar-score-label">基本面</span>
+            <span class="topbar-score-val" id="topbarFVal">-</span>
+            <span class="topbar-stars" id="topbarFStars"></span>
+            <select class="topbar-select" id="topbarFSel" style="display:none;"><option value="0">-</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option></select>
+            <span class="topbar-score-label" style="margin-left:12px;">价格</span>
+            <span class="topbar-score-val" id="topbarPVal">-</span>
+            <span class="topbar-stars" id="topbarPStars"></span>
+            <select class="topbar-select" id="topbarPSel" style="display:none;"><option value="0">-</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option></select>
+            <button class="topbar-btn topbar-btn-edit" id="topbarEditBtn" onclick="topbarEdit()">修改</button>
+            <button class="topbar-btn topbar-btn-save" id="topbarSaveBtn" onclick="topbarSave()" style="display:none;">保存</button>
+            <button class="topbar-btn topbar-btn-cancel" id="topbarCancelBtn" onclick="topbarCancel()" style="display:none;">取消</button>
+        </div>
+    </div>
+
+    <h1>ASML Holding (NASDAQ: ASML)</h1>
+    <p style="text-align:center;color:#666;">巴菲特/芒格式价值投资基本面分析 | 更新日期：2026年6月23日</p>
+
+    <!-- ==================== 一、公司基本信息 ==================== -->
+    <div class="info-box">
+        <h2>一、公司基本信息</h2>
+        <table>
+            <tr><td>公司全称</td><td>ASML Holding N.V.</td></tr>
+            <tr><td>股票代码</td><td>NASDAQ: ASML / Euronext: ASML</td></tr>
+            <tr><td>最新收盘价</td><td>$1,929.25（2026年6月22日）</td></tr>
+            <tr><td>市值</td><td>约$7,400亿美元（欧洲市值最高公司）</td></tr>
+            <tr><td>企业价值（EV）</td><td>约$7,350亿美元（净现金约€83亿，极低杠杆）</td></tr>
+            <tr><td>52周区间</td><td>$677.58 - $1,959.04</td></tr>
+            <tr><td>股息</td><td>€7.50/年（2025年），股息率约0.4%</td></tr>
+            <tr><td>PE（TTM）</td><td>约64倍</td></tr>
+            <tr><td>EPS（FY2025）</td><td>€24.73（基本）</td></tr>
+            <tr><td>成立时间</td><td>1984年（ASM Lithography，飞利浦合资）</td></tr>
+            <tr><td>总部</td><td>荷兰Veldhoven</td></tr>
+            <tr><td>员工人数</td><td>约44,000人</td></tr>
+            <tr><td>信用评级</td><td>标普A+ / 惠誉A+（投资级，高于AMAT/KLAC）</td></tr>
+        </table>
+        <div class="highlight">
+            <strong>一句话业务：</strong>ASML是全球唯一能制造EUV（极紫外）光刻机的公司，市占率100%。EUV光刻机是制造7nm及以下先进芯片的必需设备——没有ASML的机器，台积电、三星、英特尔就无法生产先进AI芯片和手机处理器。一台EUV光刻机售价约1.8亿欧元，重180吨，含10万+零件，运输需要40个集装箱+3架货机+20辆卡车。这是人类制造过的最精密机器。
+        </div>
+    </div>
+
+    <!-- ==================== 二、业务分析 ==================== -->
+    <div class="info-box">
+        <h2>二、业务分析</h2>
+
+        <h3>2.1 业务模式——用大白话说</h3>
+        <p>想象你要在一张A4纸上画出整座城市的地图——每条街道、每栋楼、每个红绿灯都要精确到毫米。光刻机就是干这个的：把芯片设计师画好的电路图，用光"印"到硅片上。光刻机就像一台超级精密的"投影仪"——把电路图案投影到硅片上，然后用化学方法把图案刻出来。</p>
+        <p>ASML的特殊之处在于：它用的是"极紫外光"（EUV），波长只有13.5纳米，比传统光刻用的深紫外光（DUV，193纳米）短了14倍。波长越短，能画出的线条越细，芯片上的晶体管就越多、越快、越省电。7nm、5nm、3nm、2nm——这些先进制程芯片，<strong>必须</strong>用ASML的EUV光刻机才能制造。全球没有任何其他公司能做。</p>
+        <p>赚钱方式有三块：<strong>卖新设备</strong>（一次性大单，占75%）、<strong>装机量管理</strong>（服务+升级+备件，占25%，持续增长）、<strong>软件</strong>（计算光刻解决方案，嵌入设备中）。</p>
+
+        <h3>2.2 三大业务板块（FY2025）</h3>
+        <table>
+            <tr><th>业务板块</th><th>FY2025营收(€B)</th><th>占比</th><th>同比增长</th><th>核心产品</th></tr>
+            <tr><td>EUV系统（含High-NA）</td><td>11.6</td><td>35%</td><td>+39%</td><td>TWINSCAN NXE:3800E、EXE:5200B</td></tr>
+            <tr><td>DUV系统</td><td>12.0</td><td>37%</td><td>-6%</td><td>浸没式DUV（ArF）、干式DUV</td></tr>
+            <tr><td>量检测系统</td><td>0.83</td><td>3%</td><td>+28%</td><td>YieldStar 13、eDR-7380</td></tr>
+            <tr><td>装机量管理（服务+升级）</td><td>8.2</td><td>25%</td><td>+26%</td><td>维护、备件、性能升级、软件</td></tr>
+        </table>
+
+        <h3>2.3 按市场应用分类（FY2025）</h3>
+        <table>
+            <tr><th>市场</th><th>系统营收(€B)</th><th>占比</th><th>同比增长</th></tr>
+            <tr><td>逻辑芯片（Logic）</td><td>16.1</td><td>66%</td><td>+22%</td></tr>
+            <tr><td>存储芯片（Memory）</td><td>8.4</td><td>34%</td><td>-2%</td></tr>
+        </table>
+
+        <h3>2.4 收入按地区分布（FY2025）</h3>
+        <table>
+            <tr><th>地区</th><th>占比</th><th>说明</th></tr>
+            <tr><td>亚洲（不含中国）</td><td>~50%</td><td>台积电（台湾）、三星/SK海力士（韩国）</td></tr>
+            <tr><td>中国大陆</td><td>~19%</td><td>以DUV为主，EUV被禁售。2026年预计大幅下降</td></tr>
+            <tr><td>美国</td><td>~13%</td><td>英特尔、美光扩产</td></tr>
+            <tr><td>EMEA</td><td>~2%</td><td>总部所在地，设备销售少</td></tr>
+        </table>
+        <div class="highlight">
+            <strong>关键变化：</strong>中国占比从FY2024的41%降至FY2025的约19%，主因EUV对华禁售+DUV出口管制收紧。CEO Fouquet明确表示2026年中国销售将"显著下降"。但非中国地区需求强劲，完全抵消了中国下降。
+        </div>
+    </div>
+
+    <!-- ==================== 三、产品竞争力分析 ==================== -->
+    <div class="info-box">
+        <h2>三、产品竞争力分析</h2>
+
+        <h3>3.1 EUV光刻系统 产品竞争力</h3>
+
+        <p><strong>1. 可替代性：<span class="tag tag-green">极低</span></strong></p>
+        <ul>
+            <li><strong>直接替代品：</strong>无。全球100%市占率，零竞争对手</li>
+            <li><strong>间接替代品：</strong>DUV多重曝光（可部分替代但良率低、成本高、周期长）；纳米压印NIL（佳能，仅限3D NAND，逻辑芯片不可用）</li>
+            <li><strong>替代品体验差距：</strong>巨大。DUV多重曝光需要4-6次曝光才能实现EUV单次曝光的效果，良率下降20-30%，成本增加50%+</li>
+            <li><strong>替代趋势：</strong>有利于ASML。3nm以下制程DUV多重曝光已物理上不可行，EUV是唯一选择</li>
+        </ul>
+
+        <p><strong>2. 客户转换成本：<span class="tag tag-green">极高</span></strong></p>
+        <ul>
+            <li><strong>财务转换成本：</strong>不存在"转换"——因为没有替代品。如果ASML不卖EUV给你，你就无法生产先进芯片</li>
+            <li><strong>时间转换成本：</strong>尼康和佳能已退出EUV研发10年+，即使重新投入也需要10-15年才可能量产</li>
+            <li><strong>技术转换成本：</strong>EUV光刻工艺与芯片设计深度耦合，更换光刻技术意味着重新设计整个芯片</li>
+        </ul>
+
+        <p><strong>3. 定价权：<span class="tag tag-green">极强</span></strong></p>
+        <ul>
+            <li><strong>历史提价记录：</strong>EUV系统售价从2018年的约€1.2亿升至2025年的约€1.8亿，High-NA EUV售价€3.5亿+。年化提价5-8%</li>
+            <li><strong>巴菲特测试：</strong>如果ASML涨价10%（EUV从€1.8亿涨到€2亿），客户会离开吗？绝对不会——因为根本没有替代品。台积电、三星、英特尔别无选择</li>
+            <li><strong>定价权来源：</strong>100%垄断 + 先进制程刚需 + 客户零替代选择</li>
+            <li><strong>定价权趋势：</strong>持续增强。High-NA EUV（€3.5亿+）比Low-NA EUV（€1.8亿）贵近2倍，客户仍排队购买</li>
+        </ul>
+
+        <p><strong>整体竞争力评级：<span class="star">&#9733;&#9733;&#9733;&#9733;&#9733;</span> 5/5</strong>——这是全球罕见的"真正垄断"，不是"接近垄断"，而是100%市占率、零竞争对手。</p>
+
+        <h3>3.2 DUV光刻系统 产品竞争力</h3>
+
+        <p><strong>1. 可替代性：<span class="tag tag-orange">中等</span></strong></p>
+        <ul>
+            <li><strong>直接替代品：</strong>尼康ArF浸没式DUV、佳能i-line/KrF</li>
+            <li><strong>替代品体验差距：</strong>ASML DUV浸没式市占率80%+，尼康产品性能差距明显</li>
+            <li><strong>替代趋势：</strong>稳定。ASML在高端DUV领域优势稳固</li>
+        </ul>
+
+        <p><strong>2. 客户转换成本：<span class="tag tag-green">高</span></strong></p>
+        <ul>
+            <li><strong>财务转换成本：</strong>DUV设备€5,000万-€1亿/台，更换供应商需重新验证工艺</li>
+            <li><strong>时间转换成本：</strong>新设备导入验证6-12个月</li>
+        </ul>
+
+        <p><strong>3. 定价权：<span class="tag tag-green">强</span></strong></p>
+        <ul>
+            <li><strong>巴菲特测试：</strong>涨价10%客户不会离开，因为ASML DUV性能和稳定性远超尼康</li>
+            <li><strong>定价权来源：</strong>技术领先 + 80%+市占率 + 服务生态</li>
+        </ul>
+
+        <p><strong>整体竞争力评级：<span class="star">&#9733;&#9733;&#9733;&#9733;</span> 4/5</strong></p>
+
+        <h3>3.3 装机量管理（服务+升级） 产品竞争力</h3>
+
+        <p><strong>1. 可替代性：<span class="tag tag-green">极低</span></strong></p>
+        <ul>
+            <li><strong>直接替代品：</strong>第三方维修商。但ASML对自己的设备最了解，拥有独家诊断软件和AI预测性维护</li>
+            <li><strong>替代品体验差距：</strong>巨大。EUV设备停机1小时损失可达数百万美元，客户不敢用非原厂维护</li>
+        </ul>
+
+        <p><strong>2. 客户转换成本：<span class="tag tag-green">极高</span></strong></p>
+        <ul>
+            <li>ASML的NXE:3800E性能升级可将EUV产能提升37%，这种升级只有原厂能做</li>
+            <li>服务合同与设备绑定，更换服务商意味着放弃升级能力</li>
+        </ul>
+
+        <p><strong>3. 定价权：<span class="tag tag-green">极强</span></strong></p>
+        <ul>
+            <li>服务毛利率极高（估计55%+），远高于设备销售</li>
+            <li>装机量管理营收FY2025增长26%至€82亿，是增长最快的板块</li>
+        </ul>
+
+        <p><strong>整体竞争力评级：<span class="star">&#9733;&#9733;&#9733;&#9733;&#9733;</span> 5/5</strong></p>
+    </div>
+
+    <!-- ==================== 四、历史财务指标 ==================== -->
+    <div class="info-box">
+        <h2>四、历史财务指标</h2>
+
+        <h3>4.1 核心财务数据（FY2016-FY2025）</h3>
+        <table>
+            <tr><th>财年</th><th>营收(€B)</th><th>净利率</th><th>ROE</th><th>ROA</th><th>ROIC</th><th>负债/资产</th><th>权益乘数</th><th>PE(年末)</th></tr>
+            <tr><td>FY2016</td><td>6.8</td><td>21.5%</td><td>18.2%</td><td>10.5%</td><td>14.8%</td><td>35.2%</td><td>1.73</td><td>32x</td></tr>
+            <tr><td>FY2017</td><td>9.1</td><td>22.8%</td><td>22.5%</td><td>12.1%</td><td>18.2%</td><td>33.8%</td><td>1.86</td><td>35x</td></tr>
+            <tr><td>FY2018</td><td>10.9</td><td>23.1%</td><td>25.8%</td><td>13.5%</td><td>21.0%</td><td>31.5%</td><td>1.91</td><td>22x</td></tr>
+            <tr><td>FY2019</td><td>11.8</td><td>23.5%</td><td>24.2%</td><td>12.8%</td><td>19.5%</td><td>32.1%</td><td>1.89</td><td>38x</td></tr>
+            <tr><td>FY2020</td><td>14.0</td><td>26.1%</td><td>30.5%</td><td>16.2%</td><td>24.8%</td><td>28.5%</td><td>1.88</td><td>55x</td></tr>
+            <tr><td>FY2021</td><td>18.6</td><td>28.5%</td><td>42.3%</td><td>22.5%</td><td>35.2%</td><td>25.2%</td><td>1.88</td><td>42x</td></tr>
+            <tr><td>FY2022</td><td>21.2</td><td>28.1%</td><td>48.6%</td><td>24.1%</td><td>38.5%</td><td>22.8%</td><td>2.02</td><td>28x</td></tr>
+            <tr><td>FY2023</td><td>27.6</td><td>27.4%</td><td>46.2%</td><td>22.8%</td><td>36.1%</td><td>23.5%</td><td>2.02</td><td>42x</td></tr>
+            <tr><td>FY2024</td><td>28.3</td><td>26.8%</td><td>44.8%</td><td>21.5%</td><td>34.2%</td><td>22.1%</td><td>2.08</td><td>38x</td></tr>
+            <tr><td>FY2025</td><td>32.7</td><td>29.4%</td><td>49.0%</td><td>22.2%</td><td>37.5%</td><td>20.5%</td><td>2.20</td><td>64x</td></tr>
+        </table>
+
+        <h3>4.2 关键趋势解读</h3>
+        <div class="moat-item">
+            <strong>ROE趋势：</strong>从FY2016的18.2%持续攀升至FY2025的49.0%，10年增长170%。这主要来自真实经营能力提升（净利率从21.5%升至29.4%）和回购推高权益乘数（1.73→2.20）。即使剔除杠杆效应，ROA也从10.5%升至22.2%，经营质量极为出色。
+        </div>
+        <div class="moat-item">
+            <strong>净利率：</strong>从21.5%升至29.4%，在设备行业中独步天下。EUV的高定价权（单台毛利超€1亿）是核心驱动力。对比：AMAT净利率24.7%，KLAC净利率30%+，ASML处于最高梯队。
+        </div>
+        <div class="risk-item">
+            <strong>PE估值：</strong>FY2025年末PE高达64倍，远超10年均值36倍和5年高点55倍。2026年YTD股价已涨130%（$677→$1,929），估值严重偏高。
+        </div>
+        <div class="moat-item">
+            <strong>负债率：</strong>持续下降从35%降至20.5%，净现金€83亿。财务安全边际极高，信用评级A+优于AMAT和KLAC。
+        </div>
+    </div>
+
+    <!-- ==================== 五、竞争分析 ==================== -->
+    <div class="info-box">
+        <h2>五、竞争分析</h2>
+
+        <h3>5.1 主要竞争对手对比</h3>
+        <table>
+            <tr><th>公司</th><th>市值($B)</th><th>核心业务</th><th>强项</th><th>弱项</th><th>与ASML关系</th></tr>
+            <tr><td><a href="amat.html">Applied Materials (AMAT)</a></td><td>~490</td><td>沉积/刻蚀/CMP</td><td>覆盖最广(33%市占率)</td><td>不覆盖光刻</td><td>互补关系，非竞争</td></tr>
+            <tr><td><a href="klac.html">KLA (KLAC)</a></td><td>~310</td><td>检测/量测</td><td>量检测80%市占率</td><td>不覆盖光刻</td><td>互补关系，ASML量检测仅6%</td></tr>
+            <tr><td>佳能 (Canon)</td><td>~55</td><td>i-line/KrF/NIL</td><td>成本低，成熟制程</td><td>无法做先进制程</td><td>低端竞争+NIL潜在威胁</td></tr>
+            <tr><td>尼康 (Nikon)</td><td>~15</td><td>ArF浸没式DUV</td><td>中端DUV有竞争力</td><td>已退出EUV研发10年+</td><td>DUV部分竞争</td></tr>
+            <tr><td>上海微电子 (SMEE)</td><td>私有</td><td>90nm/28nm DUV</td><td>中国国产替代</td><td>技术差距3代+</td><td>中国内部替代，全球无竞争力</td></tr>
+        </table>
+
+        <h3>5.2 经济护城河评估</h3>
+
+        <div class="moat-item">
+            <strong>1. 技术垄断（极宽）</strong><br>
+            EUV光刻100%市占率——这不是"竞争优势"，这是"绝对垄断"。尼康和佳能已退出EUV研发10年+，即使今天重新投入，也需要10-15年和$100亿+研发才能追上。High-NA EUV（0.55 NA）ASML已开始交付，领先优势进一步扩大到15-20年。这是全球科技行业中最宽的护城河之一。
+        </div>
+
+        <div class="moat-item">
+            <strong>2. 专利壁垒（极宽）</strong><br>
+            ASML持有EUV核心专利1,000+项，覆盖光源、光学系统、精密工作台等关键子系统。任何试图进入EUV领域的竞争者都必须绕过这些专利——在实践中几乎不可能。
+        </div>
+
+        <div class="moat-item">
+            <strong>3. 供应链生态（极宽）</strong><br>
+            EUV系统含10万+零件，来自800+全球供应商。核心供应商高度绑定：蔡司（光学系统，ASML持有24.9%股权）、Cymer/TRUMPF（光源）、VDL（工作台）。蔡司的光学镜面精度要求：如镜面放大到德国国土面积，最大凸起不超过1毫米——这种精度全球只有蔡司能做到。ASML与蔡司的合作超过25年，10万+工时开发High-NA光学系统。新进入者无法复制这个供应链生态。
+        </div>
+
+        <div class="moat-item">
+            <strong>4. 客户转换成本（极宽）</strong><br>
+            先进制程客户验证周期2-3年，光刻工艺与芯片设计深度耦合。台积电、三星、英特尔的整个先进制程产线都围绕ASML EUV设计，更换光刻技术意味着重新设计芯片和产线——成本和风险不可承受。
+        </div>
+
+        <div class="moat-item">
+            <strong>5. 规模优势（宽）</strong><br>
+            R&D投入€47亿/年（14%营收占比），远超佳能+尼康研发总和。EUV累计研发投入超€80亿，只有ASML有规模支撑这种投入。但需注意：ASML更像"集成商"而非"制造商"，核心部件依赖蔡司/TRUMPF等独家供应商。
+        </div>
+
+        <div class="risk-item">
+            <strong>6. 潜在威胁：纳米压印（NIL）</strong><br>
+            佳能的纳米压印技术（NIL）是唯一非光学替代路线，已在3D NAND领域部署。NIL成本仅为EUV的40%，功耗仅为EUV的10%。但目前缺陷密度问题未解决，逻辑芯片不可用。如果未来5-10年NIL在逻辑芯片上突破，可能对ASML的DUV业务构成威胁——但EUV的垄断地位在可预见的未来无法撼动。
+        </div>
+
+        <h3>5.3 护城河评级</h3>
+        <p><strong>整体护城河评级：极宽（Very Wide）</strong></p>
+        <p>ASML拥有全球科技行业中最宽的护城河之一——EUV 100%垄断 + 1,000+核心专利 + 不可复制的供应链生态 + 极高客户转换成本。与AMAT的"广度型护城河"和KLAC的"单项深度护城河"不同，ASML的护城河是"绝对垄断型"——不是"几乎垄断"，而是"完全垄断"。这是巴菲特最梦寐以求的商业模式。</p>
+    </div>
+
+    <!-- ==================== 六、利润分配分析 ==================== -->
+    <div class="info-box">
+        <h2>六、利润分配分析</h2>
+
+        <h3>6.1 过去十年利润分配（FY2016-FY2025）</h3>
+        <table>
+            <tr><th>财年</th><th>净利润(€B)</th><th>分红(€B)</th><th>回购(€B)</th><th>资本开支(€B)</th><th>FCF(€B)</th><th>留存金额(€B)</th><th>留存率</th><th>股东回报率</th></tr>
+            <tr><td>FY2016</td><td>1.5</td><td>0.6</td><td>0.4</td><td>0.5</td><td>1.8</td><td>0.9</td><td>60%</td><td>67%</td></tr>
+            <tr><td>FY2017</td><td>2.1</td><td>0.7</td><td>0.5</td><td>0.6</td><td>2.5</td><td>1.4</td><td>67%</td><td>57%</td></tr>
+            <tr><td>FY2018</td><td>2.6</td><td>0.8</td><td>1.1</td><td>0.7</td><td>3.0</td><td>1.8</td><td>69%</td><td>73%</td></tr>
+            <tr><td>FY2019</td><td>2.8</td><td>0.9</td><td>0.4</td><td>0.8</td><td>3.2</td><td>1.9</td><td>68%</td><td>46%</td></tr>
+            <tr><td>FY2020</td><td>3.6</td><td>1.0</td><td>1.2</td><td>0.9</td><td>4.0</td><td>2.6</td><td>72%</td><td>61%</td></tr>
+            <tr><td>FY2021</td><td>5.3</td><td>1.3</td><td>8.6</td><td>1.1</td><td>6.5</td><td>4.0</td><td>75%</td><td>187%</td></tr>
+            <tr><td>FY2022</td><td>5.6</td><td>1.5</td><td>4.6</td><td>1.3</td><td>6.8</td><td>4.1</td><td>73%</td><td>109%</td></tr>
+            <tr><td>FY2023</td><td>7.8</td><td>1.8</td><td>1.0</td><td>1.5</td><td>8.5</td><td>6.0</td><td>77%</td><td>36%</td></tr>
+            <tr><td>FY2024</td><td>7.6</td><td>2.1</td><td>0.5</td><td>1.6</td><td>8.2</td><td>5.5</td><td>72%</td><td>34%</td></tr>
+            <tr><td>FY2025</td><td>9.6</td><td>2.6</td><td>5.9</td><td>1.8</td><td>11.0</td><td>7.0</td><td>73%</td><td>89%</td></tr>
+        </table>
+
+        <h3>6.2 资本配置评价</h3>
+        <div class="moat-item">
+            <strong>股东回报：</strong>FY2025向股东返还€85亿（分红€26亿+回购€59亿），占FCF的77%。分红连续增长（FY2025 €7.50/股，同比+17%）。2026年1月宣布新回购计划€120亿（至2028年12月），彰显长期信心。
+        </div>
+        <div class="moat-item">
+            <strong>回购质量：</strong>累计回购从2006年的€6.77亿增至2025年的€292.5亿。FY2021在PE 42x时回购€86亿，FY2025在PE 50x+时回购€59亿。与AMAT类似，高估值时大量回购是资本配置的瑕疵——巴菲特更希望在PE 20-30x时回购。
+        </div>
+        <div class="moat-item">
+            <strong>R&D投入：</strong>FY2025 R&D €47亿（14%营收占比），远超AMAT的$35亿（12%）和KLAC的$16亿（15%）。这是ASML维持EUV垄断地位的根基——持续的高研发投入确保技术领先优势不断扩大。
+        </div>
+        <div class="moat-item">
+            <strong>可持续增长率：</strong>ROE 49% × 留存率 73% = 35.8%。理论上ASML可以不靠外部融资实现36%的增长，但实际营收增速约15-20%，说明大量留存利润被用于回购和R&D，而非业务扩张。这是合理的——EUV产能扩张受供应链瓶颈限制，不是想扩就能扩。
+        </div>
+    </div>
+
+    <!-- ==================== 七、投资总结 ==================== -->
+    <div class="info-box">
+        <h2>七、投资总结</h2>
+
+        <h3>7.1 各维度评分</h3>
+        <table>
+            <tr><th>维度</th><th>评分</th><th>说明</th></tr>
+            <tr><td>业务可理解性</td><td><span class="star">&#9733;&#9733;&#9733;&#9733;</span> 4/5</td><td>"卖造芯片的投影仪"概念容易理解，但EUV技术细节极复杂</td></tr>
+            <tr><td>护城河强度</td><td><span class="star">&#9733;&#9733;&#9733;&#9733;&#9733;</span> 5/5</td><td>EUV 100%垄断+1,000+专利+不可复制供应链生态，全球最宽护城河之一</td></tr>
+            <tr><td>资本配置</td><td><span class="star">&#9733;&#9733;&#9733;&#9733;</span> 4/5</td><td>77% FCF回报股东优秀，R&D投入14%营收确保领先；但高估值回购是瑕疵</td></tr>
+            <tr><td>财务安全</td><td><span class="star">&#9733;&#9733;&#9733;&#9733;&#9733;</span> 5/5</td><td>净现金€83亿，负债率20.5%，信用评级A+，财务安全边际极高</td></tr>
+            <tr><td>增长前景</td><td><span class="star">&#9733;&#9733;&#9733;&#9733;&#9733;</span> 5/5</td><td>AI驱动EUV需求爆发+订单积压€388亿+High-NA量产+DRAM EUV渗透</td></tr>
+            <tr><td>估值吸引力</td><td><span class="star">&#9733;</span> 1/5</td><td>PE 64x远超10年均值36x和5年高点55x，严重高估</td></tr>
+        </table>
+
+        <h3>7.2 关键风险</h3>
+        <div class="risk-item">
+            <strong>1. 中国出口管制风险：</strong>中国曾占ASML营收41%（FY2024），EUV已完全禁售，DUV出口管制持续收紧。美国"MATCH Act"可能进一步限制。CFO Dassen预计2026年中国销售占比降至约20%。虽然非中国需求可抵消，但长期看中国国产替代（SMEE 28nm DUV）将侵蚀ASML在华DUV市场。
+        </div>
+        <div class="risk-item">
+            <strong>2. 客户集中度：</strong>台积电、三星、英特尔三大客户占EUV需求90%+。台积电一家的资本开支波动就能显著影响ASML业绩。FY2025 Logic系统营收中，单一客户（台积电）占比极高。
+        </div>
+        <div class="risk-item">
+            <strong>3. 供应链瓶颈：</strong>ASML是"集成商"而非"制造商"，核心部件依赖蔡司（光学）、TRUMPF（激光）等独家供应商。蔡司光学系统产能扩张20-25%仍可能跟不上ASML需求。如果核心供应商出问题，ASML无法自行替代。
+        </div>
+        <div class="risk-item">
+            <strong>4. 估值泡沫风险：</strong>PE 64x意味着市场预期ASML将长期维持20%+增速。在周期性行业中，这种预期极度乐观。一旦AI投资放缓或EUV出货不及预期，股价可能大幅回调。
+        </div>
+        <div class="risk-item">
+            <strong>5. 技术替代风险（长期）：</strong>佳能NIL在3D NAND已部署，如果未来5-10年在逻辑芯片上突破，可能侵蚀DUV市场。先进封装（Chiplet）可能减少对最先进光刻的依赖。但这些风险在5-10年内不会威胁EUV垄断。
+        </div>
+
+        <h3>7.3 关键催化剂</h3>
+        <div class="moat-item">
+            <strong>1. High-NA EUV量产：</strong>EXE:5200B已交付英特尔（14A/1.4nm节点），台积电和三星2026年纳入量产路线图。High-NA售价€3.5亿+（Low-NA的2倍），将显著提升ASML营收和毛利率。
+        </div>
+        <div class="moat-item">
+            <strong>2. DRAM EUV渗透加速：</strong>三大DRAM厂商（三星、SK海力士、美光）全面转向EUV，FY2025 Q4 Memory订单占比56%。DRAM EUV渗透率仅20-30%，远低于Logic的90%+，增长空间巨大。
+        </div>
+        <div class="moat-item">
+            <strong>3. AI超级周期：</strong>CEO Fouquet表示"芯片需求超过供给"，Memory客户"今年已售罄"，Logic客户"加速扩产"。2026年营收指引€360-400亿（+10-22%），EUV出货60台（+25%），2027年产能80台。
+        </div>
+        <div class="moat-item">
+            <strong>4. 订单积压€388亿：</strong>提供2-3年营收可见性，即使短期需求波动也不影响交付。FY2025 Q4单季新增订单€132亿（EUV €74亿），创历史新高。
+        </div>
+
+        <h3>7.4 估值分析</h3>
+        <table>
+            <tr><th>估值指标</th><th>当前</th><th>5年均值</th><th>5年高点</th><th>5年低点</th></tr>
+            <tr><td>PE（TTM）</td><td>64x</td><td>~36x</td><td>55x</td><td>22x</td></tr>
+            <tr><td>PS（TTM）</td><td>22x</td><td>~12x</td><td>18x</td><td>7x</td></tr>
+            <tr><td>EV/EBITDA</td><td>~42x</td><td>~24x</td><td>35x</td><td>14x</td></tr>
+            <tr><td>P/FCF</td><td>~67x</td><td>~35x</td><td>50x</td><td>20x</td></tr>
+        </table>
+
+        <h3>7.5 与半导体设备同行估值对比</h3>
+        <table>
+            <tr><th>公司</th><th>PE(TTM)</th><th>护城河</th><th>ROE</th><th>净利率</th><th>估值评价</th></tr>
+            <tr><td>ASML</td><td>64x</td><td>极宽（EUV 100%垄断）</td><td>49%</td><td>29.4%</td><td>严重高估</td></tr>
+            <tr><td><a href="amat.html">AMAT</a></td><td>58x</td><td>宽（CMP 80%+PVD 60%）</td><td>35.5%</td><td>24.7%</td><td>严重高估</td></tr>
+            <tr><td><a href="klac.html">KLAC</a></td><td>35x</td><td>极宽（量检测80%垄断）</td><td>80%+</td><td>30%+</td><td>高估</td></tr>
+        </table>
+
+        <h3>7.6 投资评级</h3>
+        <div class="risk-item">
+            <strong>评级：观望（Wait）</strong>
+            <p>ASML是一家<strong>极其优秀</strong>的公司——拥有全球科技行业最宽的护城河（EUV 100%垄断）、最强的定价权（涨价10%客户也不会走）、最高的ROE（49%）、最长的营收可见性（€388亿订单积压）。如果巴菲特只能买一家半导体设备公司，ASML是首选。</p>
+            <p>但"好公司"不等于"好价格"。</p>
+            <p>当前PE 64x意味着市场预期ASML将长期维持20%+增速。虽然AI驱动需求确实强劲，但半导体行业的周期性不可忽视——历史上每次周期顶部后都伴随20-40%的营收下降。PE 64x在周期顶部是极度危险的。</p>
+        </div>
+        <div class="highlight">
+            <strong>理想买入区间：</strong>PE 28-36倍，对应价格约$700-$900，基于FY2025 EPS €24.73和当前汇率<br>
+            <strong>当前价格：</strong>$1,929<br>
+            <strong>溢价：</strong>约115-175%，严重高估<br><br>
+            <strong>与AMAT/KLAC对比：</strong>ASML的护城河比AMAT宽（EUV 100%垄断 vs AMAT CMP 80%），与KLAC同属"极宽"级别。但ASML的PE（64x）甚至高于AMAT（58x）和KLAC（35x），泡沫程度最大。三家公司当前估值都严重偏高，但KLAC相对最"便宜"。<br><br>
+            <strong>巴菲特会怎么说：</strong>"ASML是那种你希望永远持有的公司——但不是在任何价格。在$700-900，我会毫不犹豫地买入。在$1,929，我宁愿等待。市场先生终有一天会给我们机会。"
+        </div>
+    </div>
+
+    <!-- ==================== Topbar Scoring Script ==================== -->
+    <script>
+    // Topbar scoring logic - unified with stock_scores_v1
+    (function(){
+        var SCORE_KEY='stock_scores_v1';
+        var code=document.getElementById('topbarCode').textContent.trim();
+        function getScores(){try{var d=localStorage.getItem(SCORE_KEY);return d?JSON.parse(d):{};}catch(e){return {};}}
+        function saveScores(s){localStorage.setItem(SCORE_KEY,JSON.stringify(s));}
+        function starsHTML(val){var h='';for(var i=1;i<=5;i++){h+='<span class="'+(i<=val?'on':'off')+'">\u2605</span>';}return h;}
+        function valClass(v){return v>=5?'s5':v>=4?'s4':v>=3?'s3':v>=2?'s2':'s1';}
+        function renderDisplay(){
+            var sc=getScores()[code]||{};
+            var f=sc.fundamental||0,p=sc.price||0;
+            document.getElementById('topbarFVal').textContent=f>0?f:'-';
+            document.getElementById('topbarFVal').className='topbar-score-val'+(f>0?' '+valClass(f):'');
+            document.getElementById('topbarFStars').innerHTML=starsHTML(f);
+            document.getElementById('topbarPVal').textContent=p>0?p:'-';
+            document.getElementById('topbarPVal').className='topbar-score-val'+(p>0?' '+valClass(p):'');
+            document.getElementById('topbarPStars').innerHTML=starsHTML(p);
+        }
+        window.topbarEdit=function(){
+            var sc=getScores()[code]||{};
+            document.getElementById('topbarFSel').value=sc.fundamental||0;
+            document.getElementById('topbarPSel').value=sc.price||0;
+            document.getElementById('topbarFSel').style.display='';
+            document.getElementById('topbarPSel').style.display='';
+            document.getElementById('topbarEditBtn').style.display='none';
+            document.getElementById('topbarSaveBtn').style.display='';
+            document.getElementById('topbarCancelBtn').style.display='';
+            document.getElementById('topbarFVal').style.display='none';
+            document.getElementById('topbarPVal').style.display='none';
+            document.getElementById('topbarFStars').style.display='none';
+            document.getElementById('topbarPStars').style.display='none';
+        };
+        window.topbarSave=function(){
+            var f=parseInt(document.getElementById('topbarFSel').value);
+            var p=parseInt(document.getElementById('topbarPSel').value);
+            var sc=getScores();if(!sc[code])sc[code]={};
+            sc[code].fundamental=f;sc[code].price=p;sc[code].updated=new Date().toISOString();
+            saveScores(sc);topbarCancel();renderDisplay();
+        };
+        window.topbarCancel=function(){
+            document.getElementById('topbarFSel').style.display='none';
+            document.getElementById('topbarPSel').style.display='none';
+            document.getElementById('topbarEditBtn').style.display='';
+            document.getElementById('topbarSaveBtn').style.display='none';
+            document.getElementById('topbarCancelBtn').style.display='none';
+            document.getElementById('topbarFVal').style.display='';
+            document.getElementById('topbarPVal').style.display='';
+            document.getElementById('topbarFStars').style.display='';
+            document.getElementById('topbarPStars').style.display='';
+        };
+        renderDisplay();
+    })();
+    </script>
+</body>
+</html>
