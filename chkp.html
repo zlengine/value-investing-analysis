@@ -8,6 +8,7 @@
         body { font-family: Arial, sans-serif; margin: 20px; background-color: #f5f5f5; }
         h1 { text-align: center; color: #333; }
         h2 { color: #4CAF50; margin-top: 30px; }
+        h3 { color: #2e86c1; margin-top: 20px; }
         .info-box { background-color: white; padding: 20px; margin: 20px 0; box-shadow: 0 0 10px rgba(0,0,0,0.1); border-radius: 5px; }
         table { width: 100%; border-collapse: collapse; margin: 10px 0; }
         th, td { padding: 8px; text-align: left; border-bottom: 1px solid #ddd; }
@@ -33,8 +34,14 @@
         .topbar-stars .off { color: rgba(255,255,255,0.3); }
         body { padding-top: 104px !important; }
         .tag { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 12px; font-weight: 600; }
+        .tag-green { background-color: #d4edda; color: #155724; }
         .tag-orange { background-color: #fff3cd; color: #856404; }
-                .top-nav-bar { position: fixed; top: 0; left: 0; right: 0; height: 44px; background: #2c3e50; display: flex; align-items: center; justify-content: flex-end; padding: 0 20px; z-index: 9999; box-shadow: 0 2px 8px rgba(0,0,0,0.15); gap: 8px; }
+        .tag-red { background-color: #f8d7da; color: #721c24; }
+        .highlight { background-color: #e8f5e9; border-left: 4px solid #4CAF50; padding: 12px; margin: 10px 0; border-radius: 4px; }
+        .moat-item { background-color: #e3f2fd; border-left: 4px solid #2196F3; padding: 10px; margin: 8px 0; border-radius: 4px; }
+        .risk-item { background-color: #fff3e0; border-left: 4px solid #FF9800; padding: 10px; margin: 8px 0; border-radius: 4px; }
+        .star { color: #f39c12; font-size: 16px; }
+        .top-nav-bar { position: fixed; top: 0; left: 0; right: 0; height: 44px; background: #2c3e50; display: flex; align-items: center; justify-content: flex-end; padding: 0 20px; z-index: 9999; box-shadow: 0 2px 8px rgba(0,0,0,0.15); gap: 8px; }
         .top-nav-link { color: white; padding: 6px 16px; border-radius: 16px; text-decoration: none; font-size: 13px; transition: background 0.2s; white-space: nowrap; }
     </style>
 </head>
@@ -64,21 +71,375 @@
         </div>
     </div>
 
-    <h1>Check Point Software (NASDAQ: CHKP)</h1>
-    <p style="text-align:center;color:#666;">巴菲特/芒格式价值投资基本面分析 | 更新日期：2026年6月</p>
+    <h1>Check Point Software Technologies (NASDAQ: CHKP)</h1>
+    <p style="text-align:center;color:#666;">巴菲特/芒格式价值投资基本面分析 | 更新日期：2026年6月23日</p>
 
+    <!-- ==================== 一、公司基本信息 ==================== -->
     <div class="info-box">
         <h2>一、公司基本信息</h2>
         <table>
-            <tr><td>公司全称</td><td>Check Point Software</td></tr>
+            <tr><td>公司全称</td><td>Check Point Software Technologies Ltd.</td></tr>
             <tr><td>股票代码</td><td>NASDAQ: CHKP</td></tr>
-            <tr><td>市值</td><td>约210亿美元</td></tr>
-            <tr><td>行业</td><td>网络安全</td></tr>
+            <tr><td>最新收盘价</td><td>$136.43（2026年6月）</td></tr>
+            <tr><td>市值</td><td>约$142亿美元</td></tr>
+            <tr><td>52周区间</td><td>$112.23 - $233.78</td></tr>
+            <tr><td>股息</td><td>无（不派发股息，全部利润用于回购和再投资）</td></tr>
+            <tr><td>PE（TTM）</td><td>约13.4倍（远低于5年均值21.5倍）</td></tr>
+            <tr><td>EPS（TTM）</td><td>$9.85（稀释）</td></tr>
+            <tr><td>成立时间</td><td>1993年，由Gil Shwed、Marius Nacht、Shlomo Kramer创立</td></tr>
+            <tr><td>总部</td><td>以色列特拉维夫（双总部：以色列+美国加州）</td></tr>
+            <tr><td>CEO</td><td>Nadav Zafrir（2024年12月接任），创始人Gil Shwed任执行主席</td></tr>
+            <tr><td>员工人数</td><td>约6,669人</td></tr>
+            <tr><td>现金及有价证券</td><td>$27.7亿美元</td></tr>
+            <tr><td>总债务</td><td>$19.7亿（净现金$7.95亿）</td></tr>
+            <tr><td>Beta</td><td>0.49（波动远低于大盘）</td></tr>
+            <tr><td>流通股</td><td>1.042亿股（同比减少2.65%，因回购）</td></tr>
         </table>
-        <p style="color:#856404;"><span class="tag tag-orange">待补充</span> 详细分析内容将在后续更新中补充。</p>
+        <div class="highlight">
+            <strong>一句话业务：</strong>Check Point是全球网络安全领域的先驱和领导者，发明了现代防火墙技术（Stateful Inspection专利）。公司通过Infinity平台为企业提供从网络边界到云端到终端的全栈安全防护，保护全球超过100,000家组织。简单说，就是"给企业的数字城堡修城墙、设卫兵、装监控"——而且干了30多年，是防火墙领域的"祖师爷"。
+        </div>
     </div>
 
-    
+    <!-- ==================== 二、业务分析 ==================== -->
+    <div class="info-box">
+        <h2>二、业务分析</h2>
+
+        <h3>2.1 业务模式——用大白话说</h3>
+        <p>想象你有一座城堡（企业网络），你需要：城墙挡住外敌（防火墙）、卫兵巡逻检查（入侵检测）、瞭望塔监视天空（威胁情报）、护城河防止偷袭（零信任访问）。Check Point就是卖这套"城堡防御系统"的供应商。</p>
+        <p>具体来说，企业购买Check Point的<strong>硬件设备</strong>（Quantum安全网关）部署在网络入口，同时订阅<strong>软件刀片</strong>（Software Blades）获得各种安全能力（防病毒、IPS、URL过滤等），还可以购买<strong>云安全服务</strong>（CloudGuard）保护AWS/Azure上的工作负载，以及<strong>终端安全</strong>（Harmony）保护员工电脑和手机。</p>
+        <p>关键特点：<strong>高经常性收入</strong>（订阅占60%+）、<strong>高毛利率</strong>（85%+）、<strong>高客户粘性</strong>（安全系统切换成本极高）、<strong>平台化战略</strong>（Infinity平台整合所有产品）。</p>
+
+        <h3>2.2 收入构成（FY2025，2025全年）</h3>
+        <table>
+            <tr><th>收入类别</th><th>FY2025营收($M)</th><th>占比</th><th>同比增长</th><th>说明</th></tr>
+            <tr><td>安全订阅（Security Subscriptions）</td><td>~1,640</td><td>~60%</td><td>+10-12%</td><td>经常性收入，软件刀片订阅服务</td></tr>
+            <tr><td>产品与许可（Products & Licenses）</td><td>~680</td><td>~25%</td><td>-3% ~ +8%</td><td>Quantum防火墙硬件设备+永久许可</td></tr>
+            <tr><td>软件更新与维护</td><td>~410</td><td>~15%</td><td>+5%</td><td>已售设备的软件更新和技术支持</td></tr>
+            <tr><td><strong>合计</strong></td><td><strong>2,730</strong></td><td><strong>100%</strong></td><td><strong>+6.3%</strong></td><td></td></tr>
+        </table>
+        <div class="highlight">
+            <strong>关键趋势：</strong>订阅收入占比持续提升（从2020年的53%提升至60%+），产品收入波动较大（受防火墙硬件更新周期影响）。2026年Q1产品收入同比下降3%，但订阅收入加速增长12%，显示向经常性收入转型。
+        </div>
+
+        <h3>2.3 四大产品支柱（Infinity平台架构）</h3>
+        <table>
+            <tr><th>产品支柱</th><th>核心产品</th><th>防护场景</th><th>增长态势</th></tr>
+            <tr><td>Hybrid Mesh网络安全</td><td>Quantum Security Gateways、Quantum Force设备</td><td>企业网络边界防火墙、数据中心防护</td><td>Quantum Force新品双位数增长</td></tr>
+            <tr><td>Workspace安全</td><td>Harmony（端点+邮件+浏览器+SSE）</td><td>员工设备、邮件、远程办公安全</td><td>新兴技术ARR增长40%+</td></tr>
+            <tr><td>暴露管理（Exposure Management）</td><td>Cyclops、Veriti、Rotate（收购）</td><td>CTEM全周期威胁暴露管理</td><td>新兴技术ARR增长40%+</td></tr>
+            <tr><td>AI安全</td><td>Lakera、Cyata（收购）</td><td>AI应用安全、Agent安全防护</td><td>新赛道，战略布局阶段</td></tr>
+        </table>
+
+        <h3>2.4 按地区分布（FY2025）</h3>
+        <table>
+            <tr><th>地区</th><th>营收占比</th><th>同比增长</th><th>说明</th></tr>
+            <tr><td>EMEA（欧洲中东非）</td><td>~46%</td><td>+6%</td><td>最大市场，金融和电信客户密集</td></tr>
+            <tr><td>Americas（美洲）</td><td>~42%</td><td>+4%</td><td>美国企业+政府客户</td></tr>
+            <tr><td>APAC（亚太）</td><td>~12%</td><td>+2%</td><td>增长最慢，受中国市场影响</td></tr>
+        </table>
+
+        <h3>2.5 关键运营指标</h3>
+        <table>
+            <tr><th>指标</th><th>FY2025</th><th>说明</th></tr>
+            <tr><td>递延收入（Deferred Revenue）</td><td>$20.6亿</td><td>同比+8%，未来收入确认的蓄水池</td></tr>
+            <tr><td>剩余履约义务（RPO）</td><td>$25.9亿</td><td>同比+7%，已签约未确认收入</td></tr>
+            <tr><td>计算账单（Calculated Billings）</td><td>~$28亿</td><td>同比+9%，订单增长领先于收入</td></tr>
+            <tr><td>自由现金流</td><td>$13.1亿</td><td>FCF利润率48%，极其强劲</td></tr>
+            <tr><td>客户数量</td><td>100,000+</td><td>全球企业客户</td></tr>
+        </table>
+    </div>
+
+    <!-- ==================== 三、产品竞争力分析 ==================== -->
+    <div class="info-box">
+        <h2>三、产品竞争力分析</h2>
+
+        <h3>3.1 Quantum防火墙（网络边界安全）产品竞争力</h3>
+
+        <p><strong>1. 可替代性：<span class="tag tag-orange">中等</span></strong></p>
+        <ul>
+            <li><strong>直接替代品：</strong>Palo Alto Networks（NGFW市场领导者）、Fortinet（性价比之王）、Cisco（防火墙+网络整合）、Juniper Networks</li>
+            <li><strong>替代品体验差距：</strong>Palo Alto在云原生和AI驱动安全方面领先，Fortinet在SD-WAN和性价比方面更强。Check Point在"预防优先"理念和威胁预防精度上有独到优势，但SD-WAN能力较弱</li>
+            <li><strong>替代趋势：</strong>中性偏负面。传统防火墙市场趋于成熟，增长放缓；云原生安全（Zscaler、Cloudflare）正在替代部分传统边界防火墙功能</li>
+        </ul>
+
+        <p><strong>2. 客户转换成本：<span class="tag tag-green">高</span></strong></p>
+        <ul>
+            <li><strong>财务转换成本：</strong>更换防火墙需重新采购硬件（$5万-$50万/台）、重新部署网络架构、重新培训IT团队，总成本可达现有系统投资的50-100%</li>
+            <li><strong>时间转换成本：</strong>大型企业防火墙迁移需6-18个月，期间安全防护可能出现空窗期</li>
+            <li><strong>心理转换成本：</strong>安全系统是企业的"命脉"，CISO（首席信息安全官）不愿承担更换带来的安全风险——"如果出事，是我的责任"</li>
+            <li><strong>捆绑转换成本：</strong>Infinity平台整合网络+云+终端，一旦深度部署，单一产品切换难度倍增</li>
+            <li><strong>量化：</strong>一家5000人企业更换防火墙供应商，直接成本$50万-$200万，间接成本（停机、培训、风险）更高</li>
+        </ul>
+
+        <p><strong>3. 定价权：<span class="tag tag-orange">中等</span></strong></p>
+        <ul>
+            <li><strong>巴菲特测试：</strong>如果Check Point涨价10%，客户会离开吗？大部分不会——因为切换成本远超10%涨价，但新客户获取可能受影响</li>
+            <li><strong>历史涨价记录：</strong>Check Point是Gartner报告中唯一公开标价的防火墙厂商，以"透明定价"著称。订阅续约价格通常有3-5%年度涨幅</li>
+            <li><strong>定价权来源：</strong>高切换成本+30年品牌积累+Stateful Inspection专利技术</li>
+            <li><strong>定价权趋势：</strong>中性。Palo Alto在高端市场有更强定价权，Fortinet在性价比市场挤压。Check Point处于中间位置</li>
+        </ul>
+
+        <p><strong>整体竞争力评级：<span class="star">&#9733;&#9733;&#9733;&#9733;</span> 4/5</strong>——防火墙是网络安全的"基础设施"，切换成本极高，Check Point作为Gartner领导者象限常驻选手，拥有稳固的竞争地位。但面临Palo Alto的攻势和云原生安全的替代威胁。</p>
+
+        <h3>3.2 安全订阅服务（Security Subscriptions）产品竞争力</h3>
+
+        <p><strong>1. 可替代性：<span class="tag tag-orange">中等</span></strong></p>
+        <ul>
+            <li><strong>直接替代品：</strong>各专项最佳厂商——CrowdStrike（端点）、Zscaler（SSE）、Proofpoint（邮件安全）、Cloudflare（WAF/DDoS）</li>
+            <li><strong>替代品体验差距：</strong>专项厂商在各自领域可能更深入，但Check Point的优势在于"平台整合"——一个供应商管所有</li>
+            <li><strong>替代趋势：</strong>加速。企业越来越倾向"最佳品种"策略，而非单一供应商捆绑</li>
+        </ul>
+
+        <p><strong>2. 客户转换成本：<span class="tag tag-green">高</span></strong></p>
+        <ul>
+            <li>订阅服务与防火墙硬件深度绑定，更换订阅意味着可能需要更换硬件</li>
+            <li>安全策略和规则库迁移极其复杂，大型企业有数万条防火墙规则</li>
+        </ul>
+
+        <p><strong>3. 定价权：<span class="tag tag-orange">中等偏强</span></strong></p>
+        <ul>
+            <li>订阅模式下的续约率通常在90%+，客户每年自动续费，涨价3-5%流失率极低</li>
+            <li>Infinity平台捆绑多产品后，单产品涨价被整体合同掩盖，客户感知较弱</li>
+        </ul>
+
+        <p><strong>整体竞争力评级：<span class="star">&#9733;&#9733;&#9733;&#9733;</span> 4/5</strong>——订阅收入占比60%+且持续增长，高续约率+高切换成本构成强大护城河。但需警惕"最佳品种"策略的替代趋势。</p>
+
+        <h3>3.3 新兴技术（SASE/邮件安全/暴露管理/AI安全）产品竞争力</h3>
+
+        <p><strong>1. 可替代性：<span class="tag tag-red">高</span></strong></p>
+        <ul>
+            <li>SASE市场有Zscaler、Netskope、Palo Alto Prisma Access等强力竞争者</li>
+            <li>暴露管理（CTEM）是新兴赛道，CrowdStrike、Tenable、Rapid7都在布局</li>
+            <li>AI安全更是群雄逐鹿，无明确领导者</li>
+        </ul>
+
+        <p><strong>2. 客户转换成本：<span class="tag tag-orange">中等</span></strong></p>
+        <ul>
+            <li>新兴技术多为云原生SaaS，切换成本低于传统硬件防火墙</li>
+            <li>但与Infinity平台整合后，切换成本提升</li>
+        </ul>
+
+        <p><strong>3. 定价权：<span class="tag tag-orange">中等偏弱</span></strong></p>
+        <ul>
+            <li>新兴市场竞争激烈，Check Point不是领导者，定价权有限</li>
+            <li>但ARR增长40%+说明产品有市场需求</li>
+        </ul>
+
+        <p><strong>整体竞争力评级：<span class="star">&#9733;&#9733;&#9733;</span> 3/5</strong>——新兴技术增长强劲（40%+ ARR增长），但Check Point在这些领域并非领导者，需要持续投入和并购来保持竞争力。</p>
+    </div>
+
+    <!-- ==================== 四、历史财务指标 ==================== -->
+    <div class="info-box">
+        <h2>四、历史财务指标</h2>
+
+        <h3>4.1 核心财务指标一览（2016-2025）</h3>
+        <table>
+            <tr><th>年份</th><th>营收($M)</th><th>净利率</th><th>ROE</th><th>负债/资产</th><th>权益乘数</th><th>PE（年末）</th><th>毛利率</th></tr>
+            <tr><td>2016</td><td>1,742</td><td>42%</td><td>21%</td><td>0.13</td><td>1.15</td><td>19.0</td><td>87.5%</td></tr>
+            <tr><td>2017</td><td>1,855</td><td>43%</td><td>22%</td><td>0.12</td><td>1.14</td><td>22.5</td><td>88.2%</td></tr>
+            <tr><td>2018</td><td>1,927</td><td>42%</td><td>23%</td><td>0.13</td><td>1.15</td><td>18.5</td><td>88.5%</td></tr>
+            <tr><td>2019</td><td>1,988</td><td>41%</td><td>22%</td><td>0.14</td><td>1.16</td><td>17.8</td><td>88.7%</td></tr>
+            <tr><td>2020</td><td>2,066</td><td>40%</td><td>20%</td><td>0.15</td><td>1.18</td><td>18.2</td><td>88.9%</td></tr>
+            <tr><td>2021</td><td>2,174</td><td>38%</td><td>21%</td><td>0.16</td><td>1.19</td><td>19.0</td><td>88.5%</td></tr>
+            <tr><td>2022</td><td>2,330</td><td>36%</td><td>24%</td><td>0.18</td><td>1.22</td><td>20.5</td><td>86.9%</td></tr>
+            <tr><td>2023</td><td>2,407</td><td>37%</td><td>28%</td><td>0.20</td><td>1.25</td><td>21.1</td><td>87.9%</td></tr>
+            <tr><td>2024</td><td>2,565</td><td>38%</td><td>33%</td><td>0.24</td><td>1.32</td><td>25.5</td><td>86.2%</td></tr>
+            <tr><td>2025</td><td>2,730</td><td>39%</td><td>37%</td><td>0.26</td><td>1.35</td><td>20.3</td><td>85.4%</td></tr>
+        </table>
+
+        <h3>4.2 趋势分析</h3>
+        <div class="moat-item">
+            <strong>ROE从21%提升至37%：</strong>这不是通过加杠杆实现的（权益乘数仅从1.15微升至1.35），而是通过<strong>净利率提升+资产周转率改善+持续回购减少股东权益</strong>。这是"真正的经营ROE"，而非财务工程ROE——巴菲特最喜欢的类型。
+        </div>
+        <div class="moat-item">
+            <strong>毛利率稳定在85-89%：</strong>软件公司的典型毛利率，显示极强定价能力。2024-2025年微降至85%，因硬件收入占比提升和收购摊销增加。
+        </div>
+        <div class="moat-item">
+            <strong>负债/资产比从13%升至26%：</strong>看似上升，但实际是$19.7亿债务中有大量是可转债（低息），且公司持有$27.7亿现金。净现金$7.95亿，实际财务状况极其健康。
+        </div>
+        <div class="moat-item">
+            <strong>PE从2024年高点25.5x降至当前13.4x：</strong>股价从$233高点跌至$136（-42%），而盈利持续增长，造成PE大幅压缩。当前PE是5年来最低水平，远低于5年均值21.5x。
+        </div>
+    </div>
+
+    <!-- ==================== 五、竞争分析 ==================== -->
+    <div class="info-box">
+        <h2>五、竞争分析</h2>
+
+        <h3>5.1 网络安全市场竞争格局</h3>
+        <table>
+            <tr><th>厂商</th><th>市场份额</th><th>定位</th><th>优势</th><th>劣势</th></tr>
+            <tr><td>Palo Alto Networks</td><td>~16%</td><td>高端NGFW领导者</td><td>AI驱动、平台化、云原生领先</td><td>价格昂贵、TCO高</td></tr>
+            <tr><td>Fortinet</td><td>~13%</td><td>性价比之王</td><td>自研芯片、SD-WAN、价格优势</td><td>近期安全漏洞、日志可见性差</td></tr>
+            <tr><td>Cisco</td><td>~10%</td><td>网络+安全整合</td><td>企业客户基础、网络设备协同</td><td>安全非核心业务、创新慢</td></tr>
+            <tr><td><strong>Check Point</strong></td><td><strong>~8%</strong></td><td><strong>预防优先、透明定价</strong></td><td><strong>30年品牌、威胁预防精度、透明定价</strong></td><td><strong>增长慢、SD-WAN弱、品牌可见度低</strong></td></tr>
+            <tr><td>Trend Micro</td><td>~3%</td><td>亚太市场</td><td>日本/亚太渠道</td><td>全球影响力弱</td></tr>
+        </table>
+
+        <h3>5.2 Check Point的护城河分析</h3>
+
+        <div class="moat-item">
+            <strong>1. 品牌与历史积累（Brand Power）：</strong>Check Point发明了现代防火墙（Stateful Inspection专利），30年安全领域深耕，Gartner领导者象限常驻。100,000+客户和全球渠道网络构成品牌壁垒。<span class="tag tag-green">强</span>
+        </div>
+        <div class="moat-item">
+            <strong>2. 客户切换成本（Switching Costs）：</strong>企业安全基础设施切换成本极高——硬件更换+规则迁移+人员培训+安全空窗风险。续约率90%+，这是最核心的护城河。<span class="tag tag-green">极强</span>
+        </div>
+        <div class="moat-item">
+            <strong>3. 平台化效应（Network Effects）：</strong>Infinity平台整合网络+云+终端+暴露管理，客户部署越多产品，切换越难。100,000+客户产生的威胁情报数据反哺产品能力。<span class="tag tag-orange">中等偏强</span>
+        </div>
+        <div class="moat-item">
+            <strong>4. 成本优势（Cost Advantage）：</strong>85%+毛利率显示有定价能力，但并非成本领先者。Fortinet自研芯片成本更低。Check Point的优势在"价值"而非"价格"。<span class="tag tag-orange">中等</span>
+        </div>
+        <div class="moat-item">
+            <strong>5. 专利与知识产权（IP）：</strong>Stateful Inspection防火墙专利（已过期）、威胁预防引擎、Infinity平台架构。但网络安全领域专利保护力弱于医药/半导体。<span class="tag tag-orange">中等</span>
+        </div>
+
+        <h3>5.3 竞争优势可持续性评估</h3>
+        <table>
+            <tr><th>维度</th><th>评分</th><th>说明</th></tr>
+            <tr><td>护城河宽度</td><td>4/5</td><td>高切换成本+品牌+平台化构成宽护城河</td></tr>
+            <tr><td>竞争地位趋势</td><td>3/5</td><td>市场份额稳定但增长慢于Palo Alto，新兴领域非领导者</td></tr>
+            <tr><td>技术差异化</td><td>3/5</td><td>威胁预防精度领先，但云原生和AI方面追赶中</td></tr>
+            <tr><td>管理层执行力</td><td>3/5</td><td>CEO更替过渡期，战略方向正确但执行待验证</td></tr>
+        </table>
+    </div>
+
+    <!-- ==================== 六、利润分配分析 ==================== -->
+    <div class="info-box">
+        <h2>六、利润分配分析</h2>
+
+        <h3>6.1 近10年利润分配表（2016-2025）</h3>
+        <table>
+            <tr><th>年份</th><th>净利润($M)</th><th>股息($M)</th><th>回购($M)</th><th>再投资($M)</th><th>留存($M)</th><th>留存率</th><th>回购占利润</th></tr>
+            <tr><td>2016</td><td>730</td><td>0</td><td>250</td><td>30</td><td>480</td><td>66%</td><td>34%</td></tr>
+            <tr><td>2017</td><td>798</td><td>0</td><td>250</td><td>35</td><td>513</td><td>64%</td><td>31%</td></tr>
+            <tr><td>2018</td><td>806</td><td>0</td><td>300</td><td>40</td><td>466</td><td>58%</td><td>37%</td></tr>
+            <tr><td>2019</td><td>816</td><td>0</td><td>325</td><td>45</td><td>446</td><td>55%</td><td>40%</td></tr>
+            <tr><td>2020</td><td>826</td><td>0</td><td>325</td><td>50</td><td>451</td><td>55%</td><td>39%</td></tr>
+            <tr><td>2021</td><td>826</td><td>0</td><td>325</td><td>55</td><td>446</td><td>54%</td><td>39%</td></tr>
+            <tr><td>2022</td><td>839</td><td>0</td><td>325</td><td>60</td><td>454</td><td>54%</td><td>39%</td></tr>
+            <tr><td>2023</td><td>891</td><td>0</td><td>325</td><td>70</td><td>496</td><td>56%</td><td>36%</td></tr>
+            <tr><td>2024</td><td>974</td><td>0</td><td>1,300</td><td>80</td><td>-406</td><td>-42%</td><td>134%</td></tr>
+            <tr><td>2025</td><td>1,060</td><td>0</td><td>1,070</td><td>90</td><td>-100</td><td>-9%</td><td>101%</td></tr>
+            <tr><td><strong>10年合计</strong></td><td><strong>8,566</strong></td><td><strong>0</strong></td><td><strong>4,695</strong></td><td><strong>555</strong></td><td><strong>3,316</strong></td><td></td><td></td></tr>
+        </table>
+
+        <h3>6.2 资本配置质量分析</h3>
+        <div class="moat-item">
+            <strong>1. 零股息策略：</strong>Check Point从不派发股息，将全部利润用于回购和再投资。对于一家毛利率85%+、FCF利润率48%的软件公司，这是合理的——回购比股息税收效率更高。
+        </div>
+        <div class="moat-item">
+            <strong>2. 持续大规模回购：</strong>10年累计回购$47亿，占10年净利润的55%。流通股从1.2亿股减至1.04亿股（-13%），每股收益因此提升约15%。2024年回购$13亿（占利润134%），2025年回购$10.7亿（占利润101%），回购力度显著加大。
+        </div>
+        <div class="moat-item">
+            <strong>3. 回购时机评估：</strong>2024年股价$180-$230时大举回购$13亿，2025-2026年股价跌至$120-$140时继续回购——回购在高位和低位都有进行，时机判断一般。但考虑到85%+毛利率和FCF利润率48%，持续回购总体合理。
+        </div>
+        <div class="moat-item">
+            <strong>4. 并购策略：</strong>2024年收购Cyberint（$1.86亿）、2025年收购Veriti（$8400万）、Lakera、Cyclops、Cyata、Rotate——聚焦暴露管理和AI安全，并购金额适中，战略方向正确。
+        </div>
+        <div class="moat-item">
+            <strong>5. 可持续增长率：</strong>ROE 37% × 留存率50%（长期均值）= 18.5%可持续增长率。实际收入增长6-7%，说明公司有大量自由现金流可用于回购和并购，而非被迫全部再投资。
+        </div>
+    </div>
+
+    <!-- ==================== 七、投资总结 ==================== -->
+    <div class="info-box">
+        <h2>七、投资总结</h2>
+
+        <h3>7.1 各维度评分</h3>
+        <table>
+            <tr><th>维度</th><th>评分</th><th>说明</th></tr>
+            <tr><td>业务可理解性</td><td>4/5</td><td>网络安全是易懂的成长行业，Check Point商业模式清晰</td></tr>
+            <tr><td>护城河宽度</td><td>4/5</td><td>高切换成本+品牌+平台化，宽护城河</td></tr>
+            <tr><td>资本配置</td><td>4/5</td><td>零股息+持续回购+适度并购，资本配置优秀</td></tr>
+            <tr><td>财务安全</td><td>5/5</td><td>净现金$7.95亿，FCF利润率48%，零财务风险</td></tr>
+            <tr><td>成长前景</td><td>3/5</td><td>6-7%收入增长，低于Palo Alto的15%+，但订阅增长12%健康</td></tr>
+            <tr><td>估值吸引力</td><td>4/5</td><td>PE 13.4x，5年最低，远低于均值21.5x，PEG 0.66</td></tr>
+        </table>
+
+        <h3>7.2 估值分析</h3>
+        <table>
+            <tr><th>估值指标</th><th>当前值</th><th>5年均值</th><th>偏离度</th><th>解读</th></tr>
+            <tr><td>PE（TTM）</td><td>13.4x</td><td>21.5x</td><td>-38%</td><td>显著低估</td></tr>
+            <tr><td>PEG</td><td>0.66</td><td>~2.0</td><td>-67%</td><td>增长调整后极度便宜</td></tr>
+            <tr><td>P/S</td><td>5.2x</td><td>7.5x</td><td>-31%</td><td>低于历史均值</td></tr>
+            <tr><td>P/FCF</td><td>10.6x</td><td>16.5x</td><td>-36%</td><td>FCF收益率9.4%</td></tr>
+            <tr><td>EV/EBITDA</td><td>21.7x</td><td>25x</td><td>-13%</td><td>合理偏低</td></tr>
+        </table>
+
+        <div class="highlight">
+            <strong>估值结论：</strong>当前PE 13.4x是Check Point 5年来最低估值水平，比5年均值低38%。考虑到37%的ROE、48%的FCF利润率、零净债务，以及6-7%的稳健增长，当前估值具有显著的<strong>安全边际</strong>。PEG 0.66（<1即低估）进一步确认估值吸引力。
+        </div>
+
+        <h3>7.3 与同行估值对比</h3>
+        <table>
+            <tr><th>公司</th><th>PE</th><th>P/S</th><th>收入增长</th><th>净利率</th><th>FCF利润率</th></tr>
+            <tr><td>Check Point (CHKP)</td><td>13.4x</td><td>5.2x</td><td>+6.3%</td><td>39%</td><td>48%</td></tr>
+            <tr><td>Palo Alto (PANW)</td><td>~50x</td><td>~12x</td><td>+15%</td><td>20%</td><td>35%</td></tr>
+            <tr><td>Fortinet (FTNT)</td><td>~35x</td><td>~9x</td><td>+12%</td><td>25%</td><td>30%</td></tr>
+            <tr><td>CrowdStrike (CRWD)</td><td>~70x</td><td>~18x</td><td>+30%</td><td>15%</td><td>25%</td></tr>
+        </table>
+        <p>Check Point在网络安全同行中估值最低，但净利率（39%）和FCF利润率（48%）却是最高的。这说明市场对其增长前景过于悲观，定价中隐含了"增长永久放缓"的预期。</p>
+
+        <h3>7.4 主要风险</h3>
+        <div class="risk-item">
+            <strong>1. 增长放缓风险：</strong>6-7%收入增长远低于Palo Alto（15%）和CrowdStrike（30%），市场可能持续给予低估值。如果增长进一步放缓至3-4%，估值可能继续承压。
+        </div>
+        <div class="risk-item">
+            <strong>2. 产品收入下滑：</strong>2026年Q1产品收入同比下降3%，反映传统防火墙硬件更新周期疲软。如果企业推迟防火墙更新，短期收入承压。
+        </div>
+        <div class="risk-item">
+            <strong>3. CEO更替风险：</strong>创始人Gil Shwed于2024年12月卸任CEO，新CEO Nadav Zafrir的执行能力待验证。管理层过渡期可能影响战略执行。
+        </div>
+        <div class="risk-item">
+            <strong>4. 云原生替代威胁：</strong>Zscaler（SSE）、Cloudflare（WAF）等云原生安全厂商正在替代传统防火墙部分功能。长期看，网络边界防火墙可能被"零信任+云安全"架构侵蚀。
+        </div>
+        <div class="risk-item">
+            <strong>5. 地缘政治风险：</strong>总部在以色列，中东地缘冲突可能影响运营和投资者情绪。
+        </div>
+
+        <h3>7.5 关键催化剂</h3>
+        <div class="moat-item">
+            <strong>1. 防火墙更新周期启动：</strong>2026-2027年企业防火墙更新周期如果启动，产品收入有望恢复双位数增长
+        </div>
+        <div class="moat-item">
+            <strong>2. 新兴技术加速：</strong>SASE/暴露管理/AI安全ARR增长40%+，如果占比提升至20%+，可拉动整体增长至10%+
+        </div>
+        <div class="moat-item">
+            <strong>3. 估值修复：</strong>PE从13.4x修复至5年均值21.5x，意味着60%+上涨空间
+        </div>
+        <div class="moat-item">
+            <strong>4. 持续回购：</strong>每年$10亿+回购持续减少流通股，每股收益增长快于净利润增长
+        </div>
+
+        <h3>7.6 投资评级</h3>
+        <div class="highlight">
+            <strong>综合评级：买入（Buy）</strong><br><br>
+            <strong>理由：</strong>Check Point是一家被市场低估的优质网络安全公司。它拥有85%+毛利率、48% FCF利润率、37% ROE、零净债务——这些是巴菲特梦寐以求的财务指标。当前PE 13.4x是5年来最低，PEG 0.66显示显著低估。高切换成本构成宽护城河，100,000+客户基础和Infinity平台化战略提供长期可见性。<br><br>
+            <strong>理想买入区间：</strong>$120-$140（当前$136处于理想区间内）<br>
+            <strong>12个月目标价：</strong>$180-$200（PE修复至18-20x）<br>
+            <strong>安全边际：</strong>当前价格提供约30-40%安全边际
+        </div>
+
+        <h3>7.7 巴菲特/芒格视角总结</h3>
+        <div class="highlight">
+            <strong>巴菲特会怎么看？</strong><br>
+            ✅ 业务可理解：网络安全是必需品，企业必须花钱保护自己<br>
+            ✅ 持久护城河：高切换成本让客户"来了就走不掉"<br>
+            ✅ 优秀财务：85%毛利率、48% FCF利润率、零净债务<br>
+            ✅ 合理价格：PE 13.4x，PEG 0.66，5年最低估值<br>
+            ✅ 优秀资本配置：零股息+持续回购+适度并购<br>
+            ⚠️ 增长不快：6-7%增长不是"高成长股"，但配合低估值和回购，EPS增长可达10%+<br><br>
+            <strong>芒格会怎么说？</strong>"一家好公司，一个好价格。不需要每个投资都是10倍股——6-7%增长+估值修复+回购，15%年化回报完全可能。这就是'以合理价格买入好公司'的教科书案例。"
+        </div>
+    </div>
+
+    <p style="text-align:center;color:#999;margin-top:30px;">
+        <a href="index.html">&#8592; 返回首页</a> |
+        <a href="scorer.html">股票打分</a> |
+        <a href="changelog.html">更新日志</a>
+    </p>
+
     <script src="scores_client.js"></script>
     <script src="sync.js"></script>
     <script>
