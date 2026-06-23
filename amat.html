@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Applied Materials (AMAT) 详细分析</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; background-color: #f5f5f5; padding-top: 104px !important; }
+        h1 { text-align: center; color: #333; }
+        h2 { color: #4CAF50; margin-top: 30px; border-bottom: 2px solid #4CAF50; padding-bottom: 5px; }
+        h3 { color: #2e86c1; margin-top: 20px; }
+        .info-box { background-color: white; padding: 20px; margin: 20px 0; box-shadow: 0 0 10px rgba(0,0,0,0.1); border-radius: 5px; }
+        table { width: 100%; border-collapse: collapse; margin: 10px 0; }
+        th, td { padding: 8px; text-align: left; border-bottom: 1px solid #ddd; }
+        th { background-color: #4CAF50; color: white; }
+        a { color: #4CAF50; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        .fixed-topbar { position: fixed; top: 44px; left: 0; right: 0; z-index: 9998; background: linear-gradient(135deg, #1a5276, #2e86c1); color: white; display: flex; align-items: center; justify-content: space-between; padding: 8px 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.15); height: 48px; }
+        .fixed-topbar a { color: white; text-decoration: none; font-size: 14px; font-weight: 600; }
+        .topbar-left { display: flex; align-items: center; gap: 12px; }
+        .topbar-right { display: flex; align-items: center; gap: 8px; }
+        .topbar-score-label { font-size: 12px; opacity: 0.85; }
+        .topbar-score-val { font-weight: 700; font-size: 15px; min-width: 18px; text-align: center; }
+        .topbar-score-val.s1 { color: #ff6b6b; } .topbar-score-val.s2 { color: #ffa94d; } .topbar-score-val.s3 { color: #ffd43b; } .topbar-score-val.s4 { color: #69db7c; } .topbar-score-val.s5 { color: #51cf66; }
+        .topbar-select { padding: 3px 8px; border: 1px solid rgba(255,255,255,0.4); border-radius: 6px; font-size: 12px; font-weight: 600; color: white; background: rgba(255,255,255,0.15); cursor: pointer; outline: none; }
+        .topbar-select option { color: #333; background: white; }
+        .topbar-btn { padding: 4px 12px; border: none; border-radius: 6px; font-size: 12px; font-weight: 600; cursor: pointer; }
+        .topbar-btn-edit { background: rgba(255,255,255,0.2); color: white; }
+        .topbar-btn-edit:hover { background: rgba(255,255,255,0.35); }
+        .topbar-btn-save { background: #27ae60; color: white; }
+        .topbar-btn-cancel { background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.7); }
+        .topbar-stars { font-size: 11px; }
+        .topbar-stars .on { color: #f39c12; }
+        .topbar-stars .off { color: rgba(255,255,255,0.3); }
+        .top-nav-bar { position: fixed; top: 0; left: 0; right: 0; height: 44px; background: #2c3e50; display: flex; align-items: center; justify-content: flex-end; padding: 0 20px; z-index: 9999; box-shadow: 0 2px 8px rgba(0,0,0,0.15); gap: 8px; }
+        .top-nav-link { color: white; padding: 6px 16px; border-radius: 16px; text-decoration: none; font-size: 13px; transition: background 0.2s; white-space: nowrap; }
+        .tag { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 12px; font-weight: 600; }
+        .tag-green { background-color: #d4edda; color: #155724; }
+        .tag-orange { background-color: #fff3cd; color: #856404; }
+        .tag-red { background-color: #f8d7da; color: #721c24; }
+        .highlight { background-color: #fffde7; padding: 10px; border-left: 4px solid #fbc02d; margin: 10px 0; }
+        .moat-item { background: #e8f5e9; padding: 12px; margin: 8px 0; border-left: 4px solid #4CAF50; border-radius: 4px; }
+        .risk-item { background: #ffebee; padding: 12px; margin: 8px 0; border-left: 4px solid #c62828; border-radius: 4px; }
+        .star { color: #f39c12; }
+        .chart-placeholder { background: #f0f0f0; padding: 15px; text-align: center; border-radius: 5px; margin: 10px 0; font-family: monospace; }
+    </style>
+</head>
+<body>
+    <div class="top-nav-bar">
+        <a href="scorer.html" class="top-nav-link" style="background:#1a5276;" onmouseover="this.style.background='#2e86c1'" onmouseout="this.style.background='#1a5276'">📊 股票打分</a>
+        <a href="financial_analysis.html" class="top-nav-link" style="background:#2e7d32;" onmouseover="this.style.background='#43a047'" onmouseout="this.style.background='#2e7d32'">📖 财务分析</a>
+        <a href="changelog.html" class="top-nav-link" style="background:#856404;" onmouseover="this.style.background='#a0762a'" onmouseout="this.style.background='#856404'">📋 更新日志</a>
+    </div>
+    <div class="fixed-topbar" id="fixedTopbar">
+        <div class="topbar-left">
+            <a href="index.html">&#8592; 首页</a>
+            <span style="font-size:14px;font-weight:700;" id="topbarCode">AMAT</span>
+        </div>
+        <div class="topbar-right" id="topbarScores">
+            <span class="topbar-score-label">基本面</span>
+            <span class="topbar-score-val" id="topbarFVal">-</span>
+            <span class="topbar-stars" id="topbarFStars"></span>
+            <select class="topbar-select" id="topbarFSel" style="display:none;"><option value="0">-</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option></select>
+            <span class="topbar-score-label" style="margin-left:12px;">价格</span>
+            <span class="topbar-score-val" id="topbarPVal">-</span>
+            <span class="topbar-stars" id="topbarPStars"></span>
+            <select class="topbar-select" id="topbarPSel" style="display:none;"><option value="0">-</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option></select>
+            <button class="topbar-btn topbar-btn-edit" id="topbarEditBtn" onclick="topbarEdit()">修改</button>
+            <button class="topbar-btn topbar-btn-save" id="topbarSaveBtn" onclick="topbarSave()" style="display:none;">保存</button>
+            <button class="topbar-btn topbar-btn-cancel" id="topbarCancelBtn" onclick="topbarCancel()" style="display:none;">取消</button>
+        </div>
+    </div>
+
+    <h1>Applied Materials (NASDAQ: AMAT)</h1>
+    <p style="text-align:center;color:#666;">巴菲特/芒格式价值投资基本面分析 | 更新日期：2026年6月23日</p>
+
+    <!-- ==================== 一、公司基本信息 ==================== -->
+    <div class="info-box">
+        <h2>一、公司基本信息</h2>
+        <table>
+            <tr><td>公司全称</td><td>Applied Materials, Inc.</td></tr>
+            <tr><td>股票代码</td><td>NASDAQ: AMAT</td></tr>
+            <tr><td>最新收盘价</td><td>$617.11（2026年6月21日）</td></tr>
+            <tr><td>市值</td><td>约4,900亿美元</td></tr>
+            <tr><td>企业价值（EV）</td><td>约4,970亿美元（净债务约$70亿，低杠杆）</td></tr>
+            <tr><td>52周区间</td><td>$154.47 - $638.90</td></tr>
+            <tr><td>股息</td><td>$2.12/年（季息$0.53），股息率约0.34%</td></tr>
+            <tr><td>PE（TTM）</td><td>约58倍（基于TTM EPS $10.63）</td></tr>
+            <tr><td>PE（FY2025）</td><td>约65.5倍（基于FY2025 EPS $9.42 GAAP）</td></tr>
+            <tr><td>EPS（FY2025 Non-GAAP）</td><td>$9.42</td></tr>
+            <tr><td>成立时间</td><td>1967年</td></tr>
+            <tr><td>总部</td><td>美国加州Santa Clara</td></tr>
+            <tr><td>员工人数</td><td>约36,500人</td></tr>
+            <tr><td>信用评级</td><td>穆迪A2 / 标普A-（投资级）</td></tr>
+        </table>
+        <div class="highlight">
+            <strong>一句话业务：</strong>Applied Materials是全球最大的半导体制造设备公司，市占率约33%。它卖的不是芯片，而是造芯片的"工具箱"——沉积（在硅片上铺材料层）、刻蚀（在材料上雕刻电路图案）、抛光（把表面磨平）、检测（检查缺陷）、离子注入（改变材料电性）……芯片制造几百道工序，AMAT覆盖了其中最核心的步骤。台积电、三星、英特尔的工厂里，到处都是AMAT的设备。
+        </div>
+    </div>
+
+    <!-- ==================== 二、业务分析 ==================== -->
+    <div class="info-box">
+        <h2>二、业务分析</h2>
+
+        <h3>2.1 业务模式——用大白话说</h3>
+        <p>想象你在盖一栋超精密的大楼。你需要各种工具：抹泥刀（铺材料）、雕刻刀（刻图案）、砂纸（磨平表面）、放大镜（检查缺陷）。Applied Materials就是卖这些"工具"的公司。芯片制造需要几百道工序，每一步都需要专门的设备——在硅片上沉积一层材料、把多余的部分刻掉、把表面抛光、检查有没有缺陷。AMAT的产品覆盖了其中最核心的步骤。</p>
+        <p>赚钱方式有两块：<strong>卖设备</strong>（一次性大单，占67%）和<strong>服务费</strong>（持续的维护+备件+软件，占33%）。服务费像"年费"一样，只要工厂在运转就会持续流入。17,000+台设备签订了服务合同，提供了非常稳定的经常性收入。</p>
+
+        <h3>2.2 两大业务板块（FY2025重分类后）</h3>
+        <p><em>注：FY2025（截至2025年10月26日），AMAT将Display从报告分部中移除，并入Corporate and Other。现仅报告两大分部。</em></p>
+        <table>
+            <tr><th>业务板块</th><th>FY2025营收</th><th>占比</th><th>同比增长</th><th>核心产品</th></tr>
+            <tr><td>Semiconductor Systems（半导体系统）</td><td>~$190亿</td><td>~67%</td><td>+5%</td><td>沉积、刻蚀、CMP、离子注入、检测、先进封装</td></tr>
+            <tr><td>Applied Global Services（全球服务）</td><td>~$63亿</td><td>~22%</td><td>+8%</td><td>维护、备件、升级、工厂自动化软件</td></tr>
+            <tr><td>Corporate & Other（含Display）</td><td>~$31亿</td><td>~11%</td><td>-3%</td><td>显示面板设备、其他</td></tr>
+        </table>
+
+        <h3>2.3 半导体系统板块细分（按工艺步骤）</h3>
+        <p>AMAT是半导体设备行业覆盖工艺步骤最广的公司，横跨多个关键工序：</p>
+        <table>
+            <tr><th>工艺步骤</th><th>市场规模（2025）</th><th>AMAT市占率</th><th>排名</th><th>竞争格局</th></tr>
+            <tr><td>薄膜沉积（PVD/CVD/ALD）</td><td>~$300亿</td><td>~35%</td><td>第1</td><td>AMAT > LRCX(25%) > TEL(20%)</td></tr>
+            <tr><td>CMP（化学机械抛光）</td><td>~$65亿</td><td>~80%</td><td>第1（垄断）</td><td>AMAT绝对垄断</td></tr>
+            <tr><td>离子注入</td><td>~$55亿</td><td>~55%</td><td>第1</td><td>AMAT > Axcelis(25%)</td></tr>
+            <tr><td>刻蚀</td><td>~$270亿</td><td>~16%</td><td>第3</td><td>LRCX(45%) > TEL(25%) > AMAT</td></tr>
+            <tr><td>量检测</td><td>~$120亿</td><td>~6%</td><td>第2</td><td>KLA(80%) >> AMAT</td></tr>
+            <tr><td>清洗</td><td>~$80亿</td><td>~8%</td><td>第3</td><td>TEL(45%) > Screen(30%) > AMAT</td></tr>
+        </table>
+
+        <h3>2.4 收入按地区分布（FY2025）</h3>
+        <table>
+            <tr><th>地区</th><th>占比</th><th>说明</th></tr>
+            <tr><td>中国大陆</td><td>~30%</td><td>最大单一市场，但受出口管制影响持续下降</td></tr>
+            <tr><td>韩国</td><td>~22%</td><td>三星、SK海力士扩产</td></tr>
+            <tr><td>中国台湾</td><td>~18%</td><td>台积电先进制程投资</td></tr>
+            <tr><td>美国</td><td>~12%</td><td>英特尔、美光扩产，CHIPS法案推动</td></tr>
+            <tr><td>日本/东南亚/欧洲</td><td>~18%</td><td>成熟制程和存储投资</td></tr>
+        </table>
+    </div>
+
+    <!-- ==================== 三、产品竞争力分析 ==================== -->
+    <div class="info-box">
+        <h2>三、产品竞争力分析</h2>
+
+        <h3>3.1 半导体系统板块 产品竞争力</h3>
+
+        <p><strong>1. 可替代性：<span class="tag tag-orange">中等</span></strong></p>
+        <ul>
+            <li><strong>直接替代品：</strong>Lam Research（刻蚀/沉积）、东京电子TEL（沉积/刻蚀/清洗）、ASM International（ALD/EPI）</li>
+            <li><strong>替代品体验差距：</strong>在AMAT强势领域（PVD沉积、CMP、离子注入），替代品差距巨大；但在刻蚀领域，LRCX明显更强</li>
+            <li><strong>替代趋势：</strong>稳定。AMAT在强势领域地位稳固，但在刻蚀等弱势领域难以追赶LRCX</li>
+        </ul>
+
+        <p><strong>2. 客户转换成本：<span class="tag tag-green">高</span></strong></p>
+        <ul>
+            <li><strong>财务转换成本：</strong>一座先进晶圆厂部署数百台AMAT设备，总价值数十亿美元。更换供应商意味着重新验证整个工艺流程</li>
+            <li><strong>时间转换成本：</strong>新设备从导入到量产验证通常需要12-18个月，期间产线无法正常运转</li>
+            <li><strong>捆绑转换成本：</strong>AMAT提供从沉积→刻蚀→CMP→检测的全流程设备，客户一旦选择AMAT平台，多工序联动使得单点替换极为困难</li>
+        </ul>
+
+        <p><strong>3. 定价权：<span class="tag tag-green">强</span></strong></p>
+        <ul>
+            <li><strong>历史提价记录：</strong>毛利率从FY2020的45.3%提升至FY2025的48.7%，在设备行业属优秀水平</li>
+            <li><strong>巴菲特测试：</strong>如果AMAT涨价10%，客户会离开吗？在CMP（80%市占率）和PVD（60%+市占率）领域不会，因为根本没有替代品；但在刻蚀领域可能会，因为LRCX是更强的选择</li>
+            <li><strong>定价权来源：</strong>技术领先（CMP/PVD/离子注入的准垄断地位）+ 全流程覆盖的捆绑效应</li>
+            <li><strong>定价权趋势：</strong>稳定。先进制程对设备精度要求更高，AMAT在GAA晶体管相关设备市占率50%+</li>
+        </ul>
+
+        <p><strong>整体竞争力评级：<span class="star">&#9733;&#9733;&#9733;&#9733;</span> 4/5</strong></p>
+        <p>AMAT在CMP、PVD、离子注入三大领域拥有准垄断地位，但刻蚀和量检测领域明显弱于竞争对手，因此无法获得5/5满分。与KLAC的"单项冠军"不同，AMAT是"综合型选手"——覆盖广但不处处最强。</p>
+
+        <h3>3.2 全球服务板块 产品竞争力</h3>
+
+        <p><strong>1. 可替代性：<span class="tag tag-green">低</span></strong></p>
+        <ul>
+            <li><strong>直接替代品：</strong>第三方维修商、客户自建维护团队</li>
+            <li><strong>替代品体验差距：</strong>巨大。AMAT对自己的设备最了解，拥有独家诊断软件和AI预测性维护能力</li>
+            <li><strong>替代趋势：</strong>有利于AMAT。随着设备越来越复杂，客户越来越依赖原厂服务</li>
+        </ul>
+
+        <p><strong>2. 客户转换成本：<span class="tag tag-green">极高</span></strong></p>
+        <ul>
+            <li><strong>数据转换成本：</strong>AMAT的AI驱动预测性维护系统积累了数十年的设备运行数据，第三方无法复制</li>
+            <li><strong>风险成本：</strong>非原厂维护导致设备停机风险更高，在先进制程产线上，1小时停机损失可达数百万美元</li>
+        </ul>
+
+        <p><strong>3. 定价权：<span class="tag tag-green">强</span></strong></p>
+        <ul>
+            <li><strong>服务毛利率：</strong>AGS板块毛利率约50%+，高于设备销售</li>
+            <li><strong>经常性收入：</strong>17,000+台设备签订长期服务合同，续约率极高</li>
+        </ul>
+
+        <p><strong>整体竞争力评级：<span class="star">&#9733;&#9733;&#9733;&#9733;&#9733;</span> 5/5</strong></p>
+    </div>
+
+    <!-- ==================== 四、历史财务指标 ==================== -->
+    <div class="info-box">
+        <h2>四、历史财务指标</h2>
+
+        <h3>4.1 核心财务数据（FY2016-FY2025）</h3>
+        <table>
+            <tr><th>财年</th><th>营收($B)</th><th>净利率</th><th>ROE</th><th>ROA</th><th>ROIC</th><th>负债/资产</th><th>权益乘数</th><th>PE(年末)</th></tr>
+            <tr><td>FY2016</td><td>10.5</td><td>16.8%</td><td>26.3%</td><td>12.1%</td><td>18.5%</td><td>40.2%</td><td>2.18</td><td>20x</td></tr>
+            <tr><td>FY2017</td><td>14.5</td><td>17.5%</td><td>30.8%</td><td>13.5%</td><td>22.1%</td><td>38.5%</td><td>2.28</td><td>18x</td></tr>
+            <tr><td>FY2018</td><td>14.6</td><td>18.2%</td><td>33.5%</td><td>14.2%</td><td>24.3%</td><td>37.8%</td><td>2.36</td><td>12x</td></tr>
+            <tr><td>FY2019</td><td>14.6</td><td>20.5%</td><td>31.2%</td><td>13.8%</td><td>22.8%</td><td>39.1%</td><td>2.26</td><td>22x</td></tr>
+            <tr><td>FY2020</td><td>17.2</td><td>22.3%</td><td>38.5%</td><td>16.2%</td><td>27.5%</td><td>36.5%</td><td>2.38</td><td>30x</td></tr>
+            <tr><td>FY2021</td><td>23.1</td><td>25.8%</td><td>51.6%</td><td>21.3%</td><td>38.2%</td><td>33.2%</td><td>2.42</td><td>28x</td></tr>
+            <tr><td>FY2022</td><td>25.7</td><td>26.4%</td><td>53.4%</td><td>22.1%</td><td>39.8%</td><td>31.5%</td><td>2.41</td><td>14x</td></tr>
+            <tr><td>FY2023</td><td>26.5</td><td>25.2%</td><td>48.0%</td><td>20.5%</td><td>35.6%</td><td>30.8%</td><td>2.34</td><td>22x</td></tr>
+            <tr><td>FY2024</td><td>27.2</td><td>26.4%</td><td>40.6%</td><td>18.2%</td><td>30.2%</td><td>29.5%</td><td>2.23</td><td>24x</td></tr>
+            <tr><td>FY2025</td><td>28.4</td><td>24.7%</td><td>35.5%</td><td>19.8%</td><td>26.9%</td><td>28.3%</td><td>2.05</td><td>65x</td></tr>
+        </table>
+
+        <h3>4.2 关键趋势解读</h3>
+        <div class="moat-item">
+            <strong>ROE趋势：</strong>FY2021-2022达到53%+的峰值后持续下降至FY2025的35.5%。下降主因是大量回购推高净资产基数（分母变大），而非盈利能力恶化。真实经营ROIC（26.9%）仍属优秀。
+        </div>
+        <div class="moat-item">
+            <strong>净利率：</strong>稳定在24-26%区间，在设备行业中属顶级水平。CMP/PVD/离子注入的准垄断地位确保了定价权。
+        </div>
+        <div class="risk-item">
+            <strong>PE估值：</strong>FY2025年末PE高达65倍，远超5年高点26.4倍和10年均值18倍。这是2026年上半年股价暴涨（+130% YTD）的结果，估值严重偏高。
+        </div>
+        <div class="moat-item">
+            <strong>负债率：</strong>持续下降从40%降至28%，财务安全边际不断提高。净债务仅约$70亿，相对$80亿+年经营现金流极低。
+        </div>
+    </div>
+
+    <!-- ==================== 五、竞争分析 ==================== -->
+    <div class="info-box">
+        <h2>五、竞争分析</h2>
+
+        <h3>5.1 主要竞争对手对比</h3>
+        <table>
+            <tr><th>公司</th><th>市值($B)</th><th>核心业务</th><th>强项</th><th>弱项</th><th>与AMAT关系</th></tr>
+            <tr><td><a href="lrcx.html">Lam Research (LRCX)</a></td><td>~460</td><td>刻蚀+沉积</td><td>刻蚀绝对龙头(45%市占率)</td><td>不覆盖CMP/离子注入/检测</td><td>刻蚀领域直接竞争</td></tr>
+            <tr><td><a href="klac.html">KLA (KLAC)</a></td><td>~310</td><td>检测+量测</td><td>量检测绝对垄断(80%市占率)</td><td>不覆盖沉积/刻蚀/CMP</td><td>检测领域竞争但AMAT远弱</td></tr>
+            <tr><td>东京电子 (TEL)</td><td>~900</td><td>沉积+刻蚀+清洗</td><td>清洗龙头(45%)</td><td>日本公司治理/增长慢</td><td>沉积/刻蚀领域竞争</td></tr>
+            <tr><td>ASML</td><td>~3,500</td><td>光刻机</td><td>EUV垄断(98%)</td><td>仅光刻一个环节</td><td>互补关系，非竞争</td></tr>
+        </table>
+
+        <h3>5.2 经济护城河评估</h3>
+
+        <div class="moat-item">
+            <strong>1. 技术领先（宽）</strong><br>
+            CMP市占率80%——这不是竞争优势，这是垄断。PVD沉积市占率60%+，离子注入55%。在三大核心工艺上，AMAT几乎没有像样的竞争对手。GAA晶体管相关设备市占率50%+，确保了下一代制程的领先地位。
+        </div>
+
+        <div class="moat-item">
+            <strong>2. 转换成本（宽）</strong><br>
+            半导体设备一旦进入产线验证，更换供应商意味着重新验证整个工艺流程（12-18个月），期间良率风险极高。AMAT的全流程覆盖（沉积→刻蚀→CMP→检测）进一步增加了单点替换的难度——换掉一台设备可能影响上下游工序。
+        </div>
+
+        <div class="moat-item">
+            <strong>3. 规模优势（中等）</strong><br>
+            全球最大半导体设备公司（市占率33%），研发投入$35亿/年（12%+营收占比），小公司无法匹敌。但与LRCX/TEL在刻蚀领域相比并无规模优势。
+        </div>
+
+        <div class="moat-item">
+            <strong>4. 客户关系（宽）</strong><br>
+            与台积电、三星、英特尔联合开发下一代制程。EPIC Center客户协同开发中心让AMAT深度嵌入客户技术路线图。一旦AMAT设备通过验证进入量产线，客户几乎不可能替换。
+        </div>
+
+        <div class="risk-item">
+            <strong>5. 弱项：刻蚀和量检测</strong><br>
+            在刻蚀领域（16%市占率），LRCX(45%)和TEL(25%)远强于AMAT。在量检测领域（6%市占率），KLA(80%)是绝对垄断者。AMAT在这两个领域是"追赶者"而非"领导者"，这是其护城河的薄弱环节。
+        </div>
+
+        <h3>5.3 护城河评级</h3>
+        <p><strong>整体护城河评级：宽（Wide）</strong></p>
+        <p>AMAT拥有半导体设备行业最宽的"产品线护城河"——覆盖工艺步骤最广，在CMP/PVD/离子注入三大领域准垄断。但与KLAC的"单项深度护城河"不同，AMAT的护城河是"广度型"的——覆盖广但不处处最深。刻蚀和量检测是明显的薄弱环节。</p>
+    </div>
+
+    <!-- ==================== 六、利润分配分析 ==================== -->
+    <div class="info-box">
+        <h2>六、利润分配分析</h2>
+
+        <h3>6.1 过去十年利润分配（FY2016-FY2025）</h3>
+        <table>
+            <tr><th>财年</th><th>净利润($B)</th><th>分红($B)</th><th>回购($B)</th><th>资本开支($B)</th><th>FCF($B)</th><th>留存金额($B)</th><th>留存率</th><th>股东回报率</th></tr>
+            <tr><td>FY2016</td><td>1.76</td><td>0.42</td><td>1.20</td><td>0.44</td><td>2.10</td><td>1.34</td><td>76%</td><td>77%</td></tr>
+            <tr><td>FY2017</td><td>2.54</td><td>0.47</td><td>2.30</td><td>0.49</td><td>3.20</td><td>2.07</td><td>82%</td><td>87%</td></tr>
+            <tr><td>FY2018</td><td>2.66</td><td>0.52</td><td>3.10</td><td>0.52</td><td>3.50</td><td>2.14</td><td>80%</td><td>103%</td></tr>
+            <tr><td>FY2019</td><td>2.99</td><td>0.56</td><td>2.80</td><td>0.55</td><td>3.80</td><td>2.43</td><td>81%</td><td>89%</td></tr>
+            <tr><td>FY2020</td><td>3.84</td><td>0.65</td><td>2.50</td><td>0.58</td><td>4.50</td><td>3.19</td><td>83%</td><td>70%</td></tr>
+            <tr><td>FY2021</td><td>5.96</td><td>0.76</td><td>4.20</td><td>0.62</td><td>7.20</td><td>5.20</td><td>87%</td><td>69%</td></tr>
+            <tr><td>FY2022</td><td>6.79</td><td>0.86</td><td>5.50</td><td>0.68</td><td>7.80</td><td>5.93</td><td>87%</td><td>83%</td></tr>
+            <tr><td>FY2023</td><td>6.68</td><td>0.96</td><td>4.80</td><td>0.72</td><td>6.90</td><td>5.72</td><td>86%</td><td>83%</td></tr>
+            <tr><td>FY2024</td><td>7.18</td><td>1.22</td><td>4.50</td><td>0.78</td><td>7.40</td><td>5.96</td><td>83%</td><td>77%</td></tr>
+            <tr><td>FY2025</td><td>7.00</td><td>1.46</td><td>5.60</td><td>0.82</td><td>6.80</td><td>5.54</td><td>79%</td><td>104%</td></tr>
+        </table>
+
+        <h3>6.2 资本配置评价</h3>
+        <div class="moat-item">
+            <strong>股东回报：</strong>过去10年累计向股东返还约$48亿分红+$37亿回购=约$85亿，占FCF的近90%。连续8年分红增长，CAGR约15%。2025年3月宣布15%分红提升+新增$100亿回购授权（原有$76亿余额），彰显管理层信心。
+        </div>
+        <div class="moat-item">
+            <strong>回购质量：</strong>流通股从FY2016的11.5亿股降至FY2025的7.94亿股，10年减少31%。但需注意：近期回购多在高估值区间进行（PE 50x+），巴菲特会认为这是"在贵的时候买自己的股票"，不如在PE 15x时回购划算。
+        </div>
+        <div class="risk-item">
+            <strong>回购时机问题：</strong>FY2025年股价从$155涨至$617（+300%），AMAT仍在大量回购。在高估值时回购虽然减少了股数，但不如低估值时回购对剩余股东有利。这是资本配置的一个瑕疵。
+        </div>
+        <div class="moat-item">
+            <strong>可持续增长率：</strong>ROE 35.5% × 留存率 79% = 28%。理论上AMAT可以不靠外部融资实现28%的增长，但实际营收增速仅4-5%，说明大量留存利润被用于回购而非业务扩张——这本身不是坏事，但需要关注增长是否足够。
+        </div>
+    </div>
+
+    <!-- ==================== 七、投资总结 ==================== -->
+    <div class="info-box">
+        <h2>七、投资总结</h2>
+
+        <h3>7.1 各维度评分</h3>
+        <table>
+            <tr><th>维度</th><th>评分</th><th>说明</th></tr>
+            <tr><td>业务可理解性</td><td><span class="star">&#9733;&#9733;&#9733;&#9733;</span> 4/5</td><td>半导体设备有一定技术门槛，但"卖造芯片的工具"这个概念容易理解</td></tr>
+            <tr><td>护城河强度</td><td><span class="star">&#9733;&#9733;&#9733;&#9733;</span> 4/5</td><td>CMP/PVD/离子注入准垄断，但刻蚀和量检测明显弱于竞争对手</td></tr>
+            <tr><td>资本配置</td><td><span class="star">&#9733;&#9733;&#9733;</span> 3/5</td><td>90% FCF回报股东优秀，但高估值时大量回购是瑕疵</td></tr>
+            <tr><td>财务安全</td><td><span class="star">&#9733;&#9733;&#9733;&#9733;</span> 4/5</td><td>负债率28%持续下降，净债务$70亿极低，现金流充沛</td></tr>
+            <tr><td>增长前景</td><td><span class="star">&#9733;&#9733;&#9733;&#9733;</span> 4/5</td><td>AI驱动先进制程+先进封装+CHIPS法案三重利好，但周期性不可忽视</td></tr>
+            <tr><td>估值吸引力</td><td><span class="star">&#9733;</span> 1/5</td><td>PE 58x远超5年高点26x和10年均值18x，严重高估</td></tr>
+        </table>
+
+        <h3>7.2 关键风险</h3>
+        <div class="risk-item">
+            <strong>1. 中国出口管制风险：</strong>中国占AMAT营收约30%。美国持续收紧对华半导体设备出口管制，FY2025已因此损失约2.5%营收，FY2026预计继续下降。如果管制进一步升级，影响可能更大。
+        </div>
+        <div class="risk-item">
+            <strong>2. 半导体周期性：</strong>半导体设备行业3-5年一个周期。当前处于上行周期顶部区域，历史上每次周期顶部后都伴随20-40%的营收下降。AMAT在FY2019和FY2023都经历过营收下滑。
+        </div>
+        <div class="risk-item">
+            <strong>3. 客户集中度：</strong>前5大客户占营收50%+。台积电一家的资本开支波动就能显著影响AMAT业绩。
+        </div>
+        <div class="risk-item">
+            <strong>4. 估值泡沫风险：</strong>PE 58x意味着市场预期AMAT将长期维持25%+增速。在周期性行业中，这种预期极度乐观。一旦增速不及预期，股价可能大幅回调。
+        </div>
+
+        <h3>7.3 关键催化剂</h3>
+        <div class="moat-item">
+            <strong>1. GAA晶体管量产：</strong>AMAT在GAA相关设备市占率50%+，2nm量产将带来显著增量。三星已量产GAA，台积电2025年跟进。
+        </div>
+        <div class="moat-item">
+            <strong>2. 先进封装爆发：</strong>AMAT的EPIC计划目标将先进封装业务从$21亿翻倍至$30亿+。混合键合（Hybrid Bonding）是AMAT的独家优势（持有Besi 9%股权）。
+        </div>
+        <div class="moat-item">
+            <strong>3. CHIPS法案推动美国制造：</strong>AMAT获得$1亿先进封装研发资助，美国本土扩产将带来新订单。
+        </div>
+
+        <h3>7.4 估值分析</h3>
+        <table>
+            <tr><th>估值指标</th><th>当前</th><th>5年均值</th><th>5年高点</th><th>5年低点</th></tr>
+            <tr><td>PE（TTM）</td><td>58x</td><td>~22x</td><td>26.4x</td><td>12.1x</td></tr>
+            <tr><td>PS（TTM）</td><td>17x</td><td>~6x</td><td>7.5x</td><td>3.2x</td></tr>
+            <tr><td>EV/EBITDA</td><td>~38x</td><td>~15x</td><td>18x</td><td>9x</td></tr>
+            <tr><td>P/FCF</td><td>~90x</td><td>~30x</td><td>35x</td><td>18x</td></tr>
+        </table>
+
+        <h3>7.5 投资评级</h3>
+        <div class="risk-item">
+            <strong>评级：观望（Wait）</strong>
+            <p>Applied Materials是一家<strong>非常优秀</strong>的公司——拥有半导体设备行业最广的产品线护城河、CMP/PVD/离子注入的准垄断地位、33%的市占率、以及AI+先进封装+CHIPS法案的三重增长动力。</p>
+            <p>但"好公司"不等于"好价格"。</p>
+            <p>当前PE 58x意味着市场预期AMAT将长期维持25%+的增速，这在周期性行业中是不现实的。历史上AMAT的PE从未超过26x（5年高点），当前估值是历史均值的2.6倍。</p>
+        </div>
+        <div class="highlight">
+            <strong>理想买入区间：</strong>PE 16-22倍，对应价格约$150-$210，基于FY2025 EPS $9.42<br>
+            <strong>当前价格：</strong>$617<br>
+            <strong>溢价：</strong>约195-310%，严重高估<br><br>
+            <strong>对比KLAC：</strong>AMAT的护城河不如KLAC深（KLAC在量检测领域80%市占率，AMAT在刻蚀仅16%），但AMAT的覆盖更广。两家公司当前估值都严重偏高，但AMAT的PE（58x）甚至高于KLAC（35x），泡沫程度更大。
+        </div>
+    </div>
+
+    <!-- ==================== Topbar Scoring Script ==================== -->
+    <script>
+    // Topbar scoring logic - unified with stock_scores_v1
+    (function(){
+        var SCORE_KEY='stock_scores_v1';
+        var code=document.getElementById('topbarCode').textContent.trim();
+        function getScores(){try{var d=localStorage.getItem(SCORE_KEY);return d?JSON.parse(d):{};}catch(e){return {};}}
+        function saveScores(s){localStorage.setItem(SCORE_KEY,JSON.stringify(s));}
+        function starsHTML(val){var h='';for(var i=1;i<=5;i++){h+='<span class="'+(i<=val?'on':'off')+'">\u2605</span>';}return h;}
+        function valClass(v){return v>=5?'s5':v>=4?'s4':v>=3?'s3':v>=2?'s2':'s1';}
+        function renderDisplay(){
+            var sc=getScores()[code]||{};
+            var f=sc.fundamental||0,p=sc.price||0;
+            document.getElementById('topbarFVal').textContent=f>0?f:'-';
+            document.getElementById('topbarFVal').className='topbar-score-val'+(f>0?' '+valClass(f):'');
+            document.getElementById('topbarFStars').innerHTML=starsHTML(f);
+            document.getElementById('topbarPVal').textContent=p>0?p:'-';
+            document.getElementById('topbarPVal').className='topbar-score-val'+(p>0?' '+valClass(p):'');
+            document.getElementById('topbarPStars').innerHTML=starsHTML(p);
+        }
+        window.topbarEdit=function(){
+            var sc=getScores()[code]||{};
+            document.getElementById('topbarFSel').value=sc.fundamental||0;
+            document.getElementById('topbarPSel').value=sc.price||0;
+            document.getElementById('topbarFSel').style.display='';
+            document.getElementById('topbarPSel').style.display='';
+            document.getElementById('topbarEditBtn').style.display='none';
+            document.getElementById('topbarSaveBtn').style.display='';
+            document.getElementById('topbarCancelBtn').style.display='';
+            document.getElementById('topbarFVal').style.display='none';
+            document.getElementById('topbarPVal').style.display='none';
+            document.getElementById('topbarFStars').style.display='none';
+            document.getElementById('topbarPStars').style.display='none';
+        };
+        window.topbarSave=function(){
+            var f=parseInt(document.getElementById('topbarFSel').value);
+            var p=parseInt(document.getElementById('topbarPSel').value);
+            var sc=getScores();if(!sc[code])sc[code]={};
+            sc[code].fundamental=f;sc[code].price=p;sc[code].updated=new Date().toISOString();
+            saveScores(sc);topbarCancel();renderDisplay();
+        };
+        window.topbarCancel=function(){
+            document.getElementById('topbarFSel').style.display='none';
+            document.getElementById('topbarPSel').style.display='none';
+            document.getElementById('topbarEditBtn').style.display='';
+            document.getElementById('topbarSaveBtn').style.display='none';
+            document.getElementById('topbarCancelBtn').style.display='none';
+            document.getElementById('topbarFVal').style.display='';
+            document.getElementById('topbarPVal').style.display='';
+            document.getElementById('topbarFStars').style.display='';
+            document.getElementById('topbarPStars').style.display='';
+        };
+        renderDisplay();
+    })();
+    </script>
+</body>
+</html>
