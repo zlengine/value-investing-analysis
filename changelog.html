@@ -155,6 +155,26 @@
 
     <!-- 更新日志条目 - 按时间倒序排列，最新在最上面 -->
 
+    <div class="log-entry create">
+        <div class="log-header">
+            <span class="log-date">2026-06-23</span>
+            <span class="log-type create">新建</span>
+        </div>
+        <div class="log-desc">
+            <ul>
+                <li><strong>抽取共享导航栏组件 nav_bar.js，全站统一管理</strong></li>
+                <li>新建 nav_bar.js：动态渲染顶部导航栏（首页/财务分析/更新日志/股票打分/价值计算）</li>
+                <li>内置价值计算器弹窗（DCF贴现模型）：初始利润、增长率、贴现率、贴现年度四参数计算内在价值</li>
+                <li>改造 index.html、scorer.html 及 93 个公司页面：移除内联导航栏HTML，改用 &lt;script src="nav_bar.js"&gt;&lt;/script&gt;</li>
+                <li>以后修改导航栏只需改 nav_bar.js 一个文件，全站自动生效</li>
+            </ul>
+        </div>
+        <div class="log-files">
+            <span class="added">+ nav_bar.js</span><br>
+            <span class="modified">~ index.html, scorer.html, 93个公司页面</span>
+        </div>
+    </div>
+
     <div class="log-entry update">
         <div class="log-header">
             <span class="log-date">2026-06-23</span>

@@ -198,11 +198,8 @@
 <body>
     <div class="top-nav-bar">
         <span id="companyCount" class="top-nav-link" style="background:#1a5276;cursor:pointer;margin-right:auto;" onclick="window.scrollTo({top:0,behavior:'smooth'})">📊 <span id="countValue">0</span>家覆盖</span>
-        <a href="financial_analysis.html" class="top-nav-link" style="background:#2e7d32;" onmouseover="this.style.background='#43a047'" onmouseout="this.style.background='#2e7d32'">📖 财务分析</a>
-        <a href="changelog.html" class="top-nav-link" style="background:#856404;" onmouseover="this.style.background='#a0762a'" onmouseout="this.style.background='#856404'">📋 更新日志</a>
-        <a href="scorer.html" class="top-nav-link" style="background:#1a5276;" onmouseover="this.style.background='#2e86c1'" onmouseout="this.style.background='#1a5276'">📊 股票打分</a>
-        <a href="javascript:void(0)" class="top-nav-link" style="background:#6a1b9a;cursor:pointer;" onmouseover="this.style.background='#8e24aa'" onmouseout="this.style.background='#6a1b9a'" onclick="openValueCalculator()">🧮 价值计算</a>
     </div>
+    <script src="nav_bar.js"></script>
     <div style="padding: 20px;">
     <h1>美股公司分析索引</h1>
 
@@ -1163,64 +1160,5 @@
     })();
     </script>
     </div>
-
-    <!-- 价值计算器弹窗 -->
-    <div id="valueCalcModal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);z-index:10000;align-items:center;justify-content:center;">
-        <div style="background:#fff;border-radius:12px;padding:24px;width:360px;max-width:90vw;box-shadow:0 8px 32px rgba(0,0,0,0.3);position:relative;">
-            <span onclick="closeValueCalculator()" style="position:absolute;top:12px;right:16px;cursor:pointer;font-size:22px;color:#999;line-height:1;">&times;</span>
-            <h3 style="margin:0 0 16px;color:#2c3e50;">🧮 内在价值计算器</h3>
-            <div style="margin-bottom:12px;">
-                <label style="display:block;font-size:13px;color:#555;margin-bottom:4px;">初始利润（万元）</label>
-                <input type="number" id="calcProfit" value="100" style="width:100%;padding:8px;border:1px solid #ccc;border-radius:4px;font-size:14px;box-sizing:border-box;">
-            </div>
-            <div style="margin-bottom:12px;">
-                <label style="display:block;font-size:13px;color:#555;margin-bottom:4px;">增长率（%）</label>
-                <input type="number" id="calcGrowth" value="5" step="0.1" style="width:100%;padding:8px;border:1px solid #ccc;border-radius:4px;font-size:14px;box-sizing:border-box;">
-            </div>
-            <div style="margin-bottom:12px;">
-                <label style="display:block;font-size:13px;color:#555;margin-bottom:4px;">贴现率（%）</label>
-                <input type="number" id="calcDiscount" value="5" step="0.1" style="width:100%;padding:8px;border:1px solid #ccc;border-radius:4px;font-size:14px;box-sizing:border-box;">
-            </div>
-            <div style="margin-bottom:16px;">
-                <label style="display:block;font-size:13px;color:#555;margin-bottom:4px;">贴现年度（年）</label>
-                <input type="number" id="calcYears" value="10" min="1" max="100" style="width:100%;padding:8px;border:1px solid #ccc;border-radius:4px;font-size:14px;box-sizing:border-box;">
-            </div>
-            <button onclick="calculateValue()" style="width:100%;padding:10px;background:#6a1b9a;color:#fff;border:none;border-radius:6px;font-size:15px;cursor:pointer;font-weight:bold;">计算内在价值</button>
-            <div id="calcResult" style="margin-top:16px;padding:14px;background:#f8f9fa;border-radius:6px;text-align:center;display:none;">
-                <div style="font-size:13px;color:#666;">内在价值（现值）</div>
-                <div id="calcResultValue" style="font-size:26px;font-weight:bold;color:#6a1b9a;margin-top:4px;">-</div>
-                <div id="calcResultDetail" style="font-size:12px;color:#999;margin-top:6px;"></div>
-            </div>
-            <div style="margin-top:12px;font-size:11px;color:#999;line-height:1.5;">
-                公式：PV = Σ (利润 × (1+g)^t) / (1+r)^t，t=1到N
-            </div>
-        </div>
-    </div>
-
-    <script>
-    function openValueCalculator(){
-        document.getElementById('valueCalcModal').style.display='flex';
-    }
-    function closeValueCalculator(){
-        document.getElementById('valueCalcModal').style.display='none';
-    }
-    document.getElementById('valueCalcModal').addEventListener('click',function(e){
-        if(e.target===this) closeValueCalculator();
-    });
-    function calculateValue(){
-        var profit=parseFloat(document.getElementById('calcProfit').value)||0;
-        var growth=(parseFloat(document.getElementById('calcGrowth').value)||0)/100;
-        var discount=(parseFloat(document.getElementById('calcDiscount').value)||0)/100;
-        var years=parseInt(document.getElementById('calcYears').value)||0;
-        if(years<1||years>100){alert('贴现年度需在1-100之间');return;}
-        var pv=0;
-        for(var t=1;t<=years;t++){
-            pv+=profit*Math.pow(1+growth,t)/Math.pow(1+discount,t);
-        }
-        document.getElementById('calcResult').style.display='block';
-        document.getElementById('calcResultValue').textContent=pv.toFixed(2)+' 万元';
-        document.getElementById('calcResultDetail').textContent='利润'+profit+'万 × 增长'+(growth*100)+'% / 贴现'+(discount*100)+'% × '+years+'年';
-    }
-    </script>
 </body>
 </html>
