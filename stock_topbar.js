@@ -29,7 +29,7 @@
             '.topbar-center { flex: 1; display: flex; align-items: center; justify-content: center; margin: 0 16px; min-width: 0; gap: 8px; }',
             '.topbar-right { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }',
             '/* 放大字体和按钮 */',
-            '.topbar-score-label { font-size: 14px; opacity: 0.9; }',
+            '.topbar-score-label { font-size: 16px; opacity: 0.9; font-weight: 600; }',
             '.topbar-score-val { font-weight: 700; font-size: 20px; min-width: 24px; text-align: center; }',
             '.topbar-score-val.s1 { color: #ff6b6b; } .topbar-score-val.s2 { color: #ffa94d; } .topbar-score-val.s3 { color: #ffd43b; } .topbar-score-val.s4 { color: #69db7c; } .topbar-score-val.s5 { color: #51cf66; }',
             '.topbar-select { padding: 5px 12px; border: 1px solid rgba(255,255,255,0.4); border-radius: 6px; font-size: 15px; font-weight: 600; color: white; background: rgba(255,255,255,0.15); cursor: pointer; outline: none; }',
@@ -46,7 +46,7 @@
             '.topbar-note-btn { padding: 7px 14px; border: none; border-radius: 6px; font-size: 14px; font-weight: 600; cursor: pointer; background: rgba(255,255,255,0.2); color: white; white-space: nowrap; }',
             '.topbar-note-btn:hover { background: rgba(255,255,255,0.35); }',
             '/* 笔记显示区（超出省略） */',
-            '.topbar-note-display { font-size: 13px; color: rgba(255,255,255,0.9); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 300px; cursor: pointer; }',
+            '.topbar-note-display { font-size: 13px; color: rgba(255,255,255,0.9); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 200px; cursor: pointer; }',
             '.topbar-note-display:hover { color: white; text-decoration: underline; }',
             '/* 笔记编辑弹窗 */',
             '.topbar-note-modal { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); z-index:10001; align-items:center; justify-content:center; }',
@@ -66,8 +66,6 @@
         return '<div class="topbar-left">'
             + '<a href="index.html">&#8592; 首页</a>'
             + '<span style="font-size:16px;font-weight:700;" id="topbarCode">' + code + '</span>'
-            + '</div>'
-            + '<div class="topbar-center">'
             + '<button class="topbar-note-btn" id="topbarNoteBtn" onclick="StockTopbar.openNote()">📝 笔记</button>'
             + '<span class="topbar-note-display" id="topbarNoteDisplay" onclick="StockTopbar.openNote()" style="display:none;"></span>'
             + '</div>'
@@ -184,18 +182,27 @@
             document.getElementById('topbarPStars').style.display = '';
         },
         openNote: function() {
-            if (typeof ScoresDB === 'undefined') return;
-            var note = ScoresDB.getNote(currentCode);
-            document.getElementById('topbarNoteText').value = note || '';
-            document.getElementById('topbarNoteModal').classList.add('show');
+            var note = '';
+            if (typeof ScoresDB !== 'undefined') {
+                note = ScoresDB.getNote(currentCode);
+            }
+            var modal = document.getElementById('topbarNoteModal');
+            var textArea = document.getElementById('topbarNoteText');
+            if (!modal || !textArea) return;
+            textArea.value = note || '';
+            modal.classList.add('show');
         },
         closeNote: function() {
-            document.getElementById('topbarNoteModal').classList.remove('show');
+            var modal = document.getElementById('topbarNoteModal');
+            if (modal) modal.classList.remove('show');
         },
         saveNote: function() {
-            if (typeof ScoresDB === 'undefined') return;
-            var text = document.getElementById('topbarNoteText').value;
-            ScoresDB.saveNote(currentCode, text);
+            var textArea = document.getElementById('topbarNoteText');
+            if (!textArea) return;
+            var text = textArea.value;
+            if (typeof ScoresDB !== 'undefined') {
+                ScoresDB.saveNote(currentCode, text);
+            }
             this.closeNote();
             renderNote();
         }
