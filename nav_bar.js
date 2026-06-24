@@ -31,8 +31,35 @@
         document.head.appendChild(style);
     }
 
-    // 股票总数（每次新增公司时更新此数字）
+    // 股票总数 - 优先从共享数据源 stocks_data.js 动态获取，此值仅作为兜底
+    // 新增公司时只需更新 stocks_data.js，无需修改此数字
     var STOCK_COUNT = 89;
+
+    // 动态加载共享股票数据源，确保所有页面股票数量一致
+    function loadStocksData() {
+        // 如果页面已加载 stocks_data.js，直接使用
+        if (window.STOCKS_DATA && window.STOCKS_DATA.length) {
+            STOCK_COUNT = window.STOCKS_DATA.length;
+            updateCountDisplay();
+            return;
+        }
+        // 否则异步加载 stocks_data.js
+        var script = document.createElement('script');
+        script.src = 'stocks_data.js';
+        script.onload = function() {
+            if (window.STOCKS_DATA && window.STOCKS_DATA.length) {
+                STOCK_COUNT = window.STOCKS_DATA.length;
+                updateCountDisplay();
+            }
+        };
+        document.head.appendChild(script);
+    }
+
+    // 更新导航栏中显示的股票数量
+    function updateCountDisplay() {
+        var el = document.getElementById('countValue');
+        if (el) el.textContent = STOCK_COUNT;
+    }
 
     // 导航栏HTML（统一模板，所有页面共用）
     // 布局：左侧[首页][股票数量] —— 右侧[财务分析][更新日志][股票打分][价值计算]
@@ -115,6 +142,9 @@
             });
             modal._navBound = true;
         }
+
+        // 动态加载股票数据源，确保数量与index/scorer页面一致
+        loadStocksData();
     }
 
     // DOM Ready 时渲染

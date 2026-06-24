@@ -162,6 +162,28 @@
         </div>
         <div class="log-desc">
             <ul>
+                <li><strong>修复个股页面导航栏股票数量不更新问题</strong></li>
+                <li>根因：nav_bar.js 中 STOCK_COUNT 为硬编码值(89)，新增公司后未手动更新，导致个股页面显示数量与index页面不一致</li>
+                <li>修复方案：创建共享数据源 stocks_data.js（单一数据源 Single Source of Truth）</li>
+                <li>nav_bar.js 改为动态加载 stocks_data.js 并计算数量，硬编码值仅作兜底</li>
+                <li>scorer.html 改为引用 stocks_data.js，删除92行内联stocks数组</li>
+                <li>附带修复：去除 TJX 重复条目（scorer.html中原有2个TJX条目）</li>
+                <li>今后新增公司只需更新 stocks_data.js + index.html表格，所有页面数量自动同步</li>
+            </ul>
+        </div>
+        <div class="log-files">
+            <span class="added">+ stocks_data.js</span><br>
+            <span class="modified">~ nav_bar.js, scorer.html</span>
+        </div>
+    </div>
+
+    <div class="log-entry fix">
+        <div class="log-header">
+            <span class="log-date">2026-06-24</span>
+            <span class="log-type fix">修复</span>
+        </div>
+        <div class="log-desc">
+            <ul>
                 <li><strong>修复打分导航栏修改按钮无反应问题</strong></li>
                 <li>根因：amat.html等5个页面缺少 scores_client.js 引入，导致 ScoresDB 未定义，stock_topbar.js 的 edit() 函数直接 return</li>
                 <li>修复：为 amat.html、agx.html、asml.html、klac.html、tjx.html 添加 scores_client.js 引入</li>
