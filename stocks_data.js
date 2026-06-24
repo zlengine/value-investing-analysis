@@ -90,6 +90,7 @@
         {code:'ATMU',name:'Atmus Filtration Techno..',href:'atmu.html'},
         {code:'LII',name:'Lennox International - ..',href:'lii.html'},
         {code:'IDCC',name:'InterDigital - 无线通信/视频压..',href:'idcc.html'},
+        {code:'RELX',name:'RELX plc - 信息分析/决策工具',href:'relx.html'},
         {code:'EME',name:'EMCOR Group - 机电建筑与服务',href:'eme.html'},
         {code:'RACE',name:'Ferrari - 超豪华跑车/奢侈品',href:'race.html'},
         {code:'CTAS',name:'Cintas - 企业制服租赁/设施服务/急救安全',href:'ctas.html'},
