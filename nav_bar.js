@@ -43,14 +43,18 @@
             updateCountDisplay();
             return;
         }
-        // 否则异步加载 stocks_data.js
+        // 否则异步加载 stocks_data.js（添加时间戳防止缓存）
         var script = document.createElement('script');
-        script.src = 'stocks_data.js';
+        script.src = 'stocks_data.js?v=' + Date.now();
         script.onload = function() {
             if (window.STOCKS_DATA && window.STOCKS_DATA.length) {
                 STOCK_COUNT = window.STOCKS_DATA.length;
                 updateCountDisplay();
             }
+        };
+        script.onerror = function() {
+            // 加载失败时使用兜底值，已在渲染时显示
+            console.warn('stocks_data.js 加载失败，使用兜底值: ' + STOCK_COUNT);
         };
         document.head.appendChild(script);
     }

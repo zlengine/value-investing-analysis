@@ -162,6 +162,28 @@
         </div>
         <div class="log-desc">
             <ul>
+                <li><strong>修复个股页面股票数量不更新问题（缓存+数据不一致）</strong></li>
+                <li>根因1：浏览器缓存旧版nav_bar.js（无loadStocksData函数），导致动态加载逻辑未执行</li>
+                <li>根因2：index.html有重复TJX条目（2个），导致index显示90而stocks_data.js显示89，数量不一致</li>
+                <li>修复1：给所有97个HTML页面的nav_bar.js添加版本号查询参数?v=20260624，强制浏览器加载最新版本</li>
+                <li>修复2：给nav_bar.js中动态加载的stocks_data.js添加时间戳查询参数，防止缓存</li>
+                <li>修复3：删除index.html中重复的TJX条目，使index.html与stocks_data.js数量一致（均为89）</li>
+                <li>修复4：给scorer.html中的stocks_data.js添加版本号查询参数</li>
+                <li>添加onerror回调，stocks_data.js加载失败时输出警告日志</li>
+            </ul>
+        </div>
+        <div class="log-files">
+            <span class="modified">~ nav_bar.js, scorer.html, index.html + 94个HTML文件（添加nav_bar.js?v=20260624）</span>
+        </div>
+    </div>
+
+    <div class="log-entry fix">
+        <div class="log-header">
+            <span class="log-date">2026-06-24</span>
+            <span class="log-type fix">修复</span>
+        </div>
+        <div class="log-desc">
+            <ul>
                 <li><strong>修复个股页面导航栏股票数量不更新问题</strong></li>
                 <li>根因：nav_bar.js 中 STOCK_COUNT 为硬编码值(89)，新增公司后未手动更新，导致个股页面显示数量与index页面不一致</li>
                 <li>修复方案：创建共享数据源 stocks_data.js（单一数据源 Single Source of Truth）</li>
@@ -274,7 +296,7 @@
                 <li><strong>抽取共享导航栏组件 nav_bar.js，全站统一管理</strong></li>
                 <li>新建 nav_bar.js：动态渲染顶部导航栏（首页/财务分析/更新日志/股票打分/价值计算）</li>
                 <li>内置价值计算器弹窗（DCF贴现模型）：初始利润、增长率、贴现率、贴现年度四参数计算内在价值</li>
-                <li>改造 index.html、scorer.html 及 93 个公司页面：移除内联导航栏HTML，改用 &lt;script src="nav_bar.js"&gt;&lt;/script&gt;</li>
+                <li>改造 index.html、scorer.html 及 93 个公司页面：移除内联导航栏HTML，改用 &lt;script src="nav_bar.js?v=20260624"&gt;&lt;/script&gt;</li>
                 <li>以后修改导航栏只需改 nav_bar.js 一个文件，全站自动生效</li>
             </ul>
         </div>
