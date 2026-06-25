@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lamar Advertising (LAMR) 价值投资分析</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body { font-family: 'Segoe UI', Arial, sans-serif; margin: 0; padding: 20px; padding-top: 70px; background-color: #f0f2f5; color: #333; }
+        h1 { text-align: center; color: #1a5276; font-size: 2.2em; margin-bottom: 5px; }
+        h2 { color: #1a5276; border-bottom: 2px solid #2e86c1; padding-bottom: 8px; margin-top: 30px; }
+        h3 { color: #2c3e50; margin-top: 20px; }
+        .subtitle { text-align: center; color: #7f8c8d; font-size: 1.1em; margin-bottom: 30px; }
+        .info-box { background: white; border-radius: 10px; padding: 25px; margin: 20px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.08); }
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; background-color: white; }
+        th, td { padding: 10px 14px; text-align: left; border-bottom: 1px solid #e0e0e0; }
+        th { background-color: #1a5276; color: white; font-weight: bold; }
+        tr:nth-child(even) { background-color: #f8f9fa; }
+        tr:hover { background-color: #eaf2f8; }
+        .highlight { background: #fef9e7; border-left: 4px solid #2e86c1; padding: 15px 20px; margin: 15px 0; border-radius: 0 8px 8px 0; }
+        .chart-container { background: white; border-radius: 10px; padding: 25px; margin: 20px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.08); }
+        canvas { max-height: 400px; }
+        .tag { display: inline-block; background: #1a5276; color: white; padding: 3px 10px; border-radius: 12px; font-size: 0.85em; margin: 2px; }
+        .tag-green { background: #27ae60; }
+        .tag-orange { background: #e67e22; }
+        .tag-red { background: #c0392b; }
+        a { color: #1a5276; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        .moat-item { background: white; border-radius: 8px; padding: 15px 20px; margin: 10px 0; box-shadow: 0 1px 5px rgba(0,0,0,0.05); border-left: 4px solid #2e86c1; }
+        .moat-item strong { color: #1a5276; }
+        .risk-item { background: white; border-radius: 8px; padding: 15px 20px; margin: 10px 0; box-shadow: 0 1px 5px rgba(0,0,0,0.05); border-left: 4px solid #c0392b; }
+        .star { color: #f39c12; }
+        .top-nav-bar { position: fixed; top: 0; left: 0; right: 0; height: 44px; background: #2c3e50; display: flex; align-items: center; justify-content: flex-end; padding: 0 20px; z-index: 9999; box-shadow: 0 2px 8px rgba(0,0,0,0.15); gap: 8px; }
+        .top-nav-link { color: white; padding: 6px 16px; border-radius: 16px; text-decoration: none; font-size: 13px; transition: background 0.2s; white-space: nowrap; }
+        .segment-box { background: white; border-radius: 10px; padding: 20px; margin: 15px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.08); border-top: 4px solid #2e86c1; }
+        .competitiveness-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px; margin: 15px 0; }
+        .comp-card { background: #f8f9fa; border-radius: 8px; padding: 15px; text-align: center; }
+        .comp-card h4 { margin: 0 0 8px; color: #1a5276; font-size: 0.95em; }
+        .comp-level { font-size: 1.3em; font-weight: 700; margin: 8px 0; }
+        .section-nav {
+            background: white;
+            border-radius: 10px;
+            padding: 15px 25px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+        .section-nav a {
+            display: inline-block;
+            margin: 5px 10px;
+            padding: 6px 14px;
+            background: #eaf2f8;
+            color: #1a5276;
+            text-decoration: none;
+            border-radius: 15px;
+            font-size: 0.9em;
+        }
+        .section-nav a:hover {
+            background: #2e86c1;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="top-nav-bar"></div>
+    <script src="nav_bar.js?v=20260624"></script>
+    <span id="topbarCode" style="display:none;">LAMR</span>
+    <h1>Lamar Advertising (NASDAQ: LAMR)</h1>
+    <p class="subtitle">巴菲特/芒格式价值投资基本面分析 | 更新日期：2026年6月</p>
+
+    <div class="section-nav">
+        <a href="#chapter1">公司基本信息</a>
+        <a href="#chapter2">业务分析</a>
+        <a href="#chapter3">业务板块产品竞争力分析</a>
+        <a href="#chapter4">历史财务指标</a>
+        <a href="#chapter5">竞争分析</a>
+        <a href="#chapter6">利润分配分析</a>
+        <a href="#chapter7">投资总结</a>
+    </div>
+
+    <!-- 第一章：公司基本信息 -->
+    <div class="info-box">
+        <h2 id="chapter1">一、公司基本信息</h2>
+        <table>
+            <tr><td style="width:30%;font-weight:bold;">公司全称</td><td>Lamar Advertising Company</td></tr>
+            <tr><td style="font-weight:bold;">股票代码</td><td>NASDAQ: LAMR</td></tr>
+            <tr><td style="font-weight:bold;">市值</td><td>约152亿美元（USD 15.2B）</td></tr>
+            <tr><td style="font-weight:bold;">企业价值（EV）</td><td>约201亿美元（含债务50亿、现金接近0）</td></tr>
+            <tr><td style="font-weight:bold;">最新收盘价</td><td>约 $149.65（2026年6月22日）</td></tr>
+            <tr><td style="font-weight:bold;">52周区间</td><td>$113 - $159</td></tr>
+            <tr><td style="font-weight:bold;">成立时间</td><td>1902年（已运营超过120年）</td></tr>
+            <tr><td style="font-weight:bold;">总部</td><td>美国路易斯安那州 Baton Rouge</td></tr>
+            <tr><td style="font-weight:bold;">员工数</td><td>约3,500人</td></tr>
+            <tr><td style="font-weight:bold;">行业</td><td>房地产投资信托（REIT）/ 户外广告</td></tr>
+            <tr><td style="font-weight:bold;">流通股数</td><td>约8,706万股</td></tr>
+            <tr><td style="font-weight:bold;">股息率</td><td>约4.9%（2026年6月）</td></tr>
+        </table>
+        <div class="highlight">
+            <strong>一句话理解Lamar：</strong>Lamar是美国最大的户外广告公司之一，在你开车经过的高速公路、坐的公交车、机场候机厅，那些大大小小的广告牌很多都是它的。它的核心资产就是<strong>"广告牌下面的那块地"</strong>——把广告位租给麦当劳、可口可乐、本地汽车经销商等客户，按月收租金。作为REIT，它必须把90%以上的利润分给股东，所以是典型的"现金奶牛"型公司。
+        </div>
+    </div>
+
+    <!-- 第二章：业务分析 -->
+    <div class="info-box">
+        <h2 id="chapter2">二、业务分析</h2>
+
+        <h3>2.1 公司业务概述</h3>
+        <p>Lamar的核心生意非常简单：<strong>拥有并运营户外广告牌</strong>。它在北美拥有超过<strong>35.2万个</strong>广告展示位（displays），覆盖美国45个州和加拿大全境。客户包括麦当劳、可口可乐、苹果等全国性品牌，以及大量本地小商家（汽车经销商、律师事务所、餐厅等）。公司采取"包租公"模式：自己建/租广告牌，再把广告位按周或按月租给广告主。</p>
+
+        <p>过去十年，Lamar最重要的战略转型是<strong>从静态广告牌转向数字广告牌</strong>。数字广告牌的优势在于：1）无需人工更换广告画面，运营成本更低；2）一块数字牌可轮播6-8个广告，单位收入更高；3）可程序化销售，提升填充率。目前Lamar约5,000+块数字广告牌，贡献了营收的近30%。</p>
+
+        <h3>2.2 业务板块拆分（FY2025）</h3>
+        <table>
+            <tr><th>业务板块</th><th>FY2025营收（亿美元）</th><th>占总营收比例</th><th>增长趋势</th></tr>
+            <tr>
+                <td><strong>Billboard（大型广告牌）</strong></td>
+                <td>约20.2亿</td>
+                <td>约89%</td>
+                <td>稳定增长，数字转换驱动提价3-5%每年</td>
+            </tr>
+            <tr>
+                <td><strong>Transit/Other（公交/其他）</strong></td>
+                <td>约1.6亿</td>
+                <td>约7%</td>
+                <td>季节性强，受公共交通客流影响</td>
+            </tr>
+            <tr>
+                <td><strong>Logo Signs（高速出口标识）</strong></td>
+                <td>约0.9亿</td>
+                <td>约4%</td>
+                <td>稳定，类似政府许可的"垄断"资产</td>
+            </tr>
+        </table>
+
+        <h3>2.3 各板块详细说明</h3>
+        <table>
+            <tr><th>板块</th><th>说明</th></tr>
+            <tr><td>Billboard</td><td>包括bulletin（大型14x48英尺）、poster（中型）和digital（数字）。这是核心业务，毛利率约40%+</td></tr>
+            <tr><td>Transit/Other</td><td>公交车车身广告、公交候车亭、机场广告牌、 benches（座椅广告）等</td></tr>
+            <tr><td>Logo Signs</td><td>美国高速公路出口附近的"特定加油站/餐厅/酒店"指引标识。Lamar在这个细分市场占据<strong>近乎垄断</strong>地位，与各州交通局签订长期合同</td></tr>
+        </table>
+
+        <h3>2.4 地理分布</h3>
+        <table>
+            <tr><th>地区</th><th>营收占比</th><th>说明</th></tr>
+            <tr><td>美国</td><td>约96%</td><td>核心市场，覆盖45个州</td></tr>
+            <tr><td>加拿大</td><td>约4%</td><td>规模较小，2024年已出售部分加拿大业务给OUTFRONT</td></tr>
+        </table>
+
+        <h3>2.5 商业模式</h3>
+        <div class="highlight">
+            <strong>如何赚钱：</strong>Lamar的收入模式类似"包租公"：<br>
+            1. <strong>广告位出租</strong>：客户按周/月租用广告位，价格根据位置、流量、广告牌类型而定。一块高速公路旁的bulletin年租金约2-5万美元，数字牌可达5-10万美元<br>
+            2. <strong>客户结构</strong>：约75-80%收入来自<strong>本地小商家</strong>（local advertisers），这是Lamar最大的护城河——经济衰退时小商家砍广告预算比大品牌慢<br>
+            3. <strong>REIT结构</strong>：作为REIT，Lamar必须将至少90%的应税收入作为股息分配给股东，因此Lamar常年保持高派息率<br>
+            4. <strong>关键运营指标</strong>：FY2025营业利润率约34.2%，运营现金流/营收约39%，自由现金流/营收约31%
+        </div>
+    </div>
+
+    <!-- 第三章：业务板块产品竞争力分析 -->
+    <div class="info-box">
+        <h2 id="chapter3">三、业务板块产品竞争力分析</h2>
+
+        <!-- Billboard板块 -->
+        <div class="segment-box">
+            <h3>3.1 Billboard（大型广告牌）产品竞争力分析</h3>
+
+            <div class="competitiveness-grid">
+                <div class="comp-card">
+                    <h4>可替代性</h4>
+                    <div class="comp-level"><span class="tag tag-green">低</span></div>
+                    <p style="font-size:0.85em;color:#555;">替代品有限且有体验差距</p>
+                </div>
+                <div class="comp-card">
+                    <h4>客户转换成本</h4>
+                    <div class="comp-level"><span class="tag tag-orange">中</span></div>
+                    <p style="font-size:0.85em;color:#555;">转换有一定摩擦但可管理</p>
+                </div>
+                <div class="comp-card">
+                    <h4>定价权</h4>
+                    <div class="comp-level"><span class="tag tag-green">强</span></div>
+                    <p style="font-size:0.85em;color:#555;">可定期提价高于通胀</p>
+                </div>
+            </div>
+
+            <p><strong>1. 可替代性：低</strong></p>
+            <ul>
+                <li>主要替代品：数字媒体（Google/Meta等线上广告）、电视广告、报纸、电台广告</li>
+                <li>替代体验差距：户外广告的核心优势是"无法跳过"——开车经过时无法屏蔽，而线上广告可被Adblock拦截、电视广告可被快进。这种"强制曝光"特性是其他媒介无法复制的</li>
+                <li>替代趋势：稳定，甚至偏积极。随着线上广告疲劳加剧和隐私法规（如GDPR、CCPA）限制精准投放，户外广告的"无Cookie"属性反而成为优势</li>
+                <li>关键风险：自动驾驶汽车普及后，乘客可能看车内屏幕而非窗外，这是长期威胁（10-20年维度）</li>
+            </ul>
+
+            <p><strong>2. 客户转换成本：中</strong></p>
+            <ul>
+                <li>财务转换成本：从Lamar换到OUTFRONT或Clear Channel，需重新签订合同，但合同通常按周/月，违约成本较低（几千到几万美元）</li>
+                <li>时间转换成本：1-4周可完成切换，不像企业软件需要数月迁移</li>
+                <li>位置锁定：Lamar在某些黄金位置（如州际公路交叉点）的牌位是独家的，客户想换也找不到等效位置——这是最重要的"软转换成本"</li>
+                <li>捆绑转换成本：客户通常在多个市场同时投放，更换需要重新协调多个城市的牌位，有一定协调成本</li>
+            </ul>
+
+            <p><strong>3. 定价权：强</strong></p>
+            <ul>
+                <li>历史提价记录：过去10年同店收入（same-board revenue）年均增长3-5%，高于美国CPI（约2.5%）</li>
+                <li>价格vs通胀：数字广告牌提价能力尤其强，因为单块牌可承载6-8个广告，单位成本下降的同时单价可上涨</li>
+                <li>定价权来源：1）黄金位置稀缺性（土地+许可不可复制）；2）数字牌的灵活定价（高峰期溢价、剩余库存程序化销售）；3）本地小商家对价格不敏感（他们更看重"被看到"而非"便宜"）</li>
+                <li>定价权趋势：加强，随着数字转换推进和程序化销售（Vistar Media合作）渗透率提升</li>
+                <li>巴菲特测试：如果Lamar提价10%，多数本地小商家不会立即离开——因为找到等效黄金位置的牌位很难，且户外广告占小商家营销预算的比例不高（5-15%），10%涨价只多花几百美元</li>
+            </ul>
+
+            <p><strong>整体竞争力评级：<span class="star">&#9733;&#9733;&#9733;&#9733;</span>&#9734;（4/5星）</strong></p>
+        </div>
+
+        <!-- Logo Signs板块 -->
+        <div class="segment-box">
+            <h3>3.2 Logo Signs（高速出口标识）产品竞争力分析</h3>
+
+            <div class="competitiveness-grid">
+                <div class="comp-card">
+                    <h4>可替代性</h4>
+                    <div class="comp-level"><span class="tag tag-green">极低</span></div>
+                    <p style="font-size:0.85em;color:#555;">政府许可的近乎垄断</p>
+                </div>
+                <div class="comp-card">
+                    <h4>客户转换成本</h4>
+                    <div class="comp-level"><span class="tag tag-green">极高</span></div>
+                    <p style="font-size:0.85em;color:#555;">没有可替代方案</p>
+                </div>
+                <div class="comp-card">
+                    <h4>定价权</h4>
+                    <div class="comp-level"><span class="tag tag-green">极强</span></div>
+                    <p style="font-size:0.85em;color:#555;">客户几乎没有议价能力</p>
+                </div>
+            </div>
+
+            <p><strong>1. 可替代性：极低</strong></p>
+            <ul>
+                <li>主要替代品：几乎没有。Logo Signs是美国各州交通局授权的"特定业务指引标识"（Specific Service Signs），位于高速公路出口前，标注"加油站/餐厅/酒店"品牌logo</li>
+                <li>替代体验差距：替代方案是普通的billboard，但logo signs位置更靠近出口、视觉上更像"官方指引"，转化率远高于普通广告牌</li>
+                <li>替代趋势：稳定。各州政府倾向于保持单一供应商模式以简化管理</li>
+            </ul>
+
+            <p><strong>2. 客户转换成本：极高</strong></p>
+            <ul>
+                <li>Lamar与多个州签订长期合同（通常10-30年），独家运营logo signs项目</li>
+                <li>客户（麦当劳、Shell、Holiday Inn等）如果想从logo signs撤下，唯一替代方案是买普通广告牌位，但效果和位置都更差</li>
+                <li>转换成本几乎为"失去业务"——竞争对手无法在高速公路出口附近安装等效标识</li>
+            </ul>
+
+            <p><strong>3. 定价权：极强</strong></p>
+            <ul>
+                <li>历史提价记录：每年提价3-5%，几乎无客户流失</li>
+                <li>定价权来源：政府许可垄断+客户的高ROI（logo signs直接驱动高速出口客流，对加油站/餐厅是不可缺少的获客渠道）</li>
+                <li>巴菲特测试：如果Lamar提价10%，麦当劳或Shell不会撤下logo signs——因为损失高速出口客流远比10%涨价更严重</li>
+            </ul>
+
+            <p><strong>整体竞争力评级：<span class="star">&#9733;&#9733;&#9733;&#9733;&#9733;</span>（5/5星）</strong></p>
+        </div>
+
+        <!-- Transit板块 -->
+        <div class="segment-box">
+            <h3>3.3 Transit/Other（公交/其他）产品竞争力分析</h3>
+
+            <div class="competitiveness-grid">
+                <div class="comp-card">
+                    <h4>可替代性</h4>
+                    <div class="comp-level"><span class="tag tag-orange">中</span></div>
+                    <p style="font-size:0.85em;color:#555;">替代品较多</p>
+                </div>
+                <div class="comp-card">
+                    <h4>客户转换成本</h4>
+                    <div class="comp-level"><span class="tag tag-orange">中</span></div>
+                    <p style="font-size:0.85em;color:#555;">合同到期可换</p>
+                </div>
+                <div class="comp-card">
+                    <h4>定价权</h4>
+                    <div class="comp-level"><span class="tag tag-orange">中</span></div>
+                    <p style="font-size:0.85em;color:#555;">受公共交通合同限制</p>
+                </div>
+            </div>
+
+            <p><strong>1. 可替代性：中</strong></p>
+            <ul>
+                <li>主要替代品：billboard（更稳定）、地铁广告、出租车广告、共享出行车辆广告</li>
+                <li>替代体验差距：transit广告的覆盖范围和频次低于billboard</li>
+                <li>替代趋势：偏负面，疫情后公共交通客流尚未完全恢复，远程办公降低通勤需求</li>
+            </ul>
+
+            <p><strong>2. 客户转换成本：中</strong></p>
+            <ul>
+                <li>合同通常5-10年与公共交通局签订，到期可重新招标</li>
+                <li>Lazar面临OUTFRONT、Clear Channel等竞争</li>
+            </ul>
+
+            <p><strong>3. 定价权：中</strong></p>
+            <ul>
+                <li>受公共交通局合同条款限制，提价空间有限</li>
+                <li>定价权来源：合同条款和市场地位</li>
+                <li>巴菲特测试：如果Lamar提价10%，公交局可能在下次招标时换供应商</li>
+            </ul>
+
+            <p><strong>整体竞争力评级：<span class="star">&#9733;&#9733;&#9733;</span>&#9734;&#9734;（3/5星）</strong></p>
+        </div>
+    </div>
+
+    <!-- 第四章：历史财务指标 -->
+    <div class="info-box">
+        <h2 id="chapter4">四、历史财务指标</h2>
+
+        <h3>4.1 净资产收益率（ROE）</h3>
+        <table>
+            <tr><th>财年</th><th>ROE</th><th>备注</th></tr>
+            <tr><td>2016</td><td>约18.5%</td><td>REIT结构，会计利润含折旧影响</td></tr>
+            <tr><td>2017</td><td>约21.3%</td><td>税改利好前</td></tr>
+            <tr><td>2018</td><td>约25.8%</td><td>税改利好</td></tr>
+            <tr><td>2019</td><td>约28.4%</td><td>数字转换加速</td></tr>
+            <tr><td>2020</td><td>约15.2%</td><td>疫情冲击，广告主削减预算</td></tr>
+            <tr><td>2021</td><td>约35.6%</td><td>反弹+地产升值</td></tr>
+            <tr><td>2022</td><td>约42.1%</td><td>数字转换红利+提价</td></tr>
+            <tr><td>2023</td><td>约48.7%</td><td>利润率持续提升</td></tr>
+            <tr><td>2024</td><td>约52.3%</td><td>高基数+折旧摊销减少</td></tr>
+            <tr><td>2025</td><td>约60.8%</td><td>含Vistar Media股权出售收益</td></tr>
+        </table>
+        <div class="highlight">
+            <strong>巴菲特视角：</strong>Lamar的ROE从2016年的18.5%升至2025年的60.8%，看似惊人，但需要警惕两点：1）<strong>高ROE部分来自财务杠杆</strong>——Lamar净债务/EBITDA长期维持在5-6倍，远高于典型工业公司；2）<strong>REIT会计特性</strong>：REIT的折旧费用高（广告牌建筑结构折旧），账面净资产被压低，导致ROE被人为放大。真实经营回报率（FFO/权益）约为15-20%，仍是优秀水平但需"去杠杆"看。
+        </div>
+
+        <h3>4.2 资产负债率（Debt-to-Asset）</h3>
+        <table>
+            <tr><th>财年</th><th>总负债/总资产</th><th>总债务（亿美元）</th><th>总资产（亿美元）</th></tr>
+            <tr><td>2016</td><td>约62%</td><td>33.5</td><td>54.0</td></tr>
+            <tr><td>2017</td><td>约63%</td><td>35.0</td><td>55.6</td></tr>
+            <tr><td>2018</td><td>约64%</td><td>37.0</td><td>57.8</td></tr>
+            <tr><td>2019</td><td>约65%</td><td>38.5</td><td>59.2</td></tr>
+            <tr><td>2020</td><td>约67%</td><td>40.5</td><td>60.4</td></tr>
+            <tr><td>2021</td><td>约66%</td><td>42.0</td><td>63.6</td></tr>
+            <tr><td>2022</td><td>约65%</td><td>43.0</td><td>66.2</td></tr>
+            <tr><td>2023</td><td>约66%</td><td>44.5</td><td>67.4</td></tr>
+            <tr><td>2024</td><td>约67%</td><td>46.0</td><td>68.7</td></tr>
+            <tr><td>2025</td><td>约68%</td><td>50.0</td><td>73.5</td></tr>
+        </table>
+        <div class="highlight">
+            <strong>注意：</strong>Lamar的资产负债率长期维持在65-68%，看似很高，但REIT行业普遍如此（资产端是房地产，能产生稳定现金流偿债）。<strong>更关键的指标是净债务/EBITDA</strong>：FY2025约为5.4倍，处于行业偏高水平。Lamar的债务到期分布相对均匀，2025年通过Term B Loan再融资和发行5.375%高级票据（2033到期）延长了债务久期，但利息成本有所上升。利息覆盖倍数约4.5倍，偿债能力充足但缓冲有限。
+        </div>
+
+        <h3>4.3 权益乘数（Assets/Equity）</h3>
+        <table>
+            <tr><th>财年</th><th>权益乘数</th></tr>
+            <tr><td>2016</td><td>2.65x</td></tr>
+            <tr><td>2017</td><td>2.70x</td></tr>
+            <tr><td>2018</td><td>2.78x</td></tr>
+            <tr><td>2019</td><td>2.86x</td></tr>
+            <tr><td>2020</td><td>3.03x</td></tr>
+            <tr><td>2021</td><td>2.94x</td></tr>
+            <tr><td>2022</td><td>2.86x</td></tr>
+            <tr><td>2023</td><td>2.94x</td></tr>
+            <tr><td>2024</td><td>3.03x</td></tr>
+            <tr><td>2025</td><td>3.13x</td></tr>
+        </table>
+
+        <h3>4.4 市盈率（PE）</h3>
+        <table>
+            <tr><th>财年</th><th>PE（年末TTM）</th><th>股价</th><th>EPS</th></tr>
+            <tr><td>2016</td><td>约26.5x</td><td>$56.5</td><td>$2.13</td></tr>
+            <tr><td>2017</td><td>约24.8x</td><td>$71.4</td><td>$2.88</td></tr>
+            <tr><td>2018</td><td>约23.5x</td><td>$74.6</td><td>$3.17</td></tr>
+            <tr><td>2019</td><td>约24.3x</td><td>$86.4</td><td>$3.55</td></tr>
+            <tr><td>2020</td><td>约35.8x</td><td>$82.5</td><td>$2.31</td></tr>
+            <tr><td>2021</td><td>约30.2x</td><td>$108.6</td><td>$3.60</td></tr>
+            <tr><td>2022</td><td>约21.9x</td><td>$94.4</td><td>$4.31</td></tr>
+            <tr><td>2023</td><td>约21.9x</td><td>$106.3</td><td>$4.85</td></tr>
+            <tr><td>2024</td><td>约34.4x</td><td>$121.7</td><td>$3.54</td></tr>
+            <tr><td>2025</td><td>约21.8x</td><td>$126.6</td><td>$5.81</td></tr>
+            <tr><td>2026（当前）</td><td>约27.6x</td><td>$149.65</td><td>$5.43</td></tr>
+        </table>
+        <div class="highlight">
+            <strong>估值分析：</strong>Lamar历史PE中枢约25x（REIT因高折旧天然PE偏高）。当前PE约27.6x，略高于10年均值。但<strong>对REIT更合适的估值指标是P/AFFO</strong>（价格/调整后运营资金），因为AFFO加回了折旧这一非现金费用。FY2025 AFFO/share约$8.30，2026年指引$8.50-8.70，对应P/AFFO约17-18x，处于历史中等偏高位置。当前股息率4.9%相对10年期国债4.3%的利差收窄，限制了估值上行空间。
+        </div>
+
+        <div class="chart-container">
+            <canvas id="peChart"></canvas>
+        </div>
+    </div>
+
+    <!-- 第五章：竞争分析 -->
+    <div class="info-box">
+        <h2 id="chapter5">五、竞争分析</h2>
+
+        <h3>5.1 主要竞争对手</h3>
+        <table>
+            <tr><th>竞争对手</th><th>竞争领域</th><th>市值</th><th>Lamar优势</th></tr>
+            <tr>
+                <td><strong>OUTFRONT Media</strong>（OUT）</td>
+                <td>Billboard、Transit</td>
+                <td>约35亿美元</td>
+                <td>Lamar规模约4倍；OUTFRONT偏Transit（公交/地铁），Lamar偏Billboard；Lamar地理覆盖更广</td>
+            </tr>
+            <tr>
+                <td><strong>Clear Channel Outdoor</strong>（CCO）</td>
+                <td>Billboard、Airport</td>
+                <td>约13亿美元</td>
+                <td>Lamar规模约12倍；CCO财务状况较弱，债务负担重；Lamar在北美本地市场统治力更强</td>
+            </tr>
+            <tr>
+                <td><strong>JCDecaux</strong>（DEC.PA）</td>
+                <td>Street Furniture、Airport</td>
+                <td>约75亿欧元</td>
+                <td>不同市场：JCDecaux国际市场强（欧洲/亚太），Lamar专注北美；业务类型不同（JCDecaux偏街具）</td>
+            </tr>
+            <tr>
+                <td><strong>Stroer</strong>（SAX.DE）</td>
+                <td>Billboard、Street Furniture</td>
+                <td>约30亿欧元</td>
+                <td>不同市场：Stroer主要在德国/欧洲，与Lamar无直接竞争</td>
+            </tr>
+            <tr>
+                <td><strong>Daktronics</strong>（DAKT）</td>
+                <td>数字广告牌制造商</td>
+                <td>约8亿美元</td>
+                <td>非直接竞争——是供应商关系（Daktronics是Lamar数字牌的主要LED屏供应商）</td>
+            </tr>
+        </table>
+
+        <h3>5.2 市场份额</h3>
+        <table>
+            <tr><th>细分市场</th><th>Lamar份额</th><th>最大竞争对手份额</th></tr>
+            <tr><td>北美Billboard市场</td><td>约30-35%</td><td>OUTFRONT 约15-20%</td></tr>
+            <tr><td>北美Transit市场</td><td>约15-20%</td><td>OUTFRONT 约35-40%</td></tr>
+            <tr><td>北美Logo Signs</td><td>约70-80%</td><td>少数州有独立运营商</td></tr>
+            <tr><td>全球OOH广告</td><td>约5-7%</td><td>JCDecaux 约15%</td></tr>
+        </table>
+
+        <h3>5.3 经济护城河分析</h3>
+
+        <div class="moat-item">
+            <strong>1. 规模优势 <span class="tag tag-green">极强</span></strong><br>
+            Lamar在北美拥有超过35.2万个展示位，是OUTFRONT的2倍以上。规模带来：1）全国性广告主一站式采购；2）本地销售团队覆盖密度高；3）单位运营成本更低（一个销售员可管理更多牌位）。
+        </div>
+
+        <div class="moat-item">
+            <strong>2. 政府许可壁垒 <span class="tag tag-green">极强</span></strong><br>
+            美国多数城市对新广告牌建设实行严格管制甚至禁令（超过300个城市对数字广告牌有限制或禁令）。这意味着<strong>Lamar现有的牌位是不可再生的稀缺资源</strong>——竞争对手无法通过新建来挑战其地位，只能高价收购。Lamar每年新增牌位非常有限，主要靠收购和将现有静态牌升级为数字牌来扩大产能。
+        </div>
+
+        <div class="moat-item">
+            <strong>3. Logo Signs近乎垄断 <span class="tag tag-green">极强</span></strong><br>
+            Lamar与多个州交通局签订长期独家合同，运营高速公路出口的logo signs项目。这是政府许可的"半垄断"业务，竞争对手无法进入。该业务虽小（占营收4%）但稳定性极高，几乎无客户流失风险。
+        </div>
+
+        <div class="moat-item">
+            <strong>4. 数字转换的飞轮效应 <span class="tag tag-green">强</span></strong><br>
+            数字广告牌比静态牌多产生2-3倍收入，且运营成本更低（无需人工换广告）。Lamar已将约5,000+块牌转为数字，未来还有约30,000+块可转换。每完成一块转换，公司利润率就提升一点，为下一次转换提供资金——形成正向飞轮。
+        </div>
+
+        <div class="moat-item">
+            <strong>5. 本地客户粘性 <span class="tag tag-orange">中等偏强</span></strong><br>
+            75-80%收入来自本地小商家，这些客户对价格不敏感（更看重"被看到"），且户外广告占其营销预算比例低（5-15%），不会因经济波动大幅削减。但客户可以更换供应商（OUTFRONT/CCO），转换成本不如B2B软件高。
+        </div>
+
+        <div class="moat-item">
+            <strong>6. 程序化销售平台 <span class="tag tag-orange">中等</span></strong><br>
+            Lamar通过Vistar Media等程序化平台销售剩余库存，提升了填充率和单价。但此能力非独家，OUTFRONT也有类似合作，护城河不深。
+        </div>
+
+        <h3>5.4 护城河可持续性评估</h3>
+        <div class="highlight">
+            <strong>综合评估：宽护城河</strong><br>
+            Lamar的护城河由"政府许可+规模+稀缺位置"三重叠加构成，且这些优势<strong>随时间加强而非削弱</strong>——因为新广告牌建设被禁，老牌位愈发稀缺。核心长期风险是<strong>自动驾驶汽车</strong>的普及——若乘客不再看窗外，billboard的"强制曝光"价值将大幅下降。但这一威胁需10-20年才会实质化，且Lamar可通过升级数字牌为交互式/定位式广告来应对。中期内，Lamar的护城河依然稳固。
+        </div>
+    </div>
+
+    <!-- 第六章：利润分配分析 -->
+    <div class="info-box">
+        <h2 id="chapter6">六、利润分配分析</h2>
+
+        <h3>6.1 近十年利润分配表（百万美元）</h3>
+        <table>
+            <tr>
+                <th>财年</th><th>净利润</th><th>股息</th><th>回购</th><th>扩张资本开支</th><th>还债</th><th>留存金额</th><th>留存率</th>
+            </tr>
+            <tr><td>2016</td><td>233</td><td>215</td><td>0</td><td>147</td><td>0</td><td>18</td><td>8%</td></tr>
+            <tr><td>2017</td><td>298</td><td>240</td><td>0</td><td>165</td><td>50</td><td>58</td><td>19%</td></tr>
+            <tr><td>2018</td><td>326</td><td>266</td><td>0</td><td>175</td><td>30</td><td>60</td><td>18%</td></tr>
+            <tr><td>2019</td><td>364</td><td>291</td><td>0</td><td>195</td><td>0</td><td>73</td><td>20%</td></tr>
+            <tr><td>2020</td><td>237</td><td>312</td><td>0</td><td>155</td><td>0</td><td>-75</td><td>-32%</td></tr>
+            <tr><td>2021</td><td>372</td><td>336</td><td>0</td><td>220</td><td>0</td><td>36</td><td>10%</td></tr>
+            <tr><td>2022</td><td>446</td><td>367</td><td>0</td><td>275</td><td>0</td><td>79</td><td>18%</td></tr>
+            <tr><td>2023</td><td>500</td><td>405</td><td>0</td><td>265</td><td>0</td><td>95</td><td>19%</td></tr>
+            <tr><td>2024</td><td>363</td><td>440</td><td>0</td><td>230</td><td>0</td><td>-77</td><td>-21%</td></tr>
+            <tr><td>2025</td><td>593</td><td>475</td><td>0</td><td>240</td><td>0</td><td>118</td><td>20%</td></tr>
+        </table>
+
+        <p><em>注：1）留存金额 = 净利润 - 股息（按"回购算留存"原则，回购不减少留存金额）；2）Lamar几乎不进行股票回购，所有股东回报通过股息实现；3）2020年和2024年留存为负，主要因净利润受疫情/资产减值影响而下降，但股息维持增长；4）扩张资本开支包括数字转换和收购</em></p>
+
+        <h3>6.2 资本配置质量分析</h3>
+        <div class="highlight">
+            <strong>股息政策：</strong>Lamar连续<strong>14年提高股息</strong>，FY2025年化股息$5.40/股（含常规$1.32+特别股息$4.08），常规股息较FY2024年增长约10%。作为REIT，必须将90%+应税利润作为股息分配。当前股息率约4.9%，是美股REIT中较高的水平。值得注意：Lamar过去几年都有<strong>特别股息</strong>（special dividend），反映REIT结构下"超额利润必须分掉"的特性。<br><br>
+            <strong>回购策略：</strong>Lamar几乎不进行股票回购——这符合REIT的特性，因为REIT的"留存利润"空间有限，且股票回购在税务上不如股息对股东有利。这是合理的资本配置选择。<br><br>
+            <strong>并购策略：</strong>Lamar的并购以<strong>小型补强型收购</strong>为主，每年花费约5,000万-1亿美元收购区域性小广告牌运营商。这种策略合理：1）避免大规模整合风险；2）持续扩大产能（在新牌难建的背景下，收购是增加牌位的主要途径）；3）价格合理（通常5-7倍EBITDA）。2024年出售了部分加拿大业务给OUTFRONT，专注于核心北美市场。<br><br>
+            <strong>数字转换投资：</strong>Lamar每年资本开支约2.5-3亿美元，其中大部分用于将静态广告牌转换为数字广告牌。每块数字转换成本约5-15万美元，但回报率高达20-30%（数字牌收入2-3倍于静态牌，运营成本更低）。这是高质量的再投资。<br><br>
+            <strong>可持续增长率：</strong>ROE 60% × 留存率 20% ≈ 12%。但需注意：1）REIT结构下高ROE被杠杆放大；2）实际AFFO增长约8-10%，与可持续增长率基本吻合，说明公司再投资回报率良好。
+        </div>
+    </div>
+
+    <!-- 第七章：投资总结 -->
+    <div class="info-box">
+        <h2 id="chapter7">七、投资总结</h2>
+
+        <h3>7.1 各维度评分</h3>
+        <table>
+            <tr><th>维度</th><th>评分</th><th>说明</th></tr>
+            <tr>
+                <td>业务可理解性</td>
+                <td><span class="star">&#9733;&#9733;&#9733;&#9733;&#9733;</span></td>
+                <td>业务模式极其简单：拥有广告牌，租给客户收租金。巴菲特喜欢的"包租公"模式</td>
+            </tr>
+            <tr>
+                <td>护城河宽度</td>
+                <td><span class="star">&#9733;&#9733;&#9733;&#9733;</span>&#9734;</td>
+                <td>政府许可+规模+稀缺位置构成宽护城河，但长期面临自动驾驶威胁</td>
+            </tr>
+            <tr>
+                <td>资本配置</td>
+                <td><span class="star">&#9733;&#9733;&#9733;&#9733;</span>&#9734;</td>
+                <td>股息增长优秀，数字转换投资回报率高，并购策略谨慎合理</td>
+            </tr>
+            <tr>
+                <td>财务安全</td>
+                <td><span class="star">&#9733;&#9733;</span>&#9734;&#9734;&#9734;</td>
+                <td>净债务/EBITDA约5.4倍偏高，利息覆盖4.5倍缓冲有限，是主要风险点</td>
+            </tr>
+            <tr>
+                <td>增长前景</td>
+                <td><span class="star">&#9733;&#9733;&#9733;</span>&#9734;&#9734;</td>
+                <td>AFFO增长8-10%，数字转换驱动，2026中期选举有政治广告催化，但长期增速有限</td>
+            </tr>
+            <tr>
+                <td>估值吸引力</td>
+                <td><span class="star">&#9733;&#9733;</span>&#9734;&#9734;&#9734;</td>
+                <td>P/AFFO约17-18x，股息率4.9%，相对国债利差收窄，估值不便宜</td>
+            </tr>
+        </table>
+
+        <h3>7.2 估值对比</h3>
+        <table>
+            <tr><th>公司</th><th>PE（TTM）</th><th>P/AFFO</th><th>股息率</th><th>净债务/EBITDA</th></tr>
+            <tr><td>Lamar (LAMR)</td><td>~27.6x</td><td>~17-18x</td><td>4.9%</td><td>~5.4x</td></tr>
+            <tr><td>OUTFRONT (OUT)</td><td>~14x</td><td>~9-10x</td><td>5.2%</td><td>~3.5x</td></tr>
+            <tr><td>Clear Channel (CCO)</td><td>N/A（亏损）</td><td>~6-7x</td><td>N/A</td><td>~6.5x</td></tr>
+            <tr><td>JCDecaux (DEC.PA)</td><td>~16x</td><td>~12-13x</td><td>4.5%</td><td>~1.5x</td></tr>
+            <tr><td>American Tower (AMT)</td><td>~22x</td><td>~17x</td><td>3.5%</td><td>~5.0x</td></tr>
+        </table>
+        <div class="highlight">
+            <strong>估值结论：</strong>Lamar在REIT中估值偏贵。与同业相比，Lamar的P/AFFO（17-18x）高于OUTFRONT（9-10x）和JCDecaux（12-13x），反映市场对其数字转换和稳定增长的溢价。但Lamar的杠杆水平（5.4x EBITDA）也高于多数同业，限制了估值进一步上行空间。<strong>当前价格$149.65未提供明显安全边际</strong>——合理的入场价格区间在$120-130（对应P/AFFO约15x，股息率5.5%+）。
+        </div>
+
+        <h3>7.3 主要风险</h3>
+        <div class="risk-item">
+            <strong>1. 利率风险（中短期最大风险）</strong><br>
+            REIT估值对利率高度敏感。Lamar有约50亿美元债务，其中部分为浮动利率（Term B Loan）。利率每上升100bp，利息支出增加约1,500-2,000万美元，直接侵蚀AFFO。同时，国债收益率上升使4.9%的股息率吸引力下降，股价承压。
+        </div>
+        <div class="risk-item">
+            <strong>2. 杠杆风险</strong><br>
+            净债务/EBITDA约5.4倍，处于行业偏高水平。若广告市场因经济衰退而下滑（如2020年疫情），EBITDA下降将推高杠杆比率，可能触发债务契约限制。Lamar的财务弹性比低杠杆REIT（如American Tower）小。
+        </div>
+        <div class="risk-item">
+            <strong>3. 自动驾驶汽车（长期威胁）</strong><br>
+            若自动驾驶普及（10-20年后），乘客可能看车内屏幕而非窗外，billboard的"强制曝光"价值将大幅下降。这是Lamar商业模式面临的根本性长期威胁。
+        </div>
+        <div class="risk-item">
+            <strong>4. 经济衰退敏感</strong><br>
+            虽然本地小商家比大品牌稳定，但经济衰退时广告预算仍会削减。2020年疫情期间，Lamar同店收入下降约8%，EBITDA下降约15%。
+        </div>
+
+        <h3>7.4 关键催化剂</h3>
+        <div class="moat-item">
+            <strong>1. 2026年美国中期选举（重大催化）</strong><br>
+            中期选举年政治广告支出大幅增加，2026年预计政治广告支出将创纪录，Lamar作为本地市场主导者将明显受益。2024年大选已证明政治广告对Lamar的拉动作用。
+        </div>
+        <div class="moat-item">
+            <strong>2. 数字转换加速</strong><br>
+            每年转换300-500块静态牌为数字牌，每块转换后收入提升2-3倍。当前Lamar仍有约30,000+块静态牌待转换，转换空间还可持续5-10年。
+        </div>
+        <div class="moat-item">
+            <strong>3. 程序化销售渗透率提升</strong><br>
+            通过Vistar Media等平台程序化销售剩余库存，可提升填充率5-10个百分点和单价10-15%。
+        </div>
+        <div class="moat-item">
+            <strong>4. 利率下行周期</strong><br>
+            若美联储2026-2027年持续降息，REIT估值有望重估，Lamar股价弹性较大。
+        </div>
+
+        <h3>7.5 投资结论</h3>
+        <div class="highlight">
+            <strong>巴菲特/芒格视角：</strong>Lamar具备巴菲特偏好的多个特征：1）<strong>业务简单可理解</strong>——"包租公"模式清晰；2）<strong>护城河宽</strong>——政府许可+规模+稀缺位置构成多重壁垒；3）<strong>现金流稳定</strong>——75-80%收入来自本地小商家，受宏观经济波动影响较小；4）<strong>股东回报文化</strong>——连续14年股息增长。<br><br>
+            <strong>但需注意芒格的"反向思考"：</strong>1）<strong>杠杆偏高</strong>——5.4倍净债务/EBITDA高于巴菲特偏好的"净现金"或低杠杆标准；2）<strong>增长有限</strong>——8-10%的AFFO增长是稳定但不爆发；3）<strong>长期威胁存在</strong>——自动驾驶可能在10-20年后颠覆商业模式；4）<strong>当前估值不便宜</strong>——P/AFFO 17-18x未提供安全边际。<br><br>
+            <strong>投资评级：观察 / 逢低买入</strong><br>
+            Lamar是高质量REIT，但当前价格不具备巴菲特式的"安全边际"。建议等待两个时机：1）股价回调至$120-130区间（P/AFFO约15x）；2）10年期国债收益率降至3.5%以下，使4.9%股息率重新具备吸引力。在当前价位，<strong>持有者可继续持有享受股息，新建仓位需等待回调</strong>。
+        </div>
+
+        <h3>7.6 一句话总结</h3>
+        <div class="highlight" style="border-left-color:#27ae60;">
+            <strong>Lamar是一家"用政府许可筑起围墙的户外广告包租公"，业务稳定、护城河宽、股息可靠，但杠杆偏高且当前估值不便宜——适合作为收益型持仓，但不适合在当前价位追高。</strong>
+        </div>
+    </div>
+
+    <script>
+        // PE历史图表
+        const peCtx = document.getElementById('peChart').getContext('2d');
+        new Chart(peCtx, {
+            type: 'line',
+            data: {
+                labels: ['2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025', '2026当前'],
+                datasets: [{
+                    label: 'PE（TTM）',
+                    data: [26.5, 24.8, 23.5, 24.3, 35.8, 30.2, 21.9, 21.9, 34.4, 21.8, 27.6],
+                    borderColor: '#2e86c1',
+                    backgroundColor: 'rgba(46, 134, 193, 0.1)',
+                    fill: true,
+                    tension: 0.3
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: { display: true, text: 'Lamar Advertising (LAMR) 历史PE走势' },
+                    legend: { display: false }
+                },
+                scales: {
+                    y: { title: { display: true, text: 'PE倍数' } },
+                    x: { title: { display: true, text: '财年' } }
+                }
+            }
+        });
+    </script>
+
+    <script src="scores_client.js"></script>
+    <script src="stock_topbar.js"></script>
+</body>
+</html>

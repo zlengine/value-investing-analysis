@@ -54,6 +54,7 @@
         {code:'TLIH',name:'Ten-League Internationa..',href:'tlih.html'},
         {code:'LDOS',name:'Leidos Holdings, Inc.',href:'ldos.html'},
         {code:'LRCX',name:'Lam Research',href:'lrcx.html'},
+        {code:'LAMR',name:'Lamar Advertising',href:'lamr.html'},
         {code:'CMCSA',name:'Comcast Corporation',href:'cmcsa.html'},
         {code:'MLI',name:'Mueller Industries, Inc.',href:'mli.html'},
         {code:'DECK',name:'Deckers Outdoor Corpora..',href:'deck.html'},
