@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Installed Building Products (IBP) 价值投资分析</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body { font-family: 'Segoe UI', Arial, sans-serif; margin: 0; padding: 20px; padding-top: 70px; background-color: #f0f2f5; color: #333; }
+        h1 { text-align: center; color: #1a5276; font-size: 2.2em; margin-bottom: 5px; }
+        h2 { color: #1a5276; border-bottom: 2px solid #2e86c1; padding-bottom: 8px; margin-top: 30px; }
+        h3 { color: #2c3e50; margin-top: 20px; }
+        .subtitle { text-align: center; color: #7f8c8d; font-size: 1.1em; margin-bottom: 30px; }
+        .info-box { background: white; border-radius: 10px; padding: 25px; margin: 20px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.08); }
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; background-color: white; }
+        th, td { padding: 10px 14px; text-align: left; border-bottom: 1px solid #e0e0e0; }
+        th { background-color: #1a5276; color: white; font-weight: bold; }
+        tr:nth-child(even) { background-color: #f8f9fa; }
+        tr:hover { background-color: #eaf2f8; }
+        .highlight { background: #fef9e7; border-left: 4px solid #2e86c1; padding: 15px 20px; margin: 15px 0; border-radius: 0 8px 8px 0; }
+        .chart-container { background: white; border-radius: 10px; padding: 25px; margin: 20px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.08); }
+        canvas { max-height: 400px; }
+        .tag { display: inline-block; background: #1a5276; color: white; padding: 3px 10px; border-radius: 12px; font-size: 0.85em; margin: 2px; }
+        .tag-green { background: #27ae60; }
+        .tag-orange { background: #e67e22; }
+        .tag-red { background: #c0392b; }
+        a { color: #1a5276; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        .moat-item { background: white; border-radius: 8px; padding: 15px 20px; margin: 10px 0; box-shadow: 0 1px 5px rgba(0,0,0,0.05); border-left: 4px solid #2e86c1; }
+        .moat-item strong { color: #1a5276; }
+        .risk-item { background: white; border-radius: 8px; padding: 15px 20px; margin: 10px 0; box-shadow: 0 1px 5px rgba(0,0,0,0.05); border-left: 4px solid #c0392b; }
+        .star { color: #f39c12; }
+        .top-nav-bar { position: fixed; top: 0; left: 0; right: 0; height: 44px; background: #2c3e50; display: flex; align-items: center; justify-content: flex-end; padding: 0 20px; z-index: 9999; box-shadow: 0 2px 8px rgba(0,0,0,0.15); gap: 8px; }
+        .top-nav-link { color: white; padding: 6px 16px; border-radius: 16px; text-decoration: none; font-size: 13px; transition: background 0.2s; white-space: nowrap; }
+        .segment-box { background: white; border-radius: 10px; padding: 20px; margin: 15px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.08); border-top: 4px solid #2e86c1; }
+        .section-nav {
+            background: white;
+            border-radius: 10px;
+            padding: 15px 25px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+        .section-nav a {
+            display: inline-block;
+            margin: 5px 10px;
+            padding: 6px 14px;
+            background: #eaf2f8;
+            color: #1a5276;
+            text-decoration: none;
+            border-radius: 15px;
+            font-size: 0.9em;
+        }
+        .section-nav a:hover {
+            background: #2e86c1;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="top-nav-bar"></div>
+    <script src="nav_bar.js?v=20260624"></script>
+    <span id="topbarCode" style="display:none;">IBP</span>
+    <h1>Installed Building Products (NYSE: IBP)</h1>
+    <p class="subtitle">巴菲特/芒格式价值投资基本面分析 | 更新日期：2026年6月</p>
+
+    <div class="section-nav">
+        <a href="#chapter1">公司基本信息</a>
+        <a href="#chapter2">业务分析</a>
+        <a href="#chapter3">业务板块产品竞争力分析</a>
+        <a href="#chapter4">历史财务指标</a>
+        <a href="#chapter5">竞争分析</a>
+        <a href="#chapter6">利润分配分析</a>
+        <a href="#chapter7">投资总结</a>
+    </div>
+
+    <h2 id="chapter1">一、公司基本信息</h2>
+    <div class="info-box">
+        <table>
+            <tr><th>项目</th><th>详情</th></tr>
+            <tr><td>公司名称</td><td>Installed Building Products, Inc.</td></tr>
+            <tr><td>股票代码</td><td>IBP（NYSE）</td></tr>
+            <tr><td>成立时间</td><td>1977年</td></tr>
+            <tr><td>总部</td><td>美国俄亥俄州哥伦布市（495 South High Street, Suite 50, Columbus, Ohio 43215）</td></tr>
+            <tr><td>CEO</td><td>Jeff Edwards（自1999年起任职，超过25年任期）</td></tr>
+            <tr><td>IPO日期</td><td>2014年2月13日</td></tr>
+            <tr><td>员工人数</td><td>约10,400人</td></tr>
+            <tr><td>分支机构</td><td>250+个运营点，覆盖美国本土48个州及哥伦比亚特区</td></tr>
+            <tr><td>最新收盘价（2026-06-25）</td><td>$227.02</td></tr>
+            <tr><td>总股本</td><td>约2,694万股</td></tr>
+            <tr><td>总市值</td><td>约61.2亿美元（约合人民币443亿元）</td></tr>
+            <tr><td>企业价值（EV）</td><td>约66.7亿美元（含净债务约5.7亿美元）</td></tr>
+            <tr><td>所属行业</td><td>住宅建筑 / 专项承包安装服务</td></tr>
+            <tr><td>主要客户</td><td>Lennar、D.R. Horton等全美大型住宅建筑商，前十大客户约占净收入14%</td></tr>
+        </table>
+    </div>
+    <div class="highlight">
+        <strong>巴菲特视角：</strong>IBP是一家"包工头"公司——它不生产建材，而是把保温材料、车库门、雨水槽等"装到房子里"。公司1977年从一个俄亥俄小安装商起步，靠不停地收购同行（自1999年来完成140+次收购），如今成为全美第二大保温材料安装商。业务模式极其简单：雇佣工人+采购材料+按合同安装+收工程款。轻资产、强现金流、CEO任职超25年——这些都是巴菲特会喜欢的东西。
+    </div>
+
+    <h2 id="chapter2">二、业务分析</h2>
+    <h3>2.1 公司一句话解释</h3>
+    <div class="info-box">
+        <p><strong>通俗解释：</strong>想象你盖了一栋新房子，房子建好后还需要人把保温棉塞进墙里、把车库门装上、把淋浴间玻璃门装好、把雨水槽钉上屋檐。IBP就是干这些"装修收尾活"的公司。它从一个俄亥俄州的小包工头，靠不停地买下其他小包工头，发展成全美最大的安装网络之一。客户主要是Lennar、D.R. Horton这类大住宅开发商，他们把活外包给IBP，IBP派工人上门施工。</p>
+    </div>
+
+    <h3>2.2 业务板块</h3>
+    <div class="segment-box">
+        <h3>板块一：安装业务（Installation）</h3>
+        <table>
+            <tr><th>项目</th><th>数据</th></tr>
+            <tr><td>2025年营收</td><td>约27.0亿美元（含消除前）</td></tr>
+            <tr><td>占总营收</td><td>约90%+</td></tr>
+            <tr><td>核心产品</td><td>保温材料安装（58%）、防水、防火、车库门、雨水槽、淋浴门、衣橱搁架、镜子、百叶窗</td></tr>
+            <tr><td>增长趋势</td><td>保温材料占比从2015年的78%降至2025年的58%；新建单户住宅占比从75%降至55%；多元化产品+商业/翻新市场持续增长</td></tr>
+        </table>
+    </div>
+    <div class="segment-box">
+        <h3>板块二：分销业务（Distribution）</h3>
+        <table>
+            <tr><th>项目</th><th>数据</th></tr>
+            <tr><td>2025年营收</td><td>约2.0亿美元（含消除前）</td></tr>
+            <tr><td>占总营收</td><td>约7%</td></tr>
+            <tr><td>业务说明</td><td>向第三方承包商销售保温材料及辅助产品</td></tr>
+        </table>
+    </div>
+    <div class="segment-box">
+        <h3>板块三：制造业务（Manufacturing）</h3>
+        <table>
+            <tr><th>项目</th><th>数据</th></tr>
+            <tr><td>2025年营收</td><td>约0.7亿美元</td></tr>
+            <tr><td>占总营收</td><td>约2-3%</td></tr>
+            <tr><td>业务说明</td><td>生产部分保温材料及辅助产品，主要供自身安装业务使用</td></tr>
+        </table>
+    </div>
+
+    <h3>2.3 收入按终端市场分布</h3>
+    <div class="info-box">
+        <table>
+            <tr><th>终端市场</th><th>2025年占比</th><th>2015年占比</th><th>趋势</th></tr>
+            <tr><td>新建单户住宅</td><td>约55%</td><td>约75%</td><td>↓ 持续下降（多元化战略）</td></tr>
+            <tr><td>多户住宅（公寓）</td><td>约20%</td><td>约10%</td><td>↑ 增长</td></tr>
+            <tr><td>商业建筑</td><td>约15%</td><td>约8%</td><td>↑ 增长</td></tr>
+            <tr><td>维修与翻新（R&R）</td><td>约10%</td><td>约7%</td><td>↑ 稳定增长</td></tr>
+        </table>
+        <p><strong>关键洞察：</strong>过去十年，IBP有意识地从"单户新建"依赖转向多元化。维修翻新+商业占比从约15%提升至约25%，降低了周期性波动风险。这是一种"反脆弱"的战略布局。</p>
+    </div>
+
+    <h3>2.4 收入按地理分布</h3>
+    <div class="info-box">
+        <table>
+            <tr><th>区域</th><th>占比</th><th>说明</th></tr>
+            <tr><td>美国太阳带（TX, FL, NC, SC, AZ）</td><td>约45%</td><td>核心市场，住宅开工量高于全国平均</td></tr>
+            <tr><td>中大西洋地区</td><td>约20%</td><td>传统强势区域</td></tr>
+            <tr><td>中西部</td><td>约15%</td><td>包括俄亥俄大本营</td></tr>
+            <tr><td>太平洋西北+山区西部</td><td>约10%</td><td>正在扩张的新市场</td></tr>
+            <tr><td>其他地区</td><td>约10%</td><td>东北部、东南部等</td></tr>
+        </table>
+        <p>全部收入来自美国本土48个州+哥伦比亚特区，无海外业务。</p>
+    </div>
+
+    <h3>2.5 商业模式与盈利方式</h3>
+    <div class="info-box">
+        <p><strong>商业模式：</strong>IBP是"轻资产安装服务+持续并购"的Roll-up模式。</p>
+        <ul>
+            <li><strong>收入来源：</strong>按项目向住宅建筑商收取安装服务费（含材料+人工）</li>
+            <li><strong>核心成本：</strong>材料成本（约50-55%，集中采购压价）+ 人工成本（约30-35%，主要是安装工人工资）+ 运营管理费用</li>
+            <li><strong>盈利杠杆：</strong>①规模采购压低材料成本 ②多元化产品提升单户收入（成熟分支每个许可证收入$4,400 vs 发展中分支$2,200）③并购整合提升利润率</li>
+            <li><strong>轻资产特征：</strong>资本支出仅占营收2-3%，2021-2025累计自由现金流超11亿美元</li>
+        </ul>
+    </div>
+
+    <h2 id="chapter3">三、业务板块产品竞争力分析</h2>
+
+    <h3>3.1 保温材料安装（Insulation Installation）</h3>
+    <div class="info-box">
+        <h4>1. 可替代性：<span class="tag tag-orange">中等</span></h4>
+        <ul>
+            <li><strong>主要替代品：</strong>①建筑商自建安装团队（in-house）②其他区域安装承包商 ③DIY（仅限翻新市场）</li>
+            <li><strong>替代体验差距：</strong>建筑商自建团队成本更高、管理负担重；小承包商服务质量不稳定，无法覆盖多州项目</li>
+            <li><strong>替代趋势：</strong>稳定。大型建筑商越来越倾向外包非核心安装环节以专注核心业务</li>
+        </ul>
+        <h4>2. 客户转换成本：<span class="tag tag-red">低</span></h4>
+        <ul>
+            <li><strong>财务转换成本：</strong>几乎为零。建筑商可在下一个项目更换安装商，无需赔偿IBP</li>
+            <li><strong>时间转换成本：</strong>低。新安装商可在一周内接手新项目</li>
+            <li><strong>捆绑转换成本：</strong>中等。IBP提供"保温+防水+车库门+雨水槽"一站式服务，建筑商如更换需对接多个供应商，管理成本上升。这是IBP的核心粘性来源</li>
+            <li><strong>整体评估：</strong>单一产品转换成本低，但多产品捆绑提升了切换摩擦</li>
+        </ul>
+        <h4>3. 定价权：<span class="tag tag-orange">中等偏弱</span></h4>
+        <ul>
+            <li><strong>历史提价记录：</strong>2021-2025年调整后毛利率从30.0%提升至34.0%，但主要来自成本控制而非提价</li>
+            <li><strong>提价vs通胀：</strong>材料成本上涨时，IBP可向建筑商转嫁约70-80%，但剩余20-30%需自行消化</li>
+            <li><strong>定价权来源：</strong>规模采购+多产品捆绑+服务可靠性，而非品牌溢价</li>
+            <li><strong>定价权趋势：</strong>稳定偏弱。大型建筑商（Lennar、D.R. Horton）议价能力强，行业高度分散导致价格竞争激烈</li>
+            <li><strong>巴菲特测试：</strong>如果IBP提价10%，大型建筑商很可能将部分项目转给竞争对手。提价能力有限</li>
+        </ul>
+        <p><strong>整体竞争力评级：<span class="star">★★★</span>（3/5星）</strong>——规模优势明显但非不可替代，定价权受大客户制约</p>
+    </div>
+
+    <h3>3.2 互补产品安装（防水/防火/车库门/雨水槽/淋浴门等）</h3>
+    <div class="info-box">
+        <h4>1. 可替代性：<span class="tag tag-orange">中等</span></h4>
+        <ul>
+            <li><strong>主要替代品：</strong>独立专业承包商（如专门做车库门的公司）、建筑商自建团队</li>
+            <li><strong>替代体验差距：</strong>单一产品专业承包商在细分领域可能更专业，但需要建筑商管理多个供应商</li>
+            <li><strong>替代趋势：</strong>减慢。IBP一站式服务越来越受建筑商欢迎，减少供应商管理负担</li>
+        </ul>
+        <h4>2. 客户转换成本：<span class="tag tag-orange">中等</span></h4>
+        <ul>
+            <li><strong>财务转换成本：</strong>低，无长期合同约束</li>
+            <li><strong>时间转换成本：</strong>中等。从对接1家供应商变为对接4-5家专业承包商，管理负担显著增加</li>
+            <li><strong>捆绑转换成本：</strong>高。这是IBP的战略核心——把保温、防水、车库门、雨水槽等打包提供，建筑商一旦切换回分散采购，管理成本和协调风险上升</li>
+            <li><strong>整体评估：</strong>捆绑战略有效提升客户粘性，是IBP护城河的关键</li>
+        </ul>
+        <h4>3. 定价权：<span class="tag tag-orange">中等</span></h4>
+        <ul>
+            <li><strong>历史提价记录：</strong>互补产品毛利率通常高于保温材料，因其专业性更强</li>
+            <li><strong>定价权来源：</strong>一站式便利性+规模优势+较少的本地竞争对手</li>
+            <li><strong>定价权趋势：</strong>增强。随着IBP在互补产品领域建立规模，定价能力在提升</li>
+            <li><strong>巴菲特测试：</strong>如果IBP对车库门安装提价10%，建筑商可能接受，因为寻找替代供应商的管理成本超过差价</li>
+        </ul>
+        <p><strong>整体竞争力评级：<span class="star">★★★★</span>（4/5星）</strong>——捆绑战略创造差异化，定价权优于纯保温安装</p>
+    </div>
+
+    <h3>3.3 分销与制造业务</h3>
+    <div class="info-box">
+        <h4>1. 可替代性：<span class="tag tag-red">高</span></h4>
+        <ul>
+            <li>大量建材分销商可替代，产品同质化严重</li>
+        </ul>
+        <h4>2. 客户转换成本：<span class="tag tag-red">极低</span></h4>
+        <ul>
+            <li>价格敏感型交易，客户随时可换供应商</li>
+        </ul>
+        <h4>3. 定价权：<span class="tag tag-red">极弱</span></h4>
+        <ul>
+            <li>价格跟随市场，无品牌溢价</li>
+        </ul>
+        <p><strong>整体竞争力评级：<span class="star">★★</span>（2/5星）</strong>——仅作为安装业务的辅助，非独立价值来源</p>
+    </div>
+
+    <h2 id="chapter4">四、历史财务指标</h2>
+    <div class="info-box">
+        <p><strong>数据说明：</strong>IBP于2014年2月IPO，2000-2013年为私人公司，财务数据有限。下表为2014年IPO至2025年的关键指标（部分年份数据为估算值，以SEC 10-K filing为准）。</p>
+        <table>
+            <tr><th>财年</th><th>营收（百万美元）</th><th>净利润（百万美元）</th><th>ROE（%）</th><th>资产负债率（%）</th><th>权益乘数（倍）</th><th>PE（年末）</th></tr>
+            <tr><td>2014（IPO）</td><td>~900</td><td>~45</td><td>~10</td><td>~55</td><td>~2.2</td><td>~25</td></tr>
+            <tr><td>2015</td><td>~1,000</td><td>~55</td><td>~12</td><td>~55</td><td>~2.2</td><td>~30</td></tr>
+            <tr><td>2016</td><td>~1,100</td><td>~75</td><td>~15</td><td>~55</td><td>~2.2</td><td>~35</td></tr>
+            <tr><td>2017</td><td>~1,300</td><td>~100</td><td>~20</td><td>~55</td><td>~2.2</td><td>~40</td></tr>
+            <tr><td>2018</td><td>~1,400</td><td>~110</td><td>~22</td><td>~58</td><td>~2.4</td><td>~25</td></tr>
+            <tr><td>2019</td><td>~1,500</td><td>~130</td><td>~25</td><td>~55</td><td>~2.2</td><td>~30</td></tr>
+            <tr><td>2020</td><td>~1,500</td><td>~130</td><td>~25</td><td>~50</td><td>~2.0</td><td>~40</td></tr>
+            <tr><td>2021</td><td>~2,000</td><td>~180</td><td>~35</td><td>~55</td><td>~2.2</td><td>~25</td></tr>
+            <tr><td>2022</td><td>~2,600</td><td>~220</td><td>~40</td><td>~55</td><td>~2.2</td><td>~12</td></tr>
+            <tr><td>2023</td><td>~2,800</td><td>~240</td><td>~35</td><td>~55</td><td>~2.2</td><td>~25</td></tr>
+            <tr><td>2024</td><td>~2,940</td><td>~257</td><td>~33</td><td>~58</td><td>~2.4</td><td>~25</td></tr>
+            <tr><td>2025</td><td>2,970</td><td>265</td><td>~38</td><td>~58</td><td>~2.4</td><td>~22</td></tr>
+            <tr><td><strong>2026当前</strong></td><td>~2,950（TTM）</td><td>~255（TTM）</td><td>~38</td><td>~58</td><td>~2.4</td><td>~24</td></tr>
+        </table>
+        <div class="highlight">
+            <strong>巴菲特/芒格视角：</strong>
+            <ul>
+                <li><strong>真实经营ROE vs 财务工程ROE：</strong>IBP的ROE约38%看似优秀，但权益乘数约2.4倍，资产负债率约58%，说明高ROE部分来自杠杆。真实经营回报看ROA更准确：ROA=净利润/总资产=265/2,070≈12.8%，这才是业务的真实盈利能力——不错但不卓越</li>
+                <li><strong>ROE从10%升至38%的驱动：</strong>过去12年ROE提升主要来自①利润率扩张（毛利率从28%→34%）②杠杆提升（资产负债率从55%→58%）③规模效应降低管理费用占比。经营改善是真实的</li>
+                <li><strong>2022年PE暴跌至12倍：</strong>利率飙升打击住宅股，但IBP基本面未恶化。这是价值投资者的机会窗口</li>
+                <li><strong>当前PE约24倍：</strong>处于历史中位水平，不算便宜也不算贵</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="chart-container">
+        <canvas id="peChart"></canvas>
+    </div>
+
+    <div class="chart-container">
+        <canvas id="roeChart"></canvas>
+    </div>
+
+    <h2 id="chapter5">五、竞争分析</h2>
+    <h3>5.1 主要竞争对手</h3>
+    <div class="info-box">
+        <table>
+            <tr><th>竞争对手</th><th>2024年营收</th><th>保温安装市场份额</th><th>竞争优势</th></tr>
+            <tr><td><strong>TopBuild（BLD）</strong></td><td>~$5.3-6.0B</td><td>约30-40%</td><td>行业龙头，垂直整合（TruTeam安装+Service Partners分销），规模最大</td></tr>
+            <tr><td><strong>IBP</strong></td><td>~$2.94B</td><td>约20-25%</td><td>第二大规模，多元化产品组合，250+分支网络</td></tr>
+            <tr><td>Owens Corning</td><td>~$9-10B（材料）</td><td>间接（材料供应商）</td><td>品牌+材料创新+影响力，通过材料规格影响安装市场</td></tr>
+            <tr><td>Builders FirstSource（BLDR）</td><td>~$17B</td><td>边缘参与</td><td>大型建材分销商，正向安装服务扩张</td></tr>
+            <tr><td>GMS Inc</td><td>~$5B</td><td>边缘参与</td><td>石膏板分销龙头，部分安装服务</td></tr>
+            <tr><td>数千家区域独立安装商</td><td>分散</td><td>合计约40-50%</td><td>本地关系+低价竞争，但规模有限</td></tr>
+        </table>
+    </div>
+
+    <h3>5.2 市场份额</h3>
+    <div class="info-box">
+        <table>
+            <tr><th>细分市场</th><th>IBP份额</th><th>市场龙头</th><th>说明</th></tr>
+            <tr><td>保温材料安装</td><td>约20-25%</td><td>TopBuild（30-40%）</td><td>双寡头格局，但行业仍高度分散</td></tr>
+            <tr><td>新建单户住宅保温</td><td>约30%</td><td>TopBuild</td><td>IBP在细分领域份额更高</td></tr>
+            <tr><td>互补产品安装（车库门/雨水槽等）</td><td>分散</td><td>无明确龙头</td><td>IBP通过捆绑战略差异化</td></tr>
+        </table>
+    </div>
+
+    <h3>5.3 经济护城河评估</h3>
+    <div class="moat-item">
+        <strong>规模优势（Scale）—— 中等护城河：</strong>250+分支网络是IBP的核心资产。集中采购压低材料成本，覆盖全国的能力让大型建筑商只需对接一个供应商。但规模优势并非不可逾越——TopBuild规模更大，且区域独立承包商在本地市场仍有竞争力。
+    </div>
+    <div class="moat-item">
+        <strong>并购整合能力（M&A Engine）—— 真正的竞争优势：</strong>自1999年来完成140+次收购，IBP建立了一套成熟的"发现-评估-收购-整合"流程。每年15-25次bolt-on收购，累计年化收入超$100M。这种并购机器一旦建立，竞争对手难以复制——需要长期积累的行业关系、整合经验和资本配置能力。
+    </div>
+    <div class="moat-item">
+        <strong>捆绑销售（Cross-sell）—— 增强护城河：</strong>保温+防水+车库门+雨水槽+淋浴门的一站式服务，提升客户切换成本。成熟分支每个住宅许可证收入$4,400，是发展中分支$2,200的两倍——证明多元化产品能有效提升钱包份额。
+    </div>
+    <div class="moat-item">
+        <strong>品牌力（Brand）—— 弱：</strong>IBP面向B2B客户（建筑商），终端消费者几乎不认识这个品牌。无品牌溢价能力。
+    </div>
+    <div class="moat-item">
+        <strong>转换成本（Switching Costs）—— 弱到中等：</strong>单一产品转换成本低，但多产品捆绑提升了摩擦。大型建筑商可能同时与IBP和TopBuild合作以保持竞争，限制了任何一方的粘性。
+    </div>
+    <div class="moat-item">
+        <strong>网络效应/专利/监管壁垒 —— 无：</strong>无网络效应、无专利保护、无监管壁垒。行业进入门槛低，本地安装商可轻易起步。
+    </div>
+
+    <h3>5.4 竞争优势可持续性</h3>
+    <div class="info-box">
+        <p><strong>可持续性评估：中等</strong></p>
+        <ul>
+            <li><strong>正面：</strong>并购整合能力+全国分支网络需要数十年积累，新进入者难以复制；多元化产品战略持续深化</li>
+            <li><strong>负面：</strong>行业高度分散（前两名合计仅50-65%份额）；大型建筑商议价能力强；无品牌/专利/监管壁垒保护</li>
+            <li><strong>结论：</strong>IBP的护城河是"规模+并购能力+捆绑销售"的组合，属于中等护城河。不如拥有品牌溢价或专利保护的公司持久，但优于纯商品化业务</li>
+        </ul>
+    </div>
+
+    <h2 id="chapter6">六、利润分配分析</h2>
+    <div class="info-box">
+        <p><strong>数据来源：</strong>2021-2025年公司财报及投资者报告。2021-2025累计自由现金流超11亿美元，资本配置分为三大方向：收购（25%）、回购（41%）、股息（34%）。</p>
+        <table>
+            <tr><th>财年</th><th>净利润（百万$）</th><th>股息（百万$）</th><th>回购（百万$）</th><th>并购支出（百万$）</th><th>还债（百万$）</th><th>留存金额（百万$）</th><th>留存比（%）</th></tr>
+            <tr><td>2021</td><td>~180</td><td>~20</td><td>~50</td><td>~80</td><td>~10</td><td>~160</td><td>89%</td></tr>
+            <tr><td>2022</td><td>~220</td><td>~30</td><td>~100</td><td>~70</td><td>~20</td><td>~190</td><td>86%</td></tr>
+            <tr><td>2023</td><td>~240</td><td>~60</td><td>~150</td><td>~60</td><td>~30</td><td>~180</td><td>75%</td></tr>
+            <tr><td>2024</td><td>~257</td><td>~80</td><td>~150</td><td>~70</td><td>~20</td><td>~177</td><td>69%</td></tr>
+            <tr><td>2025</td><td>265</td><td>~90</td><td>~105</td><td>~53</td><td>~30</td><td>~175</td><td>66%</td></tr>
+            <tr><td><strong>5年累计</strong></td><td><strong>~1,162</strong></td><td><strong>~280</strong></td><td><strong>~555</strong></td><td><strong>~333</strong></td><td><strong>~110</strong></td><td><strong>~882</strong></td><td><strong>76%</strong></td></tr>
+        </table>
+    </div>
+
+    <div class="highlight">
+        <strong>资本配置质量分析：</strong>
+        <ul>
+            <li><strong>留存比例高（76%）：</strong>大部分利润留存用于再投资，符合成长型公司的特征</li>
+            <li><strong>回购时机评价：</strong>2022年股价暴跌至$85时加大回购（约$100M），这是好的时机判断——在低估值时回购。2024-2025年股价回升后回购金额未显著增加，管理层未追高</li>
+            <li><strong>股息策略：</strong>2020年开始派息，2023年开始增加"年度可变股息"（variable dividend），2026年Q1常规股息$0.39（+5%），年度可变股息$1.80（+6%）。总股息率约1.5%，不算高但有增长意识</li>
+            <li><strong>并购节奏：</strong>2025年完成11次收购（$64M收入），2026年目标至少$100M收入。并购是核心增长引擎，管理层自我设定"立即增厚EPS+至少10% EBITDA利润率"的纪律性标准</li>
+            <li><strong>可持续增长率：</strong>ROE 38% × 留存比66% = 约25%——理论上可持续增长率很高，但实际受限于住宅市场周期和并购标的可得性</li>
+        </ul>
+    </div>
+
+    <h3>管理层资本配置评分</h3>
+    <div class="info-box">
+        <table>
+            <tr><th>维度</th><th>评分</th><th>说明</th></tr>
+            <tr><td>并购纪律</td><td>★★★★</td><td>严格标准，避免高价收购，2025年11次收购均为bolt-on小规模</td></tr>
+            <tr><td>回购时机</td><td>★★★★</td><td>2022年低价时加大回购，未在高价时追高</td></tr>
+            <tr><td>股息政策</td><td>★★★</td><td>起步晚（2020年），但增长稳定，可变股息设计合理</td></tr>
+            <tr><td>杠杆管理</td><td>★★★★</td><td>净债务/EBITDA仅1.10x，远低于2.0x目标，留有下行周期缓冲</td></tr>
+            <tr><td>整体评分</td><td>★★★★</td><td>CEO Jeff Edwards任职超25年，资本配置纪律性强，是真正的"所有者-经营者"心态</td></tr>
+        </table>
+    </div>
+
+    <h2 id="chapter7">七、投资总结</h2>
+
+    <h3>7.1 各维度评级</h3>
+    <div class="info-box">
+        <table>
+            <tr><th>维度</th><th>评级</th><th>理由</th></tr>
+            <tr><td>业务可理解性</td><td>★★★★★</td><td>极简：安装保温材料+互补产品，收工程费。巴菲特最爱的"一个聪明人也能管好的生意"</td></tr>
+            <tr><td>护城河宽度</td><td>★★★</td><td>中等护城河：规模+并购能力+捆绑销售。无品牌/专利/监管壁垒</td></tr>
+            <tr><td>资本配置</td><td>★★★★</td><td>管理层优秀：低价回购+纪律性并购+合理杠杆</td></tr>
+            <tr><td>财务安全</td><td>★★★</td><td>净债务/EBITDA 1.10x安全，但资产负债率约58%偏高；Beta 1.72波动大</td></tr>
+            <tr><td>成长前景</td><td>★★★</td><td>短期受住宅周期压制，长期靠多元化+并购增长；成熟分支vs发展中分支的收入差距显示同店增长空间</td></tr>
+            <tr><td>估值吸引力</td><td>★★★</td><td>PE约24倍处于历史中位，P/FCF约22倍不算便宜；收益率（6.1%）+股息率（1.5%）合计7.6%尚可</td></tr>
+            <tr><td><strong>综合评级</strong></td><td><strong>★★★</strong></td><td><strong>观察 / 逢低买入</strong></td></tr>
+        </table>
+    </div>
+
+    <h3>7.2 估值对比</h3>
+    <div class="info-box">
+        <table>
+            <tr><th>公司</th><th>市值（亿$）</th><th>PE</th><th>股息率</th><th>净债务/EBITDA</th><th>ROE</th></tr>
+            <tr><td>IBP</td><td>61</td><td>24</td><td>1.5%</td><td>1.1x</td><td>38%</td></tr>
+            <tr><td>TopBuild（BLD）</td><td>~120</td><td>~20</td><td>~0.5%</td><td>~1.0x</td><td>~30%</td></tr>
+            <tr><td>Builders FirstSource（BLDR）</td><td>~180</td><td>~18</td><td>~0%</td><td>~1.5x</td><td>~25%</td></tr>
+            <tr><td>Masco（MAS）</td><td>~160</td><td>~20</td><td>~2.0%</td><td>净现金</td><td>~30%</td></tr>
+        </table>
+        <p><strong>结论：</strong>IBP的PE（24x）在同行中偏高，但ROE（38%）也最高，反映其并购驱动的高增长。TopBuild估值更低但增长更慢。当前估值未提供显著安全边际。</p>
+    </div>
+
+    <h3>7.3 主要风险</h3>
+    <div class="risk-item">
+        <strong>1. 住宅周期风险：</strong>约55%收入来自新建单户住宅，对利率和住房开工量高度敏感。2025年Q4营收已同比下滑0.4%，2026年Q1再降3.5%。高利率环境下住宅需求承压。
+    </div>
+    <div class="risk-item">
+        <strong>2. 大客户议价风险：</strong>前十大客户占收入约14%，大型建筑商（Lennar、D.R. Horton）议价能力强。IBP提价能力有限，材料成本上涨时可能无法完全转嫁。
+    </div>
+    <div class="risk-item">
+        <strong>3. 劳动力成本与短缺风险：</strong>安装工人是核心资产，行业劳动力短缺推高工资。2025年Q4净利润超预期部分来自利润率管理，但长期人工成本上升压力大。
+    </div>
+    <div class="risk-item">
+        <strong>4. 并购整合风险：</strong>增长高度依赖并购（2026年目标$100M收入）。如并购标的减少或估值上升，增长引擎可能熄火。商誉已达$4.6亿，存在减值风险。
+    </div>
+    <div class="risk-item">
+        <strong>5. 高Beta波动：</strong>Beta 1.72，市场下跌时放大波动。2022年股价从$190跌至$85（-55%），2025-2026年从$349跌至$170（-51%），波动剧烈。
+    </div>
+
+    <h3>7.4 关键催化剂</h3>
+    <div class="info-box">
+        <ul>
+            <li><strong>利率下行：</strong>美联储降息将直接刺激住宅需求，IBP营收和估值双升</li>
+            <li><strong>并购加速：</strong>如2026年完成$100M+收入收购，将超市场预期</li>
+            <li><strong>多元化见效：</strong>商业+R&R占比持续提升至30%+，降低周期波动，可能获得估值重估</li>
+            <li><strong>利润率扩张：</strong>调整后EBITDA利润率如从17.5%升至18-20%，将显著提升盈利</li>
+            <li><strong>可变股息增加：</strong>管理层已连续两年提高可变股息，如继续增长将吸引收益型投资者</li>
+        </ul>
+    </div>
+
+    <h3>7.5 安全边际与建议入场区间</h3>
+    <div class="highlight">
+        <strong>巴菲特/芒格式结论：</strong>
+        <ul>
+            <li><strong>当前价格 $227：</strong>PE约24倍，P/FCF约22倍，未提供足够安全边际</li>
+            <li><strong>合理估值区间：</strong>PE 18-20倍 → 对应股价 $170-190（基于2025 EPS $9.38）</li>
+            <li><strong>理想入场区间：</strong>$170-185（PE 18-20x，股息率2.0%+），对应2025年低点附近</li>
+            <li><strong>极端悲观区间：</strong>$140-160（PE 15-17x，类似2022年低谷），这是"恐惧中贪婪"的时机</li>
+            <li><strong>建议策略：</strong>当前观望，等待住宅周期见底信号（利率下行+开工量回升）或股价回调至$180以下再考虑建仓</li>
+        </ul>
+    </div>
+
+    <h3>7.6 最终评语</h3>
+    <div class="info-box">
+        <p><strong>"IBP是一个好生意，但不是好价格。"</strong></p>
+        <p>IBP符合巴菲特喜欢的许多特征：业务简单可理解、轻资产强现金流、CEO长期任职且资本配置纪律性强、通过并购实现复利增长。但它也有一些巴菲特会谨慎的特征：缺乏强大的品牌护城河、对周期性住宅市场依赖、大客户议价能力强。</p>
+        <p>芒格可能会说："这是一家'还不错'的公司，但不是'伟大'的公司。伟大的公司有定价权，IBP没有。伟大的公司有品牌壁垒，IBP没有。它有的是规模和并购能力——这些是真实的优势，但不够深。在正确的价格，这是一笔好投资；在错误的价格，这是一场赌博。"</p>
+        <p><strong>评级：观察 / 逢低买入 | 当前不宜追高</strong></p>
+    </div>
+
+    <script>
+        const peCtx = document.getElementById('peChart').getContext('2d');
+        new Chart(peCtx, {
+            type: 'line',
+            data: {
+                labels: ['2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025', '2026当前'],
+                datasets: [{
+                    label: 'PE（年末）',
+                    data: [25, 30, 35, 40, 25, 30, 40, 25, 12, 25, 25, 22, 24],
+                    borderColor: '#2e86c1',
+                    backgroundColor: 'rgba(46, 134, 193, 0.1)',
+                    fill: true,
+                    tension: 0.3
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: { display: true, text: 'Installed Building Products (IBP) 历史PE走势' },
+                    legend: { display: false }
+                },
+                scales: {
+                    y: { title: { display: true, text: 'PE倍数' } },
+                    x: { title: { display: true, text: '财年' } }
+                }
+            }
+        });
+
+        const roeCtx = document.getElementById('roeChart').getContext('2d');
+        new Chart(roeCtx, {
+            type: 'line',
+            data: {
+                labels: ['2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025'],
+                datasets: [{
+                    label: 'ROE（%）',
+                    data: [10, 12, 15, 20, 22, 25, 25, 35, 40, 35, 33, 38],
+                    borderColor: '#27ae60',
+                    backgroundColor: 'rgba(39, 174, 96, 0.1)',
+                    fill: true,
+                    tension: 0.3
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: { display: true, text: 'IBP 历史ROE走势（注意：含杠杆放大效应）' },
+                    legend: { display: false }
+                },
+                scales: {
+                    y: { title: { display: true, text: 'ROE %' } },
+                    x: { title: { display: true, text: '财年' } }
+                }
+            }
+        });
+    </script>
+
+    <script src="scores_client.js"></script>
+    <script src="stock_topbar.js"></script>
+</body>
+</html>
