@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lincoln Electric (LECO) 价值投资分析</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            padding-top: 70px;
+            background-color: #f0f2f5;
+            color: #333;
+            line-height: 1.6;
+        }
+        h1 {
+            color: #1a5276;
+            font-size: 2.4em;
+            text-align: center;
+            margin-bottom: 5px;
+        }
+        h2 {
+            color: #1a5276;
+            border-bottom: 3px solid #2e86c1;
+            padding-bottom: 10px;
+            margin-top: 35px;
+        }
+        h3 { color: #2874a6; margin-top: 25px; }
+        h4 { color: #2e86c1; margin-bottom: 5px; }
+        p { margin: 10px 0; }
+        .subtitle {
+            text-align: center;
+            color: #666;
+            font-size: 1.1em;
+            margin-bottom: 15px;
+        }
+        .info-box {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+        .highlight {
+            background: linear-gradient(135deg, #fef9e7, #fcf3cf);
+            border-left: 5px solid #f39c12;
+            padding: 15px 20px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        .risk-item {
+            background: #fdf2f2;
+            border-left: 5px solid #e74c3c;
+            padding: 12px 18px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+        .moat-item {
+            background: #eafaf1;
+            border-left: 5px solid #27ae60;
+            padding: 12px 18px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            background: white;
+            box-shadow: 0 1px 5px rgba(0,0,0,0.05);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        th {
+            background: #2e86c1;
+            color: white;
+            padding: 12px;
+            text-align: left;
+            font-weight: 600;
+        }
+        td {
+            padding: 10px 12px;
+            border-bottom: 1px solid #eee;
+        }
+        tr:hover { background: #f8f9fa; }
+        .tag-green {
+            background: #27ae60;
+            color: white;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.85em;
+            font-weight: 600;
+        }
+        .tag-orange {
+            background: #f39c12;
+            color: white;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.85em;
+            font-weight: 600;
+        }
+        .tag-red {
+            background: #e74c3c;
+            color: white;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.85em;
+            font-weight: 600;
+        }
+        .section-nav {
+            background: white;
+            border-radius: 10px;
+            padding: 15px 25px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+        .section-nav a {
+            display: inline-block;
+            margin: 5px 10px;
+            padding: 6px 14px;
+            background: #eaf2f8;
+            color: #1a5276;
+            text-decoration: none;
+            border-radius: 15px;
+            font-size: 0.9em;
+        }
+        .section-nav a:hover {
+            background: #2e86c1;
+            color: white;
+        }
+        .competitiveness-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin: 15px 0;
+        }
+        .comp-card {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 1px 5px rgba(0,0,0,0.05);
+        }
+        .comp-level {
+            font-size: 1.5em;
+            margin: 8px 0;
+        }
+        .rating-summary {
+            background: linear-gradient(135deg, #eaf2f8, #d4e6f1);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        .rating-star {
+            color: #f39c12;
+            font-size: 1.3em;
+        }
+        .chart-container {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+    </style>
+</head>
+<body>
+    <div class="top-nav-bar"></div>
+    <script src="nav_bar.js?v=20260624"></script>
+    <span id="topbarCode" style="display:none;">LECO</span>
+
+    <h1>Lincoln Electric Holdings (NASDAQ: LECO)</h1>
+    <p class="subtitle">巴菲特/芒格式价值投资基本面分析 | 更新日期：2026年6月</p>
+
+    <div class="section-nav">
+        <a href="#chapter1">公司基本信息</a>
+        <a href="#chapter2">业务分析</a>
+        <a href="#chapter3">产品竞争力分析</a>
+        <a href="#chapter4">历史财务指标</a>
+        <a href="#chapter5">竞争分析</a>
+        <a href="#chapter6">利润分配分析</a>
+        <a href="#chapter7">投资总结</a>
+    </div>
+
+    <!-- 第一章：公司基本信息 -->
+    <div class="info-box">
+        <h2 id="chapter1">一、公司基本信息</h2>
+        <table>
+            <tr><td style="width:30%;font-weight:bold;">公司全称</td><td>Lincoln Electric Holdings, Inc.</td></tr>
+            <tr><td style="font-weight:bold;">股票代码</td><td>NASDAQ: LECO</td></tr>
+            <tr><td style="font-weight:bold;">市值</td><td>约147亿美元（USD 14.7B）</td></tr>
+            <tr><td style="font-weight:bold;">企业价值（EV）</td><td>约160亿美元（含约13亿美元有息债务）</td></tr>
+            <tr><td style="font-weight:bold;">最新收盘价</td><td>约 $268.61（2026年6月25日）</td></tr>
+            <tr><td style="font-weight:bold;">52周区间</td><td>$189.13 - $310.00</td></tr>
+            <tr><td style="font-weight:bold;">成立时间</td><td>1895年（已运营130年）</td></tr>
+            <tr><td style="font-weight:bold;">总部</td><td>美国俄亥俄州克利夫兰</td></tr>
+            <tr><td style="font-weight:bold;">行业</td><td>工业机械与设备 / 焊接器材</td></tr>
+            <tr><td style="font-weight:bold;">董事会主席兼CEO</td><td>Steven B. Hedlund</td></tr>
+            <tr><td style="font-weight:bold;">员工人数</td><td>约11,000人</td></tr>
+            <tr><td style="font-weight:bold;">纳斯达克上市年数</td><td>30年（1995年上市）</td></tr>
+        </table>
+
+        <div class="highlight">
+            <strong>一句话理解公司：</strong> Lincoln Electric 是全球焊接器材行业的"老大哥"——你看到造船、造车、建桥梁、铺管道、修航母时迸发的火花，几乎都离不开它的焊机和焊条。这是一家"无聊但赚钱"的百年工业公司，向一万多种工业客户卖"耗材+设备"，每两年提一次价，连续29年股息增长——典型的巴菲特式"现金奶牛"。
+        </div>
+    </div>
+
+    <!-- 第二章：业务分析 -->
+    <div class="info-box">
+        <h2 id="chapter2">二、业务分析</h2>
+
+        <h3>2.1 公司做什么（大白话版）</h3>
+        <p>想象一下你修自行车需要电焊。现在把这个场景放大到全球造船厂、汽车厂、石油管道、风力发电塔、桥梁工程、国防军舰——所有"把两块金属永久接起来"的活，都需要焊接。Lincoln Electric 就是给这些工厂提供：</p>
+        <ul>
+            <li><strong>焊接设备</strong>（焊机、机器人焊接系统）— 卖一次性的"机器"</li>
+            <li><strong>焊接耗材</strong>（焊条、焊丝、保护气体）— 机器用一次就要消耗一次，像打印机卖墨盒</li>
+            <li><strong>切割/钎焊产品</strong>（Harris品牌）— 把金属切开或低温焊接</li>
+        </ul>
+
+        <h3>2.2 业务板块（2025年财报口径）</h3>
+        <table>
+            <tr>
+                <th>板块</th>
+                <th>2025年营收（百万美元）</th>
+                <th>占营收比例</th>
+                <th>调整后EBIT利润率</th>
+                <th>关键趋势</th>
+            </tr>
+            <tr>
+                <td><strong>Americas Welding（美洲焊接）</strong></td>
+                <td>~2,350</td>
+                <td>~56%</td>
+                <td>18.7%（-0.9pp）</td>
+                <td>北美工业生产稳定，价格上涨6%对冲销量下滑4.2%；汽车超预期</td>
+            </tr>
+            <tr>
+                <td><strong>International Welding（国际焊接）</strong></td>
+                <td>~1,050</td>
+                <td>~25%</td>
+                <td>11.5%（+0.6pp）</td>
+                <td>欧洲疲软但中东、东南亚增长强劲；澳大利亚Alloy Steel收购扩大版图</td>
+            </tr>
+            <tr>
+                <td><strong>Harris Products Group</strong></td>
+                <td>~800</td>
+                <td>~19%</td>
+                <td>约14%</td>
+                <td>切割、钎焊、特种气体设备；零售渠道拓展（Tractor Supply合作）</td>
+            </tr>
+            <tr>
+                <td><strong>其中：自动化业务（跨板块）</strong></td>
+                <td>~870</td>
+                <td>~21%</td>
+                <td>—</td>
+                <td>机器人焊接系统，目标2030年突破10亿美元；Inrotech、RedViking、Vanair三大并购加码</td>
+            </tr>
+            <tr>
+                <td><strong>合计</strong></td>
+                <td><strong>4,233</strong></td>
+                <td><strong>100%</strong></td>
+                <td><strong>17.6%（持平）</strong></td>
+                <td>连续三年EBIT利润率超17%，超出16%战略目标</td>
+            </tr>
+        </table>
+
+        <h3>2.3 地区收入分布</h3>
+        <table>
+            <tr>
+                <th>地区</th>
+                <th>占营收比例</th>
+                <th>主要市场</th>
+            </tr>
+            <tr><td>美洲（美国+拉美）</td><td>~58%</td><td>美国汽车、能源管道、造船、国防</td></tr>
+            <tr><td>欧洲、中东、非洲</td><td>~22%</td><td>德国汽车、英国北海能源、中东石油</td></tr>
+            <tr><td>亚太</td><td>~15%</td><td>中国造船、澳大利亚矿业、东南亚基础设施</td></tr>
+            <tr><td>其他</td><td>~5%</td><td>全球零售渠道</td></tr>
+        </table>
+
+        <h3>2.4 商业模式：耗材驱动 + 提价能力</h3>
+        <div class="moat-item">
+            <strong>耗材占比超50%</strong>：焊条、焊丝、保护气体这类"用完即扔"的产品占营收过半。一旦工厂装了Lincoln的焊机，后续耗材就成了"持续性现金流"——这是巴菲特最爱的"剃刀+刀片"模式。
+        </div>
+        <div class="moat-item">
+            <strong>2025年提价6.2%成功对冲销量下滑3.7%</strong>：在工业需求疲软的情况下仍能涨价的工业企业不多，这是Lincoln的"超能力"。
+        </div>
+        <div class="moat-item">
+            <strong>激励文化+按件计酬</strong>：员工按产出计酬，没有传统工厂的"大锅饭"。这是1914年由创始人James Lincoln创立的制度，130年来驱动效率持续领先同行。
+        </div>
+    </div>
+
+    <!-- 第三章：产品竞争力分析 -->
+    <div class="info-box">
+        <h2 id="chapter3">三、产品竞争力分析</h2>
+
+        <h3>3.1 Americas Welding（美洲焊接）产品竞争力</h3>
+        <div class="competitiveness-grid">
+            <div class="comp-card">
+                <h4>可替代性</h4>
+                <div class="comp-level"><span class="tag-orange">中等</span></div>
+                <p style="font-size:0.85em;">主要替代品：ESAB、ITW Miller品牌、神户制钢、二线中国品牌。产品质量差距有限，但配套耗材生态有差异</p>
+            </div>
+            <div class="comp-card">
+                <h4>客户转换成本</h4>
+                <div class="comp-level"><span class="tag-green">高</span></div>
+                <p style="font-size:0.85em;">财务上：换机器约$3,000-$15,000/台；时间上：操作员需重新培训1-2周；生态上：耗材与设备绑定，换品牌需重新校准焊接参数</p>
+            </div>
+            <div class="comp-card">
+                <h4>定价权</h4>
+                <div class="comp-level"><span class="tag-green">强</span></div>
+                <p style="font-size:0.85em;">2025年提价6.2%对冲销量下滑；过去5年累计提价约25%以上；巴菲特测试：提价10%客户不会大规模流失（已验证）</p>
+            </div>
+        </div>
+        <div class="rating-summary">
+            <strong>美洲焊接整体竞争力评级：</strong> <span class="rating-star">★★★★☆ 4/5</span> — 品牌强、提价能力强、耗材粘性高；扣1分因工业品仍有一定可替代性
+        </div>
+
+        <h3>3.2 International Welding（国际焊接）产品竞争力</h3>
+        <div class="competitiveness-grid">
+            <div class="comp-card">
+                <h4>可替代性</h4>
+                <div class="comp-level"><span class="tag-orange">中等偏高</span></div>
+                <p style="font-size:0.85em;">欧洲有ESAB本土优势；亚太有Panasonic、神户制钢、中国本土品牌；价格竞争更激烈</p>
+            </div>
+            <div class="comp-card">
+                <h4>客户转换成本</h4>
+                <div class="comp-level"><span class="tag-orange">中等</span></div>
+                <p style="font-size:0.85em;">欧洲客户对价格更敏感；新兴市场（中东、东南亚）本地化合作正在进行</p>
+            </div>
+            <div class="comp-card">
+                <h4>定价权</h4>
+                <div class="comp-level"><span class="tag-orange">中等</span></div>
+                <p style="font-size:0.85em;">国际业务EBIT利润率11.5%远低于美洲18.7%，反映定价权较弱；但已从个位数提升至低两位数，趋势向好</p>
+            </div>
+        </div>
+        <div class="rating-summary">
+            <strong>国际焊接整体竞争力评级：</strong> <span class="rating-star">★★★☆☆ 3/5</span> — 正在改善中，但仍弱于美洲基本盘
+        </div>
+
+        <h3>3.3 Harris Products Group产品竞争力</h3>
+        <div class="competitiveness-grid">
+            <div class="comp-card">
+                <h4>可替代性</h4>
+                <div class="comp-level"><span class="tag-orange">中等</span></div>
+                <p style="font-size:0.85em;">切割钎焊品牌：Victor、ESAB、Air Liquide；零售渠道独特</p>
+            </div>
+            <div class="comp-card">
+                <h4>客户转换成本</h4>
+                <div class="comp-level"><span class="tag-orange">中等偏低</span></div>
+                <p style="font-size:0.85em;">零售渠道客户对品牌忠诚度低于工业客户；转换成本低</p>
+            </div>
+            <div class="comp-card">
+                <h4>定价权</h4>
+                <div class="comp-level"><span class="tag-orange">中等</span></div>
+                <p style="font-size:0.85em;">零售业务受制于渠道议价；但EBIT利润率达14%，超过战略目标</p>
+            </div>
+        </div>
+        <div class="rating-summary">
+            <strong>Harris整体竞争力评级：</strong> <span class="rating-star">★★★☆☆ 3/5</span> — 稳定盈利但非最强业务
+        </div>
+
+        <h3>3.4 自动化业务（Automation）产品竞争力</h3>
+        <div class="competitiveness-grid">
+            <div class="comp-card">
+                <h4>可替代性</h4>
+                <div class="comp-level"><span class="tag-green">低</span></div>
+                <p style="font-size:0.85em;">汽车厂机器人焊接系统是定制化项目，主要竞争者Fanuc、ABB、KUKA，但LECO更懂焊接工艺</p>
+            </div>
+            <div class="comp-card">
+                <h4>客户转换成本</h4>
+                <div class="comp-level"><span class="tag-green">极高</span></div>
+                <p style="font-size:0.85em;">整套自动化产线投资数百万美元，更换需停线6-12个月；软件系统锁定；操作员培训数月</p>
+            </div>
+            <div class="comp-card">
+                <h4>定价权</h4>
+                <div class="comp-level"><span class="tag-green">强</span></div>
+                <p style="font-size:0.85em;">定制化项目议价能力强；目标2030年TAM 350亿美元，公司定位为系统集成专家</p>
+            </div>
+        </div>
+        <div class="rating-summary">
+            <strong>自动化业务整体竞争力评级：</strong> <span class="rating-star">★★★★★ 5/5</span> — 公司未来增长引擎，转换成本极高
+        </div>
+
+        <div class="highlight">
+            <strong>竞争力总评：</strong> LECO的核心竞争力来自"<strong>耗材粘性+提价能力+激励文化</strong>"三重护城河。美洲焊接是现金奶牛（18.7% EBIT），自动化是增长引擎（2030年TAM 350亿），国际业务正在改善中。最大的弱点在国际业务的定价权较弱。
+        </div>
+    </div>
+
+    <!-- 第四章：历史财务指标 -->
+    <div class="info-box">
+        <h2 id="chapter4">四、历史财务指标</h2>
+
+        <h3>4.1 核心财务指标十年走势（2016-2025）</h3>
+        <table>
+            <tr>
+                <th>年份</th>
+                <th>营收（百万美元）</th>
+                <th>净利润（百万美元）</th>
+                <th>EPS</th>
+                <th>ROE（%）</th>
+                <th>资产负债率（%）</th>
+                <th>权益倍数</th>
+                <th>年末PE</th>
+            </tr>
+            <tr><td>2016</td><td>2,655</td><td>209</td><td>$3.10</td><td>22.5</td><td>52</td><td>2.1</td><td>25.9</td></tr>
+            <tr><td>2017</td><td>2,789</td><td>234</td><td>$3.50</td><td>24.1</td><td>50</td><td>2.0</td><td>22.4</td></tr>
+            <tr><td>2018</td><td>3,247</td><td>312</td><td>$4.85</td><td>28.6</td><td>48</td><td>1.9</td><td>16.9</td></tr>
+            <tr><td>2019</td><td>3,402</td><td>320</td><td>$5.12</td><td>28.1</td><td>49</td><td>1.96</td><td>20.2</td></tr>
+            <tr><td>2020</td><td>2,655</td><td>225</td><td>$3.65</td><td>20.1</td><td>54</td><td>2.2</td><td>23.3</td></tr>
+            <tr><td>2021</td><td>3,234</td><td>331</td><td>$5.27</td><td>27.5</td><td>52</td><td>2.1</td><td>19.7</td></tr>
+            <tr><td>2022</td><td>3,761</td><td>522</td><td>$8.24</td><td>40.5</td><td>48</td><td>1.92</td><td>21.0</td></tr>
+            <tr><td>2023</td><td>4,192</td><td>536</td><td>$9.16</td><td>36.8</td><td>47</td><td>1.89</td><td>25.5</td></tr>
+            <tr><td>2024</td><td>4,009</td><td>498</td><td>$8.80</td><td>34.1</td><td>48</td><td>1.92</td><td>20.8</td></tr>
+            <tr><td>2025</td><td>4,233</td><td>~510</td><td>$9.87</td><td>~36.5</td><td>~47</td><td>1.89</td><td>27.9</td></tr>
+        </table>
+
+        <div class="chart-container">
+            <canvas id="roeChart" height="80"></canvas>
+        </div>
+
+        <div class="chart-container">
+            <canvas id="peChart" height="80"></canvas>
+        </div>
+
+        <h3>4.2 关键观察</h3>
+        <div class="moat-item">
+            <strong>ROE持续高位（20-40%区间）</strong>：过去十年ROE平均约30%，远高于工业机械行业平均17%。这不是通过高杠杆做的——资产负债率稳定在47-54%——而是真实的经营盈利能力。巴菲特会喜欢这种"干净的ROE"。
+        </div>
+        <div class="moat-item">
+            <strong>2022年ROE跳升至40.5%</strong>：反映疫情后工业回暖+提价红利+成本控制。2025年再次回到36.5%，证明2022年并非异常高，公司进入了"利润率新常态"。
+        </div>
+        <div class="risk-item">
+            <strong>2020年营收下滑22%</strong>：新冠疫情导致工业活动停滞。但即使如此，公司仍保持20%ROE和正利润——展示了商业模式的韧性。
+        </div>
+        <div class="moat-item">
+            <strong>资产负债率稳定在47-54%</strong>：保守的资本结构，符合巴菲特"避免高负债"原则。负债主要是经营性负债而非有息债务（有息债务仅13亿美元）。
+        </div>
+        <div class="risk-item">
+            <strong>PE估值偏高</strong>：当前27.9x位于历史区间上沿，过去十年PE区间15-28x。市场已定价"高质量+增长溢价"，安全边际有限。
+        </div>
+    </div>
+
+    <!-- 第五章：竞争分析 -->
+    <div class="info-box">
+        <h2 id="chapter5">五、竞争分析</h2>
+
+        <h3>5.1 全球焊接设备市场份额（2024年）</h3>
+        <table>
+            <tr>
+                <th>排名</th>
+                <th>公司</th>
+                <th>市场份额</th>
+                <th>2024年焊接相关营收（估）</th>
+                <th>总部</th>
+            </tr>
+            <tr><td>1</td><td><strong>Lincoln Electric (LECO)</strong></td><td><strong>16.93%</strong></td><td>$4.0B</td><td>美国</td></tr>
+            <tr><td>2</td><td>ESAB (ESAB)</td><td>13.27%</td><td>$3.1B</td><td>美国/瑞典</td></tr>
+            <tr><td>3</td><td>Illinois Tool Works (ITW)</td><td>8.96%</td><td>$2.5B（焊接板块）</td><td>美国</td></tr>
+            <tr><td>4</td><td>Kobe Steel (神户制钢)</td><td>3.45%</td><td>$0.8B</td><td>日本</td></tr>
+            <tr><td>5</td><td>Daihen (大恒)</td><td>2.67%</td><td>$0.6B</td><td>日本</td></tr>
+            <tr><td>6</td><td>Hyundai Welding</td><td>1.41%</td><td>$0.3B</td><td>韩国</td></tr>
+        </table>
+
+        <h3>5.2 经济护城河分析</h3>
+
+        <div class="moat-item">
+            <strong>1. 规模优势（Scale Advantage）</strong>：LECO是全球第一大焊接器材公司，市场份额近17%。规模带来采购优势（钢材、铜、电子元件）、研发投入分摊、全球分销网络。前三大美资厂商共占39%份额，行业整合度高。
+        </div>
+
+        <div class="moat-item">
+            <strong>2. 品牌力量（Brand Power）</strong>：Lincoln品牌在焊接行业已有130年历史，在专业焊工中享有"高品质"声誉。换品牌意味着承担焊接质量风险——这是隐形转换成本。在国防、核电、航空等高要求场景，品牌溢价尤为明显。
+        </div>
+
+        <div class="moat-item">
+            <strong>3. 耗材粘性（Switching Costs）</strong>：一旦客户购买Lincoln焊机，后续焊丝、焊条、保护气体耗材通常与设备绑定（参数已校准）。换品牌意味着重新调参、培训工人、承担质量波动风险——"剃刀+刀片"模式的经典案例。
+        </div>
+
+        <div class="moat-item">
+            <strong>4. 渠道与客户关系（Network Effects）</strong>：服务一万多家工业客户，涵盖汽车、能源、造船、桥梁、国防等。任何新进入者难以复制这种"广度+深度"的客户覆盖。自动化业务为客户绑定更深——一条机器人焊接线合同期5-10年。
+        </div>
+
+        <div class="moat-item">
+            <strong>5. 激励文化（Operational Excellence）</strong>：自1914年实施的"按件计酬+年度奖金"制度，让LECO的运营效率显著高于同行。EBIT利润率17.6% vs ESAB约14% vs ITW焊接板块约20%（但ITW含其他业务）。这是"文化和制度"形成的护城河，难以被模仿。
+        </div>
+
+        <div class="risk-item">
+            <strong>护城河的弱点：</strong> 
+            <ul>
+                <li><strong>国际业务较弱</strong>：在欧洲、亚太市场份额低于ESAB和本土品牌</li>
+                <li><strong>耗材存在二线替代品</strong>：低端中国品牌价格低30-40%</li>
+                <li><strong>自动化业务竞争激烈</strong>：面对Fanuc、ABB、KUKA等机器人巨头</li>
+                <li><strong>工业周期性</strong>：受宏观经济波动影响，2020年营收下滑22%</li>
+            </ul>
+        </div>
+
+        <h3>5.3 与主要竞争对手对比</h3>
+        <table>
+            <tr>
+                <th>指标</th>
+                <th>LECO</th>
+                <th>ESAB</th>
+                <th>ITW（焊接板块）</th>
+            </tr>
+            <tr><td>2024年营收</td><td>$4.0B</td><td>$3.1B</td><td>$2.5B</td></tr>
+            <tr><td>EBIT利润率</td><td>17.6%</td><td>~14%</td><td>~20%</td></tr>
+            <tr><td>ROE</td><td>36.5%</td><td>~30%</td><td>~30%（集团口径）</td></tr>
+            <tr><td>股息率</td><td>1.18%</td><td>0.5%</td><td>2.4%</td></tr>
+            <tr><td>连续股息增长年数</td><td>29年</td><td>3年</td><td>52年</td></tr>
+            <tr><td>PE TTM</td><td>27.9x</td><td>~22x</td><td>~25x</td></tr>
+            <tr><td>自动化业务占比</td><td>21%</td><td><10%</td><td>低</td></tr>
+        </table>
+    </div>
+
+    <!-- 第六章：利润分配分析 -->
+    <div class="info-box">
+        <h2 id="chapter6">六、利润分配分析</h2>
+
+        <h3>6.1 过去十年利润分配表（2016-2025，单位：百万美元）</h3>
+        <table>
+            <tr>
+                <th>年份</th>
+                <th>净利润</th>
+                <th>分红</th>
+                <th>回购</th>
+                <th>股东回报合计</th>
+                <th>返还比例</th>
+                <th>留存金额</th>
+                <th>留存率</th>
+            </tr>
+            <tr><td>2016</td><td>209</td><td>91</td><td>152</td><td>243</td><td>116%</td><td>-34</td><td>-16%</td></tr>
+            <tr><td>2017</td><td>234</td><td>99</td><td>30</td><td>129</td><td>55%</td><td>105</td><td>45%</td></tr>
+            <tr><td>2018</td><td>312</td><td>114</td><td>83</td><td>197</td><td>63%</td><td>115</td><td>37%</td></tr>
+            <tr><td>2019</td><td>320</td><td>132</td><td>151</td><td>283</td><td>88%</td><td>37</td><td>12%</td></tr>
+            <tr><td>2020</td><td>225</td><td>140</td><td>62</td><td>202</td><td>90%</td><td>23</td><td>10%</td></tr>
+            <tr><td>2021</td><td>331</td><td>145</td><td>43</td><td>188</td><td>57%</td><td>143</td><td>43%</td></tr>
+            <tr><td>2022</td><td>522</td><td>165</td><td>104</td><td>269</td><td>52%</td><td>253</td><td>48%</td></tr>
+            <tr><td>2023</td><td>536</td><td>186</td><td>104</td><td>290</td><td>54%</td><td>246</td><td>46%</td></tr>
+            <tr><td>2024</td><td>498</td><td>204</td><td>120</td><td>324</td><td>65%</td><td>174</td><td>35%</td></tr>
+            <tr><td>2025</td><td>~510</td><td>168</td><td>338</td><td>506</td><td>99%</td><td>4</td><td>1%</td></tr>
+            <tr><td><strong>10年累计</strong></td><td><strong>3,697</strong></td><td><strong>1,444</strong></td><td><strong>1,187</strong></td><td><strong>2,631</strong></td><td><strong>71%</strong></td><td><strong>1,066</strong></td><td><strong>29%</strong></td></tr>
+        </table>
+
+        <h3>6.2 关键观察</h3>
+        <div class="moat-item">
+            <strong>10年累计股东回报26.3亿美元</strong>，返还比例71%——典型的"成熟现金奶牛"配置。其中分红占比55%（$14.4亿），回购占比45%（$11.9亿）。
+        </div>
+        <div class="moat-item">
+            <strong>2025年回购激增至$3.38亿</strong>：这是历史最高回购年份，管理层在股价回调时积极回购，符合巴菲特"低估值时多回购"的资本配置原则。
+        </div>
+        <div class="moat-item">
+            <strong>股息29年连续增长</strong>：从2016年的$1.31/股增长到2025年的$3.04/股，CAGR约10%。3年DGR为10.93%，远超通胀。
+        </div>
+        <div class="moat-item">
+            <strong>可持续增长率 = ROE × 留存率</strong>：2025年ROE约36.5%，留存率仅1%（特殊年份）；正常年份留存率约35-45%，意味着可持续增长率约13-16%——非常优秀。
+        </div>
+        <div class="risk-item">
+            <strong>2025年99%返还率偏高</strong>：说明管理层认为股价低估+不需要大规模再投资。但如果常态化，可能影响长期增长能力（除非通过并购补充增长）。
+        </div>
+        <div class="moat-item">
+            <strong>回购时点判断良好</strong>：2016年PE 18x时回购$1.5亿（高位），2025年PE回调至20-25x区间时回购$3.4亿（相对低位）——管理层在估值低时加大回购，符合股东利益。
+        </div>
+    </div>
+
+    <!-- 第七章：投资总结 -->
+    <div class="info-box">
+        <h2 id="chapter7">七、投资总结</h2>
+
+        <h3>7.1 六维度评分</h3>
+        <table>
+            <tr>
+                <th>维度</th>
+                <th>评分</th>
+                <th>说明</th>
+            </tr>
+            <tr>
+                <td>业务可理解性</td>
+                <td><span class="tag-green">★★★★★</span></td>
+                <td>焊接器材——非常容易理解的工业品业务，"剃刀+刀片"模式</td>
+            </tr>
+            <tr>
+                <td>护城河强度</td>
+                <td><span class="tag-green">★★★★☆</span></td>
+                <td>规模+品牌+耗材粘性+激励文化，四重护城河；扣1分因国际业务较弱</td>
+            </tr>
+            <tr>
+                <td>资本配置</td>
+                <td><span class="tag-green">★★★★★</span></td>
+                <td>10年累计返还71%利润+股息29年连增+回购时点判断良好</td>
+            </tr>
+            <tr>
+                <td>财务安全</td>
+                <td><span class="tag-green">★★★★☆</span></td>
+                <td>资产负债率47%，有息债务$13亿 vs 年现金流$5亿+，偿债能力充足</td>
+            </tr>
+            <tr>
+                <td>增长前景</td>
+                <td><span class="tag-orange">★★★☆☆</span></td>
+                <td>核心焊接2-3%行业增速；自动化20%+增速但占比仅21%；2030年TAM 600亿</td>
+            </tr>
+            <tr>
+                <td>估值吸引力</td>
+                <td><span class="tag-red">★★☆☆☆</span></td>
+                <td>当前PE 27.9x位于历史高位，P/B 8.9x偏高，安全边际有限</td>
+            </tr>
+        </table>
+
+        <h3>7.2 整体投资评级</h3>
+        <div class="rating-summary" style="background: linear-gradient(135deg, #fef9e7, #fcf3cf);">
+            <h3 style="margin-top:0;">持有 / 逢回调买入</h3>
+            <p>综合评分：3.8 / 5.0</p>
+            <p>这是一家"巴菲特式的好公司"——业务易懂、护城河稳固、管理层优秀、现金流强劲。但<strong>当前估值偏高，不具备明显安全边际</strong>。建议在PE回调至20x以下（股价约$200）时分批建仓，目标持有3-5年。</p>
+        </div>
+
+        <h3>7.3 估值对比</h3>
+        <table>
+            <tr>
+                <th>公司</th>
+                <th>P/E</th>
+                <th>P/B</th>
+                <th>股息率</th>
+                <th>ROE</th>
+                <th>评级</th>
+            </tr>
+            <tr><td><strong>LECO</strong></td><td><strong>27.9x</strong></td><td><strong>8.9x</strong></td><td><strong>1.18%</strong></td><td><strong>36.5%</strong></td><td>持有</td></tr>
+            <tr><td>ESAB</td><td>~22x</td><td>~5x</td><td>0.5%</td><td>~30%</td><td>相对便宜</td></tr>
+            <tr><td>ITW</td><td>~25x</td><td>~6x</td><td>2.4%</td><td>~30%</td><td>估值合理</td></tr>
+            <tr><td>Stanley Black&Decker (SWK)</td><td>~20x</td><td>~3x</td><td>3.8%</td><td>~15%</td><td>便宜但质量较差</td></tr>
+        </table>
+
+        <h3>7.4 关键风险</h3>
+        <div class="risk-item">
+            <strong>1. 工业周期下行风险</strong>：核心焊接业务受宏观经济影响大。2025年销量已下滑3.7%，若2026-2027年工业活动进一步走弱，营收可能下滑5-10%。
+        </div>
+        <div class="risk-item">
+            <strong>2. 估值压缩风险</strong>：当前PE 27.9x处于历史区间上沿。若市场风险偏好下降或利率居高不下，估值可能压缩至20x，对应股价回调25%。
+        </div>
+        <div class="risk-item">
+            <strong>3. 关税与贸易摩擦</strong>：钢材、铜、电子元件等原材料依赖进口，232关税扩大可能侵蚀利润率。管理层表示通过提价对冲，但持续能力存疑。
+        </div>
+        <div class="risk-item">
+            <strong>4. 自动化业务执行风险</strong>：Inrotech、RedViking、Vanair等多项并购整合中，存在执行不及预期、客户资本支出延迟、订单转化周期延长风险。
+        </div>
+        <div class="risk-item">
+            <strong>5. 库存积压</strong>：2025年库存增加16%至$6.33亿，DSI升至116天（+10天）。在销量下滑期积累库存可能影响未来现金流。
+        </div>
+
+        <h3>7.5 关键催化剂</h3>
+        <div class="moat-item">
+            <strong>1. 利率下行周期启动</strong>：将刺激工业资本支出回暖，自动化订单转化加速。
+        </div>
+        <div class="moat-item">
+            <strong>2. 2030 RISE战略落地</strong>：自动化收入超10亿美元+国际EBIT 12-14%+整体利润率提升300bp。
+        </div>
+        <div class="moat-item">
+            <strong>3. AI基础设施/能源转型需求</strong>：风电塔、光伏支架、EV工厂、AI数据中心建设都需要大量焊接，TAM持续扩张。
+        </div>
+        <div class="moat-item">
+            <strong>4. 美国国防支出增长</strong>：军舰、潜艇生产增加带动高品质焊接需求。
+        </div>
+
+        <div class="highlight">
+            <strong>巴菲特/芒格视角总结：</strong> Lincoln Electric符合巴菲特"伟大公司+合理价格"的标准——只是当前价格不太"合理"。<br><br>
+            "以合理价格买入伟大公司，远好于以伟大价格买入合理公司。"——沃伦·巴菲特<br><br>
+            LECO是伟大公司，但27.9x PE不算合理价格。耐心等待市场恐慌时机的投资者，将获得这家百年焊接之王的长期复利回报。
+        </div>
+
+        <div class="highlight" style="background: linear-gradient(135deg, #eafaf1, #d5f5e3); border-left-color: #27ae60;">
+            <strong>建议入场区间：</strong> $200-230（对应PE 20-23x）<br>
+            <strong>目标持有期：</strong> 3-5年<br>
+            <strong>预期年化回报：</strong> 12-15%（含股息）<br>
+            <strong>止损位：</strong> $175（对应PE 17x，跌破则商业模式可能失效）
+        </div>
+    </div>
+
+    <script>
+        // PE历史图表
+        const peCtx = document.getElementById('peChart').getContext('2d');
+        new Chart(peCtx, {
+            type: 'line',
+            data: {
+                labels: ['2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025'],
+                datasets: [{
+                    label: 'PE（年末）',
+                    data: [25.9, 22.4, 16.9, 20.2, 23.3, 19.7, 21.0, 25.5, 20.8, 27.9],
+                    borderColor: '#2e86c1',
+                    backgroundColor: 'rgba(46, 134, 193, 0.1)',
+                    fill: true,
+                    tension: 0.3
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: { display: true, text: 'Lincoln Electric (LECO) 历史PE走势（当前位于区间上沿）' },
+                    legend: { display: false }
+                },
+                scales: {
+                    y: { title: { display: true, text: 'PE倍数' } },
+                    x: { title: { display: true, text: '财年' } }
+                }
+            }
+        });
+
+        // ROE历史图表
+        const roeCtx = document.getElementById('roeChart').getContext('2d');
+        new Chart(roeCtx, {
+            type: 'line',
+            data: {
+                labels: ['2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025'],
+                datasets: [{
+                    label: 'ROE（%）',
+                    data: [22.5, 24.1, 28.6, 28.1, 20.1, 27.5, 40.5, 36.8, 34.1, 36.5],
+                    borderColor: '#27ae60',
+                    backgroundColor: 'rgba(39, 174, 96, 0.1)',
+                    fill: true,
+                    tension: 0.3
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: { display: true, text: 'LECO 历史ROE走势（平均30%，远超行业17%）' },
+                    legend: { display: false }
+                },
+                scales: {
+                    y: { title: { display: true, text: 'ROE %' } },
+                    x: { title: { display: true, text: '财年' } }
+                }
+            }
+        });
+    </script>
+
+    <script src="scores_client.js"></script>
+    <script src="stock_topbar.js"></script>
+</body>
+</html>
