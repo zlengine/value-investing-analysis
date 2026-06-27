@@ -1,0 +1,1033 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Everus Construction Group (ECG) 价值投资分析</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            padding-top: 70px;
+            background-color: #f0f2f5;
+            color: #333;
+            line-height: 1.6;
+        }
+        h1 {
+            color: #1a5276;
+            font-size: 2.4em;
+            text-align: center;
+            margin-bottom: 5px;
+        }
+        h2 {
+            color: #1a5276;
+            border-bottom: 3px solid #2e86c1;
+            padding-bottom: 10px;
+            margin-top: 35px;
+        }
+        h3 { color: #2874a6; margin-top: 25px; }
+        h4 { color: #2e86c1; margin-bottom: 5px; }
+        p { margin: 10px 0; }
+        .subtitle {
+            text-align: center;
+            color: #666;
+            font-size: 1.1em;
+            margin-bottom: 15px;
+        }
+        .info-box {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+        .highlight {
+            background: linear-gradient(135deg, #fef9e7, #fcf3cf);
+            border-left: 5px solid #f39c12;
+            padding: 15px 20px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        .risk-item {
+            background: #fdf2f2;
+            border-left: 5px solid #e74c3c;
+            padding: 12px 18px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+        .moat-item {
+            background: #eafaf1;
+            border-left: 5px solid #27ae60;
+            padding: 12px 18px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            background: white;
+            box-shadow: 0 1px 5px rgba(0,0,0,0.05);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        th {
+            background: #2e86c1;
+            color: white;
+            padding: 12px;
+            text-align: left;
+            font-weight: 600;
+        }
+        td {
+            padding: 10px 12px;
+            border-bottom: 1px solid #eee;
+        }
+        tr:hover { background: #f8f9fa; }
+        .tag-green {
+            background: #27ae60;
+            color: white;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.85em;
+            font-weight: 600;
+        }
+        .tag-orange {
+            background: #f39c12;
+            color: white;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.85em;
+            font-weight: 600;
+        }
+        .tag-red {
+            background: #e74c3c;
+            color: white;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.85em;
+            font-weight: 600;
+        }
+        .section-nav {
+            background: white;
+            border-radius: 10px;
+            padding: 15px 25px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+        .section-nav a {
+            display: inline-block;
+            margin: 5px 10px;
+            padding: 6px 14px;
+            background: #eaf2f8;
+            color: #1a5276;
+            text-decoration: none;
+            border-radius: 15px;
+            font-size: 0.9em;
+        }
+        .section-nav a:hover {
+            background: #2e86c1;
+            color: white;
+        }
+        .chart-container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+        .rating-box {
+            display: inline-block;
+            background: #2e86c1;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 8px;
+            font-size: 1.2em;
+            font-weight: bold;
+            margin: 10px 5px;
+        }
+        .rating-box.hold { background: #f39c12; }
+        .rating-box.buy { background: #27ae60; }
+        .rating-box.sell { background: #e74c3c; }
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .summary-card {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 1px 5px rgba(0,0,0,0.05);
+        }
+        .summary-card h4 { color: #2e86c1; margin-bottom: 5px; }
+        .summary-card .value { font-size: 1.4em; font-weight: bold; color: #1a5276; }
+    </style>
+</head>
+<body>
+    <div class="top-nav-bar"></div>
+    <script src="nav_bar.js?v=20260624"></script>
+    <span id="topbarCode" style="display:none;">ECG</span>
+
+    <h1>Everus Construction Group (NYSE: ECG)</h1>
+    <p class="subtitle">巴菲特/芒格式价值投资基本面分析 | 更新日期：2026年6月</p>
+
+    <div class="section-nav">
+        <a href="#chapter1">公司基本信息</a>
+        <a href="#chapter2">业务分析</a>
+        <a href="#chapter3">产品竞争力分析</a>
+        <a href="#chapter4">历史财务指标</a>
+        <a href="#chapter5">竞争分析</a>
+        <a href="#chapter6">利润分配分析</a>
+        <a href="#chapter7">投资总结</a>
+    </div>
+
+    <div class="info-box">
+        <h2 id="chapter1">一、公司基本信息</h2>
+        <table>
+            <tr><td style="width:30%;font-weight:bold;">公司全称</td><td>Everus Construction Group, Inc.</td></tr>
+            <tr><td style="font-weight:bold;">股票代码</td><td>NYSE: ECG</td></tr>
+            <tr><td style="font-weight:bold;">市值</td><td>约78亿美元（USD 7.8B）</td></tr>
+            <tr><td style="font-weight:bold;">企业价值（EV）</td><td>约82亿美元（含约5亿美元有息债务，扣除3.76亿美元现金后净债务约1.2亿美元）</td></tr>
+            <tr><td style="font-weight:bold;">最新收盘价</td><td>约 $150（2026年6月）</td></tr>
+            <tr><td style="font-weight:bold;">52周区间</td><td>$58.00 - $171.58</td></tr>
+            <tr><td style="font-weight:bold;">成立时间</td><td>1924年（前身MDU Resources旗下业务，已运营100+年）</td></tr>
+            <tr><td style="font-weight:bold;">独立上市时间</td><td>2024年11月1日（从MDU Resources分拆）</td></tr>
+            <tr><td style="font-weight:bold;">总部</td><td>美国北达科他州俾斯麦（Bismarck, ND）</td></tr>
+            <tr><td style="font-weight:bold;">CEO</td><td>Jeffrey S. Thiede（总裁兼首席执行官）</td></tr>
+            <tr><td style="font-weight:bold;">员工人数</td><td>约9,400人</td></tr>
+            <tr><td style="font-weight:bold;">行业</td><td>工程与建筑（特种承包服务）</td></tr>
+            <tr><td style="font-weight:bold;">指数成分</td><td>S&P SmallCap 600® 成分股 | Forbes 2026 全美最成功小企业</td></tr>
+            <tr><td style="font-weight:bold;">使命口号</td><td>"Building America's Future®"（建造美国的未来）</td></tr>
+        </table>
+        <div class="highlight">
+            <strong>一句话理解公司：</strong> Everus Construction Group 是美国领先的特种承包商——你看到数据中心、电网、燃气管道、商业大楼、风电场、高速公路照明施工时那些戴着安全帽拉电线、铺管道的工人，很可能就是Everus的人。2024年11月刚从百年公用事业公司MDU Resources分拆独立上市，是AI数据中心+电网升级+可再生能源三大长期趋势的"卖铲人"。
+        </div>
+        <div class="moat-item">
+            <strong>巴菲特视角：</strong> ECG属于"规模较小但增长迅猛"的特种承包商——市值仅78亿美元（vs. Quanta Services 620亿、MasTec 144亿），但2025年营收增速31.5%、EBITDA增速37.7%，远超大同行。公司背靠AI数据中心爆发和电网升级大潮，背书订单（backlog）3.23亿美元（注：32.3亿美元），相当于2025年营收的86%，未来可见性强。
+        </div>
+    </div>
+
+    <div class="info-box">
+        <h2 id="chapter2">二、业务分析</h2>
+
+        <h3>2.1 业务模式（用大白话说）</h3>
+        <p>ECG做的是"<strong>给别人盖房子、拉电线、铺管道</strong>"的活，是典型的特种承包商（specialty contractor）。它不像开发商那样自己买地建房再卖，而是承接政府、公用事业公司、商业地产开发商的施工订单——包括写字楼、数据中心、电网、燃气管道、风电场等的电气、机械和基础设施施工。客户付工程款，ECG赚取服务费和材料差价。</p>
+        <p>业务模式核心特征：</p>
+        <ul>
+            <li><strong>项目制</strong>：大部分是固定价格合同（fixed-price），少量成本加成（cost-plus）</li>
+            <li><strong>背书订单驱动</strong>：backlog（已签未完工订单）是未来营收的"水库"</li>
+            <li><strong>劳动密集型</strong>：9,400名员工中大部分为一线施工人员</li>
+            <li><strong>区域分散</strong>：在美国48个州运营，分散项目风险</li>
+            <li><strong>MSA框架协议</strong>：与公用事业公司签长期主服务协议，可重复接单</li>
+        </ul>
+
+        <h3>2.2 两大业务板块（2025年）</h3>
+        <table>
+            <tr>
+                <th>板块</th>
+                <th>2025营收</th>
+                <th>占比</th>
+                <th>同比增速</th>
+                <th>运营利润率</th>
+                <th>核心业务</th>
+            </tr>
+            <tr>
+                <td><strong>电气与机械 (E&M)</strong></td>
+                <td>$29.1亿</td>
+                <td>77.6%</td>
+                <td>+43.8%</td>
+                <td>7.5%</td>
+                <td>电气布线、消防系统、机械管道、商业/工业建筑电气</td>
+            </tr>
+            <tr>
+                <td><strong>输配电 (T&D)</strong></td>
+                <td>$8.44亿</td>
+                <td>22.5%</td>
+                <td>+1.4%</td>
+                <td>10.6%</td>
+                <td>架空/地下电力线路、燃气管网、通讯基础设施、输电设备制造</td>
+            </tr>
+            <tr style="background:#fef9e7;font-weight:bold;">
+                <td>合计</td>
+                <td>$37.5亿</td>
+                <td>100%</td>
+                <td>+31.5%</td>
+                <td>8.5%（EBITDA）</td>
+                <td>两大业务覆盖商业/工业/公用事业全产业链</td>
+            </tr>
+        </table>
+
+        <h3>2.3 终端市场分布</h3>
+        <table>
+            <tr>
+                <th>终端市场</th>
+                <th>占比（2025）</th>
+                <th>增长趋势</th>
+                <th>说明</th>
+            </tr>
+            <tr>
+                <td><strong>商业（含数据中心）</strong></td>
+                <td>~35%</td>
+                <td>高速增长</td>
+                <td>AI数据中心是核心增长引擎，2025年E&M增量主要来自此</td>
+            </tr>
+            <tr>
+                <td><strong>公用事业</strong></td>
+                <td>~25%</td>
+                <td>稳定增长</td>
+                <td>电网升级、可再生能源并网、燃气管道维护</td>
+            </tr>
+            <tr>
+                <td><strong>可再生能源</strong></td>
+                <td>~15%</td>
+                <td>强增长</td>
+                <td>风电场、光伏电站电气施工</td>
+            </tr>
+            <tr>
+                <td><strong>工业</strong></td>
+                <td>~10%</td>
+                <td>温和增长</td>
+                <td>工厂扩建、制造业回流</td>
+            </tr>
+            <tr>
+                <td><strong>交通</strong></td>
+                <td>~8%</td>
+                <td>稳定</td>
+                <td>高速公路照明、机场、铁路电气</td>
+            </tr>
+            <tr>
+                <td><strong>机构/其他</strong></td>
+                <td>~7%</td>
+                <td>稳定</td>
+                <td>医院、学校、政府建筑</td>
+            </tr>
+        </table>
+
+        <h3>2.4 地理分布</h3>
+        <p>ECG是纯美国本土公司，100%营收来自美国48个州，无国际业务。运营地理覆盖广泛，主要营收州包括：</p>
+        <ul>
+            <li>西部：加州、华盛顿、俄勒冈（数据中心+可再生能源）</li>
+            <li>南部：得州、佛州、亚利桑那（数据中心+商业）</li>
+            <li>中西部：北达科他、明尼苏达、威斯康星（公用事业+工业）</li>
+            <li>东海岸：弗吉尼亚、北卡（数据中心走廊）</li>
+        </ul>
+
+        <div class="highlight">
+            <strong>业务模式核心看点：</strong> E&M是"量大利薄但增长快"的板块（77%营收但运营利润率仅7.5%），T&D是"量小利厚增长慢"的板块（22%营收但运营利润率10.6%）。理想战略是：用E&M的高速增长"借势"AI数据中心爆发做大营收基本盘，同时通过T&D的电网升级订单提供稳定现金流。2025年背书订单（backlog）从27.8亿增至32.3亿（+16%），预示2026年营收继续高增。
+        </div>
+    </div>
+
+    <div class="info-box">
+        <h2 id="chapter3">三、产品竞争力分析</h2>
+
+        <h3>3.1 电气与机械 (E&M) 板块竞争力</h3>
+        <p><strong>1. 可替代性：</strong> <span class="tag-orange">中等（Medium）</span></p>
+        <ul>
+            <li>主要替代方案：其他大型特种承包商（Quanta、MasTec、APi Group、IES）和区域小型承包商</li>
+            <li>替代体验差距：大型复杂项目（如数据中心、医院）对承包商资质、安全记录、规模能力要求高，小型承包商难以胜任</li>
+            <li>简单项目（如住宅电气）替代性强，但商业/工业/数据中心领域替代性较弱</li>
+            <li>替代趋势：稳定——AI数据中心项目规模越来越大，反而提高了行业门槛</li>
+        </ul>
+        <p><strong>2. 客户转换成本：</strong> <span class="tag-orange">中等（Medium）</span></p>
+        <ul>
+            <li>财务转换成本：低——工程合同按项目签，无长期锁定</li>
+            <li>时间转换成本：中——大型项目更换承包商需重新招标、重新熟悉项目，可能延误工期</li>
+            <li>捆绑转换成本：低——单一项目为主，无强捆绑</li>
+            <li>关系成本：中——长期合作的公用事业客户（MSA协议）有一定粘性，但商业客户转换容易</li>
+        </ul>
+        <p><strong>3. 定价权：</strong> <span class="tag-orange">中等（Medium）</span></p>
+        <ul>
+            <li>历史提价记录：项目合同多为竞标，定价权主要来自"市场紧"时报价能力</li>
+            <li>当前定价环境：劳动力紧张+数据中心需求爆发，议价能力正在增强</li>
+            <li>定价权来源：规模（ECG是美国前5大电气承包商）+ 安全记录（TRIR 1.06远低于行业）+ 全国覆盖</li>
+            <li>定价权趋势：增强——AI数据中心客户对工期和质量的敏感度高于价格</li>
+            <li><strong>巴菲特测试</strong>：若ECG报价提高10%，AI数据中心客户可能切换到Quanta或MasTec，定价权仍受限</li>
+        </ul>
+        <p><strong>整体竞争力评级：3/5星</strong> <span class="tag-orange">中等</span></p>
+
+        <h3>3.2 输配电 (T&D) 板块竞争力</h3>
+        <p><strong>1. 可替代性：</strong> <span class="tag-green">较低（Low）</span></p>
+        <ul>
+            <li>主要替代方案：Quanta Services（PWR）、MasTec（MTZ）、MYR Group、Primoris</li>
+            <li>替代体验差距：高压输电施工需要特种设备和熟练工，替代选项有限</li>
+            <li>ECG还生产输电线路施工设备（line-stringing equipment），形成上下游整合</li>
+            <li>替代趋势：减速——电网投资持续增长，但合格承包商数量有限</li>
+        </ul>
+        <p><strong>2. 客户转换成本：</strong> <span class="tag-green">较高（High）</span></p>
+        <ul>
+            <li>财务转换成本：中——MSA协议通常为多年期</li>
+            <li>时间转换成本：高——公用事业客户更换承包商需经监管审批，流程长</li>
+            <li>安全合规成本：高——新承包商需通过严格的安全资质审核</li>
+            <li>总体评估：公用事业客户粘性强，但大型招标仍竞争激烈</li>
+        </ul>
+        <p><strong>3. 定价权：</strong> <span class="tag-orange">中等偏强（Medium-Strong）</span></p>
+        <ul>
+            <li>历史提价记录：MSA协议通常含通胀调整条款，可转嫁成本</li>
+            <li>定价权来源：监管刚性（公用事业必须维护电网）+ 设备制造业务提供差异化</li>
+            <li>定价权趋势：增强——电网升级需求超过合格承包商产能</li>
+            <li><strong>巴菲特测试</strong>：若ECG对公用事业客户报价提高5%，客户可能接受（电网维护不可延后），但10%以上可能触发重新招标</li>
+        </ul>
+        <p><strong>整体竞争力评级：4/5星</strong> <span class="tag-green">较强</span></p>
+
+        <h3>3.3 整体业务竞争力总结</h3>
+        <table>
+            <tr>
+                <th>板块</th>
+                <th>可替代性</th>
+                <th>转换成本</th>
+                <th>定价权</th>
+                <th>综合评级</th>
+            </tr>
+            <tr>
+                <td>E&M（电气与机械）</td>
+                <td><span class="tag-orange">中等</span></td>
+                <td><span class="tag-orange">中等</span></td>
+                <td><span class="tag-orange">中等</span></td>
+                <td>3/5星</td>
+            </tr>
+            <tr>
+                <td>T&D（输配电）</td>
+                <td><span class="tag-green">较低</span></td>
+                <td><span class="tag-green">较高</span></td>
+                <td><span class="tag-orange">中等偏强</span></td>
+                <td>4/5星</td>
+            </tr>
+        </table>
+        <div class="highlight">
+            <strong>芒格视角：</strong> ECG不是"经济护城河深不可测"的伟大公司——它的可替代性和转换成本都属于中等水平，定价权主要来自"市场紧"而非品牌或专利。但这恰恰是巴菲特/芒格体系里"周期性成长的行业玩家"——在AI数据中心+电网升级+可再生能源三重周期叠加下，未来3-5年订单爆满，营收和利润都有强劲动能。这种公司的投资逻辑是"乘势而上"而非"长持永续"。
+        </div>
+    </div>
+
+    <div class="info-box">
+        <h2 id="chapter4">四、历史财务指标</h2>
+
+        <h3>4.1 关键财务数据（2022-2025）</h3>
+        <table>
+            <tr>
+                <th>指标</th>
+                <th>2022</th>
+                <th>2023</th>
+                <th>2024</th>
+                <th>2025</th>
+                <th>趋势</th>
+            </tr>
+            <tr>
+                <td>营收（百万美元）</td>
+                <td>2,700</td>
+                <td>2,854</td>
+                <td>2,850</td>
+                <td>3,746</td>
+                <td>2025年大涨31%</td>
+            </tr>
+            <tr>
+                <td>营收增速</td>
+                <td>+31.6%</td>
+                <td>+5.7%</td>
+                <td>-0.2%</td>
+                <td>+31.5%</td>
+                <td>波动大，受项目周期影响</td>
+            </tr>
+            <tr>
+                <td>毛利率</td>
+                <td>~10%</td>
+                <td>~11%</td>
+                <td>11.9%</td>
+                <td>12.1%</td>
+                <td>稳步改善</td>
+            </tr>
+            <tr>
+                <td>EBITDA（百万美元）</td>
+                <td>~165</td>
+                <td>~210</td>
+                <td>232</td>
+                <td>320</td>
+                <td>4年翻倍</td>
+            </tr>
+            <tr>
+                <td>EBITDA利润率</td>
+                <td>~6.1%</td>
+                <td>~7.4%</td>
+                <td>8.1%</td>
+                <td>8.5%</td>
+                <td>持续提升</td>
+            </tr>
+            <tr>
+                <td>净利润（百万美元）</td>
+                <td>125</td>
+                <td>137</td>
+                <td>143</td>
+                <td>202</td>
+                <td>2025年跳升40%</td>
+            </tr>
+            <tr>
+                <td>稀释EPS（美元）</td>
+                <td>2.45</td>
+                <td>2.69</td>
+                <td>2.81</td>
+                <td>3.95</td>
+                <td>4年CAGR 12.7%</td>
+            </tr>
+            <tr>
+                <td>ROE（净资产收益率）</td>
+                <td>~47%</td>
+                <td>27.6%</td>
+                <td>26.0%</td>
+                <td>28.8%</td>
+                <td>2022异常高（分拆前权益基数小）</td>
+            </tr>
+            <tr>
+                <td>ROIC（投入资本回报率）</td>
+                <td>~21%</td>
+                <td>22%</td>
+                <td>19%</td>
+                <td>21%</td>
+                <td>稳定在20%左右</td>
+            </tr>
+            <tr>
+                <td>资产负债率</td>
+                <td>~35%</td>
+                <td>~30%</td>
+                <td>~28%</td>
+                <td>~30%</td>
+                <td>低杠杆，财务健康</td>
+            </tr>
+            <tr>
+                <td>长期债务（百万美元）</td>
+                <td>N/A</td>
+                <td>258</td>
+                <td>201</td>
+                <td>323</td>
+                <td>2025年增加并购资金</td>
+            </tr>
+            <tr>
+                <td>净杠杆（Net Debt/EBITDA）</td>
+                <td>N/A</td>
+                <td>~0.5x</td>
+                <td>~0.2x</td>
+                <td>0.4x</td>
+                <td>极低杠杆</td>
+            </tr>
+            <tr>
+                <td>PE（年末）</td>
+                <td>N/A</td>
+                <td>N/A</td>
+                <td>~30x</td>
+                <td>~36x</td>
+                <td>独立上市后估值持续走高</td>
+            </tr>
+        </table>
+
+        <h3>4.2 ROE历史走势图</h3>
+        <div class="chart-container">
+            <canvas id="roeChart" height="100"></canvas>
+        </div>
+
+        <h3>4.3 营收与EBITDA历史走势图</h3>
+        <div class="chart-container">
+            <canvas id="revChart" height="100"></canvas>
+        </div>
+
+        <div class="highlight">
+            <strong>财务质量评估：</strong>
+            <ul>
+                <li><strong>ROE的真实性</strong>：2022年ROE 47%异常高，因分拆前权益基数小（无形资产摊销后权益被压缩）；2023-2025年ROE稳定在26-29%，才是"清洁"的经营ROE</li>
+                <li><strong>杠杆水平</strong>：净杠杆0.4x，远低于行业平均（Quanta约1.5x，MasTec约2.0x），财务非常安全</li>
+                <li><strong>利润率改善</strong>：EBITDA利润率从2022年6.1%提升至2025年8.5%，反映规模效应和项目结构优化</li>
+                <li><strong>波动性</strong>：营收增速波动大（2022年+31%→2024年-0.2%→2025年+31%），反映项目制业务的周期性</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="info-box">
+        <h2 id="chapter5">五、竞争分析</h2>
+
+        <h3>5.1 主要竞争对手对比</h3>
+        <table>
+            <tr>
+                <th>公司</th>
+                <th>代码</th>
+                <th>市值</th>
+                <th>2024营收</th>
+                <th>Backlog</th>
+                <th>EBITDA率</th>
+                <th>核心优势</th>
+            </tr>
+            <tr>
+                <td><strong>Quanta Services</strong></td>
+                <td>PWR</td>
+                <td>$62B</td>
+                <td>$23.7B</td>
+                <td>$35.8B</td>
+                <td>~10%</td>
+                <td>电网EPC绝对龙头，规模碾压</td>
+            </tr>
+            <tr>
+                <td><strong>MasTec</strong></td>
+                <td>MTZ</td>
+                <td>$14.4B</td>
+                <td>$12.3B</td>
+                <td>$15.9B</td>
+                <td>~7%</td>
+                <td>管道+通信+清洁能源多元</td>
+            </tr>
+            <tr>
+                <td><strong>Primoris</strong></td>
+                <td>PRIM</td>
+                <td>~$5B</td>
+                <td>~$6B</td>
+                <td>~$11B</td>
+                <td>~5%</td>
+                <td>公用事业+可再生能源</td>
+            </tr>
+            <tr>
+                <td><strong>MYR Group</strong></td>
+                <td>MYRG</td>
+                <td>~$3B</td>
+                <td>~$3.5B</td>
+                <td>~$2B</td>
+                <td>~7%</td>
+                <td>纯T&D玩家</td>
+            </tr>
+            <tr>
+                <td><strong>Dycom</strong></td>
+                <td>DY</td>
+                <td>~$13B</td>
+                <td>~$4B</td>
+                <td>~$8B</td>
+                <td>~10%</td>
+                <td>电信承包龙头</td>
+            </tr>
+            <tr>
+                <td><strong>APi Group</strong></td>
+                <td>APG</td>
+                <td>~$5B</td>
+                <td>~$7B</td>
+                <td>~$6B</td>
+                <td>~12%</td>
+                <td>消防+机械服务</td>
+            </tr>
+            <tr style="background:#fef9e7;font-weight:bold;">
+                <td>Everus (ECG)</td>
+                <td>ECG</td>
+                <td>$7.8B</td>
+                <td>$2.85B</td>
+                <td>$3.23B</td>
+                <td>8.5%</td>
+                <td>E&M+T&D双轮，聚焦数据中心</td>
+            </tr>
+        </table>
+
+        <h3>5.2 市场份额与地位</h3>
+        <p>美国特种承包市场高度分散，ECG是其中的<strong>中型玩家</strong>：</p>
+        <ul>
+            <li><strong>电气承包</strong>：ECG排名美国第5大电气承包商（Electrical Construction & Maintenance 2025 Top 50）</li>
+            <li><strong>整体特种承包</strong>：ECG排名美国第12大特种承包商（ENR 2025 Top 600）</li>
+            <li><strong>T&D细分</strong>：ECG排名美国前10大输配电承包商</li>
+            <li><strong>市场份额</strong>：估计美国特种承包市场份额不足2%，但数据中心细分市场份额约5-8%</li>
+        </ul>
+
+        <h3>5.3 经济护城河评估</h3>
+        <div class="moat-item">
+            <strong>1. 规模优势（弱-中等）</strong>
+            <p>ECG年营收37.5亿美元，9,400名员工，规模小于Quanta（237亿）和MasTec（123亿），但在中小型项目和中西部市场仍有规模优势。规模优势主要体现在采购议价和人员调度上。</p>
+        </div>
+        <div class="moat-item">
+            <strong>2. 品牌声誉（弱）</strong>
+            <p>"Building America's Future"口号有一定认知度，Forbes最成功小企业榜单提供背书，但品牌力远弱于百年老牌Quanta。在B2B承包市场，品牌溢价有限。</p>
+        </div>
+        <div class="moat-item">
+            <strong>3. 客户关系/转换成本（中等）</strong>
+            <p>与公用事业客户的MSA长期协议提供一定粘性；安全记录（TRIR 1.06）和过往项目业绩是公用事业客户选择的关键。但商业客户转换容易。</p>
+        </div>
+        <div class="moat-item">
+            <strong>4. 网络效应（无）</strong>
+            <p>承包业务无网络效应。</p>
+        </div>
+        <div class="moat-item">
+            <strong>5. 专利/技术（弱）</strong>
+            <p>T&D板块的输电线路施工设备制造有一定技术壁垒，但非核心护城河。</p>
+        </div>
+        <div class="moat-item">
+            <strong>6. 区位/资源优势（中等）</strong>
+            <p>9,400名熟练工人是稀缺资源——当前美国建筑工人短缺，谁有人谁就能接单。ECG在2025年扩招并保持低离职率，是关键竞争优势。</p>
+        </div>
+
+        <div class="risk-item">
+            <strong>护城河综合评估：浅（Narrow Moat）</strong>
+            <p>ECG的护城河不深——主要靠"市场紧"和"有人手"在当前周期里竞争。一旦AI数据中心投资放缓或劳动力短缺缓解，竞争优势会快速削弱。这不是巴菲特/芒格体系里"长期持有30年"的伟大公司，而是"周期性顺势成长"的中型玩家。</p>
+        </div>
+    </div>
+
+    <div class="info-box">
+        <h2 id="chapter6">六、利润分配分析</h2>
+
+        <h3>6.1 股息与回购政策</h3>
+        <div class="risk-item">
+            <strong>当前政策：不分红、不回购</strong>
+            <p>ECG作为2024年11月才独立上市的新公司，目前<strong>不派发股息、不进行股票回购</strong>。管理层明确表示："优先投资有机增长，同时寻求符合长期增长目标的战略并购。"</p>
+        </div>
+
+        <h3>6.2 利润分配历史（2022-2025）</h3>
+        <table>
+            <tr>
+                <th>年份</th>
+                <th>净利润</th>
+                <th>股息</th>
+                <th>回购</th>
+                <th>资本开支</th>
+                <th>并购支出</th>
+                <th>留存金额</th>
+                <th>留存比例</th>
+            </tr>
+            <tr>
+                <td>2022</td>
+                <td>$125M</td>
+                <td>$0</td>
+                <td>$0</td>
+                <td>~$30M</td>
+                <td>~$0</td>
+                <td>$125M</td>
+                <td>100%</td>
+            </tr>
+            <tr>
+                <td>2023</td>
+                <td>$137M</td>
+                <td>$0</td>
+                <td>$0</td>
+                <td>~$35M</td>
+                <td>~$0</td>
+                <td>$137M</td>
+                <td>100%</td>
+            </tr>
+            <tr>
+                <td>2024</td>
+                <td>$143M</td>
+                <td>$0</td>
+                <td>$0</td>
+                <td>~$40M</td>
+                <td>~$0</td>
+                <td>$143M</td>
+                <td>100%</td>
+            </tr>
+            <tr>
+                <td>2025</td>
+                <td>$202M</td>
+                <td>$0</td>
+                <td>$0</td>
+                <td>~$50M</td>
+                <td>~$0</td>
+                <td>$202M</td>
+                <td>100%</td>
+            </tr>
+            <tr style="background:#fef9e7;font-weight:bold;">
+                <td>4年累计</td>
+                <td>$607M</td>
+                <td>$0</td>
+                <td>$0</td>
+                <td>~$155M</td>
+                <td>~$0</td>
+                <td>$607M</td>
+                <td>100%</td>
+            </tr>
+        </table>
+
+        <h3>6.3 资本配置评估</h3>
+        <div class="moat-item">
+            <strong>管理层资本配置策略（4EVER框架）：</strong>
+            <ul>
+                <li><strong>E - Employees（员工）</strong>：投资人才发展，2025年扩招并保持低离职率</li>
+                <li><strong>V - Value（价值）</strong>：项目执行纪律，提升EBITDA利润率</li>
+                <li><strong>E - Execution（执行）</strong>：安全记录改善（TRIR下降10%）</li>
+                <li><strong>R - Returns（回报）</strong>：聚焦有机增长+战略并购</li>
+            </ul>
+        </div>
+        <div class="highlight">
+            <strong>巴菲特视角：</strong>
+            <ul>
+                <li><strong>分红政策：</strong>不分红对新公司合理——公司仍处于扩张期，留存资金用于增长是正确选择</li>
+                <li><strong>留存比例：</strong>100%留存，可持续增长率 = ROE × 留存率 = 28.8% × 100% = 28.8%（理论值）</li>
+                <li><strong>实际再投资质量：</strong>2022-2025年累计留存$607M，营收从$27亿增至$37.5亿（+38%），EBITDA从$165M增至$320M（+94%），说明留存资金的再投资回报率良好</li>
+                <li><strong>并购态度：</strong>谨慎型——目前无重大并购，但管理层明确表示"在寻找符合战略的标的"</li>
+                <li><strong>净杠杆0.4x：</strong>资产负债表非常干净，有充足弹药用于未来并购或启动回购/分红</li>
+            </ul>
+        </div>
+        <div class="risk-item">
+            <strong>潜在风险：</strong>若2026-2027年营收增速放缓而公司仍未启动股东回报，可能面临"现金堆积"问题——目前$3.76亿现金等流动性已超过年度资本开支10倍以上。
+        </div>
+    </div>
+
+    <div class="info-box">
+        <h2 id="chapter7">七、投资总结</h2>
+
+        <h3>7.1 综合评分</h3>
+        <table>
+            <tr>
+                <th>维度</th>
+                <th>评分（1-5）</th>
+                <th>评价</th>
+            </tr>
+            <tr>
+                <td>业务可理解性</td>
+                <td>4.5</td>
+                <td>承包服务模式简单清晰，符合巴菲特"看得懂"标准</td>
+            </tr>
+            <tr>
+                <td>经济护城河</td>
+                <td>2.5</td>
+                <td>护城河浅，主要靠周期+人手，非长期可持续优势</td>
+            </tr>
+            <tr>
+                <td>管理层资本配置</td>
+                <td>3.5</td>
+                <td>不分红不回购合理，再投资回报率良好，但并购能力尚未验证</td>
+            </tr>
+            <tr>
+                <td>财务安全性</td>
+                <td>4.5</td>
+                <td>净杠杆0.4x，现金充裕，财务非常健康</td>
+            </tr>
+            <tr>
+                <td>成长前景</td>
+                <td>4.5</td>
+                <td>AI数据中心+电网升级+可再生能源三重周期叠加，3-5年高增长可见</td>
+            </tr>
+            <tr>
+                <td>估值吸引力</td>
+                <td>2.5</td>
+                <td>PE 36x位于历史高位，无安全边际</td>
+            </tr>
+            <tr style="background:#fef9e7;font-weight:bold;">
+                <td>综合评分</td>
+                <td>3.7/5.0</td>
+                <td>持有/等待回调买入</td>
+            </tr>
+        </table>
+
+        <h3>7.2 投资评级</h3>
+        <div class="rating-box hold">持有 / 逢回调买入</div>
+
+        <h3>7.3 估值对比</h3>
+        <table>
+            <tr>
+                <th>公司</th>
+                <th>P/E</th>
+                <th>P/S</th>
+                <th>EV/EBITDA</th>
+                <th>2025营收增速</th>
+                <th>评级</th>
+            </tr>
+            <tr>
+                <td><strong>ECG</strong></td>
+                <td>36x</td>
+                <td>2.2x</td>
+                <td>15.3x</td>
+                <td>+31.5%</td>
+                <td>持有</td>
+            </tr>
+            <tr>
+                <td>Quanta (PWR)</td>
+                <td>~30x</td>
+                <td>2.6x</td>
+                <td>~17x</td>
+                <td>+15%</td>
+                <td>合理偏贵</td>
+            </tr>
+            <tr>
+                <td>MasTec (MTZ)</td>
+                <td>~25x</td>
+                <td>1.2x</td>
+                <td>~11x</td>
+                <td>+10%</td>
+                <td>相对便宜</td>
+            </tr>
+            <tr>
+                <td>Primoris (PRIM)</td>
+                <td>~15x</td>
+                <td>0.8x</td>
+                <td>~8x</td>
+                <td>+5%</td>
+                <td>便宜</td>
+            </tr>
+            <tr>
+                <td>Dycom (DY)</td>
+                <td>~28x</td>
+                <td>3.3x</td>
+                <td>~14x</td>
+                <td>+18%</td>
+                <td>合理偏贵</td>
+            </tr>
+        </table>
+        <div class="highlight">
+            <strong>估值结论：</strong> ECG的PE 36x是同业最高，主要因市场给予AI数据中心概念和31%高增速以"成长溢价"。但相比增速更慢的PWR（30x）和DY（28x），ECG估值已不便宜。P/S 2.2x和EV/EBITDA 15.3x均高于行业均值。当前股价已充分反映2026年成长预期，缺乏安全边际。
+        </div>
+
+        <h3>7.4 建议入场区间</h3>
+        <table>
+            <tr>
+                <th>策略</th>
+                <th>建议价格区间</th>
+                <th>对应估值</th>
+                <th>触发条件</th>
+            </tr>
+            <tr>
+                <td><strong>当前持有</strong></td>
+                <td>$140-160</td>
+                <td>PE 32-36x</td>
+                <td>已持仓者可持有，享受成长</td>
+            </tr>
+            <tr>
+                <td><strong>逢低买入（推荐）</strong></td>
+                <td>$100-115</td>
+                <td>PE 22-26x</td>
+                <td>市场回调或AI概念降温时介入</td>
+            </tr>
+            <tr>
+                <td><strong>深度价值区间</strong></td>
+                <td>$75-90</td>
+                <td>PE 17-20x</td>
+                <td>业绩不及预期或行业危机时</td>
+            </tr>
+            <tr style="background:#fdf2f2;">
+                <td><strong>止损位</strong></td>
+                <td>$65</td>
+                <td>PE 14x</td>
+                <td>跌破则商业模式或周期逻辑失效</td>
+            </tr>
+        </table>
+
+        <h3>7.5 关键催化剂</h3>
+        <div class="moat-item">
+            <strong>利好催化剂：</strong>
+            <ol>
+                <li><strong>AI数据中心投资持续加码</strong>： hyperscaler 2026-2028年capex指引超预期</li>
+                <li><strong>电网升级政策落地</strong>：FERC长距离输电规划+州级电网现代化法案</li>
+                <li><strong>大订单签订</strong>：单笔超$1B的 hyperscaler 数据中心合同</li>
+                <li><strong>启动股东回报</strong>：2027年首次宣布分红或回购，估值重估</li>
+                <li><strong>战略并购</strong>：收购区域小型承包商扩大版图</li>
+                <li><strong>利润率持续提升</strong>：规模效应使EBITDA率突破9%</li>
+            </ol>
+        </div>
+        <div class="risk-item">
+            <strong>主要风险：</strong>
+            <ol>
+                <li><strong>AI投资放缓</strong>：hyperscaler削减capex，数据中心项目推迟或取消</li>
+                <li><strong>劳动力短缺加剧</strong>：无法招到足够熟练工人，影响接单能力</li>
+                <li><strong>利率上升</strong>：商业地产融资成本上升，新项目减少</li>
+                <li><strong>大型项目执行风险</strong>：固定价格合同若成本超支将吞噬利润</li>
+                <li><strong>客户集中度</strong>：若top 5客户占比超40%，单一客户流失风险大</li>
+                <li><strong>周期反转</strong>：建筑周期下行时营收可能大幅下滑（参考2024年-0.2%）</li>
+                <li><strong>估值回归</strong>：PE从36x回落至25x意味着30%下跌空间</li>
+            </ol>
+        </div>
+
+        <h3>7.6 巴菲特/芒格视角总结</h3>
+        <div class="highlight">
+            <strong>"在别人贪婪时恐惧，在别人恐惧时贪婪。"</strong> —— 沃伦·巴菲特
+            <p>ECG当前是市场"贪婪"的对象——AI数据中心概念+31%高增速+干净资产负债表，股价已涨至52周高点附近（$171.58），PE 36x位于行业高位。巴菲特/芒格体系要求"<strong>以合理价格买入伟大公司，或以低价买入合理公司</strong>"。ECG目前既不是伟大公司（护城河浅），也不算合理价格（PE 36x），因此评级"持有/逢低买入"。</p>
+            <p>芒格"反向思考"：什么会让ECG失败？①AI投资泡沫破裂导致数据中心订单取消；②劳动力成本暴涨吞噬利润率；③大型项目执行出问题引发亏损。这三点中任意一点发生，36x PE都会迅速回归至20x以下。</p>
+        </div>
+
+        <h3>7.7 投资建议总结</h3>
+        <div class="summary-grid">
+            <div class="summary-card">
+                <h4>评级</h4>
+                <div class="value" style="color:#f39c12;">持有</div>
+                <p>逢回调至$100-115买入</p>
+            </div>
+            <div class="summary-card">
+                <h4>目标持有期</h4>
+                <div class="value">3-5年</div>
+                <p>跟踪AI数据中心周期</p>
+            </div>
+            <div class="summary-card">
+                <h4>预期年化回报</h4>
+                <div class="value">10-15%</div>
+                <p>含估值回归风险</p>
+            </div>
+            <div class="summary-card">
+                <h4>综合评分</h3>
+                <div class="value">3.7/5.0</div>
+                <p>护城河浅+成长强+估值贵</p>
+            </div>
+        </div>
+
+        <div class="highlight">
+            <strong>核心结论：</strong> ECG是AI数据中心+电网升级+可再生能源三重周期叠加下的优质"<strong>卖铲人</strong>"，营收和利润增长强劲，资产负债表干净。但护城河浅（主要靠周期+人手）、估值贵（PE 36x行业最高）、不分红不回购，不符合巴菲特/芒格体系"<strong>以合理价格买入伟大公司</strong>"的严格标准。建议<strong>已持仓者持有</strong>享受成长，<strong>未持仓者等待回调至$100-115区间</strong>再介入，目标持有3-5年，密切跟踪AI数据中心投资周期。若2027年启动股东回报（分红或回购），将是估值重估的重要催化剂。
+        </div>
+    </div>
+
+    <script>
+        // ROE历史图表
+        const roeCtx = document.getElementById('roeChart').getContext('2d');
+        new Chart(roeCtx, {
+            type: 'line',
+            data: {
+                labels: ['2022', '2023', '2024', '2025'],
+                datasets: [{
+                    label: 'ROE（%）',
+                    data: [47, 27.6, 26.0, 28.8],
+                    borderColor: '#27ae60',
+                    backgroundColor: 'rgba(39, 174, 96, 0.1)',
+                    fill: true,
+                    tension: 0.3
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: { display: true, text: 'ECG 历史ROE走势（2022异常高，2023后为清洁经营ROE）' },
+                    legend: { display: false }
+                },
+                scales: {
+                    y: { title: { display: true, text: 'ROE %' }, min: 20, max: 50 },
+                    x: { title: { display: true, text: '财年' } }
+                }
+            }
+        });
+
+        // 营收与EBITDA历史图表
+        const revCtx = document.getElementById('revChart').getContext('2d');
+        new Chart(revCtx, {
+            type: 'bar',
+            data: {
+                labels: ['2022', '2023', '2024', '2025'],
+                datasets: [
+                    {
+                        label: '营收（百万美元）',
+                        data: [2700, 2854, 2850, 3746],
+                        backgroundColor: 'rgba(46, 134, 193, 0.7)',
+                        borderColor: '#2e86c1',
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'EBITDA（百万美元）',
+                        data: [165, 210, 232, 320],
+                        backgroundColor: 'rgba(231, 76, 60, 0.7)',
+                        borderColor: '#e74c3c',
+                        borderWidth: 1
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: { display: true, text: 'ECG 营收与EBITDA历史走势（2025年双指标创新高）' },
+                    legend: { display: true, position: 'top' }
+                },
+                scales: {
+                    y: { title: { display: true, text: '百万美元' } },
+                    x: { title: { display: true, text: '财年' } }
+                }
+            }
+        });
+    </script>
+
+    <script src="scores_client.js"></script>
+    <script src="stock_topbar.js"></script>
+</body>
+</html>
