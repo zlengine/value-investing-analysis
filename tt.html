@@ -1,0 +1,1189 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trane Technologies (TT) 价值投资分析</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            padding-top: 70px;
+            background-color: #f0f2f5;
+            color: #333;
+            line-height: 1.6;
+        }
+        h1 {
+            color: #1a5276;
+            font-size: 2.4em;
+            text-align: center;
+            margin-bottom: 5px;
+        }
+        h2 {
+            color: #1a5276;
+            border-bottom: 3px solid #2e86c1;
+            padding-bottom: 10px;
+            margin-top: 35px;
+        }
+        h3 { color: #2874a6; margin-top: 25px; }
+        h4 { color: #2e86c1; margin-bottom: 5px; }
+        p { margin: 10px 0; }
+        .subtitle {
+            text-align: center;
+            color: #666;
+            font-size: 1.1em;
+            margin-bottom: 15px;
+        }
+        .info-box {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+        .highlight {
+            background: linear-gradient(135deg, #fef9e7, #fcf3cf);
+            border-left: 5px solid #f39c12;
+            padding: 15px 20px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        .risk-item {
+            background: #fdf2f2;
+            border-left: 5px solid #e74c3c;
+            padding: 12px 18px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+        .moat-item {
+            background: #eafaf1;
+            border-left: 5px solid #27ae60;
+            padding: 12px 18px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            background: white;
+            box-shadow: 0 1px 5px rgba(0,0,0,0.05);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        th {
+            background: #2e86c1;
+            color: white;
+            padding: 12px;
+            text-align: left;
+            font-weight: 600;
+        }
+        td {
+            padding: 10px 12px;
+            border-bottom: 1px solid #eee;
+        }
+        tr:hover { background: #f8f9fa; }
+        .tag-green {
+            background: #27ae60;
+            color: white;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.85em;
+            font-weight: 600;
+        }
+        .tag-orange {
+            background: #f39c12;
+            color: white;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.85em;
+            font-weight: 600;
+        }
+        .tag-red {
+            background: #e74c3c;
+            color: white;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.85em;
+            font-weight: 600;
+        }
+        .section-nav {
+            background: white;
+            border-radius: 10px;
+            padding: 15px 25px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+        .section-nav a {
+            display: inline-block;
+            margin: 5px 10px;
+            padding: 6px 14px;
+            background: #eaf2f8;
+            color: #1a5276;
+            text-decoration: none;
+            border-radius: 15px;
+            font-size: 0.9em;
+        }
+        .section-nav a:hover {
+            background: #2e86c1;
+            color: white;
+        }
+        .chart-container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+        .rating-box {
+            display: inline-block;
+            background: #2e86c1;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 8px;
+            font-size: 1.2em;
+            font-weight: bold;
+            margin: 10px 5px;
+        }
+        .rating-box.hold { background: #f39c12; }
+        .rating-box.buy { background: #27ae60; }
+        .rating-box.sell { background: #e74c3c; }
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .summary-card {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 1px 5px rgba(0,0,0,0.05);
+        }
+        .summary-card h4 { color: #2e86c1; margin-bottom: 5px; }
+        .summary-card .value { font-size: 1.4em; font-weight: bold; color: #1a5276; }
+    </style>
+</head>
+<body>
+    <div class="top-nav-bar"></div>
+    <script src="nav_bar.js?v=20260624"></script>
+    <span id="topbarCode" style="display:none;">TT</span>
+
+    <h1>Trane Technologies (NYSE: TT)</h1>
+    <p class="subtitle">巴菲特/芒格式价值投资基本面分析 | 更新日期：2026年6月</p>
+
+    <div class="section-nav">
+        <a href="#chapter1">公司基本信息</a>
+        <a href="#chapter2">业务分析</a>
+        <a href="#chapter3">产品竞争力分析</a>
+        <a href="#chapter4">历史财务指标</a>
+        <a href="#chapter5">竞争分析</a>
+        <a href="#chapter6">利润分配分析</a>
+        <a href="#chapter7">投资总结</a>
+    </div>
+
+    <div class="info-box">
+        <h2 id="chapter1">一、公司基本信息</h2>
+        <table>
+            <tr><td style="width:30%;font-weight:bold;">公司全称</td><td>Trane Technologies plc</td></tr>
+            <tr><td style="font-weight:bold;">股票代码</td><td>NYSE: TT</td></tr>
+            <tr><td style="font-weight:bold;">市值</td><td>约1,068亿美元（USD 106.8B）</td></tr>
+            <tr><td style="font-weight:bold;">企业价值（EV）</td><td>约1,134亿美元（含约46亿美元有息债务，扣除现金后净债务约35亿美元）</td></tr>
+            <tr><td style="font-weight:bold;">最新收盘价</td><td>$483.15（2026年6月24日）</td></tr>
+            <tr><td style="font-weight:bold;">52周区间</td><td>$348.06 - $503.47</td></tr>
+            <tr><td style="font-weight:bold;">成立时间</td><td>1885年（Trane品牌创立）；2020年自Ingersoll Rand分拆重组为Trane Technologies</td></tr>
+            <tr><td style="font-weight:bold;">总部</td><td>爱尔兰斯沃兹（Swords, Ireland，法定总部）；美国运营总部北卡罗来纳州戴维森（Davidson, NC）</td></tr>
+            <tr><td style="font-weight:bold;">CEO</td><td>Dave Regnery（董事长兼首席执行官）</td></tr>
+            <tr><td style="font-weight:bold;">员工人数</td><td>约44,000人</td></tr>
+            <tr><td style="font-weight:bold;">行业</td><td>工业制造 - 暖通空调（HVAC）与气候控制解决方案</td></tr>
+            <tr><td style="font-weight:bold;">指数成分</td><td>S&P 500 成分股 | 全球最大商用HVAC制造商之一</td></tr>
+            <tr><td style="font-weight:bold;">主要品牌</td><td>Trane®（特灵）、Thermo King®（冷王）、American Standard®（美标）</td></tr>
+            <tr><td style="font-weight:bold;">使命口号</td><td>"Challenge What's Possible for a Sustainable World"（挑战可持续世界的可能性）</td></tr>
+        </table>
+        <div class="highlight">
+            <strong>一句话理解公司：</strong> Trane Technologies是全球三大暖通空调（HVAC）巨头之一——你看到的大型商场、写字楼、医院、数据中心、学校屋顶上那些"嗡嗡响"的中央空调机组，很大概率是Trane的产品；超市里冷藏食品的运输卡车上的制冷设备，多半是Thermo King（冷王）。公司2020年从Ingersoll Rand分拆独立，是"全球变暖+数据中心散热+能源效率"三大长期趋势的核心受益标的。
+        </div>
+        <div class="moat-item">
+            <strong>巴菲特视角：</strong> TT属于"拥有强大品牌护城河+受益于长期 secular trend"的优质工业公司——市值1,068亿美元，2025年营收$213亿（+7%），调整后EBITDA利润率20.1%，调整后EPS $13.06（+16%），自由现金流$29亿（转化率98%）。订单簿（backlog）创纪录达$78亿（+15%），2026年可见性极强。这是巴菲特/芒格体系里典型的"伟大公司+合理价格"候选——拥有定价权（2025年提价3%）、品牌力（Trane是百年品牌）、服务收入占比34%（高粘性经常性收入）。
+        </div>
+    </div>
+
+    <div class="info-box">
+        <h2 id="chapter2">二、业务分析</h2>
+
+        <h3>2.1 业务模式（用大白话说）</h3>
+        <p>TT做的是"<strong>给建筑和运输提供"温度控制"解决方案</strong>"——包括设计、制造、销售、安装、维护四大环节。它的产品主要分两大类：</p>
+        <ul>
+            <li><strong>设备销售（约70%营收）</strong>：生产中央空调机组、冷水机（chiller）、空气处理器、热泵、家用空调、运输制冷设备等硬件，卖给建筑承包商、商业地产开发商、公用事业公司、运输公司等</li>
+            <li><strong>服务与零部件（约30%营收）</strong>：提供设备安装、维护、维修、零件更换、能效优化咨询、楼宇自控软件等服务，赚取经常性收入</li>
+        </ul>
+        <p>业务模式核心特征：</p>
+        <ul>
+            <li><strong>B2B为主</strong>：商用HVAC是大头，住宅HVAC占比小，主要面向商业/工业客户</li>
+            <li><strong>订单驱动+长周期</strong>：大型商用HVAC项目从订单到交付通常6-12个月，订单簿（backlog）是未来营收的"水库"</li>
+            <li><strong>经常性服务收入</strong>：服务收入占比34%，毛利高、周期性弱，是关键护城河</li>
+            <li><strong>定价权强</strong>：2025年整体提价3%，美洲提价3.8%，可对冲通胀</li>
+            <li><strong>技术驱动</strong>：9,553项专利（含1,938项已授权），聚焦能效+低碳+智能化</li>
+            <li><strong>全球布局</strong>：业务覆盖北美、欧洲、亚太、拉美等多个地区</li>
+        </ul>
+
+        <h3>2.2 三大地理板块（2025年）</h3>
+        <table>
+            <tr>
+                <th>板块</th>
+                <th>2025营收</th>
+                <th>占比</th>
+                <th>同比增速</th>
+                <th>有机增速</th>
+                <th>核心业务</th>
+            </tr>
+            <tr>
+                <td><strong>Americas（美洲）</strong></td>
+                <td>$171.7亿</td>
+                <td>80.5%</td>
+                <td>+8%</td>
+                <td>+7%</td>
+                <td>商用HVAC、住宅HVAC、楼宇自控、运输制冷（Thermo King）</td>
+            </tr>
+            <tr>
+                <td><strong>EMEA（欧洲中东非）</strong></td>
+                <td>$28.0亿</td>
+                <td>13.1%</td>
+                <td>+2%</td>
+                <td>+2%</td>
+                <td>商用HVAC、热泵、楼宇解决方案（欧洲能效升级）</td>
+            </tr>
+            <tr>
+                <td><strong>Asia Pacific（亚太）</strong></td>
+                <td>$13.5亿</td>
+                <td>6.4%</td>
+                <td>-2%</td>
+                <td>-2.5%</td>
+                <td>商用HVAC、住宅HVAC（中国市场承压）</td>
+            </tr>
+            <tr style="background:#fef9e7;font-weight:bold;">
+                <td>合计</td>
+                <td>$213.2亿</td>
+                <td>100%</td>
+                <td>+7%</td>
+                <td>+6%</td>
+                <td>三大区域覆盖全球主要暖通空调市场</td>
+            </tr>
+        </table>
+
+        <h3>2.3 业务线分布（按产品类型）</h3>
+        <table>
+            <tr>
+                <th>业务线</th>
+                <th>占比（2025）</th>
+                <th>增长趋势</th>
+                <th>说明</th>
+            </tr>
+            <tr>
+                <td><strong>商用HVAC设备</strong></td>
+                <td>~50%</td>
+                <td>高速增长</td>
+                <td>美洲商用HVAC Q4订单+35%，应用设备订单+120%；数据中心散热需求爆发</td>
+            </tr>
+            <tr>
+                <td><strong>服务与零件</strong></td>
+                <td>~34%</td>
+                <td>稳定增长</td>
+                <td>高毛利经常性收入，客户粘性强，是核心护城河</td>
+            </tr>
+            <tr>
+                <td><strong>住宅HVAC</strong></td>
+                <td>~10%</td>
+                <td>承压</td>
+                <td>美国住房市场放缓，消费者需求弱；2025年有机下滑</td>
+            </tr>
+            <tr>
+                <td><strong>运输制冷（Thermo King）</strong></td>
+                <td>~6%</td>
+                <td>疲软</td>
+                <td>冷链运输市场下行，但长期受益于全球冷链扩张</td>
+            </tr>
+        </table>
+
+        <h3>2.4 终端市场分布</h3>
+        <table>
+            <tr>
+                <th>终端市场</th>
+                <th>占比（2025）</th>
+                <th>增长趋势</th>
+                <th>说明</th>
+            </tr>
+            <tr>
+                <td><strong>商业建筑（含数据中心）</strong></td>
+                <td>~50%</td>
+                <td>高速增长</td>
+                <td>AI数据中心散热是核心增长引擎，应用设备订单+120%</td>
+            </tr>
+            <tr>
+                <td><strong>工业</strong></td>
+                <td>~15%</td>
+                <td>稳定增长</td>
+                <td>制造业回流、制药、食品加工等</td>
+            </tr>
+            <tr>
+                <td><strong>机构（医院/学校/政府）</strong></td>
+                <td>~12%</td>
+                <td>稳定</td>
+                <td>预算稳定，能效升级需求强</td>
+            </tr>
+            <tr>
+                <td><strong>住宅</strong></td>
+                <td>~10%</td>
+                <td>承压</td>
+                <td>住房市场放缓，但热泵渗透率提升</td>
+            </tr>
+            <tr>
+                <td><strong>运输制冷</strong></td>
+                <td>~6%</td>
+                <td>疲软</td>
+                <td>全球冷链运输短期承压</td>
+            </tr>
+            <tr>
+                <td><strong>其他</strong></td>
+                <td>~7%</td>
+                <td>稳定</td>
+                <td>公用事业、零售等</td>
+            </tr>
+        </table>
+
+        <div class="highlight">
+            <strong>业务模式核心看点：</strong> 商用HVAC设备是"高增长引擎"（占50%营收、订单+35%），服务收入是"高利润稳定器"（占34%营收、客户粘性强），住宅HVAC和运输制冷是"周期性拖累"（合计约16%）。2025年订单簿（backlog）创纪录$78亿（+15%），其中美洲商用HVAC backlog增长25%，book-to-bill 112%（全球商用HVAC 114%），预示2026年营收继续高增长。
+        </div>
+    </div>
+
+    <div class="info-box">
+        <h2 id="chapter3">三、产品竞争力分析</h2>
+
+        <h3>3.1 商用HVAC设备板块竞争力</h3>
+        <p><strong>1. 可替代性：</strong> <span class="tag-orange">较低（Low-Medium）</span></p>
+        <ul>
+            <li>主要替代方案：Carrier Global (CARR)、Daikin Industries (日本)、Johnson Controls (JCI)、Lennox International (LII)</li>
+            <li>替代体验差距：大型商用HVAC（特别是大型chiller、屋顶机组、应用设备）技术门槛高、品牌信任度要求强，小型厂商难以替代</li>
+            <li>大型数据中心项目对设备可靠性、能效、智能控制要求极高，仅Trane、Carrier、Daikin三家能提供完整解决方案</li>
+            <li>替代趋势：减弱——AI数据中心爆发提高了行业门槛，进一步集中到头部厂商</li>
+        </ul>
+        <p><strong>2. 客户转换成本：</strong> <span class="tag-green">较高（High）</span></p>
+        <ul>
+            <li>财务转换成本：高——大型HVAC设备寿命15-25年，一旦安装后，后续服务和零件全部锁定原厂</li>
+            <li>时间转换成本：高——更换HVAC系统需重新设计、重新招标、停产改造，工期6-12个月</li>
+            <li>服务转换成本：极高——服务收入占比34%，客户每年度支付维护合同，更换服务商需重新培训人员、重新校准设备</li>
+            <li>智能控制锁定：Trane的Tracer™楼宇自控系统与HVAC设备深度集成，切换成本进一步上升</li>
+        </ul>
+        <p><strong>3. 定价权：</strong> <span class="tag-green">较强（Strong）</span></p>
+        <ul>
+            <li>历史提价记录：2025年整体提价3%，美洲提价3.8%，有效对冲通胀</li>
+            <li>当前定价环境：AI数据中心需求爆发+设备产能紧张+能效法规升级，议价能力极强</li>
+            <li>定价权来源：①品牌力（Trane是百年品牌，全球Top 3）②技术领先（9,553项专利）③规模优势（44,000人、全球产能）④服务网络锁定</li>
+            <li>定价权趋势：增强——数据中心客户对可靠性和能效敏感度远高于价格</li>
+            <li><strong>巴菲特测试</strong>：若TT报价提高10%，AI数据中心客户也难以切换到Carrier或Daikin（同样产能紧张），定价权真实存在</li>
+        </ul>
+        <p><strong>整体竞争力评级：4.5/5星</strong> <span class="tag-green">较强</span></p>
+
+        <h3>3.2 服务与零件板块竞争力</h3>
+        <p><strong>1. 可替代性：</strong> <span class="tag-green">很低（Very Low）</span></p>
+        <ul>
+            <li>主要替代方案：第三方服务商（但技术水平有限）、原厂服务网络</li>
+            <li>替代体验差距：第三方难以提供Trane专有零件、专有诊断软件、专有能效优化方案</li>
+            <li>已安装设备基数（installed base）越大，服务需求越刚性</li>
+        </ul>
+        <p><strong>2. 客户转换成本：</strong> <span class="tag-green">极高（Very High）</span></p>
+        <ul>
+            <li>财务转换成本：极高——服务合同通常为多年期，年费数十万美元</li>
+            <li>技术转换成本：极高——Trane楼宇自控系统切换需重写软件、重新校准硬件</li>
+            <li>信任成本：高——HVAC故障可能导致数据中心宕机（损失每小时数百万美元），客户极度重视原厂服务</li>
+        </ul>
+        <p><strong>3. 定价权：</strong> <span class="tag-green">强（Strong）</span></p>
+        <ul>
+            <li>服务合同通常含通胀调整条款，可自动转嫁成本</li>
+            <li>客户付费意愿强：HVAC故障对商业建筑损失远大于服务费</li>
+            <li>定价权趋势：增强——服务收入占比从2020年25%提升至2025年34%</li>
+        </ul>
+        <p><strong>整体竞争力评级：5/5星</strong> <span class="tag-green">很强</span></p>
+
+        <h3>3.3 住宅HVAC板块竞争力</h3>
+        <p><strong>1. 可替代性：</strong> <span class="tag-orange">较高（Medium-High）</span></p>
+        <ul>
+            <li>主要替代方案：Carrier、Lennox、Goodman（Daikin子公司）、Rheem、本地品牌</li>
+            <li>替代体验差距：住宅HVAC技术门槛低，消费者对品牌敏感度低</li>
+        </ul>
+        <p><strong>2. 客户转换成本：</strong> <span class="tag-orange">较低（Low-Medium）</span></p>
+        <ul>
+            <li>消费者通过承包商选择品牌，承包商可推荐多个品牌</li>
+            <li>设备寿命10-15年，到期后可自由切换</li>
+        </ul>
+        <p><strong>3. 定价权：</strong> <span class="tag-orange">中等（Medium）</span></p>
+        <ul>
+            <li>竞争激烈，消费者价格敏感</li>
+            <li>但Trane品牌仍有溢价能力，热泵渗透率提升利好</li>
+        </ul>
+        <p><strong>整体竞争力评级：3/5星</strong> <span class="tag-orange">中等</span></p>
+
+        <h3>3.4 整体业务竞争力总结</h3>
+        <table>
+            <tr>
+                <th>板块</th>
+                <th>可替代性</th>
+                <th>转换成本</th>
+                <th>定价权</th>
+                <th>综合评级</th>
+            </tr>
+            <tr>
+                <td>商用HVAC设备</td>
+                <td><span class="tag-green">较低</span></td>
+                <td><span class="tag-green">较高</span></td>
+                <td><span class="tag-green">较强</span></td>
+                <td>4.5/5星</td>
+            </tr>
+            <tr>
+                <td>服务与零件</td>
+                <td><span class="tag-green">很低</span></td>
+                <td><span class="tag-green">极高</span></td>
+                <td><span class="tag-green">强</span></td>
+                <td>5/5星</td>
+            </tr>
+            <tr>
+                <td>住宅HVAC</td>
+                <td><span class="tag-orange">较高</span></td>
+                <td><span class="tag-orange">较低</span></td>
+                <td><span class="tag-orange">中等</span></td>
+                <td>3/5星</td>
+            </tr>
+            <tr>
+                <td>运输制冷</td>
+                <td><span class="tag-green">较低</span></td>
+                <td><span class="tag-green">较高</span></td>
+                <td><span class="tag-green">较强</span></td>
+                <td>4/5星</td>
+            </tr>
+        </table>
+        <div class="highlight">
+            <strong>芒格视角：</strong> TT是巴菲特/芒格体系里典型的"伟大公司"——经济护城河深（品牌+技术+服务网络+客户锁定+规模），拥有真实定价权（年提价3%），客户转换成本高（设备寿命15-25年+服务收入占比34%），且受益于"全球变暖+数据中心散热+能源效率升级"三大长期 secular trend。2025年订单簿$78亿创历史新高，应用设备订单+120%反映AI数据中心需求正在"爆发式"显现。这种公司的投资逻辑是"长期持有+逢低加仓"，符合芒格"以合理价格买入伟大公司"的核心理念。
+        </div>
+    </div>
+
+    <div class="info-box">
+        <h2 id="chapter4">四、历史财务指标</h2>
+
+        <h3>4.1 关键财务数据（2020-2025）</h3>
+        <table>
+            <tr>
+                <th>指标</th>
+                <th>2020</th>
+                <th>2021</th>
+                <th>2022</th>
+                <th>2023</th>
+                <th>2024</th>
+                <th>2025</th>
+                <th>趋势</th>
+            </tr>
+            <tr>
+                <td>营收（十亿美元）</td>
+                <td>9.0</td>
+                <td>13.8</td>
+                <td>15.7</td>
+                <td>17.0</td>
+                <td>20.0</td>
+                <td>21.3</td>
+                <td>6年CAGR ~11%</td>
+            </tr>
+            <tr>
+                <td>营收增速</td>
+                <td>N/A</td>
+                <td>+53%</td>
+                <td>+14%</td>
+                <td>+8%</td>
+                <td>+18%</td>
+                <td>+7%</td>
+                <td>稳定增长</td>
+            </tr>
+            <tr>
+                <td>调整后EBITDA（十亿美元）</td>
+                <td>1.4</td>
+                <td>2.3</td>
+                <td>2.8</td>
+                <td>3.2</td>
+                <td>3.9</td>
+                <td>4.27</td>
+                <td>6年CAGR ~12%</td>
+            </tr>
+            <tr>
+                <td>调整后EBITDA利润率</td>
+                <td>15.4%</td>
+                <td>16.7%</td>
+                <td>17.8%</td>
+                <td>18.8%</td>
+                <td>19.4%</td>
+                <td>20.1%</td>
+                <td>持续提升470bps</td>
+            </tr>
+            <tr>
+                <td>调整后EPS（美元）</td>
+                <td>2.02</td>
+                <td>4.36</td>
+                <td>6.45</td>
+                <td>9.20</td>
+                <td>11.27</td>
+                <td>13.06</td>
+                <td>6年CAGR ~24%</td>
+            </tr>
+            <tr>
+                <td>调整后EPS增速</td>
+                <td>N/A</td>
+                <td>+116%</td>
+                <td>+48%</td>
+                <td>+43%</td>
+                <td>+22%</td>
+                <td>+16%</td>
+                <td>高增长持续</td>
+            </tr>
+            <tr>
+                <td>自由现金流（十亿美元）</td>
+                <td>1.2</td>
+                <td>1.8</td>
+                <td>2.1</td>
+                <td>2.5</td>
+                <td>2.7</td>
+                <td>2.9</td>
+                <td>稳定增长</td>
+            </tr>
+            <tr>
+                <td>FCF转化率（vs 净利润）</td>
+                <td>~85%</td>
+                <td>~95%</td>
+                <td>~100%</td>
+                <td>~105%</td>
+                <td>~110%</td>
+                <td>98%</td>
+                <td>高质量盈利</td>
+            </tr>
+            <tr>
+                <td>净债务/EBITDA</td>
+                <td>~2.5x</td>
+                <td>~1.8x</td>
+                <td>~1.3x</td>
+                <td>~1.0x</td>
+                <td>~0.9x</td>
+                <td>~0.8x</td>
+                <td>持续去杠杆</td>
+            </tr>
+            <tr>
+                <td>ROE（净资产收益率）</td>
+                <td>~10%</td>
+                <td>~25%</td>
+                <td>~30%</td>
+                <td>~33%</td>
+                <td>~35%</td>
+                <td>~36%</td>
+                <td>持续提升</td>
+            </tr>
+            <tr>
+                <td>ROIC（投入资本回报率）</td>
+                <td>~15%</td>
+                <td>~22%</td>
+                <td>~28%</td>
+                <td>~32%</td>
+                <td>~35%</td>
+                <td>~37%</td>
+                <td>远超资本成本</td>
+            </tr>
+            <tr>
+                <td>资产负债率</td>
+                <td>~50%</td>
+                <td>~45%</td>
+                <td>~42%</td>
+                <td>~40%</td>
+                <td>~38%</td>
+                <td>~37%</td>
+                <td>稳步下降</td>
+            </tr>
+            <tr>
+                <td>PE（年末）</td>
+                <td>~25x</td>
+                <td>~30x</td>
+                <td>~28x</td>
+                <td>~28x</td>
+                <td>~32x</td>
+                <td>~37x</td>
+                <td>估值持续走高</td>
+            </tr>
+        </table>
+
+        <h3>4.2 ROE与利润率历史走势图</h3>
+        <div class="chart-container">
+            <canvas id="roeChart" height="100"></canvas>
+        </div>
+
+        <h3>4.3 营收与EBITDA历史走势图</h3>
+        <div class="chart-container">
+            <canvas id="revChart" height="100"></canvas>
+        </div>
+
+        <div class="highlight">
+            <strong>财务质量评估：</strong>
+            <ul>
+                <li><strong>营收增长质量</strong>：6年营收CAGR 11%，主要来自有机增长（非并购驱动），质量高</li>
+                <li><strong>利润率扩张</strong>：调整后EBITDA利润率从15.4%（2020）提升至20.1%（2025），扩张470bps，反映规模效应+产品组合优化+服务占比提升</li>
+                <li><strong>EPS高增长</strong>：6年EPS CAGR 24%，远超营收增速，体现强劲的运营杠杆（operating leverage）</li>
+                <li><strong>自由现金流</strong>：FCF转化率98%-110%，反映盈利质量极高，无应收账款风险</li>
+                <li><strong>ROE提升</strong>：从10%提升至36%，但需注意这是部分因为股票回购减少了分母（权益基数）</li>
+                <li><strong>去杠杆</strong>：净债务/EBITDA从2.5x降至0.8x，资产负债表大幅改善，为未来回购/并购提供弹药</li>
+                <li><strong>估值</strong>：PE从25x升至37x，反映市场对HVAC行业长期增长前景的认可</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="info-box">
+        <h2 id="chapter5">五、竞争分析</h2>
+
+        <h3>5.1 主要竞争对手对比</h3>
+        <table>
+            <tr>
+                <th>公司</th>
+                <th>代码</th>
+                <th>市值</th>
+                <th>2025营收</th>
+                <th>EBITDA率</th>
+                <th>核心优势</th>
+            </tr>
+            <tr>
+                <td><strong>Carrier Global</strong></td>
+                <td>CARR</td>
+                <td>~$60B</td>
+                <td>~$23B</td>
+                <td>~18%</td>
+                <td>规模第二大，HVAC+制冷+消防全覆盖，商用HVAC北美市场份额17%</td>
+            </tr>
+            <tr>
+                <td><strong>Daikin Industries</strong></td>
+                <td>DKILF</td>
+                <td>~$55B</td>
+                <td>~$30B</td>
+                <td>~15%</td>
+                <td>全球营收最大HVAC厂商，日本技术领先，商用HVAC北美份额19.2%</td>
+            </tr>
+            <tr>
+                <td><strong>Johnson Controls</strong></td>
+                <td>JCI</td>
+                <td>~$55B</td>
+                <td>~$22B</td>
+                <td>~16%</td>
+                <td>HVAC+楼宇自控+消防，商用HVAC北美份额15.2%；正分拆火灾业务</td>
+            </tr>
+            <tr>
+                <td><strong>Lennox International</strong></td>
+                <td>LII</td>
+                <td>~$25B</td>
+                <td>~$5B</td>
+                <td>~22%</td>
+                <td>北美住宅HVAC专家，正在向商用HVAC扩张</td>
+            </tr>
+            <tr style="background:#fef9e7;font-weight:bold;">
+                <td>Trane Technologies</td>
+                <td>TT</td>
+                <td>$107B</td>
+                <td>$21.3B</td>
+                <td>20.1%</td>
+                <td>商用HVAC北美份额23%，服务收入占比34%，定价权强</td>
+            </tr>
+        </table>
+
+        <h3>5.2 市场份额与地位</h3>
+        <p>北美商用HVAC市场份额分布（2025年估算）：</p>
+        <ul>
+            <li><strong>Trane Technologies (TT)</strong>：~23% （北美第一）</li>
+            <li><strong>Daikin (含Goodman)</strong>：~19.2%</li>
+            <li><strong>Carrier</strong>：~17%</li>
+            <li><strong>Johnson Controls</strong>：~15.2%</li>
+            <li><strong>Lennox</strong>：~8%</li>
+            <li><strong>其他</strong>：~17.6%</li>
+        </ul>
+        <p>全球HVAC市场规模约$1,200亿美元，年增长率5-7%（长期受益于能效升级+全球变暖+数据中心散热）。TT是<strong>全球三大HVAC巨头之一</strong>，在北美商用HVAC份额第一。</p>
+
+        <h3>5.3 经济护城河评估</h3>
+        <div class="moat-item">
+            <strong>1. 品牌力（强）</strong>
+            <p>Trane®是百年品牌（1885年创立），在商用HVAC领域品牌认知度极高。"Trane装备一天24小时不停运转"是行业口碑。Thermo King®是运输制冷领域全球第一品牌。品牌溢价约5-10%。</p>
+        </div>
+        <div class="moat-item">
+            <strong>2. 规模优势（强）</strong>
+            <p>年营收$213亿、44,000员工、全球9个研发中心、20+制造工厂。规模优势体现在：①采购议价 ②全球服务网络 ③研发投入（年研发支出$6亿+） ④产能扩张能力。</p>
+        </div>
+        <div class="moat-item">
+            <strong>3. 转换成本（极强）</strong>
+            <p>商用HVAC设备寿命15-25年，安装后客户高度锁定原厂服务和零件。服务收入占比34%且持续提升，反映客户粘性增强。智能楼宇自控系统（Tracer™）与HVAC深度集成，进一步抬高切换成本。</p>
+        </div>
+        <div class="moat-item">
+            <strong>4. 网络效应（弱-中等）</strong>
+            <p>Trane服务网络覆盖全球——已安装设备基数（installed base）越大，服务收入越刚性，且口碑传播形成正向循环。收购BrainBox AI进入AI智能楼宇管理，未来可能形成数据网络效应。</p>
+        </div>
+        <div class="moat-item">
+            <strong>5. 专利/技术（强）</strong>
+            <p>9,553项专利（1,938项已授权、234项申请中），覆盖压缩机、热泵、能效优化、智能控制等核心技术。专有Tracer™自控系统、BrainBox AI智能调优、Nuvolo资产管理平台形成差异化。</p>
+        </div>
+        <div class="moat-item">
+            <strong>6. 监管/合规优势（强）</strong>
+            <p>全球能效法规日趋严格（欧洲F-Gas法规、美国SEER2标准、各国低碳补贴），Trane提前布局高效热泵、低GWP制冷剂，技术领先优势转化为合规优势。新进入者难以快速符合法规要求。</p>
+        </div>
+
+        <div class="moat-item">
+            <strong>护城河综合评估：宽（Wide Moat）</strong>
+            <p>TT拥有巴菲特/芒格体系里典型的"宽护城河"——品牌力+规模+转换成本+专利+监管壁垒多重叠加，可保护其超额回报持续10-20年。这是少数能长期维持ROE 30%+的工业公司（vs 行业平均17%），反映护城河的真实性。</p>
+        </div>
+    </div>
+
+    <div class="info-box">
+        <h2 id="chapter6">六、利润分配分析</h2>
+
+        <h3>6.1 股息政策</h3>
+        <div class="moat-item">
+            <strong>当前股息政策：持续分红+持续增长</strong>
+            <p>TT是稳定的分红公司，连续派息且每年提升股息。2026年计划提高股息12%。2025年TTM股息$3.87/股，股息率0.80%（按$483股价）。派息率（payout ratio）约28.6%，留有充足空间继续增长。</p>
+        </div>
+
+        <h3>6.2 利润分配历史（2016-2025，10年）</h3>
+        <table>
+            <tr>
+                <th>年份</th>
+                <th>净利润</th>
+                <th>股息</th>
+                <th>回购</th>
+                <th>资本开支</th>
+                <th>并购支出</th>
+                <th>派息率</th>
+                <th>留存金额</th>
+            </tr>
+            <tr>
+                <td>2016</td>
+                <td>$0.6B</td>
+                <td>$0.5B</td>
+                <td>$0.2B</td>
+                <td>$0.3B</td>
+                <td>~$0</td>
+                <td>83%</td>
+                <td>~$0</td>
+            </tr>
+            <tr>
+                <td>2017</td>
+                <td>$0.7B</td>
+                <td>$0.5B</td>
+                <td>$0.3B</td>
+                <td>$0.3B</td>
+                <td>~$0</td>
+                <td>71%</td>
+                <td>~$0.2B</td>
+            </tr>
+            <tr>
+                <td>2018</td>
+                <td>$1.0B</td>
+                <td>$0.6B</td>
+                <td>$0.4B</td>
+                <td>$0.4B</td>
+                <td>~$0</td>
+                <td>60%</td>
+                <td>~$0.4B</td>
+            </tr>
+            <tr>
+                <td>2019</td>
+                <td>$1.2B</td>
+                <td>$0.7B</td>
+                <td>$0.5B</td>
+                <td>$0.4B</td>
+                <td>~$0</td>
+                <td>58%</td>
+                <td>~$0.5B</td>
+            </tr>
+            <tr>
+                <td>2020</td>
+                <td>$1.4B</td>
+                <td>$0.7B</td>
+                <td>$0.4B</td>
+                <td>$0.5B</td>
+                <td>~$0</td>
+                <td>50%</td>
+                <td>~$0.7B</td>
+            </tr>
+            <tr>
+                <td>2021</td>
+                <td>$1.9B</td>
+                <td>$0.8B</td>
+                <td>$1.0B</td>
+                <td>$0.6B</td>
+                <td>~$0.5B</td>
+                <td>42%</td>
+                <td>~$1.1B</td>
+            </tr>
+            <tr>
+                <td>2022</td>
+                <td>$2.3B</td>
+                <td>$0.9B</td>
+                <td>$1.2B</td>
+                <td>$0.7B</td>
+                <td>~$0.3B</td>
+                <td>39%</td>
+                <td>~$1.4B</td>
+            </tr>
+            <tr>
+                <td>2023</td>
+                <td>$2.6B</td>
+                <td>$1.0B</td>
+                <td>$1.3B</td>
+                <td>$0.8B</td>
+                <td>~$0.4B</td>
+                <td>38%</td>
+                <td>~$1.6B</td>
+            </tr>
+            <tr>
+                <td>2024</td>
+                <td>$2.8B</td>
+                <td>$1.1B</td>
+                <td>$1.4B</td>
+                <td>$0.9B</td>
+                <td>~$0.5B</td>
+                <td>39%</td>
+                <td>~$1.7B</td>
+            </tr>
+            <tr>
+                <td>2025</td>
+                <td>$2.9B</td>
+                <td>$1.2B</td>
+                <td>$1.5B</td>
+                <td>$1.0B</td>
+                <td>~$0.6B</td>
+                <td>28.6%</td>
+                <td>~$2.1B</td>
+            </tr>
+            <tr style="background:#fef9e7;font-weight:bold;">
+                <td>10年累计</td>
+                <td>$16.4B</td>
+                <td>$8.0B</td>
+                <td>$8.0B</td>
+                <td>$5.9B</td>
+                <td>$2.3B</td>
+                <td>平均48.7%</td>
+                <td>$9.7B</td>
+            </tr>
+        </table>
+
+        <h3>6.3 资本配置评估</h3>
+        <div class="moat-item">
+            <strong>管理层资本配置策略：</strong>
+            <ul>
+                <li><strong>分红</strong>：累计分红$80亿，10年股息CAGR约11.3%，2026年计划再+12%至$4.32/股</li>
+                <li><strong>回购</strong>：累计回购$80亿，2025年回购$15亿，新授权$48亿回购计划</li>
+                <li><strong>资本开支</strong>：累计$59亿，主要为产能扩张和数字化升级</li>
+                <li><strong>并购</strong>：累计$23亿，聚焦技术型收购（BrainBox AI、Nuvolo等）</li>
+                <li><strong>留存</strong>：累计留存$97亿，用于支持未来增长</li>
+                <li><strong>去杠杆</strong>：净债务/EBITDA从2.5x降至0.8x，资产负债表大幅改善</li>
+            </ul>
+        </div>
+        <div class="highlight">
+            <strong>巴菲特视角：</strong>
+            <ul>
+                <li><strong>分红政策：</strong>优秀——10年股息CAGR 11.3%，派息率从83%降至28.6%，留有充足增长空间</li>
+                <li><strong>回购政策：</strong>优秀——5年平均回购收益率1.64%，新授权$48亿回购计划显示信心</li>
+                <li><strong>股东回报合计</strong>：10年累计$160亿股东回报，相当于2025年市值的15%</li>
+                <li><strong>再投资质量</strong>：留存$97亿支持营收从$90亿增至$213亿（+137%）、EPS从$2.02增至$13.06（+547%），再投资回报率极高</li>
+                <li><strong>并购纪律</strong>：谨慎——只做技术补强型收购，不做大规模整合风险高的并购</li>
+                <li><strong>管理层激励对齐</strong>：CEO Dave Regnery薪酬与EPS、ROIC、自由现金流挂钩，与股东利益高度一致</li>
+            </ul>
+        </div>
+        <div class="risk-item">
+            <strong>潜在风险：</strong>2026年8月10日将举行Aldrich和Murray子公司石棉相关破产听证会，可能增加最终负债。2025年已为此支付$26百万法律费用。若最终负债超预期，可能影响短期回购节奏。
+        </div>
+    </div>
+
+    <div class="info-box">
+        <h2 id="chapter7">七、投资总结</h2>
+
+        <h3>7.1 综合评分</h3>
+        <table>
+            <tr>
+                <th>维度</th>
+                <th>评分（1-5）</th>
+                <th>评价</th>
+            </tr>
+            <tr>
+                <td>业务可理解性</td>
+                <td>4.5</td>
+                <td>HVAC业务模式清晰，"卖空调+卖服务"易懂，符合巴菲特"看得懂"标准</td>
+            </tr>
+            <tr>
+                <td>经济护城河</td>
+                <td>4.5</td>
+                <td>宽护城河——品牌+规模+转换成本+专利+监管壁垒多重叠加，可维持10-20年</td>
+            </tr>
+            <tr>
+                <td>管理层资本配置</td>
+                <td>4.5</td>
+                <td>10年股东回报$160亿，股息CAGR 11.3%，再投资回报率极高</td>
+            </tr>
+            <tr>
+                <td>财务安全性</td>
+                <td>4.5</td>
+                <td>净杠杆0.8x，FCF转化率98%，财务非常健康</td>
+            </tr>
+            <tr>
+                <td>成长前景</td>
+                <td>5.0</td>
+                <td>AI数据中心散热+全球变暖+能效升级三大 secular trend，backlog $78亿创纪录</td>
+            </tr>
+            <tr>
+                <td>估值吸引力</td>
+                <td>2.5</td>
+                <td>PE 37x位于历史高位，Forward PE 28.7x仍偏贵，安全边际有限</td>
+            </tr>
+            <tr style="background:#fef9e7;font-weight:bold;">
+                <td>综合评分</td>
+                <td>4.2/5.0</td>
+                <td>持有 / 逢回调加仓</td>
+            </tr>
+        </table>
+
+        <h3>7.2 投资评级</h3>
+        <div class="rating-box hold">持有 / 逢回调加仓</div>
+
+        <h3>7.3 估值对比</h3>
+        <table>
+            <tr>
+                <th>公司</th>
+                <th>P/E (TTM)</th>
+                <th>Fwd P/E</th>
+                <th>P/S</th>
+                <th>EV/EBITDA</th>
+                <th>2025营收增速</th>
+                <th>EBITDA率</th>
+            </tr>
+            <tr style="background:#fef9e7;font-weight:bold;">
+                <td>TT</td>
+                <td>37.4x</td>
+                <td>28.7x</td>
+                <td>5.0x</td>
+                <td>~22x</td>
+                <td>+7%</td>
+                <td>20.1%</td>
+            </tr>
+            <tr>
+                <td>Carrier (CARR)</td>
+                <td>~20x</td>
+                <td>~18x</td>
+                <td>2.5x</td>
+                <td>~13x</td>
+                <td>+5%</td>
+                <td>~18%</td>
+            </tr>
+            <tr>
+                <td>Johnson Controls (JCI)</td>
+                <td>~25x</td>
+                <td>~20x</td>
+                <td>2.5x</td>
+                <td>~14x</td>
+                <td>+4%</td>
+                <td>~16%</td>
+            </tr>
+            <tr>
+                <td>Lennox (LII)</td>
+                <td>~30x</td>
+                <td>~25x</td>
+                <td>5.0x</td>
+                <td>~20x</td>
+                <td>+8%</td>
+                <td>~22%</td>
+            </tr>
+            <tr>
+                <td>Daikin (日本)</td>
+                <td>~22x</td>
+                <td>~18x</td>
+                <td>1.8x</td>
+                <td>~11x</td>
+                <td>+6%</td>
+                <td>~15%</td>
+        </table>
+        <div class="highlight">
+            <strong>估值结论：</strong> TT的PE 37x是同业最高（vs CARR 20x、JCI 25x、Daikin 22x），反映市场对其"商用HVAC份额第一+服务收入占比34%+AI数据中心概念"的溢价。Forward PE 28.7x仍高于行业均值。EV/EBITDA 22x也显著高于同业（13-14x）。当前股价已部分透支2026-2027年成长预期，但 backlog $78亿+定价权+长期 secular trend 支撑其长期价值。这是"伟大公司+偏贵价格"的典型——芒格体系里仍可持有，但不宜追高。
+        </div>
+
+        <h3>7.4 建议入场区间</h3>
+        <table>
+            <tr>
+                <th>策略</th>
+                <th>建议价格区间</th>
+                <th>对应估值</th>
+                <th>触发条件</th>
+            </tr>
+            <tr>
+                <td><strong>当前持有</strong></td>
+                <td>$460-490</td>
+                <td>PE 35-38x</td>
+                <td>已持仓者可持有，享受成长+股息</td>
+            </tr>
+            <tr>
+                <td><strong>逢低加仓（推荐）</strong></td>
+                <td>$380-420</td>
+                <td>PE 29-32x</td>
+                <td>市场回调或短期业绩波动时介入</td>
+            </tr>
+            <tr>
+                <td><strong>深度价值区间</strong></td>
+                <td>$320-360</td>
+                <td>PE 24-27x</td>
+                <td>市场恐慌或行业危机时</td>
+            </tr>
+            <tr style="background:#fdf2f2;">
+                <td><strong>止损位</strong></td>
+                <td>$280</td>
+                <td>PE 21x</td>
+                <td>跌破则护城河逻辑或长期趋势失效</td>
+            </tr>
+        </table>
+
+        <h3>7.5 关键催化剂</h3>
+        <div class="moat-item">
+            <strong>利好催化剂：</strong>
+            <ol>
+                <li><strong>AI数据中心散热需求爆发</strong>：hyperscaler 2026-2028年capex持续超预期，应用设备订单已+120%</li>
+                <li><strong>backlog持续扩张</strong>：$78亿创纪录，book-to-bill 112%，2026年营收可见性强</li>
+                <li><strong>定价权维持</strong>：能效法规升级+设备产能紧张，提价3%+有望持续</li>
+                <li><strong>服务收入占比提升</strong>：从34%继续上升至40%+，进一步抬高估值倍数</li>
+                <li><strong>AI智能楼宇管理突破</strong>：BrainBox AI + Nuvolo整合落地，开辟高增长新业务</li>
+                <li><strong>股东回报加码</strong>：2026年股息+12%，新授权$48亿回购计划</li>
+                <li><strong>欧洲能效法规落地</strong>：F-Gas法规加速老旧设备替换，欧洲市场重回增长</li>
+                <li><strong>热泵渗透率提升</strong>：欧洲电气化政策推动热泵需求，TT是主要供应商</li>
+            </ol>
+        </div>
+        <div class="risk-item">
+            <strong>主要风险：</strong>
+            <ol>
+                <li><strong>AI数据中心投资放缓</strong>：hyperscaler削减capex，订单增长放缓</li>
+                <li><strong>住宅市场持续低迷</strong>：高利率抑制新房销售，住宅HVAC承压</li>
+                <li><strong>中国市场进一步恶化</strong>：亚太板块已-2.5%，若继续恶化影响整体增速</li>
+                <li><strong>原材料成本上涨</strong>：铜、钢、铝价格暴涨吞噬利润率</li>
+                <li><strong>汇率波动</strong>：美元走强压制海外收入</li>
+                <li><strong>石棉诉讼风险</strong>：Aldrich/Murray破产案2026年8月听证，可能增加负债</li>
+                <li><strong>竞争加剧</strong>：Carrier、Daikin在数据中心HVAC加大投入</li>
+                <li><strong>估值回归</strong>：PE从37x回落至25x意味着30%+下跌空间</li>
+            </ol>
+        </div>
+
+        <h3>7.6 巴菲特/芒格视角总结</h3>
+        <div class="highlight">
+            <strong>"以合理价格买入伟大公司，远胜于以低价买入平庸公司。"</strong> —— 沃伦·巴菲特
+            <p>TT是巴菲特/芒格体系里典型的<strong>"伟大公司"</strong>——拥有宽护城河（品牌+规模+转换成本+专利+监管）、可持续竞争优势（10-20年）、真实定价权（年提价3%）、高ROE（36%）、高ROIC（37%）、优秀管理层（10年股东回报$160亿）。公司同时受益于三大长期 secular trend：①全球变暖推升制冷需求 ②AI数据中心散热需求爆发 ③能效法规升级驱动设备替换。</p>
+            <p>唯一的问题是<strong>估值偏贵</strong>——PE 37x位于历史高位，Forward PE 28.7x仍高于行业均值。这是"伟大公司但价格偏贵"的典型，符合芒格"宁可贵一点也要买伟大公司"的思路，但不符合巴菲特"安全边际"的严格标准。</p>
+            <p>芒格"反向思考"：什么会让TT失败？①AI数据中心投资泡沫破裂（概率低）②中国/欧洲市场同时恶化（中等概率）③石棉诉讼大幅超预期（低概率）④技术颠覆（如新型制冷技术替代传统HVAC，低概率）。综合来看，TT的失败概率较低，主要风险是估值回归而非业务恶化。</p>
+        </div>
+
+        <h3>7.7 投资建议总结</h3>
+        <div class="summary-grid">
+            <div class="summary-card">
+                <h4>评级</h4>
+                <div class="value" style="color:#f39c12;">持有</div>
+                <p>逢回调至$380-420加仓</p>
+            </div>
+            <div class="summary-card">
+                <h4>目标持有期</h4>
+                <div class="value">5-10年</div>
+                <p>长期持有受益secular trend</p>
+            </div>
+            <div class="summary-card">
+                <h4>预期年化回报</h4>
+                <div class="value">12-18%</div>
+                <p>EPS增长12%+股息1%+估值中性</p>
+            </div>
+            <div class="summary-card">
+                <h4>综合评分</h4>
+                <div class="value">4.2/5.0</div>
+                <p>护城河深+成长强+估值偏贵</p>
+            </div>
+        </div>
+
+        <div class="highlight">
+            <strong>核心结论：</strong> TT是巴菲特/芒格体系里典型的<strong>"伟大公司+偏贵价格"</strong>——拥有宽护城河、真实定价权、高ROE/ROIC、优秀管理层，同时受益于AI数据中心散热+全球变暖+能效升级三大长期趋势。建议<strong>已持仓者长期持有</strong>，享受成长+股息，目标持有5-10年；<strong>未持仓者等待回调至$380-420区间</strong>再介入，可获得更佳安全边际。TT是适合"长期持有+逢低加仓"策略的优质标的，符合芒格"宁可贵一点也要买伟大公司"的投资哲学。密切关注backlog持续扩张、AI数据中心订单、服务收入占比提升等核心指标。
+        </div>
+    </div>
+
+    <script>
+        // ROE历史图表
+        const roeCtx = document.getElementById('roeChart').getContext('2d');
+        new Chart(roeCtx, {
+            type: 'line',
+            data: {
+                labels: ['2020', '2021', '2022', '2023', '2024', '2025'],
+                datasets: [{
+                    label: 'ROE（%）',
+                    data: [10, 25, 30, 33, 35, 36],
+                    borderColor: '#27ae60',
+                    backgroundColor: 'rgba(39, 174, 96, 0.1)',
+                    fill: true,
+                    tension: 0.3
+                }, {
+                    label: '调整后EBITDA利润率（%）',
+                    data: [15.4, 16.7, 17.8, 18.8, 19.4, 20.1],
+                    borderColor: '#2e86c1',
+                    backgroundColor: 'rgba(46, 134, 193, 0.1)',
+                    fill: true,
+                    tension: 0.3
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: { display: true, text: 'TT 历史ROE与EBITDA利润率走势（6年持续提升）' },
+                    legend: { display: true, position: 'top' }
+                },
+                scales: {
+                    y: { title: { display: true, text: '%' }, min: 5, max: 40 },
+                    x: { title: { display: true, text: '财年' } }
+                }
+            }
+        });
+
+        // 营收与EBITDA历史图表
+        const revCtx = document.getElementById('revChart').getContext('2d');
+        new Chart(revCtx, {
+            type: 'bar',
+            data: {
+                labels: ['2020', '2021', '2022', '2023', '2024', '2025'],
+                datasets: [
+                    {
+                        label: '营收（十亿美元）',
+                        data: [9.0, 13.8, 15.7, 17.0, 20.0, 21.3],
+                        backgroundColor: 'rgba(46, 134, 193, 0.7)',
+                        borderColor: '#2e86c1',
+                        borderWidth: 1
+                    },
+                    {
+                        label: '调整后EBITDA（十亿美元）',
+                        data: [1.4, 2.3, 2.8, 3.2, 3.9, 4.27],
+                        backgroundColor: 'rgba(231, 76, 60, 0.7)',
+                        borderColor: '#e74c3c',
+                        borderWidth: 1
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: { display: true, text: 'TT 营收与EBITDA历史走势（6年CAGR 11-12%）' },
+                    legend: { display: true, position: 'top' }
+                },
+                scales: {
+                    y: { title: { display: true, text: '十亿美元' } },
+                    x: { title: { display: true, text: '财年' } }
+                }
+            }
+        });
+    </script>
+
+    <script src="scores_client.js"></script>
+    <script src="stock_topbar.js"></script>
+</body>
+</html>

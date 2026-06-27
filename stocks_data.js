@@ -59,6 +59,7 @@
         {code:'BX',name:'Blackstone',href:'bx.html'},
         {code:'LECO',name:'Lincoln Electric',href:'leco.html'},
         {code:'ECG',name:'Everus Construction Group',href:'ecg.html'},
+        {code:'TT',name:'Trane Technologies',href:'tt.html'},
         {code:'CMCSA',name:'Comcast Corporation',href:'cmcsa.html'},
         {code:'MLI',name:'Mueller Industries, Inc.',href:'mli.html'},
         {code:'DECK',name:'Deckers Outdoor Corpora..',href:'deck.html'},
