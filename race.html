@@ -3,40 +3,113 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ferrari N.V. (RACE) 详细分析</title>
+    <title>Ferrari N.V. (RACE) 价值投资分析</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
-        body { font-family: Arial, sans-serif; margin: 20px; background-color: #f5f5f5; }
-        h1 { text-align: center; color: #333; }
-        h2 { color: #4CAF50; margin-top: 30px; }
-        .info-box { background-color: white; padding: 20px; margin: 20px 0; box-shadow: 0 0 10px rgba(0,0,0,0.1); border-radius: 5px; }
-        table { width: 100%; border-collapse: collapse; margin: 10px 0; }
-        th, td { padding: 8px; text-align: left; border-bottom: 1px solid #ddd; }
-        th { background-color: #4CAF50; color: white; }
-        a { color: #4CAF50; text-decoration: none; }
-        a:hover { text-decoration: underline; }
-        
-        
-        
-        
-        
-        
-            
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        .tag { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 12px; font-weight: 600; }
-        .tag-orange { background-color: #fff3cd; color: #856404; }
-                .top-nav-bar { position: fixed; top: 0; left: 0; right: 0; height: 44px; background: #2c3e50; display: flex; align-items: center; justify-content: flex-end; padding: 0 20px; z-index: 9999; box-shadow: 0 2px 8px rgba(0,0,0,0.15); gap: 8px; }
-        .top-nav-link { color: white; padding: 6px 16px; border-radius: 16px; text-decoration: none; font-size: 13px; transition: background 0.2s; white-space: nowrap; }
-            .section-nav {
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            padding-top: 70px;
+            background-color: #f0f2f5;
+            color: #333;
+            line-height: 1.6;
+        }
+        h1 {
+            color: #8B0000;
+            font-size: 2.4em;
+            text-align: center;
+            margin-bottom: 5px;
+        }
+        h2 {
+            color: #8B0000;
+            border-bottom: 3px solid #d4af37;
+            padding-bottom: 10px;
+            margin-top: 35px;
+        }
+        h3 { color: #B22222; margin-top: 25px; }
+        h4 { color: #d4af37; margin-bottom: 5px; }
+        p { margin: 10px 0; }
+        .subtitle {
+            text-align: center;
+            color: #666;
+            font-size: 1.1em;
+            margin-bottom: 15px;
+        }
+        .info-box {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+        .highlight {
+            background: linear-gradient(135deg, #fef9e7, #fcf3cf);
+            border-left: 5px solid #f39c12;
+            padding: 15px 20px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        .risk-item {
+            background: #fdf2f2;
+            border-left: 5px solid #e74c3c;
+            padding: 12px 18px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+        .moat-item {
+            background: #eafaf1;
+            border-left: 5px solid #27ae60;
+            padding: 12px 18px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            background: white;
+            box-shadow: 0 1px 5px rgba(0,0,0,0.05);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        th {
+            background: #8B0000;
+            color: white;
+            padding: 12px;
+            text-align: left;
+            font-weight: 600;
+        }
+        td {
+            padding: 10px 12px;
+            border-bottom: 1px solid #eee;
+        }
+        tr:hover { background: #f8f9fa; }
+        .tag-green {
+            background: #27ae60;
+            color: white;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.85em;
+            font-weight: 600;
+        }
+        .tag-orange {
+            background: #f39c12;
+            color: white;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.85em;
+            font-weight: 600;
+        }
+        .tag-red {
+            background: #e74c3c;
+            color: white;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.85em;
+            font-weight: 600;
+        }
+        .section-nav {
             background: white;
             border-radius: 10px;
             padding: 15px 25px;
@@ -48,41 +121,1412 @@
             display: inline-block;
             margin: 5px 10px;
             padding: 6px 14px;
-            background: #eaf2f8;
-            color: #1a5276;
+            background: #fdf2f2;
+            color: #8B0000;
             text-decoration: none;
             border-radius: 15px;
             font-size: 0.9em;
         }
         .section-nav a:hover {
-            background: #2e86c1;
+            background: #8B0000;
             color: white;
         }
+        .chart-container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+        .rating-box {
+            display: inline-block;
+            background: #8B0000;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 8px;
+            font-size: 1.2em;
+            font-weight: bold;
+            margin: 10px 5px;
+        }
+        .rating-box.hold { background: #f39c12; }
+        .rating-box.buy { background: #27ae60; }
+        .rating-box.sell { background: #e74c3c; }
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .summary-card {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 1px 5px rgba(0,0,0,0.05);
+        }
+        .summary-card h4 { color: #8B0000; margin-bottom: 5px; }
+        .summary-card .value { font-size: 1.4em; font-weight: bold; color: #8B0000; }
     </style>
 </head>
 <body>
     <div class="top-nav-bar"></div>
     <script src="nav_bar.js?v=20260624"></script>
     <span id="topbarCode" style="display:none;">RACE</span>
-    <h1>Ferrari N.V. (NYSE: RACE)</h1>
-    <p style="text-align:center;color:#666;">巴菲特/芒格式价值投资基本面分析 | 更新日期：2026年6月</p>
+
+    <h1>🦬 Ferrari N.V. (NYSE: RACE)</h1>
+    <p class="subtitle">巴菲特/芒格式价值投资基本面分析 | 更新日期：2026年6月</p>
 
     <div class="section-nav">
         <a href="#chapter1">公司基本信息</a>
+        <a href="#chapter2">业务分析</a>
+        <a href="#chapter3">产品竞争力分析</a>
+        <a href="#chapter4">历史财务指标</a>
+        <a href="#chapter5">竞争分析</a>
+        <a href="#chapter6">利润分配分析</a>
+        <a href="#chapter7">投资总结</a>
     </div>
 
     <div class="info-box">
         <h2 id="chapter1">一、公司基本信息</h2>
         <table>
-            <tr><td>公司全称</td><td>Ferrari N.V.</td></tr>
-            <tr><td>股票代码</td><td>NYSE: RACE</td></tr>
-            <tr><td>市值</td><td>约780亿美元</td></tr>
-            <tr><td>行业</td><td>豪华跑车</td></tr>
+            <tr><td style="width:30%;font-weight:bold;">公司全称</td><td>Ferrari N.V.</td></tr>
+            <tr><td style="font-weight:bold;">股票代码</td><td>NYSE: RACE / EXM（米兰）</td></tr>
+            <tr><td style="font-weight:bold;">市值</td><td>约650亿美元（USD ~65B，2026年4月）</td></tr>
+            <tr><td style="font-weight:bold;">最新收盘价</td><td>$352.32（2026年4月）</td></tr>
+            <tr><td style="font-weight:bold;">52周区间</td><td>$312.51 - $519.10</td></tr>
+            <tr><td style="font-weight:bold;">ISIN</td><td>NL0011585146</td></tr>
+            <tr><td style="font-weight:bold;">成立时间</td><td>1939年（Enzo Ferrari创立Auto Avio Costruzioni）；1947年首款法拉利125 S下线；2016年从FCA分拆独立上市</td></tr>
+            <tr><td style="font-weight:bold;">总部</td><td>荷兰阿姆斯特丹（法定总部）；运营总部：意大利马拉内洛（Maranello, Italy）</td></tr>
+            <tr><td style="font-weight:bold;">CEO</td><td>Benedetto Vigna（2021年9月就任，前STMicroelectronics高管）</td></tr>
+            <tr><td style="font-weight:bold;">董事长</td><td>John Elkann（Exor控股，Agnelli家族继承人）</td></tr>
+            <tr><td style="font-weight:bold;">员工人数</td><td>约4,800人</td></tr>
+            <tr><td style="font-weight:bold;">行业</td><td>可选消费 — 豪华超跑与奢侈品</td></tr>
+            <tr><td style="font-weight:bold;">指数成分</td><td>S&P 500 / FTSE MIB / Euro Stoxx 50 成分股</td></tr>
+            <tr><td style="font-weight:bold;">年产销量</td><td>约13,640台（2025年）— 唯一坚守"限量策略"的主流超跑制造商</td></tr>
+            <tr><td style="font-weight:bold;">主要股东</td><td>Exor N.V.（约24.5%，Agnelli家族控股）、Piero Ferrari（10%）</td></tr>
         </table>
-        <p style="color:#856404;"><span class="tag tag-orange">待补充</span> 详细分析内容将在后续更新中补充。</p>
+        <div class="highlight">
+            <strong>一句话理解公司：</strong> 法拉利不是一家"汽车公司"，而是一家"以汽车为载体的奢侈品巨头"。它的真正对手不是通用、丰田，而是爱马仕、劳力士、百达翡丽。每年只造1.3万多台车，每台均价44万欧元（10年涨57%），订单已排到2027年底——你买车要先排队2-3年，这赋予了法拉利提价权、抗周期能力、以及与大宗汽车完全不同的估值逻辑（P/E 34倍，与LVMH、爱马仕同档）。
+        </div>
+        <div class="moat-item">
+            <strong>巴菲特视角：</strong> 这是巴菲特/芒格体系里最典型的"经济特许权（Economic Franchise）"公司——①<strong>无可替代的品牌力</strong>：法拉利是少数能跨越百年的"信仰级"品牌，与可口可乐、苹果类似；②<strong>人为稀缺性</strong>：刻意限产1.3-1.4万台/年，订单覆盖到2027年底，制造"配额感"；③<strong>惊人的定价权</strong>：过去10年均价涨57%，定制化附件率（attach rate）20%，每台F80超跑利润相当于22台标准车型；④<strong>超低资本需求</strong>：年产1.3万台不需要巨额产能扩张，资本回报率(ROIC)>30%远高于汽车行业平均水平；⑤<strong>客户高度粘性</strong>：2025年84%买家已拥有过法拉利、53%拥有多台，复购率行业第一。这些特征让法拉利在经济下行周期仍能维持销量和价格——2020年新冠期间出货量仅下降10%，远优于整个汽车业。
+        </div>
     </div>
 
-    
+    <div class="info-box">
+        <h2 id="chapter2">二、业务分析</h2>
+
+        <h3>2.1 业务模式（用大白话说）</h3>
+        <p>法拉利的商业模式，跟普通车厂完全反过来：<strong>普通车厂追求"多卖车、降成本、抢份额"，法拉利追求"少卖车、提单价、保稀缺"</strong>。它的核心逻辑是：</p>
+        <ul>
+            <li><strong>限量制造</strong>：年产能上限约1.4-1.5万台，刻意低于需求量，制造"配额+等待"的稀缺感</li>
+            <li><strong>定制溢价</strong>：每个客户可个性化配置车身颜色、内饰、徽章、缝线，定制附件率20%以上，单台均价因此提升20-30%</li>
+            <li><strong>分层产品组合</strong>：从入门款Roma（~25万欧元）到顶级Icona系列（Daytona SP3，~200万欧元）和限量超跑F80（~360万欧元），利润随级别呈几何级数提升</li>
+            <li><strong>F1品牌放大器</strong>：F1车队年预算约5-6亿美元，但带来数十亿品牌价值曝光，是"市场费用/营收比"最低的奢侈品营销</li>
+            <li><strong>生活方式延伸</strong>：通过授权、零售体验、博物馆、主题公园等放大品牌收入（不卖车也能赚钱）</li>
+        </ul>
+
+        <h3>2.2 三大业务板块（2025年）</h3>
+        <table>
+            <tr>
+                <th>板块</th>
+                <th>2025营收（百万欧元）</th>
+                <th>占比</th>
+                <th>同比增速</th>
+                <th>核心业务</th>
+            </tr>
+            <tr>
+                <td><strong>Cars & Spare Parts（汽车与零部件）</strong></td>
+                <td>€6,005M</td>
+                <td>~84%</td>
+                <td>+5%</td>
+                <td>跑车销售、原厂配件、个性化定制、售后</td>
+            </tr>
+            <tr>
+                <td><strong>Sponsorship, Commercial & Brand（赞助与品牌）</strong></td>
+                <td>~€880M</td>
+                <td>~12%</td>
+                <td>+22%</td>
+                <td>F1赞助收入、商业合作、品牌授权</td>
+            </tr>
+            <tr>
+                <td><strong>Lifestyle（生活方式）</strong></td>
+                <td>~€260M</td>
+                <td>~4%</td>
+                <td>+10%</td>
+                <td>授权商品、零售体验、博物馆、品牌活动</td>
+            </tr>
+            <tr style="background:#fef9e7;font-weight:bold;">
+                <td>合计</td>
+                <td>€7,146M</td>
+                <td>100%</td>
+                <td>+7%</td>
+                <td>三大板块协同增长，品牌溢价能力贯穿全价值链</td>
+            </tr>
+        </table>
+
+        <h3>2.3 地理收入分布（2025年）</h3>
+        <table>
+            <tr>
+                <th>地区</th>
+                <th>占总营收</th>
+                <th>核心市场</th>
+                <th>2025表现</th>
+            </tr>
+            <tr>
+                <td><strong>EMEA（欧洲、中东、非洲）</strong></td>
+                <td>~45%</td>
+                <td>意大利、德国、英国、瑞士</td>
+                <td>稳健增长，本土市场根基深厚</td>
+            </tr>
+            <tr>
+                <td><strong>Americas（美洲）</strong></td>
+                <td>~30%</td>
+                <td>美国（最大单一市场）</td>
+                <td>关税冲击下仍韧性增长</td>
+            </tr>
+            <tr>
+                <td><strong>Greater China（大中华区）</strong></td>
+                <td>~8%</td>
+                <td>中国大陆、香港、台湾</td>
+                <td><span class="tag-red">两年下滑52%</span>，市场严重承压</td>
+            </tr>
+            <tr>
+                <td><strong>Rest of APAC（其他亚太）</strong></td>
+                <td>~12%</td>
+                <td>日本、新加坡、韩国、澳大利亚</td>
+                <td>高速增长，对冲中国市场下滑</td>
+            </tr>
+            <tr>
+                <td><strong>Other（其他）</strong></td>
+                <td>~5%</td>
+                <td>全球其他</td>
+                <td>稳定</td>
+            </tr>
+        </table>
+
+        <h3>2.4 产品线分布（2025年）</h3>
+        <table>
+            <tr>
+                <th>产品层级</th>
+                <th>代表车型</th>
+                <th>起售价（欧元）</th>
+                <th>年销量占比</th>
+                <th>战略意义</th>
+            </tr>
+            <tr>
+                <td><strong>限量超跑（Icona/Special Series）</strong></td>
+                <td>F80、Daytona SP3、812 Competizione</td>
+                <td>200万-360万</td>
+                <td>~3%</td>
+                <td>品牌金字塔顶端，单台利润=22台标准车型</td>
+            </tr>
+            <tr>
+                <td><strong>旗舰跑车（Supercar）</strong></td>
+                <td>SF90 XX、12Cilindri</td>
+                <td>50万-70万</td>
+                <td>~15%</td>
+                <td>技术旗舰，混动技术验证平台</td>
+            </tr>
+            <tr>
+                <td><strong>中置跑车（Mid-Rear）</strong></td>
+                <td>296 GTB、296 Speciale</td>
+                <td>28万-40万</td>
+                <td>~40%</td>
+                <td>销量主力，技术最成熟</td>
+            </tr>
+            <tr>
+                <td><strong>前置GT（Front-Engine）</strong></td>
+                <td>Roma、Purosangue、Amalfi</td>
+                <td>22万-40万</td>
+                <td>~35%</td>
+                <td>日常驾驶向，吸引新客户</td>
+            </tr>
+            <tr>
+                <td><strong>特别版/收藏级</strong></td>
+                <td>849 Testarossa、Luce</td>
+                <td>定制</td>
+                <td>~7%</td>
+                <td>收藏家专属，提升品牌稀缺性</td>
+            </tr>
+        </table>
+
+        <div class="highlight">
+            <strong>业务模式核心看点：</strong> 法拉利的"反汽车业"逻辑——<strong>越涨价、越稀缺、订单越多</strong>。2025年出货量13,640台（同比-112台），但营收仍增长7%到€71.46亿，EBIT利润率提升120bps至29.5%。这背后是"产品组合+定制+赞助"三引擎驱动：①新F80开始交付、SF90 XX系列占比提升（mix优化）；②定制附件率20%（每台车多收10万欧元以上）；③F1赞助收入大幅增长（赞助板块+22%）。订单簿覆盖至2027年底，未来2年增长可见性极强。
+        </div>
+    </div>
+
+    <div class="info-box">
+        <h2 id="chapter3">三、产品竞争力分析</h2>
+
+        <h3>3.1 核心跑车业务竞争力</h3>
+        <p><strong>1. 可替代性：</strong> <span class="tag-green">极低（Very Low）</span></p>
+        <ul>
+            <li>主要替代方案：Lamborghini（大众集团）、McLaren、Porsche 911 GT系列、Aston Martin、Pagani、Koenigsegg</li>
+            <li>替代体验差距：法拉利是唯一拥有78年F1历史+11次勒芒冠军+全球最强品牌信仰的超跑品牌，其他品牌在"故事性+收藏价值+保值率"上无法比拟</li>
+            <li>核心差异：保时捷年产30万台（量产化、品牌稀释），兰博基尼年产1万台（稍逊品牌力），迈凯伦年亏损（财务不稳），阿斯顿马丁持续亏损（量产策略失败）</li>
+            <li><strong>巴菲特测试</strong>：如果法拉利涨价10%，几乎没有客户会切换到兰博基尼——因为车主买的不是"一辆快车"，而是"法拉利"这个身份符号</li>
+        </ul>
+
+        <p><strong>2. 客户转换成本：</strong> <span class="tag-green">极高（Very High）</span></p>
+        <ul>
+            <li><strong>身份转换成本</strong>：法拉利车主社群（Corsi Piloti、Ferrari Club）是排他性极强的"会员俱乐部"，换品牌等于退出社交圈</li>
+            <li><strong>财务转换成本</strong>：法拉利保值率行业最高，5年保值率约75%（vs. 兰博基尼60%、保时捷911 50%），换品牌等于损失数十万欧元</li>
+            <li><strong>等待成本</strong>：新车主下单后等待2-3年才能提车，已有车主享受优先配额（VIP通道），换品牌等于放弃多年累积的VIP资格</li>
+            <li><strong>定制历史</strong>：老客户的Tailor Made个性化记录、收藏车型档案在法拉利总部永久保存，无法转移</li>
+        </ul>
+
+        <p><strong>3. 定价权：</strong> <span class="tag-green">极强（Supreme）</span></p>
+        <ul>
+            <li><strong>历史提价记录</strong>：过去10年法拉利平均售价从€28万涨至€44万（+57%），远超通胀</li>
+            <li><strong>定制溢价</strong>：2025年附件率20%，意味着每5台车就有1台进行了深度个性化（额外花费5-30万欧元）</li>
+            <li><strong>层级定价</strong>：F80起价€360万，单台利润相当于22台296 GTB，"金字塔定价"实现利润最大化</li>
+            <li><strong>抗通胀</strong>：2025年面对美国关税冲击和欧元波动，仍维持29.5% EBIT利润率（接近历史新高）</li>
+            <li><strong>定价权趋势</strong>：持续增强——限量车型扩容、定制深化、品牌价值持续累积</li>
+        </ul>
+
+        <p><strong>整体竞争力评级：5/5星</strong> <span class="tag-green">极强</span></p>
+
+        <h3>3.2 F1与品牌业务竞争力</h3>
+        <p><strong>1. 可替代性：</strong> <span class="tag-green">极低（Very Low）</span></p>
+        <ul>
+            <li>F1是法拉利的"品牌心脏"——自1950年F1创立以来唯一一支每年都参赛的车队，全球体育史上唯一能与曼联、皇马、湖人匹敌的"传奇IP"</li>
+            <li>F1商业收入与车队成绩挂钩：2024年法拉利车队排名提升（队史第2），直接带来2025年商业收入+22%</li>
+            <li>2026年F1规则大改（新动力单元规则），法拉利作为唯一连续参赛78年的车队，有最大"历史红利"</li>
+        </ul>
+
+        <p><strong>2. 客户转换成本：</strong> <span class="tag-green">极高（Very High）</span></p>
+        <ul>
+            <li>顶级赞助商（壳牌、桑坦德、理查德米勒、Ray-Ban）与法拉利签订多年长约，年费数千万欧元</li>
+            <li>赞助商切换到迈凯伦或阿斯顿马丁，等于失去"法拉利光环"这一核心营销资产</li>
+        </ul>
+
+        <p><strong>3. 定价权：</strong> <span class="tag-green">强（Strong）</span></p>
+        <ul>
+            <li>F1赞助合同通常含"绩效奖金"条款（如车队排名奖金），2024年排名提升直接拉动2025年赞助收入+22%</li>
+            <li>品牌授权收入（游戏、服装、配饰）持续增长，无边际成本</li>
+        </ul>
+
+        <p><strong>整体竞争力评级：5/5星</strong> <span class="tag-green">极强</span></p>
+
+        <h3>3.3 生活方式业务竞争力</h3>
+        <p><strong>1. 可替代性：</strong> <span class="tag-orange">中等（Medium）</span></p>
+        <ul>
+            <li>生活方式领域竞争激烈，对手包括保时捷设计、阿斯顿马丁生活、兰博基尼生活等</li>
+            <li>但法拉利品牌定位更高，受众与LV、爱马仕、劳力士高度重叠</li>
+        </ul>
+
+        <p><strong>2. 客户转换成本：</strong> <span class="tag-orange">较低（Low-Medium）</span></p>
+        <ul>
+            <li>消费者可自由选择奢侈品品牌</li>
+            <li>但法拉利车主对品牌延伸产品的购买意愿更强</li>
+        </ul>
+
+        <p><strong>3. 定价权：</strong> <span class="tag-green">较强（Strong）</span></p>
+        <ul>
+            <li>法拉利品牌授权产品可享受20-30%品牌溢价</li>
+            <li>线下体验（马拉内洛工厂参观、博物馆、Corsi Piloti驾驶课程）定价高且持续涨价</li>
+        </ul>
+
+        <p><strong>整体竞争力评级：3.5/5星</strong> <span class="tag-green">较强</span></p>
+
+        <h3>3.4 整体业务竞争力总结</h3>
+        <table>
+            <tr>
+                <th>板块</th>
+                <th>可替代性</th>
+                <th>转换成本</th>
+                <th>定价权</th>
+                <th>综合评级</th>
+            </tr>
+            <tr>
+                <td>核心跑车业务</td>
+                <td><span class="tag-green">极低</span></td>
+                <td><span class="tag-green">极高</span></td>
+                <td><span class="tag-green">极强</span></td>
+                <td>5/5星</td>
+            </tr>
+            <tr>
+                <td>F1与品牌业务</td>
+                <td><span class="tag-green">极低</span></td>
+                <td><span class="tag-green">极高</span></td>
+                <td><span class="tag-green">强</span></td>
+                <td>5/5星</td>
+            </tr>
+            <tr>
+                <td>生活方式业务</td>
+                <td><span class="tag-orange">中等</span></td>
+                <td><span class="tag-orange">较低</span></td>
+                <td><span class="tag-green">较强</span></td>
+                <td>3.5/5星</td>
+            </tr>
+        </table>
+        <div class="highlight">
+            <strong>芒格视角：</strong> 法拉利是巴菲特/芒格体系里"经济护城河最深的少数公司之一"——品牌力（78年F1传奇+全球顶级信仰）、稀缺性（年产1.3万台、订单排到2027年）、定价权（10年均价涨57%）、客户粘性（84%复购率）、低资本需求（年产能扩张极克制）。这种组合在全球上市公司中极为罕见，类似于爱马仕+茅台+可口可乐的"奢侈品+稀缺+定价权"三重护城河。<strong>唯一遗憾是估值：34倍PE意味着市场已经定价了"完美"</strong>，留给投资者的安全边际非常薄。
+        </div>
+    </div>
+
+    <div class="info-box">
+        <h2 id="chapter4">四、历史财务指标</h2>
+
+        <h3>4.1 关键财务数据（2018-2025）</h3>
+        <table>
+            <tr>
+                <th>指标</th>
+                <th>2018</th>
+                <th>2019</th>
+                <th>2020</th>
+                <th>2021</th>
+                <th>2022</th>
+                <th>2023</th>
+                <th>2024</th>
+                <th>2025</th>
+                <th>趋势</th>
+            </tr>
+            <tr>
+                <td>营收（百万欧元）</td>
+                <td>3,820</td>
+                <td>3,767</td>
+                <td>3,432</td>
+                <td>4,271</td>
+                <td>5,095</td>
+                <td>5,970</td>
+                <td>6,677</td>
+                <td>7,146</td>
+                <td>7年CAGR ~9%</td>
+            </tr>
+            <tr>
+                <td>营收增速</td>
+                <td>N/A</td>
+                <td>-1%</td>
+                <td>-9%</td>
+                <td>+24%</td>
+                <td>+19%</td>
+                <td>+17%</td>
+                <td>+12%</td>
+                <td>+7%</td>
+                <td>稳健增长</td>
+            </tr>
+            <tr>
+                <td>EBIT（百万欧元）</td>
+                <td>1,007</td>
+                <td>955</td>
+                <td>779</td>
+                <td>1,098</td>
+                <td>1,398</td>
+                <td>1,669</td>
+                <td>1,888</td>
+                <td>2,110</td>
+                <td>7年CAGR ~11%</td>
+            </tr>
+            <tr>
+                <td>EBIT利润率</td>
+                <td>26.4%</td>
+                <td>25.4%</td>
+                <td>22.7%</td>
+                <td>25.7%</td>
+                <td>27.4%</td>
+                <td>27.9%</td>
+                <td>28.3%</td>
+                <td>29.5%</td>
+                <td>持续提升680bps</td>
+            </tr>
+            <tr>
+                <td>EBITDA（百万欧元）</td>
+                <td>1,374</td>
+                <td>1,311</td>
+                <td>1,107</td>
+                <td>1,490</td>
+                <td>1,857</td>
+                <td>2,253</td>
+                <td>2,555</td>
+                <td>2,772</td>
+                <td>7年CAGR ~11%</td>
+            </tr>
+            <tr>
+                <td>EBITDA利润率</td>
+                <td>36.0%</td>
+                <td>34.8%</td>
+                <td>32.3%</td>
+                <td>34.9%</td>
+                <td>36.5%</td>
+                <td>37.7%</td>
+                <td>38.3%</td>
+                <td>38.8%</td>
+                <td>持续提升650bps</td>
+            </tr>
+            <tr>
+                <td>净利润（百万欧元）</td>
+                <td>782</td>
+                <td>696</td>
+                <td>604</td>
+                <td>833</td>
+                <td>939</td>
+                <td>1,257</td>
+                <td>1,526</td>
+                <td>1,600</td>
+                <td>7年CAGR ~11%</td>
+            </tr>
+            <tr>
+                <td>稀释EPS（欧元）</td>
+                <td>4.29</td>
+                <td>3.77</td>
+                <td>3.27</td>
+                <td>4.55</td>
+                <td>5.22</td>
+                <td>6.96</td>
+                <td>8.46</td>
+                <td>8.96</td>
+                <td>7年CAGR ~11%</td>
+            </tr>
+            <tr>
+                <td>出货量（台）</td>
+                <td>9,251</td>
+                <td>10,131</td>
+                <td>9,119</td>
+                <td>11,155</td>
+                <td>13,221</td>
+                <td>13,663</td>
+                <td>13,752</td>
+                <td>13,640</td>
+                <td>7年CAGR ~5%（克制）</td>
+            </tr>
+            <tr>
+                <td>平均售价（千欧元）</td>
+                <td>~282</td>
+                <td>~284</td>
+                <td>~285</td>
+                <td>~290</td>
+                <td>~335</td>
+                <td>~380</td>
+                <td>~420</td>
+                <td>~440</td>
+                <td>7年涨56%</td>
+            </tr>
+            <tr>
+                <td>工业自由现金流（百万欧元）</td>
+                <td>~600</td>
+                <td>~580</td>
+                <td>~450</td>
+                <td>~750</td>
+                <td>~840</td>
+                <td>~950</td>
+                <td>1,027</td>
+                <td>1,538</td>
+                <td>2025暴增50%</td>
+            </tr>
+            <tr>
+                <td>ROE（净资产收益率）</td>
+                <td>~50%</td>
+                <td>~40%</td>
+                <td>~30%</td>
+                <td>~38%</td>
+                <td>~38%</td>
+                <td>~42%</td>
+                <td>~42%</td>
+                <td>~44%</td>
+                <td>极高且稳定</td>
+            </tr>
+            <tr>
+                <td>ROIC（投入资本回报率）</td>
+                <td>~35%</td>
+                <td>~30%</td>
+                <td>~22%</td>
+                <td>~30%</td>
+                <td>~32%</td>
+                <td>~35%</td>
+                <td>~37%</td>
+                <td>~40%</td>
+                <td>远超资本成本</td>
+            </tr>
+        </table>
+
+        <div class="chart-container">
+            <canvas id="chart1" height="100"></canvas>
+        </div>
+
+        <div class="chart-container">
+            <canvas id="chart2" height="100"></canvas>
+        </div>
+
+        <h3>4.2 财务指标趋势分析</h3>
+        <table>
+            <tr>
+                <th>指标</th>
+                <th>2018-2020均值</th>
+                <th>2021-2023均值</th>
+                <th>2024-2025均值</th>
+                <th>趋势判断</th>
+            </tr>
+            <tr>
+                <td>ROE</td>
+                <td>~40%</td>
+                <td>~39%</td>
+                <td>~43%</td>
+                <td><span class="tag-green">↑ 持续高位</span></td>
+            </tr>
+            <tr>
+                <td>资产负债率（Debt-to-Asset）</td>
+                <td>~75%</td>
+                <td>~73%</td>
+                <td>~70%</td>
+                <td><span class="tag-green">↓ 持续去杠杆</span></td>
+            </tr>
+            <tr>
+                <td>权益比（Equity Ratio）</td>
+                <td>~25%</td>
+                <td>~27%</td>
+                <td>~30%</td>
+                <td><span class="tag-green">↑ 权益占比提升</span></td>
+            </tr>
+            <tr>
+                <td>PE（市盈率）</td>
+                <td>~30x</td>
+                <td>~45x</td>
+                <td>~38x</td>
+                <td><span class="tag-orange">→ 高位震荡</span></td>
+            </tr>
+            <tr>
+                <td>EBITDA利润率</td>
+                <td>34.4%</td>
+                <td>36.4%</td>
+                <td>38.6%</td>
+                <td><span class="tag-green">↑ 持续提升</span></td>
+            </tr>
+            <tr>
+                <td>工业FCF转化率（vs 净利润）</td>
+                <td>~90%</td>
+                <td>~80%</td>
+                <td>~90%</td>
+                <td><span class="tag-green">→ 高质量盈利</span></td>
+            </tr>
+        </table>
+
+        <div class="highlight">
+            <strong>财务指标深度解读：</strong>
+            <ul>
+                <li><strong>ROE 44%</strong>：远超汽车行业平均水平（5-15%），仅次于爱马仕（~30%）和茅台（~30%），但法拉利通过高利润率+低权益基数实现</li>
+                <li><strong>EBITDA利润率38.8%</strong>：远超保时捷（~18%）、宝马（~13%）、奔驰（~12%），与奢侈品集团LVMH（~28%）、爱马仕（~40%）同档</li>
+                <li><strong>7年营收CAGR ~9%</strong>：稳健而非激进，符合"限量策略"哲学——以价换量是核心增长方式</li>
+                <li><strong>平均售价7年涨56%</strong>：远超通胀（同期欧元区CPI累计仅~15%），证明真实定价权</li>
+                <li><strong>工业FCF 2025年€15.38亿（+50%）</strong>：净利润转化率近100%，资本密集度极低（年产1.3万台无需巨额产能扩张）</li>
+                <li><strong>PE 34倍</strong>：高于汽车业（10-15倍），与奢侈品同档（LVMH 25倍、爱马仕50倍），定价中已包含"完美增长预期"</li>
+            </ul>
+        </div>
+
+        <div class="risk-item">
+            <strong>需要警惕的财务信号：</strong>
+            <ul>
+                <li><strong>资产负债率~70%</strong>：表面偏高，但其中大部分是"客户预付款"和"租赁负债"（融资租赁业务），有息负债实际较低（净债务/EBITDA &lt;0.5x）</li>
+                <li><strong>中国市场两年下滑52%</strong>：从2023年约16%占比降至2025年约8%，需关注是否结构性问题</li>
+                <li><strong>PE长期高于30倍</strong>：市场已充分定价"完美执行"，任何业绩未达预期都可能引发估值压缩（2025年8月H1业绩后股价一度回调17%）</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="info-box">
+        <h2 id="chapter5">五、竞争分析</h2>
+
+        <h3>5.1 主要竞争对手</h3>
+        <table>
+            <tr>
+                <th>竞争对手</th>
+                <th>2025年产量</th>
+                <th>平均售价</th>
+                <th>母公司</th>
+                <th>对比法拉利</th>
+            </tr>
+            <tr>
+                <td><strong>法拉利（RACE）</strong></td>
+                <td>13,640台</td>
+                <td>€44万</td>
+                <td>独立上市</td>
+                <td>—</td>
+            </tr>
+            <tr>
+                <td>保时捷（P911.DE）</td>
+                <td>~310,000台</td>
+                <td>~€12万</td>
+                <td>大众集团</td>
+                <td>产量23倍，但定价权弱、品牌稀释</td>
+            </tr>
+            <tr>
+                <td>兰博基尼</td>
+                <td>~10,000台</td>
+                <td>~€25万</td>
+                <td>大众集团（奥迪）</td>
+                <td>产量较少，但无F1历史、无品牌IP</td>
+            </tr>
+            <tr>
+                <td>迈凯伦</td>
+                <td>~2,500台</td>
+                <td>~€30万</td>
+                <td>私有（Bahrain Mumtalakat）</td>
+                <td>财务困境，2024年亏损</td>
+            </tr>
+            <tr>
+                <td>阿斯顿马丁（AML.L）</td>
+                <td>~6,500台</td>
+                <td>~€20万</td>
+                <td>YewTree投资集团</td>
+                <td>持续亏损，量产策略失败</td>
+            </tr>
+            <tr>
+                <td>宾利</td>
+                <td>~12,000台</td>
+                <td>~€25万</td>
+                <td>大众集团</td>
+                <td>定位超豪华GT，非超跑</td>
+            </tr>
+            <tr>
+                <td>布加迪</td>
+                <td>~150台</td>
+                <td>~€300万</td>
+                <td>Rimac合资</td>
+                <td>极端稀缺，但无品牌延伸</td>
+            </tr>
+        </table>
+
+        <h3>5.2 市场份额与定位</h3>
+        <table>
+            <tr>
+                <th>细分市场</th>
+                <th>法拉利份额</th>
+                <th>主要对手</th>
+                <th>份额变化趋势</th>
+            </tr>
+            <tr>
+                <td>$25万+超豪华跑车</td>
+                <td>~22%</td>
+                <td>保时捷911 GT、兰博基尼、迈凯伦</td>
+                <td><span class="tag-green">↑ 稳步提升</span></td>
+            </tr>
+            <tr>
+                <td>$50万+顶级超跑</td>
+                <td>~40%</td>
+                <td>迈凯伦、布加迪、帕加尼</td>
+                <td><span class="tag-green">↑ 高端份额扩张</span></td>
+            </tr>
+            <tr>
+                <td>$200万+限量超跑（Hypercar）</td>
+                <td>~50%</td>
+                <td>布加迪、Koenigsegg、帕加尼</td>
+                <td><span class="tag-green">↑ F80贡献</span></td>
+            </tr>
+            <tr>
+                <td>F1车队品牌价值</td>
+                <td>第1名</td>
+                <td>梅赛德斯、红牛、迈凯伦</td>
+                <td><span class="tag-green">↑ 历史沉淀无可撼动</span></td>
+            </tr>
+        </table>
+
+        <h3>5.3 经济护城河分析（巴菲特/芒格框架）</h3>
+
+        <div class="moat-item">
+            <strong>① 品牌力（Brand Power）— 极强（5/5星）</strong>
+            <ul>
+                <li>78年F1参赛史（自1950年F1创立以来唯一全勤车队），15次车手冠军、16次车队冠军</li>
+                <li>11次勒芒24小时冠军、9次Mille Miglia冠军——赛车历史无人可比</li>
+                <li>2025年Brand Finance全球品牌价值榜：法拉利是最具价值的汽车品牌之一，品牌价值约90亿美元</li>
+                <li>Enzo Ferrari的传奇故事 + 马拉内洛的"圣地"地位 + 红色（Rosso Corsa）的全球辨识度</li>
+                <li><strong>巴菲特测试</strong>：如果让一位亿万富翁只买一台车作为"身份符号"，90%会选法拉利而非兰博基尼或保时捷——这就是品牌垄断</li>
+            </ul>
+        </div>
+
+        <div class="moat-item">
+            <strong>② 稀缺性（Exclusivity）— 极强（5/5星）</strong>
+            <ul>
+                <li>年产1.3-1.4万台，仅为保时捷的4%、宝马的0.5%</li>
+                <li>刻意限产策略——产能可扩至2万台，但管理层明确表示不会扩张到2030年</li>
+                <li>限量超跑系列（Icona、Special Series）每年仅几百台，制造"金字塔顶端稀缺"</li>
+                <li>订单簿覆盖至2027年底，未来2-3年销售可见性极强</li>
+                <li>"配额制"——新客户需等待2-3年，老客户享受VIP优先权，制造层级感</li>
+            </ul>
+        </div>
+
+        <div class="moat-item">
+            <strong>③ 定价权（Pricing Power）— 极强（5/5星）</strong>
+            <ul>
+                <li>10年均价涨57%（€28万→€44万），远超通胀</li>
+                <li>定制附件率20%，每台车额外收取5-30万欧元</li>
+                <li>F80（€360万）单台利润=22台296 GTB，"金字塔定价"实现利润最大化</li>
+                <li>2025年面对美国关税和汇率波动，仍维持EBIT利润率29.5%（+120bps）</li>
+                <li>定价权来源：①品牌稀缺 ②客户身份感 ③收藏价值 ④F1光环 ⑤定制深化</li>
+            </ul>
+        </div>
+
+        <div class="moat-item">
+            <strong>④ 客户转换成本（Switching Costs）— 极高（5/5星）</strong>
+            <ul>
+                <li>身份转换成本：法拉利车主社群（Corsi Piloti、Ferrari Club）是排他性社交圈</li>
+                <li>财务转换成本：5年保值率75%（行业最高），换品牌损失数十万欧元</li>
+                <li>等待成本：新车主等待2-3年，老客户VIP配额，换品牌等于放弃多年累积</li>
+                <li>定制历史：Tailor Made记录永久保存在马拉内洛，无法转移</li>
+                <li>2025年84%买家为复购客户、53%拥有多台——客户粘性数据行业第一</li>
+            </ul>
+        </div>
+
+        <div class="moat-item">
+            <strong>⑤ 规模优势（Scale）— 中等（3/5星）</strong>
+            <ul>
+                <li>年产1.3万台规模太小，无法享受大宗采购优势</li>
+                <li>但单一工厂（马拉内洛+摩德纳）模式降低了运营复杂度</li>
+                <li>F1车队规模效应：年预算5-6亿美元，但分摊到每台车的"品牌费用"远低于通用、丰田</li>
+            </ul>
+        </div>
+
+        <div class="moat-item">
+            <strong>⑥ 网络效应（Network Effects）— 中等（3/5星）</strong>
+            <ul>
+                <li>法拉利车主俱乐部、Corsi Piloti驾驶课程、Ferrari Finali Mondiali等社群活动形成"准网络效应"</li>
+                <li>车主越多，社群价值越高，新客户加入意愿越强</li>
+                <li>但与Meta、Visa等典型网络效应相比，强度有限</li>
+            </ul>
+        </div>
+
+        <h3>5.4 竞争优势可持续性评估</h3>
+        <table>
+            <tr>
+                <th>护城河类型</th>
+                <th>强度</th>
+                <th>可持续性（10年+）</th>
+                <th>关键风险</th>
+            </tr>
+            <tr>
+                <td>品牌力</td>
+                <td>5/5</td>
+                <td><span class="tag-green">极强</span></td>
+                <td>品牌稀释（如电动化失败）</td>
+            </tr>
+            <tr>
+                <td>稀缺性</td>
+                <td>5/5</td>
+                <td><span class="tag-green">极强</span></td>
+                <td>产能扩张诱惑</td>
+            </tr>
+            <tr>
+                <td>定价权</td>
+                <td>5/5</td>
+                <td><span class="tag-green">极强</span></td>
+                <td>需求端经济衰退</td>
+            </tr>
+            <tr>
+                <td>客户转换成本</td>
+                <td>5/5</td>
+                <td><span class="tag-green">极强</span></td>
+                <td>新一代买家偏好改变</td>
+            </tr>
+            <tr>
+                <td>规模优势</td>
+                <td>3/5</td>
+                <td><span class="tag-orange">中等</span></td>
+                <td>不敌大众/丰田集团</td>
+            </tr>
+            <tr>
+                <td>网络效应</td>
+                <td>3/5</td>
+                <td><span class="tag-orange">中等</span></td>
+                <td>非典型网络效应</td>
+            </tr>
+        </table>
+
+        <div class="highlight">
+            <strong>护城河综合评级：5/5星</strong> — 法拉利拥有巴菲特/芒格体系里最稀缺的"经济特许权（Economic Franchise）"组合：极强品牌+极强稀缺+极强定价+极高转换成本。这种组合在全球上市公司中少于10家（如爱马仕、茅台、可口可乐、苹果）。<strong>核心风险不在于"竞争对手"，而在于"电动化转型"和"估值过热"</strong>——若电动化稀释了"机械传奇"的品牌内核（发动机声浪、机械工艺、收藏价值），护城河可能被削弱。
+        </div>
+    </div>
+
+    <div class="info-box">
+        <h2 id="chapter6">六、利润分配分析</h2>
+
+        <h3>6.1 股息与回购历史（2016-2025）</h3>
+        <table>
+            <tr>
+                <th>年份</th>
+                <th>每股股息（美元）</th>
+                <th>股息总额（百万欧元）</th>
+                <th>回购金额（百万欧元）</th>
+                <th>净利润（百万欧元）</th>
+                <th>派息率</th>
+                <th>股东回报率</th>
+            </tr>
+            <tr>
+                <td>2016</td>
+                <td>$0.52</td>
+                <td>~95</td>
+                <td>0</td>
+                <td>~400</td>
+                <td>~24%</td>
+                <td>~24%</td>
+            </tr>
+            <tr>
+                <td>2017</td>
+                <td>$0.68</td>
+                <td>~125</td>
+                <td>0</td>
+                <td>~537</td>
+                <td>~23%</td>
+                <td>~23%</td>
+            </tr>
+            <tr>
+                <td>2018</td>
+                <td>$0.88</td>
+                <td>~160</td>
+                <td>0</td>
+                <td>782</td>
+                <td>~20%</td>
+                <td>~20%</td>
+            </tr>
+            <tr>
+                <td>2019</td>
+                <td>$1.16</td>
+                <td>~210</td>
+                <td>0</td>
+                <td>696</td>
+                <td>~30%</td>
+                <td>~30%</td>
+            </tr>
+            <tr>
+                <td>2020</td>
+                <td>$1.23</td>
+                <td>~225</td>
+                <td>0</td>
+                <td>604</td>
+                <td>~37%</td>
+                <td>~37%</td>
+            </tr>
+            <tr>
+                <td>2021</td>
+                <td>$1.03</td>
+                <td>~190</td>
+                <td>0</td>
+                <td>833</td>
+                <td>~23%</td>
+                <td>~23%</td>
+            </tr>
+            <tr>
+                <td>2022</td>
+                <td>$1.48</td>
+                <td>~270</td>
+                <td>~250</td>
+                <td>939</td>
+                <td>~29%</td>
+                <td>~55%</td>
+            </tr>
+            <tr>
+                <td>2023</td>
+                <td>$1.92</td>
+                <td>~350</td>
+                <td>~350</td>
+                <td>1,257</td>
+                <td>~28%</td>
+                <td>~56%</td>
+            </tr>
+            <tr>
+                <td>2024</td>
+                <td>$2.64</td>
+                <td>~480</td>
+                <td>~400</td>
+                <td>1,526</td>
+                <td>~31%</td>
+                <td>~58%</td>
+            </tr>
+            <tr style="background:#fef9e7;font-weight:bold;">
+                <td>2025</td>
+                <td>$3.14</td>
+                <td>~570</td>
+                <td>~600</td>
+                <td>1,600</td>
+                <td>~36%</td>
+                <td>~73%</td>
+            </tr>
+            <tr>
+                <td>2026E</td>
+                <td>$4.25</td>
+                <td>~770</td>
+                <td>~300</td>
+                <td>~1,750E</td>
+                <td>~44%</td>
+                <td>~61%</td>
+            </tr>
+        </table>
+
+        <div class="chart-container">
+            <canvas id="chart3" height="100"></canvas>
+        </div>
+
+        <h3>6.2 利润分配结构分析</h3>
+        <table>
+            <tr>
+                <th>分配类别</th>
+                <th>2024金额（百万欧元）</th>
+                <th>2024占比</th>
+                <th>2025金额（百万欧元）</th>
+                <th>2025占比</th>
+                <th>趋势</th>
+            </tr>
+            <tr>
+                <td>股息支付</td>
+                <td>~480</td>
+                <td>31%</td>
+                <td>~570</td>
+                <td>36%</td>
+                <td><span class="tag-green">↑ 派息率提升</span></td>
+            </tr>
+            <tr>
+                <td>股票回购</td>
+                <td>~400</td>
+                <td>26%</td>
+                <td>~600</td>
+                <td>38%</td>
+                <td><span class="tag-green">↑ 加速回购</span></td>
+            </tr>
+            <tr>
+                <td>资本开支（CapEx）</td>
+                <td>~600</td>
+                <td>39%</td>
+                <td>~700</td>
+                <td>44%</td>
+                <td><span class="tag-orange">→ 维持电动化投入</span></td>
+            </tr>
+            <tr>
+                <td>研发支出（R&D）</td>
+                <td>~700</td>
+                <td>46%</td>
+                <td>~750</td>
+                <td>47%</td>
+                <td><span class="tag-green">↑ 持续投入</span></td>
+            </tr>
+            <tr>
+                <td>债务偿还（净）</td>
+                <td>~50</td>
+                <td>3%</td>
+                <td>~80</td>
+                <td>5%</td>
+                <td><span class="tag-green">↓ 净债务已低</span></td>
+            </tr>
+            <tr>
+                <td>留存收益</td>
+                <td>~0</td>
+                <td>0%</td>
+                <td>~0</td>
+                <td>0%</td>
+                <td><span class="tag-orange">→ 100%分配</span></td>
+            </tr>
+        </table>
+
+        <div class="chart-container">
+            <canvas id="chart4" height="100"></canvas>
+        </div>
+
+        <h3>6.3 资本配置质量评估</h3>
+
+        <div class="moat-item">
+            <strong>① 股息策略：稳步增长+派息率提升（4/5星）</strong>
+            <ul>
+                <li>股息连续10年增长：从2016年$0.52提升至2026年$4.25（10年CAGR ~24%）</li>
+                <li>派息率从20%提升至36%，2026年指引提升至44%——反映现金流强劲+资本需求可控</li>
+                <li>股息收益率仅1.17%，但增长性远高于周期股</li>
+                <li>2020年新冠期间仍维持派息，体现管理层信心</li>
+            </ul>
+        </div>
+
+        <div class="moat-item">
+            <strong>② 股票回购： disciplined + 时机精准（4.5/5星）</strong>
+            <ul>
+                <li>2022年CMD宣布€20亿回购计划，截至2025年12月已执行€19.98亿（接近完成）</li>
+                <li>回购节奏纪律性强：每年分2-3批次执行，与现金流匹配</li>
+                <li>2025年回购€6亿（+50% vs 2024），充分受益股价回调</li>
+                <li>管理层明确表示"股价回调是回购好时机"——2025年12月股价跌至23个月低点时持续回购</li>
+                <li>截至2025年12月，库存股占总股本8.58%，有效提升每股收益</li>
+            </ul>
+        </div>
+
+        <div class="moat-item">
+            <strong>③ 资本开支：克制但有针对性（4/5星）</strong>
+            <ul>
+                <li>CapEx约占营收10%（2025年€7亿），远低于大宗汽车厂商（15-20%）</li>
+                <li>主要投入：①电动化产线（E-building）②混动技术 ③新车型平台 ④马拉内洛工厂升级</li>
+                <li>2025-2027年CapEx计划€25亿，但相对FCF（€15亿+/年）可完全覆盖</li>
+                <li>没有"产能扩张"诱惑——年产能上限严格控制在1.4-1.5万台</li>
+            </ul>
+        </div>
+
+        <div class="moat-item">
+            <strong>④ 研发投入：聚焦差异化（4.5/5星）</strong>
+            <ul>
+                <li>R&D占营收~10%（2025年€7.5亿），高于汽车业平均（4-5%）</li>
+                <li>聚焦：①混动技术 ②电动化 ③F1动力单元 ④材料科学 ⑤空气动力学</li>
+                <li>F1研发与公路车技术双向溢出（如ERS能量回收、混合动力架构）</li>
+                <li>2026年F1规则大改，法拉利作为唯一连续78年参赛的车队，研发红利最大</li>
+            </ul>
+        </div>
+
+        <div class="moat-item">
+            <strong>⑤ 并购态度：极克制（5/5星）</strong>
+            <ul>
+                <li>过去10年无任何重大并购，符合"专注核心业务"的巴菲特哲学</li>
+                <li>2025年新增€3.5亿循环信贷额度，仅用于流动性管理，非并购</li>
+                <li>无"帝国建造（empire building）"倾向——CEO Vigna明确表示"不会通过并购扩张"</li>
+                <li>这种克制避免了"多元化折扣"，是估值溢价的重要支撑</li>
+            </ul>
+        </div>
+
+        <div class="highlight">
+            <strong>资本配置综合评级：4.5/5星</strong> — 法拉利的资本配置堪称"教科书级别"：①派息率稳步提升至44%，股息10年CAGR 24%；②€20亿回购计划3年完成，库存股达8.58%；③CapEx克制（占营收10%），聚焦电动化和新车型；④R&D投入高于行业，但与F1技术双向溢出；⑤无并购诱惑，专注核心业务。这种"高股东回报+克制扩张"的组合，是巴菲特/芒格最青睐的资本配置模式——管理者把股东当作"合伙人"而非"提款机"。
+        </div>
+
+        <h3>6.4 可持续增长率分析</h3>
+        <table>
+            <tr>
+                <th>指标</th>
+                <th>2024</th>
+                <th>2025</th>
+                <th>2026E</th>
+                <th>意义</th>
+            </tr>
+            <tr>
+                <td>ROE</td>
+                <td>~42%</td>
+                <td>~44%</td>
+                <td>~45%</td>
+                <td>极高的盈利能力</td>
+            </tr>
+            <tr>
+                <td>留存率（Retention Ratio）</td>
+                <td>~69%</td>
+                <td>~64%</td>
+                <td>~56%</td>
+                <td>派息率提升，留存下降</td>
+            </tr>
+            <tr>
+                <td>可持续增长率（SGR = ROE × 留存率）</td>
+                <td>~29%</td>
+                <td>~28%</td>
+                <td>~25%</td>
+                <td>无需外部融资可增长</td>
+            </tr>
+            <tr>
+                <td>实际营收增速</td>
+                <td>+12%</td>
+                <td>+7%</td>
+                <td>~+5%（指引）</td>
+                <td>低于SGR，因限产策略</td>
+            </tr>
+        </table>
+        <div class="moat-item">
+            <strong>关键洞察：</strong> 法拉利的可持续增长率（~25-29%）远高于实际增速（5-12%），意味着公司"故意"放缓增长——通过限产+提价实现高质量增长，而非追求数量扩张。这种"少即是多"的策略，正是巴菲特最赞赏的"经济特许权"的本质：不需要更多资本，就能创造更多利润。
+        </div>
+    </div>
+
+    <div class="info-box">
+        <h2 id="chapter7">七、投资总结</h2>
+
+        <h3>7.1 核心投资逻辑</h3>
+
+        <div class="moat-item">
+            <strong>看多理由（投资亮点）</strong>
+            <ul>
+                <li><strong>护城河极深</strong>：品牌+稀缺+定价权+客户粘性，四重护城河组合在全球上市公司中少于10家</li>
+                <li><strong>定价权极强</strong>：10年均价涨57%，定制附件率20%，F80单台利润=22台标准车型</li>
+                <li><strong>抗周期能力</strong>：2020年新冠期间出货量仅下降10%，远优于汽车业整体（-20%~-30%）</li>
+                <li><strong>订单可见性</strong>：订单簿覆盖至2027年底，未来2-3年增长可见性极强</li>
+                <li><strong>资本配置优秀</strong>：€20亿回购+股息10年CAGR 24%+无并购诱惑</li>
+                <li><strong>低资本密集度</strong>：年产能1.3-1.4万台，无需巨额扩张，FCF转化率~90%</li>
+                <li><strong>2026 F1催化剂</strong>：新规则下有望争夺2008年以来首个车手冠军，触发赞助奖金条款</li>
+                <li><strong>2026指引</strong>：营收€7.5B（+5%），EBITDA利润率39%（+20bps），EBIT€22.2亿</li>
+            </ul>
+        </div>
+
+        <div class="risk-item">
+            <strong>看空理由（风险因素）</strong>
+            <ul>
+                <li><strong>估值过高</strong>：PE 34倍、P/S 7.8倍、P/B 14倍，市场已定价"完美执行"——任何未达预期都可能引发20%+回调（2025年8月H1业绩后回调17%）</li>
+                <li><strong>电动化转型风险</strong>：纯电法拉利（首款EV预计2026年发布）可能稀释"机械传奇"品牌内核——发动机声浪、机械工艺、收藏价值</li>
+                <li><strong>混动保值率下滑</strong>：早期混动车型SF90二手价格疲软，可能侵蚀"投资级汽车"定位</li>
+                <li><strong>中国市场结构性下滑</strong>：两年销量下滑52%，从16%占比降至8%，需关注是否长期问题</li>
+                <li><strong>F1成绩波动</strong>：2026年规则大改，若技术路线失误可能多年无冠，影响品牌价值</li>
+                <li><strong>管理层过渡</strong>：CEO Vigna（前半导体高管）对汽车业经验有限，电动化战略执行有待观察</li>
+                <li><strong>关税与汇率</strong>：美国对欧盟汽车关税、欧元/美元波动可能影响利润</li>
+            </ul>
+        </div>
+
+        <h3>7.2 估值分析</h3>
+        <table>
+            <tr>
+                <th>估值方法</th>
+                <th>结果</th>
+                <th>隐含逻辑</th>
+            </tr>
+            <tr>
+                <td>当前P/E（TTM）</td>
+                <td>34.4x</td>
+                <td>高于汽车业（10-15x），与奢侈品同档（LVMH 25x、爱马仕50x）</td>
+            </tr>
+            <tr>
+                <td>Forward P/E（2026E）</td>
+                <td>~32x</td>
+                <td>分析师预期EPS €11.23，仍处高位</td>
+            </tr>
+            <tr>
+                <td>PEG比率</td>
+                <td>~3.0x</td>
+                <td>远高于1，反映增长预期已被充分定价</td>
+            </tr>
+            <tr>
+                <td>EV/EBITDA</td>
+                <td>~22x</td>
+                <td>高于汽车业（5-8x），低于爱马仕（25x）</td>
+            </tr>
+            <tr>
+                <td>分析师12个月目标价</td>
+                <td>$446（共识）</td>
+                <td>隐含+27%上行空间</td>
+            </tr>
+            <tr>
+                <td>Henry Fund DCF</td>
+                <td>$449</td>
+                <td>DCF模型显示内在价值~$449</td>
+            </tr>
+            <tr>
+                <td>Henry Fund DDM</td>
+                <td>$405</td>
+                <td>股息贴现模型显示$405</td>
+            </tr>
+        </table>
+
+        <h3>7.3 综合评级</h3>
+        <div class="summary-grid">
+            <div class="summary-card">
+                <h4>护城河</h4>
+                <div class="value">5/5</div>
+                <p style="font-size:0.85em;color:#666;">极强品牌+稀缺</p>
+            </div>
+            <div class="summary-card">
+                <h4>财务质量</h4>
+                <div class="value">5/5</div>
+                <p style="font-size:0.85em;color:#666;">ROE 44%, FCF强</p>
+            </div>
+            <div class="summary-card">
+                <h4>管理层</h4>
+                <div class="value">4.5/5</div>
+                <p style="font-size:0.85em;color:#666;">资本配置优秀</p>
+            </div>
+            <div class="summary-card">
+                <h4>估值</h4>
+                <div class="value">2.5/5</div>
+                <p style="font-size:0.85em;color:#666;">PE 34x偏高</p>
+            </div>
+            <div class="summary-card">
+                <h4>成长性</h4>
+                <div class="value">4/5</div>
+                <p style="font-size:0.85em;color:#666;">订单到2027</p>
+            </div>
+        </div>
+
+        <h3>7.4 投资建议</h3>
+        <div class="rating-box hold">持有 / 等待回调</div>
+        <div class="highlight">
+            <strong>巴菲特/芒格结论：</strong> 法拉利是巴菲特/芒格体系里"理想公司"的样本——护城河5/5、财务质量5/5、管理层4.5/5。但当前估值（PE 34x、P/B 14x）<strong>缺乏安全边际</strong>。芒格说过："以合理价格买入伟大公司，远胜于以便宜价格买入平庸公司"——但34倍PE已超过"合理价格"上限。
+            <br><br>
+            <strong>建议操作：</strong>
+            <ul>
+                <li><strong>长期持有者</strong>：继续持有，享受稀缺资产复利。无需因短期估值波动卖出。</li>
+                <li><strong>新建仓者</strong>：等待回调至$280-300区间（对应PE 26-28x），获得20%+安全边际后再加仓。</li>
+                <li><strong>关注触发点</strong>：①2026年Q1首款EV发布后市场反应；②F1 2026赛季成绩；③2026年指引兑现情况。</li>
+            </ul>
+        </div>
+
+        <div class="moat-item">
+            <strong>核心结论：</strong> 法拉利是"极少数值得等待的公司之一"——它的护城河组合（品牌+稀缺+定价+客户粘性）在全球少于10家，ROE 44%+FCF转化率90%+订单到2027年，是真正的复利机器。<strong>唯一的问题是价格，而非公司</strong>。耐心等待市场情绪悲观时的回调机会，是价值投资者获得这一稀缺资产的最佳策略。
+        </div>
+
+        <h3>7.5 与其他奢侈品/稀缺资产对比</h3>
+        <table>
+            <tr>
+                <th>公司</th>
+                <th>行业</th>
+                <th>PE</th>
+                <th>ROE</th>
+                <th>护城河</th>
+                <th>对比RACE</th>
+            </tr>
+            <tr>
+                <td>法拉利（RACE）</td>
+                <td>豪华超跑</td>
+                <td>34x</td>
+                <td>44%</td>
+                <td>5/5</td>
+                <td>—</td>
+            </tr>
+            <tr>
+                <td>爱马仕（RMS.PA）</td>
+                <td>奢侈品</td>
+                <td>50x</td>
+                <td>30%</td>
+                <td>5/5</td>
+                <td>估值更贵，ROE较低</td>
+            </tr>
+            <tr>
+                <td>LVMH（MC.PA）</td>
+                <td>奢侈品集团</td>
+                <td>25x</td>
+                <td>22%</td>
+                <td>4.5/5</td>
+                <td>估值更低，但增长慢</td>
+            </tr>
+            <tr>
+                <td>贵州茅台（600519）</td>
+                <td>高端白酒</td>
+                <td>22x</td>
+                <td>30%</td>
+                <td>5/5</td>
+                <td>估值合理，但中国市场风险</td>
+            </tr>
+            <tr>
+                <td>保时捷（P911.DE）</td>
+                <td>豪华跑车</td>
+                <td>12x</td>
+                <td>18%</td>
+                <td>3.5/5</td>
+                <td>估值低，但品牌稀释</td>
+            </tr>
+        </table>
+
+        <div class="highlight">
+            <strong>最终评价：</strong> 在全球"奢侈品+稀缺性+定价权"资产组合中，法拉利是少数能与爱马仕、茅台并列的"皇冠级"标的。当前的估值溢价反映了市场对其"完美执行"的预期——若投资者追求安全边际，建议等待回调；若追求长期复利，可逐步建仓。芒格名言："好公司比好价格更重要"——但巴菲特也强调："不要亏钱"。在法拉利这只股票上，两者的平衡需要谨慎。
+        </div>
+    </div>
+
+    <script>
+    // 图表1：营收和EBIT趋势
+    const ctx1 = document.getElementById('chart1').getContext('2d');
+    new Chart(ctx1, {
+        type: 'bar',
+        data: {
+            labels: ['2018','2019','2020','2021','2022','2023','2024','2025'],
+            datasets: [
+                {
+                    type: 'bar',
+                    label: '营收（百万欧元）',
+                    data: [3820, 3767, 3432, 4271, 5095, 5970, 6677, 7146],
+                    backgroundColor: 'rgba(139, 0, 0, 0.7)',
+                    borderColor: '#8B0000',
+                    yAxisID: 'y'
+                },
+                {
+                    type: 'line',
+                    label: 'EBIT利润率（%）',
+                    data: [26.4, 25.4, 22.7, 25.7, 27.4, 27.9, 28.3, 29.5],
+                    borderColor: '#d4af37',
+                    backgroundColor: 'rgba(212, 175, 55, 0.2)',
+                    tension: 0.3,
+                    yAxisID: 'y1',
+                    fill: false
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            plugins: { title: { display: true, text: '法拉利营收与EBIT利润率趋势（2018-2025）' } },
+            scales: {
+                y: { type: 'linear', position: 'left', title: { display: true, text: '营收（百万欧元）' } },
+                y1: { type: 'linear', position: 'right', title: { display: true, text: 'EBIT利润率（%）' }, grid: { drawOnChartArea: false } }
+            }
+        }
+    });
+
+    // 图表2：ROE与平均售价
+    const ctx2 = document.getElementById('chart2').getContext('2d');
+    new Chart(ctx2, {
+        type: 'bar',
+        data: {
+            labels: ['2018','2019','2020','2021','2022','2023','2024','2025'],
+            datasets: [
+                {
+                    type: 'bar',
+                    label: '平均售价（千欧元）',
+                    data: [282, 284, 285, 290, 335, 380, 420, 440],
+                    backgroundColor: 'rgba(212, 175, 55, 0.7)',
+                    borderColor: '#d4af37',
+                    yAxisID: 'y'
+                },
+                {
+                    type: 'line',
+                    label: 'ROE（%）',
+                    data: [50, 40, 30, 38, 38, 42, 42, 44],
+                    borderColor: '#8B0000',
+                    backgroundColor: 'rgba(139, 0, 0, 0.2)',
+                    tension: 0.3,
+                    yAxisID: 'y1',
+                    fill: false
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            plugins: { title: { display: true, text: '法拉利平均售价与ROE趋势（2018-2025）' } },
+            scales: {
+                y: { type: 'linear', position: 'left', title: { display: true, text: '平均售价（千欧元）' } },
+                y1: { type: 'linear', position: 'right', title: { display: true, text: 'ROE（%）' }, grid: { drawOnChartArea: false } }
+            }
+        }
+    });
+
+    // 图表3：股息和回购
+    const ctx3 = document.getElementById('chart3').getContext('2d');
+    new Chart(ctx3, {
+        type: 'bar',
+        data: {
+            labels: ['2016','2017','2018','2019','2020','2021','2022','2023','2024','2025','2026E'],
+            datasets: [
+                {
+                    label: '股息（百万欧元）',
+                    data: [95, 125, 160, 210, 225, 190, 270, 350, 480, 570, 770],
+                    backgroundColor: 'rgba(139, 0, 0, 0.7)',
+                    borderColor: '#8B0000'
+                },
+                {
+                    label: '回购（百万欧元）',
+                    data: [0, 0, 0, 0, 0, 0, 250, 350, 400, 600, 300],
+                    backgroundColor: 'rgba(212, 175, 55, 0.7)',
+                    borderColor: '#d4af37'
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            plugins: { title: { display: true, text: '法拉利股息与股票回购历史（2016-2026E）' } },
+            scales: { y: { title: { display: true, text: '金额（百万欧元）' } } }
+        }
+    });
+
+    // 图表4：利润分配结构
+    const ctx4 = document.getElementById('chart4').getContext('2d');
+    new Chart(ctx4, {
+        type: 'doughnut',
+        data: {
+            labels: ['股息支付', '股票回购', '资本开支', '研发支出', '债务偿还'],
+            datasets: [{
+                data: [570, 600, 700, 750, 80],
+                backgroundColor: [
+                    'rgba(139, 0, 0, 0.8)',
+                    'rgba(212, 175, 55, 0.8)',
+                    'rgba(39, 174, 96, 0.8)',
+                    'rgba(52, 152, 219, 0.8)',
+                    'rgba(155, 155, 155, 0.8)'
+                ],
+                borderColor: ['#8B0000', '#d4af37', '#27ae60', '#3498db', '#999'],
+                borderWidth: 2
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: { title: { display: true, text: '2025年利润分配结构（百万欧元）' } }
+        }
+    });
+    </script>
+
     <script src="scores_client.js"></script>
     <script src="stock_topbar.js"></script>
     <script>
@@ -134,7 +1578,6 @@
             document.getElementById('topbarFStars').style.display='';
             document.getElementById('topbarPStars').style.display='';
         };
-        // 初始加载
         if (document.readyState === 'loading') {
             document.addEventListener('DOMContentLoaded', renderFromDB);
         } else {
