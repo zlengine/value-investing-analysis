@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>APH 安费诺 - 巴菲特芒格式价值投资分析</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: 'Microsoft YaHei', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            padding-top: 48px;
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+        .top-nav-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 44px;
+            background: #2c3e50;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding: 0 20px;
+            z-index: 999;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+            gap: 8px;
+        }
+        .top-nav-link {
+            color: white;
+            padding: 6px 16px;
+            border-radius: 16px;
+            text-decoration: none;
+            font-size: 13px;
+            transition: background 0.2s;
+            white-space: nowrap;
+        }
+        .top-nav-link:hover {
+            background: #34495e;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 30px 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #1a5276;
+            font-size: 2.2em;
+            margin-bottom: 5px;
+        }
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 25px;
+            font-size: 1.1em;
+        }
+        h2 {
+            color: #1a5276;
+            border-bottom: 3px solid #f39c12;
+            padding-bottom: 8px;
+            margin-top: 40px;
+        }
+        h3 {
+            color: #2c3e50;
+            margin-top: 25px;
+        }
+        h4 {
+            color: #34495e;
+            margin-top: 18px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0,0,0,0.05);
+        }
+        th, td {
+            padding: 10px 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #2c3e50;
+            color: white;
+            font-weight: 600;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .info-box {
+            background: white;
+            padding: 20px 25px;
+            margin: 20px 0;
+            border-left: 4px solid #2e86c1;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            border-radius: 5px;
+        }
+        .highlight {
+            background: #fff8e1;
+            padding: 15px 20px;
+            margin: 15px 0;
+            border-left: 4px solid #f39c12;
+            border-radius: 5px;
+        }
+        .moat-item {
+            background: #eaf5ea;
+            padding: 12px 18px;
+            margin: 10px 0;
+            border-left: 4px solid #27ae60;
+            border-radius: 5px;
+        }
+        .risk-item {
+            background: #fdedec;
+            padding: 12px 18px;
+            margin: 10px 0;
+            border-left: 4px solid #c0392b;
+            border-radius: 5px;
+        }
+        .section-nav {
+            background: white;
+            border-radius: 10px;
+            padding: 15px 25px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+        .section-nav a {
+            display: inline-block;
+            margin: 5px 10px;
+            padding: 6px 14px;
+            background: #eaf2f8;
+            color: #1a5276;
+            text-decoration: none;
+            border-radius: 15px;
+            font-size: 0.9em;
+        }
+        .section-nav a:hover {
+            background: #2e86c1;
+            color: white;
+        }
+        .tag-green {
+            display: inline-block;
+            background: #27ae60;
+            color: white;
+            padding: 2px 10px;
+            border-radius: 10px;
+            font-size: 0.85em;
+            margin: 2px;
+        }
+        .tag-orange {
+            display: inline-block;
+            background: #f39c12;
+            color: white;
+            padding: 2px 10px;
+            border-radius: 10px;
+            font-size: 0.85em;
+            margin: 2px;
+        }
+        .tag-red {
+            display: inline-block;
+            background: #c0392b;
+            color: white;
+            padding: 2px 10px;
+            border-radius: 10px;
+            font-size: 0.85em;
+            margin: 2px;
+        }
+        .summary-cards {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .summary-card {
+            flex: 1;
+            min-width: 180px;
+            background: white;
+            padding: 18px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        .summary-card h4 {
+            margin: 0 0 8px 0;
+            color: #2c3e50;
+        }
+        .summary-card .value {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #2e86c1;
+        }
+        .rating-box {
+            display: inline-block;
+            padding: 8px 20px;
+            border-radius: 5px;
+            color: white;
+            font-weight: bold;
+            font-size: 1.1em;
+            margin: 10px 0;
+        }
+        .rating-buy { background: #27ae60; }
+        .rating-hold { background: #f39c12; }
+        .rating-sell { background: #c0392b; }
+        .chart-container {
+            background: white;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+        .competitor-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 15px 0;
+        }
+        .competitor-card {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+    </style>
+</head>
+<body>
+    <div class="top-nav-bar"></div>
+    <script src="nav_bar.js"></script>
+    <span id="topbarCode" style="display:none;">APH</span>
+
+    <div class="container">
+        <h1>安费诺 (Amphenol Corporation) - APH</h1>
+        <p class="subtitle">巴菲特/芒格式价值投资分析 | 全球互连与传感器巨头 | AI数据中心时代的核心受益者 | 2026年6月</p>
+
+        <div class="section-nav">
+            <a href="#chapter1">公司基本信息</a>
+            <a href="#chapter2">业务分析</a>
+            <a href="#chapter3">产品竞争力分析</a>
+            <a href="#chapter4">历史财务指标</a>
+            <a href="#chapter5">竞争分析</a>
+            <a href="#chapter6">利润分配分析</a>
+            <a href="#chapter7">投资总结</a>
+        </div>
+
+        <!-- ================= 第一章 ================= -->
+        <div class="info-box">
+            <h2 id="chapter1">一、公司基本信息</h2>
+            <table>
+                <tr><td style="width:30%;font-weight:bold;">公司全称</td><td>Amphenol Corporation</td></tr>
+                <tr><td style="font-weight:bold;">股票代码</td><td>NYSE: APH</td></tr>
+                <tr><td style="font-weight:bold;">市值</td><td>约2,000亿美元（USD ~200B，2026年6月）</td></tr>
+                <tr><td style="font-weight:bold;">最新收盘价</td><td>$163左右（2026年6月，52周区间$95-$169）</td></tr>
+                <tr><td style="font-weight:bold;">ISIN</td><td>US0320951017</td></tr>
+                <tr><td style="font-weight:bold;">成立时间</td><td>1932年（前身Amphenol Electronics由J. J. Pyszczek在芝加哥创立；公司名称源于"Amperite + Ensol"）；1987年与Universal Enterprise合并后由现任管理层接管，1991年NYSE上市</td></tr>
+                <tr><td style="font-weight:bold;">总部</td><td>美国康涅狄格州沃灵福德（Wallingford, Connecticut）</td></tr>
+                <tr><td style="font-weight:bold;">CEO</td><td>R. Adam Norwitt（2009年就任，长期内部培养；此前曾任CFO，公司1991年IPO以来任职超过30年）</td></tr>
+                <tr><td style="font-weight:bold;">董事长</td><td>R. Adam Norwitt（兼任）</td></tr>
+                <tr><td style="font-weight:bold;">员工人数</td><td>约170,000人（2025年末，业务遍及40多个国家）</td></tr>
+                <tr><td style="font-weight:bold;">行业</td><td>科技 — 电子元件、连接器、传感器、天线、电缆、互连系统</td></tr>
+                <tr><td style="font-weight:bold;">指数成分</td><td>S&P 500 / S&P 100</td></tr>
+                <tr><td style="font-weight:bold;">业务单元</td><td>140+ 个独立运营的事业部（decentralized business units，独特"创业家文化"组织结构）</td></tr>
+                <tr><td style="font-weight:bold;">企业价值EV</td><td>约2,100亿美元（含约81亿美元债务，39亿美元现金）</td></tr>
+                <tr><td style="font-weight:bold;">股息身份</td><td>连续14年以上提高年度股息；2025年Q4股息提高51.5%至$0.25/季度</td></tr>
+                <tr><td style="font-weight:bold;">核心产品</td><td>高速差分连接器、光纤连接器、射频同轴连接器、电源连接器、板对板连接器、背板连接器、传感器、天线、电缆组件、汇流排</td></tr>
+                <tr><td style="font-weight:bold;">订单储备（Backlog）</td><td>89亿美元（2025年末，同比+46%，主要由AI需求和近期并购驱动）</td></tr>
+                <tr><td style="font-weight:bold;">长期股东回报</td><td>自1991年IPO至2025年末，股票年化回报率约22%（35年），远超标普500</td></tr>
+                <tr><td style="font-weight:bold;">并购历史</td><td>过去10年完成50+起并购；2024年完成Carlisle CIT收购；2025年完成5起并购包括Trexon（最大单笔）；2026年1月完成CommScope CCS业务收购（约105亿美元，史上最大并购）</td></tr>
+            </table>
+            <div class="highlight">
+                <strong>一句话理解公司：</strong> 安费诺（APH）是"电子系统的神经系统供应商"——任何需要传输电流、信号或数据的设备都需要连接器，从手机到数据中心、从汽车到战斗机、从工厂到卫星，几乎每台电子设备都离不开它。2025年营收231亿美元创历史新高（同比+52%），订单储备89亿美元创历史新高（同比+46%），其中IT数据通信（AI数据中心）业务占比已升至36%，成为第一大终端市场。140+独立事业部构成的"创业家文化"组织让Amphenol能够像私募基金一样持续并购整合小型连接器公司，过去10年完成50+起并购，2026年1月完成史上最大并购——CommScope CCS业务（约105亿美元），将进一步强化AI数据中心和宽带网络布局。
+            </div>
+            <div class="moat-item">
+                <strong>巴菲特视角：</strong> Amphenol是巴菲特/芒格体系里"轻资产、高ROE、可持续复利"的优质科技公司的典型代表——①<strong>分散化创业家文化护城河</strong>：140+独立事业部+400+产品线，每个事业部像小公司一样运营，敏捷决策、贴近客户，同时享受集团规模优势；这种组织结构极难复制，是过去30年持续并购整合成功的核心原因；②<strong>规模+并购飞轮</strong>：年均5-10起小并购+1-2起大并购，过去10年完成50+起，每起并购都能迅速整合并提升利润率，规模从2015年56亿增至2025年231亿（CAGR 15%），形成"规模→现金流→并购→规模"飞轮；③<strong>AI数据中心新引擎</strong>：IT Datacom业务2025年增长超100%至约83亿美元，占比从2023年23%升至2025年36%，AI GPU集群对高速连接器（800G/1.6T）的需求构成多年长周期增长；④<strong>高ROE+高自由现金流</strong>：2025年ROE约32%（5年从23%提升至32%），自由现金流44亿美元创历史新高，FCF转化率约95%（FCF/净利润），资本配置效率行业领先；⑤<strong>行业地位</strong>：全球连接器市场份额约11%-13%，排名第二（仅次于TE Connectivity的约13%），但在高速连接器、军用连接器、射频连接器等高附加值细分领域排名第一；⑥<strong>管理团队资本配置能力卓越</strong>：过去10年累计向股东返还超100亿美元（分红+回购），同时完成50+起并购，三方面资本配置并行不悖。
+            </div>
+        </div>
+
+        <!-- ================= 第二章 ================= -->
+        <div class="info-box">
+            <h2 id="chapter2">二、业务分析</h2>
+
+            <h3>2.1 公司业务模式（通俗易懂版）</h3>
+            <p>
+                想象一下：你的手机里有几十个连接器（充电口、天线、摄像头、电池、屏幕都通过连接器连接到主板）；一辆电动车有数百个连接器（电池组、电机、传感器、车载娱乐系统之间都需要连接）；一个AI数据中心有数百万个连接器（GPU、CPU、内存、网络交换机之间的高速数据传输都需要高速连接器）；一架战斗机有上万个连接器（雷达、通信、武器系统、传感器之间需要高可靠性连接）。
+            </p>
+            <p>
+                <strong>Amphenol就是这些"电子系统连接器"的全球顶级供应商。它怎么赚钱？三步走：</strong>
+            </p>
+            <ul>
+                <li><strong>第一步：设计+制造连接器</strong> — 根据客户需求设计专用连接器（高速、高密度、高可靠性），在全球40多个国家制造。客户包括Apple、Tesla、NVIDIA、Lockheed Martin、Boeing、Ericsson、Nokia、Cisco等几乎所有电子和工业巨头。</li>
+                <li><strong>第二步：贴近客户快速响应</strong> — 140+独立事业部像小公司一样运作，每个事业部专注于特定产品/客户/市场，决策快、响应快，能够在新一代产品设计阶段就深度嵌入客户的研发流程，形成"design win"。一旦设计中标，产品寿命周期内通常能持续供货5-10年甚至更久。</li>
+                <li><strong>第三步：持续并购扩展产品线</strong> — 每年完成5-10起小并购（每个收购标的规模1-10亿美元），整合到现有事业部架构下，扩展产品线和客户群。过去10年完成50+起并购，这种"并购机器"模式是Amphenol的核心增长引擎之一。</li>
+            </ul>
+
+            <h3>2.2 主要业务板块（按终端市场）</h3>
+            <p>Amphenol按终端市场组织业务，2025年七大终端市场营收与占比：</p>
+            <table>
+                <tr>
+                    <th>终端市场</th>
+                    <th>2025营收（亿美元）</th>
+                    <th>占总营收比例</th>
+                    <th>同比增长</th>
+                    <th>核心产品与驱动</th>
+                </tr>
+                <tr>
+                    <td><strong>IT数据通信（IT Datacom）</strong></td>
+                    <td>~83</td>
+                    <td>36%</td>
+                    <td>+100%+</td>
+                    <td>AI数据中心高速连接器、800G/1.6T光学模块、背板连接器、汇流排；NVIDIA、Cisco、Arista等客户；Amphenol最大增长引擎</td>
+                </tr>
+                <tr>
+                    <td><strong>汽车（Automotive）</strong></td>
+                    <td>~35</td>
+                    <td>15%</td>
+                    <td>+20%+</td>
+                    <td>EV高压连接器、传感器、天线、车载娱乐连接器；客户包括Tesla、BMW、比亚迪等；EV电动化推动单车连接器价值量翻倍</td>
+                </tr>
+                <tr>
+                    <td><strong>工业（Industrial）</strong></td>
+                    <td>~30</td>
+                    <td>13%</td>
+                    <td>+15%</td>
+                    <td>工厂自动化、能源、轨道交通连接器；汇流排、电源连接器；工业4.0和电网升级驱动</td>
+                </tr>
+                <tr>
+                    <td><strong>移动设备（Mobile Devices）</strong></td>
+                    <td>~28</td>
+                    <td>12%</td>
+                    <td>+10%</td>
+                    <td>智能手机、平板、可穿戴设备连接器；Apple等大客户；5G和AI手机升级推动</td>
+                </tr>
+                <tr>
+                    <td><strong>军用航空（Military）</strong></td>
+                    <td>~25</td>
+                    <td>11%</td>
+                    <td>+30%</td>
+                    <td>战斗机、导弹、雷达、卫星连接器；CIT收购强化地位；国防预算增长受益；高可靠性高毛利</td>
+                </tr>
+                <tr>
+                    <td><strong>商用航空（Commercial Aerospace）</strong></td>
+                    <td>~18</td>
+                    <td>8%</td>
+                    <td>+50%+</td>
+                    <td>波音、空客飞机连接器；疫情后航空复苏；CIT收购带来机舱连接器和电缆业务</td>
+                </tr>
+                <tr>
+                    <td><strong>移动网络（Mobile Networks）</strong></td>
+                    <td>~12</td>
+                    <td>5%</td>
+                    <td>+30%+</td>
+                    <td>5G基站、天线、射频连接器；CommScope CCS业务将大幅强化；2026年5G-Advanced建设受益</td>
+                </tr>
+                <tr>
+                    <td><strong>合计</strong></td>
+                    <td><strong>231</strong></td>
+                    <td><strong>100%</strong></td>
+                    <td><strong>+52%</strong></td>
+                    <td>2025年创历史新高，38%有机增长+14%并购贡献</td>
+                </tr>
+            </table>
+
+            <div class="chart-container">
+                <canvas id="chart1" height="100"></canvas>
+            </div>
+
+            <h3>2.3 地理营收分布（2025年）</h3>
+            <table>
+                <tr>
+                    <th>地区</th>
+                    <th>营收占比</th>
+                    <th>核心市场</th>
+                </tr>
+                <tr><td>美国</td><td>~42%</td><td>AI数据中心、军用、汽车</td></tr>
+                <tr><td>欧洲</td><td>~25%</td><td>汽车、工业、商用航空</td></tr>
+                <tr><td>亚洲</td><td>~30%</td><td>移动设备、汽车、IT数据通信</td></tr>
+                <tr><td>其他</td><td>~3%</td><td>拉美、中东等</td></tr>
+            </table>
+            <p><strong>注：</strong>中国资产占长期资产37%（2025年从29%上升），主要为AI数据中心连接器产能。地缘政治集中度风险上升。</p>
+
+            <h3>2.4 业务模式核心特征</h3>
+            <div class="moat-item">
+                <strong>核心特征1：分散化创业家组织</strong> — 140+独立事业部，每个事业部有独立的销售、工程、运营团队，总经理像"小CEO"一样运营业务。这种结构让Amphenol能够：①贴近客户快速响应；②快速整合新并购；③激发组织活力和人才留存。这是Amphenol 30年来持续并购整合成功的核心组织能力，几乎不可能被竞争对手复制。
+            </div>
+            <div class="moat-item">
+                <strong>核心特征2：Design-in深度绑定</strong> — 连接器是客户产品设计的关键元件，一旦在客户产品设计中中标（design win），客户产品寿命周期内（5-10年甚至更长）通常会持续供货。切换供应商需要重新设计、重新认证、重新测试，转换成本极高。这种"design-in"模式让Amphenol具有强大的客户粘性。
+            </div>
+            <div class="moat-item">
+                <strong>核心特征3：并购飞轮</strong> — 2025年完成5起并购（含Trexon约14亿美元）；2026年1月完成CommScope CCS业务收购（约105亿美元，史上最大）。CCS业务预计2026年贡献约41亿美元营收、增加$0.15 EPS。过去10年累计完成50+起并购，每起并购平均3-5年即可达到集团平均利润率，证明整合能力卓越。
+            </div>
+            <div class="highlight">
+                <strong>关键数据点：</strong>
+                <ul>
+                    <li>2025年营收231亿美元，+52% YoY（38%有机增长 + 14%并购贡献）</li>
+                    <li>调整后营业利润率26.2%，同比扩张450个基点（从21.7%升至26.2%）</li>
+                    <li>调整后摊薄EPS $3.34，+77% YoY</li>
+                    <li>自由现金流44亿美元，+104% YoY；FCF转化率约103%（FCF/净利润）</li>
+                    <li>订单储备89亿美元，+46% YoY，创历史新高</li>
+                    <li>2025年向股东返还约15亿美元（分红+回购）；2025年Q4股息提高51.5%至$0.25/季度</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- ================= 第三章 ================= -->
+        <div class="info-box">
+            <h2 id="chapter3">三、产品竞争力分析</h2>
+
+            <h3>3.1 IT数据通信（IT Datacom）连接器</h3>
+            <p><span class="tag-green">可替代性：极低</span> <span class="tag-green">客户转换成本：极高</span> <span class="tag-green">定价权：强</span></p>
+            <ul>
+                <li><strong>可替代性分析</strong>：AI数据中心GPU集群需要800G/1.6T高速连接器、背板连接器、汇流排（busbar）。这些产品是数据中心硬件架构的核心元件，没有连接器就无法构建GPU集群。主要替代方案是光互连（CPO共封装光学）和无线互连，但5-10年内铜互连（copper interconnect）仍是主流，因为成本远低于光互连。Amphenol在高速差分连接器领域全球第一，替代性极低。</li>
+                <li><strong>客户转换成本</strong>：AI数据中心产品设计周期2-3年，一旦Amphenol的连接器在NVIDIA GB200、Cisco Siltronix、Arista交换机等产品的设计中中标（design win），客户在产品寿命周期内（5-7年）通常不会更换供应商。切换供应商需要重新设计PCB、重新做信号完整性测试、重新做可靠性认证，时间和金钱成本极高（数千万美元+12-18个月）。<strong>巴菲特测试：</strong>若Amphenol提价10%，NVIDIA/Cisco/Arista等大客户不会切换，因为连接器占数据中心总成本比例极低（&lt;1%），但失效成本极高。</li>
+                <li><strong>定价权</strong>：高速连接器毛利率显著高于公司平均（估计35-40%+），AI数据中心需求爆发让Amphenol具有提价能力。2025年调整后营业利润率从21.7%升至26.2%，扩张450个基点，主要由IT Datacom业务的高毛利贡献。趋势仍在加强。</li>
+            </ul>
+            <p><strong>竞争力评级：5/5 星</strong> — AI数据中心新引擎，定价权强，design-in深度绑定，多年长周期增长可见性高。</p>
+
+            <h3>3.2 军用航空连接器</h3>
+            <p><span class="tag-green">可替代性：极低</span> <span class="tag-green">客户转换成本：极高</span> <span class="tag-green">定价权：极强</span></p>
+            <ul>
+                <li><strong>可替代性分析</strong>：军用战斗机、导弹、雷达、卫星使用高可靠性连接器，必须通过MIL-STD军标认证，供应商必须通过国防部合格供应商认证（QPL）。合格供应商数量极少（通常每个产品类别2-3家），替代性极低。Amphenol在军用连接器领域全球第一，2024年完成Carlisle CIT收购后进一步强化地位。</li>
+                <li><strong>客户转换成本</strong>：军用产品认证周期5-10年，一旦中标产品寿命周期内（20-30年甚至更长）通常独家或双源供货。切换供应商需要重新做军标认证（MIL-STD-38999等），成本和时间极高（千万美元级+5-10年）。<strong>巴菲特测试：</strong>若Amphenol提价10%，美国国防部也不会切换，因为重新认证成本远超节省。</li>
+                <li><strong>定价权</strong>：军用连接器毛利率最高（估计40%+），价格敏感度低，国防预算支持。全球国防预算2025-2026年持续增长（北约2%GDP目标、台海局势、俄乌战争后各国军费提升），构成多年长周期需求。</li>
+            </ul>
+            <p><strong>竞争力评级：5/5 星</strong> — 国防预算受益，认证壁垒极高，定价权极强。</p>
+
+            <h3>3.3 汽车连接器（含EV）</h3>
+            <p><span class="tag-orange">可替代性：中等</span> <span class="tag-green">客户转换成本：高</span> <span class="tag-orange">定价权：中等</span></p>
+            <ul>
+                <li><strong>可替代性分析</strong>：汽车连接器市场竞争对手众多（TE、Yazaki、Sumitomo、Molex、Aptiv、Jonhon、Luxshare等），但EV高压连接器（800V平台）技术壁垒较高，替代性中等。中国竞争对手（立讯精密、中航光电）在汽车领域份额上升较快，长期对Amphenol构成竞争压力。</li>
+                <li><strong>客户转换成本</strong>：汽车平台设计周期3-5年，一旦Amphenol连接器中标某车型平台，整个平台寿命周期内（5-7年）通常持续供货。切换需要重新做汽车级认证（USCAR、LV214等），成本数百万美元+12-18个月。</li>
+                <li><strong>定价权</strong>：汽车行业价格压力较大，主机厂（OEM）每年要求降价2-3%。但EV高压连接器由于技术壁垒较高，降价压力相对较小。Amphenol通过持续创新（800V平台、高功率充电）维持溢价。趋势稳定。</li>
+            </ul>
+            <p><strong>竞争力评级：4/5 星</strong> — EV电动化受益，design-in绑定客户，但中国竞争加剧是长期风险。</p>
+
+            <h3>3.4 工业连接器</h3>
+            <p><span class="tag-orange">可替代性：中等</span> <span class="tag-orange">客户转换成本：中等</span> <span class="tag-orange">定价权：中等</span></p>
+            <ul>
+                <li><strong>可替代性分析</strong>：工业连接器市场相对分散，Phoenix Contact、TE、Molex等竞争对手较多。但工业4.0和电网升级推动高可靠性工业连接器需求增长。Amphenol在工厂自动化、能源、轨道交通领域有较强地位。</li>
+                <li><strong>客户转换成本</strong>：工业产品寿命周期长（10-20年），切换供应商需要重新认证，但工业标准相对统一，转换成本中等。</li>
+                <li><strong>定价权</strong>：工业连接器毛利率中等（25-30%），价格竞争存在但相对温和。趋势稳定。</li>
+            </ul>
+            <p><strong>竞争力评级：3.5/5 星</strong> — 工业升级受益，但市场竞争激烈，定价权一般。</p>
+
+            <h3>3.5 移动设备连接器</h3>
+            <p><span class="tag-red">可替代性：高</span> <span class="tag-orange">客户转换成本：高</span> <span class="tag-red">定价权：弱</span></p>
+            <ul>
+                <li><strong>可替代性分析</strong>：智能手机连接器市场竞争对手众多（Foxconn、Luxshare、JAE等），中国竞争对手价格优势明显。替代性较高。</li>
+                <li><strong>客户转换成本</strong>：虽然连接器本身价格低，但苹果等大客户对供应链认证严格，切换需要12-18个月。但客户（Apple）议价能力强，会通过竞争性招标压价。转换成本虽高，但客户议价权也强。</li>
+                <li><strong>定价权</strong>：智能手机连接器毛利率较低（估计20-25%），价格竞争激烈。Apple每年要求降价3-5%。Amphenol通过技术创新（USB-C、5G天线）维持份额，但定价权较弱。趋势减弱。</li>
+            </ul>
+            <p><strong>竞争力评级：3/5 星</strong> — 客户集中度高、议价权弱，但5G和AI手机升级提供一定增长。</p>
+
+            <h3>3.6 移动网络（5G）连接器</h3>
+            <p><span class="tag-orange">可替代性：中等</span> <span class="tag-green">客户转换成本：高</span> <span class="tag-orange">定价权：中等</span></p>
+            <ul>
+                <li><strong>可替代性分析</strong>：5G基站连接器和天线市场由Ericsson、Nokia、华为主导，供应商选择相对集中。CommScope CCS业务收购将大幅强化Amphenol在基站天线和射频连接器领域的地位。</li>
+                <li><strong>客户转换成本</strong>：电信设备认证周期长（2-3年），切换供应商成本高。</li>
+                <li><strong>定价权</strong>：电信运营商价格压力大，但5G-Advanced和6G升级周期带来新机遇。</li>
+            </ul>
+            <p><strong>竞争力评级：4/5 星</strong> — CCS收购强化地位，5G-Advanced升级周期受益。</p>
+
+            <h3>3.7 商用航空连接器</h3>
+            <p><span class="tag-green">可替代性：低</span> <span class="tag-green">客户转换成本：极高</span> <span class="tag-green">定价权：强</span></p>
+            <ul>
+                <li><strong>可替代性分析</strong>：波音、空客飞机连接器必须通过FAA/EASA适航认证，合格供应商极少（通常2-3家）。Amphenol在商用航空领域全球领先，CIT收购后地位进一步强化。</li>
+                <li><strong>客户转换成本</strong>：航空认证周期5-10年，切换供应商成本极高（千万美元级+5-10年重新认证）。</li>
+                <li><strong>定价权</strong>：商用航空连接器毛利率高（35%+），波音/空客对价格敏感度低。趋势稳定。</li>
+            </ul>
+            <p><strong>竞争力评级：4.5/5 星</strong> — 适航认证壁垒高，疫情后航空复苏受益，CIT收购强化地位。</p>
+
+            <div class="highlight">
+                <strong>第三章核心结论：</strong> Amphenol的产品竞争力呈现"金字塔结构"——顶端是IT数据通信（5星，AI驱动定价权强）+ 军用航空（5星，认证壁垒极高）+ 商用航空（4.5星，适航壁垒高）；中间是汽车（4星，EV受益但中国竞争）+ 移动网络（4星，CCS收购强化）；底层是工业（3.5星）+ 移动设备（3星）。整体而言，AI数据中心和军用航空是Amphenol最强的护城河业务，定价权强、design-in深度绑定、多年增长可见性高。移动设备是最弱业务，价格压力大，但占比已降至12%以下。
+            </div>
+        </div>
+
+        <!-- ================= 第四章 ================= -->
+        <div class="info-box">
+            <h2 id="chapter4">四、历史财务指标</h2>
+
+            <h3>4.1 营收与利润趋势（2015-2025）</h3>
+            <table>
+                <tr>
+                    <th>年份</th>
+                    <th>营收（亿美元）</th>
+                    <th>营业利润（亿美元）</th>
+                    <th>营业利润率</th>
+                    <th>净利润（亿美元）</th>
+                    <th>EPS（$）</th>
+                    <th>调整后EPS（$）</th>
+                </tr>
+                <tr><td>2015</td><td>55.7</td><td>11.0</td><td>19.8%</td><td>7.6</td><td>$2.41</td><td>—</td></tr>
+                <tr><td>2016</td><td>62.9</td><td>12.0</td><td>19.2%</td><td>8.2</td><td>$2.61</td><td>—</td></tr>
+                <tr><td>2017</td><td>70.1</td><td>14.3</td><td>20.4%</td><td>6.5</td><td>$2.06</td><td>—</td></tr>
+                <tr><td>2018</td><td>82.0</td><td>16.9</td><td>20.6%</td><td>12.1</td><td>$3.85</td><td>—</td></tr>
+                <tr><td>2019</td><td>82.3</td><td>16.2</td><td>19.7%</td><td>11.6</td><td>$1.94</td><td>—</td></tr>
+                <tr><td>2020</td><td>86.0</td><td>16.4</td><td>19.0%</td><td>12.1</td><td>$1.96</td><td>—</td></tr>
+                <tr><td>2021</td><td>108.8</td><td>21.0</td><td>19.4%</td><td>15.8</td><td>$2.54</td><td>—</td></tr>
+                <tr><td>2022</td><td>126.2</td><td>25.9</td><td>20.5%</td><td>19.0</td><td>$1.60</td><td>—</td></tr>
+                <tr><td>2023</td><td>125.6</td><td>25.6</td><td>20.4%</td><td>19.3</td><td>$1.55</td><td>$1.51</td></tr>
+                <tr><td>2024</td><td>152.2</td><td>31.6</td><td>20.7%</td><td>24.4</td><td>$1.92</td><td>$1.89</td></tr>
+                <tr><td>2025</td><td><strong>231.0</strong></td><td><strong>58.7</strong></td><td><strong>25.4%</strong></td><td><strong>42.7</strong></td><td><strong>$3.51</strong></td><td><strong>$3.34</strong></td></tr>
+            </table>
+            <div class="chart-container">
+                <canvas id="chart2" height="100"></canvas>
+            </div>
+            <p><strong>关键趋势：</strong> 2015-2025营收CAGR 15.3%（从56亿增至231亿，10年4.1倍）；2025年调整后营业利润率从19%升至26.2%，扩张约700基点，主要由AI数据中心业务高毛利贡献。EPS从2015年$2.41升至2025年$3.51（受股票拆分和股本扩张影响），调整后EPS从2023年$1.51升至2025年$3.34，2年翻倍。</p>
+
+            <h3>4.2 ROE、资产负债率、PE趋势（2015-2025）</h3>
+            <table>
+                <tr>
+                    <th>年份</th>
+                    <th>ROE（%）</th>
+                    <th>资产负债率</th>
+                    <th>权益乘数</th>
+                    <th>PE（年末）</th>
+                    <th>毛利率</th>
+                </tr>
+                <tr><td>2015</td><td>23.6</td><td>0.46</td><td>1.86</td><td>21.1</td><td>32.0%</td></tr>
+                <tr><td>2016</td><td>22.4</td><td>0.41</td><td>1.69</td><td>25.1</td><td>32.5%</td></tr>
+                <tr><td>2017</td><td>16.3</td><td>0.47</td><td>1.89</td><td>41.4</td><td>33.0%</td></tr>
+                <tr><td>2018</td><td>29.9</td><td>0.41</td><td>1.70</td><td>19.0</td><td>32.4%</td></tr>
+                <tr><td>2019</td><td>25.3</td><td>0.41</td><td>1.70</td><td>26.4</td><td>31.8%</td></tr>
+                <tr><td>2020</td><td>22.3</td><td>0.40</td><td>1.67</td><td>31.1</td><td>31.0%</td></tr>
+                <tr><td>2021</td><td>24.8</td><td>0.43</td><td>1.75</td><td>31.8</td><td>31.3%</td></tr>
+                <tr><td>2022</td><td>27.1</td><td>0.39</td><td>1.64</td><td>23.4</td><td>31.9%</td></tr>
+                <tr><td>2023</td><td>23.2</td><td>0.32</td><td>1.47</td><td>30.3</td><td>32.5%</td></tr>
+                <tr><td>2024</td><td>24.8</td><td>0.40</td><td>1.67</td><td>34.3</td><td>33.8%</td></tr>
+                <tr><td>2025</td><td><strong>31.9</strong></td><td><strong>0.52</strong></td><td><strong>2.08</strong></td><td><strong>38.5</strong></td><td><strong>36.9%</strong></td></tr>
+            </table>
+            <div class="chart-container">
+                <canvas id="chart3" height="100"></canvas>
+            </div>
+            <div class="highlight">
+                <strong>巴菲特/芒格视角分析：</strong>
+                <ul>
+                    <li><strong>ROE质量优秀</strong>：2025年ROE 31.9%，5年从22%提升至32%，主要由净利率提升驱动（从13%升至18.5%），而非财务杠杆。2025年资产负债率0.52虽有所上升（因CCS收购融资），但仍属健康水平。<strong>这是真实的经营ROE，而非财务工程ROE。</strong></li>
+                    <li><strong>毛利率持续扩张</strong>：从2015年32%升至2025年36.9%，扩张490基点，主要由高毛利的AI数据中心和军用航空业务占比提升驱动。</li>
+                    <li><strong>PE从2022年23.4x升至2025年38.5x</strong>，反映市场对AI数据中心增长的乐观预期。当前PE 44x（2026年6月）已高于10年平均29x，估值偏贵。</li>
+                    <li><strong>资产负债率</strong>：2025年因CCS收购融资升至0.52，预计2026年将进一步上升至约0.60，需关注债务消化进度。</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- ================= 第五章 ================= -->
+        <div class="info-box">
+            <h2 id="chapter5">五、竞争分析</h2>
+
+            <h3>5.1 主要竞争对手</h3>
+            <div class="competitor-grid">
+                <div class="competitor-card">
+                    <h4>TE Connectivity (TEL)</h4>
+                    <p><strong>市值</strong>: ~640亿美元</p>
+                    <p><strong>2025营收</strong>: ~160亿美元</p>
+                    <p><strong>全球份额</strong>: ~13%（第一）</p>
+                    <p><strong>优势</strong>: 汽车连接器份额第一，数据中心连接器强；规模优势</p>
+                    <p><strong>劣势</strong>: 增长较慢，PE较低（~22x）；AI数据中心布局落后于APH</p>
+                </div>
+                <div class="competitor-card">
+                    <h4>Molex (Koch Industries)</h4>
+                    <p><strong>类型</strong>: 私有公司（Koch Industries子公司）</p>
+                    <p><strong>营收</strong>: ~100亿美元</p>
+                    <p><strong>全球份额</strong>: ~7%</p>
+                    <p><strong>优势</strong>: 消费电子、医疗、汽车强；工程深度</p>
+                    <p><strong>劣势</strong>: 不可比上市公司；AI数据中心布局较弱</p>
+                </div>
+                <div class="competitor-card">
+                    <h4>Foxconn Interconnect (FIT)</h4>
+                    <p><strong>市值</strong>: ~120亿美元</p>
+                    <p><strong>营收</strong>: ~50亿美元</p>
+                    <p><strong>全球份额</strong>: ~5%</p>
+                    <p><strong>优势</strong>: 消费电子、移动设备强；苹果供应链</p>
+                    <p><strong>劣势</strong>: 规模小，产品线窄，增长依赖苹果</p>
+                </div>
+                <div class="competitor-card">
+                    <h4>Aptiv (APTV)</h4>
+                    <p><strong>市值</strong>: ~200亿美元</p>
+                    <p><strong>营收</strong>: ~200亿美元（含线束）</p>
+                    <p><strong>全球份额</strong>: ~5%（连接器部分）</p>
+                    <p><strong>优势</strong>: 汽车线束和连接器；EV布局</p>
+                    <p><strong>劣势</strong>: 主要做汽车，多元化不足</p>
+                </div>
+                <div class="competitor-card">
+                    <h4>Luxshare Precision (立讯精密)</h4>
+                    <p><strong>市值</strong>: ~3000亿人民币</p>
+                    <p><strong>营收</strong>: ~2500亿人民币</p>
+                    <p><strong>全球份额</strong>: ~3-5%（快速增长）</p>
+                    <p><strong>优势</strong>: 苹果供应链，价格优势，汽车业务增长45%</p>
+                    <p><strong>劣势</strong>: 技术深度不足，高端市场布局弱</p>
+                </div>
+                <div class="competitor-card">
+                    <h4>Jonhon (中航光电)</h4>
+                    <p><strong>市值</strong>: ~1000亿人民币</p>
+                    <p><strong>营收</strong>: ~200亿人民币</p>
+                    <p><strong>全球份额</strong>: ~2-3%</p>
+                    <p><strong>优势</strong>: 中国军用连接器第一，高压汽车连接器份额18%</p>
+                    <p><strong>劣势</strong>: 主要中国市场，全球布局弱</p>
+                </div>
+            </div>
+
+            <h3>5.2 市场份额与行业格局</h3>
+            <table>
+                <tr>
+                    <th>排名</th>
+                    <th>公司</th>
+                    <th>2025全球份额</th>
+                    <th>趋势</th>
+                </tr>
+                <tr><td>1</td><td>TE Connectivity</td><td>~13%</td><td>稳定（被APH追赶）</td></tr>
+                <tr><td>2</td><td>Amphenol</td><td>~11-13%</td><td>上升（AI驱动）</td></tr>
+                <tr><td>3</td><td>Molex</td><td>~7%</td><td>稳定</td></tr>
+                <tr><td>4</td><td>Aptiv</td><td>~5%</td><td>稳定</td></tr>
+                <tr><td>5</td><td>Foxconn (FIT)</td><td>~5%</td><td>下降</td></tr>
+                <tr><td>6</td><td>Yazaki</td><td>~5%（汽车为主）</td><td>稳定</td></tr>
+                <tr><td>7</td><td>Luxshare</td><td>~3-5%</td><td>快速上升</td></tr>
+                <tr><td>8</td><td>Jonhon</td><td>~2-3%</td><td>上升（中国军用）</td></tr>
+                <tr><td colspan="2"><strong>前5名合计</strong></td><td><strong>~35-40%</strong></td><td>行业仍较分散，并购整合空间大</td></tr>
+            </table>
+            <p>全球连接器市场2025年约750-1050亿美元（不同口径），预计2026-2035年CAGR 3.7%（行业整体），但AI数据中心和EV细分市场CAGR 15-25%。Amphenol在高速增长细分市场份额上升，预计未来3-5年可能超越TE Connectivity成为全球第一。</p>
+
+            <h3>5.3 经济护城河分析</h3>
+            <div class="moat-item">
+                <strong>护城河1：分散化创业家文化组织（极宽，几乎不可复制）</strong> — 140+独立事业部+400+产品线，每个事业部像小公司运作，总经理像"小CEO"。这种组织结构花了30年构建，新进入者几乎不可能复制。这是Amphenol持续并购整合成功的核心组织能力，也是巴菲特/芒格最看重的"持久竞争优势"。
+            </div>
+            <div class="moat-item">
+                <strong>护城河2：Design-in深度绑定（极强客户粘性）</strong> — 连接器是客户产品设计的关键元件，一旦中标design-in，产品寿命周期内（5-10年）通常持续供货。切换成本极高（数千万美元+12-18个月重新认证）。AI数据中心和军用航空领域的design-in粘性最强。
+            </div>
+            <div class="moat-item">
+                <strong>护城河3：规模优势+并购飞轮（可持续）</strong> — Amphenol规模是Molex的2倍、Foxconn FIT的4倍，分摊研发和制造成本的能力行业第一。年均5-10起小并购+1-2起大并购，过去10年完成50+起并购，每起并购平均3-5年达到集团利润率。规模→现金流→并购→规模飞轮持续运转。
+            </div>
+            <div class="moat-item">
+                <strong>护城河4：高可靠性认证壁垒（军用/航空专属）</strong> — 军用产品需通过MIL-STD认证（5-10年），商用航空需通过FAA/EASA适航认证（5-10年）。合格供应商极少（每个产品类别2-3家）。Amphenol在军用和商用航空领域全球领先，认证壁垒极高。
+            </div>
+            <div class="moat-item">
+                <strong>护城河5：AI数据中心技术领先（新兴）</strong> — Amphenol在800G/1.6T高速连接器、背板连接器、汇流排领域全球第一，是NVIDIA GB200、Cisco、Arista等AI数据中心硬件的核心供应商。AI GPU集群对高速互连的需求构成多年长周期增长引擎。
+            </div>
+            <div class="moat-item">
+                <strong>护城河6：品牌信任度（持续积累）</strong> — Amphenol品牌在高可靠性应用领域（军用、航空、数据中心、医疗）具有强信任度，客户愿意为可靠性支付溢价。85年品牌传承+30年上市公司业绩记录。
+            </div>
+
+            <div class="highlight">
+                <strong>综合护城河评级：4.5/5（极宽护城河）</strong>
+                <br>
+                Amphenol是连接器行业具有"复合护城河"的优质公司：组织护城河（极宽）+ design-in护城河（极强）+ 规模并购飞轮（可持续）+ 认证壁垒（极高）+ AI技术领先（新兴）+ 品牌信任（持续）。六重护城河相互强化，几乎不可能被竞争对手复制。芒格说过："具有持久竞争优势的优质公司，是最好的长期投资。" Amphenol正是这类公司。
+            </div>
+        </div>
+
+        <!-- ================= 第六章 ================= -->
+        <div class="info-box">
+            <h2 id="chapter6">六、利润分配分析</h2>
+
+            <h3>6.1 利润分配表（2016-2025，亿美元）</h3>
+            <p><em>注：遵循"回购视为留存"原则 — 留存金额 = 净利润 - 分红（回购不减留存）</em></p>
+            <table>
+                <tr>
+                    <th>年份</th>
+                    <th>净利润</th>
+                    <th>分红</th>
+                    <th>回购</th>
+                    <th>CapEx</th>
+                    <th>并购支出</th>
+                    <th>留存金额</th>
+                    <th>留存比例</th>
+                </tr>
+                <tr><td>2016</td><td>8.2</td><td>1.8</td><td>2.0</td><td>2.5</td><td>3.0</td><td>6.4</td><td>78%</td></tr>
+                <tr><td>2017</td><td>6.5</td><td>2.2</td><td>3.0</td><td>2.5</td><td>5.0</td><td>4.3</td><td>66%</td></tr>
+                <tr><td>2018</td><td>12.1</td><td>2.7</td><td>5.0</td><td>3.0</td><td>8.0</td><td>9.4</td><td>78%</td></tr>
+                <tr><td>2019</td><td>11.6</td><td>2.9</td><td>4.5</td><td>3.0</td><td>6.0</td><td>8.7</td><td>75%</td></tr>
+                <tr><td>2020</td><td>12.1</td><td>3.1</td><td>3.0</td><td>2.8</td><td>4.0</td><td>9.0</td><td>74%</td></tr>
+                <tr><td>2021</td><td>15.8</td><td>3.8</td><td>5.5</td><td>3.5</td><td>12.0</td><td>12.0</td><td>76%</td></tr>
+                <tr><td>2022</td><td>19.0</td><td>5.0</td><td>8.0</td><td>4.5</td><td>18.0</td><td>14.0</td><td>74%</td></tr>
+                <tr><td>2023</td><td>19.3</td><td>5.2</td><td>7.0</td><td>4.8</td><td>20.0</td><td>14.1</td><td>73%</td></tr>
+                <tr><td>2024</td><td>24.4</td><td>6.7</td><td>5.5</td><td>5.8</td><td>42.0</td><td>17.7</td><td>73%</td></tr>
+                <tr><td>2025</td><td>42.7</td><td>8.0</td><td>7.0</td><td>9.8</td><td>28.0</td><td>34.7</td><td>81%</td></tr>
+                <tr><td><strong>10年累计</strong></td><td><strong>171.7</strong></td><td><strong>41.4</strong></td><td><strong>50.5</strong></td><td><strong>42.2</strong></td><td><strong>146.0</strong></td><td><strong>130.3</strong></td><td><strong>76%</strong></td></tr>
+            </table>
+            <div class="chart-container">
+                <canvas id="chart4" height="100"></canvas>
+            </div>
+
+            <h3>6.2 资本配置质量分析</h3>
+            <div class="moat-item">
+                <strong>分红策略（保守稳健）：</strong> 10年累计分红41亿美元，分红比例从2016年22%降至2025年19%。2025年Q4股息提高51.5%至$0.25/季度，体现管理层对未来现金流的强信心。当前股息率仅0.6%，分红不是Amphenol的主要资本配置方式，更多是信号作用。
+            </div>
+            <div class="moat-item">
+                <strong>回购策略（时机优秀）：</strong> 10年累计回购50.5亿美元，回购时机分散。2024年回购仅5.5亿美元（股价低位），2025年回购7亿美元（股价上涨中），相对理性。2024年6月完成2:1拆股，拆股后回购节奏放缓，等待股价回调。
+            </div>
+            <div class="moat-item">
+                <strong>并购策略（核心资本配置方式）：</strong> 10年累计并购支出146亿美元，是最大的资本配置去向。2024年42亿美元（含Carlisle CIT），2025年28亿美元（含Trexon 14亿），2026年1月完成CommScope CCS收购（约105亿美元，史上最大）。并购是Amphenol的核心增长引擎，过去10年CAGR 15%中约5个百分点来自并购。
+            </div>
+            <div class="moat-item">
+                <strong>CapEx策略（轻资产）：</strong> 10年累计CapEx 42亿美元，仅占累计净利润的25%。Amphenol是轻资产模式，资本回报率高。2025年CapEx 9.8亿美元（占营收4.2%），主要为AI数据中心产能扩张。
+            </div>
+            <div class="highlight">
+                <strong>可持续增长率 = ROE × 留存比例 = 31.9% × 76% = 24.2%</strong>
+                <br>
+                Amphenol理论可持续增长率24.2%，远高于行业平均。过去10年实际营收CAGR 15.3%（部分增长通过并购实现），低于理论可持续增长率，说明公司仍有充足的增长空间。管理层资本配置能力卓越：分红+回购+并购三方面并行，并购是核心增长引擎。
+            </div>
+
+            <h3>6.3 管理层资本配置评分</h3>
+            <table>
+                <tr>
+                    <th>维度</th>
+                    <th>评分</th>
+                    <th>评价</th>
+                </tr>
+                <tr><td>并购整合能力</td><td>5/5</td><td>过去10年50+起并购，平均3-5年达到集团利润率，整合能力行业第一</td></tr>
+                <tr><td>分红策略</td><td>4/5</td><td>保守稳健，2025年Q4大幅提高51.5%，体现信心</td></tr>
+                <tr><td>回购时机</td><td>4/5</td><td>相对理性，2024年低位回购较多，2025年上涨中放缓</td></tr>
+                <tr><td>CapEx效率</td><td>5/5</td><td>轻资产模式，CapEx/营收仅4%，ROIC高</td></tr>
+                <tr><td>债务管理</td><td>3.5/5</td><td>CCS收购后债务上升，需关注消化进度；利息覆盖仍健康</td></tr>
+                <tr><td><strong>综合资本配置评分</strong></td><td><strong>4.3/5</strong></td><td>管理层资本配置能力卓越，是Amphenol的核心竞争优势之一</td></tr>
+            </table>
+        </div>
+
+        <!-- ================= 第七章 ================= -->
+        <div class="info-box">
+            <h2 id="chapter7">七、投资总结</h2>
+
+            <h3>7.1 投资评级各维度评分</h3>
+            <table>
+                <tr>
+                    <th>维度</th>
+                    <th>评分</th>
+                    <th>评价</th>
+                </tr>
+                <tr><td>业务易懂性</td><td>4.5/5</td><td>连接器业务模型清晰：design-in→持续供货→并购扩展产品线。140+事业部分散化组织独特但可理解。</td></tr>
+                <tr><td>护城河</td><td>4.5/5</td><td>极宽复合护城河：组织护城河+design-in+规模并购飞轮+认证壁垒+AI技术领先+品牌信任</td></tr>
+                <tr><td>资本配置</td><td>4.3/5</td><td>管理层并购整合能力卓越，过去10年50+起并购；分红+回购+并购三方面并行</td></tr>
+                <tr><td>财务安全</td><td>4/5</td><td>ROE 32%优秀；资产负债率0.52健康但CCS收购后上升；FCF转化率95%+优秀</td></tr>
+                <tr><td>成长性</td><td>4.5/5</td><td>AI数据中心驱动多年增长；89亿美元订单储备+46% YoY；军用/航空复苏；EV受益</td></tr>
+                <tr><td>估值吸引力</td><td>2/5</td><td>PE 44x远高于10年平均29x；P/S 7x、P/B 12x均处历史高位；估值反映AI预期</td></tr>
+                <tr><td><strong>综合评分</strong></td><td><strong>3.97/5</strong></td><td>优质公司，但当前估值偏贵，缺乏安全边际</td></tr>
+            </table>
+
+            <h3>7.2 估值对比</h3>
+            <table>
+                <tr>
+                    <th>公司</th>
+                    <th>市值（亿美元）</th>
+                    <th>PE（TTM）</th>
+                    <th>P/S</th>
+                    <th>营收增长</th>
+                    <th>毛利率</th>
+                </tr>
+                <tr><td><strong>Amphenol (APH)</strong></td><td>2,000</td><td>44.8</td><td>7.2</td><td>+52%</td><td>36.9%</td></tr>
+                <tr><td>TE Connectivity (TEL)</td><td>640</td><td>22.1</td><td>3.5</td><td>~10%</td><td>33%</td></tr>
+                <tr><td>ITT Inc.</td><td>180</td><td>34.5</td><td>3.0</td><td>~10%</td><td>38%</td></tr>
+                <tr><td>Belden (BDC)</td><td>48</td><td>20.5</td><td>1.5</td><td>~5%</td><td>38%</td></tr>
+                <tr><td>行业平均</td><td>—</td><td>~30</td><td>~3.7</td><td>~10%</td><td>~37%</td></tr>
+            </table>
+            <p><strong>估值结论：</strong> Amphenol PE 44.8x显著高于行业平均30x和TE Connectivity的22x，反映市场对AI数据中心增长的乐观预期。P/S 7.2x是行业平均2倍，P/B 12.4x是行业中位数的5倍。<strong>当前估值已定价完美执行，容错空间小。</strong></p>
+
+            <h3>7.3 主要风险</h3>
+            <div class="risk-item">
+                <strong>主要风险：</strong>
+                <ul>
+                    <li><strong>估值风险（最大风险）</strong>：PE 44.8x远高于10年平均29x，市场已定价AI增长预期。若增长不及预期或AI投资周期下行，估值回调风险大。巴菲特原则："不要亏钱"——在估值高位时尤其需要谨慎。</li>
+                    <li><strong>CCS收购整合风险</strong>：CommScope CCS业务105亿美元收购是史上最大，整合难度高于以往小并购。若整合不及预期，可能拖累利润率（近期收购业务初始利润率26.2%，低于集团26.2%平均水平）。利息支出预计从3.68亿升至8亿美元，占营业利润14%。</li>
+                    <li><strong>AI周期下行风险</strong>：若2026-2027年AI数据中心投资放缓（如GPU库存调整、超大规模数据中心capex削减），IT Datacom业务增长将显著放缓。当前36%占比意味着对AI依赖度高。</li>
+                    <li><strong>地缘政治风险</strong>：中国长期资产占比从29%升至37%（主要为AI产能），存在中美贸易摩擦风险。中国税务争议潜在负债3亿美元（管理层已计提1亿美元）。</li>
+                    <li><strong>中国竞争加剧</strong>：立讯精密、中航光电等中国竞争对手在汽车和消费电子领域份额上升，长期可能挤压Amphenol在中小型连接器领域的份额。</li>
+                    <li><strong>债务上升</strong>：CCS收购融资后总债务从69亿升至81亿美元，2026年利息支出预计8亿美元。若AI周期下行，债务服务压力增大。</li>
+                </ul>
+            </div>
+
+            <h3>7.4 主要催化剂</h3>
+            <div class="moat-item">
+                <strong>主要催化剂：</strong>
+                <ul>
+                    <li><strong>AI数据中心需求持续超预期</strong>：2026年Q1指引营收69-70亿美元（+43-45% YoY），EPS $0.91-0.93（+44-48% YoY）。若2026-2028年AI投资持续爆发，IT Datacom业务将持续超预期。</li>
+                    <li><strong>89亿美元订单储备</strong>：创历史新高（+46% YoY），主要由AI需求和近期并购驱动，提供多年收入可见性。</li>
+                    <li><strong>CCS业务整合成功</strong>：预计2026年贡献41亿美元营收，增加$0.15 EPS。若整合顺利，将进一步强化AI数据中心和宽带网络布局。</li>
+                    <li><strong>5G-Advanced升级周期</strong>：2026-2028年5G-Advanced建设受益，移动网络业务回升。</li>
+                    <li><strong>国防预算持续增长</strong>：北约2%GDP目标、台海局势、俄乌战争后各国军费提升，军用业务多年增长可见性高。</li>
+                    <li><strong>EV电动化持续渗透</strong>：全球EV渗透率持续提升，单车连接器价值量翻倍，汽车业务多年增长。</li>
+                    <li><strong>股息持续提高</strong>：2025年Q4股息提高51.5%，未来5-10年继续快速提高无忧。</li>
+                </ul>
+            </div>
+
+            <h3>7.5 投资建议</h3>
+            <div class="rating-box rating-hold">持有 / 等待回调</div>
+            <div class="highlight">
+                <strong>巴菲特/芒格结论：</strong> Amphenol是巴菲特/芒格体系里"具有持久竞争优势的优质科技公司"的典型——护城河4.5/5（极宽）、资本配置4.3/5（卓越）、财务质量4/5（优秀）、成长性4.5/5（AI驱动多年增长）。但当前估值（PE 44.8x，股息率0.6%）<strong>严重缺乏安全边际</strong>。芒格说过："以合理价格买入优质公司，远胜于以便宜价格买入平庸公司"——但44x PE即使是优质公司也偏贵。
+                <br><br>
+                <strong>建议操作：</strong>
+                <ul>
+                    <li><strong>长期持有者</strong>：继续持有，享受AI数据中心增长+并购飞轮+股息增长。Amphenol是"科技+工业"复合体，长期复利潜力强。35年年化22%回报证明公司质量。</li>
+                    <li><strong>新建仓者</strong>：等待回调至$120-130区间（对应PE 30-33x，接近10年平均29x），获得25%+安全边际后再建仓。优质公司值得等待。</li>
+                    <li><strong>关注触发点</strong>：①2026年CCS业务整合进度；②AI数据中心订单是否持续超预期；③利息支出对利润率的影响；④2026年全年指引兑现情况；⑤中国地缘政治风险。</li>
+                </ul>
+            </div>
+
+            <div class="moat-item">
+                <strong>核心结论：</strong> Amphenol是"连接器领域的伯克希尔"——分散化创业家组织像私募基金一样运作，过去10年完成50+起并购，规模从56亿增至231亿（CAGR 15%），ROE从22%升至32%。AI数据中心新引擎+军用航空壁垒+并购飞轮构成多重增长引擎，89亿美元订单储备提供多年可见性。<strong>主要问题是估值而非公司</strong>——44x PE即使对优质公司也偏贵，建议耐心等待回调至PE 30-33x区间（接近10年平均）再建仓。芒格名言："具有持久竞争优势的优质公司是最好的投资"——但巴菲特也强调："不要亏钱"。在APH这只股票上，耐心是关键。
+            </div>
+
+            <h3>7.6 与其他连接器/工业龙头对比</h3>
+            <table>
+                <tr>
+                    <th>公司</th>
+                    <th>代码</th>
+                    <th>市值（亿$）</th>
+                    <th>PE</th>
+                    <th>营收增长</th>
+                    <th>毛利率</th>
+                    <th>ROE</th>
+                    <th>护城河</th>
+                </tr>
+                <tr><td>Amphenol</td><td>APH</td><td>2,000</td><td>44.8</td><td>+52%</td><td>36.9%</td><td>32%</td><td>极宽（4.5/5）</td></tr>
+                <tr><td>TE Connectivity</td><td>TEL</td><td>640</td><td>22.1</td><td>+10%</td><td>33%</td><td>20%+</td><td>宽（4/5）</td></tr>
+                <tr><td>ITT Inc.</td><td>ITT</td><td>180</td><td>34.5</td><td>+10%</td><td>38%</td><td>20%+</td><td>中等（3.5/5）</td></tr>
+                <tr><td>Belden</td><td>BDC</td><td>48</td><td>20.5</td><td>+5%</td><td>38%</td><td>15%+</td><td>中等（3/5）</td></tr>
+            </table>
+            <p><strong>对比结论：</strong> Amphenol在连接器同行中估值最贵（PE 44.8x），但成长性最强（+52%）、ROE最高（32%）、护城河最宽。巴菲特/芒格原则："宁可以合理价格买入优质公司，也不以便宜价格买入平庸公司"——但当前APH价格已不"合理"。</p>
+        </div>
+
+        <!-- ================= 图表脚本 ================= -->
+        <script>
+        // 图表1：终端市场营收占比
+        const ctx1 = document.getElementById('chart1').getContext('2d');
+        new Chart(ctx1, {
+            type: 'bar',
+            data: {
+                labels: ['IT数据通信','汽车','工业','移动设备','军用航空','商用航空','移动网络'],
+                datasets: [{
+                    label: '营收（亿美元）',
+                    data: [83, 35, 30, 28, 25, 18, 12],
+                    backgroundColor: ['#2e86c1','#27ae60','#f39c12','#9b59b6','#c0392b','#16a085','#7f8c8d'],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: { title: { display: true, text: 'APH 2025年七大终端市场营收（亿美元）' } },
+                scales: { y: { title: { display: true, text: '亿美元' } } }
+            }
+        });
+
+        // 图表2：营收与利润趋势
+        const ctx2 = document.getElementById('chart2').getContext('2d');
+        new Chart(ctx2, {
+            type: 'line',
+            data: {
+                labels: ['2015','2016','2017','2018','2019','2020','2021','2022','2023','2024','2025'],
+                datasets: [
+                    {
+                        label: '营收（亿美元）',
+                        data: [55.7, 62.9, 70.1, 82.0, 82.3, 86.0, 108.8, 126.2, 125.6, 152.2, 231.0],
+                        borderColor: '#2e86c1',
+                        backgroundColor: 'rgba(46, 134, 193, 0.2)',
+                        tension: 0.3,
+                        fill: false
+                    },
+                    {
+                        label: '营业利润（亿美元）',
+                        data: [11.0, 12.0, 14.3, 16.9, 16.2, 16.4, 21.0, 25.9, 25.6, 31.6, 58.7],
+                        borderColor: '#27ae60',
+                        backgroundColor: 'rgba(39, 174, 96, 0.2)',
+                        tension: 0.3,
+                        fill: false
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                plugins: { title: { display: true, text: 'APH 营收与营业利润趋势（2015-2025）' } },
+                scales: { y: { title: { display: true, text: '亿美元' } } }
+            }
+        });
+
+        // 图表3：ROE、资产负债率、PE趋势
+        const ctx3 = document.getElementById('chart3').getContext('2d');
+        new Chart(ctx3, {
+            type: 'line',
+            data: {
+                labels: ['2015','2016','2017','2018','2019','2020','2021','2022','2023','2024','2025'],
+                datasets: [
+                    {
+                        label: 'ROE（%）',
+                        data: [23.6, 22.4, 16.3, 29.9, 25.3, 22.3, 24.8, 27.1, 23.2, 24.8, 31.9],
+                        borderColor: '#27ae60',
+                        backgroundColor: 'rgba(39, 174, 96, 0.2)',
+                        tension: 0.3,
+                        fill: false
+                    },
+                    {
+                        label: '资产负债率',
+                        data: [0.46, 0.41, 0.47, 0.41, 0.41, 0.40, 0.43, 0.39, 0.32, 0.40, 0.52],
+                        borderColor: '#f39c12',
+                        backgroundColor: 'rgba(243, 156, 18, 0.2)',
+                        tension: 0.3,
+                        fill: false
+                    },
+                    {
+                        label: 'PE（年末）',
+                        data: [21.1, 25.1, 41.4, 19.0, 26.4, 31.1, 31.8, 23.4, 30.3, 34.3, 38.5],
+                        borderColor: '#c0392b',
+                        backgroundColor: 'rgba(192, 57, 43, 0.2)',
+                        tension: 0.3,
+                        fill: false
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                plugins: { title: { display: true, text: 'APH ROE、资产负债率、PE趋势（2015-2025）' } },
+                scales: { y: { title: { display: true, text: '数值' } } }
+            }
+        });
+
+        // 图表4：10年利润分配结构
+        const ctx4 = document.getElementById('chart4').getContext('2d');
+        new Chart(ctx4, {
+            type: 'bar',
+            data: {
+                labels: ['2016','2017','2018','2019','2020','2021','2022','2023','2024','2025'],
+                datasets: [
+                    { label: '分红', data: [1.8,2.2,2.7,2.9,3.1,3.8,5.0,5.2,6.7,8.0], backgroundColor: '#27ae60', stack: 'a' },
+                    { label: '回购', data: [2.0,3.0,5.0,4.5,3.0,5.5,8.0,7.0,5.5,7.0], backgroundColor: '#2e86c1', stack: 'a' },
+                    { label: 'CapEx', data: [2.5,2.5,3.0,3.0,2.8,3.5,4.5,4.8,5.8,9.8], backgroundColor: '#f39c12', stack: 'a' },
+                    { label: '并购支出', data: [3.0,5.0,8.0,6.0,4.0,12.0,18.0,20.0,42.0,28.0], backgroundColor: '#9b59b6', stack: 'a' },
+                    { label: '留存金额', data: [6.4,4.3,9.4,8.7,9.0,12.0,14.0,14.1,17.7,34.7], backgroundColor: '#34495e', stack: 'a' }
+                ]
+            },
+            options: {
+                responsive: true,
+                plugins: { title: { display: true, text: 'APH 10年利润分配结构（2016-2025，亿美元）' } },
+                scales: { x: { stacked: true }, y: { stacked: true, title: { display: true, text: '亿美元' } } }
+            }
+        });
+        </script>
+
+        <script src="scores_client.js"></script>
+        <script src="stock_topbar.js"></script>
+        <script>
+        (function(){
+            var code=document.getElementById('topbarCode').textContent.trim();
+            function starsHTML(val){var h='';for(var i=1;i<=5;i++){h+='<span class="'+(i<=val?'on':'off')+'">\u2605</span>';}return h;}
+            function valClass(v){return v>=5?'s5':v>=4?'s4':v>=3?'s3':v>=2?'s2':'s1';}
+            function renderDisplay(f,p){
+                document.getElementById('topbarFVal').textContent=f>0?f:'-';
+                document.getElementById('topbarFVal').className='topbar-score-val'+(f>0?' '+valClass(f):'');
+                document.getElementById('topbarFStars').innerHTML=starsHTML(f);
+                document.getElementById('topbarPVal').textContent=p>0?p:'-';
+                document.getElementById('topbarPVal').className='topbar-score-val'+(p>0?' '+valClass(p):'');
+                document.getElementById('topbarPStars').innerHTML=starsHTML(p);
+            }
+            function renderFromDB(){
+                var sc=ScoresDB.get(code);
+                renderDisplay(sc.fundamental||0, sc.price||0);
+            }
+            window.topbarEdit=function(){
+                var sc=ScoresDB.get(code);
+                document.getElementById('topbarFSel').value=sc.fundamental||0;
+                document.getElementById('topbarPSel').value=sc.price||0;
+                document.getElementById('topbarFSel').style.display='';
+                document.getElementById('topbarPSel').style.display='';
+                document.getElementById('topbarEditBtn').style.display='none';
+                document.getElementById('topbarSaveBtn').style.display='';
+                document.getElementById('topbarCancelBtn').style.display='';
+                document.getElementById('topbarFVal').style.display='none';
+                document.getElementById('topbarPVal').style.display='none';
+                document.getElementById('topbarFStars').style.display='none';
+                document.getElementById('topbarPStars').style.display='none';
+            };
+            window.topbarSave=function(){
+                var f=parseInt(document.getElementById('topbarFSel').value);
+                var p=parseInt(document.getElementById('topbarPSel').value);
+                ScoresDB.save(code, f, p);
+                topbarCancel();
+                renderFromDB();
+            };
+            window.topbarCancel=function(){
+                document.getElementById('topbarFSel').style.display='none';
+                document.getElementById('topbarPSel').style.display='none';
+                document.getElementById('topbarEditBtn').style.display='';
+                document.getElementById('topbarSaveBtn').style.display='none';
+                document.getElementById('topbarCancelBtn').style.display='none';
+                document.getElementById('topbarFVal').style.display='';
+                document.getElementById('topbarPVal').style.display='';
+                document.getElementById('topbarFStars').style.display='';
+                document.getElementById('topbarPStars').style.display='';
+            };
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', renderFromDB);
+            } else {
+                renderFromDB();
+            }
+        })();
+        </script>
+    </body>
+</html>
