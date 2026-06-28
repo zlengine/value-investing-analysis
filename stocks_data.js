@@ -110,7 +110,8 @@
         {code:'FIX',name:'Comfort Systems USA - M..',href:'fix.html'},
         {code:'PJT',name:'PJT Partners - 精品投资银行/M&A咨询/重组',href:'pjt.html'},
         {code:'NVR',name:'NVR, Inc. - 住宅建筑/轻资产土地期权+零债务回购',href:'nvr.html'},
-        {code:'SUN',name:'Sunoco LP - 燃料分销+管道+终端MLP高分红',href:'sun.html'}
+        {code:'SUN',name:'Sunoco LP - 燃料分销+管道+终端MLP高分红',href:'sun.html'},
+        {code:'KMB',name:'Kimberly-Clark - 153年消费品防御股/股息之王53年',href:'kmb.html'}
     ];
 
     // 暴露为全局变量
