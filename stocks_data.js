@@ -108,7 +108,8 @@
         {code:'IDXX',name:'IDEXX Laboratories - 兽医..',href:'idxx.html'},
         {code:'ROL',name:'Rollins - 害虫防治/Orkin品牌/..',href:'rol.html'},
         {code:'FIX',name:'Comfort Systems USA - M..',href:'fix.html'},
-        {code:'PJT',name:'PJT Partners - 精品投资银行/M&A咨询/重组',href:'pjt.html'}
+        {code:'PJT',name:'PJT Partners - 精品投资银行/M&A咨询/重组',href:'pjt.html'},
+        {code:'NVR',name:'NVR, Inc. - 住宅建筑/轻资产土地期权+零债务回购',href:'nvr.html'}
     ];
 
     // 暴露为全局变量

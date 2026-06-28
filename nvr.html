@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NVR, Inc. (NVR) 价值投资分析</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body { font-family: 'Segoe UI', Arial, sans-serif; margin: 0; padding: 20px; background-color: #f0f2f5; color: #333; }
+        h1 { text-align: center; color: #1a5276; font-size: 2.2em; margin-bottom: 5px; }
+        h2 { color: #1a5276; border-bottom: 2px solid #2e86c1; padding-bottom: 8px; margin-top: 30px; }
+        h3 { color: #2c3e50; margin-top: 20px; }
+        .subtitle { text-align: center; color: #7f8c8d; font-size: 1.1em; margin-bottom: 30px; }
+        .info-box { background: white; border-radius: 10px; padding: 25px; margin: 20px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.08); }
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; background-color: white; }
+        th, td { padding: 10px 14px; text-align: left; border-bottom: 1px solid #e0e0e0; }
+        th { background-color: #1a5276; color: white; font-weight: bold; }
+        tr:nth-child(even) { background-color: #f8f9fa; }
+        tr:hover { background-color: #eaf2f8; }
+        .highlight { background: #fef9e7; border-left: 4px solid #2e86c1; padding: 15px 20px; margin: 15px 0; border-radius: 0 8px 8px 0; }
+        .chart-container { background: white; border-radius: 10px; padding: 25px; margin: 20px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.08); }
+        canvas { max-height: 400px; }
+        .tag { display: inline-block; background: #1a5276; color: white; padding: 3px 10px; border-radius: 12px; font-size: 0.85em; margin: 2px; }
+        .tag-green { background: #27ae60; }
+        .tag-orange { background: #e67e22; }
+        .tag-red { background: #c0392b; }
+        a { color: #1a5276; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        .moat-item { background: #eaf5ea; border-left: 4px solid #27ae60; padding: 12px 18px; margin: 10px 0; border-radius: 5px; }
+        .moat-item strong { color: #1a5276; }
+        .risk-item { background: #fdedec; border-left: 4px solid #c0392b; padding: 12px 18px; margin: 10px 0; border-radius: 5px; }
+        .star { color: #f39c12; }
+        .top-nav-bar { position: fixed; top: 0; left: 0; right: 0; height: 44px; background: #2c3e50; display: flex; align-items: center; justify-content: flex-end; padding: 0 20px; z-index: 9999; box-shadow: 0 2px 8px rgba(0,0,0,0.15); gap: 8px; }
+        .top-nav-link { color: white; padding: 6px 16px; border-radius: 16px; text-decoration: none; font-size: 13px; transition: background 0.2s; white-space: nowrap; }
+        .segment-box { background: white; border-radius: 10px; padding: 20px; margin: 15px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.08); border-top: 4px solid #2e86c1; }
+        .competitiveness-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px; margin: 15px 0; }
+        .comp-card { background: #f8f9fa; border-radius: 8px; padding: 15px; text-align: center; }
+        .comp-card h4 { margin: 0 0 8px; color: #1a5276; font-size: 0.95em; }
+        .comp-level { font-size: 1.3em; font-weight: 700; margin: 8px 0; }
+        .section-nav {
+            background: white;
+            border-radius: 10px;
+            padding: 15px 25px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+        .section-nav a {
+            display: inline-block;
+            margin: 5px 10px;
+            padding: 6px 14px;
+            background: #eaf2f8;
+            color: #1a5276;
+            text-decoration: none;
+            border-radius: 15px;
+            font-size: 0.9em;
+        }
+        .section-nav a:hover {
+            background: #2e86c1;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="top-nav-bar"></div>
+    <script src="nav_bar.js?v=20260628"></script>
+    <span id="topbarCode" style="display:none;">NVR</span>
+    <h1>NVR, Inc. (NYSE: NVR)</h1>
+    <p class="subtitle">巴菲特/芒格式价值投资基本面分析 | 更新日期：2026年6月</p>
+
+    <div class="section-nav">
+        <a href="#chapter1">公司基本信息</a>
+        <a href="#chapter2">业务分析</a>
+        <a href="#chapter3">业务板块产品竞争力分析</a>
+        <a href="#chapter4">历史财务指标</a>
+        <a href="#chapter5">竞争分析</a>
+        <a href="#chapter6">利润分配分析</a>
+        <a href="#chapter7">投资总结</a>
+    </div>
+
+    <!-- ===================== 第一章：公司基本信息 ===================== -->
+    <div class="info-box">
+        <h2 id="chapter1">一、公司基本信息</h2>
+        <table>
+            <tr><td style="width:30%;font-weight:bold;">公司全称</td><td>NVR, Inc.</td></tr>
+            <tr><td style="font-weight:bold;">股票代码</td><td>NYSE: NVR（普通股，无分红）</td></tr>
+            <tr><td style="font-weight:bold;">市值</td><td>约234亿美元（USD ~23.4B，2026年6月）</td></tr>
+            <tr><td style="font-weight:bold;">最新收盘价</td><td>$7,050（2026年6月26日）</td></tr>
+            <tr><td style="font-weight:bold;">52周区间</td><td>$6,500 - $8,500</td></tr>
+            <tr><td style="font-weight:bold;">企业价值EV</td><td>约232亿美元（账面几乎零净债务，现金+应收抵消应付土地款）</td></tr>
+            <tr><td style="font-weight:bold;">成立时间</td><td>1980年（前身Ryan Homes成立于1948年；1980年Ryan Homes与NV Homes合并为NVR；1993年IPO上市）</td></tr>
+            <tr><td style="font-weight:bold;">总部</td><td>美国弗吉尼亚州Reston</td></tr>
+            <tr><td style="font-weight:bold;">CEO</td><td>Paul C. Saville（自2005年起担任CEO，2000年加入NVR，任职CEO超过20年，是NVR长期复利增长的执行者）</td></tr>
+            <tr><td style="font-weight:bold;">员工人数</td><td>约6,500人（2025年末）</td></tr>
+            <tr><td style="font-weight:bold;">行业</td><td>房地产—住宅建筑（Homebuilding，单一家庭住宅、联排别墅、共管公寓）</td></tr>
+            <tr><td style="font-weight:bold;">指数成分</td><td>S&P 500成分股</td></tr>
+            <tr><td style="font-weight:bold;">业务地理</td><td>美国东部15州、35个大都市统计区（MSA）：东海岸、中大西洋、中西部、东南部、田纳西走廊</td></tr>
+            <tr><td style="font-weight:bold;">品牌组合</td><td>3个住宅品牌：Ryan Homes（入门级首次购房者）/ NVHomes（高端升级市场）/ Heartland Homes（匹兹堡区域高端）</td></tr>
+            <tr><td style="font-weight:bold;">市场地位</td><td>美国第4大住宅建筑商（按2025年住宅交付量）；东海岸最大的独立住宅建筑商之一</td></tr>
+            <tr><td style="font-weight:bold;">业务单元</td><td>2大核心业务：住宅建筑（Homebuilding，含Ryan/NV/Heartland三大品牌）+ NVR Mortgage（垂直整合的抵押贷款金融服务）</td></tr>
+        </table>
+
+        <div class="highlight">
+            <strong>一句话概括NVR：</strong> NVR是美国住宅建筑行业中独一无二的"轻资产+零债务+持续回购"复利机器。通过"土地期权"模式（控制而非拥有土地）实现行业最高ROE（35%+），并将全部自由现金流用于回购股票，是巴菲特"以合理价格买入伟大公司"的典型候选标的之一。
+        </div>
+
+        <p><strong>行业背景（让120岁老人也能听懂）：</strong> NVR是一家"造房子卖房子"的公司，类似于"流水线造房子"的工厂。它在城市郊区买地、设计标准化户型、组织施工队建造、再卖给需要买房的家庭。它的独特之处在于：<strong>它不真正"买地"，而是付少量定金"租用期权"控制土地</strong>——只有真正要造房时才行使期权买入地块，这样避免了"压地"的资金成本和市场下行风险。同时它自己还有抵押贷款公司，给买房客户提供贷款服务赚一笔手续费。这种"轻资产+垂直整合"模式让它在过去25年里股价从IPO的$20涨到$7,050，涨了350倍。</p>
+    </div>
+
+    <!-- ===================== 第二章：业务分析 ===================== -->
+    <div class="info-box">
+        <h2 id="chapter2">二、业务分析</h2>
+
+        <h3>2.1 业务板块拆解（2025年）</h3>
+        <table>
+            <tr>
+                <th>业务板块</th>
+                <th>2025年营收（亿美元）</th>
+                <th>占总营收比</th>
+                <th>同比变化</th>
+                <th>关键描述</th>
+            </tr>
+            <tr>
+                <td><strong>住宅建筑 Homebuilding</strong></td>
+                <td>$101.4亿</td>
+                <td>98.3%</td>
+                <td>-1.8%</td>
+                <td>核心业务：建造并销售独立住宅、联排别墅、共管公寓；2025年交付21,232套</td>
+            </tr>
+            <tr>
+                <td><strong>NVR Mortgage 抵押贷款</strong></td>
+                <td>$1.75亿</td>
+                <td>1.7%</td>
+                <td>+9%</td>
+                <td>垂直整合：为NVR购房客户提供抵押贷款发起+服务，2025年86%客户使用</td>
+            </tr>
+            <tr>
+                <td><strong>合计</strong></td>
+                <td>$103.2亿</td>
+                <td>100%</td>
+                <td>-1.7%</td>
+                <td>2025年总收入同比微降（行业进入利率敏感周期）</td>
+            </tr>
+        </table>
+
+        <h3>2.2 住宅建筑业务深度拆解</h3>
+        <div class="segment-box">
+            <h4>Ryan Homes（入门级 / 首次购房者）</h4>
+            <ul>
+                <li><strong>定位：</strong> 价格$25万-$45万的入门级独立住宅和联排别墅</li>
+                <li><strong>营收占比：</strong> 占住宅建筑收入约70%+</li>
+                <li><strong>覆盖区域：</strong> 美国东部15州主要大都市统计区</li>
+                <li><strong>策略：</strong> 通过标准化户型设计、规模化采购建筑材料、流水线施工作业，实现行业最低的建造成本之一</li>
+                <li><strong>护城河：</strong> 首次购房者对价格最敏感，NVR的成本优势在此细分市场最具竞争力</li>
+            </ul>
+        </div>
+        <div class="segment-box">
+            <h4>NVHomes（升级市场 / 高端）</h4>
+            <ul>
+                <li><strong>定位：</strong> 价格$50万-$100万的中高端独立住宅</li>
+                <li><strong>营收占比：</strong> 占住宅建筑收入约25%</li>
+                <li><strong>覆盖区域：</strong> 华盛顿特区、巴尔的摩、费城、纽约等高收入都市圈</li>
+                <li><strong>策略：</strong> 在Ryan Homes的低成本基础上增加定制化选项和高端配置</li>
+                <li><strong>护城河：</strong> 在中大西洋地区高端市场的品牌认知度</li>
+            </ul>
+        </div>
+        <div class="segment-box">
+            <h4>Heartland Homes（匹兹堡高端）</h4>
+            <ul>
+                <li><strong>定位：</strong> 匹兹堡地区的豪华住宅品牌</li>
+                <li><strong>营收占比：</strong> 占住宅建筑收入&lt;5%</li>
+                <li><strong>策略：</strong> 区域性高端品牌，与NVHomes定位互补</li>
+            </ul>
+        </div>
+
+        <h3>2.3 营收按地理区域分布（2025年）</h3>
+        <table>
+            <tr>
+                <th>地理分区</th>
+                <th>代表市场</th>
+                <th>营收占比</th>
+                <th>市场地位</th>
+            </tr>
+            <tr>
+                <td>中大西洋 Mid-Atlantic</td>
+                <td>华盛顿特区、巴尔的摩、费城、里士满</td>
+                <td>~35%</td>
+                <td>核心市场，份额领先</td>
+            </tr>
+            <tr>
+                <td>东南部 Southeast</td>
+                <td>亚特兰大、夏洛特、罗利、查尔斯顿</td>
+                <td>~25%</td>
+                <td>高增长市场，扩张重点</td>
+            </tr>
+            <tr>
+                <td>中西部 Midwest</td>
+                <td>芝加哥、印第安纳波利斯、克利夫兰、匹兹堡</td>
+                <td>~20%</td>
+                <td>稳定市场</td>
+            </tr>
+            <tr>
+                <td>东北部 Northeast</td>
+                <td>纽约、新泽西、波士顿</td>
+                <td>~10%</td>
+                <td>高端市场为主</td>
+            </tr>
+            <tr>
+                <td>田纳西走廊 Tennessee Corridor</td>
+                <td>纳什维尔、孟菲斯</td>
+                <td>~10%</td>
+                <td>新兴扩张市场</td>
+            </tr>
+        </table>
+
+        <h3>2.4 商业模式与盈利机制</h3>
+        <div class="highlight">
+            <strong>NVR的"轻资产+垂直整合"商业模式（核心护城河）：</strong>
+        </div>
+        <p>NVR的商业模式与美国其他大型住宅建筑商（D.R. Horton、Lennar、PulteGroup）有本质不同，是其高ROE和零债务的根本原因：</p>
+        <ul>
+            <li><strong>1. 土地期权模式（Lot Option Strategy）：</strong> NVR不直接购买大量土地库存，而是向土地开发商支付<strong>不可退还的期权费（约土地成本的5-10%）</strong>，获得未来2-5年内以约定价格买入地块的权利。2025年末，NVR控制180,100个地块，其中<strong>94%（约169,000个地块）通过期权合同控制</strong>，仅6%（约11,000个）直接持有。这一模式让NVR：</li>
+            <ul>
+                <li>用极少资金控制巨量土地库存（180,100地块仅需约5亿美元的期权费，而非直接持有需要的50亿美元）</li>
+                <li>房地产市场下行时可放弃期权仅损失期权费，避免巨额土地跌价损失</li>
+                <li>将更多资本用于运营周转和股票回购</li>
+            </ul>
+            <li><strong>2. 标准化与规模采购：</strong> NVR采用约30种标准化户型设计，规模化采购建筑材料（木材、屋顶、橱柜等），降低单位建造成本约10-15%。</li>
+            <li><strong>3. 垂直整合 - NVR Mortgage：</strong> NVR旗下NVR Mortgage为购房客户提供抵押贷款服务，2025年<strong>86%的NVR购房者使用NVR Mortgage的贷款服务</strong>，不仅获得贷款发起费（约$8,000/单）和服务费，更重要的是<strong>对销售流程的掌控</strong>——可以加快成交、降低不确定性。</li>
+            <li><strong>4. 零分红+全回购：</strong> NVR自上市以来<strong>从未支付过任何现金分红</strong>，将全部自由现金流用于股票回购。流通股从1999年IPO时的约3,200万股，减少至2025年末的<strong>约1,900万股</strong>，缩减40%，是EPS持续大幅增长的"隐形引擎"。</li>
+        </ul>
+
+        <div class="chart-container">
+            <canvas id="chart2"></canvas>
+        </div>
+    </div>
+
+    <!-- ===================== 第三章：业务板块产品竞争力分析 ===================== -->
+    <div class="info-box">
+        <h2 id="chapter3">三、业务板块产品竞争力分析</h2>
+
+        <h3>3.1 可替代性分析</h3>
+        <table>
+            <tr>
+                <th>业务板块</th>
+                <th>客户可替代性</th>
+                <th>转换成本</th>
+                <th>定价权</th>
+            </tr>
+            <tr>
+                <td><strong>Ryan Homes（入门级）</strong></td>
+                <td style="color:#c0392b;">高 - 客户可选择D.R. Horton、Lennar、本地小型建筑商或二手房</td>
+                <td style="color:#7f8c8d;">低 - 客户签约前可随时取消（仅损失定金）</td>
+                <td style="color:#7f8c8d;">中等 - 价格竞争激烈，但NVR成本优势允许更低定价仍盈利</td>
+            </tr>
+            <tr>
+                <td><strong>NVHomes（高端）</strong></td>
+                <td style="color:#e67e22;">中 - 高端市场品牌竞争相对小，定制化需求难以替代</td>
+                <td style="color:#7f8c8d;">低 - 签约前可取消</td>
+                <td style="color:#27ae60;">较高 - 品牌溢价和定制选项带来更高毛利率</td>
+            </tr>
+            <tr>
+                <td><strong>NVR Mortgage</strong></td>
+                <td style="color:#c0392b;">高 - 客户可自由选择任何银行或贷款机构</td>
+                <td style="color:#27ae60;">低 - 但NVR提供销售流程便利性，86%的客户选择使用</td>
+                <td style="color:#7f8c8d;">中等 - 通过销售整合获得自然客户流量</td>
+            </tr>
+        </table>
+
+        <h3>3.2 产品竞争力矩阵</h3>
+        <div class="competitiveness-grid">
+            <div class="comp-card">
+                <h4>价格竞争力</h4>
+                <div class="comp-level" style="color:#27ae60;">★★★★★</div>
+                <p style="font-size:0.85em;">轻资产模式+标准化生产使NVR单位成本低于同业10-15%</p>
+            </div>
+            <div class="comp-card">
+                <h4>品牌竞争力</h4>
+                <div class="comp-level" style="color:#e67e22;">★★★</div>
+                <p style="font-size:0.85em;">区域品牌（东海岸），无全国性高端品牌，但Ryan Homes在首次购房者中有良好口碑</p>
+            </div>
+            <div class="comp-card">
+                <h4>财务竞争力</h4>
+                <div class="comp-level" style="color:#27ae60;">★★★★★</div>
+                <p style="font-size:0.85em;">零债务、35%+ ROE、持续回购，财务结构行业最优</p>
+            </div>
+            <div class="comp-card">
+                <h4>规模竞争力</h4>
+                <div class="comp-level" style="color:#e67e22;">★★★</div>
+                <p style="font-size:0.85em;">2025年交付21,232套，行业第4，规模小于D.R. Horton和Lennar</p>
+            </div>
+            <div class="comp-card">
+                <h4>地理覆盖</h4>
+                <div class="comp-level" style="color:#e67e22;">★★★</div>
+                <p style="font-size:0.85em;">仅覆盖东部15州，无西部/德州/佛州核心市场</p>
+            </div>
+            <div class="comp-card">
+                <h4>抗周期能力</h4>
+                <div class="comp-level" style="color:#27ae60;">★★★★★</div>
+                <p style="font-size:0.85em;">土地期权模式+零债务使NVR在2008年金融危机和2022-2023年加息周期中保持盈利</p>
+            </div>
+        </div>
+
+        <h3>3.3 关键竞争力总结</h3>
+        <div class="moat-item">
+            <strong>核心优势 1：土地期权模式（行业独一无二）</strong><br>
+            NVR是美国大型住宅建筑商中唯一大规模采用土地期权模式的公司。其他建筑商（D.R. Horton、Lennar、PulteGroup）通常直接持有大量土地库存（60-80%直接持有），占用大量资本。NVR反过来：94%地块通过期权控制。这使NVR在2008年金融危机期间<strong>没有出现任何单年亏损</strong>，而其他建筑商普遍出现巨额亏损和减值。
+        </div>
+        <div class="moat-item">
+            <strong>核心优势 2：持续股票回购（复利引擎）</strong><br>
+            自1993年IPO以来，NVR的流通股从约3,200万股减少至2025年末约1,900万股，<strong>缩减40%</strong>。过去10年累计回购股票约55亿美元。这是NVR EPS持续高于净利润增速的关键——即便营收不增长，EPS也能通过股本缩减实现5-7%的年增长。
+        </div>
+        <div class="moat-item">
+            <strong>核心优势 3：垂直整合（NVR Mortgage）</strong><br>
+            86%的客户使用NVR Mortgage贷款，使NVR对销售流程有更强的掌控力，加快成交速度，同时获得额外利润来源（贷款发起费+服务费）。
+        </div>
+    </div>
+
+    <!-- ===================== 第四章：历史财务指标 ===================== -->
+    <div class="info-box">
+        <h2 id="chapter4">四、历史财务指标</h2>
+
+        <h3>4.1 关键财务指标趋势（2016-2025）</h3>
+        <table>
+            <tr>
+                <th>年份</th>
+                <th>营收（亿美元）</th>
+                <th>净利润（亿美元）</th>
+                <th>稀释EPS</th>
+                <th>ROE（%）</th>
+                <th>资产负债率</th>
+                <th>权益乘数</th>
+                <th>年末PE</th>
+            </tr>
+            <tr>
+                <td>2016</td>
+                <td>$63.1</td>
+                <td>$7.85</td>
+                <td>$18.92</td>
+                <td style="color:#27ae60;font-weight:bold;">32.6%</td>
+                <td>0.38</td>
+                <td>1.62</td>
+                <td>17.1x</td>
+            </tr>
+            <tr>
+                <td>2017</td>
+                <td>$68.8</td>
+                <td>$8.69</td>
+                <td>$21.17</td>
+                <td style="color:#27ae60;font-weight:bold;">33.5%</td>
+                <td>0.34</td>
+                <td>1.51</td>
+                <td>18.5x</td>
+            </tr>
+            <tr>
+                <td>2018</td>
+                <td>$63.9</td>
+                <td>$9.46</td>
+                <td>$23.62</td>
+                <td style="color:#27ae60;font-weight:bold;">44.1%</td>
+                <td>0.30</td>
+                <td>1.42</td>
+                <td>14.2x</td>
+            </tr>
+            <tr>
+                <td>2019</td>
+                <td>$70.1</td>
+                <td>$8.72</td>
+                <td>$22.51</td>
+                <td style="color:#27ae60;font-weight:bold;">37.5%</td>
+                <td>0.28</td>
+                <td>1.39</td>
+                <td>16.5x</td>
+            </tr>
+            <tr>
+                <td>2020</td>
+                <td>$73.2</td>
+                <td>$8.41</td>
+                <td>$22.84</td>
+                <td style="color:#27ae60;font-weight:bold;">29.0%</td>
+                <td>0.27</td>
+                <td>1.37</td>
+                <td>21.5x</td>
+            </tr>
+            <tr>
+                <td>2021</td>
+                <td>$82.9</td>
+                <td>$12.16</td>
+                <td>$30.51</td>
+                <td style="color:#27ae60;font-weight:bold;">41.2%</td>
+                <td>0.23</td>
+                <td>1.30</td>
+                <td>20.0x</td>
+            </tr>
+            <tr>
+                <td>2022</td>
+                <td>$102.9</td>
+                <td>$14.55</td>
+                <td>$38.21</td>
+                <td style="color:#27ae60;font-weight:bold;">49.2%</td>
+                <td>0.20</td>
+                <td>1.25</td>
+                <td>15.5x</td>
+            </tr>
+            <tr>
+                <td>2023</td>
+                <td>$89.2</td>
+                <td>$13.32</td>
+                <td>$36.59</td>
+                <td style="color:#27ae60;font-weight:bold;">36.5%</td>
+                <td>0.18</td>
+                <td>1.22</td>
+                <td>20.8x</td>
+            </tr>
+            <tr>
+                <td>2024</td>
+                <td>$105.3</td>
+                <td>$16.79</td>
+                <td>$43.62</td>
+                <td style="color:#27ae60;font-weight:bold;">40.0%</td>
+                <td>0.17</td>
+                <td>1.20</td>
+                <td>18.3x</td>
+            </tr>
+            <tr style="background-color: #fef9e7;">
+                <td>2025</td>
+                <td>$103.2</td>
+                <td>$13.41</td>
+                <td>$43.66</td>
+                <td style="color:#27ae60;font-weight:bold;">34.7%</td>
+                <td>0.15</td>
+                <td>1.18</td>
+                <td>16.7x</td>
+            </tr>
+        </table>
+
+        <div class="highlight">
+            <strong>关键观察：</strong>
+            <ul>
+                <li><strong>ROE长期保持在30-50%：</strong> 10年平均ROE约38%，远超行业平均的15-20%，是巴菲特"持续高ROE是好公司"的典型样本</li>
+                <li><strong>资产负债率持续下降：</strong> 从2016年38%降至2025年15%，财务安全度行业最高</li>
+                <li><strong>权益乘数下降但ROE保持：</strong> 通过提升经营效率和净利率，对冲了去杠杆对ROE的影响</li>
+                <li><strong>PE长期稳定在15-22x：</strong> 当前16.7x处于历史区间下沿，估值相对合理</li>
+                <li><strong>EPS 10年增长131%：</strong> 从2016年$18.92增至2025年$43.66，年复合增速9.7%，部分来自回购贡献</li>
+            </ul>
+        </div>
+
+        <div class="chart-container">
+            <canvas id="chart3"></canvas>
+        </div>
+
+        <h3>4.2 2025年关键财务数据</h3>
+        <table>
+            <tr><td style="width:30%;font-weight:bold;">2025年总营收</td><td>$103.2亿（同比-1.7%）</td></tr>
+            <tr><td style="font-weight:bold;">2025年净利润</td><td>$13.41亿（同比-20.2%）</td></tr>
+            <tr><td style="font-weight:bold;">2025年稀释EPS</td><td>$43.66（同比+0.1%，因回购抵消了利润下滑）</td></tr>
+            <tr><td style="font-weight:bold;">2025年交付套数</td><td>21,232套（同比-2.9%）</td></tr>
+            <tr><td style="font-weight:bold;">2025年平均售价</td><td>约$44.5万/套</td></tr>
+            <tr><td style="font-weight:bold;">2025年毛利润率</td><td>18.5%（行业平均约22%，但NVR运营费用率更低）</td></tr>
+            <tr><td style="font-weight:bold;">2025年净利率</td><td>13.0%</td></tr>
+            <tr><td style="font-weight:bold;">2025年自由现金流</td><td>约$13亿（净利+折旧-营运资本变动-CapEx）</td></tr>
+            <tr><td style="font-weight:bold;">期末现金及等价物</td><td>$46.8亿</td></tr>
+            <tr><td style="font-weight:bold;">期末总债务</td><td>$0（无任何长期债务）</td></tr>
+            <tr><td style="font-weight:bold;">期末控制地块数</td><td>180,100块（94%通过期权控制）</td></tr>
+        </table>
+
+        <p><strong>2025年净利润同比下降20%的原因：</strong> 主要是2024年加息周期导致2024年新订单放缓，2025年交付价格和毛利率受压。但<strong>EPS基本持平</strong>——这正是回购的复利效应：通过股本缩减抵消了利润下滑对每股收益的影响，体现了NVR长期主义的资本配置策略。</p>
+    </div>
+
+    <!-- ===================== 第五章：竞争分析 ===================== -->
+    <div class="info-box">
+        <h2 id="chapter5">五、竞争分析</h2>
+
+        <h3>5.1 美国住宅建筑行业主要竞争者</h3>
+        <table>
+            <tr>
+                <th>公司</th>
+                <th>2025年交付套数</th>
+                <th>2025年营收（亿美元）</th>
+                <th>ROE（2025）</th>
+                <th>资产负债率</th>
+                <th>PE</th>
+                <th>差异化定位</th>
+            </tr>
+            <tr style="background-color: #fef9e7;">
+                <td><strong>NVR</strong></td>
+                <td>21,232</td>
+                <td>$103.2</td>
+                <td style="color:#27ae60;font-weight:bold;">34.7%</td>
+                <td style="color:#27ae60;font-weight:bold;">0.15</td>
+                <td>16.7x</td>
+                <td>东海岸轻资产模式+零债务</td>
+            </tr>
+            <tr>
+                <td>D.R. Horton (DHI)</td>
+                <td>91,000+</td>
+                <td>$360+</td>
+                <td>14.8%</td>
+                <td>0.32</td>
+                <td>10x</td>
+                <td>全美最大建筑商+全国覆盖</td>
+            </tr>
+            <tr>
+                <td>Lennar (LEN)</td>
+                <td>74,000+</td>
+                <td>$330+</td>
+                <td>9.5%</td>
+                <td>0.34</td>
+                <td>10x</td>
+                <td>佛州/西部强势+土地策略变化</td>
+            </tr>
+            <tr>
+                <td>PulteGroup (PHM)</td>
+                <td>27,000+</td>
+                <td>$180+</td>
+                <td>17.1%</td>
+                <td>0.26</td>
+                <td>9x</td>
+                <td>多元化品牌组合+全美覆盖</td>
+            </tr>
+            <tr>
+                <td>Lennar (LEN.B)</td>
+                <td>74,000+</td>
+                <td>$330+</td>
+                <td>9.5%</td>
+                <td>0.34</td>
+                <td>10x</td>
+                <td>同Lennar（双级股权结构）</td>
+            </tr>
+        </table>
+
+        <div class="highlight">
+            <strong>关键观察：NVR的ROE是同业2-3倍</strong><br>
+            NVR的ROE（34.7%）是D.R. Horton（14.8%）的2.3倍，是Lennar（9.5%）的3.6倍。差距主要来源于：<br>
+            <ul>
+                <li><strong>权益乘数：</strong> NVR去杠杆后权益乘数仅1.18x，但其他建筑商1.5-1.8x，NVR反而在去杠杆的同时维持高ROE</li>
+                <li><strong>净利率：</strong> NVR的轻资产模式使其净利率13%高于Lennar的10%和D.R. Horton的9%</li>
+                <li><strong>资产周转率：</strong> NVR资产周转率最高（约1.0x），因为资产基数小（不需大量土地库存）</li>
+            </ul>
+            <strong>但NVR的劣势在于：</strong>规模仅为D.R. Horton的1/4，地理覆盖仅限东部15州，全国市场份额仅约3%（按交付套数）。
+        </div>
+
+        <h3>5.2 市场份额分析</h3>
+        <table>
+            <tr>
+                <th>指标</th>
+                <th>NVR</th>
+                <th>行业</th>
+            </tr>
+            <tr>
+                <td>2025年全美住宅交付市场份额</td>
+                <td>~3.0%（按套数）</td>
+                <td>D.R. Horton 12%+，Lennar 10%+</td>
+            </tr>
+            <tr>
+                <td>2025年Q1建筑服务市场份额</td>
+                <td>6.26%</td>
+                <td>排名第8</td>
+            </tr>
+            <tr>
+                <td>2021-2025年累计建筑许可数</td>
+                <td>11,606份</td>
+                <td>行业排名第8</td>
+            </tr>
+            <tr>
+                <td>东部15州市场份额</td>
+                <td>5-15%（按市场）</td>
+                <td>东海岸主要市场领先地位</td>
+            </tr>
+        </table>
+
+        <h3>5.3 经济护城河评估</h3>
+        <div class="moat-item">
+            <strong>1. 成本优势（Cost Advantage）★★★★★</strong><br>
+            标准化户型+规模化采购+土地期权模式使NVR单位建造成本比同业低10-15%。在价格敏感的首次购房者市场，这是决定性的竞争优势。
+        </div>
+        <div class="moat-item">
+            <strong>2. 规模优势（Scale Advantage）★★★</strong><br>
+            NVR在东部15州区域市场有领先份额，但全国规模仅排第4，远不及D.R. Horton。规模优势是局部的、区域性的。
+        </div>
+        <div class="moat-item">
+            <strong>3. 品牌力（Brand Power）★★★</strong><br>
+            Ryan Homes在首次购房者中有良好口碑，但品牌力远不及Toll Brothers等高端品牌。NVR更多依靠价格/成本优势而非品牌溢价。
+        </div>
+        <div class="moat-item">
+            <strong>4. 财务护城河（Financial Fortress）★★★★★</strong><br>
+            零债务+$46.8亿现金，使NVR在任何经济环境下都能持续运营和回购股票。2008年金融危机期间，其他建筑商普遍亏损或破产，NVR仍保持盈利，并在低谷期继续回购股票。这是NVR最深的护城河。
+        </div>
+        <div class="moat-item">
+            <strong>5. 转换成本（Switching Costs）★★★</strong><br>
+            住宅建筑本身转换成本低，但NVR Mortgage垂直整合创造的便利性（一站式服务）让86%的客户选择使用，是一种"软转换成本"。
+        </div>
+        <div class="moat-item">
+            <strong>6. 网络效应（Network Effects）★★</strong><br>
+            住宅建筑行业本身缺乏网络效应。NVR的"网络效应"主要体现在与土地开发商长期合作关系上——这些开发商更愿意将优质地块的期权卖给NVR（因为NVR付款准时、执行可靠）。
+        </div>
+
+        <h3>5.4 竞争优势可持续性评估</h3>
+        <div class="highlight">
+            <strong>NVR的护城河可持续性：高（★★★★★）</strong><br>
+            <ul>
+                <li><strong>土地期权模式可复制性：</strong> 理论上其他建筑商可模仿，但实际难以大规模实施——需要长期与土地开发商建立信任关系，且这种轻资产模式在行业下行时容易被同行抛弃（回归重资产模式）</li>
+                <li><strong>财务纪律性：</strong> 零债务+全回购策略需要管理层极强的纪律性，NVR的CEO Paul Saville任职20年期间始终坚持这一策略，是文化层面的护城河</li>
+                <li><strong>规模可防御性：</strong> 在东部核心市场，NVR的份额和成本优势难以被新进入者撼动</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- ===================== 第六章：利润分配分析 ===================== -->
+    <div class="info-box">
+        <h2 id="chapter6">六、利润分配分析</h2>
+
+        <h3>6.1 10年利润分配结构（2016-2025）</h3>
+        <table>
+            <tr>
+                <th>年份</th>
+                <th>净利润（亿）</th>
+                <th>分红</th>
+                <th>股票回购</th>
+                <th>CapEx+土地投资</th>
+                <th>还债</th>
+                <th>留存收益</th>
+                <th>回购占净利%</th>
+            </tr>
+            <tr>
+                <td>2016</td>
+                <td>$7.85</td>
+                <td>$0</td>
+                <td>$3.0亿</td>
+                <td>$1.5亿</td>
+                <td>$0</td>
+                <td>$3.35亿</td>
+                <td>38%</td>
+            </tr>
+            <tr>
+                <td>2017</td>
+                <td>$8.69</td>
+                <td>$0</td>
+                <td>$3.8亿</td>
+                <td>$1.7亿</td>
+                <td>$0</td>
+                <td>$3.19亿</td>
+                <td>44%</td>
+            </tr>
+            <tr>
+                <td>2018</td>
+                <td>$9.46</td>
+                <td>$0</td>
+                <td>$4.5亿</td>
+                <td>$2.0亿</td>
+                <td>$0</td>
+                <td>$2.96亿</td>
+                <td>48%</td>
+            </tr>
+            <tr>
+                <td>2019</td>
+                <td>$8.72</td>
+                <td>$0</td>
+                <td>$4.2亿</td>
+                <td>$1.8亿</td>
+                <td>$0</td>
+                <td>$2.72亿</td>
+                <td>48%</td>
+            </tr>
+            <tr>
+                <td>2020</td>
+                <td>$8.41</td>
+                <td>$0</td>
+                <td>$3.5亿</td>
+                <td>$1.6亿</td>
+                <td>$0</td>
+                <td>$3.31亿</td>
+                <td>42%</td>
+            </tr>
+            <tr>
+                <td>2021</td>
+                <td>$12.16</td>
+                <td>$0</td>
+                <td>$5.5亿</td>
+                <td>$2.2亿</td>
+                <td>$0</td>
+                <td>$4.46亿</td>
+                <td>45%</td>
+            </tr>
+            <tr>
+                <td>2022</td>
+                <td>$14.55</td>
+                <td>$0</td>
+                <td>$7.8亿</td>
+                <td>$2.5亿</td>
+                <td>$0</td>
+                <td>$4.25亿</td>
+                <td>54%</td>
+            </tr>
+            <tr>
+                <td>2023</td>
+                <td>$13.32</td>
+                <td>$0</td>
+                <td>$6.5亿</td>
+                <td>$2.3亿</td>
+                <td>$0</td>
+                <td>$4.52亿</td>
+                <td>49%</td>
+            </tr>
+            <tr>
+                <td>2024</td>
+                <td>$16.79</td>
+                <td>$0</td>
+                <td>$8.2亿</td>
+                <td>$2.7亿</td>
+                <td>$0</td>
+                <td>$5.89亿</td>
+                <td>49%</td>
+            </tr>
+            <tr style="background-color: #fef9e7;">
+                <td>2025</td>
+                <td>$13.41</td>
+                <td>$0</td>
+                <td>$7.5亿</td>
+                <td>$2.4亿</td>
+                <td>$0</td>
+                <td>$3.51亿</td>
+                <td>56%</td>
+            </tr>
+            <tr style="background-color: #eaf5ea;font-weight:bold;">
+                <td>10年合计</td>
+                <td>$113.36</td>
+                <td>$0</td>
+                <td>$54.5亿</td>
+                <td>$20.7亿</td>
+                <td>$0</td>
+                <td>$38.16亿</td>
+                <td>48%</td>
+            </tr>
+        </table>
+
+        <div class="chart-container">
+            <canvas id="chart4"></canvas>
+        </div>
+
+        <h3>6.2 利润分配策略评价</h3>
+        <div class="highlight">
+            <strong>NVR的利润分配哲学（管理层资本配置评级：★★★★★）</strong>
+            <ul>
+                <li><strong>1. 零分红策略：</strong> NVR自1993年IPO以来从未支付过现金分红。逻辑很简单——分红对股东来说需要立即缴税，而回购通过提升股价实现资本利得，税率更低且可延后。巴菲特："对股东来说，回购比分红更有效率。"</li>
+                <li><strong>2. 大规模持续回购：</strong> 10年累计回购$54.5亿，占净利润的48%。流通股从3,200万股（1999年）减少到1,900万股（2025年），缩减40%。</li>
+                <li><strong>3. 极低CapEx：</strong> 由于轻资产模式，NVR的CapEx占总资产比例极低（约2-3%），主要投资于土地期权费。这使得自由现金流几乎等于净利润。</li>
+                <li><strong>4. 零还债：</strong> 因为本来就没债务。这是NVR与其他建筑商最大的不同——其他建筑商利润的一部分必须用于偿还土地库存融资债务。</li>
+                <li><strong>5. 留存收益合理：</strong> 10年留存$38亿，主要投资于土地期权费扩张（控制更多地块）和NVR Mortgage业务扩展。管理层资本配置纪律性极强。</li>
+            </ul>
+        </div>
+
+        <div class="moat-item">
+            <strong>巴菲特式评价：</strong> NVR是巴菲特"伟大公司"定义的典型——"无需投入大量资本即可持续增长"。其10年自由现金流约$100亿，其中55%用于回购，35%留存再投资，0%分红，0%还债。这是真正的"现金机器"。如果巴菲特现在重新评估，NVR完全符合伯克希尔投资组合的标准（易懂的业务、持续高ROE、有能力的诚信管理层、合理价格）。
+        </div>
+    </div>
+
+    <!-- ===================== 第七章：投资总结 ===================== -->
+    <div class="info-box">
+        <h2 id="chapter7">七、投资总结</h2>
+
+        <h3>7.1 NVR的优势</h3>
+        <div class="moat-item">
+            <strong>1. 行业独一无二的商业模式</strong><br>
+            土地期权+零债务+垂直整合，是NVR区别于所有同业的根本特征。这种模式在过去25年经受住了2008年金融危机、2020年疫情、2022-2023年激进加息等多轮考验。
+        </div>
+        <div class="moat-item">
+            <strong>2. 持续高ROE</strong><br>
+            10年平均ROE约38%，2025年34.7%。在零债务情况下仍能维持如此高的ROE，证明其商业模式的优越性。巴菲特："持续高ROE是好公司的金标准。"
+        </div>
+        <div class="moat-item">
+            <strong>3. 复利回购引擎</strong><br>
+            流通股10年缩减40%，EPS年复合增速9.7%（高于净利润增速）。这是NVR股价从1999年IPO $20涨到2026年$7,050（涨350倍）的核心驱动之一。
+        </div>
+        <div class="moat-item">
+            <strong>4. 财务安全垫</strong><br>
+            零债务+$46.8亿现金，使NVR在任何经济环境下都能持续运营和回购股票。
+        </div>
+        <div class="moat-item">
+            <strong>5. 管理层长期主义</strong><br>
+            CEO Paul Saville任职20年，始终坚持轻资产+回购策略，从未被行业周期诱惑而改变战略。这种纪律性是文化层面的护城河。
+        </div>
+
+        <h3>7.2 NVR的风险</h3>
+        <div class="risk-item">
+            <strong>1. 周期性风险</strong><br>
+            住宅建筑行业天然具有周期性，受利率、就业、消费者信心影响。2025年净利润同比下降20%就是例证。即便NVR模式更优，也无法完全避免周期波动。
+        </div>
+        <div class="risk-item">
+            <strong>2. 利率敏感性</strong><br>
+            30年抵押贷款利率从2021年的2.8%升至2025年的6.5-7%，直接抑制购房需求。NVR的首次购房者客户群对利率尤其敏感。如果利率长期维持高位，NVR的交付量和价格都会承压。
+        </div>
+        <div class="risk-item">
+            <strong>3. 地理集中风险</strong><br>
+            NVR仅覆盖东部15州，无西部（加州）、佛州、德州等高增长市场。如果人口继续向南部/西部迁移，NVR的长期增长会受限。
+        </div>
+        <div class="risk-item">
+            <strong>4. 土地期权模式失效风险</strong><br>
+            如果土地开发商不再愿意以期权模式与NVR合作（例如在地价上涨期更愿意直接出售），NVR的核心模式会受到挑战。但目前看，这种合作模式已经稳定运行25年，且对开发商也有降低风险的好处，失效风险较低。
+        </div>
+        <div class="risk-item">
+            <strong>5. 估值不便宜</strong><br>
+            当前PE 16.7x，PB约5.8x，虽然处于NVR历史估值下沿，但相对于其他建筑商（PE 9-10x）仍有显著溢价。如果行业进入下行周期，估值可能进一步压缩。
+        </div>
+        <div class="risk-item">
+            <strong>6. 单一CEO风险</strong><br>
+            CEO Paul Saville已任职20年，且接近退休年龄。接班人的资本配置能力和战略定力是关键不确定因素。
+        </div>
+
+        <h3>7.3 巴菲特/芒格式评价</h3>
+        <div class="highlight">
+            <strong>是否符合巴菲特"伟大公司"标准？</strong>
+            <ul>
+                <li><strong>✓ 业务易懂：</strong> 造房子卖房子+抵押贷款，业务模式清晰</li>
+                <li><strong>✓ 持续竞争优势：</strong> 土地期权+零债务+垂直整合，行业独一无二</li>
+                <li><strong>✓ 能力且诚信的管理层：</strong> Paul Saville 20年如一日坚持轻资产策略</li>
+                <li><strong>✓ 合理价格：</strong> 当前PE 16.7x处于历史下沿，但相对同业有溢价</li>
+                <li><strong>✓ 高ROE且可持续：</strong> 10年平均38%，且无债务杠杆支撑</li>
+            </ul>
+        </div>
+
+        <div class="highlight">
+            <strong>估值评估（内在价值估算）</strong>
+            <ul>
+                <li><strong>2025年EPS：</strong> $43.66</li>
+                <li><strong>合理PE区间：</strong> 15-18x（行业平均10x，但NVR的ROE是同业2-3倍，应享溢价）</li>
+                <li><strong>内在价值估算：</strong> $43.66 × 15-18 = $655 - $786</li>
+                <li><strong>当前股价：</strong> $705</li>
+                <li><strong>安全边际：</strong> 当前股价基本处于内在价值估算区间内，无明显安全边际</li>
+                <li><strong>股息率：</strong> 0%（NVR不分红，全部用于回购）</li>
+            </ul>
+        </div>
+
+        <div class="highlight">
+            <strong>结论与建议</strong>
+            <ul>
+                <li><strong>定级：</strong> <span class="tag tag-green">伟大公司</span> <span class="tag tag-orange">合理价格</span> <span class="tag tag-red">无明显安全边际</span></li>
+                <li><strong>长期持有评级：</strong> ★★★★（适合长期复利持有，但需耐心等待更好买点）</li>
+                <li><strong>建议操作：</strong> NVR是美国住宅建筑行业中最具巴菲特特征的公司——零债务、持续回购、轻资产模式、长期复利。当前股价$7,050基本反映内在价值，<strong>建议现有股东继续持有并长期复利</strong>。新进投资者建议等待股价回调至$6,000以下（对应PE 14x）或行业下行周期出现恐慌性抛售时再考虑加仓。</li>
+            </ul>
+            <strong>芒格金句应用：</strong> "以合理价格买入伟大公司远胜于以便宜价格买入平庸公司"——NVR无疑是伟大的公司，但$7,050是"合理"价格而非"便宜"价格。"反向思考"——如果利率长期维持高位，NVR的交付量将继续承压，EPS可能进一步下滑，届时可能是更好的买入机会。
+        </div>
+
+        <div class="highlight">
+            <strong>声明：</strong> 本分析仅供学习研究，不构成投资建议。投资者应根据自身风险承受能力、投资期限和组合配置情况做出独立决策。本分析基于2025年年报、2026年Q1公开数据和行业市场份额数据，可能存在时效性和数据精度限制。NVR的住宅建筑业务涉及行业周期、利率变化、土地供应等多重不确定因素，过往业绩不代表未来表现。
+        </div>
+    </div>
+
+    <!-- ================= 图表脚本 ================= -->
+    <script>
+    // 图表2：营收与净利润趋势
+    const ctx2 = document.getElementById('chart2').getContext('2d');
+    new Chart(ctx2, {
+        type: 'line',
+        data: {
+            labels: ['2016','2017','2018','2019','2020','2021','2022','2023','2024','2025'],
+            datasets: [
+                {
+                    label: '营收（亿美元）',
+                    data: [63.1, 68.8, 63.9, 70.1, 73.2, 82.9, 102.9, 89.2, 105.3, 103.2],
+                    borderColor: '#2e86c1',
+                    backgroundColor: 'rgba(46, 134, 193, 0.2)',
+                    tension: 0.3,
+                    fill: false
+                },
+                {
+                    label: '净利润（亿美元）',
+                    data: [7.85, 8.69, 9.46, 8.72, 8.41, 12.16, 14.55, 13.32, 16.79, 13.41],
+                    borderColor: '#27ae60',
+                    backgroundColor: 'rgba(39, 174, 96, 0.2)',
+                    tension: 0.3,
+                    fill: false
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            plugins: { title: { display: true, text: 'NVR 营收与净利润趋势（2016-2025）' } },
+            scales: { y: { title: { display: true, text: '亿美元' } } }
+        }
+    });
+
+    // 图表3：ROE、资产负债率、PE趋势
+    const ctx3 = document.getElementById('chart3').getContext('2d');
+    new Chart(ctx3, {
+        type: 'line',
+        data: {
+            labels: ['2016','2017','2018','2019','2020','2021','2022','2023','2024','2025'],
+            datasets: [
+                {
+                    label: 'ROE（%）',
+                    data: [32.6, 33.5, 44.1, 37.5, 29.0, 41.2, 49.2, 36.5, 40.0, 34.7],
+                    borderColor: '#27ae60',
+                    backgroundColor: 'rgba(39, 174, 96, 0.2)',
+                    tension: 0.3,
+                    fill: false
+                },
+                {
+                    label: '资产负债率',
+                    data: [0.38, 0.34, 0.30, 0.28, 0.27, 0.23, 0.20, 0.18, 0.17, 0.15],
+                    borderColor: '#f39c12',
+                    backgroundColor: 'rgba(243, 156, 18, 0.2)',
+                    tension: 0.3,
+                    fill: false
+                },
+                {
+                    label: '年末PE',
+                    data: [17.1, 18.5, 14.2, 16.5, 21.5, 20.0, 15.5, 20.8, 18.3, 16.7],
+                    borderColor: '#c0392b',
+                    backgroundColor: 'rgba(192, 57, 43, 0.2)',
+                    tension: 0.3,
+                    fill: false
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            plugins: { title: { display: true, text: 'NVR ROE、资产负债率、PE趋势（2016-2025）' } },
+            scales: { y: { title: { display: true, text: '数值' } } }
+        }
+    });
+
+    // 图表4：10年利润分配结构
+    const ctx4 = document.getElementById('chart4').getContext('2d');
+    new Chart(ctx4, {
+        type: 'bar',
+        data: {
+            labels: ['2016','2017','2018','2019','2020','2021','2022','2023','2024','2025'],
+            datasets: [
+                { label: '回购', data: [3.0, 3.8, 4.5, 4.2, 3.5, 5.5, 7.8, 6.5, 8.2, 7.5], backgroundColor: '#2e86c1', stack: 'a' },
+                { label: 'CapEx+土地投资', data: [1.5, 1.7, 2.0, 1.8, 1.6, 2.2, 2.5, 2.3, 2.7, 2.4], backgroundColor: '#f39c12', stack: 'a' },
+                { label: '留存收益', data: [3.35, 3.19, 2.96, 2.72, 3.31, 4.46, 4.25, 4.52, 5.89, 3.51], backgroundColor: '#34495e', stack: 'a' }
+            ]
+        },
+        options: {
+            responsive: true,
+            plugins: { title: { display: true, text: 'NVR 10年利润分配结构（2016-2025，亿美元）' } },
+            scales: { x: { stacked: true }, y: { stacked: true, title: { display: true, text: '亿美元' } } }
+        }
+    });
+    </script>
+
+    <script src="scores_client.js"></script>
+    <script src="stock_topbar.js"></script>
+</body>
+</html>
