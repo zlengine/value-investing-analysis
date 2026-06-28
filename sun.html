@@ -1,0 +1,1098 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sunoco LP (SUN) 价值投资分析</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body { font-family: 'Segoe UI', Arial, sans-serif; margin: 0; padding: 20px; background-color: #f0f2f5; color: #333; }
+        h1 { text-align: center; color: #1a5276; font-size: 2.2em; margin-bottom: 5px; }
+        h2 { color: #1a5276; border-bottom: 2px solid #2e86c1; padding-bottom: 8px; margin-top: 30px; }
+        h3 { color: #2c3e50; margin-top: 20px; }
+        .subtitle { text-align: center; color: #7f8c8d; font-size: 1.1em; margin-bottom: 30px; }
+        .info-box { background: white; border-radius: 10px; padding: 25px; margin: 20px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.08); }
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; background-color: white; }
+        th, td { padding: 10px 14px; text-align: left; border-bottom: 1px solid #e0e0e0; }
+        th { background-color: #1a5276; color: white; font-weight: bold; }
+        tr:nth-child(even) { background-color: #f8f9fa; }
+        tr:hover { background-color: #eaf2f8; }
+        .highlight { background: #fef9e7; border-left: 4px solid #2e86c1; padding: 15px 20px; margin: 15px 0; border-radius: 0 8px 8px 0; }
+        .chart-container { background: white; border-radius: 10px; padding: 25px; margin: 20px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.08); }
+        canvas { max-height: 400px; }
+        .tag { display: inline-block; background: #1a5276; color: white; padding: 3px 10px; border-radius: 12px; font-size: 0.85em; margin: 2px; }
+        .tag-green { background: #27ae60; }
+        .tag-orange { background: #e67e22; }
+        .tag-red { background: #c0392b; }
+        a { color: #1a5276; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        .moat-item { background: #eaf5ea; border-left: 4px solid #27ae60; padding: 12px 18px; margin: 10px 0; border-radius: 5px; }
+        .moat-item strong { color: #1a5276; }
+        .risk-item { background: #fdedec; border-left: 4px solid #c0392b; padding: 12px 18px; margin: 10px 0; border-radius: 5px; }
+        .star { color: #f39c12; }
+        .top-nav-bar { position: fixed; top: 0; left: 0; right: 0; height: 44px; background: #2c3e50; display: flex; align-items: center; justify-content: flex-end; padding: 0 20px; z-index: 9999; box-shadow: 0 2px 8px rgba(0,0,0,0.15); gap: 8px; }
+        .top-nav-link { color: white; padding: 6px 16px; border-radius: 16px; text-decoration: none; font-size: 13px; transition: background 0.2s; white-space: nowrap; }
+        .segment-box { background: white; border-radius: 10px; padding: 20px; margin: 15px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.08); border-top: 4px solid #2e86c1; }
+        .competitiveness-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px; margin: 15px 0; }
+        .comp-card { background: #f8f9fa; border-radius: 8px; padding: 15px; text-align: center; }
+        .comp-card h4 { margin: 0 0 8px; color: #1a5276; font-size: 0.95em; }
+        .comp-level { font-size: 1.3em; font-weight: 700; margin: 8px 0; }
+        .section-nav {
+            background: white;
+            border-radius: 10px;
+            padding: 15px 25px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+        .section-nav a {
+            display: inline-block;
+            margin: 5px 10px;
+            padding: 6px 14px;
+            background: #eaf2f8;
+            color: #1a5276;
+            text-decoration: none;
+            border-radius: 15px;
+            font-size: 0.9em;
+        }
+        .section-nav a:hover {
+            background: #2e86c1;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="top-nav-bar"></div>
+    <script src="nav_bar.js?v=20260628"></script>
+    <span id="topbarCode" style="display:none;">SUN</span>
+    <h1>Sunoco LP (NYSE: SUN)</h1>
+    <p class="subtitle">巴菲特/芒格式价值投资基本面分析 | 更新日期：2026年6月</p>
+
+    <div class="section-nav">
+        <a href="#chapter1">公司基本信息</a>
+        <a href="#chapter2">业务分析</a>
+        <a href="#chapter3">业务板块产品竞争力分析</a>
+        <a href="#chapter4">历史财务指标</a>
+        <a href="#chapter5">竞争分析</a>
+        <a href="#chapter6">利润分配分析</a>
+        <a href="#chapter7">投资总结</a>
+    </div>
+
+    <!-- ===================== 第一章：公司基本信息 ===================== -->
+    <div class="info-box">
+        <h2 id="chapter1">一、公司基本信息</h2>
+        <table>
+            <tr><td style="width:30%;font-weight:bold;">公司全称</td><td>Sunoco LP（主有限合伙企业 Master Limited Partnership, MLP）</td></tr>
+            <tr><td style="font-weight:bold;">股票代码</td><td>NYSE: SUN（普通合伙单位 Common Units）</td></tr>
+            <tr><td style="font-weight:bold;">市值</td><td>约91亿美元（USD ~9.1B，2026年6月）</td></tr>
+            <tr><td style="font-weight:bold;">最新收盘价</td><td>$66.20（2026年6月11日）</td></tr>
+            <tr><td style="font-weight:bold;">52周区间</td><td>$48.00 - $71.00</td></tr>
+            <tr><td style="font-weight:bold;">企业价值EV</td><td>约238亿美元（含154亿债务、0.7亿现金，债务显著高于市值）</td></tr>
+            <tr><td style="font-weight:bold;">成立时间</td><td>2012年（前身Susser Petroleum Partners LP，2014年因Energy Transfer收购Susser Holdings后更名为Sunoco LP；历史可追溯至1886年成立的Sun Oil Company）</td></tr>
+            <tr><td style="font-weight:bold;">总部</td><td>美国得克萨斯州Dallas，8111 Westchester Drive</td></tr>
+            <tr><td style="font-weight:bold;">CEO</td><td>Joseph Kim（自2017年起担任CEO，领导SUN从纯燃料分销商向多元化中游+下游一体化转型）</td></tr>
+            <tr><td style="font-weight:bold;">员工人数</td><td>约3,622人（2024年末）</td></tr>
+            <tr><td style="font-weight:bold;">行业</td><td>能源—油品分销与中游服务（Oil & Gas Refining & Marketing / Midstream）</td></tr>
+            <tr><td style="font-weight:bold;">指数成分</td><td>S&P 600成分股（中盘股指数）</td></tr>
+            <tr><td style="font-weight:bold;">业务地理</td><td>美国40+州、波多黎各、墨西哥、欧洲（2026年TanQuid收购后）</td></tr>
+            <tr><td style="font-weight:bold;">实际控制人</td><td>Energy Transfer LP（ET）通过持有GP（普通合伙人）和大部分LP单位控制SUN</td></tr>
+            <tr><td style="font-weight:bold;">分销政策</td><td>季度现金分红$0.9317/单位（年化$3.7268），分销收益率约5.6%；目标年增长5%+</td></tr>
+            <tr><td style="font-weight:bold;">业务单元</td><td>4大核心业务：燃料分销（Fuel Distribution）+ 管道系统（Pipeline Systems）+ 终端储存（Terminals）+ 炼油（Refinery）</td></tr>
+        </table>
+
+        <div class="highlight">
+            <strong>一句话概括SUN：</strong> SUN是美国最大的独立燃料分销商之一，年销80亿+加仑汽油，覆盖1万+加油站。在CEO Joseph Kim领导下，通过收购NuStar（2024）、Parkland（2025）、TanQuid（2026）从纯燃料分销转型为"分销+管道+终端"多元化中游能源基础设施企业，但承担了显著债务（$134亿）。是一只典型的高分红（5.6%）MLP收益型资产。
+        </div>
+
+        <p><strong>行业背景（让120岁老人也能听懂）：</strong> SUN做的是"加油站背后的物流公司"。它从炼油厂买汽油、柴油，用自己的卡车、管道、储罐运输和储存，再卖给独立的加油站老板（这些加油站挂着Sunoco、壳牌、雪佛龙等品牌）。它不自己开采石油，也不直接面对终端车主。它赚的是"每加仑燃料几分钱"的差价。由于燃料是必需品（汽车要加油），它的现金流相对稳定。作为MLP（主有限合伙企业），它必须把大部分利润分给股东（"合伙人"），所以分红收益率高（5.6%）。但代价是它要持续借债扩张，所以债务高。</p>
+    </div>
+
+    <!-- ===================== 第二章：业务分析 ===================== -->
+    <div class="info-box">
+        <h2 id="chapter2">二、业务分析</h2>
+
+        <h3>2.1 业务板块拆解（2025年Q4 EBITDA口径）</h3>
+        <table>
+            <tr>
+                <th>业务板块</th>
+                <th>2025 Q4 EBITDA（百万美元）</th>
+                <th>占比</th>
+                <th>关键运营指标</th>
+                <th>差异化定位</th>
+            </tr>
+            <tr>
+                <td><strong>燃料分销 Fuel Distribution</strong></td>
+                <td>$332M</td>
+                <td>~50%</td>
+                <td>Q4销33亿加仑；毛利17.7美分/加仑</td>
+                <td>核心业务：批发汽油/柴油给1万+独立加油站</td>
+            </tr>
+            <tr>
+                <td><strong>管道系统 Pipeline Systems</strong></td>
+                <td>$187M</td>
+                <td>~28%</td>
+                <td>Q4日均输送140万桶/日</td>
+                <td>2024年NuStar收购后大幅扩张，14000+英里管道</td>
+            </tr>
+            <tr>
+                <td><strong>终端储存 Terminals</strong></td>
+                <td>$87M</td>
+                <td>~13%</td>
+                <td>Q4日均吞吐71.5万桶/日</td>
+                <td>100+个储油终端，fee-based稳定现金流</td>
+            </tr>
+            <tr>
+                <td><strong>炼油 Refinery</strong></td>
+                <td>$40M</td>
+                <td>~6%</td>
+                <td>Q4日均处理4.9万桶原油/日</td>
+                <td>小型炼油资产，2025年新增（Parkland收购带来）</td>
+            </tr>
+            <tr>
+                <td><strong>其他/抵消</strong></td>
+                <td>~$0</td>
+                <td>~3%</td>
+                <td>—</td>
+                <td>公司层面费用与抵消项</td>
+            </tr>
+            <tr style="background-color: #fef9e7;">
+                <td><strong>合计 Adjusted EBITDA</strong></td>
+                <td><strong>$646M（Q4）/ $2,050M（全年）</strong></td>
+                <td>100%</td>
+                <td>全年同比+40%（含Parkland贡献）</td>
+                <td>2025年DCF $1.38B</td>
+            </tr>
+        </table>
+
+        <h3>2.2 业务板块深度拆解</h3>
+        <div class="segment-box">
+            <h4>1. 燃料分销业务（Fuel Distribution）- 核心业务</h4>
+            <ul>
+                <li><strong>定位：</strong> 美国最大的独立燃料批发商之一，从炼油厂采购汽油/柴油，批发给1万+加油站</li>
+                <li><strong>2025年销量：</strong> 全年约80亿+加仑（Q4单季33亿加仑）</li>
+                <li><strong>毛利结构：</strong> 2025 Q4每加仑毛利17.7美分（vs 2024 Q4约10美分，大幅改善）</li>
+                <li><strong>客户结构：</strong> 7,400个Sunoco及合作品牌加油站+独立经销商+商业客户（车队、政府）</li>
+                <li><strong>护城河：</strong> 规模优势（采购议价力）+物流网络+与7-Eleven的长期"take-or-pay"供油协议</li>
+                <li><strong>增长动力：</strong> EV转型威胁下，公司通过提高毛利率和地理扩张抵消销量下滑</li>
+            </ul>
+        </div>
+        <div class="segment-box">
+            <h4>2. 管道系统业务（Pipeline Systems）- 增长引擎</h4>
+            <ul>
+                <li><strong>定位：</strong> 通过NuStar收购大幅扩张的中游管道业务，14,000+英里管道</li>
+                <li><strong>2025年日均输送：</strong> Q4约140万桶/日</li>
+                <li><strong>商业模式：</strong> fee-based（按输送量收费），与油品价格弱相关</li>
+                <li><strong>护城河：</strong> 管道资产具有自然垄断特性（难以复制），长期合同锁定现金流</li>
+                <li><strong>战略意义：</strong> 将SUN从纯燃料分销商转型为"中游+下游"一体化能源企业，降低对燃料销量周期的依赖</li>
+            </ul>
+        </div>
+        <div class="segment-box">
+            <h4>3. 终端储存业务（Terminals）- 稳定现金流</h4>
+            <ul>
+                <li><strong>定位：</strong> 100+个液体燃料储存终端，fee-based模式</li>
+                <li><strong>2025年日均吞吐：</strong> Q4约71.5万桶/日</li>
+                <li><strong>商业模式：</strong> 长期租赁合同+按吞吐量收费，现金流高度可预测</li>
+                <li><strong>护城河：</strong> 储罐资产难以新建（环保许可+选址困难），存量化资产价值高</li>
+                <li><strong>战略意义：</strong> 为管道业务提供配套，形成"管道+终端"一体化中游基础设施</li>
+            </ul>
+        </div>
+        <div class="segment-box">
+            <h4>4. 炼油业务（Refinery）- 小型补充</h4>
+            <ul>
+                <li><strong>定位：</strong> 2025年Parkland收购带来的小型炼油资产</li>
+                <li><strong>2025年日均处理：</strong> Q4约4.9万桶/日</li>
+                <li><strong>商业模式：</strong> 裂解价差驱动（crack spread），周期性强</li>
+                <li><strong>战略意义：</strong> 体量小，对整体估值影响有限；主要作为燃料分销业务的供应补充</li>
+            </ul>
+        </div>
+
+        <h3>2.3 营收按地理区域分布（2025年）</h3>
+        <table>
+            <tr>
+                <th>地理区域</th>
+                <th>代表市场</th>
+                <th>营收占比</th>
+                <th>市场地位</th>
+            </tr>
+            <tr>
+                <td>美国东海岸</td>
+                <td>纽约、新泽西、宾州、佛州</td>
+                <td>~35%</td>
+                <td>核心市场，Sunoco品牌强势</td>
+            </tr>
+            <tr>
+                <td>美国南部</td>
+                <td>得州、佛州、乔治亚、卡罗来纳</td>
+                <td>~30%</td>
+                <td>增长市场，与ET管道网络协同</td>
+            </tr>
+            <tr>
+                <td>美国中西部</td>
+                <td>俄亥俄、密歇根、印第安纳</td>
+                <td>~20%</td>
+                <td>稳定市场</td>
+            </tr>
+            <tr>
+                <td>美国西部+其他</td>
+                <td>加州、波多黎各、墨西哥</td>
+                <td>~10%</td>
+                <td>NuStar/Parkland带来的新增市场</td>
+            </tr>
+            <tr>
+                <td>欧洲</td>
+                <td>德国、荷兰、比利时（TanQuid）</td>
+                <td>~5%</td>
+                <td>2026年新增，欧洲终端市场</td>
+            </tr>
+        </table>
+
+        <h3>2.4 商业模式与盈利机制</h3>
+        <div class="highlight">
+            <strong>SUN的"分销+中游基础设施"一体化商业模式：</strong>
+        </div>
+        <ul>
+            <li><strong>1. 燃料分销赚"流量差价"：</strong> 每加仑毛利10-20美分，销量80亿+加仑/年。毛利随油价波动反向变化（油价跌时毛利升，因为零售价粘性）。</li>
+            <li><strong>2. 管道+终端赚"基础设施使用费"：</strong> fee-based模式，按输送/储存量收费，与油价弱相关。这是SUN转型的核心——从周期性的燃料分销转向稳定的中游基础设施。</li>
+            <li><strong>3. MLP架构强制分红：</strong> 作为MLP，SUN必须将绝大部分可分配现金流（DCF）分给合伙人。这造就了5.6%的高分红收益率，但也限制了留存再投资能力，需要靠债务融资收购。</li>
+            <li><strong>4. Energy Transfer协同：</strong> ET是SUN的实际控制人和大客户。SUN利用ET的管道网络和客户基础获得稳定供应和销售渠道；ET通过SUN实现下游分销整合。</li>
+            <li><strong>5. 收购驱动的增长引擎：</strong> 2024 NuStar（$73亿）+2025 Parkland（约$80亿）+2026 TanQuid，连续三年大型收购推动EBITDA从2023年$8.7亿增至2025年$20.5亿（+135%）。</li>
+        </ul>
+
+        <div class="chart-container">
+            <canvas id="chart2"></canvas>
+        </div>
+    </div>
+
+    <!-- ===================== 第三章：业务板块产品竞争力分析 ===================== -->
+    <div class="info-box">
+        <h2 id="chapter3">三、业务板块产品竞争力分析</h2>
+
+        <h3>3.1 燃料分销业务（Fuel Distribution）产品竞争力</h3>
+
+        <p><strong>1. 可替代性 <span class="tag tag-red">高</span></strong></p>
+        <ul>
+            <li>主要替代品：其他独立燃料分销商（如TravelCenters of America、Pilot）、炼油厂直供、加油站自行采购</li>
+            <li>替代品体验差距：小。汽油是同质化商品，加油站可轻易更换供应商</li>
+            <li>替代趋势：<strong>加速</strong>。EV转型长期威胁燃油销量，预计2025-2035年美国汽油需求见顶回落</li>
+        </ul>
+
+        <p><strong>2. 客户转换成本 <span class="tag tag-orange">中</span></strong></p>
+        <ul>
+            <li>财务转换成本：低（无违约金，加油站可换供应商）</li>
+            <li>时间转换成本：低（1-2周可完成切换）</li>
+            <li>捆绑转换成本：中等。SUN与7-Eleven的长期take-or-pay合同（约3,000+门店）形成稳定基本盘</li>
+            <li>总体评估：品牌合同+规模采购议价力提供一定粘性，但本质是商品业务</li>
+        </ul>
+
+        <p><strong>3. 定价权 <span class="tag tag-red">弱</span></strong></p>
+        <ul>
+            <li>历史价格调整：毛利随油价反向波动，公司无法主动提价</li>
+            <li>价格vs通胀：每加仑毛利10-20美分，10年基本未涨，跑输通胀</li>
+            <li>定价权来源：无品牌溢价，纯规模驱动</li>
+            <li>定价权趋势：<strong>减弱</strong>。EV转型+加油站竞争加剧压缩长期毛利</li>
+            <li>巴菲特测试："若提价10%（每加仑多收1美分），客户会流失多少？"——大量客户会切换到竞争对手</li>
+        </ul>
+
+        <p><strong>综合竞争力评级：★★★（3/5星）</strong></p>
+
+        <h3>3.2 管道系统业务（Pipeline Systems）产品竞争力</h3>
+
+        <p><strong>1. 可替代性 <span class="tag tag-green">极低</span></strong></p>
+        <ul>
+            <li>主要替代品：卡车运输、铁路运输、新建竞争管道</li>
+            <li>替代品体验差距：极大。管道运输成本仅为卡车的1/5-1/10，且环保审批使新建管道几乎不可能</li>
+            <li>替代趋势：<strong>减速</strong>。环保监管使管道资产价值提升（存量化资产稀缺性）</li>
+        </ul>
+
+        <p><strong>2. 客户转换成本 <span class="tag tag-green">极高</span></strong></p>
+        <ul>
+            <li>财务转换成本：极高（管道接入合同通常10-20年长期锁定）</li>
+            <li>时间转换成本：极高（建设替代管道需5-10年+数十亿美元）</li>
+            <li>捆绑转换成本：高（管道+终端一体化服务）</li>
+            <li>总体评估：典型的自然垄断基础设施，客户几乎无法切换</li>
+        </ul>
+
+        <p><strong>3. 定价权 <span class="tag tag-orange">中等</span></strong></p>
+        <ul>
+            <li>历史价格调整：管道费率受FERC（联邦能源监管委员会）监管，按CPI+1%调整</li>
+            <li>价格vs通胀：略高于通胀（CPI+1%）</li>
+            <li>定价权来源：监管保护的费率+长期合同</li>
+            <li>定价权趋势：<strong>稳定</strong>。监管框架稳定，费率调整可预期</li>
+            <li>巴菲特测试："若提价10%，客户会流失吗？"——不会，因为客户无替代选择</li>
+        </ul>
+
+        <p><strong>综合竞争力评级：★★★★★（5/5星）</strong></p>
+
+        <h3>3.3 终端储存业务（Terminals）产品竞争力</h3>
+
+        <p><strong>1. 可替代性 <span class="tag tag-green">低</span></strong></p>
+        <ul>
+            <li>主要替代品：自建储罐、其他独立终端运营商（如 Buckeye Partners、Magellan Midstream）</li>
+            <li>替代品体验差距：中。新建储罐环保审批困难，存量终端价值提升</li>
+            <li>替代趋势：<strong>稳定</strong>。存量资产稀缺性支撑长期需求</li>
+        </ul>
+
+        <p><strong>2. 客户转换成本 <span class="tag tag-green">高</span></strong></p>
+        <ul>
+            <li>财务转换成本：高（长期租赁合同5-10年）</li>
+            <li>时间转换成本：中（寻找替代终端需6-12月）</li>
+            <li>捆绑转换成本：高（与管道业务一体化）</li>
+            <li>总体评估：地理位置+长期合同形成稳定护城河</li>
+        </ul>
+
+        <p><strong>3. 定价权 <span class="tag tag-orange">中等</span></strong></p>
+        <ul>
+            <li>历史价格调整：每年合同提价2-3%（与通胀同步）</li>
+            <li>价格vs通胀：基本同步</li>
+            <li>定价权来源：稀缺资产+长期合同</li>
+            <li>定价权趋势：<strong>稳定</strong>。存量资产稀缺性支撑议价力</li>
+            <li>巴菲特测试："若提价10%，客户会流失吗？"——部分客户可能寻找替代，但大部分会续约</li>
+        </ul>
+
+        <p><strong>综合竞争力评级：★★★★（4/5星）</strong></p>
+
+        <h3>3.4 炼油业务（Refinery）产品竞争力</h3>
+
+        <p><strong>1. 可替代性 <span class="tag tag-red">高</span></strong> - 其他炼油厂、进口成品油</p>
+        <p><strong>2. 客户转换成本 <span class="tag tag-red">低</span></strong> - 商品化产品</p>
+        <p><strong>3. 定价权 <span class="tag tag-red">极弱</span></strong> - 完全由裂解价差决定</p>
+
+        <p><strong>综合竞争力评级：★★（2/5星）</strong></p>
+
+        <h3>3.5 产品竞争力矩阵</h3>
+        <div class="competitiveness-grid">
+            <div class="comp-card">
+                <h4>燃料分销</h4>
+                <div class="comp-level" style="color:#e67e22;">★★★</div>
+                <p style="font-size:0.85em;">规模优势但商品化业务，EV长期威胁</p>
+            </div>
+            <div class="comp-card">
+                <h4>管道系统</h4>
+                <div class="comp-level" style="color:#27ae60;">★★★★★</div>
+                <p style="font-size:0.85em;">自然垄断基础设施，不可替代</p>
+            </div>
+            <div class="comp-card">
+                <h4>终端储存</h4>
+                <div class="comp-level" style="color:#27ae60;">★★★★</div>
+                <p style="font-size:0.85em;">稀缺资产+长期合同</p>
+            </div>
+            <div class="comp-card">
+                <h4>炼油</h4>
+                <div class="comp-level" style="color:#c0392b;">★★</div>
+                <p style="font-size:0.85em;">周期性商品业务，无定价权</p>
+            </div>
+            <div class="comp-card">
+                <h4>规模优势</h4>
+                <div class="comp-level" style="color:#27ae60;">★★★★</div>
+                <p style="font-size:0.85em;">美国最大独立燃料分销商之一</p>
+            </div>
+            <div class="comp-card">
+                <h4>分红可持续性</h4>
+                <div class="comp-level" style="color:#27ae60;">★★★★</div>
+                <p style="font-size:0.85em;">DCF覆盖倍数1.8x，分销安全</p>
+            </div>
+        </div>
+
+        <h3>3.6 关键竞争力总结</h3>
+        <div class="moat-item">
+            <strong>核心优势 1：管道+终端的"中游基础设施护城河"</strong><br>
+            NuStar收购带来的14,000+英里管道和100+终端是SUN最深的护城河。这些资产具有自然垄断特性（难以复制）、fee-based现金流稳定、客户转换成本极高。这是巴菲特最喜欢的"收费桥"模式。
+        </div>
+        <div class="moat-item">
+            <strong>核心优势 2：规模+品牌的燃料分销基本盘</strong><br>
+            年销80亿+加仑，7,400个Sunoco及合作品牌加油站。规模带来采购议价力和物流效率。与7-Eleven的长期take-or-pay合同是稳定基本盘。
+        </div>
+        <div class="moat-item">
+            <strong>核心优势 3：Energy Transfer协同效应</strong><br>
+            ET作为实际控制人和大客户，提供稳定供应、客户资源、融资支持。这种"母公司赋能"是其他独立燃料分销商没有的。
+        </div>
+        <div class="moat-item">
+            <strong>核心优势 4：5.6%高分红+5%年增长目标</strong><br>
+            当前分销收益率5.6%，连续5个季度提价，目标年增长5%+。DCF覆盖倍数1.8x，分红安全。是收益型投资者的优质标的。
+        </div>
+    </div>
+
+    <!-- ===================== 第四章：历史财务指标 ===================== -->
+    <div class="info-box">
+        <h2 id="chapter4">四、历史财务指标</h2>
+
+        <h3>4.1 关键财务指标趋势（2016-2025）</h3>
+        <table>
+            <tr>
+                <th>年份</th>
+                <th>营收（亿美元）</th>
+                <th>调整后EBITDA（亿）</th>
+                <th>净利润（亿）</th>
+                <th>DCF（亿）</th>
+                <th>每股DCF</th>
+                <th>债务（亿）</th>
+                <th>年末PE</th>
+            </tr>
+            <tr>
+                <td>2016</td>
+                <td>$99.9</td>
+                <td>$5.4</td>
+                <td>-$4.06</td>
+                <td>$2.15</td>
+                <td>$4.14</td>
+                <td>$31</td>
+                <td>N/A</td>
+            </tr>
+            <tr>
+                <td>2017</td>
+                <td>$117.2</td>
+                <td>$5.5</td>
+                <td>$1.49</td>
+                <td>$3.61</td>
+                <td>$4.83</td>
+                <td>$33</td>
+                <td>20.5x</td>
+            </tr>
+            <tr>
+                <td>2018</td>
+                <td>$169.9</td>
+                <td>$6.3</td>
+                <td>-$2.07</td>
+                <td>$4.51</td>
+                <td>$5.48</td>
+                <td>$42</td>
+                <td>N/A</td>
+            </tr>
+            <tr>
+                <td>2019</td>
+                <td>$166.0</td>
+                <td>$7.5</td>
+                <td>$2.35</td>
+                <td>$4.74</td>
+                <td>$5.42</td>
+                <td>$41</td>
+                <td>22.0x</td>
+            </tr>
+            <tr>
+                <td>2020</td>
+                <td>$107.1</td>
+                <td>$6.5</td>
+                <td>$1.35</td>
+                <td>$4.84</td>
+                <td>$6.23</td>
+                <td>$41</td>
+                <td>30.3x</td>
+            </tr>
+            <tr>
+                <td>2021</td>
+                <td>$175.9</td>
+                <td>$8.0</td>
+                <td>$4.46</td>
+                <td>$5.51</td>
+                <td>$6.45</td>
+                <td>$41</td>
+                <td>13.1x</td>
+            </tr>
+            <tr>
+                <td>2022</td>
+                <td>$257.3</td>
+                <td>$9.4</td>
+                <td>$3.97</td>
+                <td>$6.46</td>
+                <td>$7.65</td>
+                <td>$41</td>
+                <td>12.3x</td>
+            </tr>
+            <tr>
+                <td>2023</td>
+                <td>$230.7</td>
+                <td>$8.7</td>
+                <td>$3.11</td>
+                <td>$6.71</td>
+                <td>$7.81</td>
+                <td>$41</td>
+                <td>17.9x</td>
+            </tr>
+            <tr>
+                <td>2024</td>
+                <td>$236.0</td>
+                <td>$14.6</td>
+                <td>$8.66</td>
+                <td>$10.80</td>
+                <td>$7.85</td>
+                <td>$80</td>
+                <td>7.2x</td>
+            </tr>
+            <tr style="background-color: #fef9e7;">
+                <td>2025</td>
+                <td>$307.0</td>
+                <td>$20.5</td>
+                <td>$5.27</td>
+                <td>$13.80</td>
+                <td>$9.91</td>
+                <td>$134</td>
+                <td>15.5x</td>
+            </tr>
+        </table>
+
+        <div class="highlight">
+            <strong>关键观察：</strong>
+            <ul>
+                <li><strong>EBITDA 3年暴涨：</strong> 从2022年$9.4亿增至2025年$20.5亿（+118%），主要靠NuStar和Parkland收购</li>
+                <li><strong>债务翻倍：</strong> 从2023年$41亿增至2025年$134亿（+227%），收购驱动型增长的代价</li>
+                <li><strong>2024净利异常高：</strong> $8.66亿含NuStar收购一次性资产重估收益，2025回归常态$5.27亿</li>
+                <li><strong>DCF持续增长：</strong> 8年连续增长，从2016年$2.15亿增至2025年$13.8亿，CAGR 23%</li>
+                <li><strong>当前PE 15.5x：</strong> 但EV/EBITDA仅11.5x（因高债务），更反映真实估值</li>
+                <li><strong>ROE不直观：</strong> MLP会计下ROE波动大，DCF/单位是核心指标（2025年$9.91 vs 分红$3.73，覆盖2.65x）</li>
+            </ul>
+        </div>
+
+        <div class="chart-container">
+            <canvas id="chart3"></canvas>
+        </div>
+
+        <h3>4.2 2025年关键财务数据</h3>
+        <table>
+            <tr><td style="width:30%;font-weight:bold;">2025年总营收</td><td>$307.0亿（同比+30%，含Parkland贡献2个月）</td></tr>
+            <tr><td style="font-weight:bold;">2025年调整后EBITDA</td><td>$20.5亿（同比+40%）</td></tr>
+            <tr><td style="font-weight:bold;">2025年净利润（GAAP）</td><td>$5.27亿（同比-39%，2024有一次性收益）</td></tr>
+            <tr><td style="font-weight:bold;">2025年可分配现金流DCF</td><td>$13.8亿（同比+28%）</td></tr>
+            <tr><td style="font-weight:bold;">2025年每股DCF</td><td>$9.91（同比+26%）</td></tr>
+            <tr><td style="font-weight:bold;">2025年实际分红/单位</td><td>$3.613（覆盖率2.74x）</td></tr>
+            <tr><td style="font-weight:bold;">2025年燃料销量</td><td>约80亿+加仑</td></tr>
+            <tr><td style="font-weight:bold;">2025年管道日均输送</td><td>约140万桶/日</td></tr>
+            <tr><td style="font-weight:bold;">2025年终端日均吞吐</td><td>约71.5万桶/日</td></tr>
+            <tr><td style="font-weight:bold;">期末长期债务</td><td>$134亿（同比+68%）</td></tr>
+            <tr><td style="font-weight:bold;">期末流动性储备</td><td>$25亿（循环信贷额度剩余）</td></tr>
+            <tr><td style="font-weight:bold;">净债务/EBITDA</td><td>4.0x（达到目标杠杆率）</td></tr>
+            <tr><td style="font-weight:bold;">分销覆盖率</td><td>1.8x（12个月滚动）</td></tr>
+        </table>
+
+        <p><strong>2025年财务亮点：</strong> 完成Parkland收购（10月31日）使全年EBITDA跨越式增长40%至$20.5亿。但债务从$80亿激增至$134亿，杠杆率达到4x目标上限。管理层明确表示未来将优先去杠杆至3.5x后再考虑新一轮收购。DCF覆盖率1.8x显示分红安全，且仍有空间继续提升分销。</p>
+    </div>
+
+    <!-- ===================== 第五章：竞争分析 ===================== -->
+    <div class="info-box">
+        <h2 id="chapter5">五、竞争分析</h2>
+
+        <h3>5.1 美国燃料分销+中游行业主要竞争者</h3>
+        <table>
+            <tr>
+                <th>公司</th>
+                <th>2025 EBITDA</th>
+                <th>市值</th>
+                <th>债务</th>
+                <th>分红收益率</th>
+                <th>差异化定位</th>
+            </tr>
+            <tr style="background-color: #fef9e7;">
+                <td><strong>SUN</strong></td>
+                <td>$20.5亿</td>
+                <td>$91亿</td>
+                <td>$134亿</td>
+                <td style="color:#27ae60;font-weight:bold;">5.6%</td>
+                <td>燃料分销+中游一体化MLP</td>
+            </tr>
+            <tr>
+                <td>Energy Transfer (ET)</td>
+                <td>$135亿+</td>
+                <td>$600亿+</td>
+                <td>$600亿+</td>
+                <td>7.5%</td>
+                <td>全能中游巨头（SUN母公司）</td>
+            </tr>
+            <tr>
+                <td>Magellan Midstream (被ET收购)</td>
+               <td>—</td>
+                <td>—</td>
+                <td>—</td>
+                <td>—</td>
+                <td>已退市</td>
+            </tr>
+            <tr>
+                <td>Buckeye Partners (私有化)</td>
+                <td>—</td>
+                <td>—</td>
+                <td>—</td>
+                <td>—</td>
+                <td>已退市</td>
+            </tr>
+            <tr>
+                <td>Plains All American (PAA)</td>
+                <td>$23亿</td>
+                <td>$100亿</td>
+                <td>$90亿</td>
+                <td>8.0%</td>
+                <td>原油运输+终端</td>
+            </tr>
+            <tr>
+                <td>Enterprise Products (EPD)</td>
+                <td>$75亿</td>
+                <td>$550亿</td>
+                <td>$350亿</td>
+                <td>7.0%</td>
+                <td>NGL/天然气中游龙头</td>
+            </tr>
+            <tr>
+                <td>TravelCenters of America (被BP收购)</td>
+                <td>—</td>
+                <td>—</td>
+                <td>—</td>
+                <td>—</td>
+                <td>已退市</td>
+            </tr>
+        </table>
+
+        <div class="highlight">
+            <strong>关键观察：SUN是细分赛道"小而美"的MLP</strong><br>
+            SUN的市值（$91亿）远小于ET（$600亿+）、EPD（$550亿）、PAA（$100亿），但在"燃料分销+管道+终端"细分赛道是细分龙头。SUN的独特性在于：<br>
+            <ul>
+                <li><strong>下游+中游一体化：</strong> 既有燃料分销（下游），又有管道+终端（中游），业务协同性强</li>
+                <li><strong>与7-Eleven的长期合同：</strong> 美国最大连锁便利店供油合同，稳定基本盘</li>
+                <li><strong>母公司ET赋能：</strong> ET是北美最大中游公司，为SUN提供供应、客户、融资支持</li>
+            </ul>
+            <strong>但劣势在于：</strong>规模小于ET/EPD/PAA，债务负担（$134亿）相对市值（$91亿）偏高，杠杆率4x高于行业平均3-3.5x。
+        </div>
+
+        <h3>5.2 市场份额分析</h3>
+        <table>
+            <tr>
+                <th>指标</th>
+                <th>SUN</th>
+                <th>行业对比</th>
+            </tr>
+            <tr>
+                <td>美国独立燃料分销商排名</td>
+                <td>第1-2位</td>
+                <td>TravelCenters（被BP收购）退市后SUN地位提升</td>
+            </tr>
+            <tr>
+                <td>年燃料销量</td>
+                <td>80亿+加仑</td>
+                <td>美国最大独立燃料批发商之一</td>
+            </tr>
+            <tr>
+                <td> branded加油站数</td>
+                <td>7,400+</td>
+                <td>Sunoco+合作品牌</td>
+            </tr>
+            <tr>
+                <td>管道里程</td>
+                <td>14,000+英里</td>
+                <td>NuStar收购后大幅扩张，但远小于ET（90,000+英里）</td>
+            </tr>
+            <tr>
+                <td>终端数</td>
+                <td>100+个</td>
+                <td>区域性终端网络</td>
+            </tr>
+        </table>
+
+        <h3>5.3 经济护城河评估</h3>
+        <div class="moat-item">
+            <strong>1. 规模优势（Scale Advantage）★★★★</strong><br>
+            美国最大独立燃料分销商之一，年销80亿+加仑带来采购议价力和物流效率。但规模仍小于垂直整合的石油巨头（ExxonMobil、Shell）。
+        </div>
+        <div class="moat-item">
+            <strong>2. 基础设施护城河（Infrastructure Moat）★★★★★</strong><br>
+            14,000+英里管道+100+终端是不可复制的中游基础设施。新建管道几乎不可能（环保监管+选址困难），存量化资产价值持续提升。这是SUN最深的护城河。
+        </div>
+        <div class="moat-item">
+            <strong>3. 品牌力（Brand Power）★★★</strong><br>
+            Sunoco品牌在东海岸有百年历史，在加油站行业有认知度。但品牌力远不及ExxonMobil、Shell等国际石油巨头。
+        </div>
+        <div class="moat-item">
+            <strong>4. 客户关系护城河（Customer Relationships）★★★★</strong><br>
+            与7-Eleven的长期take-or-pay合同（3,000+门店）+ 品牌加油站合同（7,400+站点）+ 管道长期合同，形成稳定的客户基本盘。
+        </div>
+        <div class="moat-item">
+            <strong>5. Energy Transfer协同（Parent Sponsorship）★★★★</strong><br>
+            ET作为母公司提供供应、客户、融资支持。这种"母公司赋能"是其他独立燃料分销商没有的，是独特的结构性优势。
+        </div>
+        <div class="moat-item">
+            <strong>6. 转换成本（Switching Costs）★★★★</strong><br>
+            管道+终端业务客户转换成本极高（长期合同+物理接入限制）。燃料分销业务客户转换成本低，但被品牌合同和规模优势部分抵消。
+        </div>
+
+        <h3>5.4 竞争优势可持续性评估</h3>
+        <div class="highlight">
+            <strong>SUN的护城河可持续性：中-高（★★★★）</strong><br>
+            <ul>
+                <li><strong>可持续优势：</strong> 管道+终端基础设施护城河具有自然垄断特性，可持续性强。与7-Eleven和ET的长期合同关系稳定。MLP架构强制高分红吸引长期投资者。</li>
+                <li><strong>主要威胁：</strong> EV转型长期压制燃料销量（10-20年维度）；高债务（$134亿）限制财务灵活性；杠杆率4x已接近目标上限，进一步收购空间有限。</li>
+                <li><strong>转型能力：</strong> 管道+终端业务可运输/储存新能源液体（如可再生柴油、氢能、氨），部分对冲EV转型风险。这是SUN管理层积极转型的战略意图。</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- ===================== 第六章：利润分配分析 ===================== -->
+    <div class="info-box">
+        <h2 id="chapter6">六、利润分配分析</h2>
+
+        <h3>6.1 10年利润分配结构（2016-2025）</h3>
+        <table>
+            <tr>
+                <th>年份</th>
+                <th>DCF（亿）</th>
+                <th>分红（亿）</th>
+                <th>分红/单位</th>
+                <th>CapEx（亿）</th>
+                <th>还债（亿）</th>
+                <th>收购（亿）</th>
+                <th>留存</th>
+                <th>覆盖率</th>
+            </tr>
+            <tr>
+                <td>2016</td>
+                <td>$2.15</td>
+                <td>$1.69</td>
+                <td>$3.26</td>
+                <td>$0.5</td>
+                <td>$0.3</td>
+                <td>$2.0</td>
+                <td>$0.46亿</td>
+                <td>1.27x</td>
+            </tr>
+            <tr>
+                <td>2017</td>
+                <td>$3.61</td>
+                <td>$2.74</td>
+                <td>$3.30</td>
+                <td>$0.6</td>
+                <td>$0.5</td>
+                <td>$0.5</td>
+                <td>$0.87亿</td>
+                <td>1.32x</td>
+            </tr>
+            <tr>
+                <td>2018</td>
+                <td>$4.51</td>
+                <td>$2.74</td>
+                <td>$3.30</td>
+                <td>$0.7</td>
+                <td>$0.8</td>
+                <td>$1.3</td>
+                <td>$1.77亿</td>
+                <td>1.65x</td>
+            </tr>
+            <tr>
+                <td>2019</td>
+                <td>$4.74</td>
+                <td>$2.74</td>
+                <td>$3.30</td>
+                <td>$0.7</td>
+                <td>$1.0</td>
+                <td>$0.5</td>
+                <td>$2.00亿</td>
+                <td>1.73x</td>
+            </tr>
+            <tr>
+                <td>2020</td>
+                <td>$4.84</td>
+                <td>$2.74</td>
+                <td>$3.30</td>
+                <td>$0.6</td>
+                <td>$0.8</td>
+                <td>$0.5</td>
+                <td>$2.10亿</td>
+                <td>1.77x</td>
+            </tr>
+            <tr>
+                <td>2021</td>
+                <td>$5.51</td>
+                <td>$2.74</td>
+                <td>$3.30</td>
+                <td>$0.7</td>
+                <td>$1.2</td>
+                <td>$0.8</td>
+                <td>$2.77亿</td>
+                <td>2.01x</td>
+            </tr>
+            <tr>
+                <td>2022</td>
+                <td>$6.46</td>
+                <td>$2.76</td>
+                <td>$3.30</td>
+                <td>$0.8</td>
+                <td>$1.5</td>
+                <td>$1.0</td>
+                <td>$3.70亿</td>
+                <td>2.34x</td>
+            </tr>
+            <tr>
+                <td>2023</td>
+                <td>$6.71</td>
+                <td>$2.81</td>
+                <td>$3.37</td>
+                <td>$0.9</td>
+                <td>$1.5</td>
+                <td>$1.0</td>
+                <td>$3.90亿</td>
+                <td>2.39x</td>
+            </tr>
+            <tr>
+                <td>2024</td>
+                <td>$10.80</td>
+                <td>$3.47</td>
+                <td>$3.51</td>
+                <td>$1.5</td>
+                <td>$2.0</td>
+                <td>$73.0</td>
+                <td>$7.33亿</td>
+                <td>3.12x</td>
+            </tr>
+            <tr style="background-color: #fef9e7;">
+                <td>2025</td>
+                <td>$13.80</td>
+                <td>$3.61</td>
+                <td>$3.61</td>
+                <td>$2.0</td>
+                <td>$2.5</td>
+                <td>$80.0</td>
+                <td>$10.19亿</td>
+                <td>3.82x</td>
+            </tr>
+            <tr style="background-color: #eaf5ea;font-weight:bold;">
+                <td>10年合计</td>
+                <td>$63.33</td>
+                <td>$29.14</td>
+                <td>—</td>
+                <td>$9.0</td>
+                <td>$12.1</td>
+                <td>$160.1</td>
+                <td>$34.79亿</td>
+                <td>2.17x</td>
+            </tr>
+        </table>
+
+        <div class="chart-container">
+            <canvas id="chart4"></canvas>
+        </div>
+
+        <h3>6.2 利润分配策略评价</h3>
+        <div class="highlight">
+            <strong>SUN的利润分配哲学（管理层资本配置评级：★★★★）</strong>
+            <ul>
+                <li><strong>1. 高分红策略（MLP强制）：</strong> 10年累计分红$291亿，占DCF的46%。MLP架构要求将绝大部分DCF分给合伙人。2025年分红$3.61亿/单位，收益率5.6%。</li>
+                <li><strong>2. 连续提价：</strong> 自2022年起连续5个季度提升分销，目标年增长5%+。2025年$3.61 vs 2022年$3.30，3年累计增长9.4%。</li>
+                <li><strong>3. 大型收购驱动增长：</strong> 10年累计收购支出$1,601亿（主要2024 NuStar $73亿 + 2025 Parkland $80亿），推动EBITDA从$5.4亿增至$20.5亿。</li>
+                <li><strong>4. 债务扩张：</strong> 10年净还债$121亿，但2024-2025两年净增债$95亿用于收购。杠杆率从3x升至4x目标上限。</li>
+                <li><strong>5. 覆盖率持续提升：</strong> DCF/分红覆盖率从2016年1.27x提升至2025年3.82x，分红安全度大幅提升。2025年超高的3.82x覆盖率反映了Parkland贡献完整年度后的潜力。</li>
+                <li><strong>6. 留存再投资：</strong> 10年累计留存$347.9亿，主要用于管道+终端维护性CapEx和增量项目CapEx。</li>
+            </ul>
+        </div>
+
+        <div class="moat-item">
+            <strong>可持续增长率 = ROE × 留存率：</strong> SUN作为MLP，留存率仅约15-20%（大部分DCF分红），但DCF/单位增长主要靠收购驱动。2022-2025年DCF/单位从$7.65增至$9.91，CAGR 8.9%，远超有机增长能力，反映收购整合的成功。
+        </div>
+
+        <div class="moat-item">
+            <strong>巴菲特式评价：</strong> SUN的资本配置逻辑是"以债务换增长"——通过债务融资收购扩大EBITDA和DCF，再用增长的DCF偿还债务。这种模式在杠杆率3-4x时安全，但如果继续大型收购使杠杆率超过4.5x，将面临财务压力。2025年达到4x目标杠杆率上限后，管理层明确优先去杠杆，这是稳健的资本配置信号。
+        </div>
+
+        <div class="risk-item">
+            <strong>风险提示：</strong> SUN的回购几乎为零——所有现金流要么分红、要么还债、要么收购。股东回报完全依赖分红。如果分红增长放缓或削减，股价将承压。这与NVR等"全回购"型公司形成鲜明对比。
+        </div>
+    </div>
+
+    <!-- ===================== 第七章：投资总结 ===================== -->
+    <div class="info-box">
+        <h2 id="chapter7">七、投资总结</h2>
+
+        <h3>7.1 SUN的优势</h3>
+        <div class="moat-item">
+            <strong>1. 管道+终端基础设施护城河</strong><br>
+            14,000+英里管道+100+终端是不可复制的自然垄断资产。这是巴菲特最喜欢的"收费桥"模式，fee-based现金流稳定且与油价弱相关。
+        </div>
+        <div class="moat-item">
+            <strong>2. 高分红+增长潜力</strong><br>
+            5.6%分红收益率+5%年增长目标，远高于10年期国债4.5%的收益率。DCF覆盖率1.8x（2025年3.82x含Parkland全年贡献潜力）显示分红安全且仍有提升空间。
+        </div>
+        <div class="moat-item">
+            <strong>3. 收购整合能力</strong><br>
+            2024 NuStar + 2025 Parkland连续大型收购，EBITDA从2023年$8.7亿增至2025年$20.5亿（+135%），管理层整合执行能力强。
+        </div>
+        <div class="moat-item">
+            <strong>4. Energy Transfer母公司赋能</strong><br>
+            ET作为北美最大中游公司，为SUN提供供应、客户、融资支持，是独特的结构性优势。
+        </div>
+        <div class="moat-item">
+            <strong>5. EV转型对冲能力</strong><br>
+            管道+终端业务可运输/储存新能源液体（可再生柴油、氢能、氨），部分对冲EV转型对燃料销量的长期威胁。
+        </div>
+
+        <h3>7.2 SUN的风险</h3>
+        <div class="risk-item">
+            <strong>1. 高债务负担</strong><br>
+            长期债务$134亿，远超市值$91亿。杠杆率4x已接近目标上限。如果EBITDA下滑或利率上升，财务压力将显著增加。这是SUN最大的风险。
+        </div>
+        <div class="risk-item">
+            <strong>2. EV转型长期威胁</strong><br>
+            燃料分销业务（占EBITDA 50%）面临EV转型长期威胁。美国汽油需求预计2025-2030年见顶。虽然管道+终端业务可部分对冲，但燃料分销业务长期承压。
+        </div>
+        <div class="risk-item">
+            <strong>3. 利率敏感性</strong><br>
+            作为高分红MLP，SUN对利率高度敏感。利率上升使分红吸引力相对下降，股价承压。2022-2023年加息周期中SUN股价表现落后大盘。
+        </div>
+        <div class="risk-item">
+            <strong>4. 收购整合风险</strong><br>
+            连续大型收购（NuStar+Parkland+TanQuid）带来整合执行风险。如果协同效应不及预期，或资产减值，将冲击EBITDA和股价。
+        </div>
+        <div class="risk-item">
+            <strong>5. Energy Transfer控制风险</strong><br>
+            ET作为实际控制人，可能优先考虑自身利益而非少数合伙人。关联交易、IDR（激励分配权）等机制可能损害SUN少数股东利益。
+        </div>
+        <div class="risk-item">
+            <strong>6. 无股票回购</strong><br>
+            SUN几乎不回购股票，股东回报完全依赖分红。如果分红增长放缓，缺乏"回购缓冲"。这与NVR等"全回购"型公司形成鲜明对比。
+        </div>
+        <div class="risk-item">
+            <strong>7. 大宗商品价格波动</strong><br>
+            虽然管道+终端业务fee-based，但燃料分销业务和炼油业务仍受油价波动影响。2020年油价暴跌期间，SUN燃料销量和毛利均承压。
+        </div>
+
+        <h3>7.3 巴菲特/芒格式评价</h3>
+        <div class="highlight">
+            <strong>是否符合巴菲特"伟大公司"标准？</strong>
+            <ul>
+                <li><strong>✓ 业务易懂：</strong> 燃料分销+管道+终端，业务模式清晰</li>
+                <li><strong>✓ 持续竞争优势：</strong> 管道+终端基础设施护城河强</li>
+                <li><strong>~ 管理层：</strong> Joseph Kim领导有方，但ET控制下少数股东利益可能被稀释</li>
+                <li><strong>✗ 合理价格：</strong> 当前PE 15.5x，EV/EBITDA 11.5x，处于行业合理区间但无明显安全边际</li>
+                <li><strong>~ ROE：</strong> MLP会计下ROE不直观，DCF/单位是核心指标（2025年$9.91）</li>
+                <li><strong>✗ 财务安全：</strong> 债务$134亿远超市值$91亿，杠杆率4x偏高，不符合巴菲特"低债务"偏好</li>
+            </ul>
+        </div>
+
+        <div class="highlight">
+            <strong>估值评估（内在价值估算）</strong>
+            <ul>
+                <li><strong>2025年DCF/单位：</strong> $9.91</li>
+                <li><strong>2026E DCF/单位：</strong> 约$11-12（含Parkland全年贡献+TanQuid）</li>
+                <li><strong>合理DCF倍数：</strong> 8-10x（MLP行业平均）</li>
+                <li><strong>内在价值估算：</strong> $11 × 8-10 = $88 - $110</li>
+                <li><strong>当前股价：</strong> $66.20</li>
+                <li><strong>安全边际：</strong> 当前股价相对DCF估值有25-40%折价，安全边际显著</li>
+                <li><strong>分红收益率：</strong> 5.6%（基于$3.73年化分红）</li>
+                <li><strong>EV/EBITDA：</strong> 11.5x（行业平均10-12x）</li>
+            </ul>
+        </div>
+
+        <div class="highlight">
+            <strong>结论与建议</strong>
+            <ul>
+                <li><strong>定级：</strong> <span class="tag tag-green">好公司</span> <span class="tag tag-orange">合理价格</span> <span class="tag tag-green">安全边际显著</span> <span class="tag tag-red">高债务风险</span></li>
+                <li><strong>长期持有评级：</strong> ★★★★（适合收益型投资者长期持有，分红+增长双驱动）</li>
+                <li><strong>建议操作：</strong> SUN是收益型投资者（退休基金、追求现金流的个人）的优质标的。5.6%分红收益率+5%年增长目标，总回报潜力10-12%/年。当前股价$66.20相对DCF估值（$88-110）有25-40%安全边际，<strong>建议逢低买入并长期持有</strong>。但需注意高债务风险，建议作为投资组合中"收益型配置"的一部分，权重不宜过高（&lt;5%）。</li>
+            </ul>
+            <strong>芒格金句应用：</strong> "反过来想"——如果利率长期维持高位，SUN的分红吸引力相对下降，股价可能进一步承压。"以合理价格买入好公司"——SUN是好公司（管道+终端护城河强），当前价格相对DCF估值有显著安全边际。"长期持有"——作为MLP，SUN的设计就是长期持有，享受分红复利。
+        </div>
+
+        <div class="highlight">
+            <strong>风险提示：</strong> SUN的高债务（$134亿）是最大风险。如果经济衰退导致EBITDA下滑20%至$16.4亿，杠杆率将升至8x，可能触发债务契约违约。投资者应密切关注杠杆率变化和EBITDA稳定性。建议将SUN视为"高收益债+成长股"的混合体，而非纯成长股。
+        </div>
+
+        <div class="highlight">
+            <strong>声明：</strong> 本分析仅供学习研究，不构成投资建议。投资者应根据自身风险承受能力、投资期限和组合配置情况做出独立决策。本分析基于2025年年报、2026年Q1公开数据和行业市场份额数据，可能存在时效性和数据精度限制。SUN作为MLP，税务处理复杂（K-1表），投资者应咨询税务专业人士。SUN的燃料分销业务面临EV转型长期威胁，管道+终端业务面临环保监管变化风险，过往业绩不代表未来表现。
+        </div>
+    </div>
+
+    <!-- ================= 图表脚本 ================= -->
+    <script>
+    // 图表2：营收与EBITDA趋势
+    const ctx2 = document.getElementById('chart2').getContext('2d');
+    new Chart(ctx2, {
+        type: 'line',
+        data: {
+            labels: ['2016','2017','2018','2019','2020','2021','2022','2023','2024','2025'],
+            datasets: [
+                {
+                    label: '营收（亿美元）',
+                    data: [99.9, 117.2, 169.9, 166.0, 107.1, 175.9, 257.3, 230.7, 236.0, 307.0],
+                    borderColor: '#2e86c1',
+                    backgroundColor: 'rgba(46, 134, 193, 0.2)',
+                    tension: 0.3,
+                    fill: false,
+                    yAxisID: 'y'
+                },
+                {
+                    label: '调整后EBITDA（亿美元）',
+                    data: [5.4, 5.5, 6.3, 7.5, 6.5, 8.0, 9.4, 8.7, 14.6, 20.5],
+                    borderColor: '#27ae60',
+                    backgroundColor: 'rgba(39, 174, 96, 0.2)',
+                    tension: 0.3,
+                    fill: false,
+                    yAxisID: 'y1'
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            plugins: { title: { display: true, text: 'SUN 营收与调整后EBITDA趋势（2016-2025）' } },
+            scales: {
+                y: { type: 'linear', position: 'left', title: { display: true, text: '营收（亿美元）' } },
+                y1: { type: 'linear', position: 'right', title: { display: true, text: 'EBITDA（亿美元）' }, grid: { drawOnChartArea: false } }
+            }
+        }
+    });
+
+    // 图表3：债务、EBITDA、杠杆率趋势
+    const ctx3 = document.getElementById('chart3').getContext('2d');
+    new Chart(ctx3, {
+        type: 'line',
+        data: {
+            labels: ['2016','2017','2018','2019','2020','2021','2022','2023','2024','2025'],
+            datasets: [
+                {
+                    label: '长期债务（亿美元）',
+                    data: [31, 33, 42, 41, 41, 41, 41, 41, 80, 134],
+                    borderColor: '#c0392b',
+                    backgroundColor: 'rgba(192, 57, 43, 0.2)',
+                    tension: 0.3,
+                    fill: false
+                },
+                {
+                    label: '调整后EBITDA（亿美元）',
+                    data: [5.4, 5.5, 6.3, 7.5, 6.5, 8.0, 9.4, 8.7, 14.6, 20.5],
+                    borderColor: '#27ae60',
+                    backgroundColor: 'rgba(39, 174, 96, 0.2)',
+                    tension: 0.3,
+                    fill: false
+                },
+                {
+                    label: '净债务/EBITDA（倍）',
+                    data: [5.7, 6.0, 6.7, 5.5, 6.3, 5.1, 4.4, 4.7, 5.5, 6.5],
+                    borderColor: '#f39c12',
+                    backgroundColor: 'rgba(243, 156, 18, 0.2)',
+                    tension: 0.3,
+                    fill: false
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            plugins: { title: { display: true, text: 'SUN 债务、EBITDA、杠杆率趋势（2016-2025）' } },
+            scales: { y: { title: { display: true, text: '数值' } } }
+        }
+    });
+
+    // 图表4：10年利润分配结构
+    const ctx4 = document.getElementById('chart4').getContext('2d');
+    new Chart(ctx4, {
+        type: 'bar',
+        data: {
+            labels: ['2016','2017','2018','2019','2020','2021','2022','2023','2024','2025'],
+            datasets: [
+                { label: '分红', data: [1.69, 2.74, 2.74, 2.74, 2.74, 2.74, 2.76, 2.81, 3.47, 3.61], backgroundColor: '#27ae60', stack: 'a' },
+                { label: 'CapEx', data: [0.5, 0.6, 0.7, 0.7, 0.6, 0.7, 0.8, 0.9, 1.5, 2.0], backgroundColor: '#f39c12', stack: 'a' },
+                { label: '还债', data: [0.3, 0.5, 0.8, 1.0, 0.8, 1.2, 1.5, 1.5, 2.0, 2.5], backgroundColor: '#c0392b', stack: 'a' },
+                { label: '留存', data: [0.46, 0.87, 1.77, 2.00, 2.10, 2.77, 3.70, 3.90, 7.33, 10.19], backgroundColor: '#34495e', stack: 'a' }
+            ]
+        },
+        options: {
+            responsive: true,
+            plugins: { title: { display: true, text: 'SUN 10年DCF分配结构（2016-2025，亿美元）' } },
+            scales: { x: { stacked: true }, y: { stacked: true, title: { display: true, text: '亿美元' } } }
+        }
+    });
+    </script>
+
+    <script src="scores_client.js"></script>
+    <script src="stock_topbar.js"></script>
+</body>
+</html>
