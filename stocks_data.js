@@ -99,6 +99,7 @@
         {code:'RELX',name:'RELX plc - 信息分析/决策工具',href:'relx.html'},
         {code:'EME',name:'EMCOR Group - 机电建筑与服务',href:'eme.html'},
         {code:'RACE',name:'Ferrari - 超豪华跑车/奢侈品',href:'race.html'},
+        {code:'CAT',name:'Caterpillar - 全球工程机械+动力系统龙头',href:'cat.html'},
         {code:'CTAS',name:'Cintas - 企业制服租赁/设施服务/急救安全',href:'ctas.html'},
         {code:'GWW',name:'W.W. Grainger - MRO工业分销..',href:'gww.html'},
         {code:'IESC',name:'IES Holdings - 电气/技术基础设..',href:'iesc.html'},
