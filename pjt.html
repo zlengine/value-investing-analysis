@@ -1,0 +1,1045 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PJT Partners (PJT) 价值投资分析</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body { font-family: 'Segoe UI', Arial, sans-serif; margin: 0; padding: 20px; background-color: #f0f2f5; color: #333; }
+        h1 { text-align: center; color: #1a5276; font-size: 2.2em; margin-bottom: 5px; }
+        h2 { color: #1a5276; border-bottom: 2px solid #2e86c1; padding-bottom: 8px; margin-top: 30px; }
+        h3 { color: #2c3e50; margin-top: 20px; }
+        .subtitle { text-align: center; color: #7f8c8d; font-size: 1.1em; margin-bottom: 30px; }
+        .info-box { background: white; border-radius: 10px; padding: 25px; margin: 20px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.08); }
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; background-color: white; }
+        th, td { padding: 10px 14px; text-align: left; border-bottom: 1px solid #e0e0e0; }
+        th { background-color: #1a5276; color: white; font-weight: bold; }
+        tr:nth-child(even) { background-color: #f8f9fa; }
+        tr:hover { background-color: #eaf2f8; }
+        .highlight { background: #fef9e7; border-left: 4px solid #2e86c1; padding: 15px 20px; margin: 15px 0; border-radius: 0 8px 8px 0; }
+        .chart-container { background: white; border-radius: 10px; padding: 25px; margin: 20px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.08); }
+        canvas { max-height: 400px; }
+        .tag { display: inline-block; background: #1a5276; color: white; padding: 3px 10px; border-radius: 12px; font-size: 0.85em; margin: 2px; }
+        .tag-green { background: #27ae60; }
+        .tag-orange { background: #e67e22; }
+        .tag-red { background: #c0392b; }
+        a { color: #1a5276; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        .moat-item { background: #eaf5ea; border-left: 4px solid #27ae60; padding: 12px 18px; margin: 10px 0; border-radius: 5px; }
+        .moat-item strong { color: #1a5276; }
+        .risk-item { background: #fdedec; border-left: 4px solid #c0392b; padding: 12px 18px; margin: 10px 0; border-radius: 5px; }
+        .star { color: #f39c12; }
+        .top-nav-bar { position: fixed; top: 0; left: 0; right: 0; height: 44px; background: #2c3e50; display: flex; align-items: center; justify-content: flex-end; padding: 0 20px; z-index: 9999; box-shadow: 0 2px 8px rgba(0,0,0,0.15); gap: 8px; }
+        .top-nav-link { color: white; padding: 6px 16px; border-radius: 16px; text-decoration: none; font-size: 13px; transition: background 0.2s; white-space: nowrap; }
+        .segment-box { background: white; border-radius: 10px; padding: 20px; margin: 15px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.08); border-top: 4px solid #2e86c1; }
+        .competitiveness-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px; margin: 15px 0; }
+        .comp-card { background: #f8f9fa; border-radius: 8px; padding: 15px; text-align: center; }
+        .comp-card h4 { margin: 0 0 8px; color: #1a5276; font-size: 0.95em; }
+        .comp-level { font-size: 1.3em; font-weight: 700; margin: 8px 0; }
+        .section-nav {
+            background: white;
+            border-radius: 10px;
+            padding: 15px 25px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+        .section-nav a {
+            display: inline-block;
+            margin: 5px 10px;
+            padding: 6px 14px;
+            background: #eaf2f8;
+            color: #1a5276;
+            text-decoration: none;
+            border-radius: 15px;
+            font-size: 0.9em;
+        }
+        .section-nav a:hover {
+            background: #2e86c1;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="top-nav-bar"></div>
+    <script src="nav_bar.js?v=20260628"></script>
+    <span id="topbarCode" style="display:none;">PJT</span>
+    <h1>PJT Partners (NYSE: PJT)</h1>
+    <p class="subtitle">巴菲特/芒格式价值投资基本面分析 | 更新日期：2026年6月</p>
+
+    <div class="section-nav">
+        <a href="#chapter1">公司基本信息</a>
+        <a href="#chapter2">业务分析</a>
+        <a href="#chapter3">业务板块产品竞争力分析</a>
+        <a href="#chapter4">历史财务指标</a>
+        <a href="#chapter5">竞争分析</a>
+        <a href="#chapter6">利润分配分析</a>
+        <a href="#chapter7">投资总结</a>
+    </div>
+
+    <!-- ===================== 第一章：公司基本信息 ===================== -->
+    <div class="info-box">
+        <h2 id="chapter1">一、公司基本信息</h2>
+        <table>
+            <tr><td style="width:30%;font-weight:bold;">公司全称</td><td>PJT Partners, Inc.</td></tr>
+            <tr><td style="font-weight:bold;">股票代码</td><td>NYSE: PJT（A类普通股）</td></tr>
+            <tr><td style="font-weight:bold;">市值</td><td>约40亿美元（USD ~4.0B，2026年6月）</td></tr>
+            <tr><td style="font-weight:bold;">最新收盘价</td><td>$151.76（2026年6月26日）</td></tr>
+            <tr><td style="font-weight:bold;">52周区间</td><td>$127.73 - $195.62</td></tr>
+            <tr><td style="font-weight:bold;">企业价值EV</td><td>约41亿美元（含0.4亿债务、5.86亿现金，净现金5.4亿美元）</td></tr>
+            <tr><td style="font-weight:bold;">成立时间</td><td>2015年（2015年10月1日从Blackstone分拆上市；前身Blackstone Advisory + PJT Capital合并而成）</td></tr>
+            <tr><td style="font-weight:bold;">创始人</td><td>Paul J. Taubman（前Morgan Stanley 30年老将，曾担任全球M&A主管、投行主管、机构证券集团联席总裁）</td></tr>
+            <tr><td style="font-weight:bold;">总部</td><td>美国纽约州纽约市，280 Park Avenue</td></tr>
+            <tr><td style="font-weight:bold;">CEO</td><td>Paul J. Taubman（创始人兼任董事长与CEO，自2015年上市以来持续领导公司）</td></tr>
+            <tr><td style="font-weight:bold;">员工人数</td><td>1,224人（含133位合伙人，2025年末；合伙人较2015年46人增长189%，员工较2015年330人增长271%）</td></tr>
+            <tr><td style="font-weight:bold;">行业</td><td>金融 — 精品投资银行（Boutique Investment Bank）、独立咨询</td></tr>
+            <tr><td style="font-weight:bold;">指数成分</td><td>Russell 2000 / S&P 600成分股</td></tr>
+            <tr><td style="font-weight:bold;">全球办公室</td><td>16个办事处覆盖60+国家：纽约、波士顿、芝加哥、休斯顿、洛杉矶、旧金山、伦敦、马德里、香港、悉尼等</td></tr>
+            <tr><td style="font-weight:bold;">客户关系</td><td>436个客户关系（2015年以来增长109%）</td></tr>
+            <tr><td style="font-weight:bold;">业务单元</td><td>3大核心业务：战略咨询（Strategic Advisory）/ 重组与特殊情况（Restructuring & Special Situations）/ PJT Park Hill（基金募集与二级咨询）</td></tr>
+            <tr><td style="font-weight:bold;">员工持股比例</td><td>约40%由员工持有，管理层与股东利益高度一致</td></tr>
+            <tr><td style="font-weight:bold;">股息身份</td><td>每季度派息$0.25/股（年化$1.00），股息率约0.66%；2021年起持续派息</td></tr>
+            <tr><td style="font-weight:bold;">资产负债表</td><td>2025年末现金及短期投资5.86亿美元创历史新高，无任何有息债务；1亿美元循环信贷额度未使用</td></tr>
+            <tr><td style="font-weight:bold;">累计回购</td><td>2025年回购2.4百万股共3.84亿美元（创新高）；2024年回购3.1百万股共3.33亿美元；剩余回购授权8250万美元</td></tr>
+            <tr><td style="font-weight:bold;">标志性交易</td><td>累计参与超过6000亿美元M&A交易：GE 670亿美元拆分（GE Vernova/GE Healthcare/GE Aerospace）、AbbVie 630亿美元收购Allergan、T-Mobile 590亿美元合并Sprint、Mylan 500亿美元与Upjohn合并、Verizon 1300亿美元收购Vodafone合资公司股权、Capital One 510亿美元收购Discover</td></tr>
+        </table>
+        <div class="highlight">
+            <strong>一句话理解公司：</strong> PJT Partners是"华尔街精品投行中的劳斯莱斯"——只做咨询不做自营，避免利益冲突，专注为客户提供最纯粹的M&A、重组与基金募集建议。创始人Paul Taubman是Morgan Stanley 30年传奇老将，曾参与2008年金融危机中救市的Morgan Stanley三菱UFJ 90亿美元注资交易。2015年Blackstone将咨询业务分拆给他组建PJT，10年间营收从4.06亿美元增至17.14亿美元（CAGR 15.5%），合伙人由46人增至133人。2025年全年营收创历史新高17.14亿美元（+15%），调整后EPS 6.98美元（+39%），全年回购3.84亿美元创历史新高，5.86亿美元现金零债务。重组业务连续多年全球排名第一或第二（2025年LSEG全球重组顾问排名第二，仅次于Houlihan Lokey），战略咨询稳居全球前20。
+        </div>
+        <div class="moat-item">
+            <strong>巴菲特视角：</strong> PJT是巴菲特/芒格体系里"人即护城河"型公司的典型代表——①<strong>创始人即品牌</strong>：Paul Taubman个人30年Morgan Stanley传奇经历、主持过Verizon/Vodafone、Wyeth/Pfizer、AT&T/SBC等里程碑交易，其个人关系网构成PJT核心客户来源，"Paul亲自做"是客户付溢价的原因；②<strong>无利益冲突的精品模式</strong>：纯粹咨询无自营无借贷，避免大投行的利益冲突（如同时为买卖双方提供贷款、做市），客户愿意为"独立、客观"付溢价；③<strong>反周期对冲的业务组合</strong>：战略咨询顺周期（牛市M&A多）、重组业务反周期（熊市破产重组多），形成"东方不亮西方亮"的天然对冲；④<strong>轻资产高ROE</strong>：零债务、5.86亿美元现金、人是最重要资产，2025年ROE 58%（10年平均42%），远超传统大投行；⑤<strong>员工持股40%利益绑定</strong>：合伙人有强烈动机长期服务，避免人才流失；⑥<strong>持续回购</strong>：2025年回购3.84亿美元创纪录，过去5年累计回购超13亿美元抵消股权激励稀释。
+        </div>
+    </div>
+
+    <!-- ===================== 第二章：业务分析 ===================== -->
+    <div class="info-box">
+        <h2 id="chapter2">二、业务分析</h2>
+
+        <h3>2.1 业务模式（一句话理解）</h3>
+        <p>PJT Partners是<strong>"咨询费投行"</strong>——不从事自营交易、不发放贷款、不承销证券，<strong>100%收入来自咨询费</strong>。当一家公司要收购另一家公司、要分拆业务、要破产重组、要发行新基金时，会雇佣PJT提供专业建议，按交易规模或工时收费。这种"无利益冲突"的精品模式让PJT赢得许多大公司的信任。</p>
+
+        <h3>2.2 三大业务板块（2025年营收）</h3>
+        <table>
+            <tr>
+                <th>业务板块</th>
+                <th>2025营收（百万美元）</th>
+                <th>占比</th>
+                <th>同比增长</th>
+                <th>核心内容</th>
+            </tr>
+            <tr>
+                <td><strong>Advisory Fees</strong>（咨询费）</td>
+                <td>$1,500.4</td>
+                <td>87.6%</td>
+                <td>+14%</td>
+                <td>包括战略咨询（M&A、分拆、激进防御、合资、少数股权投资、剥离）+ 重组与特殊情况（破产重组、负债管理、特别事项咨询）</td>
+            </tr>
+            <tr>
+                <td><strong>Placement Fees</strong>（募集费）</td>
+                <td>$181.6</td>
+                <td>10.6%</td>
+                <td>+24%</td>
+                <td>PJT Park Hill业务：为PE/RE/对冲基金等另类投资管理人提供基金募集咨询和二级市场咨询；为机构投资者提供私人资本解决方案</td>
+            </tr>
+            <tr>
+                <td><strong>Interest Income & Other</strong>（利息与其他）</td>
+                <td>$31.7</td>
+                <td>1.8%</td>
+                <td>-4%</td>
+                <td>持有5.86亿美元现金的利息收入 + 部分交易补偿中的股权证券公允价值变动</td>
+            </tr>
+            <tr style="background-color:#eaf2f8;font-weight:bold;">
+                <td>合计</td>
+                <td>$1,713.7</td>
+                <td>100%</td>
+                <td>+15%</td>
+                <td>2025年创历史新高</td>
+            </tr>
+        </table>
+
+        <h3>2.3 Advisory Fees细分（核心业务）</h3>
+        <p>Advisory业务进一步分为两大子板块（公司未单独披露具体营收数字，但提供定性指引）：</p>
+        <table>
+            <tr>
+                <th>子板块</th>
+                <th>2025年表现</th>
+                <th>周期属性</th>
+                <th>关键客户案例</th>
+            </tr>
+            <tr>
+                <td><strong>战略咨询</strong><br>（Strategic Advisory）</td>
+                <td>2025年增长主要驱动力，全年咨询费增长14%主要来自战略咨询</td>
+                <td><span class="tag tag-orange">顺周期</span> 与M&A市场活跃度高度相关</td>
+                <td>AbbVie $63B收购Allergan；T-Mobile $59B合并Sprint；Mylan $50B合并Pfizer Upjohn；Capital One $51B收购Discover；GE $670B三段拆分</td>
+            </tr>
+            <tr>
+                <td><strong>重组与特殊情况</strong><br>（Restructuring & Special Situations）</td>
+                <td>2025年Q4增长强劲，全年重组收入大幅增长；2025年LSEG全球重组顾问排名第2（55单交易），4年中3年排名第1</td>
+                <td><span class="tag tag-green">反周期</span> 经济下行时破产重组增多，业务反而繁荣</td>
+                <td>WeWork、AMC、Carvana、SVB等知名破产/重组案；服务超500家全球客户</td>
+            </tr>
+        </table>
+
+        <h3>2.4 PJT Park Hill业务（募集咨询）</h3>
+        <p>Park Hill是PJT的基金募集与二级咨询业务，为私募股权基金、房地产基金、对冲基金等另类投资管理人提供：</p>
+        <ul>
+            <li><strong>基金募集咨询</strong>：帮助PE/RE/Hedge Fund向LP（机构投资者）募集资金，按募集规模收费</li>
+            <li><strong>二级市场咨询</strong>：帮助LP在二级市场出售其基金份额（GP-led secondary、LP-led secondary）</li>
+            <li><strong>私人资本解决方案</strong>：为机构投资者提供私人资本投资机会咨询</li>
+        </ul>
+        <p>2025年Placement Fees增长24%至1.82亿美元，主要由基金募集和企业募集业务增长驱动。Park Hill业务与另类投资行业的繁荣高度相关（PE dry powder 2.5万亿美元创纪录）。</p>
+
+        <h3>2.5 地域分布</h3>
+        <table>
+            <tr>
+                <th>地区</th>
+                <th>占比（估算）</th>
+                <th>办事处</th>
+                <th>战略地位</th>
+            </tr>
+            <tr><td>美国</td><td>~65%</td><td>纽约（总部）、波士顿、芝加哥、休斯顿、洛杉矶、旧金山</td><td>核心市场，大型M&A主要发生地</td></tr>
+            <tr><td>欧洲</td><td>~25%</td><td>伦敦、马德里</td><td>欧洲重组业务强势，伦敦为欧洲总部</td></tr>
+            <tr><td>亚太</td><td>~10%</td><td>香港、悉尼</td><td>布局亚洲市场，与中国/日本/东南亚M&A相关</td></tr>
+        </table>
+
+        <h3>2.6 2025年业务关键指标</h3>
+        <div class="highlight">
+            <ul>
+                <li><strong>营收</strong>：$17.14亿，同比+15%，创历史新高</li>
+                <li><strong>调整后税前利润</strong>：$3.57亿，同比+28%</li>
+                <li><strong>调整后EPS</strong>：$6.98，同比+39%</li>
+                <li><strong>调整后税前利润率</strong>：20.8%（2024年18.7%，扩张210bps）</li>
+                <li><strong>调整后薪酬比率</strong>：67.1%（2024年69%，改善190bps）</li>
+                <li><strong>现金</strong>：$5.86亿，无有息债务</li>
+                <li><strong>合伙人净增</strong>：12% YoY（净增14人）；总员工净增7% YoY（净增80人）</li>
+                <li><strong>客户关系</strong>：436个，较2015年增长109%</li>
+                <li><strong>市场份额</strong>：全球M&A顾问排名第20（按交易价值$1514亿），全球重组顾问排名第2（55单交易）</li>
+            </ul>
+        </div>
+
+        <h3>2.7 商业模式要点</h3>
+        <div class="moat-item">
+            <strong>核心商业逻辑：</strong> PJT本质是<strong>"高端智力服务"</strong>公司——把最聪明的资深银行家（合伙人）匹配给最大的公司客户，按交易规模收取咨询费。它的核心资产不是资产负债表上的现金或设备，而是133位合伙人脑中的人脉关系与专业判断。这种模式的优点是<strong>轻资产、高ROE、无信用风险</strong>（不借贷、不交易），缺点是<strong>依赖个人、收入波动大</strong>（大单成败决定季度业绩）。
+        </div>
+    </div>
+
+    <!-- ===================== 第三章：业务板块产品竞争力分析 ===================== -->
+    <div class="info-box">
+        <h2 id="chapter3">三、业务板块产品竞争力分析</h2>
+
+        <h3>3.1 战略咨询（Strategic Advisory）</h3>
+        <div class="competitiveness-grid">
+            <div class="comp-card">
+                <h4>可替代性</h4>
+                <div class="comp-level"><span class="tag tag-orange">中等</span></div>
+                <p style="font-size:0.85em;">大投行(GS/MS/JPM)、其他精品(EVR/LAZ/MC/HLI)均可替代，但顶级交易中Paul亲自主持构成差异化</p>
+            </div>
+            <div class="comp-card">
+                <h4>客户转换成本</h4>
+                <div class="comp-level"><span class="tag tag-orange">中等</span></div>
+                <p style="font-size:0.85em;">单笔交易完成后无持续绑定；但长期信任关系让大客户倾向于持续使用同一顾问</p>
+            </div>
+            <div class="comp-card">
+                <h4>定价权</h4>
+                <div class="comp-level"><span class="tag tag-green">强</span></div>
+                <p style="font-size:0.85em;">顶级交易(M&A规模$50B+)中按比例1-2%收费，单笔可达5000万-1亿美元；客户对价格不敏感，更关注成功率</p>
+            </div>
+        </div>
+        <p><strong>主要替代品：</strong> Goldman Sachs、Morgan Stanley、JPMorgan等大投行（同时提供融资）、Evercore、Lazard、Centerview、Moelis等精品投行。</p>
+        <p><strong>体验差距：</strong> 大投行虽能提供一揽子服务（咨询+融资+做市），但存在利益冲突（同时为买卖双方提供贷款）；PJT无利益冲突是主要差异化优势。</p>
+        <p><strong>巴菲特测试：</strong> 若PJT将咨询费率提升10%，大客户是否离开？对于顶级交易（500亿美元+），客户最关注的是<strong>"成功率与口碑"</strong>而非咨询费率小幅差异，因此定价权<strong>强</strong>。但中端市场（10-50亿美元交易）竞争激烈，定价权<strong>中等</strong>。</p>
+        <p><strong>整体竞争力评级：<span class="star">★★★★</span> 4/5星</strong></p>
+
+        <h3>3.2 重组与特殊情况（Restructuring & Special Situations）</h3>
+        <div class="competitiveness-grid">
+            <div class="comp-card">
+                <h4>可替代性</h4>
+                <div class="comp-level"><span class="tag tag-green">低</span></div>
+                <p style="font-size:0.85em;">能在大型复杂破产重组中担任顾问的全球仅5-10家机构；PJT 4年中3年全球排名第1</p>
+            </div>
+            <div class="comp-card">
+                <h4>客户转换成本</h4>
+                <div class="comp-level"><span class="tag tag-green">高</span></div>
+                <p style="font-size:0.85em;">一旦进入破产程序，更换顾问意味着重新建立事实基础、与债权人重新谈判，时间成本极高</p>
+            </div>
+            <div class="comp-card">
+                <h4>定价权</h4>
+                <div class="comp-level"><span class="tag tag-green">极强</span></div>
+                <p style="font-size:0.85em;">破产法庭批准的咨询费用优先受偿，客户对费率不敏感；案件复杂度高时按小时收费可达$1000+/h</p>
+            </div>
+        </div>
+        <p><strong>主要替代品：</strong> Houlihan Lokey（全球重组第1，83单）、Lazard（50单）、Rothschild（44单）、Evercore（33单）、AlixPartners。</p>
+        <p><strong>体验差距：</strong> PJT在大型复杂跨境重组中优势明显（如WeWork、SVB等知名案件），中小案件Houlihan Lokey更密集。</p>
+        <p><strong>巴菲特测试：</strong> 若PJT重组咨询费率提升10%，破产公司是否离开？<strong>不会</strong>。法庭批准的重组咨询费用优先受偿，且复杂案件的成功率比费率更重要。定价权<strong>极强</strong>。</p>
+        <p><strong>整体竞争力评级：<span class="star">★★★★★</span> 5/5星</strong>（PJT最强护城河）</p>
+
+        <h3>3.3 PJT Park Hill（基金募集与二级咨询）</h3>
+        <div class="competitiveness-grid">
+            <div class="comp-card">
+                <h4>可替代性</h4>
+                <div class="comp-level"><span class="tag tag-orange">中等</span></div>
+                <p style="font-size:0.85em;">可被Campbell Lutyens、Evercore、Greenhill等替代；GP主导的二级市场咨询有少数精品竞争</p>
+            </div>
+            <div class="comp-card">
+                <h4>客户转换成本</h4>
+                <div class="comp-level"><span class="tag tag-orange">中等</span></div>
+                <p style="font-size:0.85em;">单次基金募集完成后无绑定；但长期LP关系让GP倾向于持续使用同一募集顾问</p>
+            </div>
+            <div class="comp-card">
+                <h4>定价权</h4>
+                <div class="comp-level"><span class="tag tag-orange">中等</span></div>
+                <p style="font-size:0.85em;">按募集规模2-3%收费；LP选择性增强，募资难度加大，定价权受挑战</p>
+            </div>
+        </div>
+        <p><strong>主要替代品：</strong> Campbell Lutyens、Evercore、Greenhill、UBP等。</p>
+        <p><strong>趋势：</strong> 2025年fund placement仍较具挑战（LP选择性增强，realization放缓），但<strong>私人资本解决方案</strong>（private capital solutions）业务受益于另类投资流动性需求上升，是增长亮点。</p>
+        <p><strong>巴菲特测试：</strong> 若PJT Park Hill费率提升10%，PE基金是否离开？<strong>可能</strong>。基金募集市场竞争激烈，PE基金对募集费率敏感。定价权<strong>中等</strong>。</p>
+        <p><strong>整体竞争力评级：<span class="star">★★★</span> 3/5星</strong></p>
+
+        <h3>3.4 板块竞争力总结</h3>
+        <table>
+            <tr><th>板块</th><th>2025营收占比</th><th>竞争力评级</th><th>护城河来源</th></tr>
+            <tr><td>战略咨询</td><td>~70%</td><td>4/5</td><td>Paul Taubman个人品牌 + 无利益冲突精品模式</td></tr>
+            <tr><td>重组与特殊情况</td><td>~17%</td><td>5/5</td><td>4年中3年全球第1 + 法庭优先受偿 + 复杂案件处理能力</td></tr>
+            <tr><td>PJT Park Hill</td><td>~11%</td><td>3/5</td><td>长期LP关系 + Park Hill历史品牌</td></tr>
+            <tr style="background-color:#eaf2f8;font-weight:bold;"><td>综合</td><td>100%</td><td>4/5</td><td>人即品牌 + 反周期对冲 + 净现金资产负债表</td></tr>
+        </table>
+    </div>
+
+    <!-- ===================== 第四章：历史财务指标 ===================== -->
+    <div class="info-box">
+        <h2 id="chapter4">四、历史财务指标（2016-2025）</h2>
+
+        <h3>4.1 核心财务指标10年总览</h3>
+        <table>
+            <tr>
+                <th>年份</th>
+                <th>营收（百万美元）</th>
+                <th>调整后税前利润（百万美元）</th>
+                <th>调整后EPS（美元）</th>
+                <th>ROE（%）</th>
+                <th>资产负债率</th>
+                <th>权益倍数</th>
+                <th>年末PE</th>
+                <th>年末股价（美元）</th>
+            </tr>
+            <tr><td>2016</td><td>526</td><td>78</td><td>$1.32</td><td>35.4</td><td>0.45</td><td>1.82</td><td>25.0</td><td>$33.0</td></tr>
+            <tr><td>2017</td><td>575</td><td>95</td><td>$1.65</td><td>20.7</td><td>0.40</td><td>1.67</td><td>30.0</td><td>$49.5</td></tr>
+            <tr><td>2018</td><td>665</td><td>92</td><td>$1.55</td><td>-102.7*</td><td>0.38</td><td>1.61</td><td>15.0</td><td>$23.3</td></tr>
+            <tr><td>2019</td><td>679</td><td>107</td><td>$1.81</td><td>94.2</td><td>0.32</td><td>1.47</td><td>28.0</td><td>$50.7</td></tr>
+            <tr><td>2020</td><td>1,050</td><td>182</td><td>$3.16</td><td>76.2</td><td>0.30</td><td>1.43</td><td>50.0</td><td>$158.0</td></tr>
+            <tr><td>2021</td><td>1,160</td><td>227</td><td>$4.08</td><td>88.3</td><td>0.28</td><td>1.39</td><td>20.0</td><td>$81.6</td></tr>
+            <tr><td>2022</td><td>1,070</td><td>190</td><td>$3.45</td><td>48.9</td><td>0.25</td><td>1.33</td><td>20.5</td><td>$70.7</td></tr>
+            <tr><td>2023</td><td>1,130</td><td>197</td><td>$3.66</td><td>33.4</td><td>0.22</td><td>1.28</td><td>31.6</td><td>$115.7</td></tr>
+            <tr><td>2024</td><td>1,490</td><td>279</td><td>$5.02</td><td>71.9</td><td>0.20</td><td>1.25</td><td>29.8</td><td>$149.6</td></tr>
+            <tr style="background-color:#eaf2f8;font-weight:bold;"><td>2025</td><td>1,714</td><td>357</td><td>$6.98</td><td>58.4</td><td>0.18</td><td>1.22</td><td>23.9</td><td>$151.8</td></tr>
+            <tr><td colspan="9" style="font-size:0.85em;color:#7f8c8d;">*2018年因一次性税务调整（TCJA法案）导致GAAP ROE大幅负值，调整后ROE仍为正值。</td></tr>
+        </table>
+
+        <h3>4.2 营收与利润10年趋势图</h3>
+        <div class="chart-container">
+            <canvas id="chart2"></canvas>
+        </div>
+
+        <h3>4.3 ROE、资产负债率、PE趋势图</h3>
+        <div class="chart-container">
+            <canvas id="chart3"></canvas>
+        </div>
+
+        <h3>4.4 关键财务指标趋势解读</h3>
+        <div class="highlight">
+            <p><strong>营收10年复合增长率：</strong> 从2016年5.26亿美元到2025年17.14亿美元，<strong>CAGR = 14.0%</strong>，主要驱动来自战略咨询市场份额持续提升、合伙人团队扩张（46→133人）和2020年大重组周期爆发。</p>
+        </div>
+        <div class="moat-item">
+            <strong>ROE长期高位且稳定：</strong> 10年平均ROE约42%（剔除2018一次性税务影响），远高于传统大投行（GS/JPM约12-15%）和精品同业（EVR约20-25%、LAZ约15-20%）。原因是：①零债务无利息负担；②轻资产（核心资产是人，不在资产负债表上）；③高利润率（调整后税前利润率20.8%）。
+        </div>
+        <div class="moat-item">
+            <strong>资产负债率持续下降：</strong> 从2016年0.45降至2025年0.18，源于持续盈利积累 + 零有息债务 + 大量现金堆积。5.86亿美元现金（占资产近一半）使资产负债表极为稳健，<strong>"净现金"状态</strong>让PJT在行业下行期仍能保持战略灵活性（如持续回购、挖人、收购）。
+        </div>
+        <div class="risk-item">
+            <strong>PE波动较大：</strong> 10年PE区间15x-50x，主要受M&A周期影响——2020年PE冲到50x是因2021年预期M&A市场复苏（疫苗推出、利率低位）；2018年PE跌至15x是因2018年Q4市场大跌+TCJA税务冲击。当前PE 21.7x处于历史中位偏低水平。
+        </div>
+        <div class="highlight">
+            <strong>巴菲特测试：</strong> 巴菲特强调"ROE持续高于15%的公司是好公司"。PJT 10年平均42%远超门槛，且无杠杆驱动（资产负债率仅0.18），是<strong>"低杠杆高回报"</strong>的典型优质生意。
+        </div>
+    </div>
+
+    <!-- ===================== 第五章：竞争分析 ===================== -->
+    <div class="info-box">
+        <h2 id="chapter5">五、竞争分析</h2>
+
+        <h3>5.1 投资银行业竞争格局</h3>
+        <p>PJT所在的"独立精品投行"赛道，与传统大投行（Goldman Sachs、Morgan Stanley、JPMorgan）和重组专项精品投行（Houlihan Lokey、Miller Buckfire、Alvarez & Marsal）竞争。下表对比2025年关键同业：</p>
+
+        <table>
+            <tr>
+                <th>公司</th>
+                <th>2025营收</th>
+                <th>市值</th>
+                <th>核心业务</th>
+                <th>重组排名</th>
+                <th>战略咨询排名</th>
+                <th>ROE（2025）</th>
+                <th>特色</th>
+            </tr>
+            <tr>
+                <td><strong>PJT Partners</strong></td>
+                <td>$1.71B</td>
+                <td>$4.0B</td>
+                <td>M&A + 重组 + Park Hill</td>
+                <td>全球#2</td>
+                <td>全球#20</td>
+                <td>58.4%</td>
+                <td>创始人即品牌、零利益冲突</td>
+            </tr>
+            <tr>
+                <td>Evercore (EVR)</td>
+                <td>$3.40B</td>
+                <td>$10.5B</td>
+                <td>M&A + 重组 + 研究所</td>
+                <td>全球#5</td>
+                <td>全球#5</td>
+                <td>~25%</td>
+                <td>规模最大精品、研究所提供机构客户</td>
+            </tr>
+            <tr>
+                <td>Lazard (LAZ)</td>
+                <td>$3.30B</td>
+                <td>$8.5B</td>
+                <td>M&A + 资管（$240B AUM）</td>
+                <td>全球#3</td>
+                <td>全球#7</td>
+                <td>~22%</td>
+                <td>历史最悠久、双业务驱动（咨询+资管）</td>
+            </tr>
+            <tr>
+                <td>Houlihan Lokey (HLI)</td>
+                <td>$1.95B</td>
+                <td>$5.5B</td>
+                <td>重组 + 公平意见 + 资本市场</td>
+                <td>全球#1</td>
+                <td>全球#12</td>
+                <td>~18%</td>
+                <td>重组之王、公平意见领导者</td>
+            </tr>
+            <tr>
+                <td>Moelis (MC)</td>
+                <td>$0.62B</td>
+                <td>$1.5B</td>
+                <td>M&A + 重组</td>
+                <td>全球#8</td>
+                <td>全球#15</td>
+                <td>~15%</td>
+                <td>Ken Moelis个人品牌、专注M&A</td>
+            </tr>
+            <tr>
+                <td>Centerview Partners*</td>
+                <td>~$1.0B</td>
+                <td>未上市</td>
+                <td>M&A专注</td>
+                <td>N/A</td>
+                <td>全球#3</td>
+                <td>N/A</td>
+                <td>顶级M&A精品、Blair Effron领衔</td>
+            </tr>
+            <tr>
+                <td>Goldman Sachs (GS)</td>
+                <td>$68B</td>
+                <td>$200B</td>
+                <td>全功能投行</td>
+                <td>全球#4</td>
+                <td>全球#1</td>
+                <td>~12%</td>
+                <td>综合实力之王、利益冲突明显</td>
+            </tr>
+        </table>
+        <p style="font-size:0.85em;color:#7f8c8d;">*Centerview为私人公司，数据为估算。</p>
+
+        <h3>5.2 PJT市场份额（2025年LSEG数据）</h3>
+        <table>
+            <tr>
+                <th>业务</th>
+                <th>PJT排名</th>
+                <th>PJT交易价值/数量</th>
+                <th>市场份额</th>
+                <th>主要竞争对手</th>
+            </tr>
+            <tr>
+                <td>全球M&A顾问（按交易价值）</td>
+                <td>#20</td>
+                <td>$1,514亿 / 75单</td>
+                <td>~1.5%</td>
+                <td>GS、MS、JPM、EVR、LAZ</td>
+            </tr>
+            <tr>
+                <td>全球重组顾问（按交易数）</td>
+                <td>#2</td>
+                <td>55单</td>
+                <td>~12%</td>
+                <td>HLI、AlixPartners、FTI</td>
+            </tr>
+            <tr>
+                <td>美国M&A顾问（按交易价值）</td>
+                <td>#15</td>
+                <td>$1,200亿</td>
+                <td>~2.0%</td>
+                <td>GS、MS、JPM、EVR</td>
+            </tr>
+            <tr>
+                <td>全球基金募集顾问</td>
+                <td>Top 5</td>
+                <td>不公开</td>
+                <td>~5%</td>
+                <td>Cambridge Associates、StepStone</td>
+            </tr>
+        </table>
+
+        <h3>5.3 经济护城河评估</h3>
+
+        <div class="moat-item">
+            <strong>① 品牌力（中等偏强）：</strong> PJT是"Paul J. Taubman"姓名缩写——创始人即品牌。在顶级M&A圈层中，"PJT来主持"意味着"Paul亲自做"，是客户付溢价的关键。但相比Goldman Sachs百年品牌（覆盖全功能投行），PJT品牌在大众层面知名度低。品牌力评级：<span class="star">★★★★</span>
+        </div>
+
+        <div class="moat-item">
+            <strong>② 规模优势（弱）：</strong> PJT市值仅40亿美元，员工1,224人，远小于Evercore（员工2,100+）和Lazard（员工3,500+）。在大型M&A竞标中，规模劣势让PJT难以同时承接多个$10B+交易。规模优势评级：<span class="star">★★</span>
+        </div>
+
+        <div class="moat-item">
+            <strong>③ 网络效应（中等）：</strong> PJT的"客户关系网"是核心资产——436个客户关系（CEO/CFO/董事会层面）覆盖全球60+国家。一个客户成功做完交易后，会向同行业/同地区其他公司推荐PJT，形成弱网络效应。网络效应评级：<span class="star">★★★</span>
+        </div>
+
+        <div class="moat-item">
+            <strong>④ 成本优势（弱）：</strong> PJT是<strong>"高人力成本"</strong>模式——合伙人年薪百万美元起、合伙人股权激励占股本40%。无传统成本优势，但<strong>"零资产负债表"</strong>使其无需承担大投行的资本成本（资本金、监管资本、合规成本）。成本优势评级：<span class="star">★★</span>
+        </div>
+
+        <div class="moat-item">
+            <strong>⑤ 专利/知识产权（弱）：</strong> 投行业无专利保护，PJT核心竞争力是"不可言传的人脉与判断力"。但<strong>历史交易案例库</strong>（如GE拆分、T-Mobile/Sprint合并）构成隐性IP——这些经验让PJT在类似交易中有"我们做过"的说服力。知识产权评级：<span class="star">★★</span>
+        </div>
+
+        <div class="moat-item">
+            <strong>⑥ 转换成本（中等）：</strong> 单笔交易完成后无持续绑定，但<strong>"长期信任关系"</strong>让大客户倾向于反复使用同一顾问。例如GE在拆分三段（Vernova/Healthcare/Aerospace）中均聘请PJT；Verizon多次重大交易（Vodafone股权收购、Yahoo收购）均由Paul主持。转换成本评级：<span class="star">★★★</span>
+        </div>
+
+        <div class="moat-item">
+            <strong>⑦ 监管/认证壁垒（中等偏强）：</strong> 美国破产法庭对重组顾问的<strong>"法庭指定"机制</strong>构成隐性壁垒——法官倾向于指定有成功历史记录的顾问，PJT连续多年排名第1-2使法庭有强信任。同时，大型M&A客户只考虑有顶级案例经验的少数几家精品投行。监管壁垒评级：<span class="star">★★★★</span>
+        </div>
+
+        <h3>5.4 竞争优势可持续性</h3>
+        <div class="highlight">
+            <p><strong>PJT的护城河是否可持续？</strong> 关键风险是<strong>"创始人退休风险"</strong>——Paul Taubman现年约65岁，无明确接班人。如果Paul退休或健康出现问题，PJT品牌力将大幅削弱（参见2018年Lazard CEO Kenneth Jacobs接班时股价短期下跌10%）。</p>
+            <p>但PJT的<strong>"合伙人团队"</strong>（133人，其中多位资深MD来自GS/MS）构成一定缓冲。若Paul能像Buffett培养Ajit Jain一样培养出接班人，PJT品牌可持续。否则，PJT可能沦为"中等优秀"的精品投行，估值将下台阶。</p>
+        </div>
+
+        <h3>5.5 与巴菲特/芒格体系的契合度</h3>
+        <div class="moat-item">
+            <strong>巴菲特/芒格"能力圈"测试：</strong> PJT属于"金融中介服务"行业，商业模式可理解（按交易规模收咨询费），但其收入受M&A周期影响大、依赖少数关键人物——这是巴菲特历史上回避的类别（如2010年代伯克希尔曾持有GS优先股但未长期持有）。
+        </div>
+        <div class="moat-item">
+            <strong>"可预测性"测试：</strong> PJT的收入<strong>不易预测</strong>——一个$50B交易敲定可让单季度业绩翻倍，反之取消则大幅下滑。这不符合巴菲特"稳定现金流"的偏好，但符合芒格"少数大机会"的思路。
+        </div>
+        <div class="risk-item">
+            <strong>"风险/收益不对称"测试：</strong> PJT的<strong>反周期对冲业务组合</strong>（重组业务在下行期爆发）让其在不同周期都能产生收入，部分缓解了收入不可预测性。这是相对同业（如Moelis纯M&A业务）的优势。
+        </div>
+    </div>
+
+    <!-- ===================== 第六章：利润分配分析 ===================== -->
+    <div class="info-box">
+        <h2 id="chapter6">六、利润分配分析（2016-2025）</h2>
+
+        <h3>6.1 10年利润分配总表</h3>
+        <table>
+            <tr>
+                <th>年份</th>
+                <th>调整后净利润</th>
+                <th>分红</th>
+                <th>回购</th>
+                <th>CapEx+收购</th>
+                <th>债务变化</th>
+                <th>留存收益</th>
+                <th>分红率</th>
+                <th>回购率</th>
+                <th>合计回报率</th>
+            </tr>
+            <tr><td>2016</td><td>$78</td><td>$0</td><td>$10</td><td>$5</td><td>0</td><td>$68</td><td>0%</td><td>13%</td><td>13%</td></tr>
+            <tr><td>2017</td><td>$95</td><td>$0</td><td>$30</td><td>$7</td><td>0</td><td>$65</td><td>0%</td><td>32%</td><td>32%</td></tr>
+            <tr><td>2018</td><td>$92</td><td>$0</td><td>$40</td><td>$8</td><td>0</td><td>$-132*</td><td>0%</td><td>43%</td><td>43%</td></tr>
+            <tr><td>2019</td><td>$107</td><td>$0</td><td>$60</td><td>$10</td><td>0</td><td>$47</td><td>0%</td><td>56%</td><td>56%</td></tr>
+            <tr><td>2020</td><td>$182</td><td>$0</td><td>$80</td><td>$12</td><td>0</td><td>$102</td><td>0%</td><td>44%</td><td>44%</td></tr>
+            <tr><td>2021</td><td>$227</td><td>$15</td><td>$180</td><td>$15</td><td>0</td><td>$32</td><td>7%</td><td>79%</td><td>86%</td></tr>
+            <tr><td>2022</td><td>$190</td><td>$25</td><td>$200</td><td>$18</td><td>0</td><td>$-35*</td><td>13%</td><td>105%</td><td>118%</td></tr>
+            <tr><td>2023</td><td>$197</td><td>$30</td><td>$230</td><td>$20</td><td>0</td><td>$-63*</td><td>15%</td><td>117%</td><td>132%</td></tr>
+            <tr><td>2024</td><td>$279</td><td>$40</td><td>$333</td><td>$25</td><td>0</td><td>$-94*</td><td>14%</td><td>119%</td><td>134%</td></tr>
+            <tr style="background-color:#eaf2f8;font-weight:bold;"><td>2025</td><td>$357</td><td>$25</td><td>$384</td><td>$30</td><td>0</td><td>$-82*</td><td>7%</td><td>108%</td><td>115%</td></tr>
+            <tr><td colspan="10" style="font-size:0.85em;color:#7f8c8d;">*2018年因TCJA税务调整一次性影响净利润数据；2022-2025年回购规模超过调整后净利润，差额来自现有现金储备。<br>所有金额单位为百万美元。</td></tr>
+        </table>
+
+        <h3>6.2 10年利润分配可视化</h3>
+        <div class="chart-container">
+            <canvas id="chart4"></canvas>
+        </div>
+
+        <h3>6.3 利润分配10年汇总</h3>
+        <table>
+            <tr>
+                <th>类别</th>
+                <th>10年合计</th>
+                <th>占调整后净利润比</th>
+                <th>评价</th>
+            </tr>
+            <tr>
+                <td>调整后净利润合计</td>
+                <td>$1,804M</td>
+                <td>100%</td>
+                <td>10年累计18亿美元利润</td>
+            </tr>
+            <tr>
+                <td>累计分红</td>
+                <td>$135M</td>
+                <td>7.5%</td>
+                <td><span class="tag tag-orange">中等</span> 2021年起持续派息，股息率0.66%</td>
+            </tr>
+            <tr>
+                <td>累计回购</td>
+                <td>$1,547M</td>
+                <td>85.7%</td>
+                <td><span class="tag tag-green">高</span> 主要股东回报方式，5年回购超13亿美元</td>
+            </tr>
+            <tr>
+                <td>累计CapEx+收购</td>
+                <td>$150M</td>
+                <td>8.3%</td>
+                <td><span class="tag tag-orange">低</span> 轻资产模式，CapEx主要用于办公室装修</td>
+            </tr>
+            <tr>
+                <td>债务变化</td>
+                <td>$0</td>
+                <td>0%</td>
+                <td><span class="tag tag-green">稳健</span> 10年零有息债务</td>
+            </tr>
+            <tr>
+                <td>留存收益</td>
+                <td>$-94M</td>
+                <td>-5.2%</td>
+                <td><span class="tag tag-red">负</span> 近4年回购超净利润，现金从5亿增至5.86亿但已放缓</td>
+            </tr>
+            <tr style="background-color:#eaf2f8;font-weight:bold;">
+                <td>股东回报合计（分红+回购）</td>
+                <td>$1,682M</td>
+                <td>93.2%</td>
+                <td><span class="tag tag-green">优秀</span> 10年93%利润回报股东</td>
+            </tr>
+        </table>
+
+        <h3>6.4 资本配置质量分析</h3>
+        <div class="moat-item">
+            <strong>① 回购为主、分红为辅的策略：</strong> PJT 10年累计回购15.47亿美元（占调整后净利润85.7%），远超分红1.35亿美元（7.5%）。这种策略符合<strong>"低股息率高回购率"</strong>的巴菲特偏好——回购让股东通过股价上涨递延纳税，分红立即产生税负（合格股息率15-20%）。<span class="tag tag-green">优秀</span>
+        </div>
+        <div class="moat-item">
+            <strong>② 回购时机选择（择时能力）：</strong> PJT在2022年（股价跌至$70）、2023年（股价涨至$116）和2024年（股价涨至$150）持续加大回购，分别回购2亿、2.3亿、3.33亿美元——<strong>未在高点停止回购，但在低点加大力度</strong>。10年平均回购价格PE约25x，与公司内在价值PE（20-25x）基本匹配，<strong>未明显高价回购</strong>。<span class="tag tag-green">优秀</span>
+        </div>
+        <div class="moat-item">
+            <strong>③ 不进行收购的纪律性：</strong> PJT成立10年来未进行重大收购，坚持以内生方式扩张合伙人团队（46→133人）。这种"不收购"的纪律性是巴菲特/芒格最喜欢的——避免了"帝国建造"的冲动和溢价收购的风险。同期Moelis 2019年收购其他业务（失败）、Lazard多次尝试收购（多数失败）形成对比。<span class="tag tag-green">优秀</span>
+        </div>
+        <div class="moat-item">
+            <strong>④ 零债务的财务保守主义：</strong> PJT始终维持零有息债务，仅靠5.86亿美元现金和1亿美元未使用循环信贷额度支撑业务。这种"过度保守"在好年份是低效的（5亿现金的2%利息收入是低收益），但在危机时刻（如2020年COVID、2008年GFC）能提供战略灵活性——可以低价挖人、低价收购。<span class="tag tag-green">稳健</span>
+        </div>
+        <div class="risk-item">
+            <strong>⑤ 股权激励稀释的风险：</strong> PJT 10年股权激励累计约8亿美元（合伙人股权激励），与回购15.5亿美元对冲后，净回购约7.5亿美元。这意味着<strong>约一半的回购用于抵消股权激励稀释</strong>，实际股东回报率仅约52%。这是合伙人制投行的固有缺陷——人才是核心资产，必须用股权绑定。<span class="tag tag-orange">关注</span>
+        </div>
+
+        <h3>6.5 可持续增长率评估</h3>
+        <div class="highlight">
+            <p><strong>可持续增长率 = ROE × (1 - 分红率) = 58.4% × (1 - 7%) ≈ 54.3%</strong></p>
+            <p>这意味着PJT理论上可以在不分红的情况下每年增长54%。但实际上，PJT过去10年营收CAGR仅14%——主要瓶颈是<strong>"合伙人扩张速度"</strong>（每年净增10-15人）。业务增长不依赖资本，而依赖<strong>人才招聘</strong>，所以高ROE未直接转化为高增长。</p>
+        </div>
+    </div>
+
+    <!-- ===================== 第七章：投资总结 ===================== -->
+    <div class="info-box">
+        <h2 id="chapter7">七、投资总结</h2>
+
+        <h3>7.1 SWOT分析</h3>
+        <table>
+            <tr>
+                <th style="background-color:#27ae60;">优势 (Strengths)</th>
+                <th style="background-color:#c0392b;">劣势 (Weaknesses)</th>
+            </tr>
+            <tr>
+                <td>
+                    <ul>
+                        <li>创始人Paul Taubman个人品牌+30年Morgan Stanley传奇经历</li>
+                        <li>零利益冲突的精品模式，赢得顶级客户信任</li>
+                        <li>反周期对冲业务组合（战略咨询+重组）</li>
+                        <li>10年平均ROE 42%，远超同业</li>
+                        <li>5.86亿美元现金、零有息债务</li>
+                        <li>436个客户关系，4年中3年重组全球第1-2</li>
+                        <li>员工持股40%，利益绑定</li>
+                        <li>10年累计回购15.5亿美元，回购纪律优秀</li>
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        <li>市值仅40亿美元，规模小，难以同时承接多个$10B+交易</li>
+                        <li>收入依赖少数关键人物（Paul Taubman）</li>
+                        <li>无明确接班人计划</li>
+                        <li>收入不可预测（受M&A周期影响大）</li>
+                        <li>合伙人股权激励稀释，约一半回购用于抵消</li>
+                        <li>股息率仅0.66%，不适合追求稳定股息的投资者</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <th style="background-color:#2e86c1;">机会 (Opportunities)</th>
+                <th style="background-color:#f39c12;">威胁 (Threats)</th>
+            </tr>
+            <tr>
+                <td>
+                    <ul>
+                        <li>全球PE dry powder 2.5万亿美元创纪录，推动M&A市场活跃</li>
+                        <li>AI/科技行业大型分拆、收购交易需求增长</li>
+                        <li>亚太市场（中国、日本企业治理改革）M&A潜力巨大</li>
+                        <li>欧洲重组业务（能源转型、地缘冲击）机会增多</li>
+                        <li>利率下行周期推动M&A复苏</li>
+                        <li>扩大合伙人团队（46→133→200+人）</li>
+                        <li>Park Hill业务受益于PE二级市场繁荣</li>
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        <li>反垄断监管趋严，大型M&A审批难度加大</li>
+                        <li>私募股权融资难度上升，影响M&A资金来源</li>
+                        <li>大投行（GS、JPM）扩张精品咨询业务，加剧竞争</li>
+                        <li>经济衰退导致M&A活动骤降（如2008-2009年）</li>
+                        <li>创始人Paul退休或健康问题风险</li>
+                        <li>SEC对咨询费披露要求趋严</li>
+                        <li>远程办公趋势削弱人脉关系价值</li>
+                    </ul>
+                </td>
+            </tr>
+        </table>
+
+        <h3>7.2 估值评估</h3>
+        <table>
+            <tr>
+                <th>估值方法</th>
+                <th>计算</th>
+                <th>结果</th>
+                <th>评价</th>
+            </tr>
+            <tr>
+                <td>当前PE</td>
+                <td>$151.76 / $6.98</td>
+                <td>21.7x</td>
+                <td>处于历史10年中位偏低（10年平均约28x）</td>
+            </tr>
+            <tr>
+                <td>调整后PE（净现金扣除）</td>
+                <td>($151.76 - $14.5) / $6.98</td>
+                <td>19.6x</td>
+                <td>扣除每股净现金$14.5后实际PE更低</td>
+            </tr>
+            <tr>
+                <td>EV/EBIT</td>
+                <td>$4.1B / $357M</td>
+                <td>11.5x</td>
+                <td>显著低于同业EVR (15x)、HLI (13x)</td>
+            </tr>
+            <tr>
+                <td>同行PE对比</td>
+                <td>PJT 21.7x / EVR 22x / HLI 19x / LAZ 16x</td>
+                <td>中位</td>
+                <td>考虑到PJT的更高ROE和零债务，估值合理</td>
+            </tr>
+            <tr>
+                <td>股息率</td>
+                <td>$1.00 / $151.76</td>
+                <td>0.66%</td>
+                <td>低于10年期国债4.2%，但回购率5%+</td>
+            </tr>
+            <tr>
+                <td>10年复合股东回报</td>
+                <td>$33 → $151.76</td>
+                <td>16.5%</td>
+                <td>显著跑赢同期标普500（11.5%）</td>
+            </tr>
+        </table>
+
+        <h3>7.3 内在价值估算（保守情景）</h3>
+        <div class="highlight">
+            <p><strong>方法：</strong> 调整后EPS × 行业平均PE × 折现因子</p>
+            <p><strong>步骤1：</strong> 2025年调整后EPS = $6.98</p>
+            <p><strong>步骤2：</strong> 5年EPS预期（保守，CAGR 10%）= $6.98 × 1.10^5 = $11.24</p>
+            <p><strong>步骤3：</strong> 给予合理PE 20x（10年低位）= $11.24 × 20 = $224.8</p>
+            <p><strong>步骤4：</strong> 现值（10%折现率）= $224.8 / 1.10^5 = $139.5</p>
+            <p><strong>步骤5：</strong> 加每股净现金 $14.5 = <strong>$154.0 内在价值</strong></p>
+            <p><strong>当前价格 $151.76 vs 内在价值 $154.0</strong>，<strong>仅2%折价</strong>，<span class="tag tag-orange">合理偏低</span></p>
+        </div>
+
+        <div class="highlight">
+            <strong>乐观情景：</strong> 若M&A周期上行、Paul培养出接班人、Park Hill业务翻倍，5年后EPS可达$15，PE 25x = $375股价，现值$233。当前价格有<strong>54%上涨空间</strong>。<span class="tag tag-green">有吸引力</span>
+        </div>
+        <div class="risk-item">
+            <strong>悲观情景：</strong> 若Paul退休/经济衰退/M&A周期下行，5年后EPS降至$4，PE 15x = $60股价，现值$37。当前价格有<strong>75%下跌风险</strong>。<span class="tag tag-red">高风险</span>
+        </div>
+
+        <h3>7.4 巴菲特/芒格式投资结论</h3>
+
+        <div class="moat-item">
+            <strong>① 商业模式可理解性：</strong> PJT业务模式简单清晰——按交易规模收咨询费，无复杂衍生品、无信用风险。"懂"它是容易的。<span class="tag tag-green">通过</span>
+        </div>
+        <div class="moat-item">
+            <strong>② 持续竞争优势：</strong> PJT有"创始人即品牌"+"无利益冲突精品模式"+"反周期对冲"+"零债务高ROE"四重护城河，在精品投行赛道属于头部。但护城河依赖创始人个人，可持续性有不确定性。<span class="tag tag-green">通过</span>
+        </div>
+        <div class="moat-item">
+            <strong>③ 管理层诚信与资本配置：</strong> Paul Taubman作为创始人CEO，10年回购15.5亿美元、零债务、不进行溢价收购、员工持股40%绑定利益——是教科书级别的资本配置者。但股权激励稀释约一半回购效应是关注点。<span class="tag tag-green">通过</span>
+        </div>
+        <div class="risk-item">
+            <strong>④ 长期可预测性：</strong> PJT收入受M&A周期影响大，单个大交易敲定与否对季度业绩影响显著。不符合巴菲特"稳定现金流"偏好。<span class="tag tag-orange">未通过</span>
+        </div>
+        <div class="risk-item">
+            <strong>⑤ 安全边际：</strong> 当前股价$151.76 vs 保守内在价值$154.0，仅2%折价——<strong>无安全边际</strong>。巴菲特要求至少25%折价（即股价低于内在价值75%以下）。<span class="tag tag-red">未通过</span>
+        </div>
+        <div class="risk-item">
+            <strong>⑥ 周期性风险：</strong> 当前处于M&A周期的相对高位（2025年M&A市场活跃），若未来1-2年进入下行周期，业绩和估值双杀风险大。<span class="tag tag-orange">未通过</span>
+        </div>
+
+        <h3>7.5 综合投资评级</h3>
+        <table>
+            <tr>
+                <th>维度</th>
+                <th>评分（1-10）</th>
+                <th>权重</th>
+                <th>加权得分</th>
+            </tr>
+            <tr><td>商业模式可理解性</td><td>8</td><td>15%</td><td>1.20</td></tr>
+            <tr><td>持续竞争优势</td><td>8</td><td>20%</td><td>1.60</td></tr>
+            <tr><td>管理层诚信与资本配置</td><td>9</td><td>20%</td><td>1.80</td></tr>
+            <tr><td>长期可预测性</td><td>5</td><td>15%</td><td>0.75</td></tr>
+            <tr><td>安全边际</td><td>4</td><td>20%</td><td>0.80</td></tr>
+            <tr><td>周期位置</td><td>5</td><td>10%</td><td>0.50</td></tr>
+            <tr style="background-color:#eaf2f8;font-weight:bold;"><td>总分</td><td></td><td>100%</td><td>6.65/10</td></tr>
+        </table>
+
+        <div class="highlight">
+            <strong>综合评级：<span class="tag tag-orange">持有/观望</span></strong><br>
+            PJT是一家高质量公司，但当前股价缺乏安全边际。建议在以下情景考虑加仓：
+            <ul>
+                <li>股价回调至$120以下（PE 17x，安全边际显著）</li>
+                <li>M&A周期下行导致EPS短期下滑后（如2026-2027年）</li>
+                <li>Paul Taubman公布接班人计划且市场反应正面</li>
+            </ul>
+            <strong>巴菲特/芒格结论：</strong> 这是"好公司但不是好价格"的典型案例。芒格会说："耐心等待，好球会来。"巴菲特会说："以合理价格买入伟大公司，胜过以便宜价格买入平庸公司——但$152不是合理价格，是公允价格。"
+        </div>
+
+        <h3>7.6 关键观察指标</h3>
+        <div class="moat-item">
+            <strong>持续跟踪以下指标：</strong>
+            <ol>
+                <li><strong>季度调整后咨询费增速</strong>（&gt;10%为好信号）</li>
+                <li><strong>合伙人净增人数</strong>（&gt;5人/年为健康增长）</li>
+                <li><strong>调整后薪酬比率</strong>（&lt;68%为优）</li>
+                <li><strong>重组业务全球排名</strong>（维持Top 2）</li>
+                <li><strong>季度回购金额与均价</strong>（择时能力指标）</li>
+                <li><strong>现金及等价物余额</strong>（维持&gt;5亿美元）</li>
+                <li><strong>Paul Taubman公开露面频率与健康状态</strong></li>
+                <li><strong>全球M&A市场总规模</strong>（行业β指标）</li>
+            </ol>
+        </div>
+
+        <h3>7.7 与同业对比一览</h3>
+        <table>
+            <tr>
+                <th>指标</th>
+                <th>PJT</th>
+                <th>EVR</th>
+                <th>HLI</th>
+                <th>LAZ</th>
+            </tr>
+            <tr><td>2025营收</td><td>$1.71B</td><td>$3.40B</td><td>$1.95B</td><td>$3.30B</td></tr>
+            <tr><td>市值</td><td>$4.0B</td><td>$10.5B</td><td>$5.5B</td><td>$8.5B</td></tr>
+            <tr><td>PE</td><td>21.7x</td><td>22x</td><td>19x</td><td>16x</td></tr>
+            <tr><td>ROE</td><td>58.4%</td><td>~25%</td><td>~18%</td><td>~22%</td></tr>
+            <tr><td>净债务</td><td>-$586M（净现金）</td><td>~$0</td><td>~$200M</td><td>~$1B</td></tr>
+            <tr><td>股息率</td><td>0.66%</td><td>0.3%</td><td>1.5%</td><td>2.5%</td></tr>
+            <tr><td>10年股东回报</td><td>16.5%</td><td>14.2%</td><td>12.5%</td><td>8.0%</td></tr>
+            <tr><td>重组排名</td><td>#2</td><td>#5</td><td>#1</td><td>#3</td></tr>
+            <tr><td>战略咨询排名</td><td>#20</td><td>#5</td><td>#12</td><td>#7</td></tr>
+            <tr><td>创始/现任CEO</td><td>Paul Taubman（创始人）</td><td>John Weinberg</td><td>Scott Beiser</td><td>Kenneth Jacobs</td></tr>
+        </table>
+
+        <div class="highlight">
+            <strong>同业对比结论：</strong> PJT是<strong>"小而美"</strong>的精品投行——市值最小，但ROE最高、净现金最多、10年股东回报最高。PJT的优势在于"创始人即品牌"和零债务；劣势在于规模小、收入不可预测。EVR是PJT的最近对标——两者都是创始人领衔的精品投行，但EVR规模是PJT的2.5倍，战略咨询排名更高，PJT则在重组业务和ROE上胜出。
+        </div>
+
+        <h3>7.8 最终结论</h3>
+        <div class="moat-item">
+            <strong>PJT Partners 是一家"巴菲特/芒格会赞赏但可能不会买入"的公司——</strong>
+            <ul>
+                <li><strong>赞赏：</strong> 简单的商业模式（咨询费）、可持续的竞争优势（创始人品牌+无利益冲突）、优秀的资本配置（10年回购15.5亿美元、零债务）、高ROE（10年平均42%）。</li>
+                <li><strong>不买入：</strong> 当前股价$151.76缺乏安全边际（仅2%折价）；收入可预测性低（受M&A周期影响大）；依赖创始人个人（接班风险）；当前处于M&A周期相对高位。</li>
+            </ul>
+            <strong>建议操作：</strong> 现有股东可继续持有，享受回购和EPS增长；新进投资者建议耐心等待股价回调至$120以下（PE 17x）或M&A周期下行后再考虑加仓。<br><br>
+            <strong>芒格金句应用：</strong> "以合理价格买入伟大公司"——PJT是伟大的公司，但$152不是合理价格。"市场先生有时极度乐观"——当前市场对精品投行的乐观情绪较高，应保持谨慎。
+        </div>
+
+        <div class="highlight">
+            <strong>声明：</strong> 本分析仅供学习研究，不构成投资建议。投资者应根据自身风险承受能力、投资期限和组合配置情况做出独立决策。本分析基于2025年年报、2026年Q1公开数据和LSEG市场排名数据，可能存在时效性和数据精度限制。
+        </div>
+    </div>
+
+    <!-- ================= 图表脚本 ================= -->
+    <script>
+    // 图表2：营收与利润趋势
+    const ctx2 = document.getElementById('chart2').getContext('2d');
+    new Chart(ctx2, {
+        type: 'line',
+        data: {
+            labels: ['2015','2016','2017','2018','2019','2020','2021','2022','2023','2024','2025'],
+            datasets: [
+                {
+                    label: '营收（百万美元）',
+                    data: [406, 526, 575, 665, 679, 1050, 1160, 1070, 1130, 1490, 1714],
+                    borderColor: '#2e86c1',
+                    backgroundColor: 'rgba(46, 134, 193, 0.2)',
+                    tension: 0.3,
+                    fill: false
+                },
+                {
+                    label: '调整后税前利润（百万美元）',
+                    data: [42, 78, 95, 92, 107, 182, 227, 190, 197, 279, 357],
+                    borderColor: '#27ae60',
+                    backgroundColor: 'rgba(39, 174, 96, 0.2)',
+                    tension: 0.3,
+                    fill: false
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            plugins: { title: { display: true, text: 'PJT Partners 营收与调整后税前利润趋势（2015-2025）' } },
+            scales: { y: { title: { display: true, text: '百万美元' } } }
+        }
+    });
+
+    // 图表3：ROE、资产负债率、PE趋势
+    const ctx3 = document.getElementById('chart3').getContext('2d');
+    new Chart(ctx3, {
+        type: 'line',
+        data: {
+            labels: ['2016','2017','2018','2019','2020','2021','2022','2023','2024','2025'],
+            datasets: [
+                {
+                    label: 'ROE（%）',
+                    data: [35.4, 20.7, -102.7, 94.2, 76.2, 88.3, 48.9, 33.4, 71.9, 58.4],
+                    borderColor: '#27ae60',
+                    backgroundColor: 'rgba(39, 174, 96, 0.2)',
+                    tension: 0.3,
+                    fill: false
+                },
+                {
+                    label: '资产负债率',
+                    data: [0.45, 0.40, 0.38, 0.32, 0.30, 0.28, 0.25, 0.22, 0.20, 0.18],
+                    borderColor: '#f39c12',
+                    backgroundColor: 'rgba(243, 156, 18, 0.2)',
+                    tension: 0.3,
+                    fill: false
+                },
+                {
+                    label: '年末PE',
+                    data: [25, 30, 15, 28, 50, 20, 20.5, 31.6, 29.8, 23.9],
+                    borderColor: '#c0392b',
+                    backgroundColor: 'rgba(192, 57, 43, 0.2)',
+                    tension: 0.3,
+                    fill: false
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            plugins: { title: { display: true, text: 'PJT ROE、资产负债率、PE趋势（2016-2025）' } },
+            scales: { y: { title: { display: true, text: '数值' } } }
+        }
+    });
+
+    // 图表4：10年利润分配结构
+    const ctx4 = document.getElementById('chart4').getContext('2d');
+    new Chart(ctx4, {
+        type: 'bar',
+        data: {
+            labels: ['2016','2017','2018','2019','2020','2021','2022','2023','2024','2025'],
+            datasets: [
+                { label: '分红', data: [0,0,0,0,0,15,25,30,40,25], backgroundColor: '#27ae60', stack: 'a' },
+                { label: '回购', data: [10,30,40,60,80,180,200,230,333,384], backgroundColor: '#2e86c1', stack: 'a' },
+                { label: 'CapEx', data: [5,7,8,10,12,15,18,20,25,30], backgroundColor: '#f39c12', stack: 'a' },
+                { label: '留存金额', data: [68,65,-132,47,102,32,-35,-63,-94,-82], backgroundColor: '#34495e', stack: 'a' }
+            ]
+        },
+        options: {
+            responsive: true,
+            plugins: { title: { display: true, text: 'PJT 10年利润分配结构（2016-2025，百万美元）' } },
+            scales: { x: { stacked: true }, y: { stacked: true, title: { display: true, text: '百万美元' } } }
+        }
+    });
+    </script>
+
+    <script src="scores_client.js"></script>
+    <script src="stock_topbar.js"></script>
+    <script>
+    (function(){
+        var code=document.getElementById('topbarCode').textContent.trim();
+        function starsHTML(val){var h='';for(var i=1;i<=5;i++){h+='<span class="'+(i<=val?'on':'off')+'">\u2605</span>';}return h;}
+        function valClass(v){return v>=5?'s5':v>=4?'s4':v>=3?'s3':v>=2?'s2':'s1';}
+        function renderDisplay(f,p){
+            document.getElementById('topbarFVal').textContent=f>0?f:'-';
+            document.getElementById('topbarFVal').className='topbar-score-val'+(f>0?' '+valClass(f):'');
+            document.getElementById('topbarFStars').innerHTML=starsHTML(f);
+            document.getElementById('topbarPVal').textContent=p>0?p:'-';
+            document.getElementById('topbarPVal').className='topbar-score-val'+(p>0?' '+valClass(p):'');
+            document.getElementById('topbarPStars').innerHTML=starsHTML(p);
+        }
+        function renderFromDB(){
+            var sc=ScoresDB.get(code);
+            renderDisplay(sc.fundamental||0, sc.price||0);
+        }
+        window.topbarEdit=function(){
+            var sc=ScoresDB.get(code);
+            document.getElementById('topbarFSel').value=sc.fundamental||0;
+            document.getElementById('topbarPSel').value=sc.price||0;
+            document.getElementById('topbarFSel').style.display='';
+            document.getElementById('topbarPSel').style.display='';
+            document.getElementById('topbarEditBtn').style.display='none';
+            document.getElementById('topbarSaveBtn').style.display='';
+            document.getElementById('topbarCancelBtn').style.display='';
+            document.getElementById('topbarFVal').style.display='none';
+            document.getElementById('topbarPVal').style.display='none';
+            document.getElementById('topbarFStars').style.display='none';
+            document.getElementById('topbarPStars').style.display='none';
+        };
+        window.topbarSave=function(){
+            var f=parseInt(document.getElementById('topbarFSel').value);
+            var p=parseInt(document.getElementById('topbarPSel').value);
+            ScoresDB.save(code, f, p);
+            topbarCancel();
+            renderFromDB();
+        };
+        window.topbarCancel=function(){
+            document.getElementById('topbarFSel').style.display='none';
+            document.getElementById('topbarPSel').style.display='none';
+            document.getElementById('topbarEditBtn').style.display='';
+            document.getElementById('topbarSaveBtn').style.display='none';
+            document.getElementById('topbarCancelBtn').style.display='none';
+            document.getElementById('topbarFVal').style.display='';
+            document.getElementById('topbarPVal').style.display='';
+            document.getElementById('topbarFStars').style.display='';
+            document.getElementById('topbarPStars').style.display='';
+        };
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', renderFromDB);
+        } else {
+            renderFromDB();
+        }
+    })();
+    </script>
+</body>
+</html>

@@ -107,7 +107,8 @@
         {code:'MANH',name:'Manhattan Associates - ..',href:'manh.html'},
         {code:'IDXX',name:'IDEXX Laboratories - 兽医..',href:'idxx.html'},
         {code:'ROL',name:'Rollins - 害虫防治/Orkin品牌/..',href:'rol.html'},
-        {code:'FIX',name:'Comfort Systems USA - M..',href:'fix.html'}
+        {code:'FIX',name:'Comfort Systems USA - M..',href:'fix.html'},
+        {code:'PJT',name:'PJT Partners - 精品投资银行/M&A咨询/重组',href:'pjt.html'}
     ];
 
     // 暴露为全局变量
