@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ITW Illinois Tool Works - 巴菲特芒格式价值投资分析</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body { font-family: 'Segoe UI', Arial, sans-serif; line-height: 1.6; color: #333; max-width: 1200px; margin: 0 auto; padding: 20px; background: #f4f6f9; }
+        h1 { color: #1a5276; border-bottom: 3px solid #2e86c1; padding-bottom: 10px; }
+        h2 { color: #1a5276; margin-top: 35px; border-left: 5px solid #2e86c1; padding-left: 15px; }
+        h3 { color: #2874a6; margin-top: 25px; }
+        .info-box { background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.08); margin: 20px 0; }
+        .highlight { background: #fef9e7; padding: 15px; border-left: 5px solid #f39c12; margin: 20px 0; border-radius: 5px; }
+        .moat-item { background: #eafaf1; padding: 15px; margin: 10px 0; border-left: 5px solid #27ae60; border-radius: 5px; }
+        .risk-item { background: #fdedec; padding: 15px; margin: 10px 0; border-left: 5px solid #c0392b; border-radius: 5px; }
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; background: white; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        th, td { padding: 12px; text-align: left; border-bottom: 1px solid #ddd; }
+        th { background: #2e86c1; color: white; }
+        tr:hover { background: #f5f5f5; }
+        .tag-green { background: #27ae60; color: white; padding: 3px 10px; border-radius: 12px; font-size: 0.85em; }
+        .tag-orange { background: #f39c12; color: white; padding: 3px 10px; border-radius: 12px; font-size: 0.85em; }
+        .tag-red { background: #c0392b; color: white; padding: 3px 10px; border-radius: 12px; font-size: 0.85em; }
+        .competitiveness-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; margin: 20px 0; }
+        .comp-card { background: white; padding: 15px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); text-align: center; }
+        .comp-card h4 { color: #1a5276; margin-bottom: 8px; }
+        .section-nav { background: white; border-radius: 10px; padding: 15px 25px; margin: 20px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.08); text-align: center; }
+        .section-nav a { display: inline-block; margin: 5px 10px; padding: 6px 14px; background: #eaf2f8; color: #1a5276; text-decoration: none; border-radius: 15px; font-size: 0.9em; }
+        .section-nav a:hover { background: #2e86c1; color: white; }
+        .chart-container { background: white; padding: 20px; border-radius: 10px; margin: 20px 0; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+    </style>
+</head>
+<body>
+    <div class="top-nav-bar"></div>
+    <script src="nav_bar.js"></script>
+    <span id="topbarCode" style="display:none;">ITW</span>
+
+    <h1>ITW Illinois Tool Works Inc. - 巴菲特芒格式价值投资分析</h1>
+    <p style="color:#666; font-size:1.1em;"><em>分析日期：2026年6月28日 | 数据截止：2025年年报</em></p>
+
+    <div class="section-nav">
+        <a href="#chapter1">公司基本信息</a>
+        <a href="#chapter2">业务分析</a>
+        <a href="#chapter3">产品竞争力分析</a>
+        <a href="#chapter4">历史财务指标</a>
+        <a href="#chapter5">竞争分析</a>
+        <a href="#chapter6">利润分配分析</a>
+        <a href="#chapter7">投资总结</a>
+    </div>
+
+    <!-- ===================== 第一章：公司基本信息 ===================== -->
+    <div class="info-box">
+        <h2 id="chapter1">一、公司基本信息</h2>
+        <table>
+            <tr><th>项目</th><th>详情</th></tr>
+            <tr><td>公司名称</td><td>Illinois Tool Works Inc.</td></tr>
+            <tr><td>股票代码</td><td>ITW（NYSE）</td></tr>
+            <tr><td>成立时间</td><td>1912年（113年历史），由Byron L. Smith在芝加哥创立</td></tr>
+            <tr><td>总部</td><td>伊利诺伊州Glenview（芝加哥郊区）</td></tr>
+            <tr><td>最新股价</td><td>$270.00（2026年6月26日）</td></tr>
+            <tr><td>市值</td><td>约778亿美元（约5,600亿人民币）</td></tr>
+            <tr><td>企业价值（EV）</td><td>约801亿美元（含89亿债务，扣除9亿现金）</td></tr>
+            <tr><td>员工人数</td><td>43,000人（2025年底）</td></tr>
+            <tr><td>CEO</td><td>Christopher A. O'Herlihy（2025年新任CEO）</td></tr>
+            <tr><td>业务覆盖</td><td>全球55+国家运营</td></tr>
+            <tr><td>股息记录</td><td>连续62年股息增长（Dividend Kings股息之王）</td></tr>
+            <tr><td>股息收益率</td><td>2.3%（年化股息$6.22/股）</td></tr>
+            <tr><td>当前PE</td><td>~25.7x（TTM），高于10年均值21.7x</td></tr>
+            <tr><td>主要业务</td><td>7大工业制造板块：汽车OEM/食品设备/测试测量电子/焊接/聚合物流体/建筑产品/特种产品</td></tr>
+            <tr><td>信用评级</td><td>A+（工业行业最高信用评级之一）</td></tr>
+        </table>
+
+        <div class="highlight">
+            <strong>巴菲特视角：</strong> ITW是巴菲特会欣赏的"成熟工业复利机器"——113年历史、7大业务板块分散化、连续62年股息增长（股息之王）、26.3%行业最佳营业利润率、29.3%税后ROIC。独特的<strong>"80/20经营哲学"</strong>（80%收入来自20%核心客户）是ITW的核心护城河——这不是简单的成本削减，而是一套系统化的"客户聚焦+复杂度简化+创新驱动"运营体系，竞争对手难以复制。2025年新CEO O'Herlihy接任，推动"2024-2030企业战略下一阶段"，目标2030年实现：30%营业利润率+35%+ ROIC+4%+有机增长+9-10% EPS增长。
+        </div>
+    </div>
+
+    <!-- ===================== 第二章：业务分析 ===================== -->
+    <div class="info-box">
+        <h2 id="chapter2">二、业务分析</h2>
+
+        <h3>2.1 公司业务简述（120岁老奶奶也能懂）</h3>
+        <p>伊利诺伊工具制造厂（ITW）做的是<strong>"各种工业用的零部件和设备"</strong>——你虽然没听过这公司名字，但你天天都在用它的产品：</p>
+        <ul>
+            <li><strong>你开的车</strong>：里面有ITW做的塑料件、金属扣件、螺丝</li>
+            <li><strong>餐厅的厨房设备</strong>：Hobart洗碗机、Vulcan灶台（麦当劳/希尔顿都用）</li>
+            <li><strong>建房子的钉子螺丝</strong>：ITW的建筑扣件</li>
+            <li><strong>工厂的焊接设备</strong>：Miller Electric焊机（焊工都知道）</li>
+            <li><strong>汽水罐上的塑料提手</strong>：6连包可乐的塑料环</li>
+            <li><strong>工业用胶水密封剂</strong>：汽车维修店用的胶</li>
+        </ul>
+        <p>简单说：ITW做<strong>"工业界的小零件和小设备"</strong>，单品售价不高但用量大、客户黏性强——是典型的"隐形冠军"集合体。</p>
+
+        <h3>2.2 七大业务板块（2025年）</h3>
+        <table>
+            <tr><th>业务板块</th><th>2025营收</th><th>占比</th><th>营业利润率</th><th>主要品牌/产品</th><th>增长趋势</th></tr>
+            <tr><td>汽车OEM</td><td>$3.29B</td><td>20.5%</td><td>21.8%</td><td>塑料件/金属件/扣件/集成组件</td><td>2025 +6%，EV转型受益</td></tr>
+            <tr><td>测试测量与电子</td><td>$2.83B</td><td>17.6%</td><td>28.1%</td><td>材料测试/电子组装/半导体设备</td><td>2025 +6%，半导体周期</td></tr>
+            <tr><td>食品设备</td><td>$2.70B</td><td>16.8%</td><td>~28%</td><td>Hobart/Vulcan/Foster Refrigerator</td><td>稳定增长+服务收入</td></tr>
+            <tr><td>焊接</td><td>$1.89B</td><td>11.8%</td><td>~27%</td><td>Miller Electric/Hobart Welding</td><td>工业活动驱动</td></tr>
+            <tr><td>建筑产品</td><td>$1.82B</td><td>11.3%</td><td>29.0%</td><td>扣件系统/建筑紧固件</td><td>2025 -2%，房地产疲软</td></tr>
+            <tr><td>特种产品</td><td>$1.78B</td><td>11.1%</td><td>~26%</td><td>饮料包装/产品标识/家电组件</td><td>细分市场领先</td></tr>
+            <tr><td>聚合物与流体</td><td>$1.77B</td><td>11.0%</td><td>29.0%</td><td>胶粘剂/密封剂/润滑液/PVC</td><td>2025 +7%，强势</td></tr>
+            <tr><td><strong>合计</strong></td><td><strong>$16.04B</strong></td><td><strong>100%</strong></td><td><strong>26.3%</strong></td><td></td><td>2025 +1%营收</td></tr>
+        </table>
+
+        <h3>2.3 地理营收分布（2025年）</h3>
+        <table>
+            <tr><th>地区</th><th>2025营收</th><th>占比</th><th>主要市场</th></tr>
+            <tr><td>北美（含美国）</td><td>$8.48B</td><td>53%</td><td>美国本土（$7.40B）+ 加拿大/墨西哥</td></tr>
+            <tr><td>欧洲</td><td>$4.16B</td><td>26%</td><td>德国/法国/英国/意大利</td></tr>
+            <tr><td>亚太</td><td>$3.08B</td><td>19%</td><td>中国/日本/韩国/澳大利亚</td></tr>
+            <tr><td>南美</td><td>$0.32B</td><td>2%</td><td>巴西/阿根廷</td></tr>
+        </table>
+
+        <div class="highlight">
+            <strong>"生产地即销售地"战略：</strong> ITW超过90%的产品在销售地当地生产——这一战略在2025年关税环境下展现了巨大优势，使关税影响对EPS"中性甚至正向"。这是巴菲特会欣赏的"运营韧性"——通过全球化本地生产对冲贸易壁垒风险。
+        </div>
+
+        <h3>2.4 商业模式与赚钱逻辑</h3>
+        <p>ITW的赚钱逻辑：<strong>"80/20客户聚焦+客户导向创新(CBI)+去中心化运营"</strong></p>
+        <ul>
+            <li><strong>收入来源</strong>：B2B工业客户（汽车OEM/餐饮连锁/建筑商/制造商），70%收入来自重复购买的消耗品和售后配件</li>
+            <li><strong>毛利模式</strong>：毛利率43%（2025），通过80/20简化产品线+客户聚焦提升毛利</li>
+            <li><strong>客户黏性</strong>：70%收入来自"消耗品+售后配件+服务"——客户一旦使用ITW设备，后续消耗品持续购买数十年</li>
+            <li><strong>周期性</strong>：中等周期性（汽车/建筑/工业活动敏感），但7板块分散降低周期波动</li>
+            <li><strong>资本密集度</strong>：低-中等，年CapEx约$0.8-1B，主要投资产能和自动化</li>
+        </ul>
+
+        <h3>2.5 ITW独特的"80/20经营哲学"</h3>
+        <div class="highlight">
+            <strong>80/20原则是ITW的核心护城河，自1980年代发展至今40年：</strong>
+            <ul>
+                <li><strong>客户聚焦</strong>：识别20%核心客户（贡献80%利润），将资源集中于解决他们的关键痛点</li>
+                <li><strong>复杂度简化</strong>：剔除80%低效产品线/客户/流程，降低运营复杂度，提升效率</li>
+                <li><strong>客户导向创新（CBI）</strong>：2025年CBI贡献2.4%有机增长（vs 2024年2.0%），目标2030年达3%+，专利申请增长18%</li>
+                <li><strong>去中心化运营</strong>：7大板块下约80个独立运营的事业部，每个事业部像小公司一样自主决策</li>
+                <li><strong>结果</strong>：26.3%行业最佳营业利润率+29.3%税后ROIC+连续62年股息增长</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- ===================== 第三章：产品竞争力分析 ===================== -->
+    <div class="info-box">
+        <h2 id="chapter3">三、业务板块产品竞争力分析</h2>
+
+        <h3>3.1 汽车OEM业务 - 营收$3.29B</h3>
+        <p><strong>1. 可替代性：<span class="tag-green">低（Low）</span></strong></p>
+        <ul>
+            <li>主要替代品：其他汽车零部件供应商（Magna/BorgWarner/Aptiv），但ITW专注"定制化塑料件+金属扣件+集成组件"细分</li>
+            <li>替代体验差距：汽车OEM更换供应商需重新验证测试（6-18个月），且ITW产品多为定制化设计</li>
+            <li>替代趋势：稳定——EV转型反而增加ITW单车含量（电池组件紧固件/轻量化塑料件）</li>
+        </ul>
+        <p><strong>2. 客户转换成本：<span class="tag-green">高（High）</span></strong></p>
+        <ul>
+            <li>财务转换成本：重新设计模具+验证测试，单次切换成本$5-20M</li>
+            <li>时间转换成本：6-18个月验证周期</li>
+            <li>风险转换成本：汽车OEM对供应商缺陷零容忍（安全风险）</li>
+            <li>总体评估：汽车OEM供应商切换成本极高，ITW与福特/GM/丰田等有数十年合作</li>
+        </ul>
+        <p><strong>3. 定价权：<span class="tag-green">强（Strong）</span></strong></p>
+        <ul>
+            <li>历史涨价记录：每年2-4%涨价，高于CPI</li>
+            <li>定价权来源：定制化产品+长合同+原材料转嫁条款</li>
+            <li>定价权趋势：稳定——EV转型增加单车ITW含量（+$15-30/车）</li>
+            <li><strong>巴菲特测试</strong>：若ITW涨价10%，汽车OEM因切换成本太高不会流失客户——强定价权</li>
+        </ul>
+        <p><strong>整体竞争力评级：★★★★（4/5星）</strong></p>
+
+        <h3>3.2 食品设备业务（Hobart/Vulcan）- 营收$2.70B</h3>
+        <p><strong>1. 可替代性：<span class="tag-green">低（Low）</span></strong></p>
+        <ul>
+            <li>主要替代品：Manitowoc/Welbilt/Ali Group，但Hobart在"商用洗碗机"细分品类份额第一（~40%）</li>
+            <li>替代体验差距：Hobart品牌在餐饮行业有百年口碑，服务网络覆盖最广</li>
+            <li>替代趋势：稳定——餐饮连锁一旦选用Hobart，后续数十年配件+服务持续</li>
+        </ul>
+        <p><strong>2. 客户转换成本：<span class="tag-green">极高（Extremely High）</span></strong></p>
+        <ul>
+            <li>财务转换成本：单台Hobart设备$5,000-50,000，整套厨房设备$100K+</li>
+            <li>时间转换成本：员工培训+菜单调整+服务网络重建</li>
+            <li>捆绑转换成本：Hobart"设备+消耗品+服务"捆绑，配件必须用原厂</li>
+            <li>总体评估：餐饮连锁切换设备品牌几乎不可能——"剃刀-刀片"模式极强</li>
+        </ul>
+        <p><strong>3. 定价权：<span class="tag-green">强（Strong）</span></strong></p>
+        <ul>
+            <li>历史涨价记录：每年3-5%涨价，服务合同年涨5-7%</li>
+            <li>定价权来源：Hobart品牌+服务网络垄断+配件独家供应</li>
+            <li><strong>巴菲特测试</strong>：若Hobart涨价10%，麦当劳/希尔顿不会切换——品牌+服务网络护城河极强</li>
+        </ul>
+        <p><strong>整体竞争力评级：★★★★★（5/5星）</strong> - ITW最佳业务板块</p>
+
+        <h3>3.3 测试测量与电子业务 - 营收$2.83B</h3>
+        <p><strong>1. 可替代性：<span class="tag-orange">中等（Medium）</span></strong></p>
+        <ul>
+            <li>主要替代品：Instron/MTS（材料测试）、Applied Materials/Lam Research（半导体设备）</li>
+            <li>替代体验差距：ITW在细分领域（如电子微连接、半导体封装测试）有差异化技术</li>
+            <li>替代趋势：加速——半导体设备周期性强，竞争对手技术追赶快</li>
+        </ul>
+        <p><strong>2. 客户转换成本：<span class="tag-green">高（High）</span></strong></p>
+        <ul>
+            <li>设备+消耗品+软件生态绑定客户</li>
+        </ul>
+        <p><strong>3. 定价权：<span class="tag-orange">中等（Medium）</span></strong></p>
+        <ul>
+            <li>半导体周期影响定价能力</li>
+        </ul>
+        <p><strong>整体竞争力评级：★★★（3/5星）</strong></p>
+
+        <h3>3.4 焊接业务（Miller Electric）- 营收$1.89B</h3>
+        <p><strong>1. 可替代性：<span class="tag-green">低（Low）</span></strong></p>
+        <ul>
+            <li>主要替代品：Lincoln Electric/Esab，但Miller在北美MIG/TIG焊机份额第一（~35%）</li>
+            <li>替代趋势：稳定——焊工品牌忠诚度高</li>
+        </ul>
+        <p><strong>2. 客户转换成本：<span class="tag-orange">中等（Medium）</span></strong></p>
+        <ul>
+            <li>设备切换成本中等，但"焊机+耗材+配件"生态绑定</li>
+        </ul>
+        <p><strong>3. 定价权：<span class="tag-green">强（Strong）</span></strong></p>
+        <ul>
+            <li>Miller品牌溢价10-15%，焊工愿为可靠性支付溢价</li>
+            <li><strong>巴菲特测试</strong>：若Miller涨价10%，焊工因熟悉性和可靠性不会轻易切换——较强定价权</li>
+        </ul>
+        <p><strong>整体竞争力评级：★★★★（4/5星）</strong></p>
+
+        <h3>3.5 建筑产品业务 - 营收$1.82B</h3>
+        <p><strong>1. 可替代性：<span class="tag-red">高（High）</span></strong></p>
+        <ul>
+            <li>主要替代品：Simpson Strong-Tie/Midwest Fastener/建筑商自有品牌</li>
+            <li>替代趋势：加速——建筑扣件是相对 commoditized 的品类</li>
+        </ul>
+        <p><strong>2. 客户转换成本：<span class="tag-red">低（Low）</span></strong></p>
+        <ul>
+            <li>标准化的扣件产品，建筑商对价格敏感</li>
+        </ul>
+        <p><strong>3. 定价权：<span class="tag-red">弱（Weak）</span></strong></p>
+        <ul>
+            <li>受房地产周期和原材料成本双重影响</li>
+        </ul>
+        <p><strong>整体竞争力评级：★★（2/5星）</strong> - ITW最弱业务板块</p>
+
+        <h3>3.6 聚合物与流体业务 - 营收$1.77B</h3>
+        <p><strong>1. 可替代性：<span class="tag-orange">中等（Medium）</span></strong></p>
+        <p><strong>2. 客户转换成本：<span class="tag-orange">中等（Medium）</span></strong></p>
+        <p><strong>3. 定价权：<span class="tag-orange">中等（Medium）</span></strong></p>
+        <p><strong>整体竞争力评级：★★★（3/5星）</strong></p>
+
+        <h3>3.7 特种产品业务 - 营收$1.78B</h3>
+        <p><strong>1. 可替代性：<span class="tag-orange">中等（Medium）</span></strong></p>
+        <p><strong>2. 客户转换成本：<span class="tag-orange">中等（Medium）</span></strong></p>
+        <p><strong>3. 定价权：<span class="tag-orange">中等（Medium）</span></strong></p>
+        <p><strong>整体竞争力评级：★★★（3/5星）</strong></p>
+
+        <h3>3.8 综合产品竞争力矩阵</h3>
+        <div class="competitiveness-grid">
+            <div class="comp-card">
+                <h4>汽车OEM</h4>
+                <div class="comp-level" style="color:#27ae60;">★★★★</div>
+                <p style="font-size:0.85em;">4星——定制化+高转换成本+EV受益</p>
+            </div>
+            <div class="comp-card">
+                <h4>食品设备 Hobart</h4>
+                <div class="comp-level" style="color:#27ae60;">★★★★★</div>
+                <p style="font-size:0.85em;">5星——品牌+服务网络+剃刀刀片模式</p>
+            </div>
+            <div class="comp-card">
+                <h4>测试测量电子</h4>
+                <div class="comp-level" style="color:#f39c12;">★★★</div>
+                <p style="font-size:0.85em;">3星——半导体周期性+技术竞争</p>
+            </div>
+            <div class="comp-card">
+                <h4>焊接 Miller</h4>
+                <div class="comp-level" style="color:#27ae60;">★★★★</div>
+                <p style="font-size:0.85em;">4星——品牌忠诚度+耗材生态</p>
+            </div>
+            <div class="comp-card">
+                <h4>建筑产品</h4>
+                <div class="comp-level" style="color:#c0392b;">★★</div>
+                <p style="font-size:0.85em;">2星——commoditized+周期性</p>
+            </div>
+            <div class="comp-card">
+                <h4>聚合物流体</h4>
+                <div class="comp-level" style="color:#f39c12;">★★★</div>
+                <p style="font-size:0.85em;">3星——细分市场中等竞争力</p>
+            </div>
+            <div class="comp-card">
+                <h4>特种产品</h4>
+                <div class="comp-level" style="color:#f39c12;">★★★</div>
+                <p style="font-size:0.85em;">3星——细分市场分散</p>
+            </div>
+        </div>
+
+        <div class="highlight">
+            <strong>综合评价：</strong> ITW 7大业务板块平均约3.5星，其中2个4星（汽车OEM+焊接）+1个5星（食品设备）+3个3星+1个2星。这是典型的"多业务板块组合"——通过分散化降低单一板块风险，食品设备Hobart是最强"隐形冠军"。与单一业务公司不同，ITW的护城河不是单一产品，而是<strong>"80/20经营哲学+CBI创新体系+去中心化运营"这套可复制的运营系统</strong>——这是竞争对手最难模仿的。
+        </div>
+    </div>
+
+    <!-- ===================== 第四章：历史财务指标 ===================== -->
+    <div class="info-box">
+        <h2 id="chapter4">四、历史财务指标</h2>
+
+        <h3>4.1 10年核心财务数据（2016-2025）</h3>
+        <table>
+            <tr>
+                <th>年份</th><th>营收（亿美元）</th><th>净利润（亿美元）</th><th>EPS</th><th>股息</th>
+                <th>ROE</th><th>ROIC</th><th>营业利润率</th><th>资产负债率</th><th>PE（年末）</th>
+            </tr>
+            <tr><td>2016</td><td>136</td><td>20.4</td><td>$5.81</td><td>$2.20</td><td>47.8%</td><td>16.5%</td><td>22.5%</td><td>0.72</td><td>19.0x</td></tr>
+            <tr><td>2017</td><td>143</td><td>16.9</td><td>$4.70</td><td>$2.40</td><td>36.8%</td><td>13.5%</td><td>23.7%</td><td>0.73</td><td>21.0x</td></tr>
+            <tr><td>2018</td><td>148</td><td>25.6</td><td>$7.00</td><td>$2.60</td><td>78.8%</td><td>21.8%</td><td>24.3%</td><td>0.78</td><td>19.3x</td></tr>
+            <tr><td>2019</td><td>141</td><td>25.2</td><td>$6.90</td><td>$2.80</td><td>83.3%</td><td>23.5%</td><td>24.1%</td><td>0.80</td><td>19.8x</td></tr>
+            <tr><td>2020</td><td>126</td><td>21.1</td><td>$5.80</td><td>$3.04</td><td>66.3%</td><td>19.1%</td><td>22.9%</td><td>0.80</td><td>27.4x</td></tr>
+            <tr><td>2021</td><td>145</td><td>26.9</td><td>$7.40</td><td>$3.28</td><td>74.3%</td><td>23.8%</td><td>24.0%</td><td>0.77</td><td>25.7x</td></tr>
+            <tr><td>2022</td><td>159</td><td>30.3</td><td>$8.40</td><td>$3.56</td><td>98.3%</td><td>27.4%</td><td>23.8%</td><td>0.80</td><td>24.4x</td></tr>
+            <tr><td>2023</td><td>161</td><td>29.6</td><td>$8.20</td><td>$3.84</td><td>98.2%</td><td>26.9%</td><td>25.1%</td><td>0.81</td><td>23.7x</td></tr>
+            <tr><td>2024</td><td>159</td><td>34.9</td><td>$11.71</td><td>$5.24</td><td>105.2%</td><td>28.5%</td><td>26.1%</td><td>0.79</td><td>~23x</td></tr>
+            <tr><td>2025</td><td>160</td><td>30.7</td><td>$10.49</td><td>$6.22</td><td>95.1%</td><td>29.3%</td><td>26.3%</td><td>0.78</td><td>~25.7x</td></tr>
+        </table>
+
+        <div class="highlight">
+            <strong>巴菲特式分析：</strong>
+            <ul>
+                <li><strong>ROE分析</strong>：ITW的ROE从2016年47.8%升至2025年95.1%，看似极高，但这部分是<strong>"金融工程放大"</strong>——通过持续回购（10年减少20%股份）将股东权益压缩至约32亿美元，同时维持89亿债务，权益乘数约2.8x。但与KMB不同，ITW的<strong>真实经营ROIC同样出色</strong>——从2016年16.5%提升至2025年29.3%，这是真实的经营改善，而非纯金融工程。29.3% ROIC在工业制造业中属顶尖水平。</li>
+                <li><strong>营业利润率</strong>：从2016年22.5%提升至2025年26.3%（+380基点），10年持续改善。这是80/20简化+CBI创新+规模效应的综合体现。目标2030年达30%。</li>
+                <li><strong>资产负债率</strong>：稳定在0.72-0.81区间，89亿美元债务vs 32亿权益，债务/权益2.8x。但ITW信用评级A+（工业行业最高），债务以低息长期债券为主，利息覆盖充足。</li>
+                <li><strong>PE估值</strong>：10年PE区间19-27x，均值约21.7x。当前PE 25.7x处于高位，反映市场对ITW质量的溢价。</li>
+                <li><strong>EPS增长</strong>：2016-2025年EPS从$5.81增至$10.49，CAGR 6.8%——典型"稳健增长"型工业复利机器。股息从$2.20增至$6.22，CAGR 12.2%——远超EPS增长，反映派息率从38%提升至59%。</li>
+            </ul>
+        </div>
+
+        <div class="chart-container">
+            <canvas id="chart1" height="100"></canvas>
+        </div>
+
+        <div class="chart-container">
+            <canvas id="chart2" height="100"></canvas>
+        </div>
+    </div>
+
+    <!-- ===================== 第五章：竞争分析 ===================== -->
+    <div class="info-box">
+        <h2 id="chapter5">五、竞争分析</h2>
+
+        <h3>5.1 主要竞争对手及市场份额</h3>
+        <table>
+            <tr><th>业务板块</th><th>ITW地位</th><th>主要竞争对手</th><th>竞争优势</th></tr>
+            <tr><td>汽车OEM</td><td>Top 5供应商</td><td>Magna/BorgWarner/Aptiv/Lear</td><td>定制化+长合同+EV受益</td></tr>
+            <tr><td>食品设备</td><td>#1商用洗碗机（~40%）</td><td>Manitowoc/Ali Group/Welbilt</td><td>Hobart品牌+服务网络+剃刀刀片模式</td></tr>
+            <tr><td>测试测量电子</td><td>细分Top 3</td><td>Instron/MTS/Applied Materials</td><td>细分技术差异化</td></tr>
+            <tr><td>焊接</td><td>#1北美焊机（~35%）</td><td>Lincoln Electric/Esab</td><td>Miller品牌+焊工忠诚度</td></tr>
+            <tr><td>建筑产品</td><td>Top 3</td><td>Simpson Strong-Tie/Midwest</td><td>规模优势弱</td></tr>
+            <tr><td>聚合物流体</td><td>细分Top 3</td><td>Henkel/3M/Sika</td><td>细分市场差异化</td></tr>
+            <tr><td>特种产品</td><td>细分#1（饮料包装）</td><td>多细分竞争对手</td><td>细分市场领导</td></tr>
+        </table>
+
+        <h3>5.2 与同行业对比</h3>
+        <table>
+            <tr><th>维度</th><th>ITW</th><th>Emerson (EMR)</th><th>Roper (ROP)</th><th>AMETEK (AME)</th></tr>
+            <tr><td>市值</td><td>$778亿</td><td>$794亿</td><td>$323亿</td><td>$517亿</td></tr>
+            <tr><td>营收</td><td>$160亿</td><td>$175亿</td><td>$62亿</td><td>$69亿</td></tr>
+            <tr><td>营业利润率</td><td>26.3%</td><td>~23%</td><td>~39%</td><td>~27%</td></tr>
+            <tr><td>ROIC</td><td>29.3%</td><td>~14%</td><td>~13%</td><td>~17%</td></tr>
+            <tr><td>股息增长年数</td><td>62年</td><td>66年</td><td>33年</td><td>5年</td></tr>
+            <tr><td>PE</td><td>25.7x</td><td>~25x</td><td>~33x</td><td>~27x</td></tr>
+            <tr><td>股息收益率</td><td>2.3%</td><td>~2.0%</td><td>~0.7%</td><td>~0.6%</td></tr>
+            <tr><td>信用评级</td><td>A+</td><td>BBB+</td><td>A+</td><td>A-</td></tr>
+        </table>
+
+        <h3>5.3 经济护城河评估</h3>
+        <div class="moat-item">
+            <strong>1. 80/20经营哲学（80/20 Business Model）★★★★★</strong><br>
+            ITW最核心护城河——40年发展的"客户聚焦+复杂度简化+去中心化运营"体系，是可复制、可扩展的运营系统，竞争对手难以模仿。这是巴菲特会赞赏的"结构性竞争优势"。
+        </div>
+        <div class="moat-item">
+            <strong>2. 客户导向创新（CBI）★★★★</strong><br>
+            2025年CBI贡献2.4%有机增长，专利申请+18%。CBI使ITW从"slow-growth工业"转型为"innovation-driven compounder"。
+        </div>
+        <div class="moat-item">
+            <strong>3. 品牌力（Hobart/Miller）★★★★</strong><br>
+            Hobart（餐饮设备）和Miller Electric（焊机）是各自细分品类的"国民品牌"，拥有数十年口碑和广覆盖服务网络。
+        </div>
+        <div class="moat-item">
+            <strong>4. 转换成本（设备+耗材+服务）★★★★★</strong><br>
+            "剃刀-刀片"模式：客户购买Hobart/Miller设备后，后续数十年购买原厂耗材+配件+服务。70%收入来自重复购买。
+        </div>
+        <div class="moat-item">
+            <strong>5. 规模优势（Scale Advantage）★★★</strong><br>
+            160亿营收规模+55国本地化生产，提供采购议价力和制造效率，但非ITW核心护城河。
+        </div>
+        <div class="moat-item">
+            <strong>6. 财务韧性（Financial Resilience）★★★★★</strong><br>
+            A+信用评级（工业行业最高）+89亿低息长期债务+9亿现金+62年股息增长记录。100%+自由现金流转化率。
+        </div>
+        <div class="moat-item">
+            <strong>7. 全球化本地生产（Produce Where We Sell）★★★★</strong><br>
+            90%+产品在销售地生产，对冲关税和贸易壁垒风险。2025年关税影响"EPS中性或正向"。
+        </div>
+
+        <div class="highlight">
+            <strong>护城河可持续性：</strong> ITW的护城河是<strong>"运营系统护城河"</strong>——不是单一产品或品牌，而是一套可复制、可扩展的80/20+CBI运营哲学。这种"系统化护城河"比单一产品护城河更持久——即使某个业务板块衰退，ITW可以将80/20体系应用到新业务。这是巴菲特会喜欢的"可以持续数十年的结构性优势"。最大威胁是"有机增长持续低迷"——10年营收CAGR仅1.8%，依赖CBI创新驱动4%+增长目标能否实现是关键。
+        </div>
+    </div>
+
+    <!-- ===================== 第六章：利润分配分析 ===================== -->
+    <div class="info-box">
+        <h2 id="chapter6">六、利润分配分析</h2>
+
+        <h3>6.1 10年利润分配表（2016-2025，亿美元）</h3>
+        <table>
+            <tr>
+                <th>年份</th><th>净利润</th><th>分红</th><th>回购</th><th>CapEx</th>
+                <th>留存金额</th><th>留存率</th><th>股份数（百万）</th>
+            </tr>
+            <tr><td>2016</td><td>20.4</td><td>7.7</td><td>6.0</td><td>5.0</td><td>12.7</td><td>62%</td><td>358</td></tr>
+            <tr><td>2017</td><td>16.9</td><td>8.4</td><td>7.0</td><td>5.0</td><td>8.5</td><td>50%</td><td>351</td></tr>
+            <tr><td>2018</td><td>25.6</td><td>9.1</td><td>9.0</td><td>6.0</td><td>16.5</td><td>64%</td><td>344</td></tr>
+            <tr><td>2019</td><td>25.2</td><td>9.8</td><td>6.0</td><td>6.0</td><td>15.4</td><td>61%</td><td>338</td></tr>
+            <tr><td>2020</td><td>21.1</td><td>10.6</td><td>3.0</td><td>5.0</td><td>10.5</td><td>50%</td><td>337</td></tr>
+            <tr><td>2021</td><td>26.9</td><td>11.4</td><td>7.0</td><td>5.5</td><td>15.5</td><td>58%</td><td>332</td></tr>
+            <tr><td>2022</td><td>30.3</td><td>12.4</td><td>9.0</td><td>6.0</td><td>17.9</td><td>59%</td><td>324</td></tr>
+            <tr><td>2023</td><td>29.6</td><td>13.4</td><td>7.0</td><td>6.0</td><td>16.2</td><td>55%</td><td>319</td></tr>
+            <tr><td>2024</td><td>34.9</td><td>14.5</td><td>14.0</td><td>7.0</td><td>20.4</td><td>58%</td><td>299</td></tr>
+            <tr><td>2025</td><td>30.7</td><td>15.5</td><td>15.0</td><td>8.0</td><td>15.2</td><td>49%</td><td>288</td></tr>
+            <tr><td><strong>10年累计</strong></td><td><strong>261.0</strong></td><td><strong>112.8</strong></td><td><strong>83.0</strong></td><td><strong>59.5</strong></td><td><strong>148.3</strong></td><td><strong>57%（均值）</strong></td><td>股份数减少70M（-20%）</td></tr>
+        </table>
+
+        <h3>6.2 利润分配结构分析</h3>
+        <ul>
+            <li><strong>分红（43%）</strong>：10年累计113亿美元，平均派息率43%。连续62年股息增长（股息之王），股息从$2.20增至$6.22，CAGR 12.2%——远超EPS增长（6.8%），反映派息率从38%提升至59%。2025年股息增长+7%。</li>
+            <li><strong>回购（32%）</strong>：10年累计83亿美元，回购金额持续增长——2024-2025年回购30亿美元（占10年回购的36%）。10年减少7000万股（-20%），是典型的"持续回购复利机器"。</li>
+            <li><strong>CapEx（23%）</strong>：10年累计60亿美元，平均年CapEx约6亿美元，主要用于产能扩张和自动化升级。</li>
+            <li><strong>留存（57%）</strong>：10年累计留存148亿美元，留存率平均57%。可持续增长率 = ROIC × 留存率 = 29.3% × 57% = 16.7%（理论上），实际EPS增长6.8%——说明部分留存用于收购和债务管理。</li>
+        </ul>
+
+        <div class="chart-container">
+            <canvas id="chart3" height="100"></canvas>
+        </div>
+
+        <h3>6.3 资本配置质量评价</h3>
+        <div class="moat-item">
+            <strong>优点：</strong>
+            <ul>
+                <li>62年股息增长记录——"股息之王"称号体现了管理层的股东回报承诺</li>
+                <li>10年股息CAGR 12.2%——远超EPS增长，体现持续提升派息率</li>
+                <li>10年回购83亿美元，股份数减少20%——持续回购复利效应</li>
+                <li>2024-2025年加大回购至30亿美元/两年——在估值合理时加速回购</li>
+                <li>100%+自由现金流转化率——高质量现金流生成能力</li>
+                <li>A+信用评级——债务管理纪律严明</li>
+            </ul>
+        </div>
+        <div class="risk-item">
+            <strong>缺点：</strong>
+            <ul>
+                <li><strong>估值偏高时仍回购</strong>：2025年PE 25.7x高于10年均值21.7x时仍回购15亿美元——巴菲特会批评"在高估值时回购损害股东价值"</li>
+                <li><strong>派息率提升至59%</strong>：已接近60-65%的上限，未来股息增长可能放缓至EPS增长水平</li>
+                <li><strong>有机增长缓慢</strong>：10年营收CAGR仅1.8%，过度依赖回购驱动EPS增长而非有机增长</li>
+            </ul>
+        </div>
+
+        <div class="highlight">
+            <strong>巴菲特式评价：</strong> ITW的资本配置是<strong>"高分红+持续回购+纪律严明"的典范</strong>——10年累计向股东返还196亿美元（分红113亿+回购83亿），占净利润的75%。这与巴菲特偏好的"留存复利"模式不同，但ITW作为成熟工业公司，再投资机会有限，高分红+回购是合理的。关键优点是回购持续性强（10年减20%股份），关键缺点是2025年PE 25.7x时仍大额回购——巴菲特会建议"在PE低于20x时加大回购，高于25x时暂停回购"。整体资本配置质量评分：★★★★（4/5星）。
+        </div>
+    </div>
+
+    <!-- ===================== 第七章：投资总结 ===================== -->
+    <div class="info-box">
+        <h2 id="chapter7">七、投资总结</h2>
+
+        <h3>7.1 ITW的优势</h3>
+        <div class="moat-item">
+            <strong>1. 80/20经营哲学护城河（核心优势）</strong><br>
+            40年发展的"客户聚焦+复杂度简化+CBI创新+去中心化运营"体系，是可复制可扩展的运营系统护城河，竞争对手难以模仿。这是ITW最大的结构性优势。
+        </div>
+        <div class="moat-item">
+            <strong>2. 62年股息之王</strong><br>
+            连续62年股息增长，10年CAGR 12.2%。当前2.3%收益率看似不高，但考虑股息增长后总回报可观。
+        </div>
+        <div class="moat-item">
+            <strong>3. 行业最佳盈利能力</strong><br>
+            26.3%营业利润率+29.3% ROIC，在工业制造业中属顶尖水平。目标2030年达30%营业利润率+35%+ ROIC。
+        </div>
+        <div class="moat-item">
+            <strong>4. 7板块分散化降低周期风险</strong><br>
+            7大业务板块覆盖汽车/餐饮/工业/建筑/电子等，分散单一行业风险。食品设备Hobart是5星"隐形冠军"。
+        </div>
+        <div class="moat-item">
+            <strong>5. 全球化本地生产对冲关税</strong><br>
+            90%+产品在销售地生产，2025年关税影响"EPS中性或正向"。在贸易保护主义时代具有结构性优势。
+        </div>
+        <div class="moat-item">
+            <strong>6. A+信用评级+强劲现金流</strong><br>
+            工业行业最高信用评级之一，100%+自由现金流转化率，财务韧性极强。
+        </div>
+
+        <h3>7.2 ITW的风险</h3>
+        <div class="risk-item">
+            <strong>1. 估值偏高（主要风险）</strong><br>
+            当前PE 25.7x高于10年均值21.7x约18%溢价。市场已将ITW"高质量复利机器"特征定价在内。安全边际有限。
+        </div>
+        <div class="risk-item">
+            <strong>2. 有机增长缓慢</strong><br>
+            10年营收CAGR仅1.8%，2025年营收增长仅1%。CBI目标2030年达3%+有机增长贡献，但执行不确定性高。
+        </div>
+        <div class="risk-item">
+            <strong>3. 周期性风险</strong><br>
+            汽车/建筑/工业板块受经济周期影响。2025年建筑产品-2%，反映房地产疲软。
+        </div>
+        <div class="risk-item">
+            <strong>4. 新CEO过渡风险</strong><br>
+            2025年新CEO O'Herlihy上任，能否延续80/20经营哲学和CBI创新体系尚待观察。
+        </div>
+        <div class="risk-item">
+            <strong>5. 高债务水平</strong><br>
+            89亿美元债务vs 32亿权益，债务/权益2.8x。虽信用评级A+，但利率上升环境增加利息支出。
+        </div>
+
+        <h3>7.3 投资评级与建议</h3>
+        <table>
+            <tr><th>评估维度</th><th>评级</th><th>评分理由</th></tr>
+            <tr><td>业务易懂性</td><td>★★★★</td><td>7板块分散但每个都是工业零部件/设备，可理解</td></tr>
+            <tr><td>护城河</td><td>★★★★★</td><td>80/20经营哲学+CBI创新+Hobart/Miller品牌+设备耗材绑定</td></tr>
+            <tr><td>资本配置</td><td>★★★★</td><td>62年股息增长+持续回购，但高估值时仍回购扣分</td></tr>
+            <tr><td>财务安全</td><td>★★★★</td><td>A+评级+100%+ FCF转化，但债务/权益2.8x偏高</td></tr>
+            <tr><td>增长前景</td><td>★★★</td><td>10年营收CAGR 1.8%缓慢，CBI能否驱动4%+增长待验证</td></tr>
+            <tr><td>估值吸引力</td><td>★★★</td><td>PE 25.7x高于均值18%溢价，安全边际有限</td></tr>
+            <tr><td><strong>综合评级</strong></td><td><strong>★★★★（3.8/5）</strong></td><td>中上——好公司+合理价格+有限安全边际</td></tr>
+        </table>
+
+        <div class="highlight">
+            <strong>巴菲特芒格最终评价：</strong>
+            <ul>
+                <li><strong>公司质量：</strong> ★★★★★（顶尖工业复利机器——80/20经营哲学护城河+62年股息之王+29.3% ROIC+7板块分散）</li>
+                <li><strong>安全边际：</strong> ★★（当前PE 25.7x高于10年均值21.7x约18%溢价，安全边际有限——巴菲特会等待PE回落至20x以下再考虑加仓）</li>
+                <li><strong>长期持有：</strong> ★★★★★（ITW是"可以持有数十年的优质工业公司"——113年历史+62年股息增长+运营系统护城河可持续）</li>
+                <li><strong>建议操作：</strong> ITW是巴菲特芒格会欣赏的"好公司+合理价格"标的，但<strong>当前不是理想买入时机</strong>——PE 25.7x偏高。建议：①已持有者继续持有享受复利；②新投资者等待PE回落至20-22x区间建仓（对应股价$210-230）；③小仓位（3-5%）配置作为"工业板块防御性收益+增长"组合。</li>
+            </ul>
+            <strong>芒格金句应用：</strong> "以合理价格买入好公司"——ITW是好公司（运营系统护城河+股息之王+顶尖ROIC），但当前价格偏高（PE 25.7x高于均值18%）。"反过来想"——如果2026-2030年ITW有机增长未达4%目标，当前估值可能回调15-20%至PE 21x。"长期持有"——ITW是典型的"买入持有数十年"型资产，113年历史+62年股息增长证明其穿越周期的能力。"不要过度分散"——ITW作为工业板块核心持仓，可占投资组合5-10%权重。
+        </div>
+
+        <div class="highlight">
+            <strong>风险提示：</strong> ITW当前最大风险是估值偏高（PE 25.7x高于均值18%溢价）。若2026-2027年有机增长未达4%目标，或新CEO O'Herlihy未能延续80/20+CBI运营体系，估值可能回调15-25%。此外，建筑/汽车/工业板块周期性风险、89亿美元债务利息支出、派息率已达59%限制未来股息增长空间。投资者应密切关注：①2026年有机增长是否达2-4%；②CBI贡献是否提升至2.5%+；③营业利润率是否向27%+扩张；④新CEO的战略执行力。建议将ITW视为"高质量工业复利机器+防御性收益"组合，长期持有，但不在当前估值水平大额建仓。
+        </div>
+
+        <div class="highlight">
+            <strong>声明：</strong> 本分析仅供学习研究，不构成投资建议。投资者应根据自身风险承受能力、投资期限和组合配置情况做出独立决策。本分析基于2025年年报和2026年公开数据，可能存在时效性和数据精度限制。ITW面临工业周期波动、原材料成本、汇率风险、贸易政策变化、新CEO执行风险等多重风险，过往业绩不代表未来表现。
+        </div>
+    </div>
+
+    <!-- ================= 图表脚本 ================= -->
+    <script>
+    // 图表1：营收与净利润趋势
+    const ctx1 = document.getElementById('chart1').getContext('2d');
+    new Chart(ctx1, {
+        type: 'bar',
+        data: {
+            labels: ['2016','2017','2018','2019','2020','2021','2022','2023','2024','2025'],
+            datasets: [
+                {
+                    label: '营收（亿美元）',
+                    data: [136, 143, 148, 141, 126, 145, 159, 161, 159, 160],
+                    backgroundColor: 'rgba(46, 134, 193, 0.7)',
+                    yAxisID: 'y'
+                },
+                {
+                    label: '净利润（亿美元）',
+                    type: 'line',
+                    data: [20.4, 16.9, 25.6, 25.2, 21.1, 26.9, 30.3, 29.6, 34.9, 30.7],
+                    borderColor: '#27ae60',
+                    backgroundColor: 'rgba(39, 174, 96, 0.2)',
+                    tension: 0.3,
+                    fill: false,
+                    yAxisID: 'y1'
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            plugins: { title: { display: true, text: 'ITW 10年营收与净利润趋势（2016-2025，亿美元）' } },
+            scales: {
+                y: { type: 'linear', position: 'left', title: { display: true, text: '营收（亿美元）' } },
+                y1: { type: 'linear', position: 'right', title: { display: true, text: '净利润（亿美元）' }, grid: { drawOnChartArea: false } }
+            }
+        }
+    });
+
+    // 图表2：ROE、ROIC、营业利润率趋势
+    const ctx2 = document.getElementById('chart2').getContext('2d');
+    new Chart(ctx2, {
+        type: 'line',
+        data: {
+            labels: ['2016','2017','2018','2019','2020','2021','2022','2023','2024','2025'],
+            datasets: [
+                {
+                    label: 'ROE（%）',
+                    data: [47.8, 36.8, 78.8, 83.3, 66.3, 74.3, 98.3, 98.2, 105.2, 95.1],
+                    borderColor: '#2e86c1',
+                    backgroundColor: 'rgba(46, 134, 193, 0.2)',
+                    tension: 0.3,
+                    fill: false
+                },
+                {
+                    label: 'ROIC（%）',
+                    data: [16.5, 13.5, 21.8, 23.5, 19.1, 23.8, 27.4, 26.9, 28.5, 29.3],
+                    borderColor: '#27ae60',
+                    backgroundColor: 'rgba(39, 174, 96, 0.2)',
+                    tension: 0.3,
+                    fill: false
+                },
+                {
+                    label: '营业利润率（%）',
+                    data: [22.5, 23.7, 24.3, 24.1, 22.9, 24.0, 23.8, 25.1, 26.1, 26.3],
+                    borderColor: '#f39c12',
+                    backgroundColor: 'rgba(243, 156, 18, 0.2)',
+                    tension: 0.3,
+                    fill: false
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            plugins: { title: { display: true, text: 'ITW ROE/ROIC/营业利润率趋势（2016-2025，%）' } },
+            scales: { y: { title: { display: true, text: '%' } } }
+        }
+    });
+
+    // 图表3：10年利润分配结构
+    const ctx3 = document.getElementById('chart3').getContext('2d');
+    new Chart(ctx3, {
+        type: 'bar',
+        data: {
+            labels: ['2016','2017','2018','2019','2020','2021','2022','2023','2024','2025'],
+            datasets: [
+                { label: '分红', data: [7.7, 8.4, 9.1, 9.8, 10.6, 11.4, 12.4, 13.4, 14.5, 15.5], backgroundColor: '#27ae60', stack: 'a' },
+                { label: '回购', data: [6.0, 7.0, 9.0, 6.0, 3.0, 7.0, 9.0, 7.0, 14.0, 15.0], backgroundColor: '#f39c12', stack: 'a' },
+                { label: 'CapEx', data: [5.0, 5.0, 6.0, 6.0, 5.0, 5.5, 6.0, 6.0, 7.0, 8.0], backgroundColor: '#9b59b6', stack: 'a' },
+                { label: '留存', data: [12.7, 8.5, 16.5, 15.4, 10.5, 15.5, 17.9, 16.2, 20.4, 15.2], backgroundColor: '#34495e', stack: 'a' }
+            ]
+        },
+        options: {
+            responsive: true,
+            plugins: { title: { display: true, text: 'ITW 10年利润分配结构（2016-2025，亿美元）' } },
+            scales: { x: { stacked: true }, y: { stacked: true, title: { display: true, text: '亿美元' } } }
+        }
+    });
+    </script>
+
+    <script src="scores_client.js"></script>
+    <script src="stock_topbar.js"></script>
+</body>
+</html>
