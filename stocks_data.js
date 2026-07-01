@@ -112,7 +112,8 @@
         {code:'NVR',name:'NVR, Inc. - 住宅建筑/轻资产土地期权+零债务回购',href:'nvr.html'},
         {code:'SUN',name:'Sunoco LP - 燃料分销+管道+终端MLP高分红',href:'sun.html'},
         {code:'KMB',name:'Kimberly-Clark - 153年消费品防御股/股息之王53年',href:'kmb.html'},
-        {code:'ITW',name:'Illinois Tool Works - 113年工业复利机器/80-20经营哲学+62年股息之王',href:'itw.html'}
+        {code:'ITW',name:'Illinois Tool Works - 113年工业复利机器/80-20经营哲学+62年股息之王',href:'itw.html'},
+        {code:'HSY',name:'好时公司 - 132年巧克力复利机器/美国糖果#1份额33.5%+Reese's全美销量第一+15年股息增长',href:'hsy.html'}
     ];
 
     // 暴露为全局变量

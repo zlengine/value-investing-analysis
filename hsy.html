@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HSY 好时公司 - 巴菲特芒格式价值投资分析</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body { font-family: 'Segoe UI', Arial, sans-serif; line-height: 1.6; color: #333; max-width: 1200px; margin: 0 auto; padding: 20px; background: #f4f6f9; }
+        h1 { color: #6b2c0a; border-bottom: 3px solid #8b4513; padding-bottom: 10px; }
+        h2 { color: #6b2c0a; margin-top: 35px; border-left: 5px solid #8b4513; padding-left: 15px; }
+        h3 { color: #a0522d; margin-top: 25px; }
+        .info-box { background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.08); margin: 20px 0; }
+        .highlight { background: #fef9e7; padding: 15px; border-left: 5px solid #f39c12; margin: 20px 0; border-radius: 5px; }
+        .moat-item { background: #eafaf1; padding: 15px; margin: 10px 0; border-left: 5px solid #27ae60; border-radius: 5px; }
+        .risk-item { background: #fdedec; padding: 15px; margin: 10px 0; border-left: 5px solid #c0392b; border-radius: 5px; }
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; background: white; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        th, td { padding: 12px; text-align: left; border-bottom: 1px solid #ddd; }
+        th { background: #8b4513; color: white; }
+        tr:hover { background: #f5f5f5; }
+        .tag-green { background: #27ae60; color: white; padding: 3px 10px; border-radius: 12px; font-size: 0.85em; }
+        .tag-orange { background: #f39c12; color: white; padding: 3px 10px; border-radius: 12px; font-size: 0.85em; }
+        .tag-red { background: #c0392b; color: white; padding: 3px 10px; border-radius: 12px; font-size: 0.85em; }
+        .competitiveness-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; margin: 20px 0; }
+        .comp-card { background: white; padding: 15px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); text-align: center; }
+        .comp-card h4 { color: #6b2c0a; margin-bottom: 8px; }
+        .section-nav { background: white; border-radius: 10px; padding: 15px 25px; margin: 20px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.08); text-align: center; }
+        .section-nav a { display: inline-block; margin: 5px 10px; padding: 6px 14px; background: #fef2e8; color: #6b2c0a; text-decoration: none; border-radius: 15px; font-size: 0.9em; }
+        .section-nav a:hover { background: #8b4513; color: white; }
+        .chart-container { background: white; padding: 20px; border-radius: 10px; margin: 20px 0; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+    </style>
+</head>
+<body>
+    <div class="top-nav-bar"></div>
+    <script src="nav_bar.js"></script>
+    <span id="topbarCode" style="display:none;">HSY</span>
+
+    <h1>HSY 好时公司（The Hershey Company）- 巴菲特芒格式价值投资分析</h1>
+    <p style="color:#666; font-size:1.1em;"><em>分析日期：2026年6月29日 | 数据截止：2025年年报（2026年2月5日发布）</em></p>
+
+    <div class="section-nav">
+        <a href="#chapter1">公司基本信息</a>
+        <a href="#chapter2">业务分析</a>
+        <a href="#chapter3">产品竞争力分析</a>
+        <a href="#chapter4">历史财务指标</a>
+        <a href="#chapter5">竞争分析</a>
+        <a href="#chapter6">利润分配分析</a>
+        <a href="#chapter7">投资总结</a>
+    </div>
+
+    <!-- ===================== 第一章：公司基本信息 ===================== -->
+    <div class="info-box">
+        <h2 id="chapter1">一、公司基本信息</h2>
+        <table>
+            <tr><th>项目</th><th>详情</th></tr>
+            <tr><td>公司名称</td><td>The Hershey Company（好时公司）</td></tr>
+            <tr><td>股票代码</td><td>HSY（NYSE）+ HSY.A（Class B 不上市，由Hershey Trust持有）</td></tr>
+            <tr><td>成立时间</td><td>1894年（132年历史），由Milton S. Hershey在宾夕法尼亚州Lancaster创立</td></tr>
+            <tr><td>总部</td><td>19 East Chocolate Avenue, Hershey, PA 17033（巧克力大道19号——名字本身就是品牌）</td></tr>
+            <tr><td>最新股价</td><td>$181.51（2026年6月29日）</td></tr>
+            <tr><td>市值</td><td>约369亿美元（约2,660亿人民币）</td></tr>
+            <tr><td>企业价值（EV）</td><td>约401亿美元（含56亿债务，扣除9亿现金）</td></tr>
+            <tr><td>员工人数</td><td>17,550人（2025年底）</td></tr>
+            <tr><td>CEO</td><td>Kirk C. Tanner（2024年8月接任CEO，前Wendy's CEO，沃尔玛高管背景）</td></tr>
+            <tr><td>业务覆盖</td><td>80+国家销售，主要市场为北美</td></tr>
+            <tr><td>股息记录</td><td>连续15年股息增长（接近Dividend Aristocrats贵族地位）</td></tr>
+            <tr><td>股息收益率</td><td>约3.20%（年化股息$5.808/股，2025年Q4提至$1.452/季）</td></tr>
+            <tr><td>当前PE（TTM）</td><td>~42x（基于2025报告EPS $4.34，受可可危机影响）；~22x（基于2026E调整后EPS $8.36中值）</td></tr>
+            <tr><td>主要业务</td><td>3大板块：北美糖果/北美咸零食/国际业务</td></tr>
+            <tr><td>信用评级</td><td>A-（标普）/ A2（穆迪），投资级</td></tr>
+            <tr><td>控股结构</td><td>Hershey Trust Company持有约80%投票权（通过Class B股票），信托受益人为Milton Hershey School（孤儿学校）</td></tr>
+        </table>
+
+        <div class="highlight">
+            <strong>巴菲特视角：</strong> 好时是美国最具"品牌识别度+情感连接"的消费品公司之一——Milton Hershey于1909年将公司股权捐给Milton Hershey School（孤儿学校），形成独特的"慈善信托控股"结构。这种结构使好时具备两个巴菲特钟爱的特质：<strong>（1）品牌护城河无可替代</strong>（美国巧克力市场#1份额~33.5%，Reese's是全美销量第一糖果品牌）；<strong>（2）控制权稳定</strong>（Hershey Trust 80%投票权使公司几乎不可能被恶意收购，管理层可专注于长期经营）。但2025年可可价格暴涨70%对好时造成"结构性冲击"——毛利率从47.3%暴跌至33.5%，净利润暴跌60%，使这头"巧克力复利机器"短期失灵。巴菲特名言"只有退潮时才知道谁在裸泳"——2025年好时的退潮暴露了其对单一商品价格的脆弱性。
+        </div>
+    </div>
+
+    <!-- ===================== 第二章：业务分析 ===================== -->
+    <div class="info-box">
+        <h2 id="chapter2">二、业务分析</h2>
+
+        <h3>2.1 公司业务简述（120岁老奶奶也能懂）</h3>
+        <p>好时公司做的是<strong>"甜蜜的事业——巧克力和零食"</strong>，你只要进过超市就见过它的产品：</p>
+        <ul>
+            <li><strong>你过年吃的巧克力</strong>：好时Kisses（水晶糖包装）、好时大板巧克力、Reese's花生酱杯（全美销量#1糖果）</li>
+            <li><strong>孩子吃的Kit Kat</strong>：好时在美国市场代理销售Kit Kat（全球所有权属雀巢）</li>
+            <li><strong>薄荷糖和口香糖</strong>：Ice Breakers（清爽薄荷糖）</li>
+            <li><strong>看电影吃的硬糖</strong>：Jolly Rancher（果味硬糖）</li>
+            <li><strong>看电视吃的零食</strong>：SkinnyPop爆米花、Pirate's Booty奶酪泡米、Dot's Homestyle Pretzels椒盐卷饼</li>
+            <li><strong>健身人群的蛋白棒</strong>：ONE Bar蛋白棒</li>
+            <li><strong>有机健康零食</strong>：LesserEvil（2025年新收购的有机爆米花品牌）</li>
+        </ul>
+        <p>简单说：好时从<strong>"纯巧克力公司"</strong>正在转型为<strong>"全品类零食平台"</strong>——糖果业务提供现金流，咸零食业务提供增长动力。</p>
+
+        <h3>2.2 三大业务板块（2025年）</h3>
+        <table>
+            <tr><th>业务板块</th><th>2025营收</th><th>占比</th><th>主要品牌</th><th>增长趋势</th></tr>
+            <tr><td>北美糖果（North America Confectionery）</td><td>$9.48B</td><td>81%</td><td>Hershey's/Reese's/Kisses/Kit Kat/Jolly Rancher/Ice Breakers/Twizzlers</td><td>2025 +2.5%，价格驱动</td></tr>
+            <tr><td>北美咸零食（North America Salty Snacks）</td><td>$1.27B</td><td>11%</td><td>SkinnyPop/Pirate's Booty/Dot's Pretzels/ONE Bar/LesserEvil</td><td>2025 +28%，收购+有机增长</td></tr>
+            <tr><td>国际业务（International & Other）</td><td>$0.94B</td><td>8%</td><td>Hershey's/Reese's国际业务+墨西哥Pelon Pelo Rico+印度Sofit</td><td>2025 持平，可可成本压力</td></tr>
+            <tr><td><strong>合计</strong></td><td><strong>$11.69B</strong></td><td><strong>100%</strong></td><td></td><td>2025 +4.4%营收</td></tr>
+        </table>
+
+        <h3>2.3 地理营收分布（2025年）</h3>
+        <table>
+            <tr><th>地区</th><th>2025营收</th><th>占比</th><th>主要市场</th></tr>
+            <tr><td>美国</td><td>$9.95B</td><td>85%</td><td>全美零售渠道90%+覆盖</td></tr>
+            <tr><td>北美其他（加拿大/墨西哥）</td><td>$0.30B</td><td>3%</td><td>加拿大、墨西哥</td></tr>
+            <tr><td>国际（含巴西/印度/中国/东南亚）</td><td>$1.44B</td><td>12%</td><td>巴西、印度、中国、东南亚</td></tr>
+        </table>
+
+        <div class="highlight">
+            <strong>美国本土高度集中：</strong> 好时85%营收来自美国本土——这种"美国本土+糖果主导"的结构既是优势也是劣势。<strong>优势</strong>：美国糖果市场成熟稳定、品牌忠诚度极高、消费韧性极强（经济衰退时巧克力销量不降反升——"口红效应"）；<strong>劣势</strong>：缺乏国际多元化对冲，单一市场风险集中。对比同行Mondelez（国际收入占75%+），好时的国际化程度显著落后。
+        </div>
+
+        <h3>2.4 商业模式与赚钱逻辑</h3>
+        <p>好时的赚钱逻辑：<strong>"品牌糖果现金牛+咸零食增长引擎+季节性销售脉冲"</strong></p>
+        <ul>
+            <li><strong>收入来源</strong>：B2C快消品，主要客户为沃尔玛/克罗格/Target/CVS/Walgreens等大型零售商（前10客户占50%+营收）</li>
+            <li><strong>毛利模式</strong>：长期毛利率45-50%，2025年因可可暴涨降至33.5%（历史最低），2026年管理层指引恢复至41%</li>
+            <li><strong>季节性</strong>：Q4（万圣节+感恩节+圣诞节）占全年35-40%营收——极强的季节性脉冲</li>
+            <li><strong>资本密集度</strong>：低，年CapEx约$4-5亿（占营收3-4%），主要投资产能扩张和自动化</li>
+            <li><strong>护城河</strong>：品牌+渠道+季节性货架位置——"三重锁定"使新进入者极难撼动</li>
+        </ul>
+
+        <h3>2.5 战略转型：从"巧克力公司"到"全品类零食平台"</h3>
+        <div class="highlight">
+            <strong>CEO Kirk Tanner的"三引擎战略"：</strong>
+            <ul>
+                <li><strong>引擎1：糖果业务强化</strong>——通过Reese's品牌延伸（Reese's Big Cup/Reese's Pieces等创新）+季节性产品+高端化保持核心业务增长</li>
+                <li><strong>引擎2：咸零食扩张</strong>——通过收购（LesserEvil 2025/Dot's Pretzels 2021/One Brands 2020）+有机增长（SkinnyPop）打造第二增长曲线</li>
+                <li><strong>引擎3：AAA成本节约</strong>——"Advancing Agility & Automation Initiative"自动化项目，目标2026年节约$4亿年成本（2025年已实现$2.3亿），2026年再节约$1亿</li>
+                <li><strong>2026展望</strong>：营收+4-5%，调整后EPS $8.20-$8.52（+30-35%），毛利率恢复至41%</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- ===================== 第三章：产品竞争力分析 ===================== -->
+    <div class="info-box">
+        <h2 id="chapter3">三、业务板块产品竞争力分析</h2>
+
+        <h3>3.1 北美糖果业务（North America Confectionery）- 营收$9.48B</h3>
+        <p><strong>1. 可替代性：<span class="tag-orange">中等（Medium）</span></strong></p>
+        <ul>
+            <li>主要替代品：Mars（M&M's/Snickers/Twix）、Mondelez（Cadbury/Oreo）、Lindt、Ferrero、自有品牌</li>
+            <li>替代体验差距：Reese's花生酱杯口味独特（"巧克力+花生酱"组合难以复制），但其他巧克力品类替代性较强</li>
+            <li>替代趋势：稳定——美国消费者品牌忠诚度高，但健康趋势推动部分消费者转向低糖/无糖替代品</li>
+            <li>关键护城河：Reese's是"非替代性品牌"——全美销量第一糖果品牌（年销$3.1B+），口味独特性高</li>
+        </ul>
+        <p><strong>2. 客户转换成本：<span class="tag-green">高（High）</span></strong></p>
+        <ul>
+            <li>消费者层面：品牌习惯+情感连接——"儿时吃Hershey's的人长大给自己孩子吃Hershey's"</li>
+            <li>渠道层面：90%+美国零售覆盖，货架位置是经过数十年建立的"软资产"，新进入者需巨额营销支出才能获得同等货架位置</li>
+            <li>季节性层面：万圣节/感恩节/圣诞节的"好时Kisses节日装"是家庭传统，难以被替代</li>
+            <li>Kit Kat美国代理权：好时在美国独家销售Kit Kat（雀巢全球品牌），合约延续性强</li>
+        </ul>
+        <p><strong>3. 定价权：<span class="tag-green">强（Strong）</span></strong></p>
+        <ul>
+            <li>历史涨价记录：2022-2025年累计涨价约25%（年化5-7%），2024年9月大幅提价约10%——消费者接受度好于预期</li>
+            <li>定价权来源：Reese's/Hershey's/Kisses品牌溢价+消费者习惯+情感连接</li>
+            <li>定价权趋势：2025年Q4销量-4%（涨价滞后效应），但价格+10%抵消——证明"强定价权但有边界"</li>
+            <li><strong>巴菲特测试</strong>：若Reese's涨价10%，部分消费者会切换到M&M's，但核心消费者不会——品牌忠诚度真实但非"无限"。这是消费品典型的"中等强度定价权"</li>
+        </ul>
+        <p><strong>整体竞争力评级：★★★★（4/5星）</strong> - 好时核心业务，护城河真实但非绝对</p>
+
+        <h3>3.2 北美咸零食业务（North America Salty Snacks）- 营收$1.27B</h3>
+        <p><strong>1. 可替代性：<span class="tag-red">高（High）</span></strong></p>
+        <ul>
+            <li>主要替代品：Frito-Lay（百事旗下，市占率40%+）、Campbell Soup（Snyder's-Lance）、Utz Brands、Conagra、自有品牌</li>
+            <li>替代体验差距：咸零食品类同质化严重，SkinnyPop虽是爆米花品类领先品牌，但消费者跨品牌切换成本低</li>
+            <li>替代趋势：加速——健康/有机趋势使新品牌不断涌现，竞争激烈</li>
+        </ul>
+        <p><strong>2. 客户转换成本：<span class="tag-red">低（Low）</span></strong></p>
+        <ul>
+            <li>消费者层面：尝鲜心态强，品牌忠诚度低于糖果品类</li>
+            <li>渠道层面：货架位置竞争激烈，新进入者通过价格促销即可获得陈列</li>
+            <li>总体评估：咸零食是典型的"高替代+低转换成本"品类，护城河弱于糖果</li>
+        </ul>
+        <p><strong>3. 定价权：<span class="tag-orange">中等（Medium）</span></strong></p>
+        <ul>
+            <li>历史涨价记录：年化2-4%涨价，与CPI基本同步</li>
+            <li>定价权来源：SkinnyPop品牌力（清洁标签领先品牌）+Dot's Pretzels细分品类领先</li>
+            <li>定价权趋势：稳定但有限——Frito-Lay作为行业巨头对定价有锚定作用</li>
+            <li><strong>巴菲特测试</strong>：若SkinnyPop涨价10%，部分消费者会切换到Smartfood或自有品牌——定价权弱于糖果业务</li>
+        </ul>
+        <p><strong>整体竞争力评级：★★★（3/5星）</strong> - 增长引擎但护城河较弱</p>
+
+        <h3>3.3 国际业务（International & Other）- 营收$0.94B</h3>
+        <p><strong>1. 可替代性：<span class="tag-orange">中等（Medium）</span></strong></p>
+        <ul>
+            <li>主要替代品：本地巧克力品牌（巴西Garoto/印度Amul/中国徐福记）+全球品牌（Mars/Mondelez/Ferrero）</li>
+            <li>替代体验差距：好时在新兴市场的品牌力远弱于美国本土，多为"价格敏感型"市场</li>
+            <li>替代趋势：稳定——好时国际业务增长乏力，部分市场（如中国）已战略性收缩</li>
+        </ul>
+        <p><strong>2. 客户转换成本：<span class="tag-red">低（Low）</span></strong></p>
+        <ul>
+            <li>国际市场渠道关系建立时间短，消费者品牌认知度低</li>
+            <li>好时2013年收购上海金丝猴，但2017年因整合不利出售——国际扩张历史失败案例较多</li>
+        </ul>
+        <p><strong>3. 定价权：<span class="tag-red">弱（Weak）</span></strong></p>
+        <ul>
+            <li>新兴市场价格敏感度高，好时品牌溢价能力有限</li>
+            <li>2025年国际业务利润率从11.8%暴跌至5.1%——可可成本无法完全转嫁</li>
+            <li><strong>巴菲特测试</strong>：若好时在国际市场涨价10%，销量会大幅流失至本地品牌——定价权弱</li>
+        </ul>
+        <p><strong>整体竞争力评级：★★（2/5星）</strong> - 好时最弱业务板块</p>
+
+        <h3>3.4 综合产品竞争力矩阵</h3>
+        <div class="competitiveness-grid">
+            <div class="comp-card">
+                <h4>北美糖果</h4>
+                <div class="comp-level" style="color:#27ae60;">★★★★</div>
+                <p style="font-size:0.85em;">4星——品牌+渠道+季节性，但可可成本脆弱</p>
+            </div>
+            <div class="comp-card">
+                <h4>北美咸零食</h4>
+                <div class="comp-level" style="color:#f39c12;">★★★</div>
+                <p style="font-size:0.85em;">3星——增长引擎但护城河弱</p>
+            </div>
+            <div class="comp-card">
+                <h4>国际业务</h4>
+                <div class="comp-level" style="color:#c0392b;">★★</div>
+                <p style="font-size:0.85em;">2星——品牌力弱+定价权低</p>
+            </div>
+        </div>
+
+        <div class="highlight">
+            <strong>综合评价：</strong> 好时3大业务板块加权平均约3.5星，其中1个4星（北美糖果）+1个3星（咸零食）+1个2星（国际）。这是典型的<strong>"核心业务强+增长业务弱+国际化失败"</strong>组合。与ITW的7板块分散不同，好时过度依赖单一北美糖果业务（81%营收+大部分利润），这使其对可可价格波动高度敏感——2025年的"可可危机"就是这种集中度风险的体现。好时的真正护城河是<strong>"Reese's品牌+美国渠道90%覆盖+季节性传统"</strong>三位一体的"美国糖果生态"，而非多元化业务结构。
+        </div>
+    </div>
+
+    <!-- ===================== 第四章：历史财务指标 ===================== -->
+    <div class="info-box">
+        <h2 id="chapter4">四、历史财务指标</h2>
+
+        <h3>4.1 10年核心财务数据（2016-2025）</h3>
+        <table>
+            <tr>
+                <th>年份</th><th>营收（亿美元）</th><th>净利润（亿美元）</th><th>EPS</th><th>股息</th>
+                <th>ROE</th><th>毛利率</th><th>资产负债率</th><th>PE（年末）</th>
+            </tr>
+            <tr><td>2016</td><td>74.4</td><td>7.19</td><td>$3.40</td><td>$2.24</td><td>~80%</td><td>43.5%</td><td>0.66</td><td>~28x</td></tr>
+            <tr><td>2017</td><td>75.2</td><td>7.83</td><td>$3.70</td><td>$2.44</td><td>~85%</td><td>43.8%</td><td>0.65</td><td>~24x</td></tr>
+            <tr><td>2018</td><td>77.9</td><td>11.8</td><td>$5.58</td><td>$2.62</td><td>~95%</td><td>44.1%</td><td>0.67</td><td>~25x</td></tr>
+            <tr><td>2019</td><td>79.9</td><td>11.5</td><td>$5.44</td><td>$2.78</td><td>~75%</td><td>45.1%</td><td>0.64</td><td>~27x</td></tr>
+            <tr><td>2020</td><td>81.5</td><td>12.8</td><td>$5.96</td><td>$3.04</td><td>~70%</td><td>45.6%</td><td>0.60</td><td>~26x</td></tr>
+            <tr><td>2021</td><td>89.7</td><td>14.8</td><td>$6.79</td><td>$3.34</td><td>~65%</td><td>46.0%</td><td>0.58</td><td>~26x</td></tr>
+            <tr><td>2022</td><td>104.2</td><td>16.4</td><td>$7.55</td><td>$3.74</td><td>~60%</td><td>46.5%</td><td>0.59</td><td>~25x</td></tr>
+            <tr><td>2023</td><td>111.6</td><td>18.6</td><td>$8.52</td><td>$4.20</td><td>~50%</td><td>47.0%</td><td>0.62</td><td>~22x</td></tr>
+            <tr><td>2024</td><td>112.0</td><td>22.2</td><td>$10.92</td><td>$4.74</td><td>~45%</td><td>47.3%</td><td>0.65</td><td>~18x</td></tr>
+            <tr><td>2025</td><td>116.9</td><td>8.83</td><td>$4.34</td><td>$5.59</td><td>~17%</td><td>33.5%</td><td>0.69</td><td>~42x</td></tr>
+        </table>
+
+        <div class="highlight">
+            <strong>巴菲特式分析：</strong>
+            <ul>
+                <li><strong>ROE分析</strong>：好时历史ROE非常高（50-95%），但这主要是<strong>"金融工程放大"</strong>——通过持续回购（10年减少~10%股份）和较高杠杆（资产负债率60-70%）将股东权益压缩至约50亿美元。这是巴菲特会警惕的"高ROE不等于高经营质量"案例。2025年ROE暴跌至17%反映了"真实经营ROE"水平——当毛利率受冲击时，金融工程无法掩盖经营恶化。</li>
+                <li><strong>毛利率</strong>：2016-2024年稳定在43-47%——这是好时的"质量标志"，反映品牌溢价+规模效应+定价权。2025年暴跌至33.5%（-1380基点）是历史性冲击，主要因可可价格2024年Q2开始上涨，2025年初达到峰值（同比+70%）。</li>
+                <li><strong>资产负债率</strong>：稳定在60-70%区间，56亿美元债务+50亿权益，债务/权益1.1-1.3x。信用评级A-/A2（投资级），债务结构合理。</li>
+                <li><strong>PE估值</strong>：2025年TTM PE 42x看似极高，但这是"周期低点PE"——基于2026E调整后EPS $8.36中值，前瞻PE约22x，接近历史均值。</li>
+                <li><strong>EPS波动</strong>：2024年EPS $10.92（含$2.26衍生品收益）→2025年EPS $4.34（含$2.08衍生品损失），剧烈波动主要源于可可衍生品mark-to-market。剔除衍生品影响，调整后EPS从2024年$9.40降至2025年$6.31（-33%），仍反映真实经营恶化。</li>
+            </ul>
+        </div>
+
+        <div class="chart-container">
+            <canvas id="chart1" height="100"></canvas>
+        </div>
+
+        <div class="chart-container">
+            <canvas id="chart2" height="100"></canvas>
+        </div>
+    </div>
+
+    <!-- ===================== 第五章：竞争分析 ===================== -->
+    <div class="info-box">
+        <h2 id="chapter5">五、竞争分析</h2>
+
+        <h3>5.1 美国巧克力市场份额（2025年）</h3>
+        <table>
+            <tr><th>公司</th><th>市场份额</th><th>主要品牌</th><th>竞争态势</th></tr>
+            <tr><td><strong>好时HSY</strong></td><td><strong>33.5%（#1）</strong></td><td>Reese's/Hershey's/Kisses/Kit Kat</td><td>稳健龙头，品牌矩阵完整</td></tr>
+            <tr><td>Mars（私有）</td><td>25%（#2）</td><td>M&M's/Snickers/Twix/Dove</td><td>好时最强劲竞争对手</td></tr>
+            <tr><td>Mondelez MDLZ</td><td>10%（#3）</td><td>Cadbury/Oreo/Toblerone</td><td>2024年曾提出收购HSY未果</td></tr>
+            <tr><td>Lindt</td><td>6%（#4）</td><td>Lindt/Ghirardelli/Russell Stover</td><td>高端巧克力领先</td></tr>
+            <tr><td>Ferrero</td><td>5%（#5）</td><td>Ferrero Rocher/Nutella/Butterfinger</td><td>通过收购扩张</td></tr>
+            <tr><td>其他</td><td>20.5%</td><td>自有品牌/小众品牌</td><td>分散</td></tr>
+        </table>
+
+        <h3>5.2 与同行业对比（2025年）</h3>
+        <table>
+            <tr><th>维度</th><th>HSY 好时</th><th>MDLZ 亿滋</th><th>SJM J.M.Smucker</th><th>GIS 通用磨坊</th></tr>
+            <tr><td>市值</td><td>$369亿</td><td>$810亿</td><td>$110亿</td><td>$360亿</td></tr>
+            <tr><td>营收</td><td>$116.9亿</td><td>$364亿</td><td>$83亿</td><td>$200亿</td></tr>
+            <tr><td>毛利率</td><td>33.5%（异常）</td><td>37.5%</td><td>34.5%</td><td>35.0%</td></tr>
+            <tr><td>营业利润率</td><td>12.3%（异常）</td><td>15.5%</td><td>15.5%</td><td>16.5%</td></tr>
+            <tr><td>股息收益率</td><td>3.20%</td><td>2.50%</td><td>3.80%</td><td>3.30%</td></tr>
+            <tr><td>股息增长年数</td><td>15年</td><td>12年</td><td>26年</td><td>22年</td></tr>
+            <tr><td>PE（TTM）</td><td>~42x</td><td>~21x</td><td>~16x</td><td>~16x</td></tr>
+            <tr><td>国际营收占比</td><td>12%</td><td>75%</td><td>5%</td><td>15%</td></tr>
+            <tr><td>信用评级</td><td>A-/A2</td><td>BBB+/Baa1</td><td>BBB+/Baa2</td><td>A-/A3</td></tr>
+        </table>
+
+        <h3>5.3 经济护城河评估</h3>
+        <div class="moat-item">
+            <strong>1. 品牌力（Brand Power）★★★★★</strong><br>
+            Hershey's/Reese's/Kisses是美国文化的组成部分——Milton Hershey的传奇故事+百年品牌建设+情感连接。Reese's年销$3.1B+是全美销量第一糖果品牌。这种品牌力是巴菲特最看重的"消费者心智垄断"。
+        </div>
+        <div class="moat-item">
+            <strong>2. 渠道覆盖（Distribution Moat）★★★★★</strong><br>
+            美国零售渠道90%+覆盖（沃尔玛/Target/CVS/Walgreens/便利店），前10客户占50%+营收。这种渠道关系是数十年建立起来的"软资产"，新进入者需要巨额营销支出才能获得同等货架位置。
+        </div>
+        <div class="moat-item">
+            <strong>3. 季节性传统（Seasonal Tradition）★★★★</strong><br>
+            万圣节/感恩节/圣诞节的"好时Kisses节日装"是美国家庭传统，季节性消费习惯难以被替代。Q4占全年35-40%营收，季节性脉冲形成"必买品类"地位。
+        </div>
+        <div class="moat-item">
+            <strong>4. Hershey Trust控股结构（Unique Corporate Structure）★★★★</strong><br>
+            Hershey Trust持有80%投票权，受益人为Milton Hershey School（孤儿学校）。这种结构使好时几乎不可能被恶意收购，管理层可专注于长期经营。巴菲特曾试图收购好时（2002年），被Trust拒绝。
+        </div>
+        <div class="moat-item">
+            <strong>5. 规模优势（Scale Advantage）★★★</strong><br>
+            $117亿营收规模提供采购议价力+制造效率+广告支出优势。但规模优势在消费品行业不如品牌力重要，且好时规模仍小于Mars/Mondelez。
+        </div>
+        <div class="risk-item">
+            <strong>6. 反护城河：商品价格脆弱性（Commodity Vulnerability）★（负分）</strong><br>
+            可可价格是好时的"阿喀琉斯之踵"——2025年可可+70%直接导致毛利率暴跌1380基点、净利润暴跌60%。这种商品价格脆弱性是巴菲特会警惕的"反护城河"，反映出好时缺乏对上游原料的控制力。
+        </div>
+
+        <div class="highlight">
+            <strong>护城河可持续性：</strong> 好时的护城河是<strong>"美国糖果品牌+渠道+季节性传统"</strong>三位一体的"美国本土护城河"，护城河真实且持久，但<strong>仅限于美国本土糖果业务</strong>。咸零食业务护城河弱，国际业务几乎无护城河。最大威胁是<strong>"可可价格结构性上涨+健康趋势侵蚀巧克力消费"</strong>——前者是周期性威胁（可能随可可产量恢复而缓解），后者是长期结构性威胁（消费者转向低糖/健康零食）。巴菲特名言"我喜欢的企业是那些即使是傻瓜也能经营的企业——因为迟早会有一个傻瓜来经营它"——好时的品牌护城河足够强，即使管理层 mediocre 也能维持基本盘，但当前CEO Tanner的战略执行力将是决定好时能否从"可可危机"中复苏的关键。
+        </div>
+    </div>
+
+    <!-- ===================== 第六章：利润分配分析 ===================== -->
+    <div class="info-box">
+        <h2 id="chapter6">六、利润分配分析</h2>
+
+        <h3>6.1 10年利润分配表（2016-2025，亿美元）</h3>
+        <table>
+            <tr>
+                <th>年份</th><th>净利润</th><th>分红</th><th>回购</th><th>CapEx</th>
+                <th>留存金额</th><th>留存率</th><th>股份数（百万）</th>
+            </tr>
+            <tr><td>2016</td><td>7.19</td><td>4.74</td><td>0.00</td><td>3.65</td><td>2.45</td><td>34%</td><td>211</td></tr>
+            <tr><td>2017</td><td>7.83</td><td>5.15</td><td>0.00</td><td>3.85</td><td>2.68</td><td>34%</td><td>210</td></tr>
+            <tr><td>2018</td><td>11.80</td><td>5.55</td><td>0.00</td><td>4.10</td><td>6.25</td><td>53%</td><td>210</td></tr>
+            <tr><td>2019</td><td>11.50</td><td>5.89</td><td>0.50</td><td>4.10</td><td>5.11</td><td>44%</td><td>208</td></tr>
+            <tr><td>2020</td><td>12.80</td><td>6.45</td><td>0.00</td><td>4.10</td><td>6.35</td><td>50%</td><td>207</td></tr>
+            <tr><td>2021</td><td>14.80</td><td>7.07</td><td>0.50</td><td>4.30</td><td>7.23</td><td>49%</td><td>206</td></tr>
+            <tr><td>2022</td><td>16.45</td><td>7.92</td><td>1.00</td><td>4.80</td><td>7.53</td><td>46%</td><td>205</td></tr>
+            <tr><td>2023</td><td>18.62</td><td>8.89</td><td>1.00</td><td>5.20</td><td>8.73</td><td>47%</td><td>204</td></tr>
+            <tr><td>2024</td><td>22.21</td><td>9.63</td><td>1.00</td><td>4.80</td><td>11.58</td><td>52%</td><td>202</td></tr>
+            <tr><td>2025</td><td>8.83</td><td>10.85</td><td>0.30</td><td>4.50</td><td>-2.02</td><td>-23%</td><td>202</td></tr>
+            <tr><td><strong>10年累计</strong></td><td><strong>132.03</strong></td><td><strong>72.24</strong></td><td><strong>4.30</strong></td><td><strong>43.30</strong></td><td><strong>55.89</strong></td><td><strong>43%（均值）</strong></td><td>股份数减少9M（-4%）</td></tr>
+        </table>
+
+        <h3>6.2 利润分配结构分析</h3>
+        <ul>
+            <li><strong>分红（55%）</strong>：10年累计72亿美元，平均派息率55%。连续15年股息增长，股息从$2.24增至$5.808，CAGR 11.1%——远超EPS增长（CAGR 5.0%），反映派息率从66%提升至2025年的125%（异常）。2025年Q4仍提高股息至$1.452/季，体现管理层对2026年盈利恢复的信心。</li>
+            <li><strong>回购（3%）</strong>：10年累计仅4.3亿美元，回购力度非常小。当前$5亿回购授权中尚余$4.7亿。2025年因盈利暴跌几乎暂停回购（仅0.3亿）。</li>
+            <li><strong>CapEx（33%）</strong>：10年累计43亿美元，平均年CapEx约4.3亿美元，主要用于产能扩张和AAA自动化项目。CapEx/营收约3-4%，资本密集度低。</li>
+            <li><strong>留存（43%）</strong>：10年累计留存56亿美元，留存率平均43%。2025年留存为负（-2亿美元）——分红超过净利润，这是巴菲特会警告的"侵蚀资产负债表"信号。可持续增长率 = ROE × 留存率 = 17% × (-23%) = 负值（2025年异常）。正常年份（2016-2024）可持续增长率 = 65% × 47% = 30%（理论值），实际EPS增长5-7%，说明部分留存用于收购和债务管理。</li>
+        </ul>
+
+        <div class="chart-container">
+            <canvas id="chart3" height="100"></canvas>
+        </div>
+
+        <h3>6.3 资本配置质量评价</h3>
+        <div class="moat-item">
+            <strong>优点：</strong>
+            <ul>
+                <li>15年股息增长记录——接近"股息贵族"地位（25年门槛）</li>
+                <li>10年股息CAGR 11.1%——远超EPS增长，体现持续提升派息率</li>
+                <li>2025年在盈利暴跌60%情况下仍提高股息——管理层对2026年复苏有信心</li>
+                <li>AAA自动化项目节约$4亿年成本（2026年达峰）——典型的"高回报资本配置"</li>
+                <li>通过收购（LesserEvil/Dot's/One Brands）成功进入咸零食赛道，2025年咸零食+28%增长</li>
+            </ul>
+        </div>
+        <div class="risk-item">
+            <strong>缺点：</strong>
+            <ul>
+                <li><strong>2025年派息率125%</strong>——分红超过净利润，巴菲特会强烈批评"在盈利不足时仍提高股息是侵蚀股东价值"</li>
+                <li><strong>回购力度过小</strong>：10年仅回购4.3亿美元，股份数仅减少4%——对比ITW回购83亿减少20%股份，好时的回购纪律远弱于同行</li>
+                <li><strong>2026年利息支出$2-2.1亿</strong>——比2025年高，反映债务规模上升</li>
+                <li><strong>收购 LesserEvil 价格偏高</strong>——估值$750M收购年销约$1亿的品牌，溢价较高</li>
+                <li><strong>Hershey Trust的"反收购"结构</strong>——虽然保护了公司独立性，但也阻碍了潜在的战略合并（如2024年Mondelez收购提议被拒）</li>
+            </ul>
+        </div>
+
+        <div class="highlight">
+            <strong>巴菲特式评价：</strong> 好时的资本配置是<strong>"高分红+低回购+谨慎收购"的混合模式</strong>——10年累计向股东返还77亿美元（分红72亿+回购4亿），占净利润的58%。但与巴菲特偏好的"留存复利"模式差异较大。关键问题是<strong>2025年分红超过净利润</strong>——派息率125%是不可持续的，巴菲特会批评"管理层应在盈利压力期暂停股息增长，而非用债务支付股息"。整体资本配置质量评分：★★★（3/5星）。如果2026年盈利恢复至$8.36/股（调整后EPS中值），派息率将回落至70%左右，资本配置质量可回升至4星。
+        </div>
+    </div>
+
+    <!-- ===================== 第七章：投资总结 ===================== -->
+    <div class="info-box">
+        <h2 id="chapter7">七、投资总结</h2>
+
+        <h3>7.1 HSY的优势</h3>
+        <div class="moat-item">
+            <strong>1. 美国糖果市场#1地位（核心优势）</strong><br>
+            33.5%市场份额+Reese's全美销量第一糖果品牌+90%+零售覆盖。这是巴菲特最看重的"消费者心智垄断"+"渠道护城河"组合。
+        </div>
+        <div class="moat-item">
+            <strong>2. 强品牌溢价+定价权</strong><br>
+            Reese's/Hershey's/Kisses品牌组合提供真实定价权——2022-2025年累计涨价25%但销量仅小幅下滑，证明消费者对品牌忠诚度真实存在。
+        </div>
+        <div class="moat-item">
+            <strong>3. Hershey Trust控股结构</strong><br>
+            80%投票权由Hershey Trust持有（受益人为Milton Hershey School），使公司几乎不可能被恶意收购，管理层可专注于长期经营。这种结构也是2002年巴菲特收购失败的原因。
+        </div>
+        <div class="moat-item">
+            <strong>4. 季节性脉冲收入</strong><br>
+            Q4（万圣节+感恩节+圣诞节）占35-40%营收，季节性传统形成"必买品类"地位，难以被新进入者替代。
+        </div>
+        <div class="moat-item">
+            <strong>5. AAA自动化项目成本节约</strong><br>
+            目标2026年节约$4亿年成本，将结构性提升毛利率——即使可可价格不回落，AAA也能部分对冲成本压力。
+        </div>
+
+        <h3>7.2 HSY的风险</h3>
+        <div class="risk-item">
+            <strong>1. 可可价格结构性上涨（最大风险）</strong><br>
+            2025年可可+70%直接导致净利润暴跌60%。西非（科特迪瓦/加纳）可可产量受气候变化+作物病害影响，结构性供给不足。如果可可价格长期维持高位，好时的"47%毛利率时代"可能一去不返。
+        </div>
+        <div class="risk-item">
+            <strong>2. 健康趋势侵蚀巧克力消费</strong><br>
+            美国消费者健康意识提升，低糖/无糖/功能性零食崛起——长期可能侵蚀巧克力品类基础。这是巴菲特会关注的"长期结构性威胁"。
+        </div>
+        <div class="risk-item">
+            <strong>3. 2025年派息率125%不可持续</strong><br>
+            分红超过净利润，需依赖债务/现金储备。如果2026年盈利恢复不及预期，股息增长记录可能被迫中断。
+        </div>
+        <div class="risk-item">
+            <strong>4. 国际化失败历史</strong><br>
+            2013年收购上海金丝猴失败退出，2016年/2024年Mondelez两次收购被拒，国际化扩张乏力。85%营收依赖美国本土——单一市场风险集中。
+        </div>
+        <div class="risk-item">
+            <strong>5. 估值偏高（前瞻PE ~22x）</strong><br>
+            当前股价$181.51对应2026E调整后EPS $8.36中值的前瞻PE约22x，接近10年均值，但考虑2025年ROE仅17%（非正常年份），margin of safety有限。
+        </div>
+        <div class="risk-item">
+            <strong>6. PFAS包装诉讼风险</strong><br>
+            2024年做空机构Grizzly Reports报告称好时包装检出PFAS（永久化学品），潜在诉讼风险可能影响品牌声誉。
+        </div>
+
+        <h3>7.3 投资评级与估值</h3>
+        <table>
+            <tr><th>维度</th><th>评分（1-5）</th><th>评价</th></tr>
+            <tr><td>业务易懂性</td><td>5</td><td>巴菲特标准——消费品业务简单易懂，120岁老奶奶都能懂</td></tr>
+            <tr><td>护城河强度</td><td>4</td><td>美国糖果品牌+渠道+季节性护城河真实，但仅限本土</td></tr>
+            <tr><td>资本配置</td><td>3</td><td>15年股息增长+AAA项目优秀，但2025年派息率125%+回购不足</td></tr>
+            <tr><td>财务安全</td><td>3</td><td>A-/A2投资级，但2025年盈利暴跌+派息率过高</td></tr>
+            <tr><td>增长前景</td><td>3</td><td>咸零食+AAA是增长引擎，但糖果业务受健康趋势制约</td></tr>
+            <tr><td>估值吸引力</td><td>2</td><td>前瞻PE ~22x接近历史均值，无显著margin of safety</td></tr>
+            <tr><td><strong>综合评分</strong></td><td><strong>3.3/5</strong></td><td><strong>质量公司+周期低谷+估值偏高——观望</strong></td></tr>
+        </table>
+
+        <h3>7.4 与同行估值对比</h3>
+        <table>
+            <tr><th>公司</th><th>2026E PE</th><th>股息收益率</th><th>毛利率</th><th>评级</th></tr>
+            <tr><td>HSY 好时</td><td>~22x</td><td>3.20%</td><td>41%（指引）</td><td>持有/观望</td></tr>
+            <tr><td>MDLZ 亿滋</td><td>~19x</td><td>2.50%</td><td>37.5%</td><td>持有</td></tr>
+            <tr><td>SJM J.M.Smucker</td><td>~14x</td><td>3.80%</td><td>34.5%</td><td>低估</td></tr>
+            <tr><td>GIS 通用磨坊</td><td>~15x</td><td>3.30%</td><td>35.0%</td><td>低估</td></tr>
+        </table>
+
+        <h3>7.5 关键催化剂</h3>
+        <ul>
+            <li><strong>催化剂1（正面）</strong>：可可价格回落——2026年初已现回落迹象，若持续，毛利率有望快速恢复至44%+</li>
+            <li><strong>催化剂2（正面）</strong>：AAA项目2026年达峰节约$4亿——结构性降低成本基数</li>
+            <li><strong>催化剂3（正面）</strong>：咸零食业务持续高增长——LesserEvil整合+有机增长</li>
+            <li><strong>催化剂4（正面）</strong>：2026年3月31日投资者日——管理层将公布2027-2028多年战略框架</li>
+            <li><strong>风险1（负面）</strong>：可可价格再度上涨——厄尔尼诺气候影响</li>
+            <li><strong>风险2（负面）</strong>：消费者价格弹性上升——若涨价过度，销量可能加速流失</li>
+            <li><strong>风险3（负面）</strong>：PFAS诉讼发酵——可能影响品牌声誉和财务</li>
+        </ul>
+
+        <div class="highlight">
+            <strong>巴菲特芒格总结论：</strong> 好时是<strong>"质量公司遇上周期低谷"</strong>的典型案例——美国糖果市场#1份额+Reese's全美销量第一+百年品牌力+90%渠道覆盖，这些是巴菲特会赞赏的"持久护城河"。但2025年可可危机暴露了好时的<strong>"反护城河"——商品价格脆弱性</strong>，这是巴菲特会警惕的"看似质量但实际有裂缝"的商业模式。当前股价$181.51对应2026E前瞻PE ~22x，<strong>无显著margin of safety</strong>——巴菲特的投资原则是"用0.4元买1元的东西"，而好时目前是"用0.9元买1元的东西"。建议：<strong>观望或小仓位</strong>，等待以下三种情景之一再加仓：（1）股价回落至$150以下（对应前瞻PE ~18x）；（2）可可价格持续回落+2026Q1业绩超预期；（3）股息增长记录中断导致股价恐慌性下跌至$130以下（"股息断崖"机会）。好时是值得长期关注的"复利机器候选人"，但当前估值不提供足够的安全边际。
+        </div>
+
+        <div class="info-box" style="background:#f9ebe0; border-left:5px solid #8b4513;">
+            <strong>对比已分析公司：</strong><br>
+            <ul>
+                <li><a href="kmb.html">KMB 金佰利</a>：同为消费品公司，KMB护城河更弱（自有品牌挤压），HSY护城河更强（品牌+渠道）</li>
+                <li><a href="itw.html">ITW 伊利诺伊工具</a>：ITW是工业复利机器（7板块分散+62年股息之王），HSY是消费品复利机器（单一糖果+15年股息增长）</li>
+                <li><a href="nvr.html">NVR</a>：NVR是"低杠杆+持续回购"模式，HSY是"高杠杆+高分红"模式——巴菲特更偏好前者</li>
+                <li><a href="sun.html">SUN Sunoco</a>：SUN是基础设施护城河（管道），HSY是品牌护城河（糖果）——两者本质不同</li>
+                <li><a href="br.html">BR Broadridge</a>：BR是"客户黏性+切换成本"护城河，HSY是"品牌+渠道"护城河——BR更可预测</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- ===================== Chart.js 可视化 ===================== -->
+    <script>
+        const ctx1 = document.getElementById('chart1').getContext('2d');
+        new Chart(ctx1, {
+            type: 'bar',
+            data: {
+                labels: ['2016','2017','2018','2019','2020','2021','2022','2023','2024','2025'],
+                datasets: [
+                    {
+                        type: 'bar',
+                        label: '营收（亿美元）',
+                        data: [74.4, 75.2, 77.9, 79.9, 81.5, 89.7, 104.2, 111.6, 112.0, 116.9],
+                        backgroundColor: '#8b4513',
+                        yAxisID: 'y',
+                    },
+                    {
+                        type: 'line',
+                        label: '净利润（亿美元）',
+                        data: [7.19, 7.83, 11.8, 11.5, 12.8, 14.8, 16.45, 18.62, 22.21, 8.83],
+                        borderColor: '#c0392b',
+                        backgroundColor: 'rgba(192,57,43,0.1)',
+                        tension: 0.3,
+                        yAxisID: 'y1',
+                        fill: true,
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                plugins: { title: { display: true, text: 'HSY 10年营收与净利润趋势（2025净利润暴跌60%）', font:{size:14} } },
+                scales: {
+                    y: { type: 'linear', position: 'left', title: { display: true, text: '营收（亿美元）' } },
+                    y1: { type: 'linear', position: 'right', title: { display: true, text: '净利润（亿美元）' }, grid: { drawOnChartArea: false } }
+                }
+            }
+        });
+
+        const ctx2 = document.getElementById('chart2').getContext('2d');
+        new Chart(ctx2, {
+            type: 'line',
+            data: {
+                labels: ['2016','2017','2018','2019','2020','2021','2022','2023','2024','2025'],
+                datasets: [
+                    {
+                        label: '毛利率 (%)',
+                        data: [43.5, 43.8, 44.1, 45.1, 45.6, 46.0, 46.5, 47.0, 47.3, 33.5],
+                        borderColor: '#27ae60',
+                        backgroundColor: 'rgba(39,174,96,0.1)',
+                        tension: 0.3,
+                    },
+                    {
+                        label: 'ROE (%)',
+                        data: [80, 85, 95, 75, 70, 65, 60, 50, 45, 17],
+                        borderColor: '#2980b9',
+                        backgroundColor: 'rgba(41,128,185,0.1)',
+                        tension: 0.3,
+                    },
+                    {
+                        label: 'PE (x, 年末)',
+                        data: [28, 24, 25, 27, 26, 26, 25, 22, 18, 42],
+                        borderColor: '#f39c12',
+                        backgroundColor: 'rgba(243,156,18,0.1)',
+                        tension: 0.3,
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                plugins: { title: { display: true, text: 'HSY 10年关键财务比率趋势', font:{size:14} } },
+                scales: { y: { title: { display: true, text: '%' } } }
+            }
+        });
+
+        const ctx3 = document.getElementById('chart3').getContext('2d');
+        new Chart(ctx3, {
+            type: 'bar',
+            data: {
+                labels: ['2016','2017','2018','2019','2020','2021','2022','2023','2024','2025'],
+                datasets: [
+                    { label: '净利润', data: [7.19,7.83,11.8,11.5,12.8,14.8,16.45,18.62,22.21,8.83], backgroundColor: '#8b4513' },
+                    { label: '分红', data: [4.74,5.15,5.55,5.89,6.45,7.07,7.92,8.89,9.63,10.85], backgroundColor: '#27ae60' },
+                    { label: '回购', data: [0,0,0,0.5,0,0.5,1.0,1.0,1.0,0.3], backgroundColor: '#2980b9' },
+                    { label: 'CapEx', data: [3.65,3.85,4.10,4.10,4.10,4.30,4.80,5.20,4.80,4.50], backgroundColor: '#f39c12' }
+                ]
+            },
+            options: {
+                responsive: true,
+                plugins: { title: { display: true, text: 'HSY 10年利润分配（2025分红超过净利润，派息率125%）', font:{size:14} } },
+                scales: { y: { title: { display: true, text: '亿美元' } } }
+            }
+        });
+    </script>
+
+    <script src="scores_client.js"></script>
+    <script src="stock_topbar.js"></script>
+</body>
+</html>
