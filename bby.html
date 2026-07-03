@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BBY 百思买 - 巴菲特芒格式价值投资分析</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body { font-family: 'Segoe UI', Arial, sans-serif; line-height: 1.6; color: #333; max-width: 1200px; margin: 0 auto; padding: 20px; background: #f4f6f9; }
+        h1 { color: #1a3b6e; border-bottom: 3px solid #0046be; padding-bottom: 10px; }
+        h2 { color: #1a3b6e; margin-top: 35px; border-left: 5px solid #0046be; padding-left: 15px; }
+        h3 { color: #2c5aa0; margin-top: 25px; }
+        .info-box { background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.08); margin: 20px 0; }
+        .highlight { background: #fef9e7; padding: 15px; border-left: 5px solid #f39c12; margin: 20px 0; border-radius: 5px; }
+        .moat-item { background: #eafaf1; padding: 15px; margin: 10px 0; border-left: 5px solid #27ae60; border-radius: 5px; }
+        .risk-item { background: #fdedec; padding: 15px; margin: 10px 0; border-left: 5px solid #c0392b; border-radius: 5px; }
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; background: white; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        th, td { padding: 12px; text-align: left; border-bottom: 1px solid #ddd; }
+        th { background: #0046be; color: white; }
+        tr:hover { background: #f5f5f5; }
+        .tag-green { background: #27ae60; color: white; padding: 3px 10px; border-radius: 12px; font-size: 0.85em; }
+        .tag-orange { background: #f39c12; color: white; padding: 3px 10px; border-radius: 12px; font-size: 0.85em; }
+        .tag-red { background: #c0392b; color: white; padding: 3px 10px; border-radius: 12px; font-size: 0.85em; }
+        .section-nav { background: white; border-radius: 10px; padding: 15px 25px; margin: 20px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.08); text-align: center; }
+        .section-nav a { display: inline-block; margin: 5px 10px; padding: 6px 14px; background: #e8eef8; color: #1a3b6e; text-decoration: none; border-radius: 15px; font-size: 0.9em; }
+        .section-nav a:hover { background: #0046be; color: white; }
+        .chart-container { background: white; padding: 20px; border-radius: 10px; margin: 20px 0; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+    </style>
+</head>
+<body>
+    <div class="top-nav-bar"></div>
+    <script src="nav_bar.js"></script>
+    <span id="topbarCode" style="display:none;">BBY</span>
+
+    <h1>BBY 百思买（Best Buy Co., Inc.）- 巴菲特芒格式价值投资分析</h1>
+    <p style="color:#666; font-size:1.1em;"><em>分析日期：2026年7月2日 | 数据截止：FY2026 Q3（2025年11月1日）+ FY2025年报</em></p>
+
+    <div class="section-nav">
+        <a href="#chapter1">公司基本信息</a>
+        <a href="#chapter2">业务分析</a>
+        <a href="#chapter3">产品竞争力分析</a>
+        <a href="#chapter4">历史财务指标</a>
+        <a href="#chapter5">竞争分析</a>
+        <a href="#chapter6">利润分配分析</a>
+        <a href="#chapter7">投资总结</a>
+    </div>
+
+    <!-- ===================== 第一章：公司基本信息 ===================== -->
+    <div class="info-box">
+        <h2 id="chapter1">一、公司基本信息</h2>
+        <table>
+            <tr><th>项目</th><th>详情</th></tr>
+            <tr><td>公司名称</td><td>Best Buy Co., Inc.（百思买）</td></tr>
+            <tr><td>股票代码</td><td>BBY（NYSE）</td></tr>
+            <tr><td>成立时间</td><td>1966年（59年历史），由Richard M. Schulze在明尼苏达州圣保罗创立，原名"Sound of Music"，1983年更名为Best Buy</td></tr>
+            <tr><td>总部</td><td>7601 Penn Avenue South, Richfield, MN 55423（明尼苏达州里奇菲尔德）</td></tr>
+            <tr><td>最新股价</td><td>$77.22（2026年7月2日）</td></tr>
+            <tr><td>市值</td><td>约162.8亿美元（约1,170亿人民币）</td></tr>
+            <tr><td>企业价值（EV）</td><td>约163亿美元（含41亿债务，扣除12亿现金，EV/EBITDA≈6.1x）</td></tr>
+            <tr><td>员工人数</td><td>约82,000人（FY26）</td></tr>
+            <tr><td>CEO</td><td>Corie Barry（2019年6月接任CEO，Best Buy首位女性CEO，公司CFO出身）</td></tr>
+            <tr><td>门店网络</td><td>美国886家Best Buy+18家Outlet+20家Pacific Sales+2家Yardbird；加拿大129家Best Buy+28家独立移动店</td></tr>
+            <tr><td>股息记录</td><td>连续22年股息增长（已超越股息贵族25年门槛的88%）</td></tr>
+            <tr><td>股息收益率</td><td>约5.0%（年化股息$3.84/股，每季$0.96，2025年6月提升至$0.95/季）</td></tr>
+            <tr><td>当前PE（TTM）</td><td>~14.3x（基于TTM EPS $5.43）；~12.2x（基于FY26指引EPS $6.30中值）</td></tr>
+            <tr><td>主要业务</td><td>2大分部：美国Domestic（93%）+加拿大International（7%）</td></tr>
+            <tr><td>信用评级</td><td>BBB+（标普）/ Baa1（穆迪），投资级</td></tr>
+            <tr><td>财年制</td><td>2月初财年截止（FY26=2025年2月-2026年1月）</td></tr>
+        </table>
+
+        <div class="highlight">
+            <strong>巴菲特视角：</strong> 百思买是美国最大的消费电子专业零售商，在全美线下消费电子市场占有约33%份额——这是一个被亚马逊反复"宣判死刑"却依然活着的"幸存者"。2012年Best Buy曾被普遍认为会被亚马逊摧毁（"showrooming效应"——顾客在Best Buy体验产品然后上网购买），但通过Hubert Joly（2012-2019 CEO）的"Renew Blue"转型——价格匹配政策+全渠道整合+Geek Squad服务差异化+精简门店——成功扭转局面。Corie Barry接任后延续转型，推动"Best Buy Marketplace"（第三方平台）和"Best Buy Ads"（零售媒体）等高利润率新业务。<strong>巴菲特会关注的三个特质</strong>：（1）<strong>"幸存者偏见"反向证明</strong>——活下来的零售商往往具有强大护城河（沃尔玛/Costco/Home Depot/Lowe's/Best Buy均战胜了亚马逊）；（2）<strong>5%股息收益率+22年股息增长</strong>——典型的"现金牛+股东回报"模式；（3）<strong>当前PE ~12-14x低于行业中位数</strong>——估值吸引。但巴菲特也会警惕：<strong>消费电子零售是"低利润率+商品同质化"的苦生意</strong>，毛利率仅22%、净利率仅2.5%，"零售业是巴菲特最不喜欢的行业之一——除非你有Costco/Home Depot那样的差异化护城河"。
+        </div>
+    </div>
+
+    <!-- ===================== 第二章：业务分析 ===================== -->
+    <div class="info-box">
+        <h2 id="chapter2">二、业务分析</h2>
+
+        <h3>2.1 公司业务简述（120岁老奶奶也能懂）</h3>
+        <p>百思买卖的是<strong>"所有用电的东西——从手机到冰箱"</strong>，你只要进过美国的电器商店就见过它：</p>
+        <ul>
+            <li><strong>你买电脑的地方</strong>：笔记本电脑、台式机、平板（苹果/Microsoft/戴尔/惠普/联想）</li>
+            <li><strong>你买手机的地方</strong>：iPhone、三星Galaxy、Google Pixel（AT&T/Verizon/T-Mobile合约机）</li>
+            <li><strong>你买电视的地方</strong>：三星/LG/Sony电视，包括OLED高端电视</li>
+            <li><strong>你买游戏机的地方</strong>：PS5、Xbox、Nintendo Switch，游戏软件和配件</li>
+            <li><strong>你买家电的地方</strong>：冰箱、洗衣机、烘干机、小家电（惠而浦/LG/三星/Bose）</li>
+            <li><strong>你买智能手表的地方</strong>：Apple Watch、Garmin、Fitbit</li>
+            <li><strong>你买音响的地方</strong>：Bose、Sonos、JBL音箱耳机</li>
+            <li><strong>你不会用就找他们的技术支持</strong>：Geek Squad——上门安装、维修、技术支持服务</li>
+            <li><strong>你老了用它远程监护健康</strong>：Best Buy Health——老年人远程健康监护服务（2024年减值后收缩）</li>
+        </ul>
+        <p>简单说：百思买是美国<strong>"消费电子产品沃尔玛"</strong>——但比沃尔玛更专业、更有服务差异化（Geek Squad）。</p>
+
+        <h3>2.2 两大业务分部（FY26=2025.2-2026.1）</h3>
+        <table>
+            <tr><th>业务分部</th><th>FY26营收（截至Q3 9个月）</th><th>占比</th><th>主要业务</th><th>增长趋势</th></tr>
+            <tr><td>Domestic（美国）</td><td>$27.27B</td><td>93%</td><td>886家门店+电商+Geek Squad+Marketplace</td><td>FY26 Q3 +2.1%</td></tr>
+            <tr><td>International（加拿大）</td><td>$2.04B</td><td>7%</td><td>129家门店+28家移动店（Best Buy Express）</td><td>FY26 Q3 +6.1%</td></tr>
+            <tr><td><strong>合计</strong></td><td><strong>$29.31B（9个月）</strong></td><td><strong>100%</strong></td><td>FY26全年指引$41.65-41.95B</td><td>FY26 Q3 +2.4%</td></tr>
+        </table>
+
+        <h3>2.3 产品品类营收分布（按美国分部FY25）</h3>
+        <table>
+            <tr><th>产品品类</th><th>FY25占比</th><th>主要品牌</th><th>FY26 Q3可比销售趋势</th></tr>
+            <tr><td>计算和手机（Computing & Mobile Phones）</td><td>~47%</td><td>Apple/Dell/HP/Lenovo/Samsung/iPhone</td><td>+7.6%（AI PC周期+手机升级）</td></tr>
+            <tr><td>消费电子（Consumer Electronics）</td><td>~28%</td><td>TV/音响/相机（Samsung/LG/Sony/Bose）</td><td>-2.9%（TV市场饱和）</td></tr>
+            <tr><td>家电（Appliances）</td><td>~12%</td><td>冰箱/洗衣机（Whirlpool/LG/Samsung）</td><td>-8.4%（房市低迷+关税）</td></tr>
+            <tr><td>娱乐（Entertainment）</td><td>~5%</td><td>游戏机/游戏软件/电影（PS5/Xbox/Switch）</td><td>+14.0%（Switch 2周期+游戏反弹）</td></tr>
+            <tr><td>服务（Services）</td><td>~7%</td><td>Geek Squad/延保/安装/Best Buy Health</td><td>-1.0%（Health业务收缩）</td></tr>
+            <tr><td>其他</td><td>~1%</td><td>配件/耗材</td><td>稳定</td></tr>
+        </table>
+
+        <h3>2.4 地理营收分布</h3>
+        <table>
+            <tr><th>地区</th><th>FY25营收</th><th>占比</th><th>主要市场</th></tr>
+            <tr><td>美国</td><td>$38.62B</td><td>93%</td><td>50州+波多黎各+美属维京群岛</td></tr>
+            <tr><td>加拿大</td><td>$2.91B</td><td>7%</td><td>加拿大10省</td></tr>
+            <tr><td>合计</td><td>$41.53B</td><td>100%</td><td>2021年退出墨西哥</td></tr>
+        </table>
+
+        <div class="highlight">
+            <strong>美国本土高度集中：</strong> 百思买93%营收来自美国本土，这种高度集中与好时类似——<strong>优势</strong>是美国市场成熟、规模经济明显、供应链高效；<strong>劣势</strong>是缺乏国际多元化对冲。百思买曾尝试国际扩张（英国/中国/土耳其/墨西哥），但全部退出——本质上反映"美国消费电子零售模式难以复制到其他市场"。对比沃尔玛（国际收入占17%+）和Costco（国际占25%+），百思买的国际化几乎失败。
+        </div>
+
+        <h3>2.5 商业模式与赚钱逻辑</h3>
+        <p>百思买的赚钱逻辑：<strong>"产品低毛利引流+服务高毛利变现+全渠道闭环"</strong></p>
+        <ul>
+            <li><strong>产品销售（毛利22%）</strong>：消费电子产品本身是低毛利生意，Best Buy通过规模采购（年采$32B+）获得优于小零售商的进货价，但仍受制于品牌商（苹果/三星/LG）的定价权</li>
+            <li><strong>服务变现（毛利40%+）</strong>：Geek Squad技术支持、延保、安装、送货——这是Best Buy区别于亚马逊的核心差异化，服务类毛利率远高于产品类</li>
+            <li><strong>全渠道闭环</strong>：1000+门店既是销售点，也是"BOPIS"（线上下单店内取货）履约中心、Geek Squad服务中心、产品体验中心——门店租金被"复用"为多重功能</li>
+            <li><strong>新增长引擎</strong>：Best Buy Marketplace（2025年Q3上线，第三方卖家平台，高利润率）+ Best Buy Ads（零售媒体，利用购物数据变现）——这两块是"类亚马逊AWS"的高利润率增量业务</li>
+        </ul>
+
+        <div class="chart-container">
+            <canvas id="chart1" height="100"></canvas>
+        </div>
+
+        <div class="highlight">
+            <strong>FY26 Q3业绩亮点（2025年11月25日发布）：</strong>
+            <ul>
+                <li>营收$9.67B（+2.4% YoY），可比销售+2.7%——3年来最高增长</li>
+                <li>调整后EPS $1.40（vs 去年$1.26），GAAP EPS $0.66（受重组费用影响）</li>
+                <li>增长驱动：计算+手机+7.6%、游戏+14.0%，被家电-8.4%和电视-2.9%拖累</li>
+                <li>线上销售占总营收31.8%（+3.5%可比增长）</li>
+                <li>提高FY26指引：营收$41.65-41.95B，调整后EPS $6.25-6.35</li>
+                <li>CapEx指引~$700M，主要用于门店升级和IT系统</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- ===================== 第三章：产品竞争力分析 ===================== -->
+    <div class="info-box">
+        <h2 id="chapter3">三、产品竞争力分析</h2>
+
+        <h3>3.1 计算与手机业务（Computing & Mobile Phones）- 营收占比~47%</h3>
+        <p><strong>1. 可替代性：<span class="tag-red">极高（Extremely High）</span></strong></p>
+        <ul>
+            <li>主要替代品：亚马逊、苹果官网、沃尔玛、Costco、Target、运营商门店（AT&T/Verizon/T-Mobile）、Dell.com/HP.com等品牌直营</li>
+            <li>替代体验差距：几乎为零——iPhone在Best Buy买和在苹果店买是同一台手机，价格也基本一致（价格匹配政策）</li>
+            <li>替代趋势：加速——疫情后消费者更习惯线上购买电子产品，亚马逊次日达+品牌直营店挤压Best Buy市场份额</li>
+        </ul>
+        <p><strong>2. 客户转换成本：<span class="tag-red">极低（Extremely Low）</span></strong></p>
+        <ul>
+            <li>财务转换成本：零——顾客今天在Best Buy买iPhone，明天可以同样在亚马逊买</li>
+            <li>时间转换成本：极低——线上下单当日达或次日达，与Best Buy到店购买时间成本相当</li>
+            <li>捆绑转换成本：中等——Best Buy的"Total Tech"会员（$179/年）提供Geek Squad服务和延保，有一定黏性，但会员规模仅数百万</li>
+            <li>总体评估：商品同质化导致转换成本极低，Best Buy只能靠"全渠道体验+Geek Squad"维持差异化</li>
+        </ul>
+        <p><strong>3. 定价权：<span class="tag-red">极弱（Extremely Weak）</span></strong></p>
+        <ul>
+            <li>历史价格记录：Best Buy实施"价格匹配政策"——只要亚马逊/沃尔玛/Costco有更低价格，Best Buy立即匹配。这等于<strong>主动放弃定价权</strong></li>
+            <li>定价权来源：无——电子产品定价由品牌商（苹果/三星/LG）和电商平台（亚马逊）决定，Best Buy是价格接受者</li>
+            <li>定价权趋势：减弱——价格透明度提高+亚马逊竞争加剧</li>
+            <li><strong>巴菲特测试</strong>：若Best Buy对iPhone涨价10%，顾客立即转向苹果店或亚马逊——定价权为零。这是巴菲特最警惕的"价格接受者"模式</li>
+        </ul>
+        <p><strong>整体竞争力评级：★★（2/5星）</strong> - Best Buy最大业务板块但护城河最弱，纯商品同质化竞争</p>
+
+        <h3>3.2 消费电子业务（Consumer Electronics - TV/音响/相机）- 营收占比~28%</h3>
+        <p><strong>1. 可替代性：<span class="tag-orange">高（High）</span></strong></p>
+        <ul>
+            <li>主要替代品：亚马逊、沃尔玛、Costco、品牌直营（Samsung.com/Sony.com）</li>
+            <li>替代体验差距：较小——但<strong>高端TV/音响有体验需求</strong>，顾客希望亲自看画质、听音效，这是Best Buy的差异化机会（Magnolia高端音响展示区）</li>
+            <li>替代趋势：稳定——TV市场已饱和，每年主要是替换需求</li>
+        </ul>
+        <p><strong>2. 客户转换成本：<span class="tag-orange">低（Low）</span></strong></p>
+        <ul>
+            <li>财务转换成本：低——同款TV在亚马逊和Best Buy价格接近</li>
+            <li>体验转换成本：中等——Best Buy的店内体验（尤其是Magnolia高端音响区）是亚马逊无法复制的"软资产"</li>
+            <li>安装服务：Geek Squad提供TV安装服务（壁挂、布线、配置），形成一定黏性</li>
+        </ul>
+        <p><strong>3. 定价权：<span class="tag-red">极弱（Extremely Weak）</span></strong></p>
+        <ul>
+            <li>TV是典型的"商品化产品"——价格由三星/LG/索尼等品牌商和亚马逊/Costco等零售商竞争决定</li>
+            <li><strong>巴菲特测试</strong>：若Best Buy对TV涨价5%，顾客立即转向亚马逊或Costco——定价权为零</li>
+        </ul>
+        <p><strong>整体竞争力评级：★★★（3/5星）</strong> - 体验差异化（Magnolia）+Geek Squad安装提供一定护城河，但本质仍是商品零售</p>
+
+        <h3>3.3 家电业务（Appliances - 冰箱/洗衣机/烘干机）- 营收占比~12%</h3>
+        <p><strong>1. 可替代性：<span class="tag-orange">中等（Medium）</span></strong></p>
+        <ul>
+            <li>主要替代品：Home Depot、Lowe's、Costco、沃尔玛、亚马逊、品牌直营（Whirlpool/LG/Samsung）</li>
+            <li>替代体验差距：中等——家电需要亲身体验尺寸/容量/功能，Best Buy Pacific Sales专业店提供高端体验</li>
+            <li>替代趋势：加速——Home Depot/Lowe's在家电市场扩张，挤压Best Buy份额</li>
+        </ul>
+        <p><strong>2. 客户转换成本：<span class="tag-green">中等（Medium）</span></strong></p>
+        <ul>
+            <li>财务转换成本：中等——大件家电需要配送+安装+旧机处理，Best Buy提供一站式服务</li>
+            <li>时间转换成本：中等——家电购买需要测量尺寸、选择型号、安排配送，有一定决策复杂度</li>
+            <li>Geek Squad安装：提供专业安装服务，形成一定黏性</li>
+        </ul>
+        <p><strong>3. 定价权：<span class="tag-red">弱（Weak）</span></strong></p>
+        <ul>
+            <li>家电价格由品牌商和Home Depot/Lowe's竞争决定，Best Buy是价格跟随者</li>
+            <li>FY26 Q3家电-8.4%下滑，反映房市低迷+关税冲击+竞争加剧</li>
+        </ul>
+        <p><strong>整体竞争力评级：★★★（3/5星）</strong> - 有一定体验+安装差异化，但面临Home Depot/Lowe's强烈竞争</p>
+
+        <h3>3.4 服务业务（Services - Geek Squad/延保/安装/Health）- 营收占比~7%</h3>
+        <p><strong>1. 可替代性：<span class="tag-green">低（Low）</span></strong></p>
+        <ul>
+            <li>主要替代品：苹果Genius Bar（仅限苹果产品）、Ubiquiti（自行IT）、本地电脑维修店、独立安装工</li>
+            <li>替代体验差距：较大——Geek Squad是全美唯一规模化的"消费电子技术服务"网络，覆盖1000+门店+数千名认证技术员</li>
+            <li>替代趋势：稳定——服务业务需要人力网络，难以被纯线上替代</li>
+        </ul>
+        <p><strong>2. 客户转换成本：<span class="tag-green">高（High）</span></strong></p>
+        <ul>
+            <li>Total Tech会员（$179/年）：提供免费Geek Squad服务+延保+专属优惠，会员续费率高</li>
+            <li>服务网络：Geek Squad技术员上门服务+门店服务+远程支持，形成"服务生态"</li>
+            <li>品牌信任：Geek Squad是消费电子服务领域的领导品牌，顾客信任度高</li>
+        </ul>
+        <p><strong>3. 定价权：<span class="tag-orange">中等（Medium）</span></strong></p>
+        <ul>
+            <li>Geek Squad服务价格由Best Buy自主定价（不受品牌商控制），毛利率40%+远高于产品类</li>
+            <li>定价权来源：服务网络垄断+品牌信任+Total Tech会员捆绑</li>
+            <li><strong>巴菲特测试</strong>：若Geek Squad服务涨价10%，部分顾客会转向本地维修店或自己DIY，但Total Tech会员不会离开——服务业务有一定定价权</li>
+        </ul>
+        <p><strong>整体竞争力评级：★★★★（4/5星）</strong> - Best Buy最优质的业务，是真正的差异化护城河</p>
+
+        <h3>3.5 新业务：Best Buy Marketplace + Best Buy Ads（2025年新启动）</h3>
+        <p><strong>1. 可替代性：<span class="tag-orange">中等（Medium）</span></strong></p>
+        <ul>
+            <li>主要替代品：亚马逊Marketplace、Walmart Marketplace、Target Round EYE</li>
+            <li>差异化：Best Buy Marketplace允许第三方卖家利用Best Buy的物流+门店+Geek Squad服务网络，提供"全渠道"履约</li>
+        </ul>
+        <p><strong>2. 客户转换成本：<span class="tag-green">高（High）</span></strong></p>
+        <ul>
+            <li>卖家一旦入驻Best Buy Marketplace，可获得Best Buy 1000+门店的BOPIS取货+Geek Squad安装+品牌信任背书</li>
+            <li>Best Buy Ads利用购物数据为品牌商提供精准广告投放，这是高利润率"类亚马逊AWS"业务</li>
+        </ul>
+        <p><strong>3. 定价权：<span class="tag-green">强（Strong）</span></strong></p>
+        <ul>
+            <li>Marketplace佣金率8-15%，Best Buy Ads广告CPM由Best Buy自主定价</li>
+            <li>这两块业务毛利率50%+，是Best Buy未来利润率扩张的关键</li>
+        </ul>
+        <p><strong>整体竞争力评级：★★★★（4/5星）</strong> - 高利润率增量业务，但规模仍小，需观察扩张速度</p>
+
+        <div class="highlight">
+            <strong>综合产品竞争力评估：</strong> Best Buy的业务组合呈现<strong>"商品零售引流+服务变现"的模式</strong>。计算/手机/TV三大商品板块（占比~85%）护城河弱（可替代性高+转换成本低+定价权弱），是典型的"价格接受者"零售业务；服务业务（占比~7%）和新业务（Marketplace+Ads）是真正的护城河，毛利率40-50%+，但规模仍小。<strong>巴菲特视角</strong>：Best Buy的护城河不在商品销售（那部分会被亚马逊持续侵蚀），而在<strong>"Geek Squad服务网络+全渠道门店复用+品牌信任"</strong>的三位一体。这是"零售+服务"模式，类似巴菲特早期投资的家具城（Nebraska Furniture Mart）——商品低毛利但服务高毛利，规模经济+品牌信任形成防御。但与Costco（会员制护城河）和Home Depot（专业服务+Pro客户护城河）相比，Best Buy的护城河更窄更浅。
+        </div>
+    </div>
+
+    <!-- ===================== 第四章：历史财务指标 ===================== -->
+    <div class="info-box">
+        <h2 id="chapter4">四、历史财务指标</h2>
+
+        <h3>4.1 10年关键财务指标（FY2016-FY2026）</h3>
+        <table>
+            <tr>
+                <th>财年</th><th>营收($B)</th><th>净利率(%)</th><th>毛利率(%)</th>
+                <th>营业利润率(%)</th><th>ROE(%)</th><th>总债务($B)</th><th>PE(x)</th><th>股份数(M)</th>
+            </tr>
+            <tr><td>FY2016</td><td>39.53</td><td>2.27</td><td>23.25</td><td>3.98</td><td>21.5</td><td>1.73</td><td>12.5</td><td>324</td></tr>
+            <tr><td>FY2017</td><td>39.40</td><td>3.12</td><td>23.96</td><td>4.80</td><td>28.6</td><td>1.37</td><td>10.1</td><td>311</td></tr>
+            <tr><td>FY2018</td><td>42.15</td><td>2.37</td><td>23.43</td><td>4.40</td><td>25.9</td><td>1.36</td><td>12.7</td><td>283</td></tr>
+            <tr><td>FY2019</td><td>42.88</td><td>3.41</td><td>23.23</td><td>4.54</td><td>46.4</td><td>1.39</td><td>13.3</td><td>266</td></tr>
+            <tr><td>FY2020</td><td>43.64</td><td>3.53</td><td>23.03</td><td>4.70</td><td>49.7</td><td>3.98</td><td>11.9</td><td>256</td></tr>
+            <tr><td>FY2021</td><td>47.26</td><td>3.80</td><td>22.37</td><td>5.60</td><td>48.3</td><td>3.99</td><td>11.3</td><td>257</td></tr>
+            <tr><td>FY2022</td><td>51.76</td><td>4.74</td><td>22.49</td><td>5.81</td><td>70.6</td><td>3.94</td><td>8.2</td><td>227</td></tr>
+            <tr><td>FY2023</td><td>46.30</td><td>3.06</td><td>21.41</td><td>4.19</td><td>55.2</td><td>3.98</td><td>11.6</td><td>218</td></tr>
+            <tr><td>FY2024</td><td>43.45</td><td>2.86</td><td>22.10</td><td>3.97</td><td>48.1</td><td>3.98</td><td>12.5</td><td>217</td></tr>
+            <tr><td>FY2025</td><td>41.53</td><td>2.23</td><td>22.60</td><td>4.18</td><td>35.6</td><td>4.05</td><td>12.4</td><td>215</td></tr>
+            <tr><td>FY2026E</td><td>41.80</td><td>2.56</td><td>22.48</td><td>4.20</td><td>41.6</td><td>4.13</td><td>12.3</td><td>211</td></tr>
+        </table>
+
+        <h3>4.2 关键趋势分析</h3>
+        <ul>
+            <li><strong>营收趋势：</strong> FY2016-2022从$39.5B增长至$51.8B峰值（CAGR 4.6%），主要受疫情居家需求爆发推动；FY2023-2025连续3年下滑至$41.5B（-20%），反映疫情红利消退+消费需求疲软；FY2026企稳回升至$41.8B（+0.4%），AI PC周期+游戏反弹推动恢复增长</li>
+            <li><strong>净利率：</strong> 长期在2-5%区间波动，FY2022峰值4.74%受疫情居家红利+政府刺激支票推动；FY2025降至2.23%反映通胀压力+消费疲软。这是典型的<strong>低利润率零售生意</strong>——巴菲特会说"我宁愿买一个15%净利率的生意，也不愿买一个3%净利率的生意"</li>
+            <li><strong>ROE：</strong> 长期20-70%区间波动，看似很高但<strong>主要是金融工程放大</strong>——Best Buy长期回购（股份数从324M减至211M，减少35%）+债务增加（从$1.7B增至$4.1B）压低权益基数。真实经营ROIC从18%降至17%，反映经营质量稳定但非卓越</li>
+            <li><strong>毛利率：</strong> 长期稳定在22-24%区间，这是Best Buy的"质量标志"——在亚马逊竞争下仍能维持毛利率稳定，反映全渠道策略+服务业务占比提升的成功。但22%毛利率在零售业仅属中等水平（Costco 13%但周转极快，Home Depot 33%+，苹果32%+）</li>
+            <li><strong>债务：</strong> FY2020债务从$1.4B跳升至$4.0B，是疫情期间为应对不确定性增加的预防性借款，至今未偿还。总债务/EBITDA从0.5x升至1.6x，仍属安全水平，但比2019年翻3倍</li>
+            <li><strong>PE：</strong> 长期8-13x区间，FY2022低点8.2x反映市场对疫情红利可持续性的怀疑；当前12-14x处于历史中性水平。与零售同行相比：沃尔玛25x、Costco 35x、Home Depot 22x——Best Buy估值显著低于同行，反映市场对其护城河的怀疑</li>
+        </ul>
+
+        <div class="chart-container">
+            <canvas id="chart2" height="100"></canvas>
+        </div>
+
+        <div class="highlight">
+            <strong>巴菲特视角：</strong> Best Buy的财务指标呈现<strong>"低利润率+高ROE+稳定增长"的典型零售业特征</strong>。高ROE（35-50%）主要是金融工程放大（回购+杠杆），真实经营ROIC 17%属于"还行但非卓越"水平（对比Costco 30%+、Home Depot 40%+）。营收FY2023-2025连续下滑是警示信号——疫情红利消退后，Best Buy能否恢复有机增长是关键问题。FY2026企稳回升是好兆头，但需观察AI PC周期+Marketplace+Ads能否推动利润率结构性提升。<strong>芒格会说</strong>："这是一个'还行'的生意，但不是'伟大'的生意——伟大生意的净利率应该是15%+，而Best Buy只有2.5%"。
+        </div>
+    </div>
+
+    <!-- ===================== 第五章：竞争分析 ===================== -->
+    <div class="info-box">
+        <h2 id="chapter5">五、竞争分析</h2>
+
+        <h3>5.1 主要竞争对手对比</h3>
+        <table>
+            <tr>
+                <th>竞争对手</th><th>消费电子市场份额</th><th>优势</th><th>劣势</th>
+            </tr>
+            <tr>
+                <td><strong>Best Buy</strong></td>
+                <td>~33%（线下CE市场）</td>
+                <td>专业CE品类+Geek Squad服务+全渠道+品牌信任</td>
+                <td>净利率低(2.5%)+增长放缓+商品同质化</td>
+            </tr>
+            <tr>
+                <td>Amazon</td>
+                <td>~28%（CE总销售额）</td>
+                <td>Prime生态+次日达+价格竞争力+无限货架</td>
+                <td>无体验+无Geek Squad服务+退货体验差</td>
+            </tr>
+            <tr>
+                <td>Walmart</td>
+                <td>~15%（CE总销售额）</td>
+                <td>规模经济+低价+4700家门店覆盖+杂货引流</td>
+                <td>专业度低+品类浅+服务弱</td>
+            </tr>
+            <tr>
+                <td>Costco</td>
+                <td>~8%（CE总销售额）</td>
+                <td>会员制护城河+极低毛利率+高周转+精选SKU</td>
+                <td>品类有限+无服务+SKU浅</td>
+            </tr>
+            <tr>
+                <td>Target</td>
+                <td>~5%（CE总销售额）</td>
+                <td>设计感+杂货引流+城市门店</td>
+                <td>CE专业度低+品类浅</td>
+            </tr>
+            <tr>
+                <td>Apple Stores</td>
+                <td>~5%（CE总销售额）</td>
+                <td>苹果生态+体验+Genius Bar</td>
+                <td>仅限苹果产品+价格无折扣</td>
+            </tr>
+            <tr>
+                <td>Home Depot/Lowe's</td>
+                <td>家电市场~35%</td>
+                <td>家电专业+安装服务+Pro客户</td>
+                <td>无TV/手机/电脑品类</td>
+            </tr>
+        </table>
+
+        <h3>5.2 经济护城河评估</h3>
+        <div class="moat-item">
+            <strong>1. 门店网络+全渠道（Store Network + Omnichannel）★★★★</strong><br>
+            1000+门店既是销售点，也是BOPIS取货中心、Geek Squad服务中心、产品体验中心、退货中心。这种"门店复用"模式使Best Buy在全渠道零售中具有结构性优势——亚马逊无法复制门店网络，沃尔玛/Costco无法复制CE专业度。这是Best Buy从"showrooming受害者"转型为"全渠道赢家"的核心护城河。
+        </div>
+        <div class="moat-item">
+            <strong>2. Geek Squad服务网络（Service Network）★★★★</strong><br>
+            Geek Squad是全美唯一规模化的消费电子技术服务网络，拥有数千名认证技术员+1000+门店+上门服务能力。这是Best Buy区别于所有纯零售商的核心差异化，服务毛利率40%+远高于产品类22%。Total Tech会员（$179/年）提供持续服务黏性。巴菲特名言"价格是你支付的，价值是你得到的"——Geek Squad服务是Best Buy为顾客提供的"额外价值"。
+        </div>
+        <div class="moat-item">
+            <strong>3. 品牌信任（Brand Trust）★★★</strong><br>
+            Best Buy是美国消费电子零售的"代名词"——59年品牌建设+全美知名度。消费者在购买高价电子产品（$1000+ TV、$2000+冰箱）时，倾向于选择有实体店+有服务+有退货保障的Best Buy，而非纯线上亚马逊。但这种品牌信任不如苹果/Costco那样强烈。
+        </div>
+        <div class="moat-item">
+            <strong>4. 规模优势（Scale Advantage）★★★</strong><br>
+            $42B营收规模提供采购议价力（年采$32B+）+广告支出优势+供应链效率。但规模优势在消费电子零售中不如在杂货零售（沃尔玛/Costco）那样显著，因为品牌商（苹果/三星）的定价权远大于零售商。
+        </div>
+        <div class="moat-item">
+            <strong>5. 新业务增长引擎（Marketplace + Ads）★★★</strong><br>
+            Best Buy Marketplace（2025年Q3上线）和Best Buy Ads是"类亚马逊"的高利润率增量业务。Marketplace佣金率8-15%，Ads业务毛利率50%+。这两块业务规模仍小，但是未来利润率扩张的关键——如果成功，可使Best Buy从"纯零售商"转型为"零售+平台"模式。
+        </div>
+        <div class="risk-item">
+            <strong>6. 反护城河：商品同质化+价格透明（Commodity + Price Transparency）★（负分）</strong><br>
+            Best Buy销售的商品90%是品牌商标准化产品（iPhone/Samsung TV/LG冰箱），顾客可以轻松在亚马逊/Costco/品牌直营店找到完全相同的产品。价格匹配政策等于<strong>主动放弃定价权</strong>。这是巴菲特最警惕的"价格接受者"模式——"在商品零售业，如果你不能差异化，你就是价格接受者，而价格接受者永远赚不到超额利润"。
+        </div>
+        <div class="risk-item">
+            <strong>7. 反护城河：亚马逊竞争（Amazon Competition）★（负分）</strong><br>
+            亚马逊Prime会员+次日达+无限货架+AWS补贴电商，是Best Buy的长期结构性威胁。虽然Best Buy通过全渠道+Geek Squad成功抵御了亚马逊（2012年"showrooming危机"后逆转），但亚马逊持续蚕食CE市场份额。Best Buy的"幸存"不等于"胜利"——市场份额从2010年的35%降至2025年的33%。
+        </div>
+
+        <div class="highlight">
+            <strong>护城河可持续性：</strong> Best Buy的护城河是<strong>"门店网络+Geek Squad服务+品牌信任"</strong>三位一体的"全渠道零售护城河"，护城河真实但<strong>不如Costco（会员制）或Home Depot（Pro客户）那样深那样宽</strong>。最大威胁是亚马逊持续竞争+商品同质化+净利率过低。巴菲特会问的核心问题是：<strong>"10年后Best Buy还会存在吗？"</strong> 答案是"会"——因为消费电子需要体验+服务+退货保障，纯线上无法完全替代。但<strong>"10年后Best Buy的利润率能提升吗？"</strong> 答案是"不确定"——取决于Marketplace+Ads能否成功推动利润率结构性提升。<strong>芒格会说</strong>："Best Buy是一个'还行'的生意——它活下来了，但活得不容易"。
+        </div>
+    </div>
+
+    <!-- ===================== 第六章：利润分配分析 ===================== -->
+    <div class="info-box">
+        <h2 id="chapter6">六、利润分配分析</h2>
+
+        <h3>6.1 10年利润分配表（FY2016-FY2025，亿美元）</h3>
+        <table>
+            <tr>
+                <th>财年</th><th>净利润</th><th>分红</th><th>回购</th><th>CapEx</th>
+                <th>留存金额</th><th>留存率</th><th>股份数(百万)</th><th>每股股息($)</th>
+            </tr>
+            <tr><td>FY2016</td><td>8.97</td><td>2.98</td><td>3.50</td><td>6.50</td><td>5.99</td><td>67%</td><td>324</td><td>0.92</td></tr>
+            <tr><td>FY2017</td><td>10.96</td><td>3.48</td><td>5.50</td><td>5.80</td><td>7.48</td><td>68%</td><td>311</td><td>1.12</td></tr>
+            <tr><td>FY2018</td><td>10.00</td><td>3.85</td><td>7.80</td><td>5.50</td><td>6.15</td><td>62%</td><td>283</td><td>1.36</td></tr>
+            <tr><td>FY2019</td><td>14.63</td><td>4.79</td><td>10.50</td><td>7.50</td><td>9.84</td><td>67%</td><td>266</td><td>1.80</td></tr>
+            <tr><td>FY2020</td><td>15.41</td><td>5.12</td><td>10.20</td><td>7.80</td><td>10.29</td><td>67%</td><td>256</td><td>2.00</td></tr>
+            <tr><td>FY2021</td><td>17.97</td><td>5.65</td><td>13.50</td><td>7.50</td><td>12.32</td><td>69%</td><td>257</td><td>2.20</td></tr>
+            <tr><td>FY2022</td><td>24.54</td><td>6.36</td><td>22.00</td><td>7.50</td><td>18.18</td><td>74%</td><td>227</td><td>2.80</td></tr>
+            <tr><td>FY2023</td><td>14.16</td><td>7.67</td><td>5.50</td><td>8.00</td><td>6.49</td><td>46%</td><td>218</td><td>3.52</td></tr>
+            <tr><td>FY2024</td><td>12.42</td><td>7.96</td><td>3.80</td><td>8.50</td><td>4.46</td><td>36%</td><td>217</td><td>3.68</td></tr>
+            <tr><td>FY2025</td><td>9.26</td><td>8.08</td><td>3.20</td><td>7.50</td><td>1.18</td><td>13%</td><td>215</td><td>3.76</td></tr>
+            <tr><td><strong>10年累计</strong></td><td><strong>138.32</strong></td><td><strong>55.94</strong></td><td><strong>85.50</strong></td><td><strong>72.10</strong></td><td><strong>82.38</strong></td><td><strong>57%（均值）</strong></td><td>股份数减少109M（-34%）</td><td>DPS $0.92→$3.76</td></tr>
+        </table>
+
+        <h3>6.2 利润分配结构分析</h3>
+        <ul>
+            <li><strong>分红（40%均值）</strong>：10年累计56亿美元，平均派息率40%。连续22年股息增长，DPS从$0.92增至$3.76，CAGR 15.1%——略超EPS增长（CAGR 8.5%），反映派息率从33%提升至87%。FY2025派息率87%偏高，反映净利润下滑但股息继续增长——若FY2026盈利恢复，派息率将回落至60%</li>
+            <li><strong>回购（62%均值）</strong>：10年累计86亿美元，<strong>是Best Buy最大的股东回报方式</strong>。10年股份数从324M减至215M，<strong>减少34%</strong>——这是非常激进的回购，远超好时（10年减4%）和ITW（10年减20%）。回购集中在FY2018-FY2022（疫情红利期），FY2023-2025因盈利下滑回购力度大幅缩减</li>
+            <li><strong>CapEx（52%均值）</strong>：10年累计72亿美元，平均年CapEx约7.2亿美元。CapEx/营收约1.7%，资本密集度低。主要用于门店升级（新一代"store of the future"）+IT系统+供应链自动化</li>
+            <li><strong>留存（57%均值）</strong>：10年累计留存82亿美元，留存率平均57%。可持续增长率 = ROE × 留存率 = 40% × 57% = 23%（理论值），实际EPS增长8.5%——说明部分留存用于收购（Yardbird/Current Health等）和债务管理</li>
+        </ul>
+
+        <div class="chart-container">
+            <canvas id="chart3" height="100"></canvas>
+        </div>
+
+        <h3>6.3 资本配置质量评价</h3>
+        <div class="moat-item">
+            <strong>优点：</strong>
+            <ul>
+                <li>10年回购+分红累计142亿，占净利润103%——几乎将所有利润返还股东</li>
+                <li>10年股份数减少34%（324M→215M）——持续回购复利效应显著，EPS增长8.5%超过净利润增长6.8%</li>
+                <li>22年股息增长记录——接近"股息贵族"地位（25年门槛）</li>
+                <li>回购时机优秀——FY2020-2022低估值时大额回购（PE 8-12x），FY2024-2025高估值时缩减回购</li>
+                <li>FY2026 CapEx $700M用于门店升级+Marketplace+Ads新业务，前瞻性投资</li>
+            </ul>
+        </div>
+        <div class="risk-item">
+            <strong>缺点：</strong>
+            <ul>
+                <li>FY2025派息率87%偏高——若盈利持续低迷，可能被迫放缓股息增长</li>
+                <li>FY2023-2025盈利下滑期间仍维持高分红+回购，导致债务从$1.4B增至$4.0B（增加$2.6B）</li>
+                <li>Best Buy Health业务2024年减值，反映管理层对健康科技转型的判断失误</li>
+                <li>Yardbird户外家具业务收缩，反映非核心业务扩张失败</li>
+            </ul>
+        </div>
+
+        <div class="highlight">
+            <strong>资本配置质量评级：★★★★（4/5星）</strong><br>
+            Best Buy的资本配置质量在零售业中属于优秀水平——10年回购+分红累计142亿（占净利润103%）+股份数减少34%+22年股息增长，这些是巴菲特最看重的"股东友好"信号。回购时机优秀（低估值时大额回购），但FY2023-2025盈利下滑期间仍维持高分红导致债务增加，需观察FY2026盈利恢复后能否降杠杆。
+        </div>
+    </div>
+
+    <!-- ===================== 第七章：投资总结 ===================== -->
+    <div class="info-box">
+        <h2 id="chapter7">七、投资总结</h2>
+
+        <h3>7.1 六维度评分</h3>
+        <table>
+            <tr><th>维度</th><th>评分</th><th>理由</th></tr>
+            <tr><td>业务易懂性</td><td>★★★★★ 5/5</td><td>消费电子零售——所有人都能理解，巴菲特能力圈内</td></tr>
+            <tr><td>护城河</td><td>★★★ 3/5</td><td>门店网络+Geek Squad服务+品牌信任，但商品同质化+亚马逊竞争+净利率低</td></tr>
+            <tr><td>资本配置</td><td>★★★★ 4/5</td><td>10年回购减34%股份+22年股息增长+回购时机优秀，但FY2025派息率87%偏高</td></tr>
+            <tr><td>财务安全</td><td>★★★ 3/5</td><td>BBB+/Baa1投资级+总债务/EBITDA 1.6x安全，但债务从$1.4B增至$4.1B+净利率仅2.5%</td></tr>
+            <tr><td>增长前景</td><td>★★★ 3/5</td><td>AI PC周期+Marketplace+Ads新引擎，但长期受亚马逊竞争+消费电子市场饱和限制</td></tr>
+            <tr><td>估值吸引力</td><td>★★★★ 4/5</td><td>当前PE ~12.3x低于10年均值12.5x+股息收益率5.0%+EV/EBITDA 6.1x，估值吸引</td></tr>
+            <tr><td><strong>综合评分</strong></td><td><strong>3.7/5</strong></td><td><strong>"合理价格+还行生意+优秀资本配置"——典型的价值投资标的</strong></td></tr>
+        </table>
+
+        <h3>7.2 估值分析</h3>
+        <table>
+            <tr><th>估值方法</th><th>数值</th><th>对比</th></tr>
+            <tr><td>当前PE（TTM）</td><td>14.3x</td><td>零售行业中位数20x，Best Buy折价30%</td></tr>
+            <tr><td>前瞻PE（FY26指引）</td><td>12.2x</td><td>沃尔玛25x、Costco 35x、Home Depot 22x——显著低于同行</td></tr>
+            <tr><td>EV/EBITDA</td><td>6.1x</td><td>零售行业中位数10x，Best Buy折价40%</td></tr>
+            <tr><td>股息收益率</td><td>5.0%</td><td>零售行业中位数2.4%，Best Buy溢价2倍</td></tr>
+            <tr><td>P/B</td><td>4.6x</td><td>反映高ROE（40%）+低权益基数（回购+杠杆）</td></tr>
+            <tr><td>P/S</td><td>0.33x</td><td>零售行业中位数0.5-1.0x，Best Buy折价50%</td></tr>
+        </table>
+
+        <h3>7.3 投资建议</h3>
+        <div class="moat-item">
+            <strong>结论：合理价格 + 还行生意 + 优秀资本配置 = 价值投资标的</strong>
+            <ul>
+                <li><strong>合理价格</strong>：当前PE 12-14x+股息5.0%+EV/EBITDA 6.1x，估值低于零售同行30-50%，提供margin of safety</li>
+                <li><strong>还行生意</strong>：净利率2.5%+商品同质化+亚马逊竞争——不是"伟大"的生意，但也不是"糟糕"的生意</li>
+                <li><strong>优秀资本配置</strong>：10年回购减34%股份+22年股息增长+回购时机优秀——管理层股东友好</li>
+            </ul>
+        </div>
+
+        <div class="moat-item">
+            <strong>建议操作：</strong>
+            <ul>
+                <li><strong>已持有者</strong>：继续持有——5%股息+回购+估值便宜提供下行保护，AI PC周期+Marketplace+Ads提供上行催化</li>
+                <li><strong>新投资者</strong>：可在当前$77附近建仓，目标配置3-5%（作为价值/收益型持仓）</li>
+                <li><strong>加仓机会</strong>：若股价回落至$65以下（PE<10x，股息>6%），可加大仓位</li>
+                <li><strong>减仓信号</strong>：若Marketplace+Ads业务失败+FY2027盈利继续下滑+派息率持续>90%，考虑减仓</li>
+            </ul>
+        </div>
+
+        <div class="risk-item">
+            <strong>主要风险：</strong>
+            <ul>
+                <li><strong>亚马逊竞争加剧</strong>：亚马逊持续蚕食CE市场份额，Best Buy份额可能从33%降至30%以下</li>
+                <li><strong>消费电子市场饱和</strong>：TV/相机/音响市场长期萎缩，手机/电脑换机周期延长</li>
+                <li><strong>关税冲击</strong>：FY26指引已考虑关税影响，若关税进一步升级可能压缩利润率</li>
+                <li><strong>派息率过高</strong>：FY2025派息率87%，若盈利持续低迷可能被迫放缓股息增长</li>
+                <li><strong>新业务不确定性</strong>：Marketplace+Ads规模仍小，能否成功推动利润率结构性提升存疑</li>
+                <li><strong>宏观经济衰退</strong>：消费电子是可选消费品，衰退期需求弹性大</li>
+            </ul>
+        </div>
+
+        <div class="moat-item">
+            <strong>关键催化：</strong>
+            <ul>
+                <li><strong>AI PC换机周期</strong>：Windows 10 EOL（2025年10月）+AI PC新功能驱动FY2026-2028多季度换机潮</li>
+                <li><strong>Nintendo Switch 2</strong>：2025年发布，3-5年硬件周期+游戏软件+配件高毛利</li>
+                <li><strong>Marketplace+Ads扩张</strong>：若2026-2028年Marketplace GMV达$2-3B+Ads收入达$300-500M，可推动利润率结构性提升</li>
+                <li><strong>门店升级</strong>：新一代"store of the future"提升体验+转化率</li>
+                <li><strong>降杠杆</strong>：FY2026盈利恢复后，若债务从$4.1B降至$3.0B以下，信用评级可能提升</li>
+            </ul>
+        </div>
+
+        <div class="highlight">
+            <strong>巴菲特芒格总结论：</strong><br>
+            Best Buy是<strong>"合理价格买入还行生意+优秀管理层"</strong>的典型价值投资标的。它不是巴菲特最钟爱的"伟大生意+合理价格"（如苹果/可口可乐），而是格雷厄姆式的"低于内在价值买入+安全边际充足"。<br><br>
+            <strong>核心逻辑</strong>：当前估值（PE 12x+股息5%+EV/EBITDA 6x）已经充分反映了市场对"亚马逊竞争+消费电子饱和+净利率低"的悲观预期，而Marketplace+Ads+AI PC周期+22年股息增长+34%回购缩减提供了上行期权。<br><br>
+            <strong>巴菲特会问</strong>："如果我持有10年，我会得到什么？" 答案是：<strong>5%股息收益率+2-3%股息增长+2-3%回购缩减=年化8-12%总回报</strong>——这是"还行但非卓越"的回报，但在当前美股估值偏高（S&P 500 PE 22x）的环境下，是一个合理的防御性配置。<br><br>
+            <strong>芒格会说</strong>："这是一个'还行'的生意——它活下来了，活得还不错，但不是那种让你发财的生意。如果你想要发财，去买苹果；如果你想要稳定8-12%年化回报+5%股息收入，Best Buy是一个合理选择。"
+        </div>
+
+        <div class="highlight">
+            <strong>相关公司对比：</strong>
+            <ul>
+                <li><a href="hsy.html">HSY 好时</a>：HSY是"品牌护城河+周期低谷"，BBY是"全渠道护城河+合理价格"——HSY护城河更深但估值偏高，BBY护城河较浅但估值便宜</li>
+                <li><a href="itw.html">ITW 伊利诺伊工具</a>：ITW是"工业复利机器+62年股息之王"，BBY是"零售幸存者+22年股息增长"——ITW质量更高但估值更贵，BBY质量一般但估值更便宜</li>
+                <li><a href="kmb.html">KMB 金佰利</a>：KMB是"消费品防御股+53年股息之王"，BBY是"消费电子周期股+22年股息增长"——KMB更防御性，BBY更周期性</li>
+                <li><a href="nvr.html">NVR</a>：NVR是"低杠杆+持续回购+轻资产"，BBY是"中等杠杆+激进回购+重资产门店"——NVR资本配置更优秀</li>
+                <li><a href="sun.html">SUN Sunoco</a>：SUN是"基础设施护城河（管道）+MLP高分红"，BBY是"零售+服务护城河+股息增长"——SUN更稳定，BBY更有上行期权</li>
+                <li><a href="pjt.html">PJT Partners</a>：PJT是"精品投行+轻资产+高ROIC"，BBY是"重资产零售+低净利率+中ROIC"——PJT质量更高</li>
+                <li><a href="br.html">BR Broadridge</a>：BR是"客户黏性+切换成本护城河"，BBY是"门店+服务护城河"——BR护城河更可预测</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- ===================== Chart.js 可视化 ===================== -->
+    <script>
+        const ctx1 = document.getElementById('chart1').getContext('2d');
+        new Chart(ctx1, {
+            type: 'bar',
+            data: {
+                labels: ['FY2016','FY2017','FY2018','FY2019','FY2020','FY2021','FY2022','FY2023','FY2024','FY2025','FY2026E'],
+                datasets: [
+                    {
+                        type: 'bar',
+                        label: '营收（亿美元）',
+                        data: [395.3, 394.0, 421.5, 428.8, 436.4, 472.6, 517.6, 463.0, 434.5, 415.3, 418.0],
+                        backgroundColor: '#0046be',
+                        yAxisID: 'y',
+                    },
+                    {
+                        type: 'line',
+                        label: '净利润（亿美元）',
+                        data: [89.7, 109.6, 100.0, 146.3, 154.1, 179.7, 245.4, 141.6, 124.2, 92.6, 107.0],
+                        borderColor: '#c0392b',
+                        backgroundColor: 'rgba(192,57,43,0.1)',
+                        tension: 0.3,
+                        yAxisID: 'y1',
+                        fill: true,
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                plugins: { title: { display: true, text: 'BBY 11年营收与净利润趋势（FY2022峰值后连续3年下滑）', font:{size:14} } },
+                scales: {
+                    y: { type: 'linear', position: 'left', title: { display: true, text: '营收（亿美元）' } },
+                    y1: { type: 'linear', position: 'right', title: { display: true, text: '净利润（亿美元）' }, grid: { drawOnChartArea: false } }
+                }
+            }
+        });
+
+        const ctx2 = document.getElementById('chart2').getContext('2d');
+        new Chart(ctx2, {
+            type: 'line',
+            data: {
+                labels: ['FY2016','FY2017','FY2018','FY2019','FY2020','FY2021','FY2022','FY2023','FY2024','FY2025','FY2026E'],
+                datasets: [
+                    {
+                        label: '毛利率 (%)',
+                        data: [23.25, 23.96, 23.43, 23.23, 23.03, 22.37, 22.49, 21.41, 22.10, 22.60, 22.48],
+                        borderColor: '#27ae60',
+                        backgroundColor: 'rgba(39,174,96,0.1)',
+                        tension: 0.3,
+                    },
+                    {
+                        label: 'ROE (%)',
+                        data: [21.5, 28.6, 25.9, 46.4, 49.7, 48.3, 70.6, 55.2, 48.1, 35.6, 41.6],
+                        borderColor: '#2980b9',
+                        backgroundColor: 'rgba(41,128,185,0.1)',
+                        tension: 0.3,
+                    },
+                    {
+                        label: 'PE (x, 年末)',
+                        data: [12.5, 10.1, 12.7, 13.3, 11.9, 11.3, 8.2, 11.6, 12.5, 12.4, 12.3],
+                        borderColor: '#f39c12',
+                        backgroundColor: 'rgba(243,156,18,0.1)',
+                        tension: 0.3,
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                plugins: { title: { display: true, text: 'BBY 11年关键财务比率趋势', font:{size:14} } },
+                scales: { y: { title: { display: true, text: '%' } } }
+            }
+        });
+
+        const ctx3 = document.getElementById('chart3').getContext('2d');
+        new Chart(ctx3, {
+            type: 'bar',
+            data: {
+                labels: ['FY2016','FY2017','FY2018','FY2019','FY2020','FY2021','FY2022','FY2023','FY2024','FY2025'],
+                datasets: [
+                    { label: '净利润', data: [89.7,109.6,100.0,146.3,154.1,179.7,245.4,141.6,124.2,92.6], backgroundColor: '#0046be' },
+                    { label: '分红', data: [29.8,34.8,38.5,47.9,51.2,56.5,63.6,76.7,79.6,80.8], backgroundColor: '#27ae60' },
+                    { label: '回购', data: [35.0,55.0,78.0,105.0,102.0,135.0,220.0,55.0,38.0,32.0], backgroundColor: '#2980b9' },
+                    { label: 'CapEx', data: [6.5,5.8,5.5,7.5,7.8,7.5,7.5,8.0,8.5,7.5], backgroundColor: '#f39c12' }
+                ]
+            },
+            options: {
+                responsive: true,
+                plugins: { title: { display: true, text: 'BBY 10年利润分配（回购是主要股东回报方式，FY2022回购峰值22亿美元）', font:{size:14} } },
+                scales: { y: { title: { display: true, text: '亿美元' } } }
+            }
+        });
+    </script>
+
+    <script src="scores_client.js"></script>
+    <script src="stock_topbar.js"></script>
+</body>
+</html>
