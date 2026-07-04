@@ -155,6 +155,28 @@
 
     <!-- 更新日志条目 - 按时间倒序排列，最新在最上面 -->
 
+    <div class="log-entry fix">
+        <div class="log-header">
+            <span class="log-date">2026-07-04</span>
+            <span class="log-type fix">修复</span>
+        </div>
+        <div class="log-desc">
+            <ul>
+                <li><strong>修复 stocks_data.js 语法错误：HSY 条目中 Reese's 单引号未转义导致整个 IIFE 执行失败</strong></li>
+                <li>问题表现：股票打分系统页面（scorer.html）显示"0总股票数"+"没有符合条件的股票"，所有股票评分消失</li>
+                <li>根本原因：第116行 <code>{code:'HSY',name:'...Reese's全美销量第一...'}</code> 中 <code>Reese's</code> 的单引号提前终止了 JavaScript 字符串，导致 <code>window.STOCKS_DATA = stocks</code> 永远不会被执行</li>
+                <li>引入时间：2026-06-29 提交 17431bd（新增HSY分析）时引入</li>
+                <li>影响范围：所有依赖 stocks_data.js 的页面（scorer.html、nav_bar.js 股票数量统计等）</li>
+                <li>修复方式：将 <code>Reese's</code> 转义为 <code>Reese\'s</code>，node -c 语法检查通过</li>
+                <li>同时发现 GitHub Pages 部署失败：BBY 提交（651690a）后的 GitHub Pages deploy job 失败，导致 GitHub Pages 上没有 BBY 内容，需要重新推送触发部署</li>
+            </ul>
+        </div>
+        <div class="log-files">
+            <span class="modified">~ stocks_data.js</span><br>
+            <span class="modified">~ changelog.html</span>
+        </div>
+    </div>
+
     <div class="log-entry create">
         <div class="log-header">
             <span class="log-date">2026-07-02</span>
