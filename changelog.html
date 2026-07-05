@@ -155,6 +155,25 @@
 
     <!-- 更新日志条目 - 按时间倒序排列，最新在最上面 -->
 
+    <div class="log-entry update">
+        <div class="log-header">
+            <span class="log-date">2026-07-05</span>
+            <span class="log-type update">更新</span>
+        </div>
+        <div class="log-desc">
+            <ul>
+                <li><strong>更新项目规则文件（project_rules.md）：新增第五章 JavaScript 语法检查规则 + 第六章 GitHub Pages 部署验证规则</strong></li>
+                <li>第五章 JavaScript 语法检查规则：总结 2026-07-04 Reese's 单引号未转义事故教训，强制要求修改 .js 文件后执行 <code>node -c</code> 语法检查，列出常见需要转义的品牌名称（Reese's、Wendy's、Sam's Club 等）和其他 JavaScript 语法陷阱</li>
+                <li>第六章 GitHub Pages 部署验证规则：总结 2026-07-03 BBY 提交后 GitHub Pages 部署失败事故教训，强制要求推送后验证 GitHub Pages 部署状态（通过 GitHub API 或 Puppeteer 检查），提供部署失败处理流程和关键页面健康检查清单</li>
+                <li>目的：避免再次发生 stocks_data.js 语法错误导致 scorer.html 评分消失、GitHub Pages 部署失败导致用户看不到更新等问题</li>
+            </ul>
+        </div>
+        <div class="log-files">
+            <span class="modified">~ .trae/rules/project_rules.md</span><br>
+            <span class="modified">~ changelog.html</span>
+        </div>
+    </div>
+
     <div class="log-entry fix">
         <div class="log-header">
             <span class="log-date">2026-07-04</span>
