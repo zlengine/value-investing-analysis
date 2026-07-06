@@ -114,7 +114,8 @@
         {code:'KMB',name:'Kimberly-Clark - 153年消费品防御股/股息之王53年',href:'kmb.html'},
         {code:'ITW',name:'Illinois Tool Works - 113年工业复利机器/80-20经营哲学+62年股息之王',href:'itw.html'},
         {code:'HSY',name:'好时公司 - 132年巧克力复利机器/美国糖果#1份额33.5%+Reese\'s全美销量第一+15年股息增长',href:'hsy.html'},
-        {code:'BBY',name:'百思买 Best Buy - 59年消费电子零售龙头/全美CE零售#1份额33%+Geek Squad服务护城河+22年股息增长',href:'bby.html'}
+        {code:'BBY',name:'百思买 Best Buy - 59年消费电子零售龙头/全美CE零售#1份额33%+Geek Squad服务护城河+22年股息增长',href:'bby.html'},
+        {code:'UNP',name:'联合太平洋铁路 Union Pacific - 163年钢铁脊梁/32,889英里路权不可复制+126年股息支付+10年回购缩减股本29%',href:'unp.html'}
     ];
 
     // 暴露为全局变量
