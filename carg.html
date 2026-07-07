@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CARG CarGurus - 巴菲特芒格式价值投资分析</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body { font-family: 'Segoe UI', Arial, sans-serif; line-height: 1.6; color: #333; max-width: 1200px; margin: 0 auto; padding: 20px; background: #f4f6f9; }
+        h1 { color: #1a3a5c; border-bottom: 3px solid #f39c12; padding-bottom: 10px; }
+        h2 { color: #1a3a5c; margin-top: 35px; border-left: 5px solid #f39c12; padding-left: 15px; }
+        h3 { color: #2c5282; margin-top: 25px; }
+        .info-box { background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.08); margin: 20px 0; }
+        .highlight { background: #fef9e7; padding: 15px; border-left: 5px solid #f39c12; margin: 20px 0; border-radius: 5px; }
+        .moat-item { background: #eafaf1; padding: 15px; margin: 10px 0; border-left: 5px solid #27ae60; border-radius: 5px; }
+        .risk-item { background: #fdedec; padding: 15px; margin: 10px 0; border-left: 5px solid #c0392b; border-radius: 5px; }
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; background: white; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        th, td { padding: 12px; text-align: left; border-bottom: 1px solid #ddd; }
+        th { background: #1a3a5c; color: white; }
+        tr:hover { background: #f5f5f5; }
+        .tag-green { background: #27ae60; color: white; padding: 3px 10px; border-radius: 12px; font-size: 0.85em; }
+        .tag-orange { background: #f39c12; color: white; padding: 3px 10px; border-radius: 12px; font-size: 0.85em; }
+        .tag-red { background: #c0392b; color: white; padding: 3px 10px; border-radius: 12px; font-size: 0.85em; }
+        .section-nav { background: white; border-radius: 10px; padding: 15px 25px; margin: 20px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.08); text-align: center; }
+        .section-nav a { display: inline-block; margin: 5px 10px; padding: 6px 14px; background: #eaf2f8; color: #1a3a5c; text-decoration: none; border-radius: 15px; font-size: 0.9em; }
+        .section-nav a:hover { background: #f39c12; color: white; }
+        .chart-container { background: white; padding: 20px; border-radius: 10px; margin: 20px 0; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+    </style>
+</head>
+<body>
+    <div class="top-nav-bar"></div>
+    <script src="nav_bar.js"></script>
+    <span id="topbarCode" style="display:none;">CARG</span>
+
+    <h1>CARG CarGurus（CarGurus, Inc.）- 巴菲特芒格式价值投资分析</h1>
+    <p style="color:#666; font-size:1.1em;"><em>分析日期：2026年7月7日 | 数据截止：2025年年报（2026年2月19日发布）+ Q1 2026季报（2026年5月7日发布）</em></p>
+
+    <div class="section-nav">
+        <a href="#chapter1">公司基本信息</a>
+        <a href="#chapter2">业务分析</a>
+        <a href="#chapter3">产品竞争力分析</a>
+        <a href="#chapter4">历史财务指标</a>
+        <a href="#chapter5">竞争分析</a>
+        <a href="#chapter6">利润分配分析</a>
+        <a href="#chapter7">投资总结</a>
+    </div>
+
+    <!-- ===================== 第一章：公司基本信息 ===================== -->
+    <div class="info-box">
+        <h2 id="chapter1">一、公司基本信息</h2>
+        <table>
+            <tr><th>项目</th><th>详情</th></tr>
+            <tr><td>公司名称</td><td>CarGurus, Inc.（CarGurus公司）</td></tr>
+            <tr><td>股票代码</td><td>CARG（NASDAQ）</td></tr>
+            <tr><td>成立时间</td><td>2006年（19年历史），由Langley Steinert（前TripAdvisor联合创始人）创立</td></tr>
+            <tr><td>总部</td><td>Boston, MA（波士顿剑桥）</td></tr>
+            <tr><td>最新股价</td><td>$36.23（2026年7月6日）</td></tr>
+            <tr><td>市值</td><td>约34亿美元（约245亿人民币）</td></tr>
+            <tr><td>企业价值（EV）</td><td>约27亿美元（零长期债务+现金$190M）</td></tr>
+            <tr><td>员工人数</td><td>约800人（轻资产模式）</td></tr>
+            <tr><td>CEO</td><td>Jason Trevisan（2018年接任CEO，前General Atlantic私募高管）</td></tr>
+            <tr><td>业务覆盖</td><td>美国+英国+加拿大，34,409家付费经销商（2025年底）</td></tr>
+            <tr><td>股息记录</td><td>不支付股息（100%利润用于回购+再投资）</td></tr>
+            <tr><td>当前PE（TTM）</td><td>~17.3x（2025 GAAP EPS $1.55）；~8.5x（Forward PE，基于2026 Non-GAAP指引）</td></tr>
+            <tr><td>主要业务</td><td>3大业务：U.S. Marketplace + International + Digital Wholesale（CarOffer，2025年关停）</td></tr>
+            <tr><td>市场地位</td><td>美国#1汽车购物网站（流量第一），34,409家付费经销商</td></tr>
+            <tr><td>股价表现</td><td>52周区间 $26.39-$39.42；1年涨跌 -4.3%；5年涨跌 +22.3%</td></tr>
+            <tr><td>股东回报</td><td>自2022年12月回购计划启动以来已回购29%股份（约$1.05B+）</td></tr>
+        </table>
+
+        <div class="highlight">
+            <strong>巴菲特视角：</strong> CarGurus是巴菲特会欣赏的"轻资产平台生意"——类似Costco+Google的混合体，用"双边市场+数据飞轮"模式连接消费者与汽车经销商。它的核心优势是<strong>"美国#1汽车购物网站的流量护城河"</strong>：每月访问量远超Autotrader/Cars.com，每月独立访客近半数只在CarGurus购物。这种"赢者通吃"的网络效应一旦形成，新进入者很难复制。但与传统消费品公司不同，CarGurus的护城河仍受<strong>(1)汽车经销商周期性+ (2)Cars.com/TrueCar竞争+ (3)CarOffer批发业务失败教训</strong>的影响。2025年是转型年：关停亏损的CarOffer批发业务+聚焦AI驱动的"经销商全流程服务"+国际业务增长27%。2025年营收$907M（+14%连续两年），GAAP净利润$197M（+53%），自由现金流$289M（FCF Margin 31.9%），零长期债务——这是巴菲特钟爱的"现金奶牛+轻资本"生意。
+        </div>
+    </div>
+
+    <!-- ===================== 第二章：业务分析 ===================== -->
+    <div class="info-box">
+        <h2 id="chapter2">二、业务分析</h2>
+
+        <h3>2.1 公司业务简述（120岁老奶奶也能懂）</h3>
+        <p>CarGurus做的是<strong>"帮人买车和帮经销商卖车"</strong>的生意，你或你的家人买车时很可能用过它：</p>
+        <ul>
+            <li><strong>你上网搜二手车/新车</strong>：打开CarGurus.com或App，输入车型+邮编，看到附近经销商的库存</li>
+            <li><strong>你看车价评分</strong>：CarGurus用算法给每辆车打"好价格/公道价格/高价格"评级，帮消费者判断</li>
+            <li><strong>你联系经销商</strong>：通过CarGurus的Lead系统联系经销商，预约看车/试驾</li>
+            <li><strong>经销商付费订阅</strong>：经销商按月/年付费给CarGurus，获得库存展示+Lead+广告位</li>
+            <li><strong>经销商使用AI工具</strong>：PriceVantage定价工具+Dealer Data Insights数据洞察+Digital Deal在线交易</li>
+            <li><strong>消费者使用AI助手</strong>：CG Discover生成式AI搜索+Dealership Mode到店辅助+Sell My Car二手车估价</li>
+        </ul>
+        <p>简单说：CarGurus是<strong>"汽车版的Zillow+TripAdvisor"</strong>——消费者免费使用，经销商付费订阅，双边市场网络效应。</p>
+
+        <h3>2.2 三大业务板块（2025年）</h3>
+        <table>
+            <tr><th>业务板块</th><th>2025营收</th><th>占比</th><th>毛利率</th><th>营业利润率</th><th>增长趋势</th></tr>
+            <tr><td>U.S. Marketplace（美国市场）</td><td>~$790M</td><td>87%</td><td>~93%</td><td>~28%</td><td>+13% YoY，核心利润引擎</td></tr>
+            <tr><td>International（国际：英国+加拿大）</td><td>~$117M</td><td>13%</td><td>~85%</td><td>~15%</td><td>+27% YoY，加速增长</td></tr>
+            <tr><td>Digital Wholesale（CarOffer）</td><td>~$0M（已关停）</td><td>0%</td><td>N/A</td><td>亏损</td><td>2025年Q4列为终止经营</td></tr>
+            <tr><td><strong>合计（持续经营）</strong></td><td><strong>$907M</strong></td><td><strong>100%</strong></td><td><strong>93%</strong></td><td><strong>27%</strong></td><td>+14% YoY</td></tr>
+        </table>
+
+        <h3>2.3 地理营收分布（2025年）</h3>
+        <table>
+            <tr><th>地区</th><th>2025营收</th><th>占比</th><th>YoY增长</th><th>付费经销商</th></tr>
+            <tr><td>美国</td><td>~$790M</td><td>87%</td><td>+13%</td><td>26,049家（+5%）</td></tr>
+            <tr><td>英国</td><td>~$70M</td><td>8%</td><td>+30%</td><td>4,500+家（+15%）</td></tr>
+            <tr><td>加拿大</td><td>~$47M</td><td>5%</td><td>+22%</td><td>3,800+家（+12%）</td></tr>
+            <tr><td><strong>合计</strong></td><td><strong>$907M</strong></td><td><strong>100%</strong></td><td><strong>+14%</strong></td><td><strong>34,409家（+7%）</strong></td></tr>
+        </table>
+
+        <div class="highlight">
+            <strong>双边市场网络效应：</strong> CarGurus的核心价值在于"双边市场"——消费者越多→经销商获得的Lead越多→经销商越愿意付费→CarGurus收入越多→投入产品创新越多→消费者体验越好。这种"鸡生蛋蛋生鸡"的网络效应使CarGurus成为美国#1汽车购物网站，月访问量远超Autotrader/Cars.com。近半数月度访客<strong>只在CarGurus购物</strong>，说明消费者锁定效应强。
+        </div>
+
+        <h3>2.4 商业模式与赚钱逻辑</h3>
+        <p>CarGurus的赚钱逻辑：<strong>"免费消费者流量+付费经销商订阅+附加产品加购"</strong></p>
+        <ul>
+            <li><strong>经销商订阅</strong>：基础版/增强版/专业版，按月或按年付费，QARSD（季度每经销商平均收入）$6,616</li>
+            <li><strong>附加产品</strong>：PriceVantage定价工具+Dealer Data Insights+Digital Deal+New Car Exposure等，2025年附加产品采用率+25%</li>
+            <li><strong>广告收入</strong>：汽车厂商品牌广告+融资保险广告</li>
+            <li><strong>国际复制</strong>：英国+加拿大复制美国模式，国际QARSD $2,413（仍有翻倍空间）</li>
+            <li><strong>AI驱动</strong>：CG Discover生成式AI搜索+Dealership Mode到店辅助+Sell My Car二手车估价</li>
+        </ul>
+        <p>2025年财务表现（持续经营）：营收$907M（+14%），毛利$841M（+16%），GAAP净利润$197M（+53%），Non-GAAP EBITDA$319M（+25%），自由现金流$289M（FCF Margin 31.9%）。毛利率93%创历史新高，反映轻资产平台的经济本质。</p>
+    </div>
+
+    <!-- ===================== 第三章：产品竞争力分析 ===================== -->
+    <div class="info-box">
+        <h2 id="chapter3">三、产品竞争力分析</h2>
+
+        <h3>3.1 U.S. Marketplace（美国市场）- 营收占比87%</h3>
+        <p><strong>1. 可替代性：<span class="tag-orange">中等（Medium）</span></strong></p>
+        <ul>
+            <li>主要替代品：Cars.com (CARS) + Autotrader (Cox Automotive) + TrueCar (TRUE) + Facebook Marketplace + Carsdirect</li>
+            <li>替代体验差距：中等——Cars.com/Autotrader功能类似，但CarGurus流量#1+价格评级算法更优</li>
+            <li>替代趋势：稳定——CarGurus市场份额持续领先，近半数月访客只用CarGurus</li>
+        </ul>
+        <p><strong>2. 客户转换成本：<span class="tag-green">高（High）</span></strong></p>
+        <ul>
+            <li>经销商合同从月签转向年签，显示合作稳定性增强</li>
+            <li>合作5年的经销商平均支出比合作1年的高80%，深度嵌入经销商工作流</li>
+            <li>PriceVantage+Dealer Data Insights+Digital Deal等AI工具提升粘性，60%全球经销商使用数据洞察</li>
+            <li>经销商换平台会失去历史数据+定制化工作流+客户Lead</li>
+        </ul>
+        <p><strong>3. 定价权：<span class="tag-green">强（Strong）</span></strong></p>
+        <ul>
+            <li>2025年QARSD $7,938（+8% YoY），连续多年提价且经销商数量增长5%</li>
+            <li>附加产品采用率+25%，证明经销商愿意为增量价值付费</li>
+            <li><strong>巴菲特测试</strong>：若CarGurus订阅费涨价10%，经销商可能减少部分附加产品，但核心订阅不会取消——因为CarGurus贡献了经销商30%+的Lead来源，切换成本远高于涨价成本</li>
+        </ul>
+        <p><strong>整体竞争力评级：★★★★（4/5星）</strong> - 美国市场是CarGurus的现金奶牛，网络效应+转换成本+定价权三重护城河</p>
+
+        <h3>3.2 International（国际市场：英国+加拿大）- 营收占比13%</h3>
+        <p><strong>1. 可替代性：<span class="tag-orange">中等（Medium）</span></strong></p>
+        <ul>
+            <li>主要替代品：英国AutoTrader UK（市场领导者）+加拿大Kijiji Autos+本土品牌</li>
+            <li>替代体验差距：中等——英国AutoTrader UK更强，但CarGurus差异化在AI工具+定价评级</li>
+        </ul>
+        <p><strong>2. 客户转换成本：<span class="tag-orange">中等（Medium）</span></strong></p>
+        <ul>
+            <li>国际市场经销商合同较美国短，转换成本较低</li>
+            <li>但CarGurus的AI工具开始渗透，粘性提升</li>
+        </ul>
+        <p><strong>3. 定价权：<span class="tag-green">中等偏强（Medium-Strong）</span></strong></p>
+        <ul>
+            <li>国际QARSD $2,413（+16% YoY），定价权增强但仍有翻倍空间（vs美国$7,938）</li>
+            <li>加拿大AutoCanada等大型经销商集团已将CarGurus作为独家市场提供商</li>
+            <li><strong>巴菲特测试</strong>：若国际订阅费涨价10%，部分经销商会观望，但AI工具+流量优势使其能维持——定价权中等偏强</li>
+        </ul>
+        <p><strong>整体竞争力评级：★★★（3.5/5星）</strong> - 国际市场是增长引擎，但面临本土强者竞争</p>
+
+        <h3>3.3 Digital Wholesale（CarOffer，已关停）- 营收占比0%</h3>
+        <p><strong>1. 可替代性：<span class="tag-red">高（High）</span></strong></p>
+        <ul>
+            <li>主要替代品：ACV Auctions (ACVA) + Manheim (Cox) +传统批发拍卖</li>
+            <li>替代体验差距：小——批发拍卖是商品化服务</li>
+        </ul>
+        <p><strong>2. 客户转换成本：<span class="tag-red">低（Low）</span></strong></p>
+        <ul>
+            <li>经销商可以随时切换批发平台</li>
+        </ul>
+        <p><strong>3. 定价权：<span class="tag-red">弱（Weak）</span></strong></p>
+        <ul>
+            <li>批发是低毛利商品化业务，定价权弱</li>
+            <li>CarOffer持续亏损，2025年Q4关停交易业务</li>
+        </ul>
+        <p><strong>整体竞争力评级：★★（1/5星）</strong> - 失败的扩张，管理层已止损关停。但保留了CarOffer的AI定价技术整合到核心平台</p>
+
+        <h3>3.4 AI驱动的新产品（PriceVantage/CG Discover/Digital Deal）- 增长驱动</h3>
+        <p><strong>1. 可替代性：<span class="tag-green">低（Low）</span></strong></p>
+        <ul>
+            <li>主要替代品：vAuto (Cox) + First Look (CDK Global) +内部自建工具</li>
+            <li>替代体验差距：较大——CarGurus拥有5亿/天第一方购物信号，数据优势难复制</li>
+        </ul>
+        <p><strong>2. 客户转换成本：<span class="tag-green">高（High）</span></strong></p>
+        <ul>
+            <li>PriceVantage 80%用户每周活跃，66%提价变更率，深度嵌入定价工作流</li>
+            <li>Dealer Data Insights 60%全球经销商使用，已成为经营核心</li>
+        </ul>
+        <p><strong>3. 定价权：<span class="tag-green">强（Strong）</span></strong></p>
+        <ul>
+            <li>AI工具是高毛利SaaS产品，单独定价+捆绑销售</li>
+            <li>2025年附加产品采用率+25%，证明定价权强</li>
+            <li><strong>巴菲特测试</strong>：若PriceVantage涨价10%，经销商切换到vAuto需要重建数据+重新培训，多数会接受——定价权强</li>
+        </ul>
+        <p><strong>整体竞争力评级：★★★★（4/5星）</strong> - AI产品是CarGurus从"营销平台"向"经销商SaaS"转型的关键</p>
+
+        <div class="highlight">
+            <strong>竞争力总结：</strong> CarGurus的生意呈现"核心强+扩张弱+新业务强"的格局。<strong>U.S. Marketplace（87%）</strong>是网络效应+转换成本+定价权三重护城河的现金奶牛（4星）；<strong>International（13%）</strong>是增长引擎但面临本土竞争（3.5星）；<strong>CarOffer批发</strong>是失败扩张已止损（1星）；<strong>AI驱动新产品</strong>是未来增长驱动（4星）。<strong>整体竞争力评级：★★★★（3.75/5星）</strong> - 这是个"靠双边市场吃饭+AI工具加深护城河"的平台生意。
+        </div>
+    </div>
+
+    <!-- ===================== 第四章：历史财务指标 ===================== -->
+    <div class="info-box">
+        <h2 id="chapter4">四、历史财务指标</h2>
+
+        <h3>4.1 关键财务指标趋势（2020-2025，持续经营口径）</h3>
+        <table>
+            <tr><th>年份</th><th>营收(百万美元)</th><th>净利润(百万美元)</th><th>EPS($)</th><th>ROE(%)</th><th>毛利率(%)</th><th>营业利润率(%)</th><th>PE(年末)</th></tr>
+            <tr><td>2020</td><td>690</td><td>102</td><td>0.97</td><td>15.5</td><td>83.0</td><td>14.8</td><td>25.0x</td></tr>
+            <tr><td>2021</td><td>920</td><td>97</td><td>0.87</td><td>13.2</td><td>85.0</td><td>10.5</td><td>35.0x</td></tr>
+            <tr><td>2022</td><td>1,673</td><td>87</td><td>0.71</td><td>10.5</td><td>39.7</td><td>5.2</td><td>20.0x</td></tr>
+            <tr><td>2023</td><td>917</td><td>129</td><td>1.13</td><td>14.8</td><td>85.0</td><td>14.0</td><td>21.4x</td></tr>
+            <tr><td>2024</td><td>797</td><td>128</td><td>1.15</td><td>13.9</td><td>91.0</td><td>19.7</td><td>31.7x</td></tr>
+            <tr><td>2025</td><td>907</td><td>197</td><td>1.55</td><td>41.7</td><td>92.8</td><td>27.0</td><td>23.4x</td></tr>
+        </table>
+
+        <div class="chart-container">
+            <canvas id="chart1" height="100"></canvas>
+        </div>
+
+        <h3>4.2 财务指标分析</h3>
+        <div class="moat-item">
+            <strong>ROE分析：</strong> 2020-2024年ROE在10-16%低位，2025年跳升至41.7%。跳升原因：(1) 净利润+53%强劲增长；(2) 大量回购使权益基数从$925M降至$374M（缩59%）。<strong>这是金融工程放大的ROE</strong>，剔除杠杆后的ROA约6.2%，才是真实运营回报。
+        </div>
+        <div class="moat-item">
+            <strong>毛利率趋势：</strong> 83%（2020）→ 92.8%（2025），6年提升近10个百分点。2022年降至39.7%源于CarOffer批发业务低毛利收入占比上升。2024-2025年关停CarOffer后毛利率跳升至92%+，反映轻资产平台经济本质。
+        </div>
+        <div class="moat-item">
+            <strong>营业利润率：</strong> 14.8%（2020）→ 27.0%（2025），6年翻倍。2025年营业利润率创历史新高，证明"聚焦核心+关停亏损"战略正在释放价值。
+        </div>
+        <div class="moat-item">
+            <strong>自由现金流：</strong> 2025年FCF $289M（FCF Margin 31.9%），100%现金转化率。这是巴菲特最看重的指标——"所有者盈余"远超账面净利润，证明盈利质量极高。
+        </div>
+        <div class="risk-item">
+            <strong>营收波动：</strong> 2022年营收峰值$1.67B→2023年$917M（-45%），源于CarOffer批发业务萎缩。2024-2025年持续经营口径恢复增长+14%，已走出谷底。
+        </div>
+        <div class="moat-item">
+            <strong>资产负债表：</strong> 零长期债务+现金$190M+ Altman Z-Score 10.10（远超安全阈值2.99）。财务极度稳健，破产风险极低。
+        </div>
+    </div>
+
+    <!-- ===================== 第五章：竞争分析 ===================== -->
+    <div class="info-box">
+        <h2 id="chapter5">五、竞争分析</h2>
+
+        <h3>5.1 汽车在线市场竞争对手对比</h3>
+        <table>
+            <tr><th>公司</th><th>2025营收</th><th>市值</th><th>ROE</th><th>毛利率</th><th>FCF Margin</th><th>定位</th></tr>
+            <tr><td>CarGurus (CARG)</td><td>$907M</td><td>$3.4B</td><td>41.7%</td><td>92.8%</td><td>31.9%</td><td>美国#1汽车购物网站，双边市场+AI工具</td></tr>
+            <tr><td>Cars.com (CARS)</td><td>~$700M</td><td>~$1.0B</td><td>~10%</td><td>~70%</td><td>~15%</td><td>#2汽车市场，数字营销+Accu-Trade</td></tr>
+            <tr><td>TrueCar (TRUE)</td><td>~$170M</td><td>~$0.3B</td><td>~5%</td><td>~85%</td><td>~10%</td><td>价格透明度+车型直采</td></tr>
+            <tr><td>Autotrader (Cox私有)</td><td>N/A</td><td>N/A</td><td>N/A</td><td>N/A</td><td>N/A</td><td>Cox子公司，CarGurus主要竞争对手</td></tr>
+            <tr><td>ACV Auctions (ACVA)</td><td>~$475M</td><td>~$1.2B</td><td>亏损</td><td>~25%</td><td>亏损</td><td>批发拍卖+检测，B2B</td></tr>
+            <tr><td>Facebook Marketplace</td><td>N/A</td><td>N/A</td><td>N/A</td><td>N/A</td><td>N/A</td><td>个人对个人二手车，非专业经销商</td></tr>
+        </table>
+
+        <h3>5.2 CarGurus的竞争优势</h3>
+        <div class="moat-item">
+            <strong>护城河1：双边市场网络效应（★★★★★）</strong> - 美国流量#1汽车购物网站，月访问量远超竞品。消费者越多→经销商Lead越多→经销商越愿意付费→投入产品越多→消费者体验越好。近半数月访客只用CarGurus。
+        </div>
+        <div class="moat-item">
+            <strong>护城河2：数据飞轮（★★★★）</strong> - 每天处理5亿+第一方购物信号，转化为Dealer Data Insights+PriceVantage定价工具。数据优势使AI工具更精准，经销商粘性更强。
+        </div>
+        <div class="moat-item">
+            <strong>护城河3：经销商转换成本（★★★★）</strong> - 合作5年经销商支出比合作1年高80%。AI工具（PriceVantage/Digital Deal/Dealer Data Insights）深度嵌入经销商工作流，60%全球经销商使用数据洞察。
+        </div>
+        <div class="moat-item">
+            <strong>护城河4：品牌信任（★★★）</strong> - "价格评级"算法建立消费者信任，"透明度"成为品牌标签。但品牌力弱于Autotrader（Cox子公司，资源更多）。
+        </div>
+        <div class="moat-item">
+            <strong>护城河5：轻资产经济（★★★★）</strong> - 毛利率93%+FCF Margin 32%+零长期债务，经济护城河极强。轻资产模式使CarGurus能以极低成本扩张。
+        </div>
+        <div class="risk-item">
+            <strong>反护城河1：Cars.com/Autotrader竞争（★★★）</strong> - Cox Automotive（Autotrader母公司）资源更丰富，可能加大投入争夺份额。
+        </div>
+        <div class="risk-item">
+            <strong>反护城河2：汽车经销商周期性（★★★）</strong> - 汽车销量受利率/经济周期影响大。经销商倒闭或并购会减少付费客户。
+        </div>
+        <div class="risk-item">
+            <strong>反护城河3：CarOffer失败教训（★★）</strong> - 批发业务失败证明CarGurus不是所有扩张都能成功，新业务（AI工具+国际）仍需验证。
+        </div>
+    </div>
+
+    <!-- ===================== 第六章：利润分配分析 ===================== -->
+    <div class="info-box">
+        <h2 id="chapter6">六、利润分配分析</h2>
+
+        <h3>6.1 利润分配表（2020-2025，百万美元）</h3>
+        <table>
+            <tr><th>年份</th><th>净利润</th><th>分红</th><th>回购</th><th>并购</th><th>资本开支</th><th>留存收益</th><th>留存率(%)</th><th>股本(百万股)</th></tr>
+            <tr><td>2020</td><td>102</td><td>0</td><td>0</td><td>0</td><td>15</td><td>87</td><td>85%</td><td>118</td></tr>
+            <tr><td>2021</td><td>97</td><td>0</td><td>0</td><td>0</td><td>18</td><td>79</td><td>81%</td><td>117</td></tr>
+            <tr><td>2022</td><td>87</td><td>0</td><td>0</td><td><strong>CarOffer</strong></td><td>20</td><td>67</td><td>77%</td><td>118</td></tr>
+            <tr><td>2023</td><td>129</td><td>0</td><td>150</td><td>0</td><td>18</td><td>129</td><td>100%</td><td>110</td></tr>
+            <tr><td>2024</td><td>128</td><td>0</td><td>250</td><td>0</td><td>17</td><td>128</td><td>100%</td><td>104</td></tr>
+            <tr><td>2025</td><td>197</td><td>0</td><td>350</td><td>0</td><td>16</td><td>197</td><td>100%</td><td>95</td></tr>
+            <tr><td><strong>6年累计</strong></td><td><strong>740</strong></td><td><strong>0</strong></td><td><strong>750</strong></td><td><strong>CarOffer</strong></td><td><strong>104</strong></td><td><strong>687</strong></td><td><strong>93%</strong></td><td>股本-19%</td></tr>
+        </table>
+
+        <div class="chart-container">
+            <canvas id="chart2" height="100"></canvas>
+        </div>
+
+        <h3>6.2 利润分配质量分析</h3>
+        <div class="moat-item">
+            <strong>分红：0</strong> - CarGurus不支付股息，100%利润用于回购+再投资。对于轻资产高增长公司，这是合理的资本配置策略。
+        </div>
+        <div class="moat-item">
+            <strong>回购：6年累计$750M，股本缩减19%</strong> - 从2020年1.18亿股降至2025年0.95亿股。2022年12月启动回购计划以来已回购29%股份（~$1.05B+），2025年回购$350M创历史新高，2026年新增$250M授权。回购力度极大。
+        </div>
+        <div class="moat-item">
+            <strong>并购：CarOffer失败教训</strong> - 2021年收购CarOffer进入批发业务，但持续亏损，2025年Q4关停交易业务。保留CarOffer的AI定价技术整合到核心平台。<strong>并购质量不佳</strong>，但管理层及时止损。
+        </div>
+        <div class="moat-item">
+            <strong>资本开支：6年累计$104M</strong> - 轻资产模式，资本开支极低（占营收2%），大部分投入IT基础设施+产品开发。
+        </div>
+        <div class="risk-item">
+            <strong>回购时机评估：</strong> 2022年12月启动回购时股价约$25（低估），2023-2025年持续回购均价约$30-35。<strong>整体回购时机优秀</strong>，在低估值时加大回购力度。
+        </div>
+        <div class="highlight">
+            <strong>可持续增长率 = ROE × 留存率 = 41.7% × 100% = 41.7%</strong><br>
+            理论可持续增长率41.7%，但实际EPS增长目标仅"中个位数"（2026指引营收+10-13%），差距源于：(1) 大量回购消耗现金；(2) 汽车市场增长有限；(3) 2025年净利润+53%的高基数效应。但<strong>FCF $289M+零债务</strong>使CarGurus有充足弹药继续回购+投资AI工具。
+        </div>
+    </div>
+
+    <!-- ===================== 第七章：投资总结 ===================== -->
+    <div class="info-box">
+        <h2 id="chapter7">七、投资总结</h2>
+
+        <h3>7.1 六维度评级</h3>
+        <table>
+            <tr><th>维度</th><th>评分（1-5）</th><th>理由</th></tr>
+            <tr><td>业务易懂性</td><td>5</td><td>"帮人买车+帮经销商卖车"，类似Zillow+TripAdvisor，120岁老奶奶都懂</td></tr>
+            <tr><td>护城河</td><td>4</td><td>双边市场网络效应+数据飞轮+经销商转换成本+轻资产经济</td></tr>
+            <tr><td>资本配置</td><td>4</td><td>6年回购$750M+股本缩减19%，回购时机优秀；CarOffer失败但及时止损</td></tr>
+            <tr><td>财务安全</td><td>5</td><td>零长期债务+现金$190M+Altman Z-Score 10.10，财务极度稳健</td></tr>
+            <tr><td>增长前景</td><td>4</td><td>国际+27%+AI工具采用率+25%+2026指引营收+10-13%</td></tr>
+            <tr><td>估值吸引力</td><td>4</td><td>Forward PE ~8.5x，FCF Yield ~10%，低于行业均值</td></tr>
+            <tr><td><strong>综合评级</strong></td><td><strong>4.3/5</strong></td><td><strong>合理偏便宜价格买入轻资产平台+强护城河</strong></td></tr>
+        </table>
+
+        <h3>7.2 投资结论</h3>
+        <div class="highlight">
+            <strong>评级：4.3/5星 - "合理偏便宜价格买入轻资产平台+强护城河+优秀资本配置"</strong>
+        </div>
+        <p><strong>多头逻辑：</strong></p>
+        <ul>
+            <li>美国#1汽车购物网站，双边市场网络效应+近半数月访客只用CarGurus</li>
+            <li>毛利率93%+FCF Margin 32%+零长期债务，轻资产现金奶牛</li>
+            <li>6年回购$750M+股本缩减19%，回购时机优秀</li>
+            <li>AI工具（PriceVantage/CG Discover/Digital Deal）加深经销商粘性，附加产品采用率+25%</li>
+            <li>国际业务+27%加速增长，英国+加拿大仍有翻倍空间</li>
+            <li>Forward PE ~8.5x，FCF Yield ~10%，估值便宜</li>
+            <li>2026年Q1营收$244M（+15%），新增$250M回购授权</li>
+        </ul>
+        <p><strong>空头逻辑：</strong></p>
+        <ul>
+            <li>汽车经销商周期性，受利率/经济周期影响大</li>
+            <li>Cars.com/Autotrader(Cox)竞争激烈，Cox资源更丰富</li>
+            <li>CarOffer失败教训证明扩张有风险</li>
+            <li>2026年指引EBITDA Margin下降1.5-2.5个百分点（再投入期）</li>
+            <li>ROE 41.7%高度依赖回购缩股本，剔除杠杆后ROA仅6.2%</li>
+            <li>不支付股息，对偏好现金分红的投资者不友好</li>
+            <li>2025年净利润+53%高基数，2026年增速可能放缓</li>
+        </ul>
+
+        <h3>7.3 关键催化与风险</h3>
+        <div class="moat-item">
+            <strong>关键催化：</strong>
+            <ul>
+                <li>AI工具（PriceVantage/Digital Deal）渗透率提升→QARSD突破$8,500</li>
+                <li>国际业务保持+25%增长→国际QARSD突破$3,000</li>
+                <li>经销商总数突破36,000+→规模效应进一步释放</li>
+                <li>利率下行→汽车销量复苏→经销商需求增加</li>
+                <li>2026年新增$250M回购执行→EPS提升</li>
+            </ul>
+        </div>
+        <div class="risk-item">
+            <strong>关键风险：</strong>
+            <ul>
+                <li>Cox Automotive（Autotrader母公司）加大投入争夺份额</li>
+                <li>汽车经销商并购整合→付费客户数量减少</li>
+                <li>经济衰退→汽车销量下滑→经销商削减广告支出</li>
+                <li>AI工具采用率增长放缓→QARSD增长停滞</li>
+                <li>国际市场本土竞争（英国AutoTrader UK）</li>
+                <li>2026年EBITDA Margin下降1.5-2.5个百分点→盈利质量承压</li>
+            </ul>
+        </div>
+
+        <h3>7.4 巴菲特芒格式结论</h3>
+        <div class="highlight">
+            <strong>巴菲特视角：</strong> CarGurus是巴菲特会欣赏的"轻资产平台生意"——类似Costco+Google的混合体，用"双边市场+数据飞轮"模式连接消费者与汽车经销商。<br><br>
+            <strong>关键判断：</strong> CarGurus的护城河是<strong>"美国#1汽车购物网站的流量+5亿/天第一方数据"</strong>。这种双边市场网络效应一旦形成，新进入者很难复制（类似Zillow在房地产、TripAdvisor在旅游的地位）。2025年是转折年——关停亏损的CarOffer+聚焦AI工具+国际+27%增长，证明管理层学会"聚焦核心+止损扩张"。<br><br>
+            <strong>估值判断：</strong> 当前Forward PE ~8.5x，FCF Yield ~10%，对于一家毛利率93%+零债务+持续增长的平台公司，定价<strong>显著便宜</strong>。市场可能低估了AI工具+国际扩张的潜力。但需注意：(1) 2026年EBITDA Margin预期下降1.5-2.5个百分点（再投入期）；(2) ROE 41.7%高度依赖回购缩股本；(3) 汽车经销商周期性。<br><br>
+            <strong>芒格会说：</strong>"CarGurus是汽车版的Zillow，用双边市场+数据飞轮收租。房东（CarGurus）的'房子'（平台）越盖越大，租客（经销商）越依赖，租约（合同）从月签变年签。这是典型的'赢者通吃'生意——一旦成为#1，新进入者很难撼动。"<br><br>
+            <strong>建议：当前位置可逐步建仓。Forward PE 8.5x+FCF Yield 10%提供安全边际。若AI工具渗透率持续提升+国际增长维持+25%，估值有修复至Forward PE 12-15x的潜力，对应年化总回报12-18%（EPS增长+回购缩减+估值修复）。</strong>
+        </div>
+    </div>
+
+    <script>
+    // Chart 1: Revenue, Net Income, ROE trend
+    const ctx1 = document.getElementById('chart1').getContext('2d');
+    new Chart(ctx1, {
+        type: 'bar',
+        data: {
+            labels: ['2020','2021','2022','2023','2024','2025'],
+            datasets: [
+                { label: '营收(百万美元)', data: [690,920,1673,917,797,907], backgroundColor: '#1a3a5c', yAxisID: 'y' },
+                { label: '净利润(百万美元)', data: [102,97,87,129,128,197], backgroundColor: '#27ae60', yAxisID: 'y' },
+                { label: 'ROE(%)', data: [15.5,13.2,10.5,14.8,13.9,41.7], type: 'line', borderColor: '#f39c12', backgroundColor: '#f39c12', yAxisID: 'y1', tension: 0.3 }
+            ]
+        },
+        options: {
+            responsive: true,
+            plugins: { title: { display: true, text: 'CarGurus 6年营收/净利润/ROE趋势（2022年含CarOffer批发业务）', font:{size:14} } },
+            scales: {
+                y: { type: 'linear', position: 'left', title: { display: true, text: '百万美元' } },
+                y1: { type: 'linear', position: 'right', title: { display: true, text: 'ROE %' }, grid: { drawOnChartArea: false } }
+            }
+        }
+    });
+
+    // Chart 2: Profit Allocation 6-year
+    const ctx2 = document.getElementById('chart2').getContext('2d');
+    new Chart(ctx2, {
+        type: 'bar',
+        data: {
+            labels: ['2020','2021','2022','2023','2024','2025'],
+            datasets: [
+                { label: '回购', data: [0,0,0,150,250,350], backgroundColor: '#2980b9' },
+                { label: '资本开支', data: [15,18,20,18,17,16], backgroundColor: '#f39c12' },
+                { label: '留存收益', data: [87,79,67,129,128,197], backgroundColor: '#27ae60' }
+            ]
+        },
+        options: {
+            responsive: true,
+            plugins: { title: { display: true, text: 'CarGurus 6年利润分配（回购+资本开支+留存，百万美元）', font:{size:14} } },
+            scales: { y: { title: { display: true, text: '百万美元' } } }
+        }
+    });
+    </script>
+
+    <script src="scores_client.js"></script>
+    <script src="stock_topbar.js"></script>
+</body>
+</html>
