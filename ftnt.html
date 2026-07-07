@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FTNT Fortinet - 巴菲特芒格式价值投资分析</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body { font-family: 'Segoe UI', Arial, sans-serif; line-height: 1.6; color: #333; max-width: 1200px; margin: 0 auto; padding: 20px; background: #f4f6f9; }
+        h1 { color: #1a3a5c; border-bottom: 3px solid #ee3124; padding-bottom: 10px; }
+        h2 { color: #1a3a5c; margin-top: 35px; border-left: 5px solid #ee3124; padding-left: 15px; }
+        h3 { color: #2c5282; margin-top: 25px; }
+        .info-box { background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.08); margin: 20px 0; }
+        .highlight { background: #fef9e7; padding: 15px; border-left: 5px solid #f39c12; margin: 20px 0; border-radius: 5px; }
+        .moat-item { background: #eafaf1; padding: 15px; margin: 10px 0; border-left: 5px solid #27ae60; border-radius: 5px; }
+        .risk-item { background: #fdedec; padding: 15px; margin: 10px 0; border-left: 5px solid #c0392b; border-radius: 5px; }
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; background: white; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        th, td { padding: 12px; text-align: left; border-bottom: 1px solid #ddd; }
+        th { background: #1a3a5c; color: white; }
+        tr:hover { background: #f5f5f5; }
+        .tag-green { background: #27ae60; color: white; padding: 3px 10px; border-radius: 12px; font-size: 0.85em; }
+        .tag-orange { background: #f39c12; color: white; padding: 3px 10px; border-radius: 12px; font-size: 0.85em; }
+        .tag-red { background: #c0392b; color: white; padding: 3px 10px; border-radius: 12px; font-size: 0.85em; }
+        .section-nav { background: white; border-radius: 10px; padding: 15px 25px; margin: 20px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.08); text-align: center; }
+        .section-nav a { display: inline-block; margin: 5px 10px; padding: 6px 14px; background: #eaf2f8; color: #1a3a5c; text-decoration: none; border-radius: 15px; font-size: 0.9em; }
+        .section-nav a:hover { background: #ee3124; color: white; }
+        .chart-container { background: white; padding: 20px; border-radius: 10px; margin: 20px 0; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+    </style>
+</head>
+<body>
+    <div class="top-nav-bar"></div>
+    <script src="nav_bar.js"></script>
+    <span id="topbarCode" style="display:none;">FTNT</span>
+
+    <h1>FTNT Fortinet（飞塔）- 巴菲特芒格式价值投资分析</h1>
+    <p style="color:#666; font-size:1.1em;"><em>分析日期：2026年7月7日 | 数据截止：2025年年报（2026年2月发布）+ Q1 2026季报（2026年5月发布）</em></p>
+
+    <div class="section-nav">
+        <a href="#chapter1">公司基本信息</a>
+        <a href="#chapter2">业务分析</a>
+        <a href="#chapter3">产品竞争力分析</a>
+        <a href="#chapter4">历史财务指标</a>
+        <a href="#chapter5">竞争分析</a>
+        <a href="#chapter6">利润分配分析</a>
+        <a href="#chapter7">投资总结</a>
+    </div>
+
+    <!-- ===================== 第一章：公司基本信息 ===================== -->
+    <div class="info-box">
+        <h2 id="chapter1">一、公司基本信息</h2>
+        <table>
+            <tr><th>项目</th><th>详情</th></tr>
+            <tr><td>公司名称</td><td>Fortinet, Inc.（飞塔）</td></tr>
+            <tr><td>股票代码</td><td>FTNT（NASDAQ）</td></tr>
+            <tr><td>成立时间</td><td>2000年（25年历史），由Ken Xie（谢青）和Michael Xie兄弟创立</td></tr>
+            <tr><td>总部</td><td>Sunnyvale, CA（硅谷心脏）</td></tr>
+            <tr><td>最新股价</td><td>$114.50（2026年7月6日）</td></tr>
+            <tr><td>市值</td><td>约865亿美元（约6,228亿人民币）</td></tr>
+            <tr><td>企业价值（EV）</td><td>约833亿美元（净现金$32亿）</td></tr>
+            <tr><td>员工人数</td><td>15,109人</td></tr>
+            <tr><td>CEO</td><td>Ken Xie（谢青，创始人兼CEO，25年掌舵；前NetScreen创始人，2004年以40亿美元卖给Juniper）</td></tr>
+            <tr><td>业务覆盖</td><td>全球170+国家，500,000+客户，650,000+防火墙装机量</td></tr>
+            <tr><td>股息记录</td><td>不支付股息（100%利润用于回购+再投资）</td></tr>
+            <tr><td>当前PE（TTM）</td><td>~37.6x（GAAP）；~29.9x（Forward PE，基于2026 Non-GAAP指引）</td></tr>
+            <tr><td>主要业务</td><td>3大业务：Product（防火墙硬件+软件）+ Security Subscription（安全订阅）+ Technical Support（技术支持）</td></tr>
+            <tr><td>市场地位</td><td>全球防火墙#1（55%单位市场份额），网络安全#3（7%份额），Unified SASE领导者</td></tr>
+            <tr><td>股价表现</td><td>52周区间 $70-$114；1年涨跌 +15.8%；5年涨跌 +260%</td></tr>
+            <tr><td>股东回报</td><td>累计回购$92.5亿授权（2025年8月新增$10亿），2025年回购$22.9亿（≈FCF $22.3亿）</td></tr>
+            <tr><td>核心壁垒</td><td>FortiASIC自研芯片+FortiOS统一操作系统+FortiCloud云平台三支柱</td></tr>
+        </table>
+
+        <div class="highlight">
+            <strong>巴菲特视角：</strong> Fortinet是巴菲特会欣赏的"轻资产平台生意"——用<strong>"自研芯片+统一OS+订阅服务"</strong>构建三层护城河。它的核心优势是<strong>"全球防火墙#1的55%单位市场份额+FortiASIC芯片5-10x性能优势"</strong>，使竞争对手（Palo Alto/Cisco/Zscaler）很难在性能上匹敌。2025年财务表现卓越：营收$68亿（+14%），毛利率80.8%，营业利润率30.7%，FCF $22.3亿（FCF Margin 32.7%），ROE 149.8%。但与传统价值股不同，FTNT的估值较贵（PE 37.6x，Forward PE 29.9x），市场已定价"高质量+增长"。巴菲特会说："这是一家极好的公司，但价格不便宜"——这是<strong>"好公司但不便宜"</strong>的典型例子。
+        </div>
+    </div>
+
+    <!-- ===================== 第二章：业务分析 ===================== -->
+    <div class="info-box">
+        <h2 id="chapter2">二、业务分析</h2>
+
+        <h3>2.1 公司业务简述（120岁老奶奶也能懂）</h3>
+        <p>Fortinet做的是<strong>"帮公司保护网络和电脑系统"</strong>的生意，就像给你家安装防盗门+监控摄像头+保安服务：</p>
+        <ul>
+            <li><strong>防火墙（FortiGate）</strong>：相当于"数字防盗门"，拦截黑客攻击，全球出货量#1（55%份额）</li>
+            <li><strong>安全订阅服务</strong>：相当于"保安服务"，订阅后持续更新威胁情报、防病毒、防入侵</li>
+            <li><strong>技术支持</strong>：相当于"售后维修+技术顾问"，帮你解决安全问题和配置优化</li>
+            <li><strong>SASE（安全访问服务边缘）</strong>：相当于"云保安队"，给远程办公员工提供安全网络连接</li>
+            <li><strong>SecOps（安全运营）</strong>：相当于"AI侦探"，用AI自动检测和响应安全威胁</li>
+        </ul>
+        <p>简单说：Fortinet是<strong>"网络安全版的三星+谷歌"</strong>——自研芯片（FortiASIC）+统一操作系统（FortiOS）+云服务（FortiCloud）三位一体，提供"硬件+软件+服务"全栈解决方案。</p>
+
+        <h3>2.2 三大业务板块（2025年）</h3>
+        <table>
+            <tr><th>业务板块</th><th>2025营收</th><th>占比</th><th>毛利率</th><th>增长趋势</th></tr>
+            <tr><td>Product（产品：防火墙硬件+软件许可）</td><td>$22.18亿</td><td>33%</td><td>67%（2025年提升1pp）</td><td>+16% YoY，FortiASIC驱动</td></tr>
+            <tr><td>Security Subscription（安全订阅）</td><td>$26.33亿</td><td>39%</td><td>~90%+</td><td>+14% YoY，高毛利经常性收入</td></tr>
+            <tr><td>Technical Support & Other（技术支持）</td><td>$19.48亿</td><td>29%</td><td>~90%+</td><td>+13% YoY，绑定产品销售</td></tr>
+            <tr><td><strong>合计</strong></td><td><strong>$67.99亿</strong></td><td><strong>100%</strong></td><td><strong>80.8%</strong></td><td>+14% YoY</td></tr>
+        </table>
+
+        <h3>2.3 地理营收分布（2025年）</h3>
+        <table>
+            <tr><th>地区</th><th>2025营收</th><th>占比</th><th>YoY增长</th><th>说明</th></tr>
+            <tr><td>Americas（美洲）</td><td>$27.0亿</td><td>40%</td><td>+13%</td><td>美国+加拿大+拉美，企业需求强劲</td></tr>
+            <tr><td>EMEA（欧洲中东非洲）</td><td>$28.3亿</td><td>42%</td><td>+13%</td><td>欧洲企业合规驱动（GDPR/NIS2）</td></tr>
+            <tr><td>APAC（亚太日本）</td><td>$12.6亿</td><td>19%</td><td>+18%</td><td>增速最快，印度+东南亚+日本</td></tr>
+            <tr><td><strong>合计</strong></td><td><strong>$67.99亿</strong></td><td><strong>100%</strong></td><td><strong>+14%</strong></td><td>全球均衡分布，无单一地区依赖</td></tr>
+        </table>
+
+        <div class="highlight">
+            <strong>商业模式精髓：</strong> Fortinet是典型的<strong>"硬件开门+订阅收租+支持绑定"</strong>飞轮模型：(1)<strong>产品销售</strong>（33%）以高性价比防火墙占领客户入口，FortiASIC芯片提供5-10x性能优势；(2)<strong>安全订阅</strong>（39%）是高毛利（90%+）经常性收入，客户一旦部署防火墙就需要持续订阅威胁情报/防病毒/入侵防御；(3)<strong>技术支持</strong>（29%）与产品+订阅深度绑定，形成转换成本。这种"硬件+软件+服务"三位一体模式使Fortinet的客户终身价值远超纯软件竞争对手。
+        </div>
+
+        <h3>2.4 增长驱动与战略重点</h3>
+        <ul>
+            <li><strong>Unified SASE</strong>：2025年Q4 billings增长40%，FortiSASE billings增长68%，占总billings 27%</li>
+            <li><strong>Security Operations（SecOps）</strong>：ARR增长21%至$4.91亿，AI驱动的FortiAnalyzer/FortiSIEM/FortiSOAR</li>
+            <li><strong>防火墙换机周期</strong>：约650,000台防火墙将在2026年底前到服务期末，Fortinet估计已完成40-50%换机</li>
+            <li><strong>平台整合趋势</strong>：企业从30-40个安全产品整合到3-4个平台，Fortinet的Security Fabric受益</li>
+            <li><strong>FortiASIC自研芯片</strong>：5nm/3nm定制芯片提供5-10x性能优势，难以被纯软件竞争对手复制</li>
+            <li><strong>AI安全</strong>：FortiAI+FortiGuard AI威胁检测，应对AI驱动的新型攻击</li>
+        </ul>
+    </div>
+
+    <!-- ===================== 第三章：产品竞争力分析 ===================== -->
+    <div class="info-box">
+        <h2 id="chapter3">三、产品竞争力分析</h2>
+
+        <h3>3.1 Product（防火墙硬件+软件许可）- 营收占比33%</h3>
+        <p><strong>1. 可替代性：<span class="tag-green">低（Low）</span></strong></p>
+        <ul>
+            <li>主要替代品：Palo Alto Networks (PANW) + Cisco (CSCO) + Check Point (CHKP) + Juniper</li>
+            <li>替代体验差距：较大——FortiASIC自研芯片提供5-10x性能优势，竞争对手多用通用CPU</li>
+            <li>替代趋势：稳定——Fortinet防火墙单位市场份额55%持续领先，2025年产品收入+16%</li>
+        </ul>
+        <p><strong>2. 客户转换成本：<span class="tag-green">极高（Extremely High）</span></strong></p>
+        <ul>
+            <li>防火墙是网络核心基础设施，更换需要重新配置所有安全策略+网络拓扑+员工培训</li>
+            <li>650,000+装机量形成"飞轮"：客户一旦部署FortiGate，订阅+支持+扩展产品自然跟进</li>
+            <li>FortiOS统一操作系统使客户可跨物理/虚拟/云环境一致管理，迁移成本极高</li>
+            <li>财务转换成本：替换防火墙硬件+软件许可+重新培训，单次切换成本$50,000-$500,000+</li>
+        </ul>
+        <p><strong>3. 定价权：<span class="tag-green">强（Strong）</span></strong></p>
+        <ul>
+            <li>2025年产品毛利率67%（+1pp YoY），FortiASIC芯片成本优势+定价权</li>
+            <li>历史提价记录：2022-2025年多次提价，客户流失率极低</li>
+            <li><strong>巴菲特测试</strong>：若Fortinet防火墙涨价10%，客户不会切换——因为替换成本远高于涨价成本，且FortiASIC性能优势不可复制</li>
+        </ul>
+        <p><strong>整体竞争力评级：★★★★★（5/5星）</strong> - 核心护城河，自研芯片+统一OS+55%份额构成最强壁垒</p>
+
+        <h3>3.2 Security Subscription（安全订阅）- 营收占比39%</h3>
+        <p><strong>1. 可替代性：<span class="tag-green">极低（Extremely Low）</span></strong></p>
+        <ul>
+            <li>主要替代品：独立安全软件厂商（CrowdStrike/Zscaler/Cloudflare）</li>
+            <li>替代体验差距：很大——Fortinet订阅与FortiGate深度集成，独立厂商需额外部署+管理</li>
+            <li>替代趋势：减速——平台整合趋势使客户倾向使用Fortinet原生订阅</li>
+        </ul>
+        <p><strong>2. 客户转换成本：<span class="tag-green">极高（Extremely High）</span></strong></p>
+        <ul>
+            <li>订阅与防火墙硬件绑定，更换订阅=更换整个安全架构</li>
+            <li>威胁情报数据库+安全策略历史数据+配置规则深度嵌入客户运营</li>
+            <li>90%+ attach rate：客户一旦部署FortiGate，几乎必然订阅FortiGuard服务</li>
+        </ul>
+        <p><strong>3. 定价权：<span class="tag-green">极强（Extremely Strong）</span></strong></p>
+        <ul>
+            <li>毛利率90%+，远高于产品业务的67%</li>
+            <li>订阅价格通常每年自动续约+小幅提价（3-5%），客户流失率<5%</li>
+            <li><strong>巴菲特测试</strong>：若Fortinet订阅涨价10%，客户不会取消——因为取消订阅=防火墙失去保护，风险远高于成本</li>
+        </ul>
+        <p><strong>整体竞争力评级：★★★★★（5/5星）</strong> - 最优质业务，高毛利+高粘性+高续约率的"收租"生意</p>
+
+        <h3>3.3 Technical Support（技术支持）- 营收占比29%</h3>
+        <p><strong>1. 可替代性：<span class="tag-orange">中等（Medium）</span></strong></p>
+        <ul>
+            <li>主要替代品：第三方IT服务商（Accenture/IBM）+内部IT团队</li>
+            <li>替代体验差距：中等——Fortinet原厂支持更专业但价格更高</li>
+        </ul>
+        <p><strong>2. 客户转换成本：<span class="tag-green">高（High）</span></strong></p>
+        <ul>
+            <li>原厂支持与产品+订阅深度绑定，切换第三方需重新培训</li>
+            <li>企业级客户（政府/金融）通常要求原厂支持合同</li>
+        </ul>
+        <p><strong>3. 定价权：<span class="tag-green">强（Strong）</span></strong></p>
+        <ul>
+            <li>毛利率90%+，与订阅类似</li>
+            <li>通常随产品+订阅一起销售，打包定价</li>
+            <li><strong>巴菲特测试</strong>：若技术支持涨价10%，客户会减少部分服务级别，但核心支持不会取消</li>
+        </ul>
+        <p><strong>整体竞争力评级：★★★★（4/5星）</strong> - 绑定型业务，与产品+订阅形成完整生态</p>
+
+        <h3>3.4 Unified SASE + SecOps（新增长引擎）- 占总billings 36%</h3>
+        <p><strong>1. 可替代性：<span class="tag-orange">中等（Medium）</span></strong></p>
+        <ul>
+            <li>主要替代品：Zscaler (ZS) + Palo Alto Prisma SASE + Cisco Meraki + Cato Networks</li>
+            <li>替代体验差距：中等——Zscaler在纯云SASE领先，但Fortinet优势在"硬件+云"统一管理</li>
+        </ul>
+        <p><strong>2. 客户转换成本：<span class="tag-green">高（High）</span></strong></p>
+        <ul>
+            <li>SASE部署后深度嵌入企业网络架构，切换需要重新配置所有远程办公+分支连接</li>
+            <li>90% attach rate：Fortinet 650,000+防火墙客户是SASE天然受众</li>
+        </ul>
+        <p><strong>3. 定价权：<span class="tag-orange">中等（Medium）</span></strong></p>
+        <ul>
+            <li>SASE市场竞争激烈，Zscaler/Palo Alto定价压力</li>
+            <li>但Fortinet可捆绑销售（硬件+SASE+订阅），整体定价权强</li>
+            <li><strong>巴菲特测试</strong>：若Fortinet SASE涨价10%，部分客户会考虑Zscaler，但已有FortiGate的客户会留下</li>
+        </ul>
+        <p><strong>整体竞争力评级：★★★★（4/5星）</strong> - 增长引擎（24%增长），但面临纯云竞争</p>
+
+        <div class="highlight">
+            <strong>竞争力总结：</strong> Fortinet的生意呈现"核心极强+新业务强劲"的格局。<strong>Product（33%）</strong>是自研芯片+55%份额的核心壁垒（5星）；<strong>Security Subscription（39%）</strong>是最优质的高毛利收租业务（5星）；<strong>Technical Support（29%）</strong>是绑定型生态（4星）；<strong>Unified SASE+SecOps（36% billings）</strong>是增长引擎（4星）。<strong>整体竞争力评级：★★★★★（4.5/5星）</strong> - 这是"自研芯片+统一OS+订阅收租"的全栈平台生意，护城河极深。
+        </div>
+    </div>
+
+    <!-- ===================== 第四章：历史财务指标 ===================== -->
+    <div class="info-box">
+        <h2 id="chapter4">四、历史财务指标</h2>
+
+        <h3>4.1 关键财务指标趋势（2020-2025）</h3>
+        <table>
+            <tr><th>年份</th><th>营收(亿美元)</th><th>净利润(亿美元)</th><th>EPS($)</th><th>ROE(%)</th><th>毛利率(%)</th><th>营业利润率(%)</th><th>FCF(亿美元)</th><th>PE(年末)</th></tr>
+            <tr><td>2020</td><td>25.9</td><td>6.46</td><td>0.80</td><td>60.0</td><td>72.5</td><td>18.5</td><td>7.8</td><td>62.5x</td></tr>
+            <tr><td>2021</td><td>33.4</td><td>6.07</td><td>0.74</td><td>40.2</td><td>75.5</td><td>17.0</td><td>9.2</td><td>310x</td></tr>
+            <tr><td>2022</td><td>44.2</td><td>8.57</td><td>1.04</td><td>45.3</td><td>77.6</td><td>22.0</td><td>11.5</td><td>91x</td></tr>
+            <tr><td>2023</td><td>53.0</td><td>11.48</td><td>1.50</td><td>116.8</td><td>76.7</td><td>26.0</td><td>15.0</td><td>47x</td></tr>
+            <tr><td>2024</td><td>59.6</td><td>17.45</td><td>2.26</td><td>116.8</td><td>79.5</td><td>30.3</td><td>18.8</td><td>60x</td></tr>
+            <tr><td>2025</td><td>68.0</td><td>18.53</td><td>2.42</td><td>149.8</td><td>80.8</td><td>30.7</td><td>22.3</td><td>37.6x</td></tr>
+        </table>
+
+        <div class="chart-container">
+            <canvas id="chart1" height="100"></canvas>
+        </div>
+
+        <h3>4.2 财务指标分析</h3>
+        <div class="moat-item">
+            <strong>ROE分析：</strong> ROE从60%（2020）飙升至149.8%（2025），远超行业均值15.4%。<strong>这是金融工程放大的ROE</strong>——大量回购使权益基数从$10.7亿降至$12.4亿（2023年曾为负权益$1.3亿），剔杠杆后ROA约18.4%，仍卓越但远低于账面ROE。芒格会说："这是高质量业务+激进回购的结果，但要警惕'财务工程ROE'的幻觉"。
+        </div>
+        <div class="moat-item">
+            <strong>毛利率趋势：</strong> 72.5%（2020）→ 80.8%（2025），5年提升8个百分点。反映：(1)高毛利订阅占比提升至68%；(2)FortiASIC芯片规模化降低硬件成本；(3)定价权持续增强。毛利率80%+是软件公司级别，远超传统硬件公司。
+        </div>
+        <div class="moat-item">
+            <strong>营业利润率：</strong> 18.5%（2020）→ 30.7%（2025），5年翻倍+12pp。Rule of 51（14%增长+37% Non-GAAP营业利润率），证明"高质量增长+规模效应"。
+        </div>
+        <div class="moat-item">
+            <strong>自由现金流：</strong> FCF从$7.8亿（2020）增至$22.3亿（2025），CAGR 23.5%。FCF Margin 32.7%，100%现金转化率。2025年回购$22.9亿≈FCF $22.3亿，几乎全部FCF回馈股东。
+        </div>
+        <div class="risk-item">
+            <strong>估值风险：</strong> 当前PE 37.6x，Forward PE 29.9x，EV/Revenue 9.2x，EV/FCF 26.5x。相比Palo Alto（PE ~50x）有折价，但绝对估值偏贵。市场已定价"高质量+增长"，安全边际有限。
+        </div>
+        <div class="moat-item">
+            <strong>资产负债表：</strong> 现金$35.8亿+长期债务$9.96亿，净现金$25.9亿。Altman Z-Score 8.73（远超安全阈值2.99）。财务极度稳健。
+        </div>
+    </div>
+
+    <!-- ===================== 第五章：竞争分析 ===================== -->
+    <div class="info-box">
+        <h2 id="chapter5">五、竞争分析</h2>
+
+        <h3>5.1 网络安全竞争对手对比</h3>
+        <table>
+            <tr><th>公司</th><th>2025营收</th><th>市值</th><th>ROE</th><th>毛利率</th><th>FCF Margin</th><th>定位</th></tr>
+            <tr><td>Fortinet (FTNT)</td><td>$68亿</td><td>$865亿</td><td>149.8%</td><td>80.8%</td><td>32.7%</td><td>防火墙#1（55%份额）+自研芯片+全栈平台</td></tr>
+            <tr><td>Palo Alto (PANW)</td><td>$91亿</td><td>$1,250亿</td><td>~30%</td><td>77%</td><td>~20%</td><td>网络安全#1（9%份额）+云原生AI+Prisma SASE</td></tr>
+            <tr><td>Cisco (CSCO)</td><td>$560亿</td><td>$2,500亿</td><td>~15%</td><td>65%</td><td>~15%</td><td>网络巨头+安全（7%份额）+Meraki</td></tr>
+            <tr><td>Zscaler (ZS)</td><td>$22亿</td><td>$300亿</td><td>亏损</td><td>78%</td><td>~15%</td><td>纯云SASE领导者</td></tr>
+            <tr><td>Check Point (CHKP)</td><td>$27亿</td><td>$200亿</td><td>~25%</td><td>89%</td><td>~30%</td><td>传统防火墙#3，高毛利但增长慢</td></tr>
+            <tr><td>CrowdStrike (CRWD)</td><td>$42亿</td><td>$850亿</td><td>亏损</td><td>74%</td><td>~20%</td><td>终端安全（EDR）#1+Falcon平台</td></tr>
+        </table>
+
+        <h3>5.2 Fortinet的竞争优势</h3>
+        <div class="moat-item">
+            <strong>护城河1：FortiASIC自研芯片（★★★★★）</strong> - 5nm/3nm定制芯片提供5-10x性能优势，竞争对手多用通用CPU。25年芯片设计积累，新进入者难以复制。这是最深的护城河。
+        </div>
+        <div class="moat-item">
+            <strong>护城河2：FortiOS统一操作系统（★★★★★）</strong> - 业界唯一统一OS集成防火墙/SD-WAN/SASE/云安全/终端/OT，单一代码库跨物理/虚拟/云环境一致策略。650,000+装机量形成生态锁定。
+        </div>
+        <div class="moat-item">
+            <strong>护城河3：规模优势（★★★★）</strong> - 55%防火墙单位份额+500,000+客户+15,109员工，营收/员工$45万，规模效应显著。研发$8.16亿/年（占营收12%）可摊薄到更大基数。
+        </div>
+        <div class="moat-item">
+            <strong>护城河4：客户转换成本（★★★★★）</strong> - 防火墙是网络核心基础设施，替换需重配所有安全策略+网络拓扑+员工培训，单次切换成本$50,000-$500,000+。90%订阅attach rate。
+        </div>
+        <div class="moat-item">
+            <strong>护城河5：Security Fabric生态（★★★★）</strong> - 30+产品集成FortiOS，企业从30-40个安全产品整合到3-4个平台，Fortinet是首选整合平台。90% attach rate from 650,000+防火墙客户。
+        </div>
+        <div class="risk-item">
+            <strong>反护城河1：云原生竞争（★★★★）</strong> - Zscaler在纯云SASE领先，Palo Alto在云AI安全领先。云时代"硬件+软件"模式可能被"纯云"模式挑战。
+        </div>
+        <div class="risk-item">
+            <strong>反护城河2：硬件周期性（★★★）</strong> - 产品收入33%仍受硬件换机周期影响。2024年防火墙需求放缓，2025年恢复+16%。
+        </div>
+        <div class="risk-item">
+            <strong>反护城河3：地缘政治风险（★★★）</strong> - 中国/俄罗斯市场受限，Fortinet退出俄罗斯损失部分收入。供应链依赖台积电代工。
+        </div>
+    </div>
+
+    <!-- ===================== 第六章：利润分配分析 ===================== -->
+    <div class="info-box">
+        <h2 id="chapter6">六、利润分配分析</h2>
+
+        <h3>6.1 利润分配表（2020-2025，亿美元）</h3>
+        <table>
+            <tr><th>年份</th><th>净利润</th><th>分红</th><th>回购</th><th>并购</th><th>资本开支</th><th>留存收益</th><th>留存率(%)</th><th>股本(亿股)</th></tr>
+            <tr><td>2020</td><td>6.46</td><td>0</td><td>5.0</td><td>0</td><td>0.8</td><td>6.46</td><td>100%</td><td>8.50</td></tr>
+            <tr><td>2021</td><td>6.07</td><td>0</td><td>12.5</td><td>0</td><td>1.0</td><td>6.07</td><td>100%</td><td>8.30</td></tr>
+            <tr><td>2022</td><td>8.57</td><td>0</td><td>20.0</td><td>0</td><td>1.3</td><td>8.57</td><td>100%</td><td>8.00</td></tr>
+            <tr><td>2023</td><td>11.48</td><td>0</td><td>24.0</td><td>0</td><td>1.6</td><td>11.48</td><td>100%</td><td>7.70</td></tr>
+            <tr><td>2024</td><td>17.45</td><td>0</td><td>22.5</td><td>0</td><td>1.8</td><td>17.45</td><td>100%</td><td>7.55</td></tr>
+            <tr><td>2025</td><td>18.53</td><td>0</td><td>22.9</td><td>0</td><td>2.0</td><td>18.53</td><td>100%</td><td>7.44</td></tr>
+            <tr><td><strong>6年累计</strong></td><td><strong>68.56</strong></td><td><strong>0</strong></td><td><strong>106.9</strong></td><td><strong>0</strong></td><td><strong>8.5</strong></td><td><strong>68.56</strong></td><td><strong>100%</strong></td><td>股本-12.5%</td></tr>
+        </table>
+
+        <div class="chart-container">
+            <canvas id="chart2" height="100"></canvas>
+        </div>
+
+        <h3>6.2 利润分配质量分析</h3>
+        <div class="moat-item">
+            <strong>分红：0</strong> - Fortinet不支付股息，100%利润用于回购+再投资。对于高增长科技公司，这是合理的资本配置策略。
+        </div>
+        <div class="moat-item">
+            <strong>回购：6年累计$106.9亿，股本缩减12.5%</strong> - 从2020年8.50亿股降至2025年7.44亿股。2025年回购$22.9亿≈FCF $22.3亿，几乎全部FCF回馈股东。累计授权$92.5亿（2025年8月新增$10亿，延期至2027年2月）。回购力度极大。
+        </div>
+        <div class="moat-item">
+            <strong>并购：0</strong> - Fortinet以自研为主，6年无重大并购。这与Palo Alto（激进收购）形成对比，体现"有机增长"策略。
+        </div>
+        <div class="moat-item">
+            <strong>资本开支：6年累计$8.5亿</strong> - 轻资产模式，资本开支占营收2-3%，大部分投入IT基础设施+芯片设计工具。
+        </div>
+        <div class="risk-item">
+            <strong>回购时机评估：</strong> 2020-2021年PE 62-310x时仍大量回购（$5亿+$12.5亿），时机不佳。2022-2023年PE降至47-91x时加大回购（$20亿+$24亿），时机改善。2024-2025年PE 37-60x时回购$22.5亿+$22.9亿，时机合理。<strong>整体回购时机中等</strong>——在高估值时仍坚持回购，但FCF增长使回购绝对额持续提升。
+        </div>
+        <div class="highlight">
+            <strong>可持续增长率 = ROE × 留存率 = 149.8% × 100% = 149.8%</strong><br>
+            理论可持续增长率149.8%（因为不分红），但实际EPS增长目标"低到中双位数"（2026指引营收+13%），差距源于：(1) 大量回购消耗现金但不直接创造增长；(2) 网络安全市场增长有限（15-20%/年）；(3) 竞争激烈限制提价空间。但<strong>FCF $22.3亿+净现金$25.9亿</strong>使Fortinet有充足弹药继续回购+投资SASE/SecOps/AI。
+        </div>
+    </div>
+
+    <!-- ===================== 第七章：投资总结 ===================== -->
+    <div class="info-box">
+        <h2 id="chapter7">七、投资总结</h2>
+
+        <h3>7.1 六维度评级</h3>
+        <table>
+            <tr><th>维度</th><th>评分（1-5）</th><th>理由</th></tr>
+            <tr><td>业务易懂性</td><td>4</td><td>"帮公司保护网络"，类似数字防盗门+保安服务，但技术细节复杂</td></tr>
+            <tr><td>护城河</td><td>5</td><td>FortiASIC自研芯片5-10x性能优势+FortiOS统一OS+55%防火墙份额+650,000+装机量</td></tr>
+            <tr><td>资本配置</td><td>4</td><td>6年回购$106.9亿+股本缩减12.5%，但高估值时仍回购时机一般</td></tr>
+            <tr><td>财务安全</td><td>5</td><td>净现金$25.9亿+Altman Z-Score 8.73+FCF Margin 32.7%，财务极度稳健</td></tr>
+            <tr><td>增长前景</td><td>4</td><td>SASE+40%/SecOps ARR+21%/防火墙换机周期+AI安全+平台整合趋势</td></tr>
+            <tr><td>估值吸引力</td><td>2</td><td>PE 37.6x+Forward PE 29.9x+EV/FCF 26.5x，绝对估值偏贵，安全边际有限</td></tr>
+            <tr><td><strong>综合评级</strong></td><td><strong>4.0/5</strong></td><td><strong>"极好公司但不便宜价格"</strong></td></tr>
+        </table>
+
+        <h3>7.2 投资结论</h3>
+        <div class="highlight">
+            <strong>评级：4.0/5星 - "极好公司但不便宜价格"</strong>
+        </div>
+        <p><strong>多头逻辑：</strong></p>
+        <ul>
+            <li>全球防火墙#1（55%单位份额）+FortiASIC芯片5-10x性能优势，护城河极深</li>
+            <li>毛利率80.8%+FCF Margin 32.7%+ROE 149.8%，盈利质量卓越</li>
+            <li>6年回购$106.9亿+股本缩减12.5%，股东回报激进</li>
+            <li>SASE+40%+SecOps ARR+21%，增长引擎强劲</li>
+            <li>650,000+防火墙装机量形成"硬件+订阅+支持"飞轮，90%订阅attach rate</li>
+            <li>净现金$25.9亿+Altman Z-Score 8.73，财务极度稳健</li>
+            <li>平台整合趋势受益——企业从30-40个安全产品整合到3-4个平台</li>
+        </ul>
+        <p><strong>空头逻辑：</strong></p>
+        <ul>
+            <li>PE 37.6x+Forward PE 29.9x，绝对估值偏贵，市场已定价"高质量+增长"</li>
+            <li>ROE 149.8%高度依赖回购缩股本，剔杠杆后ROA 18.4%仍卓越但非账面</li>
+            <li>云原生竞争（Zscaler/Palo Alto Prisma）挑战"硬件+软件"模式</li>
+            <li>产品收入33%仍受硬件换机周期影响</li>
+            <li>不支付股息，对偏好现金分红的投资者不友好</li>
+            <li>地缘政治风险（中国/俄罗斯市场受限）</li>
+            <li>创始人Ken Xie 56岁，接班人计划不确定</li>
+        </ul>
+
+        <h3>7.3 关键催化与风险</h3>
+        <div class="moat-item">
+            <strong>关键催化：</strong>
+            <ul>
+                <li>SASE billings持续+40%增长→占比突破30%</li>
+                <li>SecOps ARR突破$10亿→AI安全差异化</li>
+                <li>650,000防火墙换机周期加速→产品收入+20%</li>
+                <li>FortiAI+FortiGuard AI威胁检测成为差异化卖点</li>
+                <li>平台整合趋势加速→企业减少供应商数量</li>
+                <li>2026年新增$10亿回购执行→EPS提升</li>
+            </ul>
+        </div>
+        <div class="risk-item">
+            <strong>关键风险：</strong>
+            <ul>
+                <li>Zscaler/Palo Alto云原生竞争加剧</li>
+                <li>硬件换机周期放缓→产品收入增速下降</li>
+                <li>地缘政治风险（中国/俄罗斯市场受限+供应链依赖台积电）</li>
+                <li>估值回调风险（PE 37.6x在市场风险偏好下降时承压）</li>
+                <li>客户预算收紧→订阅续约率下降</li>
+                <li>创始人Ken Xie接班人计划不确定</li>
+            </ul>
+        </div>
+
+        <h3>7.4 巴菲特芒格式结论</h3>
+        <div class="highlight">
+            <strong>巴菲特视角：</strong> Fortinet是巴菲特会欣赏的"极好公司"——用<strong>"自研芯片+统一OS+订阅收租"</strong>构建三层护城河。这是典型的"赢者通吃"平台生意：55%防火墙份额+650,000+装机量+90%订阅attach rate，新进入者很难撼动。<br><br>
+            <strong>关键判断：</strong> Fortinet的护城河是<strong>"FortiASIC芯片5-10x性能优势+FortiOS统一OS生态锁定"</strong>。这种"硬件+软件+服务"三位一体模式使竞争对手（Palo Alto/Zscaler/Cisco）很难在性能和成本上同时匹敌。2025年财务表现卓越：毛利率80.8%+FCF Margin 32.7%+ROE 149.8%，是软件公司级别的盈利质量。<br><br>
+            <strong>估值判断：</strong> 当前PE 37.6x+Forward PE 29.9x+EV/FCF 26.5x，<strong>绝对估值偏贵</strong>。相比Palo Alto（PE ~50x）有折价，但市场已定价"高质量+增长"。巴菲特会说："这是一家极好的公司，但价格不便宜"——<strong>这是"好公司但不便宜"的典型例子</strong>。安全边际有限，需要等待回调或增长超预期。<br><br>
+            <strong>芒格会说：</strong>"Fortinet是网络安全版的'Intel+Microsoft'——自研芯片（FortiASIC）+统一操作系统（FortiOS）+订阅服务（FortiGuard）。这种'芯片+OS+服务'三位一体模式在科技行业极为罕见，一旦形成生态锁定（650,000+装机量），竞争对手很难撼动。但问题在于：当一家极好的公司以昂贵的价格交易时，投资者需要问自己——'我愿意为这个护城河支付多少溢价？'在PE 37.6x的价格下，任何增长不及预期都会导致估值回调。"<br><br>
+            <strong>建议：当前位置观望，等待回调至Forward PE 22-25x（对应股价$85-95）时建仓。若SASE+SecOps增长持续+24%且防火墙换机周期加速，估值可维持；否则估值回调风险较大。长期看，Fortinet是"复利机器"，但短期估值偏贵，安全边际有限。对于已持有者，可继续持有；对于新建仓者，建议等待回调。</strong>
+        </div>
+    </div>
+
+    <script>
+    // Chart 1: Revenue, Net Income, FCF trend
+    const ctx1 = document.getElementById('chart1').getContext('2d');
+    new Chart(ctx1, {
+        type: 'bar',
+        data: {
+            labels: ['2020','2021','2022','2023','2024','2025'],
+            datasets: [
+                { label: '营收(亿美元)', data: [25.9,33.4,44.2,53.0,59.6,68.0], backgroundColor: '#1a3a5c', yAxisID: 'y' },
+                { label: '净利润(亿美元)', data: [6.46,6.07,8.57,11.48,17.45,18.53], backgroundColor: '#27ae60', yAxisID: 'y' },
+                { label: 'FCF(亿美元)', data: [7.8,9.2,11.5,15.0,18.8,22.3], backgroundColor: '#ee3124', yAxisID: 'y' },
+                { label: 'ROE(%)', data: [60.0,40.2,45.3,116.8,116.8,149.8], type: 'line', borderColor: '#f39c12', backgroundColor: '#f39c12', yAxisID: 'y1', tension: 0.3 }
+            ]
+        },
+        options: {
+            responsive: true,
+            plugins: { title: { display: true, text: 'Fortinet 6年营收/净利润/FCF/ROE趋势', font:{size:14} } },
+            scales: {
+                y: { type: 'linear', position: 'left', title: { display: true, text: '亿美元' } },
+                y1: { type: 'linear', position: 'right', title: { display: true, text: 'ROE %' }, grid: { drawOnChartArea: false } }
+            }
+        }
+    });
+
+    // Chart 2: Profit Allocation 6-year
+    const ctx2 = document.getElementById('chart2').getContext('2d');
+    new Chart(ctx2, {
+        type: 'bar',
+        data: {
+            labels: ['2020','2021','2022','2023','2024','2025'],
+            datasets: [
+                { label: '回购(亿美元)', data: [5.0,12.5,20.0,24.0,22.5,22.9], backgroundColor: '#2980b9' },
+                { label: '资本开支(亿美元)', data: [0.8,1.0,1.3,1.6,1.8,2.0], backgroundColor: '#f39c12' },
+                { label: '净利润(亿美元)', data: [6.46,6.07,8.57,11.48,17.45,18.53], backgroundColor: '#27ae60' }
+            ]
+        },
+        options: {
+            responsive: true,
+            plugins: { title: { display: true, text: 'Fortinet 6年利润分配（回购+资本开支+净利润，亿美元）', font:{size:14} } },
+            scales: { y: { title: { display: true, text: '亿美元' } } }
+        }
+    });
+    </script>
+
+    <script src="scores_client.js"></script>
+    <script src="stock_topbar.js"></script>
+</body>
+</html>
