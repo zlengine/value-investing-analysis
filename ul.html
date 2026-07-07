@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UL 联合利华 Unilever - 巴菲特芒格式价值投资分析</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body { font-family: 'Segoe UI', Arial, sans-serif; line-height: 1.6; color: #333; max-width: 1200px; margin: 0 auto; padding: 20px; background: #f4f6f9; }
+        h1 { color: #1a3a5c; border-bottom: 3px solid #1f36c8; padding-bottom: 10px; }
+        h2 { color: #1a3a5c; margin-top: 35px; border-left: 5px solid #1f36c8; padding-left: 15px; }
+        h3 { color: #2c5282; margin-top: 25px; }
+        .info-box { background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.08); margin: 20px 0; }
+        .highlight { background: #fef9e7; padding: 15px; border-left: 5px solid #f39c12; margin: 20px 0; border-radius: 5px; }
+        .moat-item { background: #eafaf1; padding: 15px; margin: 10px 0; border-left: 5px solid #27ae60; border-radius: 5px; }
+        .risk-item { background: #fdedec; padding: 15px; margin: 10px 0; border-left: 5px solid #c0392b; border-radius: 5px; }
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; background: white; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        th, td { padding: 12px; text-align: left; border-bottom: 1px solid #ddd; }
+        th { background: #1a3a5c; color: white; }
+        tr:hover { background: #f5f5f5; }
+        .tag-green { background: #27ae60; color: white; padding: 3px 10px; border-radius: 12px; font-size: 0.85em; }
+        .tag-orange { background: #f39c12; color: white; padding: 3px 10px; border-radius: 12px; font-size: 0.85em; }
+        .tag-red { background: #c0392b; color: white; padding: 3px 10px; border-radius: 12px; font-size: 0.85em; }
+        .competitiveness-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; margin: 20px 0; }
+        .comp-card { background: white; padding: 15px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); text-align: center; }
+        .comp-card h4 { color: #1a3a5c; margin-bottom: 8px; }
+        .section-nav { background: white; border-radius: 10px; padding: 15px 25px; margin: 20px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.08); text-align: center; }
+        .section-nav a { display: inline-block; margin: 5px 10px; padding: 6px 14px; background: #eaf2f8; color: #1a3a5c; text-decoration: none; border-radius: 15px; font-size: 0.9em; }
+        .section-nav a:hover { background: #1f36c8; color: white; }
+        .chart-container { background: white; padding: 20px; border-radius: 10px; margin: 20px 0; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+    </style>
+</head>
+<body>
+    <div class="top-nav-bar"></div>
+    <script src="nav_bar.js"></script>
+    <span id="topbarCode" style="display:none;">UL</span>
+
+    <h1>UL 联合利华（Unilever PLC）- 巴菲特芒格式价值投资分析</h1>
+    <p style="color:#666; font-size:1.1em;"><em>分析日期：2026年7月7日 | 数据截止：2025年年报（2026年2月发布，冰淇淋业务分拆后持续经营口径）</em></p>
+
+    <div class="section-nav">
+        <a href="#chapter1">公司基本信息</a>
+        <a href="#chapter2">业务分析</a>
+        <a href="#chapter3">产品竞争力分析</a>
+        <a href="#chapter4">历史财务指标</a>
+        <a href="#chapter5">竞争分析</a>
+        <a href="#chapter6">利润分配分析</a>
+        <a href="#chapter7">投资总结</a>
+    </div>
+
+    <!-- ===================== 第一章：公司基本信息 ===================== -->
+    <div class="info-box">
+        <h2 id="chapter1">一、公司基本信息</h2>
+        <table>
+            <tr><th>项目</th><th>详情</th></tr>
+            <tr><td>公司名称</td><td>Unilever PLC（联合利华）</td></tr>
+            <tr><td>股票代码</td><td>UL（NYSE）/ ULVR（LSE）</td></tr>
+            <tr><td>成立时间</td><td>1860年（166年历史），1929年由英国Lever Brothers与荷兰Margarine Unie合并成立联合利华</td></tr>
+            <tr><td>总部</td><td>伦敦（Unilever PLC）+ 鹿特丹（Unilever N.V.，2020年统一为PLC单一结构）</td></tr>
+            <tr><td>最新股价</td><td>$59.71（2026年7月）</td></tr>
+            <tr><td>市值</td><td>约1,464亿美元（约10,540亿人民币）</td></tr>
+            <tr><td>企业价值（EV）</td><td>约1,737亿美元（含231亿欧元净债务）</td></tr>
+            <tr><td>员工人数</td><td>约128,000人（2025年底，冰淇淋分拆后）</td></tr>
+            <tr><td>CEO</td><td>Fernando Fernandez（2025年3月接任CEO，前Beauty & Personal Care总裁，联合利华老兵）</td></tr>
+            <tr><td>业务覆盖</td><td>190+国家，30个Power Brands（Dove/Hellmann's/Vaseline/Rexona等）</td></tr>
+            <tr><td>股息记录</td><td>连续50+年股息支付，季度股息€0.4664/股（2026年3月），Q1 2026同比+3%</td></tr>
+            <tr><td>股息收益率</td><td>约3.63%（年化约$2.17/股）</td></tr>
+            <tr><td>当前PE（TTM）</td><td>~13.1x（2025 EPS €2.59）；~18.8x（Underlying EPS €3.08）</td></tr>
+            <tr><td>主要业务</td><td>4大业务集团：Beauty & Wellbeing / Personal Care / Home Care / Foods</td></tr>
+            <tr><td>信用评级</td><td>A+（标普）/ A1（穆迪），投资级优质</td></tr>
+            <tr><td>品牌组合</td><td>400+品牌，30个Power Brands贡献78%营收</td></tr>
+            <tr><td>市场地位</td><td>全球消费品#3（仅次于宝洁P&G和雀巢Nestlé）</td></tr>
+        </table>
+
+        <div class="highlight">
+            <strong>巴菲特视角：</strong> 联合利华是巴菲特最熟悉的"消费品生意"——拥有Dove、Hellmann's、Vaseline、Rexona等30个全球Power Brands，覆盖190+国家。这正是巴菲特钟爱的"用品牌定价权赚钱+低资本需求+全球渠道"的经典生意。但联合利华过去10年的问题是<strong>"大象学跳舞"</strong>——400+品牌组合臃肿+增长缓慢+决策迟缓，导致ROE从2015年的75%降至2024年的35%。2025年是转折年：新CEO Fernando Fernandez完成冰淇淋业务分拆（The Magnum Ice Cream Company）、剥离15%非核心品牌、聚焦Beauty & Personal Care高增长板块，使Unilever从"臃肿的消费品集团"转向"聚焦的高端美妆个护公司"。2025年Underlying营业利润率20.0%（+60bps），毛利率46.9%（连续3年扩张），自由现金流€59亿（100%现金转化率），证明"简化+聚焦"正在释放价值。但€231亿净债务+巴西€36亿税务争议+新兴市场波动是必须警惕的风险。
+        </div>
+    </div>
+
+    <!-- ===================== 第二章：业务分析 ===================== -->
+    <div class="info-box">
+        <h2 id="chapter2">二、业务分析</h2>
+
+        <h3>2.1 公司业务简述（120岁老奶奶也能懂）</h3>
+        <p>联合利华做的是<strong>"你家浴室和厨房里的日用品"</strong>生意，你每天至少接触5次它的产品：</p>
+        <ul>
+            <li><strong>你洗澡用的Dove多芬香皂/沐浴露</strong>（Beauty & Wellbeing板块）</li>
+            <li><strong>你刷牙用的Signal/Close Up牙膏</strong>（Personal Care板块）</li>
+            <li><strong>你涂的Vaseline凡士林润肤霜</strong>（Personal Care板块，连续3年双位数增长）</li>
+            <li><strong>你洗衣服用的OMO/Comfort洗衣液</strong>（Home Care板块）</li>
+            <li><strong>你做沙拉用的Hellmann's好乐门蛋黄酱</strong>（Foods板块）</li>
+            <li><strong>你喝的Knorr家乐汤料</strong>（Foods板块）</li>
+            <li><strong>你喷的Rexona除臭剂</strong>（Personal Care板块）</li>
+            <li><strong>你家的Cif清洁剂+Domestos洁厕液</strong>（Home Care板块）</li>
+        </ul>
+        <p>简单说：联合利华是<strong>"全球家庭的日用品柜"</strong>——只要人类还要洗澡、洗衣、做饭、打扫，联合利华的产品就不会停。</p>
+
+        <h3>2.2 四大业务集团（2025年，持续经营口径）</h3>
+        <table>
+            <tr><th>业务板块</th><th>2025营收(亿欧元)</th><th>占比</th><th>Underlying营业利润率</th><th>USG增长</th><th>主要品牌</th></tr>
+            <tr><td>Beauty & Wellbeing</td><td>128.5</td><td>25.4%</td><td>19.2%</td><td>+4.3%</td><td>Dove/Vaseline/Nutrafol/Liquid IV/Dermalogica</td></tr>
+            <tr><td>Personal Care</td><td>131.6</td><td>26.1%</td><td>22.6%</td><td>+4.7%</td><td>Rexona/Signal/Close Up/Axe/Dr. Squatch</td></tr>
+            <tr><td>Home Care</td><td>115.7</td><td>22.9%</td><td>14.9%</td><td>+2.6%</td><td>OMO/Cif/Comfort/Domestos/Surf</td></tr>
+            <tr><td>Foods</td><td>129.3</td><td>25.6%</td><td>22.6%</td><td>+2.5%</td><td>Hellmann's/Knorr/Ben & Jerry's（冰淇淋已分拆）</td></tr>
+            <tr><td><strong>合计</strong></td><td><strong>505.0</strong></td><td><strong>100%</strong></td><td><strong>20.0%</strong></td><td><strong>+3.5%</strong></td><td></td></tr>
+        </table>
+        <p><em>注：2025年11月完成冰淇淋业务（Magnum/Algida/Ben & Jerry's）分拆为The Magnum Ice Cream Company N.V.，2024年比较数据已重述</em></p>
+
+        <h3>2.3 地理营收分布（2025年）</h3>
+        <table>
+            <tr><th>地区</th><th>2025营收(亿欧元)</th><th>占比</th><th>USG增长</th><th>主要市场</th></tr>
+            <tr><td>亚太非洲</td><td>224.3</td><td>44.4%</td><td>+4.6%</td><td>印度#1快消+印尼+中国复苏</td></tr>
+            <tr><td>美洲</td><td>186.2</td><td>36.9%</td><td>+3.6%</td><td>北美增长5.3%+拉美恢复</td></tr>
+            <tr><td>欧洲</td><td>94.5</td><td>18.7%</td><td>+2.0%</td><td>成熟市场低增长</td></tr>
+        </table>
+
+        <div class="highlight">
+            <strong>Power Brands驱动增长：</strong> 30个Power Brands（占营收78%）2025年USG +4.3%，销量+2.2%，远超非Power Brands。其中Vaseline连续3年双位数增长（成为第8个10亿欧元品牌），Liquid IV渗透率达18%，Dove双位数增长。这证明联合利华的品牌护城河在高端化+功能性创新驱动下仍能增长。管理层目标是"Power Brands占营收80%+"，持续剥离非核心品牌。
+        </div>
+
+        <h3>2.4 商业模式与赚钱逻辑</h3>
+        <p>联合利华的赚钱逻辑：<strong>"全球品牌+本地化渠道+规模制造+持续创新"</strong></p>
+        <ul>
+            <li><strong>品牌溢价</strong>：30个Power Brands享受品牌定价权，毛利率46.9%（高于行业均值40%）</li>
+            <li><strong>规模经济</strong>：190+国家渠道+300家工厂+128,000员工，单位成本优势</li>
+            <li><strong>渠道分发</strong>：从沃尔玛到印度街边小店，全球最密集的快速消费品分销网络</li>
+            <li><strong>创新平台</strong>：Wonder Wash/Hellmann's风味蛋黄酱等创新平台，12-18个月达到€1-2亿营收</li>
+            <li><strong>数字化</strong>：电商渠道占比持续提升，50%广告支出转向社交媒体</li>
+        </ul>
+        <p>2025年财务表现（持续经营）：营收€505亿（-3.8%报告口径，但USG +3.5%），营业利润€90亿（+2.4%），净利润€62亿（+2.9%），自由现金流€59亿（100%现金转化率）。Underlying营业利润率20.0%（+60bps），毛利率46.9%（+20bps，连续3年扩张）——这是"简化+聚焦+高端化"战略正在释放价值的证据。</p>
+    </div>
+
+    <!-- ===================== 第三章：产品竞争力分析 ===================== -->
+    <div class="info-box">
+        <h2 id="chapter3">三、产品竞争力分析</h2>
+
+        <h3>3.1 Beauty & Wellbeing（美容与健康）- 营收占比25%</h3>
+        <p><strong>1. 可替代性：<span class="tag-orange">中等（Medium）</span></strong></p>
+        <ul>
+            <li>主要替代品：宝洁P&G（Olay/Pantene）+欧莱雅L'Oréal（Garnier/CeraVe）+雅诗兰黛+本土品牌</li>
+            <li>替代体验差距：中等——Dove/Vaseline有品牌信任，但功能性与竞品差距不大</li>
+            <li>替代趋势：稳定——但DTC品牌（如Dr. Squatch）和K-beauty对中端品牌形成压力</li>
+        </ul>
+        <p><strong>2. 客户转换成本：<span class="tag-orange">低（Low）</span></strong></p>
+        <ul>
+            <li>消费品转换成本极低，顾客下次购物换品牌零成本</li>
+            <li>但品牌习惯+渠道主导权（货架位置）形成"软锁定"</li>
+        </ul>
+        <p><strong>3. 定价权：<span class="tag-green">中等偏强（Medium-Strong）</span></strong></p>
+        <ul>
+            <li>2025年USG +4.3%（价格+2.1%+销量+2.2%），证明有能力提价且不流失客户</li>
+            <li>Vaseline/Nutrafol等高端品牌定价权强，Dove等大众品牌定价权中等</li>
+            <li><strong>巴菲特测试</strong>：若Dove涨价10%，部分消费者会转向Olay，但品牌忠诚度高的核心客户会留下——定价权中等偏强</li>
+        </ul>
+        <p><strong>整体竞争力评级：★★★★（4/5星）</strong> - 美容健康是联合利华增长最快+利润率最高的板块，受益于高端化趋势</p>
+
+        <h3>3.2 Personal Care（个人护理）- 营收占比26%</h3>
+        <p><strong>1. 可替代性：<span class="tag-orange">中等（Medium）</span></strong></p>
+        <ul>
+            <li>主要替代品：宝洁P&G（Secret/Old Spice）+Colgate-Palmolive+本土品牌</li>
+            <li>替代体验差距：中等——Rexona/Signal功能性与竞品相当，但品牌信任度更高</li>
+        </ul>
+        <p><strong>2. 客户转换成本：<span class="tag-orange">低（Low）</span></strong></p>
+        <ul>
+            <li>除臭剂/牙膏/洗发水转换成本极低</li>
+            <li>但"全身除臭剂"等新品类创新平台建立先发优势</li>
+        </ul>
+        <p><strong>3. 定价权：<span class="tag-green">中等偏强（Medium-Strong）</span></strong></p>
+        <ul>
+            <li>2025年USG +4.7%（价格+3.6%+销量+1.1%），定价权是4大板块最强</li>
+            <li>Underlying营业利润率22.6%（+50bps），证明定价权转化为利润</li>
+            <li><strong>巴菲特测试</strong>：若Rexona涨价10%，部分消费者会转Secret，但品牌忠诚+渠道锁定使其能维持——定价权中等偏强</li>
+        </ul>
+        <p><strong>整体竞争力评级：★★★★（4/5星）</strong> - 个人护理是联合利华最大+利润率最高+定价权最强的板块</p>
+
+        <h3>3.3 Home Care（家庭护理）- 营收占比23%</h3>
+        <p><strong>1. 可替代性：<span class="tag-red">高（High）</span></strong></p>
+        <ul>
+            <li>主要替代品：宝洁P&G（Tide/Ariel）+汉高Henkel（Persil）+自有品牌Private Label</li>
+            <li>替代体验差距：小——洗衣液/清洁剂功能性强，品牌差异感知弱</li>
+            <li>替代趋势：加速——零售商自有品牌（如Costco/Kroger）价格低30%+，持续侵蚀份额</li>
+        </ul>
+        <p><strong>2. 客户转换成本：<span class="tag-red">极低（Extremely Low）</span></strong></p>
+        <ul>
+            <li>洗衣液/清洁剂转换成本几乎为零</li>
+            <li>价格敏感度高，促销驱动购买</li>
+        </ul>
+        <p><strong>3. 定价权：<span class="tag-orange">弱（Weak）</span></strong></p>
+        <ul>
+            <li>2025年USG +2.6%（价格+0.4%+销量+2.2%），定价权弱，靠销量驱动</li>
+            <li>Underlying营业利润率14.9%（4大板块最低），反映竞争激烈</li>
+            <li><strong>巴菲特测试</strong>：若OMO涨价10%，消费者会立即转向Tide或自有品牌——定价权弱</li>
+        </ul>
+        <p><strong>整体竞争力评级：★★★（3/5星）</strong> - 家庭护理是竞争最激烈的板块，自有品牌是长期威胁</p>
+
+        <h3>3.4 Foods（食品）- 营收占比26%</h3>
+        <p><strong>1. 可替代性：<span class="tag-orange">中等（Medium）</span></strong></p>
+        <ul>
+            <li>主要替代品：卡夫亨氏KHC+味好美McCormick+通用磨坊+本土品牌</li>
+            <li>替代体验差距：中等——Hellmann's蛋黄酱有品牌溢价，Knorr汤料功能性强</li>
+        </ul>
+        <p><strong>2. 客户转换成本：<span class="tag-orange">低（Low）</span></strong></p>
+        <ul>
+            <li>食品转换成本低，但口味习惯形成一定粘性</li>
+        </ul>
+        <p><strong>3. 定价权：<span class="tag-green">中等（Medium）</span></strong></p>
+        <ul>
+            <li>2025年USG +2.5%（价格+1.7%+销量+0.8%），定价权中等</li>
+            <li>Underlying营业利润率22.6%（+130bps，历史最高），Hellmann's风味蛋黄酱平台贡献</li>
+            <li><strong>巴菲特测试</strong>：若Hellmann's涨价10%，部分消费者会转向自有品牌蛋黄酱，但Dijon/风味系列客户更忠诚——定价权中等</li>
+        </ul>
+        <p><strong>整体竞争力评级：★★★★（4/5星）</strong> - 食品板块受益于Hellmann's/Knorr品牌溢价+利润率扩张</p>
+
+        <div class="highlight">
+            <strong>竞争力总结：</strong> 联合利华的生意呈现"高端强+大宗弱"的两极分化。<strong>Personal Care（26%）</strong>和<strong>Beauty & Wellbeing（25%）</strong>是护城河最深的板块（4星），受益于品牌定价权+高端化趋势；<strong>Foods（26%）</strong>有Hellmann's等强势品牌（4星）；<strong>Home Care（23%）</strong>是竞争最激烈的板块（3星），自有品牌是长期威胁。<strong>整体竞争力评级：★★★★（3.75/5星）</strong> - 这是个"靠30个Power Brands吃饭"的消费品巨头，护城河在高端品牌而非大众商品。
+        </div>
+    </div>
+
+    <!-- ===================== 第四章：历史财务指标 ===================== -->
+    <div class="info-box">
+        <h2 id="chapter4">四、历史财务指标</h2>
+
+        <h3>4.1 关键财务指标10年趋势（2016-2025）</h3>
+        <table>
+            <tr><th>年份</th><th>营收(亿欧元)</th><th>净利润(亿欧元)</th><th>EPS(欧元)</th><th>ROE(%)</th><th>毛利率(%)</th><th>营业利润率(%)</th><th>PE(年末)</th></tr>
+            <tr><td>2016</td><td>527</td><td>55</td><td>1.85</td><td>75.6</td><td>42.0</td><td>13.8</td><td>22.0x</td></tr>
+            <tr><td>2017</td><td>537</td><td>65</td><td>2.19</td><td>58.2</td><td>42.5</td><td>14.5</td><td>21.5x</td></tr>
+            <tr><td>2018</td><td>510</td><td>98</td><td>3.31</td><td>63.8</td><td>43.5</td><td>16.5</td><td>18.5x</td></tr>
+            <tr><td>2019</td><td>520</td><td>60</td><td>2.03</td><td>35.3</td><td>43.0</td><td>14.5</td><td>24.0x</td></tr>
+            <tr><td>2020</td><td>507</td><td>61</td><td>2.06</td><td>33.5</td><td>42.5</td><td>14.5</td><td>23.5x</td></tr>
+            <tr><td>2021</td><td>524</td><td>66</td><td>2.23</td><td>38.1</td><td>42.0</td><td>15.0</td><td>20.0x</td></tr>
+            <tr><td>2022</td><td>601</td><td>83</td><td>2.79</td><td>34.4</td><td>39.5</td><td>14.5</td><td>17.5x</td></tr>
+            <tr><td>2023</td><td>596</td><td>71</td><td>2.39</td><td>28.2</td><td>41.0</td><td>15.5</td><td>19.0x</td></tr>
+            <tr><td>2024</td><td>608</td><td>64</td><td>2.44</td><td>35.3</td><td>46.7</td><td>17.9</td><td>18.5x</td></tr>
+            <tr><td>2025</td><td>505</td><td>62</td><td>2.59</td><td>72.1</td><td>46.9</td><td>17.9</td><td>13.1x</td></tr>
+        </table>
+
+        <div class="chart-container">
+            <canvas id="chart1" height="100"></canvas>
+        </div>
+
+        <h3>4.2 财务指标分析</h3>
+        <div class="moat-item">
+            <strong>ROE分析（2016-2025）：</strong> 10年平均约43%，2025年72.1%看似很高，但需注意：(1) 2025年ROE跳升主要源于冰淇淋分拆导致权益基数减少+回购缩减权益；(2) 2019-2023年ROE在28-38%低位徘徊，反映增长乏力；(3) 联合利华ROE高度依赖高杠杆（净债务€231亿），剔除杠杆后ROA约8.8%。<strong>真实的运营回报是ROA 8.8%，而非ROE 72%</strong>。
+        </div>
+        <div class="moat-item">
+            <strong>毛利率趋势：</strong> 42.0%（2016）→ 46.9%（2025），10年提升4.9个百分点。2022年降至39.5%（通胀压力），但2023-2025年快速恢复至46.9%，连续3年扩张。反映"高端化+组合优化+生产力计划"三重驱动。
+        </div>
+        <div class="moat-item">
+            <strong>营业利润率：</strong> 13.8%（2016）→ 17.9%（2025），10年提升4.1个百分点。Underlying营业利润率20.0%（+60bps），创历史新高。生产力计划累计节约€6.7亿，超计划完成。
+        </div>
+        <div class="risk-item">
+            <strong>营收波动：</strong> 2022年营收峰值€601亿→2025年€505亿（-16%），主要源于：(1) 冰淇淋分拆（-€83亿）；(2) 非核心品牌剥离（-€15亿）；(3) 汇率影响（-5.9%）。但USG +3.5%证明有机增长健康。
+        </div>
+        <div class="risk-item">
+            <strong>债务风险：</strong> 净债务€231亿，净债务/EBITDA 2.0x，利息覆盖8x。信用评级A+/A1（投资级优质），债务可控但偏高。巴西税务争议€36亿是潜在风险。
+        </div>
+    </div>
+
+    <!-- ===================== 第五章：竞争分析 ===================== -->
+    <div class="info-box">
+        <h2 id="chapter5">五、竞争分析</h2>
+
+        <h3>5.1 全球消费品巨头竞争格局</h3>
+        <table>
+            <tr><th>公司</th><th>2025营收</th><th>市值</th><th>ROE</th><th>毛利率</th><th>股息收益率</th><th>定位</th></tr>
+            <tr><td>联合利华 UL</td><td>€505亿</td><td>$1,464亿</td><td>72.1%</td><td>46.9%</td><td>3.63%</td><td>美妆个护+家庭护理+食品</td></tr>
+            <tr><td>宝洁 P&G (PG)</td><td>$840亿</td><td>$3,900亿</td><td>31.5%</td><td>51.5%</td><td>2.40%</td><td>全球消费品#1，美妆个护为主</td></tr>
+            <tr><td>雀巢 Nestlé (NSRGY)</td><td>CHF 920亿</td><td>$2,700亿</td><td>18.5%</td><td>47.0%</td><td>3.50%</td><td>全球食品饮料#1</td></tr>
+            <tr><td>可口可乐 KO</td><td>$470亿</td><td>$2,850亿</td><td>41.5%</td><td>60.0%</td><td>3.20%</td><td>全球饮料#1</td></tr>
+            <tr><td>百事 PEP</td><td>$920亿</td><td>$2,100亿</td><td>45.0%</td><td>54.5%</td><td>3.50%</td><td>饮料+零食</td></tr>
+            <tr><td>卡夫亨氏 KHC</td><td>$260亿</td><td>$400亿</td><td>5.2%</td><td>32.0%</td><td>5.00%</td><td>北美食品，困境中</td></tr>
+        </table>
+
+        <h3>5.2 联合利华的竞争优势</h3>
+        <div class="moat-item">
+            <strong>护城河1：30个Power Brands品牌组合（★★★★）</strong> - Dove（10亿欧元品牌）/Vaseline（10亿欧元）/Hellmann's（10亿欧元）/Rexona等30个Power Brands贡献78%营收，品牌定价权强。
+        </div>
+        <div class="moat-item">
+            <strong>护城河2：全球分销网络（★★★★★）</strong> - 190+国家渠道+300家工厂+128,000员工，从沃尔玛到印度街边小店，全球最密集的快消品分销网络。新进入者无法复制。
+        </div>
+        <div class="moat-item">
+            <strong>护城河3：规模经济（★★★★）</strong> - €505亿营收带来采购成本优势+制造效率+广告分摊优势。毛利率46.9%反映规模优势。
+        </div>
+        <div class="moat-item">
+            <strong>护城河4：创新平台能力（★★★）</strong> - Wonder Wash/Hellmann's风味蛋黄酱等创新平台12-18个月达到€1-2亿营收，R&D转化为商业速度。
+        </div>
+        <div class="moat-item">
+            <strong>护城河5：新兴市场领导地位（★★★★）</strong> - 印度#1快消品牌+印尼+中国复苏，新兴市场占营收59%，是未来增长引擎。
+        </div>
+        <div class="risk-item">
+            <strong>反护城河1：自有品牌威胁（★★★）</strong> - 零售商自有品牌（Costco/Kroger/沃尔玛）价格低30%+，持续侵蚀Home Care等大宗品类份额。
+        </div>
+        <div class="risk-item">
+            <strong>反护城河2：DTC品牌冲击（★★★）</strong> - Dr. Squatch等DTC品牌冲击传统品牌，但联合利华通过收购应对。
+        </div>
+        <div class="risk-item">
+            <strong>反护城河3：新兴市场波动（★★）</strong> - 巴西税务争议€36亿+中国经济放缓+印尼汇率波动，新兴市场风险高于成熟市场。
+        </div>
+    </div>
+
+    <!-- ===================== 第六章：利润分配分析 ===================== -->
+    <div class="info-box">
+        <h2 id="chapter6">六、利润分配分析</h2>
+
+        <h3>6.1 过去10年利润分配表（2016-2025，亿欧元）</h3>
+        <table>
+            <tr><th>年份</th><th>净利润</th><th>分红</th><th>回购</th><th>并购</th><th>资本开支</th><th>留存收益</th><th>留存率(%)</th><th>净债务</th></tr>
+            <tr><td>2016</td><td>55</td><td>36</td><td>0</td><td>0</td><td>20</td><td>19</td><td>35%</td><td>226</td></tr>
+            <tr><td>2017</td><td>65</td><td>38</td><td>0</td><td>0</td><td>21</td><td>27</td><td>42%</td><td>232</td></tr>
+            <tr><td>2018</td><td>98</td><td>39</td><td>0</td><td>0</td><td>22</td><td>59</td><td>60%</td><td>207</td></tr>
+            <tr><td>2019</td><td>60</td><td>41</td><td>0</td><td>0</td><td>23</td><td>19</td><td>32%</td><td>194</td></tr>
+            <tr><td>2020</td><td>61</td><td>43</td><td>0</td><td>0</td><td>22</td><td>18</td><td>30%</td><td>184</td></tr>
+            <tr><td>2021</td><td>66</td><td>45</td><td>30</td><td>0</td><td>22</td><td>21</td><td>32%</td><td>196</td></tr>
+            <tr><td>2022</td><td>83</td><td>47</td><td>30</td><td>0</td><td>23</td><td>36</td><td>43%</td><td>221</td></tr>
+            <tr><td>2023</td><td>71</td><td>49</td><td>30</td><td>0</td><td>22</td><td>22</td><td>31%</td><td>233</td></tr>
+            <tr><td>2024</td><td>64</td><td>51</td><td>75</td><td>0</td><td>22</td><td>13</td><td>20%</td><td>247</td></tr>
+            <tr><td>2025</td><td>62</td><td>52</td><td>15</td><td><strong>15</strong></td><td>20</td><td>10</td><td>16%</td><td>231</td></tr>
+            <tr><td><strong>10年累计</strong></td><td><strong>685</strong></td><td><strong>441</strong></td><td><strong>180</strong></td><td><strong>15</strong></td><td><strong>217</strong></td><td><strong>244</strong></td><td><strong>36%</strong></td><td></td></tr>
+        </table>
+
+        <div class="chart-container">
+            <canvas id="chart2" height="100"></canvas>
+        </div>
+
+        <h3>6.2 利润分配质量分析</h3>
+        <div class="moat-item">
+            <strong>分红：连续50+年支付，10年分红CAGR 4.5%</strong> - 2025年分红€52亿，派息率78.6%（Underlying口径25%）。10年分红从€36亿增至€52亿，CAGR 4.5%，跑赢通胀。2026年Q1每股提升3%至€0.4664，继续增长。
+        </div>
+        <div class="moat-item">
+            <strong>回购：10年累计€180亿，但时机不规律</strong> - 2021-2023年每年回购€30亿，2024年加大至€75亿（PE约18x偏高），2025年降至€15亿（保留现金用于并购+冰淇淋分拆）。2026年Q1宣布新€15亿回购计划。
+        </div>
+        <div class="moat-item">
+            <strong>并购：2025年重启战略并购€15亿</strong> - 收购Dr. Squatch（美国DTC男士护理）+Minimalist（印度护肤）+Wild（英国DTC除臭剂）+Grüns（美国营养品）。管理层宣布未来每年€15亿并购预算，聚焦美国高端品牌。
+        </div>
+        <div class="risk-item">
+            <strong>回购时机评估：</strong> 2024年回购€75亿时PE约18x（偏高），2025年回购€15亿时PE降至13x（合理）。<strong>整体回购时机一般</strong>，在高估值时回购更多。
+        </div>
+        <div class="highlight">
+            <strong>可持续增长率 = ROE × 留存率 = 72.1% × 16% = 11.5%</strong><br>
+            理论可持续增长率11.5%，但实际EPS增长目标仅"中个位数"（管理层2026指引），差距源于：(1) 高分红78.6%派息率减少留存；(2) 高杠杆限制扩张；(3) 成熟消费品市场增长有限。这是典型的"高ROE+低增长+高派息"成熟消费品生意——赚得多但增长慢，靠分红回报股东。
+        </div>
+    </div>
+
+    <!-- ===================== 第七章：投资总结 ===================== -->
+    <div class="info-box">
+        <h2 id="chapter7">七、投资总结</h2>
+
+        <h3>7.1 六维度评级</h3>
+        <table>
+            <tr><th>维度</th><th>评分（1-5）</th><th>理由</th></tr>
+            <tr><td>业务易懂性</td><td>5</td><td>"卖日用品"，Dove/Hellmann's/Vaseline全球家喻户晓，120岁老奶奶都懂</td></tr>
+            <tr><td>护城河</td><td>4</td><td>30个Power Brands+190国分销网络+规模经济，但Home Care护城河弱</td></tr>
+            <tr><td>资本配置</td><td>3</td><td>连续50+年分红+10年€180亿回购，但回购时机一般+并购历史效果不佳</td></tr>
+            <tr><td>财务安全</td><td>3</td><td>净债务€231亿+净杠杆2.0x偏高，巴西税务争议€36亿是潜在风险</td></tr>
+            <tr><td>增长前景</td><td>4</td><td>冰淇淋分拆+聚焦Beauty/Personal Care+新兴市场，USG 3.5%+销量增长2.2%</td></tr>
+            <tr><td>估值吸引力</td><td>4</td><td>PE 13.1x（TTM）低于5年均值20x，股息收益率3.63%，定价偏便宜</td></tr>
+            <tr><td><strong>综合评级</strong></td><td><strong>3.8/5</strong></td><td><strong>合理偏便宜价格买入转型中的消费品巨头</strong></td></tr>
+        </table>
+
+        <h3>7.2 投资结论</h3>
+        <div class="highlight">
+            <strong>评级：3.8/5星 - "合理偏便宜价格买入转型中的消费品巨头，转折年释放价值"</strong>
+        </div>
+        <p><strong>多头逻辑：</strong></p>
+        <ul>
+            <li>30个Power Brands贡献78%营收，Dove/Vaseline/Hellmann's品牌定价权强</li>
+            <li>2025年完成冰淇淋分拆，简化业务+提升利润率（Underlying营业利润率20.0%创历史新高）</li>
+            <li>毛利率46.9%连续3年扩张，"高端化+组合优化+生产力计划"三重驱动</li>
+            <li>新兴市场占59%，印度#1快消品牌+中国复苏，增长引擎明确</li>
+            <li>连续50+年分红+股息收益率3.63%+2026年新€15亿回购</li>
+            <li>当前PE 13.1x低于5年均值20x，估值合理偏便宜</li>
+        </ul>
+        <p><strong>空头逻辑：</strong></p>
+        <ul>
+            <li>Home Care板块（23%营收）护城河弱，自有品牌持续侵蚀份额</li>
+            <li>净债务€231亿+净杠杆2.0x偏高，巴西税务争议€36亿是潜在风险</li>
+            <li>消费品行业增长有限，USG 3.5%属于"低个位数增长"</li>
+            <li>过去10年ROE从75%降至35%（2024），转型效果待验证</li>
+            <li>2022-2024年曾经历通胀压力+增长乏力，管理层执行力受质疑</li>
+            <li>新CEO Fernando Fernandez 2025年3月才接任，转型执行风险</li>
+        </ul>
+
+        <h3>7.3 关键催化与风险</h3>
+        <div class="moat-item">
+            <strong>关键催化：</strong>
+            <ul>
+                <li>冰淇淋分拆后业务简化+利润率持续扩张→Underlying营业利润率突破22%</li>
+                <li>Beauty & Wellbeing+Personal Care高端化加速→毛利率突破48%</li>
+                <li>印度/印尼/中国新兴市场加速增长→USG突破4%</li>
+                <li>€15亿年度并购预算+Dr. Squatch/Minimalist等高端品牌并购整合成功</li>
+                <li>利率下行→利息支出减少+估值提升</li>
+            </ul>
+        </div>
+        <div class="risk-item">
+            <strong>关键风险：</strong>
+            <ul>
+                <li>巴西税务争议€36亿败诉→一次性大额支出+信用评级下调</li>
+                <li>自有品牌持续侵蚀Home Care/Foods份额→营收下滑</li>
+                <li>新兴市场波动（印度汇率/巴西通胀/中国放缓）→USG放缓</li>
+                <li>新CEO转型执行不力→品牌投资回报低于预期</li>
+                <li>高杠杆+利率上升→利息支出增加，净利润承压</li>
+                <li>宝洁/欧莱雅等竞品加大高端化投入→市场份额争夺</li>
+            </ul>
+        </div>
+
+        <h3>7.4 巴菲特芒格式结论</h3>
+        <div class="highlight">
+            <strong>巴菲特视角：</strong> 联合利华是巴菲特最爱的"消费品生意"——Dove/Hellmann's/Vaseline是"经济护城河"品牌，120岁老奶奶都懂。巴菲特会说："这是用品牌定价权赚钱+全球分销+低资本需求的经典生意"。但过去10年联合利华的问题是<strong>"大象学跳舞"</strong>——400+品牌组合臃肿+增长缓慢+决策迟缓，ROE从75%降至35%。<br><br>
+            <strong>关键判断：</strong> 2025年是转折年——新CEO Fernando Fernandez完成冰淇淋分拆+剥离15%非核心品牌+聚焦Beauty/Personal Care高增长板块，使Unilever从"臃肿的消费品集团"转向"聚焦的高端美妆个护公司"。2025年Underlying营业利润率20.0%（+60bps），毛利率46.9%（连续3年扩张），自由现金流€59亿（100%现金转化率），证明"简化+聚焦"正在释放价值。<br><br>
+            <strong>估值判断：</strong> 当前PE 13.1x（TTM）低于5年均值20x，股息收益率3.63%，定价合理偏便宜。但需扣除：(1) 巴西税务争议€36亿潜在风险；(2) 净债务€231亿高杠杆；(3) Home Care等低护城河业务。剔除这些后，真实PE约15-16x，仍属合理。<br><br>
+            <strong>建议：当前位置可逐步建仓。转型故事若持续兑现（Underlying营业利润率突破22%+USG突破4%），估值有修复至PE 18-20x的潜力，对应年化总回报8-12%（3.6%股息+4-6%增长+1-2%估值修复）。</strong>
+        </div>
+    </div>
+
+    <script>
+    // Chart 1: Revenue, Net Income, ROE 10-year trend
+    const ctx1 = document.getElementById('chart1').getContext('2d');
+    new Chart(ctx1, {
+        type: 'bar',
+        data: {
+            labels: ['2016','2017','2018','2019','2020','2021','2022','2023','2024','2025'],
+            datasets: [
+                { label: '营收(亿欧元)', data: [527,537,510,520,507,524,601,596,608,505], backgroundColor: '#1a3a5c', yAxisID: 'y' },
+                { label: '净利润(亿欧元)', data: [55,65,98,60,61,66,83,71,64,62], backgroundColor: '#27ae60', yAxisID: 'y' },
+                { label: 'ROE(%)', data: [75.6,58.2,63.8,35.3,33.5,38.1,34.4,28.2,35.3,72.1], type: 'line', borderColor: '#1f36c8', backgroundColor: '#1f36c8', yAxisID: 'y1', tension: 0.3 }
+            ]
+        },
+        options: {
+            responsive: true,
+            plugins: { title: { display: true, text: 'Unilever 10年营收/净利润/ROE趋势（2025为持续经营口径）', font:{size:14} } },
+            scales: {
+                y: { type: 'linear', position: 'left', title: { display: true, text: '亿欧元' } },
+                y1: { type: 'linear', position: 'right', title: { display: true, text: 'ROE %' }, grid: { drawOnChartArea: false } }
+            }
+        }
+    });
+
+    // Chart 2: Profit Allocation 10-year
+    const ctx2 = document.getElementById('chart2').getContext('2d');
+    new Chart(ctx2, {
+        type: 'bar',
+        data: {
+            labels: ['2016','2017','2018','2019','2020','2021','2022','2023','2024','2025'],
+            datasets: [
+                { label: '分红', data: [36,38,39,41,43,45,47,49,51,52], backgroundColor: '#27ae60' },
+                { label: '回购', data: [0,0,0,0,0,30,30,30,75,15], backgroundColor: '#2980b9' },
+                { label: '并购', data: [0,0,0,0,0,0,0,0,0,15], backgroundColor: '#9b59b6' },
+                { label: '资本开支', data: [20,21,22,23,22,22,23,22,22,20], backgroundColor: '#f39c12' }
+            ]
+        },
+        options: {
+            responsive: true,
+            plugins: { title: { display: true, text: 'Unilever 10年利润分配（分红+回购+并购+CapEx，亿欧元）', font:{size:14} } },
+            scales: { y: { title: { display: true, text: '亿欧元' } } }
+        }
+    });
+    </script>
+
+    <script src="scores_client.js"></script>
+    <script src="stock_topbar.js"></script>
+</body>
+</html>
