@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CDW 公司 - 巴菲特芒格式价值投资分析</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body { font-family: 'Segoe UI', Arial, sans-serif; line-height: 1.6; color: #333; max-width: 1200px; margin: 0 auto; padding: 20px; background: #f4f6f9; }
+        h1 { color: #1a3a5c; border-bottom: 3px solid #c8102e; padding-bottom: 10px; }
+        h2 { color: #1a3a5c; margin-top: 35px; border-left: 5px solid #c8102e; padding-left: 15px; }
+        h3 { color: #2c5282; margin-top: 25px; }
+        .info-box { background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.08); margin: 20px 0; }
+        .highlight { background: #fef9e7; padding: 15px; border-left: 5px solid #f39c12; margin: 20px 0; border-radius: 5px; }
+        .moat-item { background: #eafaf1; padding: 15px; margin: 10px 0; border-left: 5px solid #27ae60; border-radius: 5px; }
+        .risk-item { background: #fdedec; padding: 15px; margin: 10px 0; border-left: 5px solid #c0392b; border-radius: 5px; }
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; background: white; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        th, td { padding: 12px; text-align: left; border-bottom: 1px solid #ddd; }
+        th { background: #1a3a5c; color: white; }
+        tr:hover { background: #f5f5f5; }
+        .tag-green { background: #27ae60; color: white; padding: 3px 10px; border-radius: 12px; font-size: 0.85em; }
+        .tag-orange { background: #f39c12; color: white; padding: 3px 10px; border-radius: 12px; font-size: 0.85em; }
+        .tag-red { background: #c0392b; color: white; padding: 3px 10px; border-radius: 12px; font-size: 0.85em; }
+        .competitiveness-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; margin: 20px 0; }
+        .comp-card { background: white; padding: 15px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); text-align: center; }
+        .comp-card h4 { color: #1a3a5c; margin-bottom: 8px; }
+        .section-nav { background: white; border-radius: 10px; padding: 15px 25px; margin: 20px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.08); text-align: center; }
+        .section-nav a { display: inline-block; margin: 5px 10px; padding: 6px 14px; background: #eaf2f8; color: #1a3a5c; text-decoration: none; border-radius: 15px; font-size: 0.9em; }
+        .section-nav a:hover { background: #c8102e; color: white; }
+        .chart-container { background: white; padding: 20px; border-radius: 10px; margin: 20px 0; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+    </style>
+</head>
+<body>
+    <div class="top-nav-bar"></div>
+    <script src="nav_bar.js"></script>
+    <span id="topbarCode" style="display:none;">CDW</span>
+
+    <h1>CDW 公司（CDW Corporation）- 巴菲特芒格式价值投资分析</h1>
+    <p style="color:#666; font-size:1.1em;"><em>分析日期：2026年7月3日 | 数据截止：2025年年报（2026年2月4日发布）</em></p>
+
+    <div class="section-nav">
+        <a href="#chapter1">公司基本信息</a>
+        <a href="#chapter2">业务分析</a>
+        <a href="#chapter3">产品竞争力分析</a>
+        <a href="#chapter4">历史财务指标</a>
+        <a href="#chapter5">竞争分析</a>
+        <a href="#chapter6">利润分配分析</a>
+        <a href="#chapter7">投资总结</a>
+    </div>
+
+    <!-- ===================== 第一章：公司基本信息 ===================== -->
+    <div class="info-box">
+        <h2 id="chapter1">一、公司基本信息</h2>
+        <table>
+            <tr><th>项目</th><th>详情</th></tr>
+            <tr><td>公司名称</td><td>CDW Corporation（CDW公司）</td></tr>
+            <tr><td>股票代码</td><td>CDW（NASDAQ）</td></tr>
+            <tr><td>成立时间</td><td>1984年（41年历史），由Michael Krasny创立</td></tr>
+            <tr><td>总部</td><td>200 N. Milwaukee Avenue, Vernon Hills, IL 60061（伊利诺伊州弗农山）</td></tr>
+            <tr><td>最新股价</td><td>$131.30（2026年7月）</td></tr>
+            <tr><td>市值</td><td>约184亿美元（约1,325亿人民币）</td></tr>
+            <tr><td>企业价值（EV）</td><td>约237亿美元（含56亿债务，扣除6.2亿现金）</td></tr>
+            <tr><td>员工人数</td><td>约15,000人（2025年底）</td></tr>
+            <tr><td>CEO</td><td>Christine A. Leahy（2019年1月接任CEO，2022年起兼任董事长，CDW老兵，25年公司资历）</td></tr>
+            <tr><td>业务覆盖</td><td>美国+英国+加拿大，服务25万+客户</td></tr>
+            <tr><td>股息记录</td><td>连续12年股息增长（自2013年IPO以来），IPO至今股息增长近15倍</td></tr>
+            <tr><td>股息收益率</td><td>约1.96%（年化股息$2.52/股，2025年Q4提至$0.63/季）</td></tr>
+            <tr><td>当前PE（TTM）</td><td>~17.1x（基于2025 Non-GAAP EPS $10.02）；~22.8x（基于GAAP EPS $8.08）</td></tr>
+            <tr><td>主要业务</td><td>3大产品线：Hardware硬件/Software软件/Services服务 + 4大客户群</td></tr>
+            <tr><td>信用评级</td><td>BBB-（标普）/ Baa3（穆迪），投资级</td></tr>
+            <tr><td>供应商网络</td><td>1,000+技术品牌合作，100,000+产品/解决方案</td></tr>
+            <tr><td>市场地位</td><td>美国IT解决方案经销商#1，Fortune 500 + S&P 500成分股</td></tr>
+        </table>
+
+        <div class="highlight">
+            <strong>巴菲特视角：</strong> CDW是巴菲特可能"看不懂"但芒格会说"这正是现代IT时代的中间商生意"的公司。它做的是<strong>"IT界的沃尔玛+咨询公司"</strong>——从1,000+技术品牌（Dell、HP、Cisco、Microsoft、AWS等）采购硬件/软件/服务，再加价卖给25万+企业客户。表面上是个低毛利的"倒爷"生意（毛利率仅21.7%），但实际上是<strong>"IT生态的收费站"</strong>：企业客户需要中立的IT顾问帮助在1,000+品牌中做选择，技术品牌需要CDW的25万客户网络降低销售成本。这种"双边市场"模式一旦形成规模，网络效应极强。2025年营收$224亿、净利润$10.7亿、ROE 41%、连续12年股息增长——这是一头"IT基础设施时代的现金牛"。但风险也明显：56亿美元债务+毛利率受云厂商市场冲击+AI颠覆技术栈。
+        </div>
+    </div>
+
+    <!-- ===================== 第二章：业务分析 ===================== -->
+    <div class="info-box">
+        <h2 id="chapter2">二、业务分析</h2>
+
+        <h3>2.1 公司业务简述（120岁老奶奶也能懂）</h3>
+        <p>CDW做的是<strong>"帮企业买电脑和IT设备"</strong>的生意，你只要在公司上过班就接触过它的服务：</p>
+        <ul>
+            <li><strong>你办公用的笔记本</strong>：从Dell、HP、Lenovo采购，CDW加价卖给企业</li>
+            <li><strong>公司的服务器和网络设备</strong>：Cisco、HPE服务器，CDW帮企业配置部署</li>
+            <li><strong>公司用的Office 365/AWS云服务</strong>：CDW作为云经销商，帮企业订阅和管理云资源</li>
+            <li><strong>公司的网络安全方案</strong>：Fortinet、Palo Alto防火墙，CDW帮企业部署</li>
+            <li><strong>公司IT系统的维护服务</strong>：CDW提供托管服务、咨询、实施</li>
+            <li><strong>政府部门的IT采购</strong>：CDW是联邦/州/地方政府IT采购的最大经销商之一</li>
+            <li><strong>学校的教学设备</strong>：K-12学校和大学的Chromebook、平板、网络设备</li>
+        </ul>
+        <p>简单说：CDW是<strong>"企业IT采购的中介+顾问+服务商"</strong>——企业不需要直接找1,000个品牌一个个谈价格，找CDW一站式搞定。</p>
+
+        <h3>2.2 三大产品线（2025年）</h3>
+        <table>
+            <tr><th>产品线</th><th>2025营收</th><th>占比</th><th>主要品类</th><th>增长趋势</th></tr>
+            <tr><td>Hardware硬件</td><td>$160.5亿</td><td>71.6%</td><td>笔记本/移动设备$56亿+网络通信+服务器存储+桌面</td><td>2025 +8%，AI硬件驱动</td></tr>
+            <tr><td>Software软件</td><td>$42.0亿</td><td>18.7%</td><td>云订阅+软件保障+安全+虚拟化+协作</td><td>2025 +12%，云转型加速</td></tr>
+            <tr><td>Services服务</td><td>$21.7亿</td><td>9.7%</td><td>咨询设计+实施+托管服务+保修</td><td>2025 +9%，Mission Cloud并购贡献</td></tr>
+            <tr><td><strong>合计</strong></td><td><strong>$224.2亿</strong></td><td><strong>100%</strong></td><td></td><td>2025 +6.8%营收</td></tr>
+        </table>
+
+        <h3>2.3 四大客户群（2025年，按旧分部）</h3>
+        <table>
+            <tr><th>客户群</th><th>2025营收</th><th>占比</th><th>主要客户</th><th>增长趋势</th></tr>
+            <tr><td>Corporate企业</td><td>$108.4亿</td><td>48%</td><td>大型企业IT部门</td><td>2025 +5%，商用需求恢复</td></tr>
+            <tr><td>Small Business小企业</td><td>$23.5亿</td><td>11%</td><td>中小企业</td><td>2025 +13%，市场扩张</td></tr>
+            <tr><td>Public公共部门</td><td>$75.6亿</td><td>34%</td><td>联邦/州政府+医疗</td><td>2025 +5%，联邦停摆影响</td></tr>
+            <tr><td>Education教育</td><td>$16.7亿</td><td>7%</td><td>K-12+高等教育</td><td>2025 -2%，设备更新周期尾声</td></tr>
+        </table>
+        <p><em>注：2026年1月1日起重组为Commercial/Government/Education三大板块</em></p>
+
+        <h3>2.4 地理营收分布（2025年）</h3>
+        <table>
+            <tr><th>地区</th><th>2025营收</th><th>占比</th><th>主要市场</th></tr>
+            <tr><td>美国</td><td>$206.3亿</td><td>92%</td><td>企业+政府+教育+医疗</td></tr>
+            <tr><td>英国</td><td>$13.5亿</td><td>6%</td><td>企业+公共部门</td></tr>
+            <tr><td>加拿大</td><td>$4.4亿</td><td>2%</td><td>企业+政府</td></tr>
+        </table>
+
+        <div class="highlight">
+            <strong>双边市场网络效应：</strong> CDW的核心价值在于"双边市场"——25万+客户提供采购需求，1,000+品牌提供产品供应。客户越多，对品牌的议价能力越强；品牌越多，对客户的选择越丰富。这种"鸡生蛋蛋生鸡"的网络效应一旦形成，新进入者很难复制。CDW在美国IT间接渠道市场份额约5%（行业极度碎片化，总TAM $4,500亿），仍是市场份额最大的单一经销商。
+        </div>
+
+        <h3>2.5 商业模式与赚钱逻辑</h3>
+        <p>CDW的赚钱逻辑：<strong>"规模采购差价+增值服务溢价+云订阅佣金"</strong></p>
+        <ul>
+            <li><strong>硬件差价</strong>：从Dell/HP/Cisco批量采购，加价3-8%卖给企业客户</li>
+            <li><strong>软件订阅佣金</strong>：作为AWS/Azure/M365经销商，获得云订阅10-20%佣金</li>
+            <li><strong>服务费</strong>：咨询/实施/托管服务毛利率30-50%，远高于硬件</li>
+            <li><strong>规模杠杆</strong>：营收$224亿+固定成本相对刚性，营收增长带来运营杠杆</li>
+        </ul>
+        <p>2025年财务表现：营收$224亿（+6.8%），毛利润$48.7亿（+5.9%），营业利润$16.6亿（+0.3%），净利润$10.7亿（-1.0%）。<strong>注意</strong>：营业利润增长远低于营收增长，反映毛利率受硬件占比上升+SG&A增长9%的压力——这是"增长质量下降"的信号。</p>
+    </div>
+
+    <!-- ===================== 第三章：产品竞争力分析 ===================== -->
+    <div class="info-box">
+        <h2 id="chapter3">三、产品竞争力分析</h2>
+
+        <h3>3.1 Hardware硬件产品线 - 营收占比72%</h3>
+        <p><strong>1. 可替代性：<span class="tag-red">极高（Extremely High）</span></strong></p>
+        <ul>
+            <li>主要替代品：(1)Dell/HP/Cisco直接销售给企业 (2)AWS/Azure云市场直接采购 (3)竞争对手Insight/TD SYNNEX (4)亚马逊Amazon Business</li>
+            <li>替代体验差距：极小——同一台Dell笔记本，从CDW买还是从Dell直销买，产品完全相同</li>
+            <li>替代趋势：加速——云厂商市场（AWS Marketplace/Azure Marketplace）正在绕过CDW直接连接品牌与企业</li>
+        </ul>
+        <p><strong>2. 客户转换成本：<span class="tag-red">极低（Extremely Low）</span></strong></p>
+        <ul>
+            <li>财务转换成本：几乎为零——下次采购换一个经销商即可</li>
+            <li>时间转换成本：极低——企业IT采购流程不变，只是换供应商</li>
+            <li>品牌忠诚度：弱——企业更关心Dell/HP的品牌，而非CDW</li>
+        </ul>
+        <p><strong>3. 定价权：<span class="tag-red">极弱（Extremely Weak）</span></strong></p>
+        <ul>
+            <li>硬件是商品化产品，价格透明，CDW加价空间仅3-8%</li>
+            <li>大型企业客户（如Fortune 500）议价能力极强，挤压CDW利润</li>
+            <li><strong>巴菲特测试</strong>：若CDW将硬件加价从5%提至15%，客户会立即转向Dell直销或竞争对手——定价权极弱</li>
+        </ul>
+        <p><strong>整体竞争力评级：★★（2/5星）</strong> - 硬件是CDW最大收入来源但护城河最弱，是"流量入口"而非利润中心</p>
+
+        <h3>3.2 Software软件产品线 - 营收占比19%</h3>
+        <p><strong>1. 可替代性：<span class="tag-orange">中等（Medium）</span></strong></p>
+        <ul>
+            <li>主要替代品：(1)云厂商市场直采 (2)品牌商直销 (3)竞争对手</li>
+            <li>替代体验差距：中等——软件订阅+配置服务有一定复杂度，CDW的增值服务有价值</li>
+            <li>替代趋势：稳定——但云厂商市场是长期威胁</li>
+        </ul>
+        <p><strong>2. 客户转换成本：<span class="tag-orange">中等（Medium）</span></strong></p>
+        <ul>
+            <li>云订阅（M365/AWS/Azure）通常签订1-3年合同，中途切换有摩擦</li>
+            <li>CDW提供许可管理+账单优化服务，客户换供应商会失去这些增值服务</li>
+        </ul>
+        <p><strong>3. 定价权：<span class="tag-orange">中等（Medium）</span></strong></p>
+        <ul>
+            <li>云订阅佣金由品牌商设定（如AWS 10-15%），CDW议价空间有限</li>
+            <li>但CDW可以通过捆绑服务（咨询+实施+托管）提升综合毛利</li>
+            <li><strong>巴菲特测试</strong>：若CDW将软件服务费涨价10%，部分客户会转向云市场直采，但需要管理多供应商复杂性的大客户会留下——定价权中等</li>
+        </ul>
+        <p><strong>整体竞争力评级：★★★（3/5星）</strong> - 软件比硬件有更多粘性，但云厂商市场是长期威胁</p>
+
+        <h3>3.3 Services服务产品线 - 营收占比10%</h3>
+        <p><strong>1. 可替代性：<span class="tag-orange">中等（Medium）</span></strong></p>
+        <ul>
+            <li>主要替代品：(1)企业自建IT团队 (2)咨询公司Accenture/Deloitte (3)托管服务MSP (4)云厂商专业服务</li>
+            <li>替代体验差距：中等——CDW服务价格低于Accenture，但专业度也略低</li>
+            <li>替代趋势：稳定——企业混合IT环境持续需要第三方服务</li>
+        </ul>
+        <p><strong>2. 客户转换成本：<span class="tag-green">高（High）</span></strong></p>
+        <ul>
+            <li>托管服务（Managed Services）通常签订3-5年合同，中途切换成本高</li>
+            <li>CDW工程师熟悉客户IT环境，切换供应商需要重新熟悉</li>
+            <li>服务+硬件+软件捆绑销售，单一服务切换会破坏整体方案</li>
+        </ul>
+        <p><strong>3. 定价权：<span class="tag-green">强（Strong）</span></strong></p>
+        <ul>
+            <li>服务毛利率30-50%，远高于硬件3-8%，反映定价权更强</li>
+            <li>Mission Cloud并购增强AWS专业能力，提升服务定价能力</li>
+            <li><strong>巴菲特测试</strong>：若CDW托管服务涨价10%，客户切换到其他MSP需要重建信任+重新熟悉环境，多数会接受涨价——定价权强</li>
+        </ul>
+        <p><strong>整体竞争力评级：★★★★（4/5星）</strong> - 服务是CDW最优质的业务，毛利率高+客户粘性强+定价权强</p>
+
+        <h3>3.4 Government政府业务 - 营收占比~25%</h3>
+        <p><strong>1. 可替代性：<span class="tag-green">低（Low）</span></strong></p>
+        <ul>
+            <li>主要替代品：竞争对手Insight/SHI (2)政府采购平台 (3)品牌商政府合同</li>
+            <li>替代体验差距：较大——政府采购流程复杂，CDW熟悉GSA Schedule等合同机制</li>
+        </ul>
+        <p><strong>2. 客户转换成本：<span class="tag-green">高（High）</span></strong></p>
+        <ul>
+            <li>政府合同一旦签订通常长期续约，CDW是联邦IT采购最大经销商之一</li>
+            <li>熟悉政府合规要求（FISMA/FedRAMP等），新进入者难以快速匹配</li>
+        </ul>
+        <p><strong>3. 定价权：<span class="tag-orange">中等（Medium）</span></strong></p>
+        <ul>
+            <li>政府合同价格透明，议价空间有限</li>
+            <li>但CDW规模优势使其能以更低成本采购</li>
+        </ul>
+        <p><strong>整体竞争力评级：★★★★（4/5星）</strong> - 政府业务是CDW的稳定收入来源，转换成本高</p>
+
+        <div class="highlight">
+            <strong>竞争力总结：</strong> CDW的生意呈现"硬件弱+服务强"的两极分化。<strong>硬件（72%营收）</strong>是商品化流量入口，定价权极弱（2星）；<strong>软件（19%）</strong>受云市场威胁，但捆绑服务有一定粘性（3星）；<strong>服务（10%）</strong>是真正的护城河，毛利率高+客户锁定（4星）；<strong>政府业务</strong>转换成本高，是稳定器（4星）。<strong>整体竞争力评级：★★★（3/5星）</strong> - 这是个"靠规模+服务+政府合同吃饭"的中间商生意，护城河存在但不深。
+        </div>
+    </div>
+
+    <!-- ===================== 第四章：历史财务指标 ===================== -->
+    <div class="info-box">
+        <h2 id="chapter4">四、历史财务指标</h2>
+
+        <h3>4.1 关键财务指标10年趋势（2016-2025）</h3>
+        <table>
+            <tr><th>年份</th><th>营收(亿美元)</th><th>净利润(亿美元)</th><th>EPS($)</th><th>ROE(%)</th><th>毛利率(%)</th><th>营业利润率(%)</th><th>PE(年末)</th></tr>
+            <tr><td>2016</td><td>139.9</td><td>5.6</td><td>3.49</td><td>40.7</td><td>17.2</td><td>5.8</td><td>26.0x</td></tr>
+            <tr><td>2017</td><td>151.5</td><td>7.3</td><td>4.40</td><td>53.1</td><td>17.5</td><td>6.2</td><td>24.5x</td></tr>
+            <tr><td>2018</td><td>165.3</td><td>9.2</td><td>5.45</td><td>65.9</td><td>18.0</td><td>6.5</td><td>21.0x</td></tr>
+            <tr><td>2019</td><td>180.4</td><td>10.4</td><td>6.01</td><td>76.7</td><td>18.5</td><td>6.8</td><td>25.0x</td></tr>
+            <tr><td>2020</td><td>185.4</td><td>10.0</td><td>5.94</td><td>60.8</td><td>19.0</td><td>6.5</td><td>28.0x</td></tr>
+            <tr><td>2021</td><td>210.4</td><td>12.7</td><td>7.04</td><td>140.1</td><td>19.5</td><td>6.8</td><td>23.5x</td></tr>
+            <tr><td>2022</td><td>240.6</td><td>13.9</td><td>8.13</td><td>69.5</td><td>20.5</td><td>7.3</td><td>20.5x</td></tr>
+            <tr><td>2023</td><td>214.4</td><td>13.1</td><td>8.10</td><td>54.1</td><td>21.0</td><td>7.9</td><td>20.0x</td></tr>
+            <tr><td>2024</td><td>210.0</td><td>10.8</td><td>7.97</td><td>45.8</td><td>21.9</td><td>7.9</td><td>24.0x</td></tr>
+            <tr><td>2025</td><td>224.2</td><td>10.7</td><td>8.08</td><td>40.9</td><td>21.7</td><td>7.4</td><td>17.1x</td></tr>
+        </table>
+
+        <div class="chart-container">
+            <canvas id="chart1" height="100"></canvas>
+        </div>
+
+        <h3>4.2 财务指标分析</h3>
+        <div class="moat-item">
+            <strong>ROE分析（2016-2025）：</strong> 40.7% → 40.9%，10年平均约65%。2021年峰值140%源于疫情期间净利润高+低权益基数。2025年ROE 40.9%在IT分销行业仍处于领先水平（对比TD SYNNEX 9.2%、Insight 8.7%、PC Connection 9.8%）。<strong>但需注意</strong>：CDW的ROE高度依赖高杠杆（D/E 2.4x），剔除杠杆后的ROA约8%，才是真实的运营回报。
+        </div>
+        <div class="moat-item">
+            <strong>毛利率趋势：</strong> 17.2%（2016）→ 21.7%（2025），10年提升4.5个百分点。反映从纯硬件经销商向"硬件+软件+服务"解决方案商转型。但2025年毛利率下降0.2个百分点，硬件占比上升带来结构压力。
+        </div>
+        <div class="moat-item">
+            <strong>营业利润率：</strong> 5.8%（2016）→ 7.4%（2025），10年提升1.6个百分点。但2025年下降0.5个百分点，SG&A增长9%快于营收增长6.8%——运营杠杆失效，是"增长质量下降"的信号。
+        </div>
+        <div class="risk-item">
+            <strong>债务风险：</strong> 总债务$56亿，D/E 2.4x，净杠杆率2.4x。对于现金流稳定的IT经销商属于"可控但偏高"水平。利息支出每年约$2.3亿，占净利润21%。若利率上升或经济衰退，利息覆盖会承压。
+        </div>
+        <div class="risk-item">
+            <strong>营收波动：</strong> 2022年营收峰值$240亿→2023年下降至$214亿（-11%），反映IT支出周期性。2024-2025年恢复增长，但增速放缓。IT硬件采购受宏观经济影响大。
+        </div>
+    </div>
+
+    <!-- ===================== 第五章：竞争分析 ===================== -->
+    <div class="info-box">
+        <h2 id="chapter5">五、竞争分析</h2>
+
+        <h3>5.1 IT解决方案经销商竞争格局</h3>
+        <table>
+            <tr><th>公司</th><th>2025营收</th><th>市场份额</th><th>ROE</th><th>毛利率</th><th>定位</th></tr>
+            <tr><td>CDW</td><td>$224亿</td><td>~5%</td><td>40.9%</td><td>21.7%</td><td>美国IT经销商#1，全品类</td></tr>
+            <tr><td>TD SYNNEX (SNX)</td><td>$570亿</td><td>~12%</td><td>9.2%</td><td>~14%</td><td>全球IT分销#1，更偏批发</td></tr>
+            <tr><td>Insight Enterprises (NSIT)</td><td>$90亿</td><td>~2%</td><td>8.7%</td><td>~18%</td><td>CDW直接竞争对手</td></tr>
+            <tr><td>SHI International</td><td>$150亿</td><td>~3%</td><td>N/A（私有）</td><td>N/A</td><td>私有，大客户定制</td></tr>
+            <tr><td>PC Connection (CNXN)</td><td>$30亿</td><td>~1%</td><td>9.8%</td><td>~22%</td><td>小型企业市场</td></tr>
+            <tr><td>ePlus (PLUS)</td><td>$60亿</td><td>~1%</td><td>11.4%</td><td>~20%</td><td>企业+政府</td></tr>
+            <tr><td>云厂商市场（AWS/Azure/Google）</td><td>N/A</td><td>增长中</td><td>N/A</td><td>N/A</td><td>直接连接品牌与企业，绕过经销商</td></tr>
+        </table>
+
+        <h3>5.2 CDW的竞争优势</h3>
+        <div class="moat-item">
+            <strong>护城河1：规模经济（★★★★）</strong> - $224亿营收使其成为美国IT经销商#1，规模带来采购成本优势+运营效率优势。ROE 41%远高于同行9-12%，反映规模+运营杠杆。
+        </div>
+        <div class="moat-item">
+            <strong>护城河2：双边市场网络效应（★★★★）</strong> - 25万客户+1,000品牌形成"鸡生蛋蛋生鸡"的双边市场。客户越多越吸引品牌，品牌越多越吸引客户。
+        </div>
+        <div class="moat-item">
+            <strong>护城河3：政府合同壁垒（★★★★）</strong> - 联邦IT采购最大经销商之一，熟悉GSA Schedule/FedRAMP等合规要求，新进入者难以快速复制。
+        </div>
+        <div class="moat-item">
+            <strong>护城河4：服务+硬件+软件捆绑（★★★）</strong> - 托管服务3-5年合同+硬件采购+软件订阅形成捆绑，单一产品切换有摩擦。
+        </div>
+        <div class="moat-item">
+            <strong>护城河5：品牌信任（★★★）</strong> - 41年历史+"trusted advisor"定位，企业CIO信任CDW的中立建议。但品牌力弱于Dell/HP等品牌商。
+        </div>
+        <div class="risk-item">
+            <strong>反护城河1：云厂商市场（★★★★★）</strong> - AWS Marketplace/Azure Marketplace正在绕过CDW直接连接品牌与企业，是最大长期威胁。2025年云市场GMV增长40%+。
+        </div>
+        <div class="risk-item">
+            <strong>反护城河2：品牌商直销（★★★★）</strong> - Dell/HP/Cisco加大直销力度，绕过CDW。Dell直销占比已超50%。
+        </div>
+        <div class="risk-item">
+            <strong>反护城河3：硬件商品化（★★★）</strong> - 硬件价格透明，加价空间仅3-8%，无定价权。
+        </div>
+    </div>
+
+    <!-- ===================== 第六章：利润分配分析 ===================== -->
+    <div class="info-box">
+        <h2 id="chapter6">六、利润分配分析</h2>
+
+        <h3>6.1 过去8年利润分配表（2018-2025，亿美元）</h3>
+        <table>
+            <tr><th>年份</th><th>净利润</th><th>分红</th><th>回购</th><th>并购</th><th>资本开支</th><th>留存收益</th><th>留存率(%)</th><th>股本(亿股)</th></tr>
+            <tr><td>2018</td><td>9.2</td><td>2.0</td><td>6.5</td><td>0.0</td><td>0.7</td><td>7.2</td><td>78%</td><td>1.70</td></tr>
+            <tr><td>2019</td><td>10.4</td><td>2.5</td><td>7.5</td><td>0.0</td><td>0.7</td><td>7.9</td><td>76%</td><td>1.65</td></tr>
+            <tr><td>2020</td><td>10.0</td><td>2.8</td><td>0.0</td><td>0.0</td><td>0.6</td><td>7.2</td><td>72%</td><td>1.65</td></tr>
+            <tr><td>2021</td><td>12.7</td><td>3.0</td><td>7.5</td><td><strong>20.0</strong></td><td>0.6</td><td>9.7</td><td>76%</td><td>1.60</td></tr>
+            <tr><td>2022</td><td>13.9</td><td>3.5</td><td>10.0</td><td>0.8</td><td>0.7</td><td>10.4</td><td>75%</td><td>1.50</td></tr>
+            <tr><td>2023</td><td>13.1</td><td>4.0</td><td>5.0</td><td>0.8</td><td>0.8</td><td>9.1</td><td>69%</td><td>1.35</td></tr>
+            <tr><td>2024</td><td>10.8</td><td>4.5</td><td>3.5</td><td><strong>3.2</strong></td><td>0.9</td><td>6.3</td><td>58%</td><td>1.32</td></tr>
+            <tr><td>2025</td><td>10.7</td><td>3.3</td><td>6.5</td><td>0.0</td><td>1.0</td><td>7.4</td><td>69%</td><td>1.29</td></tr>
+            <tr><td><strong>8年累计</strong></td><td><strong>90.8</strong></td><td><strong>25.6</strong></td><td><strong>46.5</strong></td><td><strong>24.8</strong></td><td><strong>6.0</strong></td><td><strong>65.2</strong></td><td><strong>72%</strong></td><td>股本-24%</td></tr>
+        </table>
+
+        <div class="chart-container">
+            <canvas id="chart2" height="100"></canvas>
+        </div>
+
+        <h3>6.2 利润分配质量分析</h3>
+        <div class="moat-item">
+            <strong>分红：连续12年增长，IPO至今增长15倍</strong> - 2025年分红$3.3亿，派息率25%（Non-GAAP口径）。10年分红CAGR约20%，从$0.15/股增至$2.52/股。管理层目标是维持25%派息率，可持续。
+        </div>
+        <div class="moat-item">
+            <strong>回购：8年累计$46.5亿，股本缩减24%</strong> - 从2018年1.70亿股降至2025年1.29亿股。2020年因疫情暂停回购（3月-10月），2021年恢复。2025年回购$6.5亿，2025年2月新增$750万授权。
+        </div>
+        <div class="moat-item">
+            <strong>并购：8年累计$24.8亿</strong> - 2021年$20亿收购Sirius Computer Solutions（最大并购），2024年$3.2亿收购Mission Cloud（增强AWS能力）。并购质量尚可，但$20亿Sirius需观察整合效果。
+        </div>
+        <div class="risk-item">
+            <strong>回购时机评估：</strong> 2021年回购$7.5亿时PE约23x（偏高），2024年回购$3.5亿时PE约24x（偏高），2025年回购$6.5亿时PE降至17x（合理）。<strong>整体回购时机一般</strong>，在低估值时（如2020年疫情低点）反而暂停了回购。
+        </div>
+        <div class="highlight">
+            <strong>可持续增长率 = ROE × 留存率 = 40.9% × 69% = 28.2%</strong><br>
+            理论可持续增长率28.2%，但实际EPS增长目标仅"中个位数"（2026指引），差距源于：(1) 高分红+回购+并购减少留存；(2) IT经销商增长受宏观周期影响；(3) 云厂商市场侵蚀份额。这是典型的"高ROE+中等增长"中间商生意——靠规模+杠杆实现高ROE，但增长受市场约束。
+        </div>
+    </div>
+
+    <!-- ===================== 第七章：投资总结 ===================== -->
+    <div class="info-box">
+        <h2 id="chapter7">七、投资总结</h2>
+
+        <h3>7.1 六维度评级</h3>
+        <table>
+            <tr><th>维度</th><th>评分（1-5）</th><th>理由</th></tr>
+            <tr><td>业务易懂性</td><td>3</td><td>"帮企业买IT设备"，概念清晰但涉及1,000+品牌和复杂技术栈，不如消费品直观</td></tr>
+            <tr><td>护城河</td><td>3</td><td>规模+双边市场+政府合同+服务捆绑，但硬件护城河弱+云厂商市场是长期威胁</td></tr>
+            <tr><td>资本配置</td><td>4</td><td>连续12年分红增长+8年股本缩减24%+战略并购（Mission Cloud），但回购时机一般</td></tr>
+            <tr><td>财务安全</td><td>3</td><td>D/E 2.4x+净杠杆2.4x偏高，利息支出占净利润21%，经济衰退时承压</td></tr>
+            <tr><td>增长前景</td><td>3</td><td>美国IT市场年增长3-5%，CDW目标超越市场200-300bps，但云厂商市场是结构性威胁</td></tr>
+            <tr><td>估值吸引力</td><td>4</td><td>PE 17x（TTM Non-GAAP），低于5年均值22x，DCF估值合理，定价偏便宜</td></tr>
+            <tr><td><strong>综合评级</strong></td><td><strong>3.3/5</strong></td><td><strong>合理价格买入还行生意+不错资本配置</strong></td></tr>
+        </table>
+
+        <h3>7.2 投资结论</h3>
+        <div class="highlight">
+            <strong>评级：3.3/5星 - "合理价格买入IT中间商，护城河存在但不深"</strong>
+        </div>
+        <p><strong>多头逻辑：</strong></p>
+        <ul>
+            <li>美国IT经销商#1，规模优势+双边市场网络效应</li>
+            <li>连续12年分红增长+8年股本缩减24%，资本配置纪律性强</li>
+            <li>服务业务（毛利率30-50%）占比提升，改善利润结构</li>
+            <li>Mission Cloud并购增强AWS专业能力，受益AI云迁移</li>
+            <li>政府业务提供稳定收入，联邦IT支出持续增长</li>
+            <li>当前PE 17x低于5年均值22x，估值合理</li>
+        </ul>
+        <p><strong>空头逻辑：</strong></p>
+        <ul>
+            <li>硬件占营收72%且护城河极弱，定价权极弱</li>
+            <li>云厂商市场（AWS/Azure Marketplace）是结构性长期威胁</li>
+            <li>品牌商直销趋势（Dell直销已超50%）侵蚀份额</li>
+            <li>D/E 2.4x高杠杆，利息支出占净利润21%</li>
+            <li>2025年营业利润增长仅0.3%，远低于营收增长6.8%，增长质量下降</li>
+            <li>IT支出受宏观经济周期影响大</li>
+        </ul>
+
+        <h3>7.3 关键催化与风险</h3>
+        <div class="moat-item">
+            <strong>关键催化：</strong>
+            <ul>
+                <li>AI硬件换机周期→企业PC/服务器更新需求增长</li>
+                <li>服务业务占比从10%提升至15%+→毛利率结构改善</li>
+                <li>Mission Cloud整合成功→AWS专业服务收入加速</li>
+                <li>联邦IT预算扩张→政府业务增长</li>
+                <li>利率下行→利息支出减少+估值提升</li>
+            </ul>
+        </div>
+        <div class="risk-item">
+            <strong>关键风险：</strong>
+            <ul>
+                <li>云厂商市场加速增长→绕过CDW直接连接品牌与企业</li>
+                <li>品牌商加大直销力度→硬件加价空间进一步压缩</li>
+                <li>经济衰退→企业IT支出削减，营收下降</li>
+                <li>利率上升→利息支出增加，净利润承压</li>
+                <li>关键供应商（Ingram Micro/TD SYNNEX占采购25%+）关系恶化</li>
+                <li>AI颠覆技术栈→CDW现有技术能力贬值</li>
+            </ul>
+        </div>
+
+        <h3>7.4 巴菲特芒格式结论</h3>
+        <div class="highlight">
+            <strong>巴菲特视角：</strong> CDW不是巴菲特典型会买的"简单易懂+强护城河"公司。它做的是IT中间商生意，硬件护城河极弱，云厂商市场是长期威胁。但芒格会说："<strong>世界不都是可口可乐和苹果，中间商在IT时代有其存在价值</strong>"——企业需要中立的IT顾问，品牌需要CDW的25万客户网络。CDW的<strong>真实护城河在服务+政府合同+规模</strong>，而非硬件差价。<br><br>
+            <strong>关键判断：</strong> CDW的ROE 41%看似很高，但高度依赖高杠杆（D/E 2.4x），剔除杠杆后ROA仅8%，才是真实运营回报。连续12年分红增长+8年股本缩减24%证明管理层资本配置纪律性强。当前PE 17x低于历史均值，定价合理。但<strong>云厂商市场是X因素</strong>——如果AWS/Azure Marketplace继续增长40%+，CDW的中间商价值会被持续侵蚀。<br><br>
+            <strong>建议：PE 15x以下具备安全边际。当前位置观望，若云厂商市场增速放缓或CDW服务业务占比突破15%，可考虑建仓。</strong>
+        </div>
+    </div>
+
+    <script>
+    // Chart 1: Revenue, Net Income, ROE 10-year trend
+    const ctx1 = document.getElementById('chart1').getContext('2d');
+    new Chart(ctx1, {
+        type: 'bar',
+        data: {
+            labels: ['2016','2017','2018','2019','2020','2021','2022','2023','2024','2025'],
+            datasets: [
+                { label: '营收(亿美元)', data: [139.9,151.5,165.3,180.4,185.4,210.4,240.6,214.4,210.0,224.2], backgroundColor: '#1a3a5c', yAxisID: 'y' },
+                { label: '净利润(亿美元)', data: [5.6,7.3,9.2,10.4,10.0,12.7,13.9,13.1,10.8,10.7], backgroundColor: '#27ae60', yAxisID: 'y' },
+                { label: 'ROE(%)', data: [40.7,53.1,65.9,76.7,60.8,140.1,69.5,54.1,45.8,40.9], type: 'line', borderColor: '#c8102e', backgroundColor: '#c8102e', yAxisID: 'y1', tension: 0.3 }
+            ]
+        },
+        options: {
+            responsive: true,
+            plugins: { title: { display: true, text: 'CDW 10年营收/净利润/ROE趋势', font:{size:14} } },
+            scales: {
+                y: { type: 'linear', position: 'left', title: { display: true, text: '亿美元' } },
+                y1: { type: 'linear', position: 'right', title: { display: true, text: 'ROE %' }, grid: { drawOnChartArea: false } }
+            }
+        }
+    });
+
+    // Chart 2: Profit Allocation 8-year
+    const ctx2 = document.getElementById('chart2').getContext('2d');
+    new Chart(ctx2, {
+        type: 'bar',
+        data: {
+            labels: ['2018','2019','2020','2021','2022','2023','2024','2025'],
+            datasets: [
+                { label: '分红', data: [2.0,2.5,2.8,3.0,3.5,4.0,4.5,3.3], backgroundColor: '#27ae60' },
+                { label: '回购', data: [6.5,7.5,0.0,7.5,10.0,5.0,3.5,6.5], backgroundColor: '#2980b9' },
+                { label: '并购', data: [0.0,0.0,0.0,20.0,0.8,0.8,3.2,0.0], backgroundColor: '#9b59b6' },
+                { label: '资本开支', data: [0.7,0.7,0.6,0.6,0.7,0.8,0.9,1.0], backgroundColor: '#f39c12' }
+            ]
+        },
+        options: {
+            responsive: true,
+            plugins: { title: { display: true, text: 'CDW 8年利润分配（分红+回购+并购+CapEx，亿美元）', font:{size:14} } },
+            scales: { y: { title: { display: true, text: '亿美元' } } }
+        }
+    });
+    </script>
+
+    <script src="scores_client.js"></script>
+    <script src="stock_topbar.js"></script>
+</body>
+</html>
