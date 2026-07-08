@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ituran Location and Control (ITRN) 详细分析</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; background-color: #f5f5f5; }
+        h1 { text-align: center; color: #333; }
+        h2 { color: #4CAF50; margin-top: 30px; }
+        h3 { color: #333; margin-top: 20px; }
+        h4 { color: #555; margin-top: 15px; }
+        .info-box { background-color: white; padding: 20px; margin: 20px 0; box-shadow: 0 0 10px rgba(0,0,0,0.1); border-radius: 5px; border-left: 4px solid #4CAF50; }
+        table { width: 100%; border-collapse: collapse; margin: 10px 0; }
+        th, td { padding: 8px; text-align: left; border-bottom: 1px solid #ddd; }
+        th { background-color: #4CAF50; color: white; }
+        tr:hover { background-color: #f5f5f5; }
+        a { color: #4CAF50; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        .highlight { background-color: #f8f9fa; padding: 12px 16px; border-left: 4px solid #2e86c1; margin: 12px 0; border-radius: 4px; }
+        .tag { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 12px; font-weight: 600; }
+        .tag-green { background-color: #d4edda; color: #155724; }
+        .tag-orange { background-color: #fff3cd; color: #856404; }
+        .tag-red { background-color: #f8d7da; color: #721c24; }
+        .moat-item { background-color: #e8f5e9; padding: 12px 16px; margin: 8px 0; border-radius: 4px; border-left: 4px solid #4CAF50; }
+        .risk-item { background-color: #ffebee; padding: 12px 16px; margin: 8px 0; border-radius: 4px; border-left: 4px solid #c62828; }
+        .chart-container { position: relative; height: 300px; margin: 20px 0; }
+        .top-nav-bar { position: fixed; top: 0; left: 0; right: 0; height: 44px; background: #2c3e50; display: flex; align-items: center; justify-content: flex-end; padding: 0 20px; z-index: 9999; box-shadow: 0 2px 8px rgba(0,0,0,0.15); gap: 8px; }
+        .top-nav-link { color: white; padding: 6px 16px; border-radius: 16px; text-decoration: none; font-size: 13px; transition: background 0.2s; white-space: nowrap; }
+        .section-nav {
+            background: white;
+            border-radius: 10px;
+            padding: 15px 25px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+        .section-nav a {
+            display: inline-block;
+            margin: 5px 10px;
+            padding: 6px 14px;
+            background: #eaf2f8;
+            color: #1a5276;
+            text-decoration: none;
+            border-radius: 15px;
+            font-size: 0.9em;
+        }
+        .section-nav a:hover {
+            background: #2e86c1;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="top-nav-bar"></div>
+    <script src="nav_bar.js?v=20260624"></script>
+    <span id="topbarCode" style="display:none;">ITRN</span>
+    <h1>Ituran Location and Control (NASDAQ: ITRN)</h1>
+    <p style="text-align:center;color:#666;">巴菲特/芒格式价值投资基本面分析 | 更新日期：2026年7月</p>
+
+    <div class="section-nav">
+        <a href="#chapter1">公司基本信息</a>
+        <a href="#chapter2">业务分析</a>
+        <a href="#chapter3">业务板块产品竞争力分析</a>
+        <a href="#chapter4">历史财务指标</a>
+        <a href="#chapter5">竞争分析</a>
+        <a href="#chapter6">利润分配分析</a>
+        <a href="#chapter7">投资总结</a>
+    </div>
+
+    <!-- ===================== 第一章：公司基本信息 ===================== -->
+    <div class="info-box">
+        <h2 id="chapter1">一、公司基本信息</h2>
+        <table>
+            <tr><td>公司全称</td><td>Ituran Location and Control Ltd.</td></tr>
+            <tr><td>股票代码</td><td>NASDAQ: ITRN</td></tr>
+            <tr><td>市值</td><td>约10亿美元（2026年7月）</td></tr>
+            <tr><td>企业价值（EV）</td><td>约9.1亿美元</td></tr>
+            <tr><td>最新收盘价</td><td>约$51（2026年7月）</td></tr>
+            <tr><td>成立年份</td><td>1995年（30年历史）</td></tr>
+            <tr><td>纳斯达克上市</td><td>2005年（20年上市历史）</td></tr>
+            <tr><td>总部</td><td>以色列Azour</td></tr>
+            <tr><td>员工数</td><td>约2,800人</td></tr>
+            <tr><td>FY2025营收</td><td>$3.59亿（+7% YoY）</td></tr>
+            <tr><td>FY2025净利润</td><td>$5,800万（+8% YoY）</td></tr>
+            <tr><td>FY2025 EBITDA</td><td>$9,620万（26.8% margin）</td></tr>
+            <tr><td>FY2025经营现金流</td><td>$8,860万（创纪录）</td></tr>
+            <tr><td>订阅用户数</td><td>263万（2025年净增22.1万）</td></tr>
+            <tr><td>净现金</td><td>$1.076亿（零债务）</td></tr>
+            <tr><td>PE</td><td>17.5x</td></tr>
+            <tr><td>EV/EBITDA</td><td>9.52x</td></tr>
+            <tr><td>股息率</td><td>~7%（常规+特别股息）</td></tr>
+        </table>
+        <div class="highlight">
+            <strong>一句话概括：</strong>Ituran是以色列和拉丁美洲最大的车联网（Telematics）服务提供商，核心业务是"被盗车辆找回"（Stolen Vehicle Recovery, SVR），在以色列拥有85-90%市场份额（法定垄断地位），累计找回20万辆被盗车辆（价值$30亿），80%找回率（vs全球平均10-20%）。30年积累的2.6万订阅用户基础+专有硬件+控制中心网络形成深护城河，70%+收入来自高毛利订阅服务。
+        </div>
+    </div>
+
+    <!-- ===================== 第二章：业务分析 ===================== -->
+    <div class="info-box">
+        <h2 id="chapter2">二、业务分析</h2>
+
+        <h3>2.1 通俗解读：Ituran到底做什么？</h3>
+        <p>想象你住在巴西圣保罗，那里的汽车盗窃率高得离谱。你买了一辆新车，最担心的不是保养而是被偷。于是你订阅Ituran的服务——他们在你车里安装一个隐藏的GPS追踪设备，每月付$8-9订阅费。一旦车辆被盗，Ituran的控制中心24/7监控，平均<strong>60分钟内找回车辆</strong>（有时在你发现被偷之前就已经找回），找回率高达80%。在巴西贫民窟，Ituran的专业团队能进入警察都不愿进入的区域找回车辆。</p>
+        <p>简单来说，Ituran就是"车辆版的防盗保险+找回服务"。但它比保险更强——保险只赔钱，Ituran帮你找回车。这就是为什么保险公司、汽车金融公司、OEM车厂都愿意与Ituran合作，因为它<strong>降低了理赔成本和抵押品风险</strong>。</p>
+
+        <h3>2.2 业务板块（FY2025）</h3>
+        <table>
+            <tr><th>业务板块</th><th>FY2025营收</th><th>占比</th><th>毛利率</th><th>说明</th></tr>
+            <tr><td><strong>Telematics Services（订阅服务）</strong></td><td>$2.646亿</td><td>74%</td><td>59.5%</td><td>月费订阅制，包括SVR、车队管理、联网汽车、UBI</td></tr>
+            <tr><td><strong>Telematics Products（硬件产品）</strong></td><td>$0.945亿</td><td>26%</td><td>~20%</td><td>GPS追踪设备销售，作为获取订阅用户的"入口"</td></tr>
+            <tr><td><strong>合计</strong></td><td><strong>$3.59亿</strong></td><td><strong>100%</strong></td><td><strong>50.5%</strong></td><td>—</td></tr>
+        </table>
+
+        <div class="highlight">
+            <strong>商业模式核心：</strong>Ituran是"硬件补贴+订阅变现"的SaaS模型。硬件以低毛利（~20%）销售，目的是锁定5-6年的高毛利（59.5%）订阅用户。70%+收入来自月费订阅，95%的月费用户会延续到下一季度，业务可见性极高。这是典型的"剃须刀+刀片"模式——设备便宜，服务赚钱。
+        </div>
+
+        <h3>2.3 按服务类型划分</h3>
+        <table>
+            <tr><th>服务类型</th><th>说明</th><th>客户群体</th><th>增长趋势</th></tr>
+            <tr><td><strong>被盗车辆找回（SVR）</strong></td><td>核心业务，80%找回率，60分钟内响应</td><td>零售用户、保险公司</td><td>稳定增长（盗窃率上升推动需求）</td></tr>
+            <tr><td><strong>车队管理（Fleet Management）</strong></td><td>车辆追踪、路线优化、驾驶员行为分析</td><td>物流公司、企业车队</td><td>强劲增长</td></tr>
+            <tr><td><strong>联网汽车（Connected Car）</strong></td><td>OEM嵌入式telematics解决方案</td><td>Stellantis/Nissan/GM/Yamaha/BMW</td><td>高速增长（OEM合作扩展）</td></tr>
+            <tr><td><strong>UBI保险</strong></td><td>基于驾驶行为的保险（Usage-Based Insurance）</td><td>保险公司、零售用户</td><td>早期高增长</td></tr>
+        </table>
+
+        <h3>2.4 地理分布（FY2025/Q1 2026）</h3>
+        <table>
+            <tr><th>地区</th><th>营收占比</th><th>市场地位</th><th>增长趋势</th></tr>
+            <tr><td><strong>以色列</strong></td><td>~57%</td><td>85-90%市场份额（法定垄断）</td><td>稳定增长（UBI+aftermarket）</td></tr>
+            <tr><td><strong>巴西</strong></td><td>~22%</td><td>拉美最大OEM telematics提供商</td><td>强劲增长（Stellantis/Fiat合作）</td></tr>
+            <tr><td><strong>其他拉美（墨西哥/阿根廷/哥伦比亚等）</strong></td><td>~17%</td><td>市场领导者</td><td>高速增长</td></tr>
+            <tr><td><strong>美国+其他</strong></td><td>~4%</td><td>IturanMob汽车租赁拓展中</td><td>早期阶段</td></tr>
+        </table>
+
+        <h3>2.5 商业模式核心优势</h3>
+        <div class="highlight">
+            <strong>"自然对冲"的订阅制：</strong><br>
+            1. <strong>反周期性</strong>：经济差→犯罪率高→盗窃增加→SVR需求增加。2008年金融危机、2020-2021年疫情期间订阅用户仍持续增长<br>
+            2. <strong>极高续约率</strong>：95%月费用户延续到下一季度，形成稳定现金流<br>
+            3. <strong>运营杠杆</strong>：新增用户对毛利率贡献70-75%，利润增速快于收入增速<br>
+            4. <strong>30年数据积累</strong>：2.6万订阅用户产生的驾驶行为和位置数据，正商业化销售给政府和企业（Big Data业务）<br>
+            5. <strong>零债务+净现金$1.076亿</strong>：财务极其稳健，100%净利润派息
+        </div>
+    </div>
+
+    <!-- ===================== 第三章：业务板块产品竞争力分析 ===================== -->
+    <div class="info-box">
+        <h2 id="chapter3">三、业务板块产品竞争力分析</h2>
+
+        <h3>3.1 被盗车辆找回服务（SVR）</h3>
+
+        <p><strong>1. 可替代性：<span class="tag tag-green">极低</span></strong></p>
+        <ul>
+            <li>主要替代方案：普通GPS追踪器、保险公司自建找回服务、警察找回</li>
+            <li>替代体验差距：普通GPS追踪器找回率仅10-20%（vs Ituran 80%），因为缺乏<strong>专业控制中心+地面找回团队+贫民窟进入能力</strong></li>
+            <li>替代价格差距：普通GPS设备便宜但"找不回车"，Ituran的$8-9/月订阅费远低于车辆被盗的损失</li>
+            <li>替代趋势：<span class="tag tag-green">稳定</span>——30年积累的找回网络和数据极难复制，新兴竞争者（如LoJack）已退出市场</li>
+        </ul>
+
+        <p><strong>2. 客户转换成本：<span class="tag tag-green">极高</span></strong></p>
+        <ul>
+            <li>财务转换成本：拆除旧设备+$100-200新设备安装费，且新服务商找回率远低</li>
+            <li>时间转换成本：新服务需重新注册、安装、测试，至少1-2小时</li>
+            <li>心理转换成本：30年品牌信任+80%找回率的"安心感"难以替代，涉及车辆安全客户极度风险厌恶</li>
+            <li>捆绑转换成本：保险公司要求Ituran服务才能享受低保费，车贷金融公司要求Ituran才能获批贷款</li>
+            <li>量化评估：换到普通GPS服务商的"隐性成本"是找回率从80%降至15%，一次被盗就损失$20,000-$50,000</li>
+        </ul>
+
+        <p><strong>3. 定价权：<span class="tag tag-green">强</span></strong></p>
+        <ul>
+            <li>历史涨价记录：ARPU稳定在$8-9/月，通过新增服务（UBI、车队管理）提升单客户价值</li>
+            <li>涨价vs通胀：订阅费涨幅跑赢以色列和巴西CPI</li>
+            <li>定价权来源：85-90%以色列垄断份额 + 80%找回率 + 保险公司强制要求 + 30年品牌信任</li>
+            <li>定价权趋势：<span class="tag tag-green">稳定偏强</span>——巴西盗窃率3年涨40%，以色列涨253%，SVR价值持续提升</li>
+            <li>巴菲特测试：如果Ituran涨价10%（月费从$9涨至$10），客户会离开吗？——绝大多数不会，因为替代者找回率远低，一次被盗损失远超年费涨幅</li>
+        </ul>
+
+        <p><strong>整体竞争力评级：★★★★★（5星）</strong></p>
+
+        <h3>3.2 车队管理服务（Fleet Management）</h3>
+
+        <p><strong>1. 可替代性：<span class="tag tag-orange">中等</span></strong></p>
+        <ul>
+            <li>主要替代方案：Samsara、Geotab、Verizon Connect、Omnitracs</li>
+            <li>替代体验差距：美国竞争对手产品功能更丰富，但在拉美市场缺乏本地化支持和地面团队</li>
+            <li>替代趋势：<span class="tag tag-orange">稳定</span>——Ituran在拉美有本地化优势，但美国市场面临激烈竞争</li>
+        </ul>
+
+        <p><strong>2. 客户转换成本：<span class="tag tag-orange">中等</span></strong></p>
+        <ul>
+            <li>车队管理SaaS切换有摩擦但可管理（数据迁移、司机培训）</li>
+            <li>Ituran的SVR+车队管理捆绑在拉美形成差异化</li>
+        </ul>
+
+        <p><strong>3. 定价权：<span class="tag tag-orange">中等</span></strong></p>
+        <ul>
+            <li>车队管理市场竞争激烈，价格敏感度较高</li>
+            <li>Ituran通过"SVR+车队管理"捆绑提升粘性</li>
+            <li>巴菲特测试：如果Ituran车队管理涨价10%，大客户可能比价——但SVR捆绑让切换成本上升</li>
+        </ul>
+
+        <p><strong>整体竞争力评级：★★★★☆（4星）</strong></p>
+
+        <h3>3.3 联网汽车/UBI（Connected Car/UBI）</h3>
+
+        <p><strong>1. 可替代性：<span class="tag tag-orange">中等</span></strong></p>
+        <ul>
+            <li>主要替代方案：OEM自建telematics（如GM OnStar）、Verizon Connect、WirelessCar</li>
+            <li>替代趋势：<span class="tag tag-orange">加速</span>——越来越多OEM考虑自建telematics平台</li>
+        </ul>
+
+        <p><strong>2. 客户转换成本：<span class="tag tag-green">高</span></strong></p>
+        <ul>
+            <li>OEM合作合同通常5-7年，嵌入车型后切换成本极高（涉及硬件+软件+认证）</li>
+            <li>Stellantis/Fiat合作初始3年+可选延长2年</li>
+        </ul>
+
+        <p><strong>3. 定价权：<span class="tag tag-orange">中等</span></strong></p>
+        <ul>
+            <li>OEM客户议价能力强（大订单），但Ituran在拉美的本地化能力是溢价来源</li>
+        </ul>
+
+        <p><strong>整体竞争力评级：★★★★☆（4星）</strong></p>
+    </div>
+
+    <!-- ===================== 第四章：历史财务指标 ===================== -->
+    <div class="info-box">
+        <h2 id="chapter4">四、历史财务指标（FY2018-FY2025）</h2>
+
+        <h3>4.1 关键财务数据总览</h3>
+        <table>
+            <tr><th>财年</th><th>营收($M)</th><th>同比</th><th>净利润($M)</th><th>EBITDA($M)</th><th>EBITDA利润率</th><th>订阅用户(万)</th><th>ROE</th><th>净利率</th><th>PE</th></tr>
+            <tr><td>FY2018</td><td>~290</td><td>—</td><td>~30</td><td>~65</td><td>~22%</td><td>~150</td><td>~15%</td><td>~10%</td><td>~25x</td></tr>
+            <tr><td>FY2019</td><td>~310</td><td>+7%</td><td>~35</td><td>~70</td><td>~23%</td><td>~170</td><td>~16%</td><td>~11%</td><td>~22x</td></tr>
+            <tr><td>FY2020</td><td>~320</td><td>+3%</td><td>~38</td><td>~72</td><td>~23%</td><td>~187</td><td>~17%</td><td>~12%</td><td>~18x</td></tr>
+            <tr><td>FY2021</td><td>~335</td><td>+5%</td><td>~42</td><td>~76</td><td>~23%</td><td>~206</td><td>~19%</td><td>~13%</td><td>~16x</td></tr>
+            <tr><td>FY2022</td><td>~340</td><td>+1%</td><td>~45</td><td>~80</td><td>~24%</td><td>~225</td><td>~22%</td><td>~13%</td><td>~13x</td></tr>
+            <tr><td>FY2023</td><td>~335</td><td>-1%</td><td>~48</td><td>~85</td><td>~25%</td><td>~241</td><td>~25%</td><td>~14%</td><td>~12x</td></tr>
+            <tr><td>FY2024</td><td>~336</td><td>0%</td><td>~54</td><td>~92</td><td>~27%</td><td>~241</td><td>~27%</td><td>~16%</td><td>~14x</td></tr>
+            <tr><td><strong>FY2025</strong></td><td><strong>359</strong></td><td><strong>+7%</strong></td><td><strong>58</strong></td><td><strong>96.2</strong></td><td><strong>26.8%</strong></td><td><strong>263</strong></td><td><strong>28.9%</strong></td><td><strong>16.2%</strong></td><td><strong>17.5x</strong></td></tr>
+        </table>
+        <p>注：FY2018-FY2024为估算数据（基于公开资料和CAGR推算），FY2025为实际报告数据。Ituran财年=日历年。</p>
+
+        <div class="chart-container">
+            <canvas id="subscribersChart"></canvas>
+        </div>
+        <div class="chart-container">
+            <canvas id="revenueChart"></canvas>
+        </div>
+
+        <div class="highlight">
+            <strong>巴菲特/芒格视角：</strong><br>
+            1. <strong>ROE稳步上升</strong>：从FY2018的~15%提升至FY2025的28.9%，且无财务杠杆（零债务），是"真实的经营ROE"<br>
+            2. <strong>利润率持续扩张</strong>：EBITDA利润率从22%提升至26.8%，订阅用户占比提升+运营杠杆释放<br>
+            3. <strong>订阅用户CAGR 12%</strong>：从2018年150万增至2025年263万，12% CAGR，即使在疫情期仍保持增长<br>
+            4. <strong>PE合理</strong>：17.5x PE + 9.52x EV/EBITDA + 16.89x P/FCF，对于12%用户CAGR+28.9% ROE的公司估值合理偏低<br>
+            5. <strong>现金流强劲</strong>：FY2025经营现金流$8,860万创纪录，FCF $6,680万，FCF Margin 18.6%
+        </div>
+    </div>
+
+    <!-- ===================== 第五章：竞争分析 ===================== -->
+    <div class="info-box">
+        <h2 id="chapter5">五、竞争分析</h2>
+
+        <h3>5.1 主要竞争对手</h3>
+        <table>
+            <tr><th>竞争对手</th><th>年营收</th><th>市场定位</th><th>与ITRN的差异</th></tr>
+            <tr><td><strong>Samsara (IOT)</strong></td><td>~$12亿</td><td>美国车队管理SaaS龙头</td><td>聚焦北美车队管理，不做SVR。估值11.6x sales（vs ITRN 2.8x sales），但亏损中</td></tr>
+            <tr><td><strong>Geotab</strong></td><td>~$8亿（私有）</td><td>全球车队管理龙头</td><td>聚焦欧美，在拉美市场份额低</td></tr>
+            <tr><td><strong>Powerfleet (PWFL)</strong></td><td>~$3亿</td><td>车队管理+资产追踪</td><td>净利率为负，财务表现远弱于ITRN</td></tr>
+            <tr><td><strong>Verizon Connect</strong></td><td>~$15亿（部门）</td><td>Verizon旗下车队管理</td><td>美国市场强势，但拉美存在感弱</td></tr>
+            <tr><td><strong>LoJack（已退出）</strong></td><td>—</td><td>曾经的SVR竞争对手</td><td>2017年CalAmp收购LoJack后逐步退出，Ituran在SVR领域近乎垄断</td></tr>
+        </table>
+
+        <h3>5.2 市场份额</h3>
+        <table>
+            <tr><th>市场</th><th>ITRN份额</th><th>主要竞争者</th><th>壁垒</th></tr>
+            <tr><td><strong>以色列SVR</strong></td><td>85-90%（法定垄断）</td><td>无实质竞争者</td><td>30年控制中心网络+保险公司强制要求</td></tr>
+            <tr><td><strong>巴西OEM telematics</strong></td><td>#1</td><td>Powerfleet、本地小厂</td><td>圣保罗/里约贫民窟找回能力+OEM长期合同</td></tr>
+            <tr><td><strong>全球车队管理</strong></td><td><2%</td><td>Samsara/Geotab/Verizon</td><td>Ituran刻意避开欧美红海，聚焦拉美</td></tr>
+        </table>
+
+        <h3>5.3 经济护城河评估</h3>
+        <div class="moat-item">
+            <strong>护城河1：网络效应（85-90%以色列垄断）</strong>
+            <ul>
+                <li>更多用户→更多base sites和控制中心→更快找回→更高找回率→更多保险公司推荐→更多用户</li>
+                <li>30年积累的找回网络和数据极难复制</li>
+                <li>保险公司、车贷金融公司、车厂OEM形成生态锁定</li>
+            </ul>
+        </div>
+        <div class="moat-item">
+            <strong>护城河2：转换成本（极高）</strong>
+            <ul>
+                <li>95%月费用户续约，车辆使用寿命5-6年</li>
+                <li>换到普通GPS = 找回率从80%降至15%，一次被盗损失$20,000+</li>
+                <li>保险公司和金融公司强制要求Ituran服务</li>
+            </ul>
+        </div>
+        <div class="moat-item">
+            <strong>护城河3：数据资产（30年积累）</strong>
+            <ul>
+                <li>2.6万订阅用户产生的驾驶行为、位置、路况数据</li>
+                <li>正在商业化：Big Data销售给政府和企业、Credit Carbon（EV碳信用）</li>
+                <li>数据越多→算法越好→找回率越高→更多用户→更多数据（正向循环）</li>
+            </ul>
+        </div>
+        <div class="moat-item">
+            <strong>护城河4：本地化基础设施（拉美）</strong>
+            <ul>
+                <li>巴西贫民窟找回能力是核心差异化——竞争者即使有技术也无法进入</li>
+                <li>地面找回团队+本地控制中心+警察合作关系</li>
+                <li>20+国家的本地化运营网络</li>
+            </ul>
+        </div>
+        <div class="moat-item">
+            <strong>护城河5：品牌信任（30年）</strong>
+            <ul>
+                <li>累计找回20万辆被盗车辆，价值$30亿</li>
+                <li>80%找回率 vs 全球平均10-20%——品牌即"找回率"</li>
+                <li>2025年11月纳斯达克敲钟庆祝30周年+20年上市</li>
+            </ul>
+        </div>
+
+        <h3>5.4 护城河可持续性</h3>
+        <div class="highlight">
+            <strong>芒格视角：</strong>Ituran的护城河在SVR领域<strong>近乎不可逾越</strong>——30年积累的控制中心网络、警察关系、贫民窟进入能力、数据算法，任何新进入者都需要30年才能复制。在车队管理领域护城河较浅（面临Samsara/Geotab竞争），但Ituran刻意避开欧美红海，聚焦拉美本地化，这是明智的"差异化竞争"策略。
+        </div>
+    </div>
+
+    <!-- ===================== 第六章：利润分配分析 ===================== -->
+    <div class="info-box">
+        <h2 id="chapter6">六、利润分配分析（FY2018-FY2025）</h2>
+
+        <h3>6.1 利润分配总览</h3>
+        <table>
+            <tr><th>财年</th><th>净利润($M)</th><th>股息($M)</th><th>回购($M)</th><th>股东回报合计</th><th>回报率</th><th>再投资</th></tr>
+            <tr><td>FY2018</td><td>~30</td><td>~20</td><td>~5</td><td>~25</td><td>83%</td><td>~5</td></tr>
+            <tr><td>FY2019</td><td>~35</td><td>~22</td><td>~5</td><td>~27</td><td>77%</td><td>~8</td></tr>
+            <tr><td>FY2020</td><td>~38</td><td>~25</td><td>~3</td><td>~28</td><td>74%</td><td>~10</td></tr>
+            <tr><td>FY2021</td><td>~42</td><td>~28</td><td>~5</td><td>~33</td><td>79%</td><td>~9</td></tr>
+            <tr><td>FY2022</td><td>~45</td><td>~32</td><td>~5</td><td>~37</td><td>82%</td><td>~8</td></tr>
+            <tr><td>FY2023</td><td>~48</td><td>~38</td><td>~5</td><td>~43</td><td>90%</td><td>~5</td></tr>
+            <tr><td>FY2024</td><td>~54</td><td>~44</td><td>~5</td><td>~49</td><td>91%</td><td>~5</td></tr>
+            <tr><td><strong>FY2025</strong></td><td><strong>58</strong></td><td><strong>60</strong></td><td><strong>~5</strong></td><td><strong>~65</strong></td><td><strong>112%</strong></td><td><strong>~0</strong></td></tr>
+            <tr><td><strong>8年累计</strong></td><td><strong>~350</strong></td><td><strong>~269</strong></td><td><strong>~38</strong></td><td><strong>~307</strong></td><td><strong>88%</strong></td><td><strong>~43</strong></tr>
+        </table>
+        <p>注：FY2025股息$60M含$20M特别股息，超过净利润100%。IPO以来累计向股东回报$4.3亿。</p>
+
+        <h3>6.2 资本配置质量评估</h3>
+        <div class="moat-item">
+            <strong>资本配置优势：</strong>
+            <ul>
+                <li><strong>100%派息政策</strong>：FY2025股息$60M = 100%净利润（含特别股息），常规季度股息$10M</li>
+                <li><strong>7%股息率</strong>：基于2025年底股价，远高于SaaS同行（Samsara 0%）</li>
+                <li><strong>持续回购</strong>：2025年Q4新增$10M回购授权，IPO以来累计回报$4.3亿</li>
+                <li><strong>零债务</strong>：净现金$1.076亿，财务极其稳健</li>
+                <li><strong>低CapEx模型</strong>：轻资本SaaS模式，CapEx仅占营收3-5%</li>
+            </ul>
+        </div>
+        <div class="risk-item">
+            <strong>资本配置风险：</strong>
+            <ul>
+                <li><strong>过度派息？</strong>FY2025派息112%净利润，长期不可持续（虽然净现金支持短期超额派息）</li>
+                <li><strong>增长投资不足？</strong>低再投资率可能限制Big Data/IturanMob等新业务的扩张速度</li>
+                <li><strong>并购未执行</strong>：管理层表示"优先并购"，但近年无重大并购，现金主要用于派息</li>
+            </ul>
+        </div>
+
+        <h3>6.3 可持续增长率</h3>
+        <div class="highlight">
+            <strong>可持续增长率 = ROE × 留存率</strong><br>
+            FY2025: 28.9% × 0%（100%派息）= 0%<br>
+            <strong>但实际用户增长12% CAGR</strong>——这说明Ituran的增长不依赖留存利润，而是靠<strong>运营杠杆+OEM合作+自然增长</strong>。轻资本SaaS模型使得增长不需要大量再投资，这反而是优质商业模式的表现。<br><br>
+            <strong>芒格视角：</strong>"Ituran不需要留存利润就能增长12%，这比留存50%利润才能增长10%的公司更优秀。100%派息+12%增长=真正的'复利机器'。"
+        </div>
+    </div>
+
+    <!-- ===================== 第七章：投资总结 ===================== -->
+    <div class="info-box">
+        <h2 id="chapter7">七、投资总结</h2>
+
+        <h3>7.1 维度评分</h3>
+        <table>
+            <tr><th>维度</th><th>评分</th><th>理由</th></tr>
+            <tr><td>业务易懂性</td><td>★★★★★</td><td>"防盗保险+找回服务"，120岁也能理解</td></tr>
+            <tr><td>护城河</td><td>★★★★★</td><td>85-90%以色列垄断+30年数据+网络效应+极高转换成本</td></tr>
+            <tr><td>资本配置</td><td>★★★★☆</td><td>100%派息+零债务，但可能过度派息限制增长投资</td></tr>
+            <tr><td>财务安全</td><td>★★★★★</td><td>零债务+净现金$1.076亿+反周期性</td></tr>
+            <tr><td>增长前景</td><td>★★★★☆</td><td>12%用户CAGR+OEM合作+Big Data/Credit Carbon新业务</td></tr>
+            <tr><td>估值吸引力</td><td>★★★★☆</td><td>PE 17.5x + EV/EBITDA 9.52x + 股息率7%，低于SaaS同行</td></tr>
+        </table>
+
+        <h3>7.2 综合评级</h3>
+        <div class="highlight">
+            <strong>综合评级：★★★★☆（4.2/5星）——"合理价格买入区域垄断车联网SaaS+深护城河+高股息"</strong>
+        </div>
+
+        <h3>7.3 估值对比</h3>
+        <table>
+            <tr><th>公司</th><th>PS</th><th>PE</th><th>EV/EBITDA</th><th>净利率</th><th>ROE</th></tr>
+            <tr><td><strong>ITRN</strong></td><td><strong>2.8x</strong></td><td><strong>17.5x</strong></td><td><strong>9.52x</strong></td><td><strong>16.2%</strong></td><td><strong>28.9%</strong></td></tr>
+            <tr><td>Samsara (IOT)</td><td>11.6x</td><td>N/A（亏损）</td><td>N/A</td><td>-15%</td><td>-20%</td></tr>
+            <tr><td>Powerfleet (PWFL)</td><td>2.5x</td><td>N/A（亏损）</td><td>N/A</td><td>-5%</td><td>-8%</td></tr>
+            <tr><td>Geotab（私有）</td><td>~4x</td><td>N/A</td><td>N/A</td><td>~10%</td><td>N/A</td></tr>
+        </table>
+        <div class="highlight">
+            <strong>估值洞察：</strong>ITRN的PS（2.8x）是Samsara（11.6x）的1/4，但ITRN盈利（16.2%净利率）而Samsara亏损。EV/EBITDA 9.52x在SaaS行业属于深度低估——优质SaaS通常15-25x EV/EBITDA。市场可能因为ITRN聚焦新兴市场（以色列+拉美）而给予"地域折价"，但这恰恰是它护城河最深的地方。
+        </div>
+
+        <h3>7.4 关键风险</h3>
+        <div class="risk-item">
+            <ul>
+                <li><strong>地缘政治风险</strong>：以色列总部，中东局势不稳定可能影响运营</li>
+                <li><strong>汇率风险</strong>：以色列谢克尔+巴西雷亚尔+墨西哥比索计价，USD报告受汇率影响（2025年USD走强压低报告收入）</li>
+                <li><strong>巴西经济风险</strong>：拉美经济波动大，政治不稳定（巴西大选等）</li>
+                <li><strong>OEM自建风险</strong>：大型OEM可能自建telematics，减少对Ituran依赖</li>
+                <li><strong>过度派息风险</strong>：FY2025派息112%净利润，长期不可持续</li>
+                <li><strong>规模限制</strong>：$3.59亿营收，规模较小，抗风险能力不如大公司</li>
+            </ul>
+        </div>
+
+        <h3>7.5 关键催化剂</h3>
+        <div class="moat-item">
+            <ul>
+                <li><strong>Big Data商业化</strong>：2.6万用户数据销售给政府/企业，2026年开始贡献收入</li>
+                <li><strong>Credit Carbon</strong>：EV车主通过Ituran平台获得碳信用，新收入流</li>
+                <li><strong>IturanMob美国扩张</strong>：汽车租赁SaaS进入美国中小租车公司</li>
+                <li><strong>新OEM合作</strong>：每年1-2个新OEM协议（Stellantis/Fiat已签约）</li>
+                <li><strong>摩托车市场</strong>：巴西与Yamaha/BMW合作，摩托车盗窃率更高</li>
+                <li><strong>盗窃率上升</strong>：以色列+253%、巴西+40%，SVR需求结构性增长</li>
+            </ul>
+        </div>
+
+        <h3>7.6 芒格最终评价</h3>
+        <div class="highlight">
+            <strong>芒格会说：</strong>"Ituran是我喜欢的那种'无聊但赚钱'的公司——在一个别人不愿去的市场（巴西贫民窟+以色列），花30年建立一个别人无法复制的网络，然后收月费。它不是Samsara那种烧钱抢市场的'增长神话'，而是真正赚钱的'区域垄断'。<br><br>
+            <strong>三个让我喜欢的地方：</strong>第一，反周期性——经济越差、犯罪越高、需求越大，这是罕见的'逆风顺风'。第二，轻资本增长——12%用户CAGR不需要留存利润，100%派息+增长=真正的复利机器。第三，估值合理——9.52x EV/EBITDA买一个28.9% ROE+85-90%垄断份额的公司，有安全边际。<br><br>
+            <strong>三个让我警惕的地方：</strong>第一，地缘政治——以色列总部+拉美运营，黑天鹅风险高于美国公司。第二，规模小——$3.59亿营收，一次大客户流失或监管变化影响大。第三，新业务不确定性——Big Data和Credit Carbon仍是概念阶段，能否兑现存疑。<br><br>
+            <strong>总体结论：</strong>Ituran是一个'小而美'的区域垄断SaaS，适合作为投资组合中的'高股息+防御性'配置。在9.52x EV/EBITDA+7%股息率+12%增长的组合下，总回报潜力15-20%/年。但仓位不宜过大——地缘政治和规模风险需要敬畏。"
+        </div>
+    </div>
+
+    <script src="scores_client.js"></script>
+    <script src="stock_topbar.js"></script>
+
+    <script>
+        // Chart.js 可视化
+        const ctx1 = document.getElementById('subscribersChart').getContext('2d');
+        new Chart(ctx1, {
+            type: 'line',
+            data: {
+                labels: ['FY2018','FY2019','FY2020','FY2021','FY2022','FY2023','FY2024','FY2025'],
+                datasets: [{
+                    label: '订阅用户（万）',
+                    data: [150,170,187,206,225,241,241,263],
+                    borderColor: '#4CAF50',
+                    backgroundColor: 'rgba(76,175,80,0.1)',
+                    fill: true,
+                    tension: 0.3
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: { display: true, text: 'Ituran订阅用户增长（FY2018-FY2025）' }
+                },
+                scales: {
+                    y: { beginAtZero: true, title: { display: true, text: '万用户' } }
+                }
+            }
+        });
+
+        const ctx2 = document.getElementById('revenueChart').getContext('2d');
+        new Chart(ctx2, {
+            type: 'bar',
+            data: {
+                labels: ['FY2018','FY2019','FY2020','FY2021','FY2022','FY2023','FY2024','FY2025'],
+                datasets: [
+                    {
+                        label: '营收 ($M)',
+                        data: [290,310,320,335,340,335,336,359],
+                        backgroundColor: '#2e86c1'
+                    },
+                    {
+                        label: 'EBITDA ($M)',
+                        data: [65,70,72,76,80,85,92,96.2],
+                        backgroundColor: '#4CAF50'
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: { display: true, text: 'Ituran营收与EBITDA（FY2018-FY2025）' }
+                },
+                scales: {
+                    y: { beginAtZero: true, title: { display: true, text: '$M' } }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
