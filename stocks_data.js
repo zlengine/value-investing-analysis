@@ -119,7 +119,8 @@
         {code:'CDW',name:'CDW公司 - 41年IT中间商/美国IT经销商#1+25万客户+1000+品牌双边市场+连续12年股息增长+8年回购缩减股本24%',href:'cdw.html'},
         {code:'UL',name:'联合利华 Unilever - 166年消费品巨头/30个Power Brands(Dove/Hellmann\'s/Vaseline)+190国分销+2025冰淇淋分拆+聚焦美妆个护+连续50+年分红',href:'ul.html'},
         {code:'CARG',name:'CarGurus - 19年汽车版Zillow/美国#1汽车购物网站+双边市场网络效应+34409家付费经销商+毛利率93%+FCF Margin 32%+零债务+6年回购7.5亿缩减股本19%',href:'carg.html'},
-        {code:'FTNT',name:'Fortinet 飞塔 - 25年网络安全龙头/全球防火墙#1(55%份额)+FortiASIC自研芯片5-10x性能优势+FortiOS统一OS+650,000+装机量+毛利率80.8%+FCF Margin 32.7%+ROE 149.8%+6年回购106.9亿美元',href:'ftnt.html'}
+        {code:'FTNT',name:'Fortinet 飞塔 - 25年网络安全龙头/全球防火墙#1(55%份额)+FortiASIC自研芯片5-10x性能优势+FortiOS统一OS+650,000+装机量+毛利率80.8%+FCF Margin 32.7%+ROE 149.8%+6年回购106.9亿美元',href:'ftnt.html'},
+        {code:'PTC',name:'PTC Inc. - 40年工业软件龙头/CAD(Creo/Onshape)+PLM(Windchill/Codebeamer)+ALM+SLM(ServiceMax)全栈+30,000客户+95%经常性收入+84%软件毛利率+40%FCF Margin+数据锁定+合规锁定护城河',href:'ptc.html'}
     ];
 
     // 暴露为全局变量
