@@ -121,7 +121,8 @@
         {code:'CARG',name:'CarGurus - 19年汽车版Zillow/美国#1汽车购物网站+双边市场网络效应+34409家付费经销商+毛利率93%+FCF Margin 32%+零债务+6年回购7.5亿缩减股本19%',href:'carg.html'},
         {code:'FTNT',name:'Fortinet 飞塔 - 25年网络安全龙头/全球防火墙#1(55%份额)+FortiASIC自研芯片5-10x性能优势+FortiOS统一OS+650,000+装机量+毛利率80.8%+FCF Margin 32.7%+ROE 149.8%+6年回购106.9亿美元',href:'ftnt.html'},
         {code:'PTC',name:'PTC Inc. - 40年工业软件龙头/CAD(Creo/Onshape)+PLM(Windchill/Codebeamer)+ALM+SLM(ServiceMax)全栈+30,000客户+95%经常性收入+84%软件毛利率+40%FCF Margin+数据锁定+合规锁定护城河',href:'ptc.html'},
-        {code:'ITRN',name:'Ituran Location and Control - 30年车联网龙头/以色列85-90%垄断份额+拉美#1 OEM telematics+263万订阅用户+80%被盗车辆找回率+70%经常性收入+零债务+净现金1.08亿+100%净利润派息+7%股息率+Big Data/Credit Carbon新业务+反周期性',href:'itrn.html'}
+        {code:'ITRN',name:'Ituran Location and Control - 30年车联网龙头/以色列85-90%垄断份额+拉美#1 OEM telematics+263万订阅用户+80%被盗车辆找回率+70%经常性收入+零债务+净现金1.08亿+100%净利润派息+7%股息率+Big Data/Credit Carbon新业务+反周期性',href:'itrn.html'},
+        {code:'MSI',name:'Motorola Solutions - 近100年公共安全通信绝对龙头/LMR对讲机80%份额+FirstNet LTE+Avigilon视频+Silvus军用MANET+5大护城河(生命安全品牌+极高切换成本+全栈生态+政府关系+技术领先)+FY2025营收$117亿+经营现金流$28亿+Backlog$157亿+SaaS转型+反周期性',href:'msi.html'}
     ];
 
     // 暴露为全局变量

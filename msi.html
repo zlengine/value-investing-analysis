@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Motorola Solutions (MSI) 详细分析</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; background-color: #f5f5f5; }
+        h1 { text-align: center; color: #333; }
+        h2 { color: #4CAF50; margin-top: 30px; }
+        h3 { color: #333; margin-top: 20px; }
+        h4 { color: #555; margin-top: 15px; }
+        .info-box { background-color: white; padding: 20px; margin: 20px 0; box-shadow: 0 0 10px rgba(0,0,0,0.1); border-radius: 5px; border-left: 4px solid #4CAF50; }
+        table { width: 100%; border-collapse: collapse; margin: 10px 0; }
+        th, td { padding: 8px; text-align: left; border-bottom: 1px solid #ddd; }
+        th { background-color: #4CAF50; color: white; }
+        tr:hover { background-color: #f5f5f5; }
+        a { color: #4CAF50; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        .highlight { background-color: #f8f9fa; padding: 12px 16px; border-left: 4px solid #2e86c1; margin: 12px 0; border-radius: 4px; }
+        .tag { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 12px; font-weight: 600; }
+        .tag-green { background-color: #d4edda; color: #155724; }
+        .tag-orange { background-color: #fff3cd; color: #856404; }
+        .tag-red { background-color: #f8d7da; color: #721c24; }
+        .moat-item { background-color: #e8f5e9; padding: 12px 16px; margin: 8px 0; border-radius: 4px; border-left: 4px solid #4CAF50; }
+        .risk-item { background-color: #ffebee; padding: 12px 16px; margin: 8px 0; border-radius: 4px; border-left: 4px solid #c62828; }
+        .chart-container { position: relative; height: 300px; margin: 20px 0; }
+        .top-nav-bar { position: fixed; top: 0; left: 0; right: 0; height: 44px; background: #2c3e50; display: flex; align-items: center; justify-content: flex-end; padding: 0 20px; z-index: 9999; box-shadow: 0 2px 8px rgba(0,0,0,0.15); gap: 8px; }
+        .top-nav-link { color: white; padding: 6px 16px; border-radius: 16px; text-decoration: none; font-size: 13px; transition: background 0.2s; white-space: nowrap; }
+        .section-nav {
+            background: white;
+            border-radius: 10px;
+            padding: 15px 25px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+        .section-nav a {
+            display: inline-block;
+            margin: 5px 10px;
+            padding: 6px 14px;
+            background: #eaf2f8;
+            color: #1a5276;
+            text-decoration: none;
+            border-radius: 15px;
+            font-size: 0.9em;
+        }
+        .section-nav a:hover {
+            background: #2e86c1;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="top-nav-bar"></div>
+    <script src="nav_bar.js?v=20260624"></script>
+    <span id="topbarCode" style="display:none;">MSI</span>
+    <h1>Motorola Solutions (NYSE: MSI)</h1>
+    <p style="text-align:center;color:#666;">巴菲特/芒格式价值投资基本面分析 | 更新日期：2026年7月</p>
+
+    <div class="section-nav">
+        <a href="#chapter1">公司基本信息</a>
+        <a href="#chapter2">业务分析</a>
+        <a href="#chapter3">业务板块产品竞争力分析</a>
+        <a href="#chapter4">历史财务指标</a>
+        <a href="#chapter5">竞争分析</a>
+        <a href="#chapter6">利润分配分析</a>
+        <a href="#chapter7">投资总结</a>
+    </div>
+
+    <!-- ===================== 第一章：公司基本信息 ===================== -->
+    <div class="info-box">
+        <h2 id="chapter1">一、公司基本信息</h2>
+        <table>
+            <tr><td>公司全称</td><td>Motorola Solutions, Inc.</td></tr>
+            <tr><td>股票代码</td><td>NYSE: MSI</td></tr>
+            <tr><td>市值</td><td>约700亿美元（2026年7月）</td></tr>
+            <tr><td>企业价值（EV）</td><td>约780亿美元</td></tr>
+            <tr><td>最新收盘价</td><td>约$430（2026年7月）</td></tr>
+            <tr><td>成立年份</td><td>1928年（近100年历史，2011年从Motorola分拆）</td></tr>
+            <tr><td>总部</td><td>芝加哥，伊利诺伊州</td></tr>
+            <tr><td>员工数</td><td>约22,000人</td></tr>
+            <tr><td>FY2025营收</td><td>$116.82亿（+8% YoY）</td></tr>
+            <tr><td>FY2025净利润</td><td>$21.54亿（GAAP）</td></tr>
+            <tr><td>FY2025非GAAP EPS</td><td>$15.38（+11% YoY）</td></tr>
+            <tr><td>FY2025经营现金流</td><td>$28亿（创纪录，+19%）</td></tr>
+            <tr><td>Backlog（积压订单）</td><td>$157亿（创纪录）</td></tr>
+            <tr><td>客户结构</td><td>70%政府/公共安全+30%企业</td></tr>
+            <tr><td>PE（TTM）</td><td>~28x</td></tr>
+            <tr><td>股息率</td><td>~1.3%</td></tr>
+        </table>
+        <div class="highlight">
+            <strong>一句话概括：</strong>Motorola Solutions是全球公共安全和防御通信的绝对龙头，为警察、消防、急救、军队、政府机构和企业提供"任务关键型"通信设备和软件。核心资产不是手机（2011年已分拆），而是<strong>近100年积累的Land Mobile Radio（LMR）技术+全美公共安全LTE网络+视频监控生态+Silvus MANET军用通信</strong>。客户一旦部署MSI的系统，切换成本极高（涉及生命安全），形成深护城河。2025年8月以$44亿收购Silvus Technologies，扩展到军用无人机/无人系统通信领域，打开新增长曲线。
+        </div>
+    </div>
+
+    <!-- ===================== 第二章：业务分析 ===================== -->
+    <div class="info-box">
+        <h2 id="chapter2">二、业务分析</h2>
+
+        <h3>2.1 通俗解读：Motorola Solutions到底做什么？</h3>
+        <p>想象你是一名消防员，正在扑救一场森林大火。你的对讲机必须<strong>100%可靠</strong>——不能有延迟、不能掉线、不能没信号，因为一次通信失败可能让你丧命。MSI做的就是这种"任务关键型"通信设备：对讲机、调度系统、基站网络、视频监控、AI分析。它们的可靠性是"5个9"（99.999%可用性），比民用手机网络高一个数量级。</p>
+        <p>除了消防，MSI的客户还包括<strong>警察、军队、机场、医院、电网、石油管道</strong>等任何"通信失败会死人"的场景。这就是为什么MSI的合同长达5-10年、续约率95%+、政府预算再紧也不会削减——因为这是"need-to-have"（必需品），不是"nice-to-have"（锦上添花）。</p>
+
+        <h3>2.2 业务板块（FY2025）</h3>
+        <table>
+            <tr><th>业务板块</th><th>FY2025营收</th><th>占比</th><th>同比增长</th><th>非GAAP运营利润率</th><th>说明</th></tr>
+            <tr><td><strong>Products and Systems Integration（产品与系统集成）</strong></td><td>$72.53亿</td><td>62%</td><td>+5%</td><td>28.9%</td><td>LMR对讲机/基站+视频监控设备+Silvus MANET</td></tr>
+            <tr><td><strong>Software and Services（软件与服务）</strong></td><td>$44.29亿</td><td>38%</td><td>+13%</td><td>32.5%</td><td>云端SaaS+维护服务+网络安全+视频管理软件</td></tr>
+            <tr><td><strong>合计</strong></td><td><strong>$116.82亿</strong></td><td><strong>100%</strong></td><td><strong>+8%</strong></td><td><strong>30.3%</strong></td><td>—</td></tr>
+        </table>
+
+        <div class="highlight">
+            <strong>商业模式核心：</strong>MSI正在从"硬件公司"转型为"硬件+SaaS平台"。Software & Services板块增速（+13%）远快于Products板块（+5%），且利润率更高（32.5% vs 28.9%）。这种转型让MSI的经常性收入占比从2018年的~30%提升至2025年的~42%，业务可见性大幅提升。
+        </div>
+
+        <h3>2.3 按技术平台划分</h3>
+        <table>
+            <tr><th>技术平台</th><th>说明</th><th>客户</th><th>增长趋势</th></tr>
+            <tr><td><strong>Land Mobile Radio（LMR）</strong></td><td>对讲机+基站+调度系统，99.999%可靠性</td><td>警察/消防/急救/政府</td><td>稳定增长（升级周期+5G融合）</td></tr>
+            <tr><td><strong>Mission Critical Network（MCN）</strong></td><td>FirstNet公共安全LTE网络基础设施</td><td>全美公共安全机构</td><td>强劲增长（5G升级）</td></tr>
+            <tr><td><strong>Video Security & Access Control</strong></td><td>Avigilon视频监控+VMS+访问控制+AI分析</td><td>企业/学校/医院/机场</td><td>高速增长（AI驱动）</td></tr>
+            <tr><td><strong>Command Center Software</strong></td><td>调度软件+证据管理+事件响应+Rave/Noggin</td><td>911中心/企业/学校</td><td>高速增长（SaaS转型）</td></tr>
+            <tr><td><strong>Silvus MANET</strong></td><td>军用移动自组织网络，无人机/无人系统通信</td><td>国防/情报/边境安全</td><td>新增长曲线（2025年8月收购）</td></tr>
+        </table>
+
+        <h3>2.4 地理分布（FY2025）</h3>
+        <table>
+            <tr><th>地区</th><th>占比</th><th>增长趋势</th><th>市场地位</th></tr>
+            <tr><td><strong>北美（美国+加拿大）</strong></td><td>~75%</td><td>强劲增长</td><td>美国公共安全通信绝对龙头</td></tr>
+            <tr><td><strong>欧洲、中东、非洲（EMEA）</strong></td><td>~13%</td><td>稳定增长</td><td>英国Emergency Services Network合同</td></tr>
+            <tr><td><strong>亚太</strong></td><td>~7%</td><td>高速增长</td><td>印度/澳大利亚/日本扩张</td></tr>
+            <tr><td><strong>拉丁美洲</strong></td><td>~5%</td><td>稳定</td><td>巴西/墨西哥公共安全需求</td></tr>
+        </table>
+
+        <h3>2.5 商业模式核心优势</h3>
+        <div class="highlight">
+            <strong>"任务关键型"的订阅制：</strong><br>
+            1. <strong>生命安全壁垒</strong>：客户是警察/消防/军队，通信失败会死人——这迫使客户选择最可靠的供应商，价格敏感度极低<br>
+            2. <strong>长合同周期</strong>：典型政府合同5-10年，Backlog $157亿≈1.3年营收，收入可见性极高<br>
+            3. <strong>生态系统锁定</strong>：LMR对讲机+基站+调度软件+视频监控+AI分析形成全栈生态，客户换任何一部分都需考虑兼容性<br>
+            4. <strong>切换成本极高</strong>：一个城市要换掉MSI的整个公共安全通信系统，需要5-10年+$数亿+重新培训所有警员——几乎不可能<br>
+            5. <strong>反周期性</strong>：经济差时犯罪率上升、恐怖威胁增加，公共安全预算反而增加
+        </div>
+    </div>
+
+    <!-- ===================== 第三章：业务板块产品竞争力分析 ===================== -->
+    <div class="info-box">
+        <h2 id="chapter3">三、业务板块产品竞争力分析</h2>
+
+        <h3>3.1 Land Mobile Radio（LMR）— 任务关键型语音通信</h3>
+
+        <p><strong>1. 可替代性：<span class="tag tag-green">极低</span></strong></p>
+        <ul>
+            <li>主要替代方案：商用蜂窝网络（LTE/5G）、商用对讲机、卫星通信</li>
+            <li>替代体验差距：商用蜂窝网络可靠性99.9% vs LMR 99.999%，差距看似小但实际是"3个9 vs 5个9"——商用网络在灾难时可能瘫痪，LMR不会</li>
+            <li>替代价格差距：商用方案便宜但"不可靠"，一次通信失败可能造成人员伤亡，成本无法量化</li>
+            <li>替代趋势：<span class="tag tag-green">稳定</span>——FirstNet LTE与LMR是互补而非替代关系，未来10年LMR仍是公共安全语音核心</li>
+        </ul>
+
+        <p><strong>2. 客户转换成本：<span class="tag tag-green">极高</span></strong></p>
+        <ul>
+            <li>财务转换成本：一个中型城市换掉整个LMR系统需$5,000万-$2亿+，需新建基站、更换所有对讲机、重写调度软件</li>
+            <li>时间转换成本：典型切换周期5-10年，包括规划、采购、部署、培训、过渡</li>
+            <li>心理转换成本：警员/消防员对MSI设备的信任是"生命信任"，换设备等于拿生命冒险</li>
+            <li>捆绑转换成本：LMR+调度+视频+证据管理全栈锁定，换任何一部分都需考虑兼容性</li>
+            <li>量化评估：一个州级公共安全系统切换总成本$5-20亿+10年过渡期</li>
+        </ul>
+
+        <p><strong>3. 定价权：<span class="tag tag-green">极强</span></strong></p>
+        <ul>
+            <li>历史涨价记录：对讲机均价年增3-5%，软件订阅年增5-8%</li>
+            <li>涨价vs通胀：涨价幅度持续跑赢CPI和政府预算增速</li>
+            <li>定价权来源：生命安全+80%+市场份额+极高切换成本+政府预算刚性</li>
+            <li>定价权趋势：<span class="tag tag-green">稳定偏强</span>——FirstNet和5G融合让MSI能销售更高价的"融合方案"</li>
+            <li>巴菲特测试：如果MSI涨价10%，警察局会换供应商吗？——不会，因为没有替代者能提供同等可靠性，且切换成本是涨价金额的100倍+</li>
+        </ul>
+
+        <p><strong>整体竞争力评级：★★★★★（5星）</strong></p>
+
+        <h3>3.2 Video Security & Access Control（视频监控与访问控制）</h3>
+
+        <p><strong>1. 可替代性：<span class="tag tag-orange">中等</span></strong></p>
+        <ul>
+            <li>主要替代方案：Axis Communications、Bosch、Honeywell、Hikvision、Verkada</li>
+            <li>替代体验差距：MSI的Avigalon在AI分析+证据管理上有差异化，但硬件本身商品化程度较高</li>
+            <li>替代趋势：<span class="tag tag-orange">稳定</span>——MSI通过AI分析+证据管理软件锁定客户，但硬件竞争激烈</li>
+        </ul>
+
+        <p><strong>2. 客户转换成本：<span class="tag tag-orange">中等</span></strong></p>
+        <ul>
+            <li>硬件切换相对容易（摄像头标准化），但VMS视频管理软件和AI分析平台切换有摩擦</li>
+            <li>MSI的"视频+LMR+调度"集成方案在公共安全客户中形成差异化锁定</li>
+        </ul>
+
+        <p><strong>3. 定价权：<span class="tag tag-orange">中等</span></strong></p>
+        <ul>
+            <li>视频监控市场竞争激烈，硬件价格压力持续</li>
+            <li>MSI通过AI分析+云端SaaS+证据管理提升单客户价值</li>
+            <li>巴菲特测试：如果MSI视频监控涨价10%，企业客户可能比价——但公共安全客户因集成锁定会留下</li>
+        </ul>
+
+        <p><strong>整体竞争力评级：★★★★☆（4星）</strong></p>
+
+        <h3>3.3 Silvus MANET — 军用移动自组织网络</h3>
+
+        <p><strong>1. 可替代性：<span class="tag tag-green">极低</span></strong></p>
+        <ul>
+            <li>主要替代方案：传统军用通信（Link 16、SINCGARS）、DTC/TrellisWare、L3Harris</li>
+            <li>替代体验差距：Silvus的MANET在带宽、节点数、抗干扰能力上领先，特别适合无人机群通信</li>
+            <li>替代趋势：<span class="tag tag-green">稳定</span>——无人机/无人系统通信是新战场，Silvus技术领先2-3年</li>
+        </ul>
+
+        <p><strong>2. 客户转换成本：<span class="tag tag-green">极高</span></strong></p>
+        <ul>
+            <li>军用通信设备认证周期3-5年，嵌入无人机/无人系统后切换几乎不可能</li>
+            <li>Silvus已嵌入多个国防项目（DoD、情报机构、无人系统制造商）</li>
+        </ul>
+
+        <p><strong>3. 定价权：<span class="tag tag-green">强</span></strong></p>
+        <ul>
+            <li>军用通信价格敏感度低，性能和可靠性优先</li>
+            <li>Silvus在MANET领域技术领先，议价能力强</li>
+            <li>巴菲特测试：如果Silvus涨价10%，军方会换吗？——短期内不会，因为替代者技术差距明显且认证周期长</li>
+        </ul>
+
+        <p><strong>整体竞争力评级：★★★★★（5星）</strong></p>
+    </div>
+
+    <!-- ===================== 第四章：历史财务指标 ===================== -->
+    <div class="info-box">
+        <h2 id="chapter4">四、历史财务指标（FY2018-FY2025）</h2>
+
+        <h3>4.1 关键财务数据总览</h3>
+        <table>
+            <tr><th>财年</th><th>营收($B)</th><th>同比</th><th>净利润($M)</th><th>非GAAP EPS</th><th>毛利率</th><th>运营利润率(非GAAP)</th><th>经营现金流($B)</th><th>PE</th></tr>
+            <tr><td>FY2018</td><td>7.34</td><td>—</td><td>$1,210</td><td>$7.30</td><td>47.5%</td><td>22.0%</td><td>1.30</td><td>~28x</td></tr>
+            <tr><td>FY2019</td><td>7.49</td><td>+2%</td><td>$1,370</td><td>$8.21</td><td>48.2%</td><td>23.5%</td><td>1.45</td><td>~26x</td></tr>
+            <tr><td>FY2020</td><td>7.42</td><td>-1%</td><td>$1,460</td><td>$8.85</td><td>49.0%</td><td>24.8%</td><td>1.60</td><td>~22x</td></tr>
+            <tr><td>FY2021</td><td>8.17</td><td>+10%</td><td>$1,620</td><td>$10.03</td><td>50.2%</td><td>26.0%</td><td>1.75</td><td>~24x</td></tr>
+            <tr><td>FY2022</td><td>9.11</td><td>+12%</td><td>$1,530</td><td>$11.10</td><td>50.5%</td><td>27.5%</td><td>1.65</td><td>~25x</td></tr>
+            <tr><td>FY2023</td><td>9.98</td><td>+10%</td><td>$1,709</td><td>$12.46</td><td>49.8%</td><td>28.2%</td><td>2.05</td><td>~27x</td></tr>
+            <tr><td>FY2024</td><td>10.82</td><td>+8%</td><td>$1,577</td><td>$13.84</td><td>51.0%</td><td>29.0%</td><td>2.35</td><td>~30x</td></tr>
+            <tr><td><strong>FY2025</strong></td><td><strong>11.68</strong></td><td><strong>+8%</strong></td><td><strong>$2,154</strong></td><td><strong>$15.38</strong></td><td><strong>51.7%</strong></td><td><strong>30.3%</strong></td><td><strong>2.80</strong></td><td><strong>~28x</strong></td></tr>
+        </table>
+        <p>注：FY2022净利润下降主要因养老金相关非现金损失；FY2024净利润下降主要因其他费用（含 Silvus 收购前相关成本）。</p>
+
+        <div class="chart-container">
+            <canvas id="revenueChart"></canvas>
+        </div>
+        <div class="chart-container">
+            <canvas id="marginChart"></canvas>
+        </div>
+
+        <div class="highlight">
+            <strong>巴菲特/芒格视角：</strong><br>
+            1. <strong>营收CAGR 7%</strong>：从2018年$73亿增至2025年$117亿，7年CAGR 7%，稳健且持续<br>
+            2. <strong>利润率持续扩张</strong>：非GAAP运营利润率从22%提升至30.3%，SaaS转型+运营杠杆释放<br>
+            3. <strong>经营现金流CAGR 11%</strong>：从$13亿增至$28亿，远快于营收增速，SaaS模式预收款特性<br>
+            4. <strong>Backlog $157亿</strong>：创纪录，相当于1.3年营收，收入可见性极高<br>
+            5. <strong>ROIC稳健</strong>：约15-18%，资本配置效率优秀
+        </div>
+    </div>
+
+    <!-- ===================== 第五章：竞争分析 ===================== -->
+    <div class="info-box">
+        <h2 id="chapter5">五、竞争分析</h2>
+
+        <h3>5.1 主要竞争对手</h3>
+        <table>
+            <tr><th>竞争对手</th><th>年营收</th><th>市场定位</th><th>与MSI的差异</th></tr>
+            <tr><td><strong>L3Harris (LHX)</strong></td><td>~$200亿</td><td>国防通信+公共安全通信</td><td>规模更大但国防占比高，公共安全LMR份额不如MSI。MSI在公共安全市场份额~80% vs LHX ~15%</td></tr>
+            <tr><td><strong>Axon Enterprise (AXON)</strong></td><td>~$25亿</td><td>执法身体摄像头+Taser+软件</td><td>在身体摄像头和证据管理领域直接竞争，但MSI的视频监控规模更大（$19亿 vs AXON $25亿）。AXON的SaaS生态更强，MSI的硬件+网络更强</td></tr>
+            <tr><td><strong>Ericsson/Nokia</strong></td><td>~$250亿</td><td>FirstNet LTE网络基础设施</td><td>在MCN领域竞争，但MSI聚焦公共安全定制化，Ericsson/Nokia聚焦商用网络</td></tr>
+            <tr><td><strong>Verkada</strong></td><td>~$200M（私有）</td><td>云端视频监控SaaS</td><td>在企业视频监控领域高速增长，但未进入公共安全核心市场</td></tr>
+            <tr><td><strong>DTC/TrellisWare</strong></td><td>~$100M（私有）</td><td>军用MANET通信</td><td>Silvus收购前的主要竞争者，技术差距2-3年</td></tr>
+        </table>
+
+        <h3>5.2 市场份额</h3>
+        <table>
+            <tr><th>市场</th><th>MSI份额</th><th>主要竞争者</th><th>壁垒</th></tr>
+            <tr><td><strong>北美公共安全LMR</strong></td><td>~80%</td><td>L3Harris ~15%、其他~5%</td><td>近100年品牌+政府关系+全栈生态</td></tr>
+            <tr><td><strong>FirstNet MCN</strong></td><td>#1</td><td>Ericsson、Nokia</td><td>公共安全定制化能力</td></tr>
+            <tr><td><strong>企业视频监控</strong></td><td>~5-10%</td><td>Axis、Hikvision、Verkada</td><td>竞争激烈，但AI分析+证据管理有差异化</td></tr>
+            <tr><td><strong>军用MANET</strong></td><td>新进入者（Silvus）</td><td>DTC、TrellisWare、L3Harris</td><td>Silvus技术领先，MSI全球销售网络加速渗透</td></tr>
+        </table>
+
+        <h3>5.3 经济护城河评估</h3>
+        <div class="moat-item">
+            <strong>护城河1：生命安全品牌信任（近100年）</strong>
+            <ul>
+                <li>MSI的LMR设备是"911呼叫中心背后的基础设施"——全美警察/消防/急救依赖MSI通信</li>
+                <li>近100年积累的可靠性记录，任何新进入者都需数十年建立同等信任</li>
+                <li>客户选择MSI不是因为便宜，而是因为"不能用生命试错"</li>
+            </ul>
+        </div>
+        <div class="moat-item">
+            <strong>护城河2：极高切换成本（5-10年+$数亿）</strong>
+            <ul>
+                <li>一个城市切换LMR系统需5-10年+$5,000万-$2亿</li>
+                <li>切换期间需双系统并行、重新培训所有警员、重新编写调度流程</li>
+                <li>切换风险极高——过渡期通信故障可能导致人员伤亡</li>
+            </ul>
+        </div>
+        <div class="moat-item">
+            <strong>护城河3：全栈生态锁定</strong>
+            <ul>
+                <li>LMR对讲机+基站+调度软件+FirstNet LTE+视频监控+AI分析+证据管理+MANET</li>
+                <li>客户买的不是单个产品，而是"端到端公共安全平台"</li>
+                <li>任何单一模块的竞争者都难以撼动整体生态</li>
+            </ul>
+        </div>
+        <div class="moat-item">
+            <strong>护城河4：政府关系与合同惯性</strong>
+            <ul>
+                <li>与美国联邦/州/地方政府数十年合作关系</li>
+                <li>IDIQ框架合同+长期任务订单，续约率95%+</li>
+                <li>政府采购倾向于"已验证的供应商"，新进入者面临认证壁垒</li>
+            </ul>
+        </div>
+        <div class="moat-item">
+            <strong>护城河5：Silvus MANET技术领先</strong>
+            <ul>
+                <li>军用无人机/无人系统通信是新战场，Silvus技术领先2-3年</li>
+                <li>已嵌入多个DoD项目，切换成本极高（认证3-5年）</li>
+                <li>MSI全球销售网络+政府关系加速Silvus商业化</li>
+            </ul>
+        </div>
+
+        <h3>5.4 护城河可持续性</h3>
+        <div class="highlight">
+            <strong>芒格视角：</strong>MSI的护城河在公共安全LMR领域<strong>近乎不可逾越</strong>——近100年品牌+80%份额+5-10年切换成本+生命安全属性。这个护城河不是技术护城河（技术会过时），而是<strong>"信任+生态+惯性"的复合护城河</strong>。即使有更好的技术，客户也不会轻易换——因为换的代价是用生命试错。Silvus MANET是新护城河，在军用无人机通信领域形成技术领先+认证锁定。
+        </div>
+    </div>
+
+    <!-- ===================== 第六章：利润分配分析 ===================== -->
+    <div class="info-box">
+        <h2 id="chapter6">六、利润分配分析（FY2018-FY2025）</h2>
+
+        <h3>6.1 利润分配总览</h3>
+        <table>
+            <tr><th>财年</th><th>净利润($M)</th><th>股息($M)</th><th>回购($M)</th><th>股东回报合计</th><th>回报率</th><th>再投资(CapEx+R&D)</th></tr>
+            <tr><td>FY2018</td><td>1,210</td><td>245</td><td>2,000</td><td>2,245</td><td>185%</td><td>~1,000</td></tr>
+            <tr><td>FY2019</td><td>1,370</td><td>265</td><td>1,500</td><td>1,765</td><td>129%</td><td>~1,050</td></tr>
+            <tr><td>FY2020</td><td>1,460</td><td>290</td><td>100</td><td>390</td><td>27%</td><td>~1,000</td></tr>
+            <tr><td>FY2021</td><td>1,620</td><td>310</td><td>1,200</td><td>1,510</td><td>93%</td><td>~1,100</td></tr>
+            <tr><td>FY2022</td><td>1,530</td><td>330</td><td>1,400</td><td>1,730</td><td>113%</td><td>~1,200</td></tr>
+            <tr><td>FY2023</td><td>1,709</td><td>345</td><td>1,500</td><td>1,845</td><td>108%</td><td>~1,300</td></tr>
+            <tr><td>FY2024</td><td>1,577</td><td>360</td><td>2,500</td><td>2,860</td><td>181%</td><td>~1,400</td></tr>
+            <tr><td><strong>FY2025</strong></td><td><strong>2,154</strong></td><td><strong>700</strong></td><td><strong>1,800</strong></td><td><strong>2,500</strong></td><td><strong>116%</strong></td><td><strong>~1,500</strong></td></tr>
+            <tr><td><strong>8年累计</strong></td><td><strong>~12,630</strong></td><td><strong>~2,845</strong></td><td><strong>~12,000</strong></td><td><strong>~14,845</strong></td><td><strong>~118%</strong></td><td><strong>~9,550</strong></td></tr>
+        </table>
+        <p>注：FY2020股东回报低因疫情不确定性；FY2024回购含Silvus收购前加速回购；FY2025股息含特别股息；FY2025含Silvus收购$44亿（部分通过债务融资）。</p>
+
+        <h3>6.2 资本配置质量评估</h3>
+        <div class="moat-item">
+            <strong>资本配置优势：</strong>
+            <ul>
+                <li><strong>持续14年股息增长</strong>：从FY2012的$0.80/股增至FY2025的$4.21/股，CAGR 14%</li>
+                <li><strong>8年回购$120亿</strong>：股本从1.85亿股缩减至1.66亿股，缩减10%+</li>
+                <li><strong>战略性并购</strong>：Avigilon（$15亿，2018）、Silvus（$44亿，2025）扩展视频和军用通信</li>
+                <li><strong>R&D投入持续增长</strong>：FY2025 R&D $9.7亿，占营收8.3%，维持技术领先</li>
+            </ul>
+        </div>
+        <div class="risk-item">
+            <strong>资本配置风险：</strong>
+            <ul>
+                <li><strong>Silvus收购增加债务</strong>：$15亿term loan+$200M已偿还，净债务显著增加</li>
+                <li><strong>回购时机一般</strong>：FY2024-$FY2025在PE 28-30x时大量回购，估值不算便宜</li>
+                <li><strong>Silvus估值高</strong>：$44亿收购价对应~10x sales，需要兑现增长预期</li>
+            </ul>
+        </div>
+
+        <h3>6.3 可持续增长率</h3>
+        <div class="highlight">
+            <strong>可持续增长率 = ROE × 留存率</strong><br>
+            FY2025: ~40% ROE × ~0%（100%+回报）= 0%（理论）<br>
+            <strong>但实际营收增长8%</strong>——MSI的增长不依赖留存利润，而是靠<strong>SaaS转型+并购+有机增长</strong>。轻资本模型+高现金流转化率让MSI能同时回购+分红+并购+投资R&D，这是资本配置能力的体现。<br><br>
+            <strong>芒格视角：</strong>"MSI是那种'既能赚钱又能花钱'的稀有公司——每年产生$28亿现金流，同时回购$18亿+分红$7亿+R&D $10亿+并购整合。8年累计回报股东$148亿，还能保持8%营收增长+利润率扩张。这是Greg Brown（CEO）15年任职期间资本配置能力的证明。"
+        </div>
+    </div>
+
+    <!-- ===================== 第七章：投资总结 ===================== -->
+    <div class="info-box">
+        <h2 id="chapter7">七、投资总结</h2>
+
+        <h3>7.1 维度评分</h3>
+        <table>
+            <tr><th>维度</th><th>评分</th><th>理由</th></tr>
+            <tr><td>业务易懂性</td><td>★★★★★</td><td>"公共安全通信龙头"，120岁也能理解</td></tr>
+            <tr><td>护城河</td><td>★★★★★</td><td>近100年品牌+80%份额+5-10年切换成本+生命安全属性</td></tr>
+            <tr><td>资本配置</td><td>★★★★☆</td><td>15年CEO证明优秀，但Silvus收购估值偏高</td></tr>
+            <tr><td>财务安全</td><td>★★★★☆</td><td>Silvus收购后债务增加，但经营现金流$28亿可覆盖</td></tr>
+            <tr><td>增长前景</td><td>★★★★☆</td><td>SaaS转型+Silvus军用+视频AI，CAGR 7-8%</td></tr>
+            <tr><td>估值吸引力</td><td>★★★☆☆</td><td>PE 28x合理但不便宜，Forward PE ~25x</td></tr>
+        </table>
+
+        <h3>7.2 综合评级</h3>
+        <div class="highlight">
+            <strong>综合评级：★★★★☆（4.3/5星）——"合理价格买入公共安全通信绝对龙头+深护城河+SaaS转型"</strong>
+        </div>
+
+        <h3>7.3 估值对比</h3>
+        <table>
+            <tr><th>公司</th><th>PE</th><th>EV/EBITDA</th><th>营收增速</th><th>运营利润率</th><th>ROE</th></tr>
+            <tr><td><strong>MSI</strong></td><td><strong>~28x</strong></td><td><strong>~19x</strong></td><td><strong>+8%</strong></td><td><strong>30.3%</strong></td><td><strong>~40%</strong></td></tr>
+            <tr><td>L3Harris (LHX)</td><td>~22x</td><td>~14x</td><td>+5%</td><td>~17%</td><td>~12%</td></tr>
+            <tr><td>Axon (AXON)</td><td>~80x</td><td>~45x</td><td>+30%</td><td>~10%</td><td>~8%</td></tr>
+            <tr><td>Verkada（私有）</td><td>N/A</td><td>N/A</td><td>+50%</td><td>亏损</td><td>亏损</td></tr>
+        </table>
+        <div class="highlight">
+            <strong>估值洞察：</strong>MSI的PE（28x）高于L3Harris（22x）但远低于Axon（80x）。考虑到MSI的利润率（30.3%）远高于L3Harris（17%），增速（8%）与L3Harris（5%）相近，且护城河更深，MSI相对L3Harris有合理溢价。但相比Axon的高增长，MSI估值更保守。EV/EBITDA 19x反映了Silvus收购后的债务增加。
+        </div>
+
+        <h3>7.4 关键风险</h3>
+        <div class="risk-item">
+            <ul>
+                <li><strong>Silvus整合风险</strong>：$44亿收购是MSI历史上最大并购，整合执行风险高</li>
+                <li><strong>政府预算风险</strong>：DOGE等政府效率 initiative可能压缩联邦预算（但MSI 70%是州/地方政府，影响较小）</li>
+                <li><strong>FirstNet竞争</strong>：Ericsson/Nokia可能在MCN领域侵蚀份额</li>
+                <li><strong>视频监控商品化</strong>：Verkada等SaaS新贵在企业视频监控领域低价竞争</li>
+                <li><strong>估值风险</strong>：PE 28x在利率高位环境下估值压力较大</li>
+                <li><strong>债务增加</strong>：Silvus收购后净债务$130亿+，利息支出增加</li>
+            </ul>
+        </div>
+
+        <h3>7.5 关键催化剂</h3>
+        <div class="moat-item">
+            <ul>
+                <li><strong>SaaS转型加速</strong>：Software & Services板块+13%增长，利润率32.5%持续提升</li>
+                <li><strong>Silvus军用扩张</strong>：无人机/无人系统通信是$数十亿新市场，MSI全球销售网络加速渗透</li>
+                <li><strong>AI驱动视频分析</strong>：Avigilon AI分析+证据管理+SaaS提升单客户价值</li>
+                <li><strong>5G融合</strong>：LMR+5G融合方案提升平均合同金额</li>
+                <li><strong>英国ESN合同</strong>：Emergency Services Network长期合同进入加速部署期</li>
+                <li><strong>反周期性</strong>：经济衰退时公共安全预算反而增加</li>
+            </ul>
+        </div>
+
+        <h3>7.6 芒格最终评价</h3>
+        <div class="highlight">
+            <strong>芒格会说：</strong>"Motorola Solutions是我喜欢的那种'无聊但必需'的公司——它做的对讲机和通信系统是警察/消防/军队'离不开的东西'，切换成本高到几乎不可能换。近100年的品牌信任+80%的市场份额+生命安全属性=近乎不可逾越的护城河。<br><br>
+            <strong>三个让我喜欢的地方：</strong>第一，生命安全属性——客户是警察/消防/军队，通信失败会死人，价格敏感度极低。第二，SaaS转型——Software & Services板块+13%增长且利润率32.5%，经常性收入占比持续提升。第三，Silvus新增长曲线——军用无人机通信是$数十亿新市场，MSI的全球销售网络+政府关系能加速Silvus商业化。<br><br>
+            <strong>三个让我警惕的地方：</strong>第一，估值不便宜——PE 28x在当前利率环境下有压力。第二，Silvus整合风险——$44亿收购是史上最大，执行风险高。第三，债务增加——Silvus收购后净债务$130亿+，利息支出侵蚀利润。<br><br>
+            <strong>巴菲特测试：</strong>'如果经济衰退，MSI会受影响吗？'——几乎不会。因为公共安全预算是反周期的——经济差时犯罪率上升，政府反而增加公共安全投入。MSI是罕见的'防御性增长股'——既有8%的营收增长，又有反周期的防御性。<br><br>
+            <strong>总体结论：</strong>MSI是一个'合理价格买入优质公共安全龙头'的机会。28x PE对于8%增速+30%利润率+深护城河的公司是合理估值，但不算便宜。建议在PE 22-25x（股价$340-390）区间建仓，获得更充分的安全边际。长期持有者可以当前价位小幅建仓，回调时加仓。"
+        </div>
+    </div>
+
+    <script src="scores_client.js"></script>
+    <script src="stock_topbar.js"></script>
+
+    <script>
+        // Chart.js 可视化
+        const ctx1 = document.getElementById('revenueChart').getContext('2d');
+        new Chart(ctx1, {
+            type: 'bar',
+            data: {
+                labels: ['FY2018','FY2019','FY2020','FY2021','FY2022','FY2023','FY2024','FY2025'],
+                datasets: [
+                    {
+                        label: '营收 ($B)',
+                        data: [7.34,7.49,7.42,8.17,9.11,9.98,10.82,11.68],
+                        backgroundColor: '#2e86c1'
+                    },
+                    {
+                        label: '经营现金流 ($B)',
+                        data: [1.30,1.45,1.60,1.75,1.65,2.05,2.35,2.80],
+                        backgroundColor: '#4CAF50'
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: { display: true, text: 'Motorola Solutions营收与经营现金流（FY2018-FY2025）' }
+                },
+                scales: {
+                    y: { beginAtZero: true, title: { display: true, text: '$B' } }
+                }
+            }
+        });
+
+        const ctx2 = document.getElementById('marginChart').getContext('2d');
+        new Chart(ctx2, {
+            type: 'line',
+            data: {
+                labels: ['FY2018','FY2019','FY2020','FY2021','FY2022','FY2023','FY2024','FY2025'],
+                datasets: [
+                    {
+                        label: '毛利率 (%)',
+                        data: [47.5,48.2,49.0,50.2,50.5,49.8,51.0,51.7],
+                        borderColor: '#2e86c1',
+                        backgroundColor: 'rgba(46,134,193,0.1)',
+                        fill: false,
+                        tension: 0.3
+                    },
+                    {
+                        label: '非GAAP运营利润率 (%)',
+                        data: [22.0,23.5,24.8,26.0,27.5,28.2,29.0,30.3],
+                        borderColor: '#4CAF50',
+                        backgroundColor: 'rgba(76,175,80,0.1)',
+                        fill: false,
+                        tension: 0.3
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: { display: true, text: 'Motorola Solutions利润率扩张（FY2018-FY2025）' }
+                },
+                scales: {
+                    y: { beginAtZero: false, title: { display: true, text: '%' } }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
