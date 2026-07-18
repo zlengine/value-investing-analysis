@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Allegion plc (ALLE) 详细分析</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; background-color: #f5f5f5; }
+        h1 { text-align: center; color: #333; }
+        h2 { color: #4CAF50; margin-top: 30px; }
+        h3 { color: #333; margin-top: 20px; }
+        h4 { color: #555; margin-top: 15px; }
+        .info-box { background-color: white; padding: 20px; margin: 20px 0; box-shadow: 0 0 10px rgba(0,0,0,0.1); border-radius: 5px; border-left: 4px solid #4CAF50; }
+        table { width: 100%; border-collapse: collapse; margin: 10px 0; }
+        th, td { padding: 8px; text-align: left; border-bottom: 1px solid #ddd; }
+        th { background-color: #4CAF50; color: white; }
+        tr:hover { background-color: #f5f5f5; }
+        a { color: #4CAF50; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        .highlight { background-color: #f8f9fa; padding: 12px 16px; border-left: 4px solid #2e86c1; margin: 12px 0; border-radius: 4px; }
+        .tag { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 12px; font-weight: 600; }
+        .tag-green { background-color: #d4edda; color: #155724; }
+        .tag-orange { background-color: #fff3cd; color: #856404; }
+        .tag-red { background-color: #f8d7da; color: #721c24; }
+        .moat-item { background-color: #e8f5e9; padding: 12px 16px; margin: 8px 0; border-radius: 4px; border-left: 4px solid #4CAF50; }
+        .risk-item { background-color: #ffebee; padding: 12px 16px; margin: 8px 0; border-radius: 4px; border-left: 4px solid #c62828; }
+        .chart-container { position: relative; height: 300px; margin: 20px 0; }
+        .top-nav-bar { position: fixed; top: 0; left: 0; right: 0; height: 44px; background: #2c3e50; display: flex; align-items: center; justify-content: flex-end; padding: 0 20px; z-index: 9999; box-shadow: 0 2px 8px rgba(0,0,0,0.15); gap: 8px; }
+        .top-nav-link { color: white; padding: 6px 16px; border-radius: 16px; text-decoration: none; font-size: 13px; transition: background 0.2s; white-space: nowrap; }
+        .section-nav {
+            background: white;
+            border-radius: 10px;
+            padding: 15px 25px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+        .section-nav a {
+            display: inline-block;
+            margin: 5px 10px;
+            padding: 6px 14px;
+            background: #eaf2f8;
+            color: #1a5276;
+            text-decoration: none;
+            border-radius: 15px;
+            font-size: 0.9em;
+        }
+        .section-nav a:hover {
+            background: #2e86c1;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="top-nav-bar"></div>
+    <script src="nav_bar.js?v=20260624"></script>
+    <span id="topbarCode" style="display:none;">ALLE</span>
+    <h1>Allegion plc (NYSE: ALLE)</h1>
+    <p style="text-align:center;color:#666;">巴菲特/芒格式价值投资基本面分析 | 更新日期：2026年7月</p>
+
+    <div class="section-nav">
+        <a href="#chapter1">公司基本信息</a>
+        <a href="#chapter2">业务分析</a>
+        <a href="#chapter3">业务板块产品竞争力分析</a>
+        <a href="#chapter4">历史财务指标</a>
+        <a href="#chapter5">竞争分析</a>
+        <a href="#chapter6">利润分配分析</a>
+        <a href="#chapter7">投资总结</a>
+    </div>
+
+    <!-- ===================== 第一章：公司基本信息 ===================== -->
+    <div class="info-box">
+        <h2 id="chapter1">一、公司基本信息</h2>
+        <table>
+            <tr><td>公司全称</td><td>Allegion plc</td></tr>
+            <tr><td>股票代码</td><td>NYSE: ALLE</td></tr>
+            <tr><td>市值</td><td>约120亿美元（2026年7月）</td></tr>
+            <tr><td>企业价值（EV）</td><td>约135亿美元</td></tr>
+            <tr><td>最新收盘价</td><td>约$136（2026年7月）</td></tr>
+            <tr><td>成立年份</td><td>2013年从Ingersoll Rand分拆独立上市，但旗下品牌百年历史（Schlage 1920年创立，Von Duprin 1908年创立）</td></tr>
+            <tr><td>注册总部</td><td>爱尔兰都柏林（税务注册地）</td></tr>
+            <tr><td>运营总部</td><td>美国印第安纳州卡梅尔（Carmel, Indiana）</td></tr>
+            <tr><td>员工数</td><td>约12,500人</td></tr>
+            <tr><td>FY2025营收</td><td>$40.67亿（+7.8% YoY 报告口径，+4.1% 有机增长）</td></tr>
+            <tr><td>FY2025净利润</td><td>$6.438亿（GAAP），EPS $7.44</td></tr>
+            <tr><td>FY2025调整后EPS</td><td>$8.14（+8.1% YoY）</td></tr>
+            <tr><td>FY2025经营现金流</td><td>$7.84亿（+16% YoY）</td></tr>
+            <tr><td>FY2025可用现金流</td><td>$6.857亿（+17.6% YoY）</td></tr>
+            <tr><td>客户结构</td><td>70%非住宅商业建筑+30%住宅；75%美洲+25%国际</td></tr>
+            <tr><td>PE（TTM）</td><td>~19x</td></tr>
+            <tr><td>股息率</td><td>~1.5%（连续12年提升股息）</td></tr>
+            <tr><td>主要品牌</td><td>Schlage、Von Duprin、LCN、CISA、SimonsVoss、interflex、Steelcraft、Falcon、Ives</td></tr>
+        </table>
+        <div class="highlight">
+            <strong>一句话概括：</strong>Allegion是全球门锁与门控安全产品的<strong>纯专业玩家</strong>，旗下Schlage（住宅锁#1）、Von Duprin（逃生装置#1）、LCN（闭门器领导品牌）、CISA（欧洲#1机械锁与电子锁）等品牌组合跨越商业和住宅市场。公司2013年从Ingersoll Rand分拆，承继了<strong>117年的Von Duprin品牌和105年的Schlage品牌</strong>。商业模式核心是"建筑师指定+分销商渠道+电子化转型"——建筑师在图纸上写明Schlage/Von Duprin，承包商就必需采购这些品牌，形成"图纸锁定"护城河。FY2025营收$40.67亿（+7.8%），可用现金流$6.86亿（+17.6%），连续12年提升股息，并通过$6.32亿并购加速电子化转型。
+        </div>
+    </div>
+
+    <!-- ===================== 第二章：业务分析 ===================== -->
+    <div class="info-box">
+        <h2 id="chapter2">二、业务分析</h2>
+
+        <h3>2.1 通俗解读：Allegion到底做什么？</h3>
+        <p>想象你走进一家医院、学校、办公楼或商场，<strong>每一扇门上的锁、闭门器、逃生装置（panic bar）、电子读卡器，大概率都是Allegion的产品</strong>。具体来说：</p>
+        <ul>
+            <li><strong>Schlage</strong>：你家的门锁、公寓大门锁、酒店房卡锁——Schlage是美国住宅锁<strong>第一品牌</strong>（市占率约30%+），1920年创立，已经105年</li>
+            <li><strong>Von Duprin</strong>：你看到的消防门上那个"按下推杆就能开门"的装置——叫"逃生装置"（exit device/panic bar），Von Duprin是<strong>北美第一品牌</strong>（市占率约50%+），1908年发明了第一台碰锁式逃生装置，至今117年</li>
+            <li><strong>LCN</strong>：你看到门自动关上时的那个"液压臂"——叫闭门器（door closer），LCN是行业标杆品牌</li>
+            <li><strong>CISA</strong>：意大利品牌，欧洲机械锁和电子锁领导品牌，覆盖欧洲住宅和商业市场</li>
+            <li><strong>SimonsVoss</strong>：德国电子门禁系统，定位高端电子锁</li>
+        </ul>
+        <p>Allegion的产品无处不在，但你可能没注意过——因为它做的是<strong>"不起眼但必需"</strong>的东西。每栋商业建筑都需要门锁、每扇消防门都需要逃生装置、每个办公室都需要门禁系统。这些产品单价不高（一个Schlage锁$50-300，一个Von Duprin逃生装置$200-800），但<strong>指定性强、替换成本高、品牌忠诚度高</strong>。</p>
+
+        <h3>2.2 业务板块（FY2025）</h3>
+        <table>
+            <tr><th>业务板块</th><th>FY2025营收</th><th>占比</th><th>同比增长</th><th>调整后运营利润率</th><th>说明</th></tr>
+            <tr><td><strong>Americas（美洲）</strong></td><td>$32.13亿</td><td>79%</td><td>+6.9%</td><td>27.9%</td><td>北美非住宅商业建筑是利润奶牛，住宅业务疲软</td></tr>
+            <tr><td><strong>International（国际）</strong></td><td>$8.54亿</td><td>21%</td><td>+14.5%（含并购）</td><td>9.0%</td><td>欧洲/亚太/中国，利润率显著低于美洲</td></tr>
+            <tr><td><strong>合计</strong></td><td><strong>$40.67亿</strong></td><td><strong>100%</strong></td><td><strong>+7.8%</strong></td><td><strong>23.2%</strong></td><td>—</td></tr>
+        </table>
+
+        <div class="highlight">
+            <strong>商业模式核心：</strong>Allegion的利润分布极度集中——<strong>美洲板块贡献了约90%的运营利润</strong>，国际板块只贡献10%。美洲板块的27.9%运营利润率是国际板块（9.0%）的3倍多。这种利润分布源于北美非住宅商业建筑市场的高利润率属性+Schlage/Von Duprin品牌的定价权+成熟的分销网络。管理层正在通过<strong>并购+剥离</strong>优化国际板块组合（如2025年$3.87亿收购德国ELATEC电子门禁），目标将国际利润率提升到双位数。
+        </div>
+
+        <h3>2.3 按产品类型划分</h3>
+        <table>
+            <tr><th>产品类型</th><th>占营收</th><th>增长趋势</th><th>关键品牌</th><th>说明</th></tr>
+            <tr><td><strong>机械产品（Mechanical）</strong></td><td>~75%</td><td>低个位数增长</td><td>Schlage、Von Duprin、LCN、CISA、Steelcraft</td><td>传统机械锁、逃生装置、闭门器、钢门</td></tr>
+            <tr><td><strong>电子产品（Electronic）</strong></td><td>~20%</td><td>低双位数增长</td><td>Schlage Engage、SimonsVoss、ELATEC</td><td>电子门禁、移动凭证、云端访问控制</td></tr>
+            <tr><td><strong>软件/服务（Software/Services）</strong></td><td>~5%</td><td>高速增长</td><td>Engage Platform、Cloud Access</td><td>SaaS订阅、维护服务、远程管理</td></tr>
+        </table>
+
+        <div class="highlight">
+            <strong>电子化转型是核心战略：</strong>Allegion正从"卖锁"转向"卖安全访问解决方案"。电子产品的低双位数增长远快于机械产品的低个位数增长，且利润率更高、有经常性收入属性。2025年$6.32亿并购中，ELATEC（$3.87亿）等大部分标的都是电子门禁相关。管理层目标：电子产品占比从20%提升到25-30%，带动整体毛利率和利润率持续扩张。<strong>这是Allegion从"硬件公司"向"硬件+软件生态"转型的关键。</strong>
+        </div>
+
+        <h3>2.4 按终端市场划分</h3>
+        <table>
+            <tr><th>终端市场</th><th>占美洲营收</th><th>FY2025有机增长</th><th>特点</th></tr>
+            <tr><td><strong>非住宅（Non-Residential）</strong></td><td>~70%</td><td>高个位数（HSD）</td><td>商业/教育/医疗/数据中心，利润奶牛，反周期性较弱</td></tr>
+            <tr><td><strong>住宅（Residential）</strong></td><td>~30%</td><td>低个位数下降</td><td>受房贷利率高企影响，需求疲软</td></tr>
+        </table>
+
+        <h3>2.5 地理分布（FY2025）</h3>
+        <table>
+            <tr><th>地区</th><th>占比</th><th>增长趋势</th><th>市场地位</th></tr>
+            <tr><td><strong>北美（美国+加拿大）</strong></td><td>~75%</td><td>强劲增长（HSD）</td><td>北美非住宅门锁/逃生装置绝对龙头</td></tr>
+            <tr><td><strong>欧洲、中东、非洲（EMEA）</strong></td><td>~17%</td><td>稳定（含并购驱动）</td><td>CISA意大利领导，SimonsVoss德国电子锁</td></tr>
+            <tr><td><strong>亚太</strong></td><td>~6%</td><td>稳定</td><td>中国/澳大利亚/印度扩张</td></tr>
+            <tr><td><strong>拉丁美洲</strong></td><td>~2%</td><td>稳定</td><td>墨西哥/巴西业务</td></tr>
+        </table>
+
+        <h3>2.6 商业模式核心优势</h3>
+        <div class="highlight">
+            <strong>"建筑师指定 + 分销渠道锁定"的复合护城河：</strong><br>
+            1. <strong>图纸指定锁定</strong>：商业建筑项目的建筑师在图纸上写明"Schlage锁"或"Von Duprin逃生装置"，承包商必须按图纸采购，难以替换——这是建筑行业最强的"品牌锁定"机制<br>
+            2. <strong>分销渠道深度</strong>：与全美10,000+分销商和"door preppers"（门预备商）深度合作，分销商库存Allegion全线产品，竞品进入渠道门槛高<br>
+            3. <strong>合规与生命安全绑定</strong>：消防门逃生装置必须通过UL/Fire Marshal认证，Allegion的Von Duprin产品通过所有认证且117年零重大事故——切换风险极高<br>
+            4. <strong>电子化生态锁定</strong>：Schlage Engage平台将硬件+移动凭证+云端管理绑定，客户一旦部署，软件切换成本激增<br>
+            5. <strong>反周期性</strong>：非住宅建筑维修改造（R&R）占60-70%营收，比新建建筑（新开工）更具韧性，经济差时维修需求仍在
+        </div>
+    </div>
+
+    <!-- ===================== 第三章：业务板块产品竞争力分析 ===================== -->
+    <div class="info-box">
+        <h2 id="chapter3">三、业务板块产品竞争力分析</h2>
+
+        <h3>3.1 Americas非住宅机械产品（Von Duprin / LCN / Schlage商业）— 利润奶牛</h3>
+
+        <p><strong>1. 可替代性：<span class="tag tag-green">极低</span></strong></p>
+        <ul>
+            <li>主要替代方案：ASSA ABLOY（罗克力/Rixson）、dormakaba、Stanley Black &amp; Decker（BEST）</li>
+            <li>替代体验差距：Von Duprin的117年品牌+消防认证记录几乎不可复制，竞品虽能提供同类产品但缺乏"建筑师默认指定"地位</li>
+            <li>替代价格差距：Allegion产品比竞品溢价10-20%，但占总建筑成本比例极小（一栋$1亿建筑只买$20万锁），价格敏感度极低</li>
+            <li>替代趋势：<span class="tag tag-green">稳定</span>——商业建筑一旦指定品牌，几乎不会被替换</li>
+        </ul>
+
+        <p><strong>2. 客户转换成本：<span class="tag tag-green">极高</span></strong></p>
+        <ul>
+            <li>财务转换成本：一栋建筑换锁成本低（$10-50/锁），但需重新通过消防认证、培训维护人员、更新备件库存——综合成本是锁单价的5-10倍</li>
+            <li>合规转换成本：消防门逃生装置换品牌需重新通过UL认证和地方消防局审批，流程3-12个月</li>
+            <li>心理转换成本：设施经理对Von Duprin的信任是"安全信任"——出消防事故设施经理担责，所以倾向于选最知名品牌</li>
+            <li>分销渠道锁定：分销商和door preppers已习惯Allegion产品线，换品牌意味着重新培训+重新备件库存</li>
+            <li>量化评估：一个1000扇门的商业建筑换品牌总成本$50-100万+12个月过渡期</li>
+        </ul>
+
+        <p><strong>3. 定价权：<span class="tag tag-green">极强</span></strong></p>
+        <ul>
+            <li>历史涨价记录：FY2025美洲有机增长4.8%中，价格贡献约3-4个百分点，已连续多年涨价幅度跑赢通胀</li>
+            <li>涨价vs通胀：FY2025面临约$4,000万关税成本，全部通过涨价转嫁给客户</li>
+            <li>定价权来源：图纸指定+品牌主导+占建筑总成本极小（客户不愿为节省$5/锁冒消防风险）</li>
+            <li>定价权趋势：<span class="tag tag-green">稳定偏强</span>——非住宅需求强劲+电子化升级提升单客户价值</li>
+            <li>巴菲特测试：如果Allegion涨价10%，建筑商还会用Schlage吗？——会，因为建筑师指定了Schlage，且节省$30/锁不如避免消防验收问题</li>
+        </ul>
+
+        <p><strong>整体竞争力评级：★★★★★（5星）</strong></p>
+
+        <h3>3.2 Americas住宅产品（Schlage住宅锁）— 防御性业务</h3>
+
+        <p><strong>1. 可替代性：<span class="tag tag-orange">中等</span></strong></p>
+        <ul>
+            <li>主要替代方案：Kwikset（Spectrum Brands）、Yale（ASSA ABLOY）、智能锁品牌（August、Wyze、Eufy）</li>
+            <li>替代体验差距：Schlage与Kwikset是美国住宅锁双寡头，产品体验接近，但Schlage品牌高端定位略胜</li>
+            <li>替代趋势：<span class="tag tag-orange">竞争加剧</span>——智能锁新贵（August、Wyze）侵蚀DIY市场，但Schlage Encode智能锁在Home Depot渠道强势</li>
+        </ul>
+
+        <p><strong>2. 客户转换成本：<span class="tag tag-orange">中等</span></strong></p>
+        <ul>
+            <li>住宅锁切换成本低（消费者DIY即可换），但Schlage在Home Depot/Lowe's渠道的货架位置难撼动</li>
+            <li>Schlage Encode智能锁的云端管理订阅有一定锁定效应</li>
+        </ul>
+
+        <p><strong>3. 定价权：<span class="tag tag-orange">中等</span></strong></p>
+        <ul>
+            <li>住宅市场竞争激烈，Kwikset和智能锁新贵限制定价权</li>
+            <li>Schlage品牌有10-15%溢价但定价权不如商业业务</li>
+            <li>巴菲特测试：如果Schlage住宅锁涨价10%，消费者会换Kwikset——<strong>所以住宅业务定价权弱于商业</strong></li>
+        </ul>
+
+        <p><strong>整体竞争力评级：★★★☆☆（3星）</strong></p>
+
+        <h3>3.3 电子产品与SaaS（Engage平台 / SimonsVoss / ELATEC）— 增长引擎</h3>
+
+        <p><strong>1. 可替代性：<span class="tag tag-orange">中等</span></strong></p>
+        <ul>
+            <li>主要替代方案：ASSA ABLOY（HID Global）、dormakaba、Verkada、Genea、Brivo</li>
+            <li>替代体验差距：Allegion的Engage平台在中小型商业建筑（多户住宅、学校、办公室）有差异化，但大型企业市场不如HID Global</li>
+            <li>替代趋势：<span class="tag tag-orange">竞争激烈</span>——SaaS访问控制新贵（Verkada、Brivo）高速增长，但Allegion通过"硬件+软件"生态锁定差异化</li>
+        </ul>
+
+        <p><strong>2. 客户转换成本：<span class="tag tag-green">高</span></strong></p>
+        <ul>
+            <li>一旦部署Engage平台+移动凭证+云端管理，切换意味着更换所有读卡器+重新发卡+数据迁移</li>
+            <li>SaaS订阅模式有自然锁定效应（年合同+数据沉淀）</li>
+            <li>2025年$3.87亿收购ELATEC（德国电子门禁读卡器）加强欧洲电子化布局，扩展客户基础</li>
+        </ul>
+
+        <p><strong>3. 定价权：<span class="tag tag-green">强</span></strong></p>
+        <ul>
+            <li>SaaS订阅模式有年度涨价机制（3-5%）</li>
+            <li>电子产品毛利率高于机械产品，且经常性收入占比高</li>
+            <li>巴菲特测试：如果Engage订阅涨价5%，客户会换吗？——不会，因为切换成本（数据迁移+硬件更换）远超涨价金额</li>
+        </ul>
+
+        <p><strong>整体竞争力评级：★★★★☆（4星）</strong></p>
+
+        <h3>3.4 International业务（CISA / SimonsVoss / interflex）— 转型中</h3>
+
+        <p><strong>1. 可替代性：<span class="tag tag-orange">中等</span></strong></p>
+        <ul>
+            <li>主要替代方案：ASSA ABLOY（全球#1）、dormakaba（瑞士）、本地品牌</li>
+            <li>替代体验差距：CISA在欧洲（意大利/法国/西班牙）住宅市场有强势地位，但在商业和电子市场落后于ASSA ABLOY</li>
+            <li>替代趋势：<span class="tag tag-orange">稳定</span>——管理层正在通过剥离低毛利业务+收购电子业务优化组合</li>
+        </ul>
+
+        <p><strong>2. 客户转换成本：<span class="tag tag-orange">中等</span></strong></p>
+        <ul>
+            <li>欧洲市场分销渠道分散，客户转换成本低于美国</li>
+            <li>但CISA品牌在欧洲零售渠道（如建材超市）有强势货架位置</li>
+        </ul>
+
+        <p><strong>3. 定价权：<span class="tag tag-orange">中等偏弱</span></strong></p>
+        <ul>
+            <li>欧洲市场竞争激烈，ASSA ABLOY规模优势明显</li>
+            <li>国际板块运营利润率仅9.0%（vs 美洲27.9%），反映定价权较弱</li>
+            <li>巴菲特测试：如果CISA涨价10%，欧洲消费者会换ASSA ABLOY——<strong>国际业务定价权弱于美洲</strong></li>
+        </ul>
+
+        <p><strong>整体竞争力评级：★★★☆☆（3星）</strong></p>
+    </div>
+
+    <!-- ===================== 第四章：历史财务指标 ===================== -->
+    <div class="info-box">
+        <h2 id="chapter4">四、历史财务指标（2014-2025）</h2>
+
+        <h3>4.1 关键财务数据总览</h3>
+        <table>
+            <tr><th>财年</th><th>营收($B)</th><th>同比</th><th>净利润($M)</th><th>EPS($)</th><th>毛利率</th><th>运营利润率</th><th>经营现金流($M)</th><th>PE</th></tr>
+            <tr><td>2014</td><td>2.12</td><td>—</td><td>175.2</td><td>$1.85</td><td>40.30%</td><td>15.40%</td><td>~280</td><td>~22x</td></tr>
+            <tr><td>2015</td><td>2.07</td><td>-2%</td><td>153.9</td><td>$1.62</td><td>42.02%</td><td>17.34%</td><td>~290</td><td>~20x</td></tr>
+            <tr><td>2016</td><td>2.24</td><td>+8%</td><td>229.1</td><td>$2.42</td><td>44.22%</td><td>19.41%</td><td>~370</td><td>~22x</td></tr>
+            <tr><td>2017</td><td>2.41</td><td>+8%</td><td>273.3</td><td>$2.84</td><td>44.55%</td><td>20.45%</td><td>~430</td><td>~24x</td></tr>
+            <tr><td>2018</td><td>2.73</td><td>+13%</td><td>434.9</td><td>$4.50</td><td>42.95%</td><td>19.25%</td><td>~480</td><td>~21x</td></tr>
+            <tr><td>2019</td><td>2.85</td><td>+4%</td><td>401.8</td><td>$4.20</td><td>43.88%</td><td>19.80%</td><td>~470</td><td>~22x</td></tr>
+            <tr><td>2020</td><td>2.72</td><td>-5%</td><td>314.3</td><td>$3.30</td><td>43.34%</td><td>14.84%</td><td>~440</td><td>~27x</td></tr>
+            <tr><td>2021</td><td>2.87</td><td>+6%</td><td>483.0</td><td>$5.39</td><td>42.02%</td><td>18.49%</td><td>~460</td><td>~24x</td></tr>
+            <tr><td>2022</td><td>3.27</td><td>+14%</td><td>458.0</td><td>$5.19</td><td>40.42%</td><td>17.92%</td><td>~390</td><td>~20x</td></tr>
+            <tr><td>2023</td><td>3.65</td><td>+12%</td><td>540.4</td><td>$6.12</td><td>43.32%</td><td>19.40%</td><td>~540</td><td>~21x</td></tr>
+            <tr><td>2024</td><td>3.77</td><td>+3%</td><td>597.5</td><td>$6.82</td><td>44.23%</td><td>20.70%</td><td>~620</td><td>~19x</td></tr>
+            <tr><td><strong>2025</strong></td><td><strong>4.07</strong></td><td><strong>+8%</strong></td><td><strong>643.8</strong></td><td><strong>$7.44</strong></td><td><strong>45.20%</strong></td><td><strong>21.13%</strong></td><td><strong>784</strong></td><td><strong>~19x</strong></td></tr>
+        </table>
+
+        <div class="chart-container">
+            <canvas id="revenueChart"></canvas>
+        </div>
+        <div class="chart-container">
+            <canvas id="marginChart"></canvas>
+        </div>
+
+        <h3>4.2 ROE趋势（2015-2025）</h3>
+        <table>
+            <tr><th>财年</th><th>ROE</th><th>债务权益比</th><th>说明</th></tr>
+            <tr><td>2015</td><td>~640%（失真）</td><td>—</td><td>分拆初期股东权益极低，ROE失真</td></tr>
+            <tr><td>2016</td><td>~317%（失真）</td><td>—</td><td>股东权益仍较低</td></tr>
+            <tr><td>2017</td><td>~106%</td><td>—</td><td>股东权益开始正常化</td></tr>
+            <tr><td>2018</td><td>~82%</td><td>—</td><td>税务改革影响</td></tr>
+            <tr><td>2019</td><td>~57%</td><td>—</td><td>正常化</td></tr>
+            <tr><td>2020</td><td>~40%</td><td>—</td><td>疫情冲击</td></tr>
+            <tr><td>2021</td><td>~61%</td><td>190%</td><td>低利率环境下增加杠杆</td></tr>
+            <tr><td>2022</td><td>~54%</td><td>222%</td><td>杠杆高点</td></tr>
+            <tr><td>2023</td><td>~48%</td><td>153%</td><td>主动去杠杆</td></tr>
+            <tr><td>2024</td><td>~42%</td><td>133%</td><td>持续改善</td></tr>
+            <tr><td><strong>2025</strong></td><td><strong>~36%</strong></td><td><strong>96%</strong></td><td>债务权益比首次降至100%以下</td></tr>
+        </table>
+
+        <div class="highlight">
+            <strong>巴菲特/芒格视角：</strong><br>
+            1. <strong>营收CAGR 6%</strong>：从2014年$21.2亿增至2025年$40.7亿，11年CAGR约6%，稳健但不算高速<br>
+            2. <strong>利润率持续扩张</strong>：运营利润率从2014年的15.4%提升至2025年的21.1%，11年提升570个基点——电子化转型+运营杠杆+定价权释放<br>
+            3. <strong>ROE从失真到正常化</strong>：分拆初期因股东权益低导致ROE失真（600%+），现已正常化到~36%——仍然非常优秀<br>
+            4. <strong>债务大幅改善</strong>：债务权益比从2022年的222%降至2025年的96%——主动去杠杆+利润留存<br>
+            5. <strong>现金流转化率高</strong>：FY2025经营现金流$7.84亿，转化率约120%（净利润$6.44亿）——折旧摊销+营运资本管理优秀
+        </div>
+    </div>
+
+    <!-- ===================== 第五章：竞争分析 ===================== -->
+    <div class="info-box">
+        <h2 id="chapter5">五、竞争分析</h2>
+
+        <h3>5.1 主要竞争对手</h3>
+        <table>
+            <tr><th>竞争对手</th><th>年营收</th><th>市场定位</th><th>与Allegion的差异</th></tr>
+            <tr><td><strong>ASSA ABLOY (ASAZY)</strong></td><td>~$160亿</td><td>全球门锁与门禁#1</td><td>规模是Allegion 4倍，全球布局更深，但美国非住宅市场份额不如Allegion。Yale/HID Global/August品牌组合</td></tr>
+            <tr><td><strong>dormakaba (DRKNF)</strong></td><td>~$30亿</td><td>瑞士全球门锁#3</td><td>规模小于Allegion，欧洲和亚太更强，北美弱</td></tr>
+            <tr><td><strong>Stanley Black &amp; Decker (SWK)</strong></td><td>~$150亿</td><td>工具+安防多元化</td><td>旗下BEST和Sargent品牌，但安防只是多元化业务一部分，专注度不如Allegion</td></tr>
+            <tr><td><strong>Fortune Brands (FBIN)</strong></td><td>~$50亿</td><td>门窗和水暖多元化</td><td>旗下Master Lock门锁品牌，但已分拆水暖业务，专注度提升</td></tr>
+            <tr><td><strong>Spectrum Brands (SPB)</strong></td><td>~$30亿</td><td>消费品牌组合</td><td>旗下Kwikset住宅锁品牌，是Schlage在住宅市场的主要竞品</td></tr>
+            <tr><td><strong>Verkada（私有）</strong></td><td>~$5亿</td><td>云端视频监控+门禁SaaS</td><td>高速增长，在中小企业SaaS访问控制市场对Allegion Engage构成威胁</td></tr>
+        </table>
+
+        <h3>5.2 市场份额</h3>
+        <table>
+            <tr><th>市场</th><th>Allegion份额</th><th>主要竞争者</th><th>壁垒</th></tr>
+            <tr><td><strong>北美圆柱形门锁</strong></td><td><strong>28.5%（#1）</strong></td><td>ASSA ABLOY、dormakaba、Taiwan Fu Hsing</td><td>品牌+图纸指定+分销渠道</td></tr>
+            <tr><td><strong>北美逃生装置（Panic Bar）</strong></td><td>~50%+</td><td>ASSA ABLOY（Rixson）、dormakaba</td><td>117年品牌+消防认证+生命安全</td></tr>
+            <tr><td><strong>北美住宅锁</strong></td><td>~30%（#1）</td><td>Kwikset（Spectrum Brands）~30%、Yale</td><td>Home Depot/Lowe's渠道+品牌</td></tr>
+            <tr><td><strong>全球智能锁</strong></td><td>#2（~10%）</td><td>ASSA ABLOY ~16%</td><td>Schlage Encode智能锁+Engage平台</td></tr>
+            <tr><td><strong>全球门锁市场</strong></td><td>#2（~10%）</td><td>ASSA ABLOY ~18%</td><td>规模劣势在国际市场</td></tr>
+        </table>
+
+        <h3>5.3 经济护城河评估</h3>
+        <div class="moat-item">
+            <strong>护城河1：百年品牌组合（Schlage 105年+Von Duprin 117年）</strong>
+            <ul>
+                <li>Schlage和Von Duprin是北美商业建筑"默认指定"品牌——建筑师在设计图纸时直接写明品牌</li>
+                <li>117年Von Duprin零重大消防事故记录，是设施经理"安全信任"的代名词</li>
+                <li>新进入者需要数十年建立同等品牌信任——这是不可购买、不可加速的资产</li>
+            </ul>
+        </div>
+        <div class="moat-item">
+            <strong>护城河2：图纸指定锁定（Architectural Specification Lock-in）</strong>
+            <ul>
+                <li>商业建筑项目建筑师在设计阶段在图纸上指定品牌（如"Von Duprin 35A系列逃生装置"），承包商必须按图纸采购</li>
+                <li>一旦写入图纸，替换需建筑师重新出图+业主同意——摩擦极高</li>
+                <li>Allegion通过建筑师巡展、CEU课程、设计社区维持"指定率"——这是它独有的市场推广方式</li>
+                <li>这是建筑行业最强的"品牌锁定"机制，类似医疗行业的"医生指定"机制</li>
+            </ul>
+        </div>
+        <div class="moat-item">
+            <strong>护城河3：分销渠道深度（10,000+分销商+door preppers）</strong>
+            <ul>
+                <li>与全美10,000+分销商和door preppers（门预备商）深度合作</li>
+                <li>door preppers在工厂预装Allegion五金件，承包商拿到门时已装好——竞品进入需重新培训分销商</li>
+                <li>渠道库存Allegion全线产品，新进入者需投入数亿美元建立同等渠道</li>
+            </ul>
+        </div>
+        <div class="moat-item">
+            <strong>护城河4：电子化生态（Engage平台）</strong>
+            <ul>
+                <li>Schlage Engage平台将硬件+移动凭证+云端管理绑定</li>
+                <li>客户一旦部署，软件切换成本激增（数据迁移+硬件更换+用户重新培训）</li>
+                <li>SaaS订阅模式有经常性收入属性，FY2025电子产品增速低双位数，远快于机械产品</li>
+                <li>2025年$3.87亿收购ELATEC扩展欧洲电子门禁布局</li>
+            </ul>
+        </div>
+        <div class="moat-item">
+            <strong>护城河5：美洲非住宅统治地位（27.9%运营利润率）</strong>
+            <ul>
+                <li>美洲非住宅业务是Allegion的"利润奶牛"——27.9%运营利润率是国际板块（9.0%）的3倍多</li>
+                <li>非住宅R&R（维修改造）占60-70%营收，比新建建筑更具韧性</li>
+                <li>医疗、教育、数据中心等终端市场反周期性强——经济差时维修需求仍在</li>
+                <li>客户切换成本高（合规+品牌+渠道+流程）</li>
+            </ul>
+        </div>
+
+        <h3>5.4 护城河可持续性</h3>
+        <div class="highlight">
+            <strong>芒格视角：</strong>Allegion的护城河是<strong>"品牌+图纸指定+渠道"的复合护城河</strong>，特别在北美非住宅商业建筑市场近乎不可逾越。这不是技术护城河（机械锁技术门槛不高），而是<strong>"建筑师习惯+渠道惯性+生命安全信任"的复合护城河</strong>。新进入者即使有更好的产品，也很难让建筑师改变"默认写Schlage/Von Duprin"的习惯——因为建筑师不愿为节省$30/锁承担消防责任。电子化转型是双刃剑：一方面提升利润率和经常性收入，另一方面引入Verkada等SaaS新贵竞争。但Allegion通过"硬件+软件生态"差异化，且已有客户基础巨大，电子化转型更可能是<strong>增量机会</strong>而非威胁。
+        </div>
+
+        <h3>5.5 与ASSA ABLOY对比</h3>
+        <table>
+            <tr><th>维度</th><th>Allegion</th><th>ASSA ABLOY</th></tr>
+            <tr><td>营收</td><td>$40.7亿</td><td>$160亿（4倍）</td></tr>
+            <tr><td>运营利润率</td><td>21.1%</td><td>16-17%</td></tr>
+            <tr><td>市场地位</td><td>北美非住宅#1</td><td>全球#1</td></tr>
+            <tr><td>战略</td><td>纯专业玩家，聚焦美洲非住宅</td><td>多元化全球布局</td></tr>
+            <tr><td>电子化进度</td><td>20%营收（转型中）</td><td>~30%营收（领先）</td></tr>
+            <tr><td>股息率</td><td>~1.5%</td><td>~1.5%</td></tr>
+            <tr><td>ROE</td><td>~36%</td><td>~15%</td></tr>
+        </table>
+        <div class="highlight">
+            <strong>对比洞察：</strong>Allegion规模只有ASSA ABLOY的1/4，但运营利润率（21.1% vs 16-17%）和ROE（36% vs 15%）显著更高。这反映Allegion的<strong>"聚焦战略"</strong>——专注美洲非住宅高利润市场，而非全球多元化。巴菲特/芒格会更喜欢Allegion：更专注、更高利润率、更深护城河（在核心市场），估值也更合理（19x vs 25x）。
+        </div>
+    </div>
+
+    <!-- ===================== 第六章：利润分配分析 ===================== -->
+    <div class="info-box">
+        <h2 id="chapter6">六、利润分配分析（2018-2025）</h2>
+
+        <h3>6.1 利润分配总览</h3>
+        <table>
+            <tr><th>财年</th><th>净利润($M)</th><th>股息($M)</th><th>回购($M)</th><th>股东回报合计</th><th>回报率</th><th>并购($M)</th><th>可用现金流($M)</th></tr>
+            <tr><td>2018</td><td>434.9</td><td>115</td><td>350</td><td>465</td><td>107%</td><td>~50</td><td>~370</td></tr>
+            <tr><td>2019</td><td>401.8</td><td>125</td><td>250</td><td>375</td><td>93%</td><td>~100</td><td>~390</td></tr>
+            <tr><td>2020</td><td>314.3</td><td>135</td><td>50</td><td>185</td><td>59%</td><td>~30</td><td>~340</td></tr>
+            <tr><td>2021</td><td>483.0</td><td>150</td><td>300</td><td>450</td><td>93%</td><td>~150</td><td>~420</td></tr>
+            <tr><td>2022</td><td>458.0</td><td>165</td><td>250</td><td>415</td><td>91%</td><td>~200</td><td>~410</td></tr>
+            <tr><td>2023</td><td>540.4</td><td>180</td><td>200</td><td>380</td><td>70%</td><td>~150</td><td>~480</td></tr>
+            <tr><td>2024</td><td>597.5</td><td>195</td><td>150</td><td>345</td><td>58%</td><td>~147</td><td>583</td></tr>
+            <tr><td><strong>2025</strong></td><td><strong>643.8</strong></td><td><strong>210</strong></td><td><strong>100</strong></td><td><strong>310</strong></td><td><strong>48%</strong></td><td><strong>632</strong></td><td><strong>686</strong></td></tr>
+            <tr><td><strong>8年累计</strong></td><td><strong>~3,874</strong></td><td><strong>~1,275</strong></td><td><strong>~1,650</strong></td><td><strong>~2,925</strong></td><td><strong>~76%</strong></td><td><strong>~1,459</strong></td><td><strong>~3,679</strong></td></tr>
+        </table>
+        <p>注：FY2025股东回报率较低因当年$6.32亿并购部署（ELATEC等9个收购）；FY2020股东回报低因疫情不确定性；FY2024和FY2025可用现金流超过净利润，反映强现金流转化。</p>
+
+        <h3>6.2 资本配置质量评估</h3>
+        <div class="moat-item">
+            <strong>资本配置优势：</strong>
+            <ul>
+                <li><strong>连续12年提升股息</strong>：从2013年的$0.27/股（分拆首年）增至2025年的$2.04/股，CAGR 19%——分拆以来从未停止提升</li>
+                <li><strong>8年回购$16.5亿</strong>：股本从2018年~9,800万股缩减至2025年8,610万股，缩减12%+</li>
+                <li><strong>纪律性并购</strong>：FY2025 $6.32亿并购历史最高，但net debt/EBITDA仅1.6x——融资纪律严格</li>
+                <li><strong>R&D投入持续</strong>：FY2025 R&D约$1.4亿，占营收3.5%，维持电子化技术领先</li>
+                <li><strong>主动去杠杆</strong>：债务权益比从2022年222%降至2025年96%——优先修复资产负债表</li>
+            </ul>
+        </div>
+        <div class="risk-item">
+            <strong>资本配置风险：</strong>
+            <ul>
+                <li><strong>并购整合风险</strong>：FY2025完成9个收购，整合执行风险高</li>
+                <li><strong>ELATEC估值偏高</strong>：$3.87亿收购价对应~5x sales，需兑现电子化增长预期</li>
+                <li><strong>国际板块资本配置效率低</strong>：9%运营利润率，远低于美洲27.9%——资本可能被低效使用</li>
+                <li><strong>墨西哥供应链集中</strong>：20-25% COGS来自墨西哥，关税风险显著</li>
+            </ul>
+        </div>
+
+        <h3>6.3 可持续增长率</h3>
+        <div class="highlight">
+            <strong>可持续增长率 = ROE × 留存率</strong><br>
+            FY2025: 36% ROE × ~52% 留存率 = ~19% 理论可持续增长率<br>
+            <strong>实际营收增长7.8%</strong>——低于理论值，反映管理层选择将更多利润用于并购+股东回报而非单纯留存。<br><br>
+            <strong>芒格视角：</strong>"Allegion是典型的'现金机器+增长引擎'双轨公司——美洲非住宅业务每年产生$7-8亿现金流，足以同时支撑：①$2亿股息+回购回报股东，②$6亿并购部署加速电子化转型，③$1.4亿R&D维持技术领先。CEO John Stone（2017年上任）的资本配置能力可圈可点：8年累计回报股东$29亿+并购部署$15亿，同时债务权益比从222%降至96%。这是真正'既赚钱又会花钱'的管理团队。"
+        </div>
+    </div>
+
+    <!-- ===================== 第七章：投资总结 ===================== -->
+    <div class="info-box">
+        <h2 id="chapter7">七、投资总结</h2>
+
+        <h3>7.1 维度评分</h3>
+        <table>
+            <tr><th>维度</th><th>评分</th><th>理由</th></tr>
+            <tr><td>业务易懂性</td><td>★★★★★</td><td>"门锁和门控安全产品"，120岁也能理解</td></tr>
+            <tr><td>护城河</td><td>★★★★☆</td><td>百年品牌+图纸指定+渠道锁定，但国际市场护城河较弱</td></tr>
+            <tr><td>资本配置</td><td>★★★★☆</td><td>12年股息增长+纪律性并购+主动去杠杆</td></tr>
+            <tr><td>财务安全</td><td>★★★★☆</td><td>债务权益比降至96%+现金流转化率高，但墨西哥供应链集中</td></tr>
+            <tr><td>增长前景</td><td>★★★★☆</td><td>电子化转型+ Americas非住宅反周期性，CAGR 6-8%</td></tr>
+            <tr><td>估值吸引力</td><td>★★★★☆</td><td>PE 19x对于8%增速+36% ROE是合理偏低估值</td></tr>
+        </table>
+
+        <h3>7.2 综合评级</h3>
+        <div class="highlight">
+            <strong>综合评级：★★★★☆（4.2/5星）——"合理价格买入北美门锁龙头+图纸指定护城河+电子化转型加速期"</strong>
+        </div>
+
+        <h3>7.3 估值对比</h3>
+        <table>
+            <tr><th>公司</th><th>PE</th><th>EV/EBITDA</th><th>营收增速</th><th>运营利润率</th><th>ROE</th></tr>
+            <tr><td><strong>ALLE</strong></td><td><strong>~19x</strong></td><td><strong>~14x</strong></td><td><strong>+8%</strong></td><td><strong>21.1%</strong></td><td><strong>~36%</strong></td></tr>
+            <tr><td>ASSA ABLOY (ASAZY)</td><td>~25x</td><td>~16x</td><td>+5%</td><td>16.5%</td><td>~15%</td></tr>
+            <tr><td>dormakaba (DRKNF)</td><td>~18x</td><td>~11x</td><td>+3%</td><td>13.5%</td><td>~10%</td></tr>
+            <tr><td>Stanley Black &amp; Decker (SWK)</td><td>~22x</td><td>~14x</td><td>+2%</td><td>10%</td><td>~5%</td></tr>
+            <tr><td>Fortune Brands (FBIN)</td><td>~17x</td><td>~12x</td><td>+4%</td><td>15%</td><td>~20%</td></tr>
+        </table>
+        <div class="highlight">
+            <strong>估值洞察：</strong>Allegion的PE（19x）在同行中处于中等水平，但考虑到其<strong>最高ROE（36%）+ 第二高运营利润率（21.1%）+ 较高增速（8%）</strong>，估值显著低于ASSA ABLOY（25x）是合理偏低的。市场可能discount国际板块利润率（9%）和墨西哥关税风险，但Allegion的核心价值在美洲非住宅业务——这部分业务的内在价值远超当前市值。<strong>对于一家36% ROE + 8%增速 + 深护城河的公司，19x PE是合理偏低的估值。</strong>
+        </div>
+
+        <h3>7.4 关键风险</h3>
+        <div class="risk-item">
+            <ul>
+                <li><strong>墨西哥关税风险</strong>：20-25% COGS来自墨西哥，新关税可能侵蚀利润率（FY2025已通过涨价转嫁$4,000万关税）</li>
+                <li><strong>住宅市场疲软</strong>：高房贷利率抑制住宅需求，住宅业务连续两年下降</li>
+                <li><strong>国际板块利润率低迷</strong>：9%运营利润率，远低于美洲27.9%，资本可能被低效使用</li>
+                <li><strong>9个并购整合风险</strong>：FY2025完成9个收购，整合执行风险高</li>
+                <li><strong>SaaS新贵竞争</strong>：Verkada等云端访问控制新贵在中小企业市场威胁Allegion Engage</li>
+                <li><strong>规模劣势</strong>：全球市场只有ASSA ABLOY的1/4，国际市场成本竞争力弱</li>
+            </ul>
+        </div>
+
+        <h3>7.5 关键催化剂</h3>
+        <div class="moat-item">
+            <ul>
+                <li><strong>电子化转型加速</strong>：电子产品占比从20%提升到25-30%，带动利润率持续扩张</li>
+                <li><strong>ELATEC协同效应</strong>：$3.87亿收购扩展欧洲电子门禁布局，2026年贡献增量</li>
+                <li><strong>美洲非住宅反周期性</strong>：医疗、教育、数据中心终端市场不受住宅周期影响</li>
+                <li><strong>利率下行催化住宅复苏</strong>：Fed降息周期可能刺激住宅需求复苏</li>
+                <li><strong>国际板块利润率提升</strong>：管理层目标将国际利润率从9%提升到双位数，将贡献$50-75M增量运营利润</li>
+                <li><strong>12年股息增长延续</strong>：低股息率（1.5%）但有19% CAGR股息增长空间</li>
+            </ul>
+        </div>
+
+        <h3>7.6 芒格最终评价</h3>
+        <div class="highlight">
+            <strong>芒格会说：</strong>"Allegion是我喜欢的那种'无聊但必需'的公司——它做的门锁、逃生装置、闭门器是每栋商业建筑'离不开的东西'，117年的Von Duprin品牌+105年的Schlage品牌=建筑师默认指定的护城河。<br><br>
+            <strong>三个让我喜欢的地方：</strong>第一，'图纸指定'锁定——建筑师在图纸上写Schlage，承包商就必须买Schlage，这是建筑行业最强的品牌锁定机制。第二，美洲非住宅反周期性——经济差时维修改造需求仍在，27.9%运营利润率是真正的利润奶牛。第三，电子化转型——Engage平台+移动凭证+云端SaaS，从'卖锁'转向'卖安全访问解决方案'，利润率持续扩张。<br><br>
+            <strong>三个让我警惕的地方：</strong>第一，国际板块利润率低迷——9%运营利润率，远低于美洲27.9%，资本可能被低效使用。第二，墨西哥供应链集中——20-25% COGS来自墨西哥，关税风险显著。第三，9个并购整合风险——FY2025完成9个收购，执行风险高。<br><br>
+            <strong>巴菲特测试：</strong>'如果经济衰退，Allegion会受影响吗？'——会有一定影响，但远小于纯住宅建筑公司。因为Allegion的60-70%营收来自非住宅维修改造（R&R），这部分反周期性强——经济差时建筑业主更倾向于维修而非新建。同时商业建筑一旦建成就需要持续维护，锁和逃生装置不能"省"——省了会出消防事故。<br><br>
+            <strong>总体结论：</strong>Allegion是一个'合理价格买入北美门锁龙头'的机会。19x PE对于8%增速+36% ROE+21%运营利润率+深护城河的公司是合理偏低估值。与ASSA ABLOY（25x）相比有明显折价，反映市场对国际板块和墨西哥关税的担忧。建议在PE 17-19x（股价$125-140）区间建仓，长期持有享受电子化转型+股息增长+回购缩减股本的三重复利。Allegion是巴菲特/芒格最喜欢的'无聊但必需+深护城河+合理价格'类型公司。"
+        </div>
+    </div>
+
+    <script src="scores_client.js"></script>
+    <script src="stock_topbar.js"></script>
+
+    <script>
+        // Chart.js 可视化
+        const ctx1 = document.getElementById('revenueChart').getContext('2d');
+        new Chart(ctx1, {
+            type: 'bar',
+            data: {
+                labels: ['2014','2015','2016','2017','2018','2019','2020','2021','2022','2023','2024','2025'],
+                datasets: [
+                    {
+                        label: '营收 ($B)',
+                        data: [2.12, 2.07, 2.24, 2.41, 2.73, 2.85, 2.72, 2.87, 3.27, 3.65, 3.77, 4.07],
+                        backgroundColor: '#2e86c1'
+                    },
+                    {
+                        label: '经营现金流 ($B)',
+                        data: [0.28, 0.29, 0.37, 0.43, 0.48, 0.47, 0.44, 0.46, 0.39, 0.54, 0.62, 0.78],
+                        backgroundColor: '#4CAF50'
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: { display: true, text: 'Allegion营收与经营现金流（2014-2025）' }
+                },
+                scales: {
+                    y: { beginAtZero: true, title: { display: true, text: '$B' } }
+                }
+            }
+        });
+
+        const ctx2 = document.getElementById('marginChart').getContext('2d');
+        new Chart(ctx2, {
+            type: 'line',
+            data: {
+                labels: ['2014','2015','2016','2017','2018','2019','2020','2021','2022','2023','2024','2025'],
+                datasets: [
+                    {
+                        label: '毛利率 (%)',
+                        data: [40.30, 42.02, 44.22, 44.55, 42.95, 43.88, 43.34, 42.02, 40.42, 43.32, 44.23, 45.20],
+                        borderColor: '#2e86c1',
+                        backgroundColor: 'rgba(46,134,193,0.1)',
+                        fill: false,
+                        tension: 0.3
+                    },
+                    {
+                        label: '运营利润率 (%)',
+                        data: [15.40, 17.34, 19.41, 20.45, 19.25, 19.80, 14.84, 18.49, 17.92, 19.40, 20.70, 21.13],
+                        borderColor: '#4CAF50',
+                        backgroundColor: 'rgba(76,175,80,0.1)',
+                        fill: false,
+                        tension: 0.3
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: { display: true, text: 'Allegion利润率扩张（2014-2025）' }
+                },
+                scales: {
+                    y: { beginAtZero: false, title: { display: true, text: '%' } }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
