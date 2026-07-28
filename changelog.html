@@ -155,20 +155,22 @@
 
     <!-- 更新日志条目 - 按时间倒序排列，最新在最上面 -->
 
-    <div class="log-entry create">
+    <div class="log-entry fix">
         <div class="log-header">
             <span class="log-date">2026-07-28</span>
-            <span class="log-type create">新建</span>
+            <span class="log-type fix">修复</span>
         </div>
         <div class="log-desc">
             <ul>
-                <li>新建行业洞察页面"美股IT服务公司2024增长2025下滑原因深度分析"：回答用户通用行业问题。核心结论——AI驱动的"商业模式通缩"叠加宏观逆风+地缘冲击的三重打击，是IT服务行业30年来最大结构性转折。包含6章：(1)核心结论；(2)2024年利润大增5大原因(云迁移最后浪潮/人天计费模式顶峰/IT预算从降本转增长/大型合同集中签约/利率改善提升估值)；(3)2025年利润大跌7大原因(AI通缩效应20-50%/客户行为从工时到结果转变/订单失速首次下滑/利润率双重挤压/地缘政治冲击中东4亿美元/AI平台直接竞争/估值崩塌PE从20x跌至10x)；(4)典型案例分析(Accenture单日暴跌18%裁员11000人/Cognizant相对韧性EPS+11%/Infosys FY26指引0-3%/印度Nifty IT指数2025年-12.6%+2026YTD-20.7%)；(5)芒格"创造性破坏"教科书案例+巴菲特"能力圈"原则；(6)投资5大启示+行业分化预测(领导者增长8-10% vs 落后者损失45-50%价值)。包含1个Chart.js可视化(行业增长率与利润率变化趋势2023-2026E)。数据来源：Bain/Reuters/Bloomberg/各公司财报</li>
+                <li><strong>修正违规操作：</strong>删除错误新建的"行业洞察"页面(it-services-industry-analysis.html)，将IT服务行业分析内容正确迁移到已有IT公司页面中。按项目规则第5条"如果问题不针对特定公司，选择最相关的公司页面更新"，将内容作为新章节添加到it.html(Gartner高德纳-第8章)和bah.html(Booz Allen Hamilton-第10章)两个最相关的IT/技术服务公司页面中，并针对每家公司的独特定位添加了差异化分析(Gartner的"决策保险"反脆弱定位 vs BAH的"政府刚需"vs Accenture等商业IT服务公司的AI通缩冲击)。同时从index.html移除了错误的"行业洞察"链接条目。</li>
             </ul>
         </div>
         <div class="log-files">
-            <span class="added">+ it-services-industry-analysis.html (新建行业洞察页面)</span><br>
-            <span class="modified">~ index.html (新增行业洞察链接)</span><br>
-            <span class="modified">~ changelog.html (新增日志条目)</span>
+            <span class="deleted">- it-services-industry-analysis.html (删除错误新建的行业洞察页面)</span><br>
+            <span class="modified">~ index.html (移除行业洞察链接条目)</span><br>
+            <span class="modified">~ it.html (Gartner新增第8章+导航更新)</span><br>
+            <span class="modified">~ bah.html (BAH新增第10章+导航更新)</span><br>
+            <span class="modified">~ changelog.html (修正日志条目)</span>
         </div>
     </div>
 
