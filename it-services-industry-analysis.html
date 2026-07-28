@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>美股IT服务公司2024增长2025下滑原因深度分析</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f5f5f5;
+        }
+        h1 {
+            text-align: center;
+            color: #1a237e;
+        }
+        h2 {
+            color: #1a237e;
+            margin-top: 30px;
+        }
+        h3 {
+            color: #333;
+            margin-top: 20px;
+        }
+        .info-box {
+            background-color: white;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border-radius: 5px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #1a237e;
+            color: white;
+        }
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+        a {
+            color: #1a237e;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .highlight {
+            background-color: #e8eaf6;
+            padding: 15px;
+            border-left: 4px solid #1a237e;
+            margin: 15px 0;
+        }
+        .risk-box {
+            background-color: #fff3e0;
+            padding: 15px;
+            border-left: 4px solid #e65100;
+            margin: 15px 0;
+        }
+        .moat-box {
+            background-color: #e8f5e9;
+            padding: 15px;
+            border-left: 4px solid #2e7d32;
+            margin: 15px 0;
+        }
+        .chart-container {
+            background-color: white;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border-radius: 5px;
+        }
+        .section-nav {
+            background: white;
+            border-radius: 10px;
+            padding: 15px 25px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+        .section-nav a {
+            display: inline-block;
+            margin: 5px 10px;
+            padding: 6px 14px;
+            background: #eaf2f8;
+            color: #1a5276;
+            text-decoration: none;
+            border-radius: 15px;
+            font-size: 0.9em;
+        }
+        .section-nav a:hover {
+            background: #2e86c1;
+            color: white;
+        }
+        .top-nav-bar { position: fixed; top: 0; left: 0; right: 0; height: 44px; background: #2c3e50; display: flex; align-items: center; justify-content: flex-end; padding: 0 20px; z-index: 9999; box-shadow: 0 2px 8px rgba(0,0,0,0.15); gap: 8px; }
+        .top-nav-link { color: white; padding: 6px 16px; border-radius: 16px; text-decoration: none; font-size: 13px; transition: background 0.2s; white-space: nowrap; }
+    </style>
+</head>
+<body>
+    <div class="top-nav-bar"></div>
+    <script src="nav_bar.js?v=20260624"></script>
+
+    <h1>美股IT服务公司2024增长2025下滑原因深度分析</h1>
+    <p style="text-align:center;color:#666;">巴菲特/芒格视角行业洞察 | 更新日期：2026年7月</p>
+
+    <div class="section-nav">
+        <a href="#chapter1">核心结论</a>
+        <a href="#chapter2">2024年利润大增的原因</a>
+        <a href="#chapter3">2025年利润大跌的原因</a>
+        <a href="#chapter4">典型案例分析</a>
+        <a href="#chapter5">芒格视角</a>
+        <a href="#chapter6">投资启示</a>
+    </div>
+
+    <div class="info-box">
+        <h2 id="chapter1">一、核心结论</h2>
+        <div class="highlight">
+            <p><strong>美股IT服务公司（Accenture、Cognizant、Infosys、TCS、Wipro等）2024年利润大幅增长、2025年利润大幅下跌，本质上是"AI驱动的商业模式通缩"叠加"宏观经济逆风"和"地缘政治冲击"的三重打击。</strong></p>
+            <p>这不是普通的周期性下滑，而是IT服务行业<strong>沿用了30年的"人天计费"商业模式正在被AI从根本上颠覆</strong>的结构性转折。Bain研究警告：维持现状可能导致行业收入减少30%+、EBIT利润率损失5-7个百分点、5年内企业价值损失45-50%。</p>
+            <p>一句话概括：<strong>2024年是传统IT服务模式的"最后盛宴"，2025年是AI颠覆的"破局之年"。</strong></p>
+        </div>
+    </div>
+
+    <div class="info-box">
+        <h2 id="chapter2">二、2024年利润大幅增长的5大原因</h2>
+
+        <h3>2.1 云迁移与数字化转型的"最后浪潮"</h3>
+        <div class="moat-box">
+            <p>2020-2024年，全球企业IT支出因云迁移和数字化转型大增。2024年是后疫情时代企业IT支出的高峰：</p>
+            <ul>
+                <li><strong>云迁移项目集中落地</strong>：大量企业在2020-2022年启动的云迁移项目在2023-2024年进入交付高峰，应用开发与维护(ADM)业务繁荣</li>
+                <li><strong>数字化转型需求井喷</strong>：传统企业数字化转型需求从"可选"变为"必需"，BFSI（银行/金融/保险）、制造业、零售业大量外包IT项目</li>
+                <li><strong>遗留系统现代化</strong>：企业将老旧系统迁移到云端，需要大量人力进行代码重构、测试、集成</li>
+            </ul>
+        </div>
+
+        <h3>2.2 传统"人天计费"模式达到顶峰</h3>
+        <div class="info-box">
+            <p>IT服务公司的商业模式本质是"人力杠杆"：</p>
+            <ul>
+                <li><strong>金字塔结构</strong>：顶端合伙人拿项目 → 中间资深顾问管理 → 底座大量初级分析师执行（数据整理、代码撰写、PPT制作）</li>
+                <li><strong>收入=人数×人天单价</strong>：项目收费取决于投入多少人、做多少天</li>
+                <li><strong>2024年逻辑成立</strong>：AI虽已出现但尚未大规模商用，"知识与经验"仍被视为稀缺品，企业愿意付费购买专业团队劳动力</li>
+            </ul>
+            <p>2024年，Accenture、Infosys等公司人员规模达到历史高峰（Accenture近80万员工，TCS 60万+，Infosys 30万+），传统模式收入和利润同步增长。</p>
+        </div>
+
+        <h3>2.3 企业IT预算从"降本"转向"增长"</h3>
+        <div class="highlight">
+            <p>2024年企业IT预算从疫情期间的"降本收缩"转向"增长投资"：</p>
+            <ul>
+                <li>利率见顶预期下，企业discretionary（自由裁量）IT支出回升</li>
+                <li>生成式AI概念火热，企业开始探索AI应用，需要咨询公司帮助评估和试点</li>
+                <li>BFSI（银行/金融）板块因利率环境改善，IT支出率先复苏</li>
+            </ul>
+        </div>
+
+        <h3>2.4 大型合同集中签约</h3>
+        <div class="info-box">
+            <p>2024年IT服务公司签约了大量大型合同（TCV $100M+）：</p>
+            <ul>
+                <li>Infosys FY2025大型合同TCV达$116亿</li>
+                <li>Cognizant 2025年签约28个大型合同，大型合同TCV增长近50%</li>
+                <li>Accenture 2024年订单保持正增长</li>
+            </ul>
+            <p>这些合同在2024年开始贡献收入，推高了2024年的营收和利润基数。</p>
+        </div>
+
+        <h3>2.5 利率环境改善提升估值</h3>
+        <div class="moat-box">
+            <p>2024年下半年美联储开始降息预期升温，成长股估值回升，IT服务公司PE倍数扩张，市值达到高峰。但这种"估值驱动"的增长在2025年迅速逆转。</p>
+        </div>
+    </div>
+
+    <div class="info-box">
+        <h2 id="chapter3">三、2025年利润大幅下跌的7大原因</h2>
+
+        <h3>3.1 AI驱动的"通缩效应"（最核心原因）</h3>
+        <div class="risk-box">
+            <p><strong>这是2025年IT服务公司利润下滑的最根本原因。</strong>生成式AI从根本上颠覆了"人天计费"模式：</p>
+            <table>
+                <tr><th>传统工作</th><th>AI自动化后</th><th>影响</th></tr>
+                <tr><td>数据爬取与行业研究</td><td>AI几分钟完成初级顾问一周工作量</td><td>初级分析师岗位被替代</td></tr>
+                <tr><td>代码开发与测试</td><td>AI生成代码+自动测试</td><td>项目周期从周缩短到天</td></tr>
+                <tr><td>流程映射与文档</td><td>AI自动生成</td><td>标准化交付工作消失</td></tr>
+                <tr><td>应用维护(ADM)</td><td>AI自动监控+修复</td><td>占IT收入22-45%的业务受冲击</td></tr>
+            </table>
+            <p><strong>关键数据：</strong></p>
+            <ul>
+                <li>Prabhudas Lilladher估计：传统IT服务有<strong>20-50%的通缩影响</strong>（AI降低流程复杂度和周转时间）</li>
+                <li>Motilal Oswal预测：大型IT公司EPS可能下降<strong>10%</strong></li>
+                <li>Jefferies警告：应用管理服务（占IT收入22-45%）出现严重收入通缩</li>
+                <li>项目周期从"周"缩短到"天"，意味着同样工作量的收入大幅缩水</li>
+            </ul>
+        </div>
+
+        <h3>3.2 客户行为根本性转变：从"工时"到"结果"</h3>
+        <div class="risk-box">
+            <p>企业客户不再愿意为"人头+时间"付费，转而要求"按结果付费"：</p>
+            <ul>
+                <li><strong>客户内包(Insourcing)趋势</strong>：Santander、GM、P&G、Sainsbury's等大客户逆转外包合同，利用云"as-a-service"模式重建内部IT能力</li>
+                <li><strong>discretionary支出收缩</strong>：企业放慢非核心咨询项目决策，大型托管项目签约周期拉长</li>
+                <li><strong>从"使用案例"到"AI主导转型"</strong>：客户从试点AI转向要求规模化AI转型，但这需要更高技能而非更多人力</li>
+                <li><strong>美国联邦支出削减</strong>：GSA指令削减咨询支出，冲击Accenture 8%的美国政府收入</li>
+            </ul>
+        </div>
+
+        <h3>3.3 订单失速：增长引擎第一次踩刹车</h3>
+        <div class="risk-box">
+            <p>2025年订单（未来6-12个月收入的先行指标）首次出现同比下滑：</p>
+            <ul>
+                <li><strong>Accenture Q3 2025</strong>：总新签订单193亿美元，同比下滑约2%；核心的托管服务订单下滑3%</li>
+                <li><strong>订单周期拉长</strong>：大型长期托管项目签约周期普遍拉长，企业客户决策谨慎度显著提升</li>
+                <li><strong>这是结构性信号</strong>：过去几十年IT服务订单始终保持正增长，即使经济下行也只是增速放缓；2025年的同比下滑意味着企业咨询需求从"降本收缩"进入"实质萎缩"阶段</li>
+            </ul>
+        </div>
+
+        <h3>3.4 利润率双重挤压：成本上升+定价下降</h3>
+        <div class="risk-box">
+            <p>IT服务公司面临"成本端上涨+收入端下降"的双重挤压：</p>
+            <table>
+                <tr><th>维度</th><th>2024年</th><th>2025年变化</th><th>影响</th></tr>
+                <tr><td>毛利率</td><td>~32.6%（Accenture）</td><td>下降0.7个百分点至31.9%</td><td>全球人才工资通胀超过定价增长</td></tr>
+                <tr><td>重组费用</td><td>较低</td><td>Accenture $615M-$865M</td><td>裁员遣散费+资产减值</td></tr>
+                <tr><td>R&D支出</td><td>正常</td><td>Accenture下降29%至$817M</td><td>削减基础研究，聚焦AI</td></tr>
+                <tr><td>GenAI前期投资</td><td>较低</td><td>大幅增加</td><td>利用率低+回报滞后</td></tr>
+            </table>
+            <p><strong>关键问题：</strong>AI咨询收入增长不足以抵消传统高利润率业务的通缩。Accenture CEO Julie Sweet停止单独披露AI指标，称"AI已嵌入所有业务"——市场解读为<strong>"AI正在蚕食而非补充传统业务"</strong>。</p>
+        </div>
+
+        <h3>3.5 地缘政治冲击叠加</h3>
+        <div class="risk-box">
+            <p>2025年地缘政治事件对IT服务公司造成显著冲击：</p>
+            <ul>
+                <li><strong>中东冲突</strong>：Accenture披露累计冲击约<strong>4亿美元</strong>，Q3单季直接营收影响1亿美元；区域外全球企业客户也放慢非核心咨询项目决策</li>
+                <li><strong>经济民族主义抬头</strong>：关税不确定性增加IT支出压力，外国劳动力雇佣受限（影响印度IT公司H1B签证依赖）</li>
+                <li><strong>美国DOGE政府效率部门</strong>：削减联邦咨询支出，冲击政府业务占比高的公司</li>
+            </ul>
+        </div>
+
+        <h3>3.6 AI平台直接竞争</h3>
+        <div class="risk-box">
+            <p>新的竞争者直接侵蚀IT服务公司的传统领地：</p>
+            <ul>
+                <li><strong>OpenAI、Palantir等AI平台</strong>：开发直接替代传统IT服务的产品</li>
+                <li><strong>Hyperscalers（AWS/Azure/GCP）</strong>：开发平台级和应用级服务，直接与IT服务公司竞争</li>
+                <li><strong>客户自建AI能力</strong>：大企业建立全球能力中心(GCC)，减少外包依赖</li>
+            </ul>
+        </div>
+
+        <h3>3.7 估值崩塌：从"成长股"到"传统外包股"</h3>
+        <div class="risk-box">
+            <p>2025年IT服务公司估值逻辑根本性切换：</p>
+            <ul>
+                <li><strong>Accenture</strong>：PE从20倍+跌至不足10倍；2026年6月单日暴跌18%，市值从巅峰2000亿美元缩水至770亿美元</li>
+                <li><strong>印度Nifty IT指数</strong>：2025年下跌12.6%（同期Nifty 500上涨6.2%）；2026年YTD再跌20.7%</li>
+                <li><strong>美股软件指数</strong>：从2024年1月高点下跌34.7%，市值缩水1.4万亿美元</li>
+            </ul>
+            <p><strong>估值崩塌的根源</strong>：市场开始定价"AI将结构性降低IT服务公司的长期增长率和ROIC"——这不仅仅是周期性下滑，而是商业模式被颠覆的折价。</p>
+        </div>
+    </div>
+
+    <div class="info-box">
+        <h2 id="chapter4">四、典型案例分析</h2>
+
+        <h3>4.1 Accenture（ACN）——行业风向标</h3>
+        <table>
+            <tr><th>指标</th><th>FY2024</th><th>FY2025</th><th>变化</th></tr>
+            <tr><td>营收增长（本币）</td><td>强劲</td><td>7%</td><td>放缓</td></tr>
+            <tr><td>毛利率</td><td>32.6%</td><td>31.9%</td><td>-0.7pp</td></tr>
+            <tr><td>重组费用</td><td>—</td><td>$615M-$865M</td><td>大幅增加</td></tr>
+            <tr><td>裁员人数</td><td>—</td><td>11,000人</td><td>2025年底</td></tr>
+            <tr><td>新签订单增长</td><td>正增长</td><td>-1%~-2%</td><td>首次下滑</td></tr>
+            <tr><td>FY2026指引</td><td>—</td><td>2-5%→3-4%</td><td>下修</td></tr>
+            <tr><td>股价表现</td><td>—</td><td>年内-50%+</td><td>崩盘</td></tr>
+        </table>
+        <div class="risk-box">
+            <p><strong>关键事件：</strong>2026年6月18日，Accenture发布Q3 FY2026财报后股价单日暴跌17.97%，创上市以来最大单日跌幅。摩根士丹利将目标价从320美元砍至177美元。</p>
+            <p><strong>核心问题：</strong>Q3 GAAP利润低于预期24.5%，尽管收入增长。AI咨询收入增长不足以抵消传统高利润率业务的通缩。</p>
+        </div>
+
+        <h3>4.2 Cognizant（CTSH）——相对韧性</h3>
+        <table>
+            <tr><th>指标</th><th>2024</th><th>2025</th><th>变化</th></tr>
+            <tr><td>营收</td><td>$197.36亿</td><td>$211.08亿</td><td>+7.0%</td></tr>
+            <tr><td>GAAP运营利润率</td><td>14.7%</td><td>16.1%</td><td>+1.4pp</td></tr>
+            <tr><td>调整后EPS</td><td>$4.75</td><td>$5.28</td><td>+11%</td></tr>
+            <tr><td>大型合同</td><td>—</td><td>28个</td><td>TCV+50%</td></tr>
+        </table>
+        <div class="moat-box">
+            <p><strong>相对韧性原因：</strong>Cognizant 2025年表现相对较好，主要受益于：(1) Belcan收购贡献260bps增长；(2) AI builder战略推进；(3) 2022-2024年已经历重组，成本基础较低。但GAAP EPS包含一次性非现金税务费用$0.80。</p>
+        </div>
+
+        <h3>4.3 Infosys——印度IT龙头</h3>
+        <table>
+            <tr><th>指标</th><th>FY2024</th><th>FY2025</th><th>变化</th></tr>
+            <tr><td>营收增长（本币）</td><td>强劲</td><td>4.2%</td><td>放缓</td></tr>
+            <tr><td>运营利润率</td><td>~21%</td><td>21.1%</td><td>持平</td></tr>
+            <tr><td>大型合同TCV</td><td>—</td><td>$116亿</td><td>强劲</td></tr>
+            <tr><td>FY2026指引</td><td>—</td><td>0-3%</td><td>大幅下修</td></tr>
+        </table>
+        <div class="risk-box">
+            <p><strong>关键信号：</strong>Infosys FY2026指引0-3%增长，远低于历史水平（疫情前5-8%）。管理层明确表示"环境不确定"， discretionary支出延迟。</p>
+        </div>
+
+        <h3>4.4 印度IT行业整体</h3>
+        <div class="risk-box">
+            <p><strong>2025年Q1 FY26季度业绩：</strong></p>
+            <ul>
+                <li>利润率全面收缩：Tier-1受工资上涨、低利用率、GenAI前期投资冲击；Tier-2因定价和销量疲软下滑更严重</li>
+                <li>TCS营收同比-1.1%（US$口径），Infosys +4.8%，HCLTech -2.3%</li>
+                <li>BFSI、电信、医疗相对韧性；消费和制造业因关税担忧疲软</li>
+                <li>GenAI、云、数字化转型仍是兴趣点，但货币化滞后——客户聚焦试点而非规模化采用</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="info-box">
+        <h2 id="chapter5">五、芒格/巴菲特视角：这是"创造性破坏"的教科书案例</h2>
+
+        <h3>5.1 芒格的"创造性破坏"框架</h3>
+        <div class="moat-box">
+            <p>芒格常说："<strong>资本主义的本质就是创造性破坏</strong>。"熊彼特的创造性破坏理论在IT服务行业正在上演：</p>
+            <ul>
+                <li><strong>旧模式被摧毁</strong>："人天计费"的劳动密集型模式被AI自动化摧毁</li>
+                <li><strong>新模式被创造</strong>：AI咨询、平台工程、智能体交付等新模式涌现</li>
+                <li><strong>转型期痛苦</strong>：旧收入下降速度超过新收入增长速度，导致利润真空</li>
+            </ul>
+            <p>芒格会问的关键问题：<strong>"IT服务公司的护城河是否还在？"</strong> 答案是——传统护城河（人力规模、交付流程、客户关系）正在被AI侵蚀，而新的护城河（AI能力、平台资产、智能体生态）尚未完全建立。</p>
+        </div>
+
+        <h3>5.2 巴菲特的"能力圈"原则</h3>
+        <div class="moat-box">
+            <p>巴菲特会问：<strong>"我能预测10年后这些公司的盈利能力吗？"</strong></p>
+            <p>对于IT服务公司，答案是"<strong>不能</strong>"，因为：</p>
+            <ul>
+                <li>AI对传统业务的通缩程度不确定（20%还是50%？）</li>
+                <li>新AI业务的定价权和利润率不确定</li>
+                <li>客户内包vs外包的平衡点不确定</li>
+                <li>竞争格局不确定（AI平台是否直接蚕食IT服务？）</li>
+            </ul>
+            <p>巴菲特会回避这个处于"模式转型期"的行业，因为<strong>"在转型期预测盈利能力是愚蠢的"</strong>。</p>
+        </div>
+
+        <h3>5.3 行业分化：领导者vs落后者</h3>
+        <div class="highlight">
+            <p>Bain研究指出，IT服务行业将出现<strong>严重分化</strong>：</p>
+            <table>
+                <tr><th>维度</th><th>领导者</th><th>落后者</th></tr>
+                <tr><td>收入增长</td><td>8-10%</td><td>持平或负增长</td></tr>
+                <tr><td>利润率</td><td>维持或扩张</td><td>收缩5-7pp</td></tr>
+                <tr><td>估值倍数</td><td>扩张3-3.5倍</td><td>折价</td></tr>
+                <tr><td>5年企业价值</td><td>显著增长</td><td>损失45-50%</td></tr>
+            </table>
+            <p><strong>区分关键</strong>：能否果断转型——重塑产品组合、交付模式、P&L结构、操作系统。维持现状的公司将失去30%+收入。</p>
+        </div>
+    </div>
+
+    <div class="info-box">
+        <h2 id="chapter6">六、投资启示与结论</h2>
+
+        <h3>6.1 对投资者的5大启示</h3>
+        <div class="highlight">
+            <ol>
+                <li><strong>"便宜"不等于"价值"</strong>：Accenture PE跌至10倍以下看似便宜，但如果AI通缩持续，未来盈利可能进一步下滑——这是"价值陷阱"而非"价值机会"。巴菲特："以合理价格买入优秀业务，远胜于以便宜价格买入平庸业务。"</li>
+                <li><strong>警惕"模式转型期"的公司</strong>：当公司商业模式被颠覆时，传统估值方法（PE、PB、DCF）都不可靠，因为未来的盈利能力无法预测。</li>
+                <li><strong>区分周期性vs结构性</strong>：2025年IT服务下滑中，约60%是结构性（AI通缩），40%是周期性（宏观逆风+地缘政治）。周期性部分会恢复，结构性部分不会。</li>
+                <li><strong>关注"新护城河"建设进度</strong>：判断IT服务公司是否值得投资，关键看其AI能力建设进度——AI咨询收入占比、平台资产积累、智能体交付能力。Accenture已停止披露AI指标，这本身就是一个警示信号。</li>
+                <li><strong>行业分化是机会</strong>：Bain预测领导者将增长8-10%而落后者损失45-50%价值——这意味着即使行业整体下行，仍有结构性机会。Cognizant 2025年相对韧性（调整后EPS+11%）说明转型成功的公司仍能创造价值。</li>
+            </ol>
+        </div>
+
+        <h3>6.2 核心结论</h3>
+        <div class="risk-box">
+            <p><strong>美股IT服务公司2024年利润大增、2025年利润大跌，本质上是"AI驱动的商业模式通缩"从量变到质变的转折点。</strong></p>
+            <p>这不是一次普通的周期性下滑，而是IT服务行业30年来最大的结构性转折：</p>
+            <ul>
+                <li><strong>2024年是"最后盛宴"</strong>：传统"人天计费"模式达到顶峰，云迁移和数字化转型红利耗尽</li>
+                <li><strong>2025年是"破局之年"</strong>：AI从"概念"变为"商用工具"，开始系统性替代传统IT服务工作；叠加宏观经济逆风和地缘政治冲击，形成"完美风暴"</li>
+                <li><strong>未来是"分化时代"</strong>：领导者（果断转型者）将增长8-10%，落后者（维持现状者）将损失45-50%价值</li>
+            </ul>
+            <p><strong>对巴菲特/芒格式投资者的建议：</strong>在行业转型期，宁可错过也不要犯错。等待行业格局清晰化——看清楚哪些公司成功建立了"新护城河"（AI能力+平台资产+智能体生态），再考虑投资。当前阶段，IT服务行业整体处于巴菲特所说的"太难" basket——"我宁可跨过7英尺高的栏，也不愿跨过1英尺高的栏。"</p>
+        </div>
+
+        <h3>6.3 关键数据汇总</h3>
+        <table>
+            <tr><th>指标</th><th>2024年</th><th>2025年</th><th>趋势</th></tr>
+            <tr><td>行业增长率</td><td>4-5%（疫情前水平）</td><td>2-3%</td><td>显著放缓</td></tr>
+            <tr><td>利润率</td><td>正常</td><td>下降200+bps</td><td>结构性压力</td></tr>
+            <tr><td>估值倍数</td><td>20x+ PE</td><td>10x以下PE</td><td>折价</td></tr>
+            <tr><td>AI通缩影响</td><td>较小</td><td>20-50%</td><td>加速</td></tr>
+            <tr><td>客户内包趋势</td><td>不明显</td><td>明显加速</td><td>结构性</td></tr>
+            <tr><td>裁员规模</td><td>较小</td><td>Accenture 11,000人</td><td>重组加速</td></tr>
+            <tr><td>订单增长</td><td>正增长</td><td>首次下滑</td><td>警示信号</td></tr>
+        </table>
+
+        <div class="highlight">
+            <p><strong>数据来源：</strong>Bain & Company（2025年11月《The New Growth Equation for Tech Services》）、Reuters、Bloomberg、Economic Times、各公司财报（Accenture/Cognizant/Infosys/TCS）、IDBI Capital、Prabhudas Lilladher、Motilal Oswal、Jefferies、钛媒体等。</p>
+        </div>
+    </div>
+
+    <div class="chart-container">
+        <canvas id="itTrendChart" height="100"></canvas>
+    </div>
+
+    <script>
+        new Chart(document.getElementById('itTrendChart'), {
+            type: 'bar',
+            data: {
+                labels: ['2023', '2024', '2025', '2026E'],
+                datasets: [{
+                    label: '行业增长率 (%)',
+                    data: [3.5, 4.5, 2.5, 2.0],
+                    backgroundColor: ['#42a5f5', '#66bb6a', '#ef5350', '#ff7043'],
+                    borderColor: ['#1976d2', '#388e3c', '#d32f2f', '#e64a19'],
+                    borderWidth: 1
+                }, {
+                    label: '利润率变化 (bps)',
+                    data: [0, 50, -200, -100],
+                    type: 'line',
+                    borderColor: '#7b1fa2',
+                    backgroundColor: '#ba68c8',
+                    fill: false,
+                    yAxisID: 'y1'
+                }]
+            },
+            options: {
+                responsive: true,
+                title: {
+                    display: true,
+                    text: '美股IT服务行业：增长率与利润率变化趋势 (2023-2026E)',
+                    fontSize: 16
+                },
+                scales: {
+                    y: {
+                        type: 'linear',
+                        position: 'left',
+                        title: { display: true, text: '增长率 (%)' },
+                        min: 0, max: 8
+                    },
+                    y1: {
+                        type: 'linear',
+                        position: 'right',
+                        title: { display: true, text: '利润率变化 (bps)' },
+                        min: -300, max: 200,
+                        grid: { drawOnChartArea: false }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
