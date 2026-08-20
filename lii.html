@@ -3,52 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lennox International Inc. (LII) 详细分析</title>
+    <title>Lennox International (LII) 详细分析</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         body { font-family: Arial, sans-serif; margin: 20px; background-color: #f5f5f5; }
-        h1 { text-align: center; color: #333; }
-        h2 { color: #4CAF50; margin-top: 30px; }
+        h1 { text-align: center; color: #1a5276; }
+        h2 { color: #1a5276; margin-top: 30px; }
         h3 { color: #333; margin-top: 20px; }
-        .info-box { background-color: white; padding: 20px; margin: 20px 0; box-shadow: 0 0 10px rgba(0,0,0,0.1); border-radius: 5px; }
+        h4 { color: #555; margin-top: 15px; }
+        .info-box { background-color: white; padding: 20px; margin: 20px 0; box-shadow: 0 0 10px rgba(0,0,0,0.1); border-radius: 5px; border-left: 4px solid #1a5276; }
         table { width: 100%; border-collapse: collapse; margin: 10px 0; }
         th, td { padding: 8px; text-align: left; border-bottom: 1px solid #ddd; }
-        th { background-color: #4CAF50; color: white; }
+        th { background-color: #1a5276; color: white; }
         tr:hover { background-color: #f5f5f5; }
-        a { color: #4CAF50; text-decoration: none; }
+        a { color: #1a5276; text-decoration: none; }
         a:hover { text-decoration: underline; }
-        
-        
-        .fixed-topbar a:hover { text-decoration: underline; }
-        
-        
-        
-        
-            
-        
-        .topbar-select:focus { border-color: rgba(255,255,255,0.7); }
-        
-        
-        
-        
-        
-        .topbar-btn-save:hover { background: #219a52; }
-        
-        .topbar-btn-cancel:hover { background: rgba(255,255,255,0.2); }
-        
-        
-        
-        
-        .chart-container { background-color: white; padding: 20px; margin: 20px 0; box-shadow: 0 0 10px rgba(0,0,0,0.1); border-radius: 5px; }
-        canvas { max-width: 100%; height: 400px; }
-        .highlight { background-color: #e8f5e9; padding: 15px; border-radius: 5px; margin: 10px 0; }
+        .highlight { background-color: #eaf2f8; padding: 15px; border-left: 4px solid #1a5276; margin: 15px 0; border-radius: 4px; }
+        .risk-box { background-color: #fff3e0; padding: 15px; border-left: 4px solid #e65100; margin: 15px 0; border-radius: 4px; }
+        .moat-box { background-color: #e8f5e9; padding: 15px; border-left: 4px solid #2e7d32; margin: 15px 0; border-radius: 4px; }
         .tag { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 12px; font-weight: 600; }
         .tag-green { background-color: #d4edda; color: #155724; }
         .tag-orange { background-color: #fff3cd; color: #856404; }
         .tag-red { background-color: #f8d7da; color: #721c24; }
-                .top-nav-bar { position: fixed; top: 0; left: 0; right: 0; height: 44px; background: #2c3e50; display: flex; align-items: center; justify-content: flex-end; padding: 0 20px; z-index: 9999; box-shadow: 0 2px 8px rgba(0,0,0,0.15); gap: 8px; }
+        .moat-item { background-color: #e8f5e9; padding: 12px 16px; margin: 8px 0; border-radius: 4px; border-left: 4px solid #2e7d32; }
+        .risk-item { background-color: #ffebee; padding: 12px 16px; margin: 8px 0; border-radius: 4px; border-left: 4px solid #c62828; }
+        .chart-container { background-color: white; padding: 20px; margin: 20px 0; box-shadow: 0 0 10px rgba(0,0,0,0.1); border-radius: 5px; }
+        .top-nav-bar { position: fixed; top: 0; left: 0; right: 0; height: 44px; background: #2c3e50; display: flex; align-items: center; justify-content: flex-end; padding: 0 20px; z-index: 9999; box-shadow: 0 2px 8px rgba(0,0,0,0.15); gap: 8px; }
         .top-nav-link { color: white; padding: 6px 16px; border-radius: 16px; text-decoration: none; font-size: 13px; transition: background 0.2s; white-space: nowrap; }
-            .section-nav {
+        .section-nav {
             background: white;
             border-radius: 10px;
             padding: 15px 25px;
@@ -76,576 +58,463 @@
     <div class="top-nav-bar"></div>
     <script src="nav_bar.js?v=20260624"></script>
     <span id="topbarCode" style="display:none;">LII</span>
-    <h1>Lennox International Inc. (NYSE: LII)</h1>
-    <p style="text-align:center;color:#666;">巴菲特/芒格式价值投资基本面分析 | 更新日期：2026年6月</p>
+    <h1>Lennox International (NYSE: LII)</h1>
+    <p style="text-align:center;color:#666;">巴菲特/芒格式价值投资基本面分析 | 更新日期：2026年8月</p>
 
     <div class="section-nav">
         <a href="#chapter1">公司基本信息</a>
         <a href="#chapter2">业务分析</a>
-        <a href="#chapter3">业务板块产品竞争力分析</a>
+        <a href="#chapter3">产品竞争力分析</a>
         <a href="#chapter4">历史财务指标</a>
         <a href="#chapter5">竞争分析</a>
         <a href="#chapter6">利润分配分析</a>
-        <a href="#chapter7">投资小结</a>
+        <a href="#chapter7">投资总结</a>
     </div>
 
-    <!-- 一、公司基本信息 -->
+    <!-- ===================== 第一章：公司基本信息 ===================== -->
     <div class="info-box">
         <h2 id="chapter1">一、公司基本信息</h2>
         <table>
-            <tr><td>公司全称</td><td>Lennox International Inc.（伦诺克斯国际）</td></tr>
+            <tr><th>项目</th><th>详情</th></tr>
+            <tr><td>公司全称</td><td>Lennox International Inc.</td></tr>
             <tr><td>股票代码</td><td>NYSE: LII</td></tr>
-            <tr><td>市值</td><td>约178亿美元（2026年6月）</td></tr>
-            <tr><td>企业价值（EV）</td><td>约190亿美元（TTM）</td></tr>
-            <tr><td>成立时间</td><td>1895年，由Dave Lennox创立</td></tr>
-            <tr><td>公司总部</td><td>美国德克萨斯州理查森（Richardson, TX）</td></tr>
-            <tr><td>最新收盘价</td><td>约$514（2026年6月中旬）</td></tr>
-            <tr><td>52周区间</td><td>$434.06 - $689.44</td></tr>
-            <tr><td>CEO</td><td>Alok Maskara（2022年就任）</td></tr>
-            <tr><td>员工人数</td><td>约14,200人</td></tr>
-            <tr><td>行业</td><td>HVAC（暖通空调）制造 / 气候控制解决方案</td></tr>
-            <tr><td>流通股数</td><td>约3,480万股</td></tr>
-            <tr><td>股息</td><td>$5.20/年（季息$1.30），股息率约1.0%</td></tr>
-            <tr><td>派息率</td><td>约21.5%</td></tr>
-            <tr><td>IPO时间</td><td>1999年上市</td></tr>
-            <tr><td>标普500成分股</td><td>是</td></tr>
+            <tr><td>市值（2026年8月）</td><td>约$151.6亿美元</td></tr>
+            <tr><td>企业价值（EV）</td><td>约$166.6亿美元（含净债务$1.74B）</td></tr>
+            <tr><td>最新收盘价（2026年8月7日）</td><td>$438.58</td></tr>
+            <tr><td>成立年份</td><td>1895年（David Lennox创立，130年历史）</td></tr>
+            <tr><td>总部</td><td>德州Richardson</td></tr>
+            <tr><td>员工数</td><td>约14,200人</td></tr>
+            <tr><td>FY2025营收</td><td>$52.0亿（同比-3%，LIFO转FIFO后）</td></tr>
+            <tr><td>FY2025 GAAP EPS</td><td>$22.79（调整后$23.16，+2%）</td></tr>
+            <tr><td>FY2025运营利润率</td><td>20.05%（130年历史首次突破20%）</td></tr>
+            <tr><td>FY2025自由现金流</td><td>$6.39亿</td></tr>
+            <tr><td>PE（TTM）</td><td>~19.4x</td></tr>
+            <tr><td>Forward PE</td><td>~18.9x</td></tr>
+            <tr><td>EV/EBITDA</td><td>~16.6x</td></tr>
+            <tr><td>股息率</td><td>~1.29%（季度股息$1.30/股）</td></tr>
+            <tr><td>剩余回购授权</td><td>$9.90亿</td></tr>
+            <tr><td>CEO</td><td>Alok Maskara（2025年就任）</td></tr>
+            <tr><td>行业</td><td>工业制造——HVAC（暖通空调）/制冷设备</td></tr>
+            <tr><td>业务覆盖</td><td>美国92% + 加拿大7% + 其他1%</td></tr>
+            <tr><td>关键品牌</td><td>Lennox, Armstrong Air, Ducane, Heatcraft</td></tr>
+            <tr><td>52周范围</td><td>$411.41 - $616.50</td></tr>
         </table>
-    </div>
-
-    <!-- 二、业务分析 -->
-    <div class="info-<h2 id="chapter2">二、业务分析</h2>h2>二、业务分析</h2>
-        <p>Lennox International是美国领先的暖通空调（HVAC）制造商。简单来说，就是制造你家和办公楼里用的空调、暖气和通风设备。公司还生产超市和冷链用的制冷设备。Lennox品牌在北美HVAC市场拥有极高的认知度，以高效节能著称。</p>
-
-        <h3>2.1 业务板块</h3>
-        <table>
-            <tr>
-                <th>业务板块</th>
-                <th>2025年营收</th>
-                <th>占比</th>
-                <th>说明</th>
-            </tr>
-            <tr>
-                <td>Home Comfort Solutions（HCS）</td>
-                <td>约$31.6亿</td>
-                <td>约61%</td>
-                <td>住宅HVAC：炉子、空调、热泵、室内空气质量设备、舒适控制产品、替换零部件</td>
-            </tr>
-            <tr>
-                <td>Building Climate Solutions（BCS）</td>
-                <td>约$20.4亿</td>
-                <td>约39%</td>
-                <td>商业HVAC+制冷：商业暖通设备、VRF系统、制冷系统（Heatcraft品牌）、零部件与服务</td>
-            </tr>
-            <tr style="font-weight:bold;">
-                <td>合计</td>
-                <td>$52.0亿</td>
-                <td>100%</td>
-                <td>FY2025全年营收</td>
-            </tr>
-        </table>
-
-        <h3>2.2 商业模式</h3>
-        <ul>
-            <li><strong>直销+经销商双渠道：</strong>HCS通过约6,000+独立经销商直销，BCS通过经销商和直接销售</li>
-            <li><strong>替换需求为主：</strong>约70%+收入来自替换市场（设备老化更换），受新房开工影响较小</li>
-            <li><strong>高附加值零部件：</strong>近年来通过收购Duro Dyne和Supco扩展零部件和服务生态</li>
-            <li><strong>制冷剂转型驱动：</strong>2025年美国强制切换至R-454B低GWP制冷剂，推动设备更新换代</li>
-        </ul>
-
-        <h3>2.3 地理分布</h3>
-        <p>几乎全部收入来自北美（美国+加拿大）。2023年底出售了欧洲HVAC和制冷业务，专注北美市场。制造基地在美国（阿肯色州Stuttgart等）和墨西哥（萨尔蒂约）。</p>
-    </div>
-
-    <!-- 三、产品竞争力分析 -->
-    <di<h2 id="chapter3">三、业务板块产品竞争力分析</h2>      <h2>三、业务板块产品竞争力分析</h2>
-
-        <h3>3.1 住宅HVAC产品竞争力分析</h3>
-        <p><strong>1. 可替代性：<span class="tag tag-orange">中等</span></strong></p>
-        <ul>
-            <li><strong>主要竞争者：</strong>Carrier Global（开利）、Trane Technologies（特灵）、Johnson Controls（约克）、Rheem（瑞美）</li>
-            <li><strong>替代体验差距：</strong>Lennox以最高能效产品著称（SLP99VK炉子效率99%，行业最高），但竞争对手产品也能满足基本需求</li>
-            <li><strong>替代趋势：</strong>R-454B制冷剂切换对所有厂商都是挑战，Lennox的技术准备度领先</li>
-        </ul>
-
-        <p><strong>2. 定价权：<span class="tag tag-green">强</span></strong></p>
-        <ul>
-            <li>Lennox品牌在经销商和消费者中有高端定位，享有价格溢价</li>
-            <li>2022-2024年成功实施提价策略，毛利率从27%提升至33%+</li>
-            <li>高能效产品（SEER2 20+）享有更高利润率</li>
-        </ul>
-
-        <p><strong>3. 客户粘性：<span class="tag tag-green">高</span></strong></p>
-        <ul>
-            <li>经销商一旦选择主推Lennox品牌，切换成本高（培训、库存、客户关系）</li>
-            <li>Lennox S40智能恒温器和PureAir空气净化系统形成生态锁定</li>
-            <li>替换市场客户倾向于购买与现有系统同品牌的产品</li>
-        </ul>
-
-        <h3>3.2 商业HVAC+制冷产品竞争力分析</h3>
-        <p><strong>1. 可替代性：<span class="tag tag-orange">中等</span></strong></p>
-        <ul>
-            <li>商业HVAC竞争者更多（Carrier、Trane、Daikin、Johnson Controls等）</li>
-            <li>Heatcraft制冷品牌在超市冷链领域有较强地位</li>
-            <li>零部件和服务业务（Duro Dyne、Supco）提供差异化</li>
-        </ul>
-    </div>
-
-    <!-- 四、历史财务<h2 id="chapter4">四、历史财务指标</h2>lass="info-box">
-        <h2>四、历史财务指标</h2>
-
-        <h3>4.1 净资产收益率（ROE）</h3>
-        <div class="chart-container">
-            <canvas id="roeChart"></canvas>
+        <div class="highlight">
+            <strong>一句话概括：</strong>Lennox International是北美专注的HVAC（暖通空调）龙头，1895年创立至今130年历史。<strong>核心资产不是工厂，而是"经销商网络+品牌+商业RTU领先地位"三位一体的护城河</strong>。FY2025是公司130年历史上首次实现年度segment利润率突破20%——这不是周期性运气，而是3年运营重组（定价纪律恢复+商业盈利能力重建+成本结构精益化）的结构性成果。但2025年7月OBBBA法案终止联邦HVAC税收抵免（每年$2,000），对住宅替换需求构成结构性逆风。
         </div>
-        <p>ROE从2020年的约50%飙升至2025年的78%，主要受益于利润率提升和股票回购导致的权益基数缩小。但极高ROE部分反映杠杆效应。</p>
-
-        <h3>4.2 资产负债率（Debt-to-Asset）</h3>
-        <div class="chart-container">
-            <canvas id="debtChart"></canvas>
-        </div>
-        <p>资产负债率在43-48%之间，总债务约$14亿，Debt/Equity约1.52倍。公司杠杆适中，利息覆盖倍数健康。</p>
-
-        <h3>4.3 市盈率（PE）</h3>
-        <div class="chart-container">
-            <canvas id="peChart"></canvas>
-        </div>
-        <p>当前PE约21-23倍，处于历史中等偏高水平。2022年PE曾低至12倍，当前估值已不便宜。</p>
-
-        <h3>4.4 关键财务指标汇总</h3>
-        <table>
-            <tr>
-                <th>指标</th>
-                <th>2020</th>
-                <th>2021</th>
-                <th>2022</th>
-                <th>2023</th>
-                <th>2024</th>
-                <th>2025</th>
-            </tr>
-            <tr>
-                <td>营收（$B）</td>
-                <td>3.6</td>
-                <td>4.2</td>
-                <td>4.7</td>
-                <td>5.0</td>
-                <td>5.3</td>
-                <td>5.2</td>
-            </tr>
-            <tr>
-                <td>净利润（$M）</td>
-                <td>356</td>
-                <td>464</td>
-                <td>497</td>
-                <td>590</td>
-                <td>807</td>
-                <td>806</td>
-            </tr>
-            <tr>
-                <td>毛利率</td>
-                <td>27.8%</td>
-                <td>28.6%</td>
-                <td>27.7%</td>
-                <td>30.1%</td>
-                <td>33.4%</td>
-                <td>33.4%</td>
-            </tr>
-            <tr>
-                <td>净利率</td>
-                <td>9.9%</td>
-                <td>11.0%</td>
-                <td>10.5%</td>
-                <td>11.8%</td>
-                <td>15.1%</td>
-                <td>15.5%</td>
-            </tr>
-            <tr>
-                <td>ROE</td>
-                <td>50.2%</td>
-                <td>57.8%</td>
-                <td>52.1%</td>
-                <td>61.3%</td>
-                <td>87.6%</td>
-                <td>78.1%</td>
-            </tr>
-            <tr>
-                <td>资产负债率</td>
-                <td>48.1%</td>
-                <td>46.8%</td>
-                <td>47.5%</td>
-                <td>44.8%</td>
-                <td>43.4%</td>
-                <td>43.4%</td>
-            </tr>
-            <tr>
-                <td>PE</td>
-                <td>25.6</td>
-                <td>27.8</td>
-                <td>12.3</td>
-                <td>26.8</td>
-                <td>25.9</td>
-                <td>21.3</td>
-            </tr>
-            <tr>
-                <td>自由现金流（$M）</td>
-                <td>410</td>
-                <td>445</td>
-                <td>490</td>
-                <td>560</td>
-                <td>639</td>
-                <td>639</td>
-            </tr>
-        </table>
     </div>
-<h2 id="chapter5">五、竞争分析</h2>析 -->
+
+    <!-- ===================== 第二章：业务分析 ===================== -->
     <div class="info-box">
-        <h2>五、竞争分析</h2>
+        <h2 id="chapter2">二、业务分析</h2>
+
+        <h3>2.1 通俗解读：Lennox到底做什么？</h3>
+        <p>想象你家夏天的空调和冬天的暖气——那台嗡嗡作响的机器，很可能就是Lennox制造的。Lennox做的就是<strong>"让室内温度舒适"</strong>的生意：制造和销售空调、暖气炉、热泵等HVAC（Heating, Ventilation, Air Conditioning）设备。</p>
+        <p>但Lennox不只是一个"造空调的"——它服务两类客户：</p>
+        <ul>
+            <li><strong>住宅客户（Home Comfort Solutions）</strong>：你家的中央空调、燃气炉、热泵、智能恒温器。当你的空调坏了，维修工会推荐一个品牌——如果他推荐Lennox，那是因为Lennox通过经销商网络培训了他、给了他工具和线索。</li>
+            <li><strong>商业客户（Building Climate Solutions）</strong>：超市的冷藏柜、写字楼的屋顶空调（RTU）、医院的精密温控。这些是"任务关键型"系统——坏了会影响营业甚至安全。</li>
+        </ul>
+        <p>关键洞察：<strong>住宅HVAC约70%是替换需求</strong>（不是新房安装），这意味着当系统坏了，客户需要快速替换，价格敏感度低——这就是"反周期性"的来源。</p>
+
+        <h3>2.2 业务板块（FY2025）</h3>
+        <table>
+            <tr><th>板块</th><th>FY2025营收</th><th>占比</th><th>Segment利润</th><th>利润率</th><th>说明</th></tr>
+            <tr><td><strong>Home Comfort Solutions (HCS)</strong><br>住宅HVAC</td><td>$33.4亿</td><td>64%</td><td>$7.29亿</td><td>21.8%</td><td>中央空调、燃气炉、热泵、IAQ、智能恒温器；FY2025营收-7%（渠道去库存+新房疲软）</td></tr>
+            <tr><td><strong>Building Climate Solutions (BCS)</strong><br>商业HVAC+制冷</td><td>$18.5亿</td><td>36%</td><td>$4.34亿</td><td>23.5%</td><td>屋顶空调(RTU)、冷水机组、超市制冷；FY2025增长+8%；利润率高于住宅</td></tr>
+            <tr><td><strong>合计</strong></td><td><strong>$52.0亿</strong></td><td><strong>100%</strong></td><td><strong>$11.6亿</strong></td><td><strong>22.4%</strong></td><td>Segment利润率130年首次突破20%</td></tr>
+        </table>
+
+        <h3>2.3 地理分布（TTM截至2026年3月）</h3>
+        <table>
+            <tr><th>地区</th><th>营收</th><th>占比</th><th>说明</th></tr>
+            <tr><td><strong>美国</strong></td><td>$48.7亿</td><td>92%</td><td>核心市场；住宅替换+商业RTU</td></tr>
+            <tr><td><strong>加拿大</strong></td><td>$3.86亿</td><td>7%</td><td>—</td></tr>
+            <tr><td><strong>其他</strong></td><td>$0.52亿</td><td>1%</td><td>—</td></tr>
+        </table>
+        <div class="risk-box">
+            <strong>地理集中度风险：</strong>92%收入来自美国——这是北美HVAC最专注的龙头之一（vs Carrier/Trane的全球化布局）。优势是美国HVAC市场利润率高；劣势是单一市场暴露于美国政策周期（如OBBBA法案）。
+        </div>
+
+        <h3>2.4 商业模式核心："经销商生态系统+替换需求"</h3>
+        <div class="moat-box">
+            <p><strong>Lennox的商业模式本质是"生态系统锁定"，而非简单卖设备：</strong></p>
+            <ol>
+                <li><strong>经销商网络（核心护城河）</strong>：Lennox通过认证的"Lennox Premier Dealers"销售——经销商接受培训、获得线索和工具、参与联合营销。一旦经销商选择主推Lennox，他不会轻易换品牌（因为培训投入和客户关系积累）</li>
+                <li><strong>替换需求（反周期性）</strong>：住宅HVAC约70%是替换需求。当系统坏了，客户需要快速替换，价格敏感度低——"空调坏了的德州房主不会为了省$500而等2周"</li>
+                <li><strong>商业服务收入（经常性）</strong>：BCS板块的服务合同和零件销售是经常性收入，利润率高且稳定</li>
+                <li><strong>智能生态（iComfort）</strong>：智能恒温器和控制平台将设备锁定在Lennox生态中，增加转换成本</li>
+            </ol>
+        </div>
+
+        <h3>2.5 增长驱动力</h3>
+        <table>
+            <tr><th>驱动力</th><th>说明</th><th>影响</th></tr>
+            <tr><td>R-454B新制冷剂转换</td><td>2025年起从高GWP制冷剂转向低GWP的R-454B，符合环保法规</td><td>提价机会+库存调整压力</td></tr>
+            <tr><td>电气化/热泵需求</td><td>美国和欧洲加速电气化，热泵替代燃气炉</td><td>结构性增长</td></tr>
+            <tr><td>AI数据中心冷却</td><td>数据中心对商业HVAC冷却需求激增（CAGR 9.78%）</td><td>BCS板块新增长曲线</td></tr>
+            <tr><td>老旧设备替换周期</td><td>美国住宅平均HVAC寿命15-20年，大量设备到达替换期</td><td>结构性需求</td></tr>
+            <tr><td>Samsung JV + Ariston JV</td><td>2024-2026年新合资：迷你分体/VRF + 住宅热水器</td><td>进入相邻市场</td></tr>
+            <tr><td>Heat Controller收购（2026年6月）</td><td>扩大分销和产品组合</td><td>+4%营收增长贡献</td></tr>
+        </table>
+    </div>
+
+    <!-- ===================== 第三章：产品竞争力分析 ===================== -->
+    <div class="info-box">
+        <h2 id="chapter3">三、业务板块产品竞争力分析</h2>
+
+        <h3>3.1 Home Comfort Solutions (HCS) — 住宅HVAC</h3>
+
+        <p><strong>1. 可替代性：<span class="tag tag-orange">中等</span></strong></p>
+        <ul>
+            <li>主要替代品牌：Carrier、Trane/American Standard、Daikin/Goodman、Rheem、Bosch</li>
+            <li>替代体验差距：各品牌高端产品（如Dave Lennox Signature Collection）在能效（SEER值）和静音上差异缩小，但Lennox在高效产品（99%能效燃气炉）领先</li>
+            <li>替代价格差距：Goodman/Daikin在中端市场以低价竞争，但高端市场Lennox品牌溢价显著</li>
+            <li>替代趋势：<span class="tag tag-orange">稳定</span>——R-454B制冷剂转换给所有品牌带来提价机会，但竞争格局基本稳定</li>
+        </ul>
+
+        <p><strong>2. 客户转换成本：<span class="tag tag-green">高</span></strong></p>
+        <ul>
+            <li>财务转换成本：全套替换$5,000-$15,000，但经销商推荐是主导决策因素</li>
+            <li>时间转换成本：经销商培训投入+客户关系积累；切换品牌需重新培训</li>
+            <li>心理转换成本：经销商习惯+客户品牌认知（Lennox在高端住宅有130年品牌）</li>
+            <li>捆绑转换成本：iComfort智能恒温器+Lennox设备+经销商服务形成生态</li>
+            <li>整体评估：经销商层面的转换成本高（培训+线索+联合营销投入），但 homeowner 层面中等</li>
+        </ul>
+
+        <p><strong>3. 定价权：<span class="tag tag-green">强</span></strong></p>
+        <ul>
+            <li>历史提价记录：FY2025在营收-3%的情况下通过"mix/price"贡献$84M正收益，说明能提价覆盖通胀</li>
+            <li>提价vs通胀：R-454B制冷剂转换+5%商品通胀被价格上调覆盖</li>
+            <li>定价权来源：品牌溢价（Dave Lennox Signature Collection）+经销商网络+高端定位</li>
+            <li>定价权趋势：<span class="tag tag-green">增强</span>——R-454B转换给了全行业提价机会；OBBBA终止税收抵免是逆风</li>
+            <li>巴菲特测试："如果Lennox提价10%？"——住宅替换是刚需，70%客户不会为了$500-1000差价等待2周；商业客户更关注可靠性和服务。定价权强但不极端。</li>
+        </ul>
+
+        <p><strong>整体竞争力评级：<span class="tag tag-green">4/5星</span></strong></p>
+
+        <h3>3.2 Building Climate Solutions (BCS) — 商业HVAC+制冷</h3>
+
+        <p><strong>1. 可替代性：<span class="tag tag-green">低</span></strong></p>
+        <ul>
+            <li>主要替代品牌：Carrier、Trane Technologies、Johnson Controls、Daikin</li>
+            <li>替代体验差距：商业RTU（屋顶空调）市场Lennox是领导者之一；超市制冷领域专业性强</li>
+            <li>替代趋势：<span class="tag tag-green">稳定</span>——商业客户更关注可靠性和长期服务，品牌忠诚度高</li>
+        </ul>
+
+        <p><strong>2. 客户转换成本：<span class="tag tag-green">极高</span></strong></p>
+        <ul>
+            <li>财务转换成本：商业系统安装$50,000-$500,000+；切换品牌需重新设计+安装+培训</li>
+            <li>时间转换成本：商业系统设计-安装-调试周期长（数月到1年）</li>
+            <li>服务合同锁定：BCS板块的服务合同是经常性收入，长期锁定客户</li>
+            <li>整体评估：商业HVAC转换成本极高——超市不会为了省$10,000而冒险换制冷品牌（坏了损失的是库存）</li>
+        </ul>
+
+        <p><strong>3. 定价权：<span class="tag tag-green">强</span></strong></p>
+        <ul>
+            <li>FY2025 BCS利润率23.5%（高于HCS的21.8%），说明定价权更强</li>
+            <li>数据中心冷却需求是新定价权来源（CAGR 9.78%）</li>
+            <li>巴菲特测试："如果BCS提价10%？"——商业客户的核心关注是"uptime"而非价格，定价权强</li>
+        </ul>
+
+        <p><strong>整体竞争力评级：<span class="tag tag-green">4.5/5星</span></strong></p>
+    </div>
+
+    <!-- ===================== 第四章：历史财务指标 ===================== -->
+    <div class="info-box">
+        <h2 id="chapter4">四、历史财务指标（2016-2025）</h2>
+
+        <h3>4.1 核心运营指标</h3>
+        <table>
+            <tr><th>年度</th><th>营收($B)</th><th>运营利润($M)</th><th>运营利润率</th><th>净利润($M)</th><th>EPS($)</th><th>FCF($M)</th></tr>
+            <tr><td>2016</td><td>3.64</td><td>414</td><td>11.4%</td><td>—</td><td>—</td><td>—</td></tr>
+            <tr><td>2017</td><td>3.84</td><td>414</td><td>10.8%</td><td>—</td><td>—</td><td>—</td></tr>
+            <tr><td>2018</td><td>3.88</td><td>424</td><td>10.9%</td><td>—</td><td>—</td><td>—</td></tr>
+            <tr><td>2019</td><td>3.81</td><td>441</td><td>11.6%</td><td>—</td><td>—</td><td>—</td></tr>
+            <tr><td>2020</td><td>3.63</td><td>479</td><td>13.2%</td><td>—</td><td>—</td><td>523</td></tr>
+            <tr><td>2021</td><td>4.19</td><td>590</td><td>14.1%</td><td>—</td><td>—</td><td>396</td></tr>
+            <tr><td>2022</td><td>4.72</td><td>656</td><td>13.9%</td><td>—</td><td>—</td><td>188</td></tr>
+            <tr><td>2023</td><td>4.98</td><td>792</td><td>15.9%</td><td>—</td><td>—</td><td>470</td></tr>
+            <tr><td>2024</td><td>5.34</td><td>1,040</td><td>19.5%</td><td>810</td><td>~$20</td><td>765</td></tr>
+            <tr><td>2025</td><td>5.20</td><td>1,043</td><td>20.1%</td><td>806</td><td>$22.79</td><td>639</td></tr>
+        </table>
+
+        <h3>4.2 ROE与资产负债率</h3>
+        <table>
+            <tr><th>年度</th><th>ROE</th><th>负债/权益</th><th>净债务($B)</th><th>毛利率</th><th>净利润率</th><th>说明</th></tr>
+            <tr><td>2020</td><td>负值</td><td>负值</td><td>1.05</td><td>28.6%</td><td>9.8%</td><td>负权益（激进回购导致）</td></tr>
+            <tr><td>2021</td><td>负值</td><td>负值</td><td>1.41</td><td>28.3%</td><td>11.1%</td><td>负权益持续</td></tr>
+            <tr><td>2022</td><td>负值</td><td>负值</td><td>1.70</td><td>27.2%</td><td>10.5%</td><td>负权益，但运营改善</td></tr>
+            <tr><td>2023</td><td>150.4%</td><td>3.89x</td><td>1.47</td><td>31.1%</td><td>11.9%</td><td>权益转正</td></tr>
+            <tr><td>2024</td><td>84.3%</td><td>1.55x</td><td>1.07</td><td>33.3%</td><td>15.2%</td><td>ROE回落（权益重建）</td></tr>
+            <tr><td>2025</td><td>69.3%</td><td>1.52x</td><td>1.74</td><td>33.4%</td><td>15.5%</td><td>ROE回归正常高水平</td></tr>
+        </table>
+
+        <div class="highlight">
+            <strong>巴菲特/芒格视角关键洞察：</strong>
+            <ul>
+                <li><strong>运营利润率从13.2%（2020）→20.1%（2025）</strong>——这不是周期性运气，而是3年运营重组的结构性成果：定价纪律恢复+商业盈利能力重建+成本结构精益化</li>
+                <li><strong>ROE从负值→69.3%</strong>——2020-2022年因激进回购导致权益为负（财务工程ROE）；2023年权益转正后ROE仍高达69.3%，说明运营ROE确实强劲</li>
+                <li><strong>毛利率从27.2%（2022）→33.4%（2025）</strong>——+620bps改善，反映高端产品mix+定价权+成本控制</li>
+                <li><strong>净债务从$1.70B（2022）→$1.74B（2025）</strong>——基本持平，说明利润增长不是靠加杠杆</li>
+            </ul>
+        </div>
+
+        <h3>4.3 PE比历史</h3>
+        <table>
+            <tr><th>年度</th><th>年末股价($)</th><th>EPS($)</th><th>PE</th><th>备注</th></tr>
+            <tr><td>2020</td><td>~$300</td><td>~$10</td><td>~30x</td><td>低利率+疫情后住宅需求</td></tr>
+            <tr><td>2021</td><td>~$390</td><td>~$12</td><td>~33x</td><td>增长高峰</td></tr>
+            <tr><td>2022</td><td>~$400</td><td>~$13</td><td>~31x</td><td>利率上行压力</td></tr>
+            <tr><td>2023</td><td>~$450</td><td>~$16</td><td>~28x</td><td>利润改善</td></tr>
+            <tr><td>2024</td><td>~$550</td><td>~$20</td><td>~28x</td><td>运营利润率突破</td></tr>
+            <tr><td>2025</td><td>~$500</td><td>$22.79</td><td>~22x</td><td>OBBBA逆风+Q4 miss</td></tr>
+            <tr><td>2026E</td><td>$438.58</td><td>$23.50-25.00</td><td>~18-19x</td><td>当前估值已回归合理</td></tr>
+        </table>
+
+        <div class="chart-container">
+            <canvas id="revenueMarginChart" height="100"></canvas>
+        </div>
+        <div class="chart-container">
+            <canvas id="roeChart" height="100"></canvas>
+        </div>
+    </div>
+
+    <!-- ===================== 第五章：竞争分析 ===================== -->
+    <div class="info-box">
+        <h2 id="chapter5">五、竞争分析</h2>
 
         <h3>5.1 主要竞争对手</h3>
         <table>
-            <tr>
-                <th>竞争对手</th>
-                <th>市值</th>
-                <th>HVAC市场份额</th>
-                <th>竞争特点</th>
-            </tr>
-            <tr>
-                <td>Carrier Global (CARR)</td>
-                <td>约$600亿</td>
-                <td>约25-30%</td>
-                <td>全球最大HVAC公司，产品线最全，规模优势明显</td>
-            </tr>
-            <tr>
-                <td>Trane Technologies (TT)</td>
-                <td>约$750亿</td>
-                <td>约20-25%</td>
-                <td>高端商业HVAC领先，ThermoKing冷链，利润率最高</td>
-            </tr>
-            <tr>
-                <td>Johnson Controls (JCI)</td>
-                <td>约$400亿</td>
-                <td>约10-15%</td>
-                <td>商业建筑自动化+HVAC，OpenBlue智能建筑平台</td>
-            </tr>
-            <tr>
-                <td>Rheem Manufacturing</td>
-                <td>私有</td>
-                <td>约8-10%</td>
-                <td>中端住宅HVAC，价格竞争力强</td>
-            </tr>
-            <tr>
-                <td>Daikin Industries</td>
-                <td>约$500亿</td>
-                <td>约5-8%（北美）</td>
-                <td>全球最大HVAC公司（日本），北美市场份额较低但增长快</td>
-            </tr>
+            <tr><th>竞争对手</th><th>市值</th><th>HVAC营收</th><th>优势</th><th>劣势</th></tr>
+            <tr><td><strong>Carrier Global (CARR)</strong></td><td>~$60B</td><td>~$25B</td><td>全球最大HVAC；多元化（制冷+消防+安防）；全球化布局</td><td>利润率低于LII；业务复杂度高</td></tr>
+            <tr><td><strong>Trane Technologies (TT)</strong></td><td>~$40B</td><td>~$17B</td><td>商业HVAC强；Trane/American Standard品牌；应用系统领先</td><td>住宅HVAC弱于LII</td></tr>
+            <tr><td><strong>Daikin Industries</strong></td><td>~$50B</td><td>~$22B</td><td>全球第一空调制造商；收购Goodman/Amina进入北美</td><td>中低端定位；利润率低于LII</td></tr>
+            <tr><td><strong>Johnson Controls (JCI)</strong></td><td>~$35B</td><td>~$15B</td><td>建筑自动化+HVAC整合；商业客户基础广</td><td>2024年分拆消防业务；专注度不足</td></tr>
+            <tr><td><strong>Lennox (LII)</strong></td><td>~$15B</td><td>$5.2B</td><td>北美最专注；利润率最高（20%+）；经销商网络深</td><td>规模最小；地理集中（92%美国）</td></tr>
         </table>
 
-        <h3>5.2 经济护城河评估</h3>
+        <h3>5.2 市场份额</h3>
         <table>
-            <tr>
-                <th>护城河类型</th>
-                <th>评分</th>
-                <th>分析</th>
-            </tr>
-            <tr>
-                <td>品牌力</td>
-                <td><span class="tag tag-green">强</span></td>
-                <td>Lennox品牌在北美住宅HVAC中有高端定位，Dave Lennox Signature Collection是行业标杆</td>
-            </tr>
-            <tr>
-                <td>经销商网络</td>
-                <td><span class="tag tag-green">强</span></td>
-                <td>6,000+独立经销商，深度绑定关系，切换成本高</td>
-            </tr>
-            <tr>
-                <td>技术领先</td>
-                <td><span class="tag tag-green">强</span></td>
-                <td>最高能效产品（SLP99VK 99%效率），R-454B制冷剂切换准备最充分，智能恒温器生态</td>
-            </tr>
-            <tr>
-                <td>转换成本</td>
-                <td><span class="tag tag-orange">中等</span></td>
-                <td>经销商切换品牌有成本，但不如软件行业那么高；消费者端转换成本较低</td>
-            </tr>
-            <tr>
-                <td>规模优势</td>
-                <td><span class="tag tag-orange">中等</span></td>
-                <td>相比Carrier和Trane，Lennox规模较小，但在住宅HVAC细分市场有竞争力</td>
-            </tr>
-            <tr>
-                <td>零部件生态</td>
-                <td><span class="tag tag-green">强</span></td>
-                <td>通过Duro Dyne和Supco收购扩展零部件生态，提高客户粘性和利润率</td>
-            </tr>
+            <tr><th>细分市场</th><th>市场规模</th><th>LII份额</th><th>主要竞争者份额</th></tr>
+            <tr><td>北美住宅HVAC</td><td>$20-25B</td><td>10-15%</td><td>Carrier ~25%；Daikin/Goodman ~20%；Trane ~15%</td></tr>
+            <tr><td>北美商业HVAC</td><td>$15-18B</td><td>15-20%</td><td>Carrier ~25%；Trane ~25%；JCI ~15%</td></tr>
+            <tr><td>超市制冷</td><td>~$5B</td><td>20-25%</td><td>Carrier/Heatcraft；Hussmann</td></tr>
         </table>
 
-        <h3>5.3 竞争优势可持续性</h3>
-        <ul>
-            <li><strong>制冷剂切换机遇：</strong>2025年R-454B强制切换将推动大量设备更新，Lennox技术准备最充分</li>
-            <li><strong>利润率领先：</strong>2025年首次实现年度利润率超20%，体现运营效率提升</li>
-            <li><strong>三星合资：</strong>与Samsung的合资企业将扩展VRF（变制冷剂流量）产品线</li>
-            <li><strong>风险：</strong>住宅市场疲软（高利率抑制需求）；渠道去库存；原材料和关税成本上升</li>
-        </ul><h2 id="chapter6">六、利润分配分析</h2><!-- 六、利润分配分析 -->
-    <div class="info-box">
-        <h2>六、利润分配分析</h2>
+        <h3>5.3 经济护城河评估</h3>
 
-        <h3>6.1 利润分配概况</h3>
-        <table>
-            <tr>
-                <th>年份</th>
-                <th>净利润($M)</th>
-                <th>分红($M)</th>
-                <th>回购($M)</th>
-                <th>CapEx($M)</th>
-                <th>FCF($M)</th>
-            </tr>
-            <tr>
-                <td>2020</td>
-                <td>356</td>
-                <td>58</td>
-                <td>200</td>
-                <td>85</td>
-                <td>410</td>
-            </tr>
-            <tr>
-                <td>2021</td>
-                <td>464</td>
-                <td>62</td>
-                <td>300</td>
-                <td>100</td>
-                <td>445</td>
-            </tr>
-            <tr>
-                <td>2022</td>
-                <td>497</td>
-                <td>68</td>
-                <td>350</td>
-                <td>110</td>
-                <td>490</td>
-            </tr>
-            <tr>
-                <td>2023</td>
-                <td>590</td>
-                <td>72</td>
-                <td>400</td>
-                <td>120</td>
-                <td>560</td>
-            </tr>
-            <tr>
-                <td>2024</td>
-                <td>807</td>
-                <td>78</td>
-                <td>500</td>
-                <td>130</td>
-                <td>639</td>
-            </tr>
-            <tr>
-                <td>2025</td>
-                <td>806</td>
-                <td>82</td>
-                <td>450</td>
-                <td>115</td>
-                <td>639</td>
-            </tr>
-        </table>
+        <div class="moat-item">
+            <strong>① 经销商网络（核心护城河）</strong> — <span class="tag tag-green">极强</span>
+            <p>Lennox通过认证的"Lennox Premier Dealers"网络销售，经销商接受培训、获得线索和工具、参与联合营销。一旦经销商选择主推Lennox，转换成本极高（培训投入+客户关系+联合营销积累）。这是LII最独特的资产——Carrier和Trane有更大规模，但LII的经销商忠诚度更深。</p>
+        </div>
 
-        <h3>6.2 利润分配特点</h3>
-        <ul>
-            <li><strong>积极回购：</strong>2020-2025年累计回购约$22亿，流通股从约4,200万减少至3,480万股（减少17%）</li>
-            <li><strong>适度派息：</strong>股息率约1.0%，派息率约21.5%，保守但稳步增长</li>
-            <li><strong>资本开支适中：</strong>CapEx占营收约2-2.5%，轻资产运营</li>
-            <li><strong>自由现金流强劲：</strong>FCF/营收约12-13%，资本效率高</li>
-            <li><strong>资本配置评价：</strong>优秀。管理层在2022年股价低迷时加大回购力度，体现了良好的时机把握能力</l<h2 id="chapter7">七、投资小结</h2>>
-    </div>
+        <div class="moat-item">
+            <strong>② 品牌（130年历史）</strong> — <span class="tag tag-green">强</span>
+            <p>Lennox品牌创立于1895年（130年），在高端住宅市场（Dave Lennox Signature Collection）和商业RTU市场有强大认知度。Armstrong Air和Ducane覆盖中端市场。</p>
+        </div>
 
-    <!-- 七、投资小结 -->
-    <div class="info-box">
-        <h2>七、投资小结</h2>
+        <div class="moat-item">
+            <strong>③ 商业RTU领先地位</strong> — <span class="tag tag-green">强</span>
+            <p>Lennox在北美商业屋顶空调（RTU）市场是领导者之一，份额15-20%。RTU是商业建筑标配，替换周期长+服务合同锁定=经常性收入。</p>
+        </div>
 
-        <h3>7.1 核心优势</h3>
-        <ul>
-            <li><strong>高端品牌定位：</strong>Lennox在住宅HVAC高端市场拥有最强品牌，最高能效产品享有溢价</li>
-            <li><strong>利润率持续提升：</strong>毛利率从27%→33%，营业利润率首次突破20%</li>
-            <li><strong>R-454B技术领先：</strong>制冷剂切换是行业性催化剂，Lennox准备最充分</li>
-            <li><strong>积极股东回报：</strong>5年回购17%流通股，FCF转化率12%+</li>
-            <li><strong>零部件生态扩展：</strong>Duro Dyne和Supco收购增强客户粘性和利润率</li>
-        </ul>
+        <div class="moat-item">
+            <strong>④ 替换需求反周期性</strong> — <span class="tag tag-green">强</span>
+            <p>住宅HVAC约70%是替换需求。当系统坏了，客户需要快速替换——"空调坏了的德州房主不会为了省$500而等2周"。这使LII在经济下行时仍有底线需求。</p>
+        </div>
 
-        <h3>7.2 主要风险</h3>
-        <ul>
-            <li><strong>住宅市场疲软：</strong>高利率抑制HVAC替换需求，渠道去库存持续</li>
-            <li><strong>竞争激烈：</strong>Carrier和Trane规模更大，Daikin在北美扩张</li>
-            <li><strong>制冷剂切换风险：</strong>R-454B产品可能面临初期质量问题和保修风险</li>
-            <li><strong>关税影响：</strong>墨西哥制造基地面临关税不确定性</li>
-            <li><strong>估值偏高：</strong>PE 21-23x，高于历史中位数</li>
-        </ul>
+        <div class="moat-item">
+            <strong>⑤ 智能生态（iComfort）</strong> — <span class="tag tag-orange">中等</span>
+            <p>iComfort智能恒温器和控制平台将设备锁定在Lennox生态中，但相比Carrier的Abound平台或Trane的Tracer，数字化深度仍有限。</p>
+        </div>
 
-        <h3>7.3 估值评估</h3>
-        <table>
-            <tr>
-                <th>指标</th>
-                <th>当前值</th>
-                <th>行业平均</th>
-                <th>评价</th>
-            </tr>
-            <tr>
-                <td>PE</td>
-                <td>约21x</td>
-                <td>约20x</td>
-                <td><span class="tag tag-orange">略贵</span></td>
-            </tr>
-            <tr>
-                <td>P/FCF</td>
-                <td>约28x</td>
-                <td>约22x</td>
-                <td><span class="tag tag-orange">偏贵</span></td>
-            </tr>
-            <tr>
-                <td>EV/EBITDA</td>
-                <td>约16x</td>
-                <td>约14x</td>
-                <td><span class="tag tag-orange">偏贵</span></td>
-            </tr>
-            <tr>
-                <td>股息率</td>
-                <td>1.0%</td>
-                <td>1.5%</td>
-                <td><span class="tag tag-orange">偏低</span></td>
-            </tr>
-        </table>
-
-        <h3>7.4 芒格式评估</h3>
-        <div class="highlight">
-            <p><strong>业务可理解性：</strong>高。制造和销售空调暖气设备，业务模式清晰。</p>
-            <p><strong>竞争优势持久性：</strong>中高。品牌+经销商网络+技术领先构成护城河，但HVAC行业竞争激烈。</p>
-            <p><strong>管理层资本配置：</strong>良好。Maskara领导下利润率大幅提升，回购时机把握得当，收购战略合理。</p>
-            <p><strong>安全边际：</strong>当前PE约21x，P/FCF约28x，估值偏高。理想买入价位在PE 16-17x（约$400-420），需等待市场回调。</p>
+        <div class="risk-item">
+            <strong>护城河侵蚀风险：</strong>
+            <ul>
+                <li><strong>OBBBA法案终止税收抵免</strong>：2025年12月31日终止联邦HVAC税收抵免（每年$2,000）——结构性逆风</li>
+                <li><strong>Daikin/Goodman低价竞争</strong>：在中端市场以低价侵蚀LII份额</li>
+                <li><strong>制冷剂转换风险</strong>：R-454B转换需要大量R&D投入+库存调整</li>
+                <li><strong>地理集中度</strong>：92%美国——单一政策/市场风险</li>
+            </ul>
         </div>
     </div>
 
-    <!-- 图表脚本 -->
+    <!-- ===================== 第六章：利润分配分析 ===================== -->
+    <div class="info-box">
+        <h2 id="chapter6">六、利润分配分析（2020-2025）</h2>
+
+        <h3>6.1 利润分配表</h3>
+        <table>
+            <tr><th>年度</th><th>净利润($M)</th><th>股息($M)</th><th>回购($M)</th><th>CapEx($M)</th><th>留存($M)</th><th>留存率</th></tr>
+            <tr><td>2020</td><td>~350</td><td>~50</td><td>~300</td><td>~76</td><td>0</td><td>0%</td></tr>
+            <tr><td>2021</td><td>~460</td><td>~55</td><td>~400</td><td>~91</td><td>5</td><td>1%</td></tr>
+            <tr><td>2022</td><td>~500</td><td>~60</td><td>~450</td><td>~71</td><td>0</td><td>0%</td></tr>
+            <tr><td>2023</td><td>~590</td><td>~65</td><td>~530</td><td>~169</td><td>0</td><td>0%</td></tr>
+            <tr><td>2024</td><td>~810</td><td>~70</td><td>~740</td><td>~146</td><td>0</td><td>0%</td></tr>
+            <tr><td>2025</td><td>806</td><td>~75</td><td>482</td><td>~139</td><td>249</td><td>31%</td></tr>
+        </table>
+
+        <div class="highlight">
+            <strong>资本配置质量评估：</strong>
+            <ul>
+                <li><strong>2020-2024年激进回购</strong>：5年累计回购约$24亿，导致权益一度为负——这是"财务工程"而非"价值创造"，但推动了EPS增长</li>
+                <li><strong>2025年转向保守</strong>：回购降至$482M（vs 2024年$740M），留存率31%——管理层开始重建权益</li>
+                <li><strong>股息增长温和</strong>：季度股息$1.30/股，股息率仅1.29%，派息率23.1%——低派息率给未来增长空间</li>
+                <li><strong>回购时机评估</strong>：2020-2021年在低估值回购（好时机）；2024年在$550高价回购（时机一般）——整体回购时机中等偏上</li>
+                <li><strong>剩余回购授权$9.9亿</strong>：在当前$438股价（低于2024年高点$617的29%）回购，时机较好</li>
+            </ul>
+        </div>
+
+        <h3>6.2 可持续增长率</h3>
+        <div class="info-box">
+            <p><strong>可持续增长率 = ROE × 留存率</strong></p>
+            <p>2025年：69.3% × 31% = <strong>21.5%</strong>——理论上LII可以不靠外源融资增长21.5%。</p>
+            <p>但实际2026年指引营收增长仅6-7%——说明管理层选择保守增长，将现金用于回购而非激进扩张。</p>
+            <p><strong>芒格视角</strong>："高ROE+低留存率+大量回购"是典型的好公司资本配置——用现金回购低估股票比留存乱投资更好。但2024年在$550高价回购需要警惕。</p>
+        </div>
+    </div>
+
+    <!-- ===================== 第七章：投资总结 ===================== -->
+    <div class="info-box">
+        <h2 id="chapter7">七、投资总结</h2>
+
+        <h3>7.1 维度评级</h3>
+        <table>
+            <tr><th>维度</th><th>评级</th><th>说明</th></tr>
+            <tr><td>业务易懂性</td><td><span class="tag tag-green">5/5</span></td><td>HVAC是120岁老人都能理解的生意——让室内温度舒适</td></tr>
+            <tr><td>护城河</td><td><span class="tag tag-green">4/5</span></td><td>经销商网络+品牌+RTU领先；但地理集中+OBBBA逆风</td></tr>
+            <tr><td>资本配置</td><td><span class="tag tag-green">4/5</span></td><td>高ROE+激进回购+低派息；但2024年高价回购需警惕</td></tr>
+            <tr><td>财务安全</td><td><span class="tag tag-orange">3/5</span></td><td>D/E 1.52x适中；净债务$1.74B；但权益刚从负值转正</td></tr>
+            <tr><td>增长前景</td><td><span class="tag tag-green">4/5</span></td><td>R-454B转换+电气化+数据中心冷却+2030目标$65-75亿</td></tr>
+            <tr><td>估值吸引力</td><td><span class="tag tag-green">4/5</span></td><td>PE 19x是5年低点；Forward PE 18.9x；目标价$511（+22%）</td></tr>
+        </table>
+
+        <h3>7.2 综合投资评级</h3>
+        <div class="moat-box">
+            <p><strong>综合评级：4.0/5星 — "合理价格买入优质HVAC龙头"</strong></p>
+            <p><strong>核心逻辑：</strong>Lennox是北美最专注的HVAC龙头，130年品牌+经销商网络+商业RTU领先地位构成深护城河。FY2025运营利润率首次突破20%（130年历史纪录），这是3年运营重组的结构性成果。当前PE 19x是5年低点，Forward PE 18.9x，估值已回归合理。</p>
+        </div>
+
+        <h3>7.3 关键催化剂</h3>
+        <ul>
+            <li><strong>R-454B制冷剂转换</strong>：全行业提价机会，2025-2027年逐步落地</li>
+            <li><strong>渠道去库存完成</strong>：一步渠道去库存基本完成，两步渠道预计2026年Q2正常化</li>
+            <li><strong>数据中心冷却需求</strong>：BCS板块新增长曲线（CAGR 9.78%）</li>
+            <li><strong>Samsung JV + Ariston JV</strong>：进入迷你分体/VRF + 住宅热水器相邻市场</li>
+            <li><strong>2030年目标</strong>：营收$65-75亿（vs 2025年$52亿），segment利润率22-23%</li>
+        </ul>
+
+        <h3>7.4 关键风险</h3>
+        <div class="risk-box">
+            <ul>
+                <li><strong>OBBBA法案终止税收抵免（最大风险）</strong>：2025年12月31日终止联邦HVAC税收抵免（每年$2,000），对住宅替换需求构成结构性逆风。2026年1-2月行业营收mid-single digit下降。</li>
+                <li><strong>住宅新房市场疲软</strong>：高利率环境下新房销售放缓，影响HCS新房安装需求</li>
+                <li><strong>商品通胀+关税</strong>：5%成本通胀+Section 232关税压力</li>
+                <li><strong>地理集中度</strong>：92%美国——单一市场政策/经济风险</li>
+                <li><strong>2026年Q2指引下调</strong>：营收miss+EPS beat但指引下调，反映管理层对短期需求谨慎</li>
+            </ul>
+        </div>
+
+        <h3>7.5 安全边际分析</h3>
+        <div class="highlight">
+            <p><strong>巴菲特/芒格视角：</strong></p>
+            <ul>
+                <li><strong>内在价值估算</strong>：如果LII在2030年实现$70亿营收+22% segment利润率，净利润约$12-13亿，EPS约$30-33。按18-20x PE，合理价值$540-660。当前$438有<strong>20-30%安全边际</strong>。</li>
+                <li><strong>但需考虑OBBBA逆风</strong>：如果住宅替换需求因税收抵免终止而永久下降10-15%，2030年EPS可能降至$26-28，合理价值$470-560——安全边际收窄至10-20%。</li>
+                <li><strong>建议</strong>：当前$438是5年低点区域，Forward PE 18.9x对20%+运营利润率+69% ROE的优质HVAC龙头合理偏便宜。可逐步建仓，等待Q2 2026渠道正常化+R-454B转换红利释放。</li>
+            </ul>
+        </div>
+
+        <h3>7.6 芒格最终判断</h3>
+        <div class="moat-box">
+            <p><strong>"Lennox卖的不是空调，而是'室内舒适保障'——当德州房主的空调在40度夏天坏了，他不会为了省$500而等2周。这种刚需+经销商网络锁定+130年品牌，构成真正的护城河。"</strong></p>
+            <p>"但OBBBA终止税收抵免是结构性逆风——这不是周期性问题，而是政策永久变化。如果住宅替换需求下降10-15%，估值需要重新评估。当前PE 19x是5年低点，但'便宜'不等于'安全'——需要确认2026年Q2渠道正常化后需求是否真正恢复。"</p>
+            <p>"<strong>好公司不等于好价格，但好价格的好公司更值得买。当前价格开始有意思了——如果Q2 2026确认渠道正常化，$438以下是可以考虑建仓的位置。</strong>"</p>
+        </div>
+    </div>
+
+    <div class="chart-container">
+        <canvas id="peHistoryChart" height="100"></canvas>
+    </div>
+
     <script src="scores_client.js"></script>
     <script src="stock_topbar.js"></script>
     <script>
-    (function(){
-        var code=document.getElementById('topbarCode').textContent.trim();
-        function starsHTML(val){var h='';for(var i=1;i<=5;i++){h+='<span class="'+(i<=val?'on':'off')+'">\u2605</span>';}return h;}
-        function valClass(v){return v>=5?'s5':v>=4?'s4':v>=3?'s3':v>=2?'s2':'s1';}
-        function renderDisplay(f,p){
-            document.getElementById('topbarFVal').textContent=f>0?f:'-';
-            document.getElementById('topbarFVal').className='topbar-score-val'+(f>0?' '+valClass(f):'');
-            document.getElementById('topbarFStars').innerHTML=starsHTML(f);
-            document.getElementById('topbarPVal').textContent=p>0?p:'-';
-            document.getElementById('topbarPVal').className='topbar-score-val'+(p>0?' '+valClass(p):'');
-            document.getElementById('topbarPStars').innerHTML=starsHTML(p);
-        }
-        function renderFromDB(){
-            var sc=ScoresDB.get(code);
-            renderDisplay(sc.fundamental||0, sc.price||0);
-        }
-        window.topbarEdit=function(){
-            var sc=ScoresDB.get(code);
-            document.getElementById('topbarFSel').value=sc.fundamental||0;
-            document.getElementById('topbarPSel').value=sc.price||0;
-            document.getElementById('topbarFSel').style.display='';
-            document.getElementById('topbarPSel').style.display='';
-            document.getElementById('topbarEditBtn').style.display='none';
-            document.getElementById('topbarSaveBtn').style.display='';
-            document.getElementById('topbarCancelBtn').style.display='';
-            document.getElementById('topbarFVal').style.display='none';
-            document.getElementById('topbarPVal').style.display='none';
-            document.getElementById('topbarFStars').style.display='none';
-            document.getElementById('topbarPStars').style.display='none';
-        };
-        window.topbarSave=function(){
-            var f=parseInt(document.getElementById('topbarFSel').value);
-            var p=parseInt(document.getElementById('topbarPSel').value);
-            ScoresDB.save(code, f, p);
-            topbarCancel();
-            renderFromDB();
-        };
-        window.topbarCancel=function(){
-            document.getElementById('topbarFSel').style.display='none';
-            document.getElementById('topbarPSel').style.display='none';
-            document.getElementById('topbarEditBtn').style.display='';
-            document.getElementById('topbarSaveBtn').style.display='none';
-            document.getElementById('topbarCancelBtn').style.display='none';
-            document.getElementById('topbarFVal').style.display='';
-            document.getElementById('topbarPVal').style.display='';
-            document.getElementById('topbarFStars').style.display='';
-            document.getElementById('topbarPStars').style.display='';
-        };
-        // 初始加载
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', renderFromDB);
-        } else {
-            renderFromDB();
-        }
-    })();
-    </script>
-    <script>
-
-        // ROE Chart
-        new Chart(document.getElementById('roeChart'), {
-            type: 'line',
+        // 营收与利润率趋势
+        new Chart(document.getElementById('revenueMarginChart'), {
+            type: 'bar',
             data: {
-                labels: ['2020','2021','2022','2023','2024','2025'],
+                labels: ['2020', '2021', '2022', '2023', '2024', '2025'],
                 datasets: [{
-                    label: 'ROE (%)',
-                    data: [50.2, 57.8, 52.1, 61.3, 87.6, 78.1],
-                    borderColor: '#2e86c1',
-                    backgroundColor: 'rgba(46,134,193,0.1)',
-                    fill: true,
-                    tension: 0.3
+                    label: '营收 ($B)',
+                    data: [3.63, 4.19, 4.72, 4.98, 5.34, 5.20],
+                    backgroundColor: '#5dade2',
+                    yAxisID: 'y'
+                }, {
+                    label: '运营利润率 (%)',
+                    data: [13.2, 14.1, 13.9, 15.9, 19.5, 20.1],
+                    type: 'line',
+                    borderColor: '#e74c3c',
+                    backgroundColor: '#ec7063',
+                    yAxisID: 'y1',
+                    fill: false
                 }]
             },
             options: {
                 responsive: true,
-                scales: { y: { beginAtZero: false, min: 40, title: { display: true, text: 'ROE (%)' } } },
-                plugins: { legend: { display: false } }
+                title: { display: true, text: 'LII营收与运营利润率趋势 (2020-2025)', fontSize: 16 },
+                scales: {
+                    y: { type: 'linear', position: 'left', title: { display: true, text: '营收 ($B)' }, min: 3, max: 6 },
+                    y1: { type: 'linear', position: 'right', title: { display: true, text: '运营利润率 (%)' }, min: 10, max: 25, grid: { drawOnChartArea: false } }
+                }
             }
         });
 
-        // Debt-to-Asset Chart
-        new Chart(document.getElementById('debtChart'), {
+        // ROE历史
+        new Chart(document.getElementById('roeChart'), {
             type: 'bar',
             data: {
-                labels: ['2020','2021','2022','2023','2024','2025'],
+                labels: ['2020', '2021', '2022', '2023', '2024', '2025'],
                 datasets: [{
-                    label: '资产负债率 (%)',
-                    data: [48.1, 46.8, 47.5, 44.8, 43.4, 43.4],
-                    backgroundColor: '#e67e22',
-                    borderColor: '#d35400',
+                    label: 'ROE (%)',
+                    data: [null, null, null, 150.4, 84.3, 69.3],
+                    backgroundColor: ['#ec7063', '#ec7063', '#ec7063', '#27ae60', '#27ae60', '#27ae60'],
+                    borderColor: ['#c0392b', '#c0392b', '#c0392b', '#1e8449', '#1e8449', '#1e8449'],
                     borderWidth: 1
                 }]
             },
             options: {
                 responsive: true,
-                scales: { y: { beginAtZero: true, title: { display: true, text: '资产负债率 (%)' }, max: 60 } },
-                plugins: { legend: { display: false } }
+                title: { display: true, text: 'LII ROE历史 (2020-2025) — 负权益期→权益重建', fontSize: 16 },
+                scales: {
+                    y: { title: { display: true, text: 'ROE (%)' }, min: 0, max: 180 }
+                },
+                plugins: {
+                    legend: { display: false }
+                }
             }
         });
 
-        // PE Chart
-        new Chart(document.getElementById('peChart'), {
-            type: 'bar',
+        // PE历史
+        new Chart(document.getElementById('peHistoryChart'), {
+            type: 'line',
             data: {
-                labels: ['2020','2021','2022','2023','2024','2025','当前'],
+                labels: ['2020', '2021', '2022', '2023', '2024', '2025', '2026E'],
                 datasets: [{
-                    label: 'PE Ratio',
-                    data: [25.6, 27.8, 12.3, 26.8, 25.9, 21.3, 21],
-                    backgroundColor: function(context) {
-                        var value = context.raw;
-                        if (value > 30) return '#c0392b';
-                        if (value > 25) return '#e67e22';
-                        return '#2e86c1';
-                    }
+                    label: '年末PE (x)',
+                    data: [30, 33, 31, 28, 28, 22, 19],
+                    borderColor: '#2e86c1',
+                    backgroundColor: '#5dade2',
+                    fill: true
                 }]
             },
             options: {
                 responsive: true,
-                scales: { y: { beginAtZero: true, title: { display: true, text: 'PE Ratio' } } },
-                plugins: { legend: { display: false } }
+                title: { display: true, text: 'LII年末PE历史 (2020-2026E) — 估值回归合理', fontSize: 16 },
+                scales: {
+                    y: { title: { display: true, text: 'PE (x)' }, min: 15, max: 35 }
+                }
             }
         });
     </script>
