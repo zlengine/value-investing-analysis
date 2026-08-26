@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRH plc (CRH) 价值投资分析</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            padding-top: 70px;
+            background-color: #f0f2f5;
+            color: #333;
+        }
+        h1 {
+            text-align: center;
+            color: #1a5276;
+            font-size: 2.2em;
+            margin-bottom: 5px;
+        }
+        h2 {
+            color: #1a5276;
+            border-bottom: 2px solid #2e86c1;
+            padding-bottom: 8px;
+            margin-top: 30px;
+        }
+        h3 {
+            color: #2c3e50;
+            margin-top: 20px;
+        }
+        h4 {
+            color: #2c3e50;
+            margin-top: 15px;
+        }
+        .subtitle {
+            text-align: center;
+            color: #7f8c8d;
+            font-size: 1.1em;
+            margin-bottom: 30px;
+        }
+        .info-box {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            background-color: white;
+        }
+        th, td {
+            padding: 10px 14px;
+            text-align: left;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        th {
+            background-color: #1a5276;
+            color: white;
+            font-weight: bold;
+        }
+        tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        tr:hover {
+            background-color: #eaf2f8;
+        }
+        .highlight {
+            background: #fef9e7;
+            border-left: 4px solid #2e86c1;
+            padding: 15px 20px;
+            margin: 15px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .chart-container {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+        .moat-item {
+            background: #eafaf1;
+            border-left: 4px solid #27ae60;
+            padding: 12px 18px;
+            margin: 10px 0;
+            border-radius: 0 6px 6px 0;
+        }
+        .risk-item {
+            background: #fdedec;
+            border-left: 4px solid #e74c3c;
+            padding: 12px 18px;
+            margin: 10px 0;
+            border-radius: 0 6px 6px 0;
+        }
+        .tag {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.85em;
+            font-weight: bold;
+            color: white;
+        }
+        .tag-green { background-color: #27ae60; }
+        .tag-orange { background-color: #e67e22; }
+        .tag-red { background-color: #e74c3c; }
+        .competitiveness-box {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            border: 1px solid #d5dbdb;
+        }
+        .rating-stars {
+            color: #f39c12;
+            font-size: 1.2em;
+        }
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .summary-card {
+            background: white;
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+        .summary-card .value {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #1a5276;
+        }
+        .summary-card .label {
+            color: #7f8c8d;
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
+        .section-nav {
+            background: white;
+            border-radius: 10px;
+            padding: 15px 25px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+        .section-nav a {
+            display: inline-block;
+            margin: 5px 10px;
+            padding: 6px 14px;
+            background: #eaf2f8;
+            color: #1a5276;
+            text-decoration: none;
+            border-radius: 15px;
+            font-size: 0.9em;
+        }
+        .section-nav a:hover {
+            background: #2e86c1;
+            color: white;
+        }
+        .top-nav-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 44px;
+            background: #2c3e50;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding: 0 20px;
+            z-index: 999;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+            gap: 8px;
+        }
+        .top-nav-link {
+            color: white;
+            padding: 6px 16px;
+            border-radius: 16px;
+            text-decoration: none;
+            font-size: 13px;
+            transition: background 0.2s;
+            white-space: nowrap;
+        }
+    </style>
+</head>
+<body>
+    <div class="top-nav-bar"></div>
+    <script src="nav_bar.js?v=20260624"></script>
+    <span id="topbarCode" style="display:none;">CRH</span>
+    <h1>CRH plc (NYSE: CRH)</h1>
+    <p class="subtitle">沃伦·巴菲特/查理·芒格风格 · 价值投资基本面分析 | 更新日期：2026年8月26日</p>
+
+    <div class="section-nav">
+        <a href="#chapter1">公司基本信息</a>
+        <a href="#chapter2">业务分析</a>
+        <a href="#chapter3">产品竞争力分析</a>
+        <a href="#chapter3-4">客户视角商业模式</a>
+        <a href="#chapter4">历史财务指标</a>
+        <a href="#chapter5">竞争分析</a>
+        <a href="#chapter6">利润分配分析</a>
+        <a href="#chapter7">投资总结</a>
+    </div>
+
+    <h2 id="chapter1">一、公司基本信息</h2>
+    <div class="info-box">
+        <table>
+            <tr><td style="width:30%;font-weight:bold;">公司全称</td><td>CRH plc（Cement Roadstone Holdings）</td></tr>
+            <tr><td style="font-weight:bold;">股票代码</td><td>CRH（NYSE主上市）/ Euronext Dublin</td></tr>
+            <tr><td style="font-weight:bold;">总部</td><td>爱尔兰都柏林（注册） / 美国纽约（运营总部，2023年迁入）</td></tr>
+            <tr><td style="font-weight:bold;">成立时间</td><td>1970年（由Cement Ltd 1936 + Roadstone Ltd 1949合并而成）</td></tr>
+            <tr><td style="font-weight:bold;">最新收盘价</td><td>$95.69（2026年8月24日）</td></tr>
+            <tr><td style="font-weight:bold;">市值</td><td>$70B+（约¥5,000亿）</td></tr>
+            <tr><td style="font-weight:bold;">PE（TTM）</td><td>16.4x</td></tr>
+            <tr><td style="font-weight:bold;">股息率（TTM）</td><td>~1.6%（年化$1.56，季度$0.39）</td></tr>
+            <tr><td style="font-weight:bold;">ROE（TTM）</td><td>16.5%</td></tr>
+            <tr><td style="font-weight:bold;">FY2025营收</td><td>$37.4B（+5% YoY）</td></tr>
+            <tr><td style="font-weight:bold;">FY2025净利润</td><td>$3.8B（+8% YoY）</td></tr>
+            <tr><td style="font-weight:bold;">FY2025 Adj EBITDA</td><td>$7.7B（+11% YoY）</td></tr>
+            <tr><td style="font-weight:bold;">Adj EBITDA利润率</td><td>20.5%（+100bps，连续12年扩张）</td></tr>
+            <tr><td style="font-weight:bold;">净利润率</td><td>10.1%（+20bps）</td></tr>
+            <tr><td style="font-weight:bold;">员工人数</td><td>83,032人</td></tr>
+            <tr><td style="font-weight:bold;">运营网络</td><td>3,961个地点 / 28个国家 / 900+采石场 / 60个水泥厂 / 400个沥青厂 / 1,000+预拌混凝土设施</td></tr>
+            <tr><td style="font-weight:bold;">S&P 500成分股</td><td>是（2025年12月纳入）</td></tr>
+            <tr><td style="font-weight:bold;">CEO</td><td>Jim Mintern（2025年就任）</td></tr>
+        </table>
+    </div>
+
+    <div class="highlight">
+        <strong>公司一句话：</strong>CRH是全球最大的建筑材料公司——你脚下踩的混凝土路面、头顶上桥的钢筋水泥、城市供水管道、户外步道砖，很可能用的就是CRH的材料。它把"挖石头、磨水泥、做混凝土、修路铺路"这件事做成了$374亿营收、28国布局的全球生意，是北美骨料/沥青/混凝土产品三大#1。
+    </div>
+
+    <h2 id="chapter2">二、业务分析</h2>
+
+    <div class="highlight">
+        <strong>一句话业务：</strong>CRH是"建筑材料垂直整合巨头"——从最上游的采石场（骨料），到中游的水泥/沥青/预拌混凝土，再到下游的建材产品（管道、预制件、户外景观砖），最后到施工服务（铺路、桥梁、土木工程），覆盖整个建筑价值链。这种"垂直整合+本地垄断"模式让CRH在每个区域市场都能截取多层利润，同时与大型基建客户形成深度绑定。
+    </div>
+
+    <h3>2.1 业务板块（FY2025）</h3>
+    <div class="info-box">
+        <table>
+            <tr>
+                <th>板块</th>
+                <th>营收</th>
+                <th>占比</th>
+                <th>Adj EBITDA</th>
+                <th>EBITDA利润率</th>
+                <th>核心市场</th>
+            </tr>
+            <tr>
+                <td><strong>Americas Materials Solutions (AMS)</strong></td>
+                <td>$17.0B</td>
+                <td>45.5%</td>
+                <td>$4.0B</td>
+                <td><span class="tag tag-green">23.5%</span></td>
+                <td>美国、加拿大（骨料+水泥+沥青+铺路）</td>
+            </tr>
+            <tr>
+                <td><strong>Americas Building Solutions (ABS)</strong></td>
+                <td>$7.1B</td>
+                <td>19.0%</td>
+                <td>$1.5B</td>
+                <td><span class="tag tag-green">20.7%</span></td>
+                <td>美国、加拿大（管道+预制+户外景观）</td>
+            </tr>
+            <tr>
+                <td><strong>International Solutions</strong></td>
+                <td>$13.3B</td>
+                <td>35.5%</td>
+                <td>$2.2B</td>
+                <td><span class="tag tag-orange">16.6%</span></td>
+                <td>欧洲（英爱法德波等）+ 澳大利亚</td>
+            </tr>
+            <tr style="font-weight:bold;background:#eaf2f8;">
+                <td>合计</td>
+                <td>$37.4B</td>
+                <td>100%</td>
+                <td>$7.7B</td>
+                <td>20.5%</td>
+                <td>28国</td>
+            </tr>
+        </table>
+        <p style="margin-top:15px;"><strong>板块特点：</strong>美洲业务（AMS+ABS）合计占营收64.5%，贡献EBITDA的71%，是利润率最高的核心；国际业务（欧洲+澳洲）占营收35.5%但EBITDA仅29%，利润率比美洲低690bps，是未来提升空间所在。</p>
+    </div>
+
+    <h3>2.2 价值链层级与营收分布</h3>
+    <div class="info-box">
+        <table>
+            <tr><th>价值链层级</th><th>业务内容</th><th>占营收</th><th>占EBITDA</th></tr>
+            <tr>
+                <td><strong>Layer 1-2 上游原材料</strong></td>
+                <td>骨料采石（碎石/砾石/砂）+ 水泥研磨 + 沥青搅拌 + 预拌混凝土</td>
+                <td>~45%</td>
+                <td>~55%</td>
+            </tr>
+            <tr>
+                <td><strong>Layer 3 下游建材产品</strong></td>
+                <td>管道/排水/预制件/户外景观砖/护栏/围栏/复合材料甲板</td>
+                <td>~30%</td>
+                <td>~25%</td>
+            </tr>
+            <tr>
+                <td><strong>Layer 4 施工服务</strong></td>
+                <td>道路铺设/桥梁工程/土木承包</td>
+                <td>~25%</td>
+                <td>~20%</td>
+            </tr>
+        </table>
+        <div class="highlight" style="margin-top:15px;">
+            <strong>关键洞察：</strong>上游骨料/水泥是高利润率的"本地垄断"业务（采石场许可不可复制），下游产品+施工是低利润率但与客户深度绑定的"生态业务"——这种垂直整合让CRH在投标大型基建项目时能提供"一站式解决方案"，对手只能提供单一环节。
+        </div>
+    </div>
+
+    <h3>2.3 终端市场分布（FY2025）</h3>
+    <div class="info-box">
+        <table>
+            <tr><th>终端市场</th><th>占比</th><th>关键驱动</th></tr>
+            <tr><td><strong>基础设施</strong></td><td>40%</td><td>IIJA联邦公路资金（$350B总额，50%未支出至2030年）、桥梁、水/能源基建</td></tr>
+            <tr><td><strong>非住宅建筑</strong></td><td>28%</td><td>数据中心建设、再工业化、制造业回流</td></tr>
+            <tr><td><strong>住宅</strong></td><td>32%</td><td>新建住宅（疲软）+ 修缮 remodeling（稳定）</td></tr>
+        </table>
+        <div class="moat-item">
+            <strong>抗周期性增强：</strong>基础设施+非住宅合计占68%，与历史相比大幅提升——这意味着即使住宅市场疲软，CRH仍能维持增长。这是管理层"抗周期组合"战略的成果，也是巴菲特最看重的"业务质量稳定"特征。
+        </div>
+    </div>
+
+    <h3>2.4 地理分布</h3>
+    <div class="info-box">
+        <table>
+            <tr><th>地区</th><th>营收占比</th><th>关键市场</th><th>市场地位</th></tr>
+            <tr><td><strong>美国</strong></td><td>~75%</td><td>德州、佛州、加州、五大湖</td><td>#1骨料/沥青/混凝土产品，IIJA最大受益者</td></tr>
+            <tr><td><strong>欧洲</strong></td><td>~20%</td><td>英国、爱尔兰、法国、德国、波兰</td><td>#1混凝土产品，东欧高增长</td></tr>
+            <tr><td><strong>澳大利亚</strong></td><td>~5%</td><td>Adbri（2024年收购52%股权）</td><td>区域龙头</td></tr>
+        </table>
+        <p><strong>地理集中度风险：</strong>75%营收来自美国——这既是优势（受益IIJA、S&P 500纳入），也是风险（美国经济周期直接传导）。但相比Vulcan Materials（100%美国），CRH的欧洲业务提供了对冲。</p>
+    </div>
+
+    <h2 id="chapter3">三、产品竞争力分析</h2>
+
+    <h3>3.1 护城河评估</h3>
+    <div class="info-box">
+        <table>
+            <tr><th>护城河类型</th><th>评分</th><th>说明</th></tr>
+            <tr><td>规模优势</td><td><span class="rating-stars">★★★★★</span></td><td>3,961个地点、900+采石场、$374亿营收——全球最大建材公司，规模是Vulcan的6倍</td></tr>
+            <tr><td>网络效应</td><td><span class="rating-stars">★★☆☆☆</span></td><td>不是典型网络效应，但"垂直整合+本地密度"形成间接壁垒</td></tr>
+            <tr><td>转换成本</td><td><span class="rating-stars">★★★★☆</span></td><td>大型基建项目一旦选用CRH的多环节方案，切换供应商需重新设计/施工/质保——成本极高</td></tr>
+            <tr><td>成本优势</td><td><span class="rating-stars">★★★★☆</span></td><td>骨料重量/价格比极高，运输半径通常<50英里——本地采石场=天然成本护城河</td></tr>
+            <tr><td>无形资产</td><td><span class="rating-stars">★★★★★</span></td><td>采石场许可、环保牌照、土地租约——在城市附近新建采石场几乎不可能，是"不可复制的位置资产"</td></tr>
+            <tr><td>监管壁垒</td><td><span class="rating-stars">★★★★★</span></td><td>新建采石场需地方许可+环保审批+社区同意——通常5-10年才能获批，构成强大进入壁垒</td></tr>
+        </table>
+        <div class="moat-item" style="margin-top:15px;">
+            <strong>核心护城河：本地垄断+不可复制位置</strong>——骨料的重量/价格比决定了它必须就近开采（运输超过50英里就贵到不经济）。CRH的900+个采石场，绝大多数位于城市附近，且这些位置的新采石许可几乎批不下来——这意味着竞争对手即使有钱也无法复制CRH的位置资产。这是巴菲特最看重的"护城河由不可复制的资产构成"的典型。
+        </div>
+    </div>
+
+    <h3>3.2 价值链垂直整合优势</h3>
+    <div class="info-box">
+        <div class="moat-item">
+            <strong>① 多层利润截取：</strong>从骨料（毛利40%+）→ 水泥（毛利25%）→ 混凝土（毛利15%）→ 铺路服务（毛利10%），CRH在每个环节都赚一笔。一座桥的项目，CRH能从原料到施工截取4-5层利润。
+        </div>
+        <div class="moat-item">
+            <strong>② 客户绑定深度：</strong>州交通部投标一条高速公路，CRH可以提供"骨料+沥青+铺路施工"一揽子方案，单一骨料商或单一铺路商无法竞争。这种"connected portfolio"让CRH在大型基建投标中议价权极强。
+        </div>
+        <div class="moat-item">
+            <strong>③ 内部供应链协同：</strong>CRH自己开采的骨料可以直接供给自己的水泥厂和混凝土厂，省去中间商利润。这是为什么CRH美洲EBITDA利润率23.5%高于纯骨料商Vulcan的~22%（Vulcan没有下游业务）。
+        </div>
+        <div class="moat-item">
+            <strong>④ 抗周期韧性：</strong>住宅疲软时，基础设施和非住宅业务补上；经济下行时，下游修缮业务（recurring）补上。这种"抗周期组合"让CRH连续12年利润率扩张——在周期性行业中几乎前所未有。
+        </div>
+    </div>
+
+    <h3>3.3 风险评估</h3>
+    <div class="info-box">
+        <div class="risk-item">
+            <strong>① 周期性风险：</strong>建材行业本质周期性——住宅市场疲软、利率上升抑制新建、经济衰退减少基建需求。CRH虽通过68%非住宅占比降低周期性，但无法完全消除。
+        </div>
+        <div class="risk-item">
+            <strong>② 高杠杆与利息负担：</strong>总债务$18.3B（同比+28%），利息支出$810M（+32%）。净债务/EBITDA约2.4x（行业安全），但绝对债务规模大，加息周期压力显著。
+        </div>
+        <div class="risk-item">
+            <strong>③ 国际分部结构性疲软：</strong>欧洲分部EBITDA利润率16.6% vs 美洲23.5%——欧洲市场碎片化、骨料定价权弱、监管成本高。整合Adbri（澳洲）和Eco Material（美国）效果待验证。
+        </div>
+        <div class="risk-item">
+            <strong>④ 能源与原材料成本波动：</strong>水泥生产能耗高（煤/天然气），柴油成本影响骨料运输。2025年能源成本+8%、人工成本+9%，虽有定价权对冲，但短期挤压利润率。
+        </div>
+        <div class="risk-item">
+            <strong>⑤ 脱碳资本开支压力：</strong>水泥行业碳排放高（占全球排放8%），欧盟碳边境调节机制（CBAM）+ 美国环保监管要求大笔脱碳投资（碳捕获、替代燃料）。这将是未来5-10年的重大资本开支。
+        </div>
+        <div class="risk-item">
+            <strong>⑥ 收购整合风险：</strong>2025年38笔收购$4.1B（含$2.1B Eco Material），2026年宣布收购Arcosa（暂停回购）。M&A历史整体优秀（55年1000+收购），但单笔大收购存在整合不达预期风险。
+        </div>
+        <div class="risk-item">
+            <strong>⑦ IIJA资金透支风险：</strong>$350B联邦公路资金50%未支出至2030年——但2030年后资金可能断档，基建订单可持续性存疑。
+        </div>
+    </div>
+
+    <h2 id="chapter3-4">三(续)、客户视角商业模式深度解析</h2>
+
+    <div class="highlight">
+        <strong>具象场景：</strong>想象你是德州交通部（TxDOT）的工程总监，负责I-35高速公路扩建项目——这是联邦IIJA资金支持的$30亿大型基建项目。你需要采购500万吨骨料、80万吨水泥、200万吨沥青，并需要一支施工队完成200英里道路铺设。
+    </div>
+
+    <h3>3.4.1 为什么TxDOT会选CRH而不是Vulcan或Martin Marietta？</h3>
+    <div class="info-box">
+        <table>
+            <tr><th>选项</th><th>优势</th><th>劣势</th><th>结果</th></tr>
+            <tr>
+                <td><strong>选项A：Vulcan Materials</strong></td>
+                <td>北美最大纯骨料商，德州有大量采石场</td>
+                <td>只供骨料，水泥/沥青/施工需另找供应商，需谈4-5个合同</td>
+                <td><span class="tag tag-orange">协调成本高</span></td>
+            </tr>
+            <tr>
+                <td><strong>选项B：Martin Marietta</strong></td>
+                <td>骨料+水泥+预拌混凝土</td>
+                <td>无铺路施工能力，德州网络不如CRH密集</td>
+                <td><span class="tag tag-orange">能力不完整</span></td>
+            </tr>
+            <tr>
+                <td><strong>选项C：CRH（Oldcastle/Ash Grove Paving）</strong></td>
+                <td>骨料+水泥+沥青+预拌混凝土+铺路施工一站式方案；德州500+地点；IIJA最大受益者；与TxDOT合作20年历史</td>
+                <td>单合同金额大，议价空间有限</td>
+                <td><span class="tag tag-green">首选</span></td>
+            </tr>
+            <tr>
+                <td><strong>选项D：本地小施工商联盟</strong></td>
+                <td>价格可能略低</td>
+                <td>需协调10+供应商，质保难统一，工期风险高</td>
+                <td><span class="tag tag-red">不可行</span></td>
+            </tr>
+        </table>
+        <div class="moat-item">
+            <strong>客户决策逻辑：</strong>TxDOT选CRH不是因为"最便宜"，而是因为"最省心"——一个合同覆盖全价值链，质保统一，工期有保障，且CRH与TxDOT有20年合作历史熟悉州标准。这种<strong>"一站式解决方案+长期信任关系"</strong>是CRH最大的客户侧护城河，也是纯骨料商（Vulcan）和纯施工商都无法替代的。
+        </div>
+    </div>
+
+    <h3>3.4.2 三类典型客户画像</h3>
+    <div class="info-box">
+        <h4>客户类型1：州/联邦政府交通部（如TxDOT、Caltrans）</h4>
+        <p><strong>采购特点：</strong>大型基建项目（$1亿-$30亿）、长期合同（5-10年）、需IIJA资金合规、重视供应商历史业绩与质保能力。</p>
+        <p><strong>为何选CRH：</strong>CRH是IIJA最大私人受益者（管理层披露），有20+州交通部合作历史，能提供"骨料+水泥+沥青+铺路"全套方案，且符合"Buy America"采购要求。</p>
+
+        <h4>客户类型2：大型商业地产开发商（数据中心、厂房）</h4>
+        <p><strong>采购特点：</strong>需快速交付（数据中心平均12个月完工）、需大量混凝土和预制件、需配套排水系统。</p>
+        <p><strong>为何选CRH：</strong>CRH的Building & Infrastructure Solutions（BIS）子业务专注为数据中心/厂房提供管道、预制件、排水系统；2025年受益于"再工业化"趋势，数据中心订单暴增。Vulcan不提供下游产品，无法满足"快速全套交付"需求。</p>
+
+        <h4>客户类型3：住宅修缮承包商（pool、deck、patio）</h4>
+        <p><strong>采购特点：</strong>小批量、高频次、注重美观和易安装。</p>
+        <p><strong>为何选CRH：</strong>CRH的Outdoor Living Solutions（含Trex-like复合材料甲板、户外砖、围栏）通过Home Depot/Lowe's等零售渠道触达。这部分虽然占比小（~10%营收），但毛利率最高（30%+），是品牌护城河的体现。</p>
+    </div>
+
+    <h2 id="chapter4">四、历史财务指标</h2>
+    <div class="info-box">
+        <h3>4.1 核心财务指标趋势（2021-2025）</h3>
+        <table>
+            <tr>
+                <th>指标</th>
+                <th>2021</th>
+                <th>2022</th>
+                <th>2023</th>
+                <th>2024</th>
+                <th>2025</th>
+            </tr>
+            <tr>
+                <td>营收（$B）</td>
+                <td>31.4</td>
+                <td>32.9</td>
+                <td>34.9</td>
+                <td>35.6</td>
+                <td><strong>37.4</strong></td>
+            </tr>
+            <tr>
+                <td>净利润（$B）</td>
+                <td>3.1</td>
+                <td>3.1</td>
+                <td>3.1</td>
+                <td>3.5</td>
+                <td><strong>3.8</strong></td>
+            </tr>
+            <tr>
+                <td>Adj EBITDA（$B）</td>
+                <td>5.2</td>
+                <td>5.4</td>
+                <td>6.2</td>
+                <td>6.9</td>
+                <td><strong>7.7</strong></td>
+            </tr>
+            <tr>
+                <td>Adj EBITDA利润率</td>
+                <td>16.6%</td>
+                <td>16.4%</td>
+                <td>17.8%</td>
+                <td>19.5%</td>
+                <td><strong>20.5%</strong></td>
+            </tr>
+            <tr>
+                <td>净利润率</td>
+                <td>9.9%</td>
+                <td>9.4%</td>
+                <td>8.8%</td>
+                <td>9.9%</td>
+                <td><strong>10.1%</strong></td>
+            </tr>
+            <tr>
+                <td>经营现金流（$B）</td>
+                <td>3.9</td>
+                <td>4.2</td>
+                <td>5.0</td>
+                <td>5.0</td>
+                <td><strong>5.6</strong></td>
+            </tr>
+            <tr>
+                <td>调整后自由现金流（$B）</td>
+                <td>2.9</td>
+                <td>3.5</td>
+                <td>4.2</td>
+                <td>4.2</td>
+                <td><strong>5.0</strong></td>
+            </tr>
+            <tr>
+                <td>调整后FCF转化率</td>
+                <td>—</td>
+                <td>—</td>
+                <td>~110%</td>
+                <td>~115%</td>
+                <td><strong>131%</strong></td>
+            </tr>
+            <tr>
+                <td>净债务（$B）</td>
+                <td>5.4</td>
+                <td>5.6</td>
+                <td>5.4</td>
+                <td>10.5</td>
+                <td><strong>~12.0</strong></td>
+            </tr>
+            <tr>
+                <td>净债务/EBITDA</td>
+                <td>1.0x</td>
+                <td>1.0x</td>
+                <td>0.9x</td>
+                <td>1.5x</td>
+                <td><strong>1.6x</strong></td>
+            </tr>
+            <tr>
+                <td>ROE</td>
+                <td>~13%</td>
+                <td>~12%</td>
+                <td>~13%</td>
+                <td>~15%</td>
+                <td><strong>16.5%</strong></td>
+            </tr>
+            <tr>
+                <td>每股收益（$）</td>
+                <td>4.20</td>
+                <td>4.36</td>
+                <td>4.36</td>
+                <td>5.06</td>
+                <td><strong>5.51</strong></td>
+            </tr>
+        </table>
+        <div class="moat-item" style="margin-top:15px;">
+            <strong>关键趋势：</strong>①连续12年利润率扩张（从2014年的~12%到2025年20.5%）；②FCF转化率131%（行业最高之一，体现轻资本运营+强定价权）；③净债务/EBITDA从0.9x升至1.6x（仍远低于行业3x警戒线），主要是为收购Eco Material和Arcosa融资。
+        </div>
+    </div>
+
+    <h2 id="chapter5">五、竞争分析</h2>
+
+    <h3>5.1 主要竞争对手对比</h3>
+    <div class="info-box">
+        <table>
+            <tr>
+                <th>竞争对手</th>
+                <th>市值</th>
+                <th>营收（$B）</th>
+                <th>EBITDA利润率</th>
+                <th>核心市场</th>
+                <th>关键差异</th>
+            </tr>
+            <tr>
+                <td><strong>CRH plc</strong></td>
+                <td>$70B</td>
+                <td>37.4</td>
+                <td><span class="tag tag-green">20.5%</span></td>
+                <td>美国+欧洲</td>
+                <td>全球最大建材公司，垂直整合，3大业务#1</td>
+            </tr>
+            <tr>
+                <td>Vulcan Materials (VMC)</td>
+                <td>$32B</td>
+                <td>6.5</td>
+                <td><span class="tag tag-green">22%</span></td>
+                <td>美国纯国内</td>
+                <td>北美最大纯骨料商，利润率最高但无下游业务</td>
+            </tr>
+            <tr>
+                <td>Martin Marietta (MLM)</td>
+                <td>$35B</td>
+                <td>6.8</td>
+                <td><span class="tag tag-green">21%</span></td>
+                <td>美国纯国内</td>
+                <td>骨料+水泥+预拌混凝土，德州/东南部龙头</td>
+            </tr>
+            <tr>
+                <td>Eagle Materials (EXP)</td>
+                <td>$10B</td>
+                <td>2.2</td>
+                <td><span class="tag tag-green">28%</span></td>
+                <td>美国</td>
+                <td>水泥+石膏板，专注高利润率细分</td>
+            </tr>
+            <tr>
+                <td>Heidelberg Materials</td>
+                <td>$22B</td>
+                <td>20.0</td>
+                <td><span class="tag tag-orange">17%</span></td>
+                <td>欧洲+北美</td>
+                <td>全球第二大水泥商，欧洲业务强</td>
+            </tr>
+            <tr>
+                <td>Cemex (CX)</td>
+                <td>$12B</td>
+                <td>15.0</td>
+                <td><span class="tag tag-orange">16%</span></td>
+                <td>墨西哥+美国+欧洲</td>
+                <td>全球性水泥商，杠杆高、转型中</td>
+            </tr>
+            <tr>
+                <td>LafargeHolcim</td>
+                <td>$45B</td>
+                <td>30.0</td>
+                <td><span class="tag tag-orange">17%</span></td>
+                <td>全球</td>
+                <td>全球最大水泥商，但利润率低于CRH</td>
+            </tr>
+            <tr>
+                <td>Summit Materials (SUM)</td>
+                <td>$5B</td>
+                <td>2.5</td>
+                <td><span class="tag tag-orange">15%</span></td>
+                <td>美国</td>
+                <td>区域玩家，规模小</td>
+            </tr>
+        </table>
+    </div>
+
+    <h3>5.2 北美建材市场份额</h3>
+    <div class="info-box">
+        <table>
+            <tr><th>产品类别</th><th>CRH排名</th><th>主要对手</th><th>市场结构</th></tr>
+            <tr><td>骨料（Aggregates）</td><td><span class="tag tag-green">#1 北美</span></td><td>Vulcan (#2)、Martin Marietta (#3)</td><td>区域寡头</td></tr>
+            <tr><td>沥青（Asphalt）</td><td><span class="tag tag-green">#1 北美</span></td><td>马丁玛丽埃塔、本地玩家</td><td>区域寡头</td></tr>
+            <tr><td>混凝土产品（Concrete Products）</td><td><span class="tag tag-green">#1 北美+欧洲</span></td><td>本地玩家</td><td>区域主导</td></tr>
+            <tr><td>水泥（Cement）</td><td><span class="tag tag-orange">#3 北美+欧洲</span></td><td>LafargeHolcim、Heidelberg、Cemex</td><td>全球寡头</td></tr>
+            <tr><td>预拌混凝土（RMC）</td><td><span class="tag tag-orange">#3 北美</span></td><td>Vulcan、Martin Marietta、本地</td><td>区域碎片化</td></tr>
+        </table>
+        <div class="highlight">
+            <strong>关键洞察：</strong>CRH在骨料/沥青/混凝土产品三大品类都是#1——这正好是IIJA基建资金主要采购品类。CRH不是"水泥公司"（水泥仅排#3），而是"骨料+沥青+下游产品"公司，这正契合美国基建资金主要流向（道路/桥梁/排水）。
+        </div>
+    </div>
+
+    <h3>5.3 相对竞争对手的核心优势</h3>
+    <div class="info-box">
+        <div class="moat-item">
+            <strong>① 规模碾压（vs所有对手）：</strong>CRH的$374亿营收是Vulcan的5.7倍、Martin Marietta的5.5倍、Eagle的17倍。规模带来采购议价权、运营效率、融资成本优势。
+        </div>
+        <div class="moat-item">
+            <strong>② 垂直整合深度（vs Vulcan/Martin Marietta）：</strong>Vulcan是纯骨料商，Martin Marietta是骨料+水泥，CRH覆盖骨料+水泥+沥青+混凝土+下游产品+施工——能在每个大型基建项目截取4-5层利润。
+        </div>
+        <div class="moat-item">
+            <strong>③ 地理分散（vs美国纯国内）：</strong>CRH 25%营收来自欧洲/澳洲，Vulcan和Martin Marietta 100%美国。这给CRH提供对冲美国周期性的能力，且欧洲分部有提升空间（16.6% vs 23.5%）。
+        </div>
+        <div class="moat-item">
+            <strong>④ IIJA最大受益者：</strong>CRH是IIJA资金最大私人受益者（管理层披露），骨料/沥青/铺路业务直接对接联邦公路资金。
+        </div>
+        <div class="moat-item">
+            <strong>⑤ S&P 500纳入带来的估值重评：</strong>2025年12月纳入S&P 500——指数基金被动买入、研究覆盖增加、流动性提升。这是Vulcan（已在S&P 500）和Martin Marietta（已在S&P 500）已享受的红利，CRH刚获得。
+        </div>
+        <div class="moat-item">
+            <strong>⑥ M&A整合能力（55年1000+收购）：</strong>CRH的并购整合历史是行业最佳——2025年38笔收购$4.1B，含$2.1B Eco Material（成为北美最大辅助胶凝材料供应商）。这种"复合增长器"能力是Vulcan（保守并购）和Cemex（多次整合失败）所缺乏的。
+        </div>
+    </div>
+
+    <h2 id="chapter6">六、利润分配分析（近10年）</h2>
+    <div class="info-box">
+        <h3>6.1 资本配置历史（2016-2025）</h3>
+        <table>
+            <tr>
+                <th>年份</th>
+                <th>净利润（$B）</th>
+                <th>分红（$B）</th>
+                <th>回购（$B）</th>
+                <th>收购（$B）</th>
+                <th>增长资本开支（$B）</th>
+                <th>股东回报率</th>
+            </tr>
+            <tr><td>2016</td><td>1.5</td><td>0.6</td><td>0.0</td><td>2.5</td><td>0.4</td><td>40%</td></tr>
+            <tr><td>2017</td><td>1.7</td><td>0.7</td><td>0.0</td><td>3.0</td><td>0.5</td><td>41%</td></tr>
+            <tr><td>2018</td><td>1.9</td><td>0.8</td><td>0.5</td><td>3.5</td><td>0.6</td><td>68%</td></tr>
+            <tr><td>2019</td><td>2.1</td><td>0.9</td><td>0.7</td><td>2.2</td><td>0.7</td><td>76%</td></tr>
+            <tr><td>2020</td><td>1.9</td><td>1.0</td><td>0.4</td><td>1.5</td><td>0.6</td><td>74%</td></tr>
+            <tr><td>2021</td><td>3.1</td><td>1.1</td><td>1.2</td><td>3.0</td><td>0.8</td><td>74%</td></tr>
+            <tr><td>2022</td><td>3.1</td><td>1.2</td><td>1.0</td><td>2.5</td><td>1.0</td><td>71%</td></tr>
+            <tr><td>2023</td><td>3.1</td><td>1.3</td><td>1.5</td><td>2.8</td><td>1.2</td><td>90%</td></tr>
+            <tr><td>2024</td><td>3.5</td><td>1.4</td><td>1.3</td><td>3.5</td><td>1.5</td><td>77%</td></tr>
+            <tr><td>2025</td><td>3.8</td><td>1.5</td><td>0.7</td><td>4.1</td><td>1.7</td><td>58%</td></tr>
+            <tr style="font-weight:bold;background:#eaf2f8;">
+                <td>10年合计</td>
+                <td>25.7</td>
+                <td>10.5</td>
+                <td>7.3</td>
+                <td>28.6</td>
+                <td>9.0</td>
+                <td>69%</td>
+            </tr>
+        </table>
+
+        <h3>6.2 资本配置质量分析</h3>
+        <div class="info-box" style="background:#fafafa;">
+            <h4>分红：42年连续增长（连续增长王）</h4>
+            <p>2025年每股股息$1.56（季度$0.39，同比+5%），连续42年股息增长——这是巴菲特最看重的"分红纪律+连续增长记录"。10年累计分红$105亿，占累计净利润41%。分红增长率平均6-8%/年，跑赢通胀。</p>
+
+            <h4>回购：自2018年累计$100亿，回购23%股份</h4>
+            <p>自2018年回购启动以来累计$100亿回购，回购均价约$50/股（当前股价$95.69，几乎翻倍），回购了约23%的流通股。这是极强的资本配置纪律——只在股价低于内在价值时回购。2025年Q4起因Arcosa收购暂停回购，体现"收购优先于回购"的纪律。</p>
+
+            <h4>收购：M&A复合增长器</h4>
+            <p>10年累计收购$286亿——CRH是行业最活跃且最成功的收购者。代表案例：2018年Ash Grove Cement（$37亿，北美水泥#3）、2024年Adbri（澳洲$15亿）、2025年Eco Material（$21亿，辅助胶凝材料#1）、2026年Arcosa（pending）。M&A是CRH的核心增长引擎。</p>
+
+            <h4>增长资本开支：高回报低风险项目</h4>
+            <p>2025年增长资本开支$17亿，主要投向自动化、能源优化、产能扩张。这些项目通常IRR 25-35%，回收期3-5年，是"低风险高回报"的有机增长。</p>
+        </div>
+
+        <h3>6.3 管理层资本配置评分</h3>
+        <table>
+            <tr><th>评估维度</th><th>评分</th><th>说明</th></tr>
+            <tr><td>分红纪律</td><td><span class="rating-stars">★★★★★</span></td><td>42年连续增长，10年累计$105亿，分红增长6-8%/年</td></tr>
+            <tr><td>回购纪律</td><td><span class="rating-stars">★★★★★</span></td><td>自2018年$100亿回购，均价$50（vs当前$95.69），回购23%股本</td></tr>
+            <tr><td>M&A整合能力</td><td><span class="rating-stars">★★★★★</span></td><td>55年1000+收购历史，2025年38笔$4.1B，整合效果行业最佳</td></tr>
+            <tr><td>有机增长投资</td><td><span class="rating-stars">★★★★☆</span></td><td>2025年$1.7B增长资本开支，IRR 25-35%，但绝对金额仍小</td></tr>
+            <tr><td>资产负债表管理</td><td><span class="rating-stars">★★★★☆</span></td><td>净债务/EBITDA 1.6x（行业安全），但绝对债务$18.3B（+28%）需关注</td></tr>
+            <tr><td>资本配置整体评分</td><td><span class="rating-stars">★★★★★</span></td><td>10年累计股东回报$178亿（分红+回购）+ 收购$286亿+增长资本开支$90亿——总计$554亿资本高效部署</td></tr>
+        </table>
+        <div class="highlight">
+            <strong>巴菲特视角：</strong>CRH的资本配置是"教科书级别"——分红42年连续增长（强纪律）+ 回购均价$50远低于现价$95.69（精准择时）+ M&A 55年1000+收购且整合效果优秀（能力圈内的复合增长）+ 增长资本开支IRR 25-35%（高回报）。这是巴菲特最看重的"管理层能干且为股东着想"的典型。
+        </div>
+    </div>
+
+    <h2 id="chapter7">七、投资总结</h2>
+    <div class="info-box">
+        <h3>7.1 投资亮点</h3>
+        <div class="moat-item">
+            <strong>① 全球建材龙头+垂直整合：</strong>$374亿营收、3,961个地点、900+采石场——规模是Vulcan的6倍，垂直整合深度是行业最强。
+        </div>
+        <div class="moat-item">
+            <strong>② 不可复制的位置资产：</strong>900+个采石场，绝大多数位于城市附近，新建采石许可几乎批不下来——这是"巴菲特式"的不可复制护城河。
+        </div>
+        <div class="moat-item">
+            <strong>③ IIJA最大受益者：</strong>$350B联邦公路资金，50%未支出至2030年——CRH是IIJA最大私人受益者，提供5年+增长可见性。
+        </div>
+        <div class="moat-item">
+            <strong>④ 12年连续利润率扩张：</strong>Adj EBITDA利润率从2014年~12%升至2025年20.5%——在周期性行业中几乎前所未有，体现卓越运营能力。
+        </div>
+        <div class="moat-item">
+            <strong>⑤ 资本配置纪律优秀：</strong>42年连续分红增长+自2018年$100亿回购（均价$50）+ 55年1000+成功收购——管理层资本配置能力行业最佳。
+        </div>
+        <div class="moat-item">
+            <strong>⑥ S&P 500纳入催化估值重评：</strong>2025年12月纳入S&P 500——指数基金被动买入、研究覆盖增加、流动性提升，估值有重评空间。
+        </div>
+        <div class="moat-item">
+            <strong>⑦ FCF转化率131%：</strong>调整后自由现金流转化率131%（行业最高之一）——体现轻资本运营+强定价权，是"现金机器"型业务。
+        </div>
+
+        <h3>7.2 投资风险</h3>
+        <div class="risk-item">
+            <strong>① 周期性本质：</strong>虽68%非住宅占比降低周期性，但建材行业本质仍是周期性的——经济衰退将冲击所有终端市场。
+        </div>
+        <div class="risk-item">
+            <strong>② 高杠杆（绝对债务$18.3B）：</strong>净债务/EBITDA虽1.6x安全，但绝对债务规模大（同比+28%），利息支出$810M（+32%），加息周期压力显著。
+        </div>
+        <div class="risk-item">
+            <strong>③ 欧洲分部结构性疲软：</strong>欧洲EBITDA利润率16.6% vs 美洲23.5%——欧洲市场碎片化、定价权弱，整合效果待验证。
+        </div>
+        <div class="risk-item">
+            <strong>④ Arcosa收购整合风险：</strong>2026年宣布收购Arcosa（暂停回购），大额收购存在整合不达预期风险。
+        </div>
+        <div class="risk-item">
+            <strong>⑤ IIJA资金2026年后透支风险：</strong>$350B资金50%未支出至2030年——但2030年后资金可能断档，基建订单可持续性存疑。
+        </div>
+        <div class="risk-item">
+            <strong>⑥ 脱碳资本开支压力：</strong>水泥行业碳排放高，未来5-10年需大笔脱碳投资（碳捕获、替代燃料），将挤压FCF。
+        </div>
+
+        <h3>7.3 估值与安全边际</h3>
+        <table>
+            <tr><th>估值指标</th><th>当前值</th><th>行业平均</th><th>评估</th></tr>
+            <tr><td>PE（TTM）</td><td>16.4x</td><td>~18x（Vulcan 22x、Martin 20x）</td><td><span class="tag tag-green">折价</span></td></tr>
+            <tr><td>EV/EBITDA</td><td>~9x</td><td>~11x</td><td><span class="tag tag-green">折价</span></td></tr>
+            <tr><td>股息率</td><td>1.6%</td><td>~0.8%（Vulcan）/ 0.5%（Martin）</td><td><span class="tag tag-green">高于同行</span></td></tr>
+            <tr><td>PEG</td><td>~1.2</td><td>—</td><td><span class="tag tag-green">合理</span></td></tr>
+            <tr><td>FCF Yield</td><td>~7%</td><td>~5%</td><td><span class="tag tag-green">高于同行</span></td></tr>
+        </table>
+        <div class="highlight">
+            <strong>安全边际评估：</strong>当前PE 16.4x低于行业平均18x，EV/EBITDA 9x低于行业11x，FCF Yield 7%高于行业5%——CRH相对同行有估值折价，主要因欧洲业务拖累和高杠杆担忧。但考虑到：① IIJA资金可见性至2030年；② S&P 500纳入带来估值重评；③ 12年连续利润率扩张；④ 42年连续分红增长——当前估值提供了合理的安全边际。
+        </div>
+
+        <h3>7.4 巴菲特/芒格视角综合评估</h3>
+        <table>
+            <tr><th>评估维度</th><th>评分</th><th>说明</th></tr>
+            <tr><td>业务易懂性</td><td><span class="rating-stars">★★★★★</span></td><td>"挖石头+磨水泥+铺路"——巴菲特最爱的简单业务</td></tr>
+            <tr><td>竞争优势持久性</td><td><span class="rating-stars">★★★★★</span></td><td>900+个不可复制的城市采石场——最强护城河</td></tr>
+            <tr><td>管理层品质</td><td><span class="rating-stars">★★★★★</span></td><td>42年分红连续增长+回购均价$50远低于现价——资本配置纪律优秀</td></tr>
+            <tr><td>财务稳健性</td><td><span class="rating-stars">★★★★☆</span></td><td>FCF转化率131%，但绝对债务$18.3B需关注</td></tr>
+            <tr><td>长期前景</td><td><span class="rating-stars">★★★★☆</span></td><td>IIJA资金至2030年+基础设施老化趋势；但脱碳资本开支压力</td></tr>
+            <tr><td>安全边际</td><td><span class="rating-stars">★★★★☆</span></td><td>PE 16.4x低于同行18x，FCF Yield 7%高于同行5%——相对折价</td></tr>
+        </table>
+
+        <div class="highlight" style="margin-top:20px;background:#eafaf1;border-left-color:#27ae60;">
+            <strong>芒格视角总结：</strong>CRH是巴菲特/芒格最爱的"简单业务+不可复制护城河+优秀管理层"三合一标的——①业务简单（挖石头磨水泥铺路）；②900+个不可复制的城市采石场构成最强护城河；③42年连续分红增长+回购均价$50远低于现价$95.69的资本配置纪律。当前PE 16.4x相对同行折价10-15%，提供了合理安全边际。IIJA资金至2030年的可见性+S&P 500纳入的估值重评+12年连续利润率扩张，构成短期催化剂。主要风险是周期性、高杠杆（绝对债务$18.3B）和欧洲分部结构性疲软。<strong>建议：买入/长期持有</strong>，适合追求稳健复利+分红增长的长期投资者。
+        </div>
+
+        <h3>7.5 投资评级</h3>
+        <p style="font-size:1.3em;text-align:center;font-weight:bold;color:#27ae60;">买入（首次覆盖）</p>
+        <p><strong>理由</strong>：CRH集合了巴菲特/芒格最看重的所有要素——简单易懂的业务、不可复制的护城河（900+城市采石场）、42年连续分红增长+回购均价$50的资本配置纪律、IIJA资金至2030年的增长可见性、S&P 500纳入的估值重评催化。当前PE 16.4x低于同行18x，FCF Yield 7%高于同行5%，提供了合理安全边际。主要风险是周期性、高杠杆和欧洲疲软，但12年连续利润率扩张证明管理层运营能力。适合追求稳健复利+分红增长的长期投资者。</p>
+
+        <p style="text-align:center;font-size:0.9em;color:#7f8c8d;margin-top:20px;">
+            数据来源：CRH 2025年报 / 2026Q2财报电话会 / 官方投资者关系材料 / Dataintelo行业研究 / Margin of Insight / Panabee / PortfoliosLab
+        </p>
+    </div>
+    <script src="scores_client.js"></script>
+    <script src="stock_topbar.js"></script>
+    <script>
+    (function(){
+        var code=document.getElementById('topbarCode').textContent.trim();
+        function starsHTML(val){var h='';for(var i=1;i<=5;i++){h+='<span class="'+(i<=val?'on':'off')+'">\u2605</span>';}return h;}
+        function valClass(v){return v>=5?'s5':v>=4?'s4':v>=3?'s3':v>=2?'s2':'s1';}
+        function renderDisplay(f,p){
+            var fEl=document.getElementById('topbarFVal');
+            var pEl=document.getElementById('topbarPVal');
+            if(fEl){fEl.textContent=f>0?f:'-';fEl.className='topbar-score-val'+(f>0?' '+valClass(f):'');}
+            if(pEl){pEl.textContent=p>0?p:'-';pEl.className='topbar-score-val'+(p>0?' '+valClass(p):'');}
+            var fS=document.getElementById('topbarFStars');
+            var pS=document.getElementById('topbarPStars');
+            if(fS)fS.innerHTML=starsHTML(f);
+            if(pS)pS.innerHTML=starsHTML(p);
+        }
+        function renderFromDB(){
+            if(window.ScoresDB){
+                var sc=ScoresDB.get(code);
+                renderDisplay(sc.fundamental||0, sc.price||0);
+            }
+        }
+        if(window.ScoresDB){renderFromDB();}
+        else{window.addEventListener('scoresdb:ready',renderFromDB);}
+    })();
+    </script>
+</body>
+</html>

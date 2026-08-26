@@ -101,6 +101,7 @@
         {code:'EME',name:'EMCOR Group - 机电建筑与服务',href:'eme.html'},
         {code:'RACE',name:'Ferrari - 超豪华跑车/奢侈品',href:'race.html'},
         {code:'CAT',name:'Caterpillar - 全球工程机械+动力系统龙头',href:'cat.html'},
+        {code:'CRH',name:'CRH plc - 全球建材龙头/骨料+水泥+沥青垂直整合/IIJA最大受益者/42年连续分红',href:'crh.html'},
         {code:'APH',name:'Amphenol - 全球互连/连接器巨头',href:'aph.html'},
         {code:'CTAS',name:'Cintas - 企业制服租赁/设施服务/急救安全',href:'ctas.html'},
         {code:'GWW',name:'W.W. Grainger - MRO工业分销..',href:'gww.html'},
