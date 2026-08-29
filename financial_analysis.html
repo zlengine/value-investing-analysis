@@ -77,14 +77,144 @@
         li {
             margin: 5px 0;
         }
+        /* 现金流概念模块专用样式 */
+        .concept-card {
+            background: white;
+            border-radius: 8px;
+            padding: 18px 22px;
+            margin: 15px 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            border-left: 4px solid #4CAF50;
+        }
+        .concept-card.ocf { border-left-color: #2196F3; }
+        .concept-card.fcf { border-left-color: #ff9800; }
+        .formula-box {
+            background: #f4f6f9;
+            border: 2px dashed #2e86c1;
+            padding: 12px 18px;
+            margin: 12px 0;
+            border-radius: 6px;
+            font-family: 'Courier New', monospace;
+            font-size: 15px;
+            text-align: center;
+            color: #1a5276;
+        }
+        .flow-diagram {
+            background: #fafafa;
+            border-radius: 8px;
+            padding: 18px;
+            margin: 15px 0;
+            text-align: center;
+        }
+        .flow-step {
+            display: inline-block;
+            padding: 10px 16px;
+            border-radius: 8px;
+            font-weight: bold;
+            margin: 0 4px;
+            color: white;
+            vertical-align: middle;
+        }
+        .flow-arrow {
+            display: inline-block;
+            color: #7f8c8d;
+            font-size: 20px;
+            margin: 0 6px;
+            vertical-align: middle;
+        }
+        .compare-table th {
+            background: #2c3e50;
+        }
+        .compare-table .ocf-row { background: #e3f2fd; }
+        .compare-table .fcf-row { background: #fff3e0; }
+        .case-box {
+            background: linear-gradient(135deg, #fffde7 0%, #fff8e1 100%);
+            border-radius: 8px;
+            padding: 18px 22px;
+            margin: 15px 0;
+            border-left: 4px solid #f9c80e;
+        }
+        .case-box h4 {
+            color: #e65100;
+            margin-top: 0;
+        }
+        .scenario-tag {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.85em;
+            font-weight: bold;
+            color: white;
+        }
+        .scenario-good { background-color: #27ae60; }
+        .scenario-bad { background-color: #e74c3c; }
+        .scenario-watch { background-color: #e67e22; }
+        .bar-chart-row {
+            display: flex;
+            align-items: center;
+            margin: 8px 0;
+            gap: 10px;
+        }
+        .bar-chart-label {
+            width: 100px;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        .bar-chart-bar {
+            height: 26px;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            padding-left: 8px;
+            color: white;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        .bar-chart-value {
+            font-size: 13px;
+            color: #555;
+        }
+        .chapter-nav {
+            background: white;
+            border-radius: 8px;
+            padding: 12px 18px;
+            margin: 15px 0;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+            text-align: center;
+        }
+        .chapter-nav a {
+            display: inline-block;
+            margin: 4px 8px;
+            padding: 5px 12px;
+            background: #eaf2f8;
+            color: #1a5276;
+            border-radius: 12px;
+            font-size: 0.88em;
+            text-decoration: none;
+        }
+        .chapter-nav a:hover {
+            background: #2e86c1;
+            color: white;
+        }
     </style>
 </head>
 <body>
     <a href="index.html" class="back-link">返回索引</a>
     <h1>财务报表分析 - 通用知识</h1>
+
+    <div class="chapter-nav">
+        <a href="#chapter1">财务报表构成</a>
+        <a href="#chapter2">股息支付</a>
+        <a href="#chapter3">财务比率</a>
+        <a href="#chapter4">分析步骤</a>
+        <a href="#chapter8">现金流量分析</a>
+        <a href="#chapter8-concept">现金流概念详解</a>
+        <a href="#chapter8-case">企业案例</a>
+        <a href="#chapter10">总结</a>
+    </div>
     
     <div class="info-box">
-        <h2>一、财务报表的基本构成</h2>
+        <h2 id="chapter1">一、财务报表的基本构成</h2>
         <h3>1.1 三大财务报表</h3>
         <table>
             <tr>
@@ -111,7 +241,7 @@
     </div>
     
     <div class="info-box">
-        <h2>二、股息支付在财务报表中的体现</h2>
+        <h2 id="chapter2">二、股息支付在财务报表中的体现</h2>
         <div class="highlight">
             <h3>2.1 资产负债表 (Balance Sheet)</h3>
             <ul>
@@ -149,7 +279,7 @@
     </div>
     
     <div class="info-box">
-        <h2>三、财务比率分析</h2>
+        <h2 id="chapter3">三、财务比率分析</h2>
         <h3>3.1 盈利能力比率</h3>
         <table>
             <tr>
@@ -599,7 +729,7 @@
     </div>
 
     <div class="info-box">
-        <h2>四、财务报表分析的步骤</h2>
+        <h2 id="chapter4">四、财务报表分析的步骤</h2>
         <ol>
             <li><strong>确定分析目标</strong>：明确分析的目的，如投资决策、信贷评估等</li>
             <li><strong>收集财务数据</strong>：获取公司的财务报表和相关信息</li>
@@ -683,7 +813,7 @@
     </div>
     
     <div class="info-box">
-        <h2>八、现金流量分析</h2>
+        <h2 id="chapter8">八、现金流量分析</h2>
         <h3>8.1 现金流量的重要性</h3>
         <ul>
             <li>现金是公司生存和发展的基础</li>
@@ -715,6 +845,228 @@
                 <td>反映公司的融资策略和资本结构</td>
             </tr>
         </table>
+
+        <h3 id="chapter8-concept">8.3 现金流概念专业解释模块（通俗版）</h3>
+        <div class="highlight">
+            <p><strong>为什么要单独讲这两个概念？</strong>因为它们是价值投资的"心脏"——巴菲特说"利润是主观的，现金是客观的"，芒格说"一家公司的价值等于它未来能产生的自由现金流的折现值"。理解现金流，就是理解企业估值的底层逻辑。本模块用通俗语言+真实案例，让非财务背景的人也能彻底搞懂。</p>
+        </div>
+
+        <h4>8.3.1 经营性现金流（OCF）—— 公司"做生意"赚到的真金白银</h4>
+        <div class="concept-card ocf">
+            <p><strong>定义：</strong>经营性现金流（Operating Cash Flow, OCF）是公司通过<strong>主营业务</strong>（卖东西、提供服务）实际收到手里的现金，减去做这些事实际花出去的现金后剩下的钱。</p>
+
+            <p><strong>核心构成要素：</strong></p>
+            <ul>
+                <li><strong>现金流入：</strong>客户付给你的货款、服务费、收到的利息和退税</li>
+                <li><strong>现金流出：</strong>付给供应商的货款、员工工资、水电房租、交的税、付的利息</li>
+            </ul>
+
+            <div class="formula-box">
+                OCF = 客户付的钱 − 供应商的钱 − 员工工资 − 水电房租 − 交的税 − 付的利息
+            </div>
+
+            <p><strong>实际业务意义（一句话）：</strong>OCF回答的问题是——<strong>"公司光靠主营业务，一年能真正收进自家账户多少钱？"</strong></p>
+            <ul>
+                <li><strong>OCF > 0（正）：</strong>主营业务能自己"养活自己"，是健康的生意</li>
+                <li><strong>OCF < 0（负）：</strong>主营业务收不抵支，在"烧钱"，靠借钱或股东输血维持</li>
+                <li><strong>OCF vs 净利润：</strong>OCF比净利润更真实——利润可以通过折旧、应收账款等会计手段"做漂亮"，但OCF很难造假</li>
+            </ul>
+
+            <p><strong>通俗比喻：</strong>把公司想象成一个水果摊。你卖苹果收到的钱（现金流入）减去你买苹果、付摊位费、交税、雇人看摊的钱（现金流出），剩下进你口袋的就是OCF。注意：摊子是"租"的，所以"买摊子"的钱不算在OCF里（那是投资活动）。</p>
+        </div>
+
+        <h4>8.3.2 自由现金流（FCF）—— 扣完"维持生意必需花销"后真正"自由"的钱</h4>
+        <div class="concept-card fcf">
+            <p><strong>定义：</strong>自由现金流（Free Cash Flow, FCF）是经营性现金流（OCF）减去<strong>资本支出</strong>（CapEx）后剩下的钱。资本支出是公司为了维持或扩大业务必须花的钱，比如买设备、建厂房、修通信塔。</p>
+
+            <div class="formula-box">
+                FCF = OCF − 资本支出 (CapEx)
+            </div>
+
+            <p><strong>通俗比喻：</strong>继续用水果摊的例子。你卖苹果赚了OCF，但你的货车坏了必须修（维持性CapEx），或者你想开第二个摊子必须买新货架（扩张性CapEx）。修车和买货架的钱是你"为了继续做生意不得不花的"。扣完这些"必需花销"后，剩下才是真正"自由"的钱——<strong>可以用来分红、回购股票、还债，或者存进银行</strong>。</p>
+
+            <p><strong>在企业估值中的重要性：</strong></p>
+            <ul>
+                <li><strong>DCF估值法的核心：</strong>巴菲特/芒格用的折现现金流（DCF）估值，折现的就是自由现金流。一家公司的内在价值 = 它未来所有自由现金流的现值总和</li>
+                <li><strong>FCF > 0（正）：公司能"自己造血"，无需外部融资就能维持和扩张——是真正的"现金奶牛"</strong></li>
+                <li><strong>FCF < 0（负）：公司"入不敷出"，需要借钱或增发股票来维持——短期可接受（高增长期），长期是危险信号</strong></li>
+                <li><strong>FCF Yield = FCF / 市值：</strong>衡量"按当前股价买入，每年能获得的自由现金流收益率"——相当于买一只"债券"的隐含利率</li>
+            </ul>
+
+            <p><strong>关键认知：</strong>有些公司净利润很高，但FCF为负（比如资本密集型制造业、电信塔运营商需要不停投建新塔）——这类公司"赚的钱都沉淀在设备里"，股东拿不到现金。这是巴菲特最警惕的"价值陷阱"。</p>
+        </div>
+
+        <h4>8.3.3 OCF vs FCF 核心差异对比</h4>
+        <table class="compare-table">
+            <tr>
+                <th>对比维度</th>
+                <th>经营性现金流 (OCF)</th>
+                <th>自由现金流 (FCF)</th>
+            </tr>
+            <tr class="ocf-row">
+                <td><strong>计算口径</strong></td>
+                <td>主营业务的现金流入减现金流出</td>
+                <td>OCF 减去 资本支出(CapEx)</td>
+            </tr>
+            <tr class="fcf-row">
+                <td><strong>核心公式</strong></td>
+                <td>OCF = 营业现金流入 − 营业现金流出</td>
+                <td>FCF = OCF − CapEx</td>
+            </tr>
+            <tr class="ocf-row">
+                <td><strong>是否扣除资本支出</strong></td>
+                <td><span class="scenario-tag scenario-bad">否</span> 不扣除买设备/建厂房的钱</td>
+                <td><span class="scenario-tag scenario-good">是</span> 必须扣除"维持生意必需的花销"</td>
+            </tr>
+            <tr class="fcf-row">
+                <td><strong>反映的财务状况</strong></td>
+                <td>主营业务的"造血能力"——做生意本身能不能收到现金</td>
+                <td>公司的"自由支配能力"——做完所有必需投资后还能剩多少给股东</td>
+            </tr>
+            <tr class="ocf-row">
+                <td><strong>应用场景</strong></td>
+                <td>评估主业是否健康、盈利质量是否真实（OCF/净利润 ≥ 1为优）</td>
+                <td>企业估值（DCF）、分红回购能力评估、股东回报可持续性判断</td>
+            </tr>
+            <tr class="fcf-row">
+                <td><strong>投资者关注重点</strong></td>
+                <td>"这家公司做生意能不能收到现金？"</td>
+                <td>"这家公司做完所有必需投资后，还能给我（股东）多少钱？"</td>
+            </tr>
+            <tr class="ocf-row">
+                <td><strong>数值关系</strong></td>
+                <td>OCF 通常 ≥ FCF（因为FCF是OCF再减CapEx）</td>
+                <td>FCF 通常 ≤ OCF（除非CapEx为负，即变卖资产）</td>
+            </tr>
+            <tr class="fcf-row">
+                <td><strong>危险信号</strong></td>
+                <td>OCF持续为负 = 主业在烧钱</td>
+                <td>FCF持续为负 = 主业+投资合计烧钱，需外部输血</td>
+            </tr>
+        </table>
+
+        <div class="flow-diagram">
+            <p><strong>现金从公司流到股东口袋的完整路径：</strong></p>
+            <span class="flow-step" style="background:#2196F3;">客户付的钱</span>
+            <span class="flow-arrow">→</span>
+            <span class="flow-step" style="background:#4CAF50;">经营性现金流 OCF</span>
+            <span class="flow-arrow">−</span>
+            <span class="flow-step" style="background:#9c27b0;">资本支出 CapEx</span>
+            <span class="flow-arrow">=</span>
+            <span class="flow-step" style="background:#ff9800;">自由现金流 FCF</span>
+            <span class="flow-arrow">→</span>
+            <span class="flow-step" style="background:#27ae60;">分红 / 回购 / 还债 / 存银行</span>
+        </div>
+
+        <div class="highlight">
+            <p><strong>一句话总结差异：</strong>OCF是"做生意收到的钱"，FCF是"做完所有该做的事后还能自由支配的钱"。前者看主业造血能力，后者看能给股东多少钱。<strong>OCF好不代表FCF好，但FCF好通常OCF一定好。</strong></p>
+        </div>
+
+        <h4 id="chapter8-case">8.3.4 真实企业案例：用三家不同公司彻底搞懂OCF和FCF</h4>
+
+        <div class="case-box">
+            <h4>案例1：苹果（AAPL）—— "现金奶牛"型，OCF和FCF双双强劲</h4>
+            <p><strong>业务特点：</strong>卖iPhone/Mac/Service，轻资产（不建工厂），资本支出极低。</p>
+            <table>
+                <tr><th>FY2025（亿美元）</th><th>金额</th><th>说明</th></tr>
+                <tr><td>净利润</td><td>$940</td><td>会计利润</td></tr>
+                <tr><td>经营性现金流 (OCF)</td><td>$1,160</td><td>OCF > 净利润，因折旧加回、应收少</td></tr>
+                <tr><td>资本支出 (CapEx)</td><td>~$110</td><td>买设备/数据中心，轻资产</td></tr>
+                <tr><td><strong>自由现金流 (FCF)</strong></td><td><strong>~$1,050</strong></td><td>FCF = $1,160 − $110 = $1,050亿</td></tr>
+                <tr><td>FCF Yield</td><td>~3.5%</td><td>FCF / 市值（约$3万亿）</td></tr>
+            </table>
+            <p><strong>解读：</strong>苹果是"现金奶牛"的极致——OCF $1,160亿远超净利润$940亿（盈利质量极高），CapEx仅$110亿（轻资产），FCF高达$1,050亿。这$1,050亿"自由钱"被用来分红（~$150亿）+回购股票（~$800亿）+存银行（现金储备$1,500亿+）。这是巴菲特最爱的"FCF强劲+轻资产+能持续回购分红"的标的。</p>
+        </div>
+
+        <div class="case-box">
+            <h4>案例2：美国电塔（AMT）—— REIT的"高OCF+高CapEx"模式，FCF被资本支出吃掉</h4>
+            <p><strong>业务特点：</strong>通信塔运营商，必须不停投建新塔/升级塔来扩张，属于重资产模式。</p>
+            <table>
+                <tr><th>FY2025（亿美元）</th><th>金额</th><th>说明</th></tr>
+                <tr><td>净利润</td><td>$33</td><td>会计利润</td></tr>
+                <tr><td>经营性现金流 (OCF)</td><td>$58</td><td>OCF远高于净利润，因折旧大（塔的折旧加回）</td></tr>
+                <tr><td>资本支出 (CapEx)</td><td>~$35</td><td>建新塔+维护+升级5G，重资产</td></tr>
+                <tr><td><strong>自由现金流 (FCF)</strong></td><td><strong>~$23</strong></td><td>FCF = $58 − $35 = $23亿</td></tr>
+                <tr><td>FCF对股息覆盖</td><td>~0.66x</td><td>股息$35亿 > FCF $23亿，需借款补差额</td></tr>
+            </table>
+            <p><strong>解读：</strong>AMT是典型"高OCF+高CapEx"的REIT——OCF $58亿看起来健康，但必须花$35亿建塔维护，FCF只剩$23亿。而REIT税制要求分配90%+应税收入作为股息（约$35亿），<strong>导致FCF不足以覆盖股息，需借款补差额</strong>。这是REIT"借钱分红"模式的根源，也解释了为什么AMT债务持续增长。投资者看OCF会以为很健康，但看FCF才发现"自由钱"被CapEx吃光。</p>
+        </div>
+
+        <div class="case-box">
+            <h4>案例3：拼多多（PDD）—— 高增长期FCF为负，但OCF已转正的"成长股"</h4>
+            <p><strong>业务特点：</strong>电商+Temu海外扩张，早期烧钱补贴换用户，近年OCF转正但仍在重金投入。</p>
+            <table>
+                <tr><th>2023 vs 2025（亿元人民币）</th><th>2023</th><th>2025</th><th>变化</th></tr>
+                <tr><td>净利润</td><td>600</td><td>940</td><td>+57%</td></tr>
+                <tr><td>经营性现金流 (OCF)</td><td>~650</td><td>~1,000</td><td>OCF > 净利润（应付账款周转好）</td></tr>
+                <tr><td>资本支出 (CapEx)</td><td>~150</td><td>~400</td><td>Temu海外仓储+数据中心</td></tr>
+                <tr><td><strong>自由现金流 (FCF)</strong></td><td><strong>~500</strong></td><td><strong>~600</strong></td><td>FCF转正且增长</td></tr>
+                <tr><td>FCF对净利润比</td><td>0.83x</td><td>0.64x</td><td>盈利质量下降（CapEx占比升）</td></tr>
+            </table>
+            <p><strong>解读：</strong>拼多多OCF强劲（~1,000亿）说明主业造血能力好，但CapEx从150亿增至400亿（Temu海外仓储+AI数据中心），导致FCF"只"剩600亿。FCF/净利润从0.83降至0.64，说明"赚的钱越来越多沉淀在仓库和数据中心里"。<strong>对成长股，FCF为正+增长是健康信号；但要警惕FCF持续为负+债务攀升的组合</strong>——那是"烧钱换增长"的泡沫信号。</p>
+        </div>
+
+        <h4>8.3.5 OCF和FCF的5种"健康组合"信号灯</h4>
+        <div class="concept-card">
+            <div class="bar-chart-row">
+                <div class="bar-chart-label">① OCF+ FCF+</div>
+                <div class="bar-chart-bar" style="background:#27ae60; width:90%;">现金奶牛（苹果/可口可乐）</div>
+                <div class="bar-chart-value"><span class="scenario-tag scenario-good">最优</span></div>
+            </div>
+            <div class="bar-chart-row">
+                <div class="bar-chart-label">② OCF+ FCF-</div>
+                <div class="bar-chart-bar" style="background:#e67e22; width:60%;">高成长期（早期亚马逊/PDD）</div>
+                <div class="bar-chart-value"><span class="scenario-tag scenario-watch">关注</span></div>
+            </div>
+            <div class="bar-chart-row">
+                <div class="bar-chart-label">③ OCF- FCF-</div>
+                <div class="bar-chart-bar" style="background:#e74c3c; width:40%;">烧钱期（未盈利独角兽）</div>
+                <div class="bar-chart-value"><span class="scenario-tag scenario-bad">危险</span></div>
+            </div>
+            <div class="bar-chart-row">
+                <div class="bar-chart-label">④ OCF- FCF+</div>
+                <div class="bar-chart-bar" style="background:#9b59b6; width:30%;">变卖资产期（极少见，警惕）</div>
+                <div class="bar-chart-value"><span class="scenario-tag scenario-watch">警示</span></div>
+            </div>
+            <div class="bar-chart-row">
+                <div class="bar-chart-label">⑤ OCF升 FCF升</div>
+                <div class="bar-chart-bar" style="background:#2196F3; width:80%;">基本面改善（拐点股）</div>
+                <div class="bar-chart-value"><span class="scenario-tag scenario-good">买点</span></div>
+            </div>
+        </div>
+
+        <div class="highlight">
+            <p><strong>巴菲特芒格总结：</strong>价值投资者最看重的不是净利润，而是<strong>"OCF真实强劲 + FCF持续为正 + FCF能转化为股东回报（分红/回购）"</strong>的三位一体。这是判断企业"内在价值"的底层标尺——一家公司的价值，等于它未来能产生的所有自由现金流的折现值。<strong>看不懂OCF和FCF，就看不懂估值。</strong></p>
+        </div>
+
+        <h4>8.3.6 实操：如何在财报中快速找到OCF和FCF</h4>
+        <table>
+            <tr><th>指标</th><th>在财报中的位置</th><th>常见中英文名称</th></tr>
+            <tr>
+                <td><strong>经营性现金流 (OCF)</strong></td>
+                <td>现金流量表 → 经营活动现金流部分 → "经营活动产生的现金流量净额"</td>
+                <td>Net Cash Provided by Operating Activities / 经营活动现金流净额 / OCF</td>
+            </tr>
+            <tr>
+                <td><strong>资本支出 (CapEx)</strong></td>
+                <td>现金流量表 → 投资活动现金流 → "购建固定资产、无形资产和其他长期资产支付的现金"</td>
+                <td>Capital Expenditures / 购建固定资产支付的现金 / Purchase of PP&E</td>
+            </tr>
+            <tr>
+                <td><strong>自由现金流 (FCF)</strong></td>
+                <td>通常不在财报中直接列示，需自己计算：OCF − CapEx</td>
+                <td>Free Cash Flow / FCF（需手动计算）</td>
+            </tr>
+            <tr>
+                <td><strong>调整后FCF</strong></td>
+                <td>部分公司（尤其REIT）会在投资者关系材料中披露调整后FCF</td>
+                <td>Adjusted FCF / AFFO（REIT常用）</td>
+            </tr>
+        </table>
+
+        <div class="highlight">
+            <p><strong>小贴士：</strong>不同公司对"资本支出"定义略有差异——有的只含"维持性CapEx"（Maintenance CapEx，仅维持现有业务），有的含"扩张性CapEx"（Growth CapEx，含新建塔/新厂房）。看FCF时务必确认口径，尤其REIT/电信塔/基础设施类公司，"维持性CapEx"才是评估"真实自由现金流"的更准确口径。</p>
+        </div>
     </div>
     
     <div class="info-box">
@@ -731,7 +1083,7 @@
     </div>
     
     <div class="info-box">
-        <h2>十、总结</h2>
+        <h2 id="chapter10">十、总结</h2>
         <div class="highlight">
             <p>财务报表分析是一项综合性的工作，需要：</p>
             <ul>
