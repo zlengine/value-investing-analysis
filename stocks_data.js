@@ -30,6 +30,7 @@
         {code:'GIS',name:'通用磨坊',href:'gis.html'},
         {code:'MMS',name:'Maximus, Inc.',href:'mms.html'},
         {code:'MKC',name:'McCormick & Company',href:'mkc.html'},
+        {code:'MZTI',name:'The Marzetti Company - 63年股息之王/酱料冷冻面包隐形冠军',href:'mzti.html'},
         {code:'STNE',name:'StoneCo Ltd.',href:'stne.html'},
         {code:'MAT',name:'Mattel, Inc.',href:'mat.html'},
         {code:'INGR',name:'Ingredion Incorporated',href:'ingr.html'},

@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Marzetti Company (MZTI) 价值投资分析</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            padding-top: 70px;
+            background-color: #f0f2f5;
+            color: #333;
+        }
+        h1 {
+            text-align: center;
+            color: #1a5276;
+            font-size: 2.2em;
+            margin-bottom: 5px;
+        }
+        h2 {
+            color: #1a5276;
+            border-bottom: 2px solid #2e86c1;
+            padding-bottom: 8px;
+            margin-top: 30px;
+        }
+        h3 {
+            color: #2c3e50;
+            margin-top: 20px;
+        }
+        .subtitle {
+            text-align: center;
+            color: #7f8c8d;
+            font-size: 1.1em;
+            margin-bottom: 30px;
+        }
+        .info-box {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 15px 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #1a5276;
+            color: white;
+        }
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+        .highlight {
+            background: #eaf2f8;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 4px solid #2e86c1;
+        }
+        .tag {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.85em;
+            font-weight: bold;
+            color: white;
+        }
+        .tag-green { background-color: #27ae60; }
+        .tag-orange { background-color: #e67e22; }
+        .tag-red { background-color: #e74c3c; }
+        .rating-stars { color: #f39c12; }
+        .top-nav-bar { position: fixed; top: 0; left: 0; right: 0; height: 44px; background: #2c3e50; z-index: 999; }
+        .section-nav {
+            background: white;
+            border-radius: 10px;
+            padding: 15px 25px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+        .section-nav a {
+            display: inline-block;
+            margin: 5px 10px;
+            padding: 6px 14px;
+            background: #eaf2f8;
+            color: #1a5276;
+            text-decoration: none;
+            border-radius: 15px;
+            font-size: 0.9em;
+        }
+        .section-nav a:hover {
+            background: #2e86c1;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="top-nav-bar"></div>
+    <script src="nav_bar.js?v=20260624"></script>
+    <span id="topbarCode" style="display:none;">MZTI</span>
+
+    <h1>The Marzetti Company (NYSE: MZTI)</h1>
+    <p class="subtitle">巴菲特/芒格式价值投资基本面分析 | 更新日期：2026年8月30日</p>
+
+    <div class="section-nav">
+        <a href="#chapter1">公司基本信息</a>
+        <a href="#chapter2">业务分析</a>
+        <a href="#chapter3">产品竞争力分析</a>
+        <a href="#chapter4">历史财务指标</a>
+        <a href="#chapter5">竞争分析</a>
+        <a href="#chapter6">利润分配分析</a>
+        <a href="#chapter7">投资总结</a>
+    </div>
+
+    <div class="info-box">
+        <h2 id="chapter1">一、公司基本信息</h2>
+        <table>
+            <tr><td style="width:30%;font-weight:bold;">公司全称</td><td>The Marzetti Company（前身为Lancaster Colony Corporation）</td></tr>
+            <tr><td style="font-weight:bold;">股票代码</td><td>MZTI（NYSE: NASDAQ Global Market）</td></tr>
+            <tr><td style="font-weight:bold;">总部</td><td>美国俄亥俄州Westerville（380 Polaris Parkway, Suite 400）</td></tr>
+            <tr><td style="font-weight:bold;">成立时间</td><td>1896年（roic.ai数据）/ 1961年（公司官方演示文稿）。Marzetti品牌由Teresa Marzetti于1911年在俄亥俄州哥伦布创立，1969年被Lancaster Colony收购</td></tr>
+            <tr><td style="font-weight:bold;">最新收盘价</td><td>$111.63（2026/8/21）</td></tr>
+            <tr><td style="font-weight:bold;">市值</td><td>$30.6亿（约¥222亿）</td></tr>
+            <tr><td style="font-weight:bold;">市值（美元）</td><td>$3.06B</td></tr>
+            <tr><td style="font-weight:bold;">PE（TTM）</td><td>17.47x</td></tr>
+            <tr><td style="font-weight:bold;">Forward PE</td><td>15.73x</td></tr>
+            <tr><td style="font-weight:bold;">每股收益（TTM）</td><td>$6.39</td></tr>
+            <tr><td style="font-weight:bold;">股息率（TTM）</td><td>3.58%</td></tr>
+            <tr><td style="font-weight:bold;">每股股息（年化）</td><td>$4.00（季度$1.00）</td></tr>
+            <tr><td style="font-weight:bold;">52周区间</td><td>$104.28 - $190.96</td></tr>
+            <tr><td style="font-weight:bold;">Beta</td><td>0.35（极低波动）</td></tr>
+            <tr><td style="font-weight:bold;">总股本</td><td>约2,800万股</td></tr>
+            <tr><td style="font-weight:bold;">员工人数</td><td>约3,800人</td></tr>
+            <tr><td style="font-weight:bold;">生产设施</td><td>13个工厂，分布7个州</td></tr>
+            <tr><td style="font-weight:bold;">行业</td><td>包装食品（Packaged Foods）/ 消费防御</td></tr>
+            <tr><td style="font-weight:bold;">S&P 500成分股</td><td>否（Mid-cap）</td></tr>
+            <tr><td style="font-weight:bold;">股息记录</td><td><strong>63年连续股息增长</strong>——美国仅12家公司达成此记录（Dividend Kings级别）</td></tr>
+            <tr><td style="font-weight:bold;">更名历史</td><td>2025年6月27日从Lancaster Colony Corporation更名为The Marzetti Company</td></tr>
+        </table>
+
+        <div class="highlight">
+            <strong>公司一句话：</strong> MZTI是美国"酱料与冷冻面包"的隐形冠军——你在超市买的Olive Garden沙拉酱、Chick-fil-A酱、Subway酱、Texas Roadhouse晚餐卷、Sister Schubert's卷、New York Bakery冷冻大蒜面包，<strong>几乎全是它家生产的</strong>。它把"给17家全美前30大连锁餐厅做酱料+把这些餐厅品牌授权到零售超市"这件事做成了$19亿年营收、63年连续涨股息的"防御性现金奶牛"。
+        </div>
+    </div>
+
+    <div class="info-box">
+        <h2 id="chapter2">二、业务分析</h2>
+
+        <div class="highlight">
+            <strong>一句话业务：</strong> MZTI是"餐厅背后的酱料工厂+超市货架的冷冻面包专家"——它同时做两件事：①给全美前30大连锁餐厅中的17家（Chick-fil-A、Subway、Olive Garden、Arby's、Texas Roadhouse、Buffalo Wild Wings等）生产酱料蘸酱；②把这些餐厅品牌授权后，把同名酱料和冷冻面包卖到沃尔玛、Costco等超市货架。这种"B2B+品牌授权B2C"双轮模式是它的核心。
+        </div>
+
+        <h3>2.1 业务板块（FY2025，截至2025/6/30）</h3>
+        <table>
+            <tr><th>板块</th><th>FY25营收</th><th>占比</th><th>运营利润率</th><th>核心市场</th></tr>
+            <tr>
+                <td><strong>Retail（零售）</strong></td>
+                <td>~$10.04亿</td>
+                <td>53%</td>
+                <td>~12-13%</td>
+                <td>沃尔玛/Costco/Kroger等超市</td>
+            </tr>
+            <tr>
+                <td><strong>Foodservice（餐饮服务）</strong></td>
+                <td>~$9.05亿</td>
+                <td>47%</td>
+                <td>~10-11%</td>
+                <td>17家前30大连锁餐厅</td>
+            </tr>
+            <tr style="font-weight:bold;background:#eaf2f8;">
+                <td>合计</td>
+                <td>$19.09亿</td>
+                <td>100%</td>
+                <td>~11.5%</td>
+                <td>纯美国市场</td>
+            </tr>
+        </table>
+
+        <h3>2.2 核心品牌组合</h3>
+        <table>
+            <tr><th>类型</th><th>品牌</th><th>品类</th><th>市场地位</th></tr>
+            <tr><td><strong>自有品牌</strong></td><td>Marzetti</td><td>冷藏沙拉酱、蘸酱</td><td>冷藏酱#1、生鲜蘸酱#1</td></tr>
+            <tr><td></td><td>New York Bakery</td><td>冷冻大蒜面包、Texas Toast</td><td>冷冻大蒜面包#1</td></tr>
+            <tr><td></td><td>Sister Schubert's</td><td>冷冻晚餐卷（Parker House rolls）</td><td>冷冻卷#1</td></tr>
+            <tr><td></td><td>Reames</td><td>冷冻面条</td><td>区域龙头</td></tr>
+            <tr><td><strong>授权品牌</strong></td><td>Olive Garden</td><td>沙拉酱</td><td>零售授权</td></tr>
+            <tr><td></td><td>Chick-fil-A</td><td>酱料、蘸酱</td><td>2024年进军超市</td></tr>
+            <tr><td></td><td>Subway</td><td>签名酱料</td><td>2024年进军超市</td></tr>
+            <tr><td></td><td>Arby's</td><td>酱料</td><td>零售授权</td></tr>
+            <tr><td></td><td>Texas Roadhouse</td><td>牛排酱、冷冻晚餐卷</td><td>零售授权</td></tr>
+            <tr><td></td><td>Buffalo Wild Wings</td><td>酱料</td><td>零售授权</td></tr>
+        </table>
+
+        <div class="highlight">
+            <strong>授权零售业务的"印钞机"特性：</strong>FY2026前52周（截至2026/3/29），零售授权业务产生近<strong>$5.6亿销售额，同比增长5.4%</strong>。这意味着约30%的零售营收来自"把餐厅品牌搬到超市"——这是一个低资本开支、高利润率的轻资产模式，是MZTI区别于普通包装食品公司的核心护城河。
+        </div>
+
+        <h3>2.3 地理分布</h3>
+        <table>
+            <tr><th>地区</th><th>营收占比</th><th>说明</th></tr>
+            <tr><td>美国</td><td>~99%</td><td>纯美国市场，无海外业务</td></tr>
+            <tr><td>国际</td><td>~1%</td><td>极少量加拿大出口</td></tr>
+        </table>
+        <div class="highlight">
+            <strong>地理集中度的双刃剑：</strong>99%美国营收意味着MZTI是"纯美国本土防御性消费股"——好处是无需应对汇率风险和海外监管，坏处是缺少国际增长引擎。与McCormick（MKC，40%+海外）和Kraft Heinz（KHC，30%+海外）形成鲜明对比。
+        </div>
+
+        <h3>2.4 商业模式核心</h3>
+        <p><strong>1. 餐厅B2B + 品牌授权B2C双轮飞轮：</strong>MZTI先通过B2B关系成为Chick-fil-A/Subway等餐厅的酱料供应商，然后利用这种关系获得品牌授权，把同名酱料卖到沃尔玛货架。这种"B2B建立信任→B2C变现品牌"的模式具有极强的客户黏性——餐厅不会轻易换供应商，因为换供应商意味着超市零售版本也要跟着换。</p>
+        <p><strong>2. 63年连续股息增长的"防御性现金奶牛"：</strong>美国仅12家公司达成63年+连续股息增长记录，MZTI是其中之一。这背后是"低资本开支+稳定现金流+保守资本结构"的防御性业务模式——FY2025 CapEx仅约$80M（营收的4%），OCF $261.5M远超净利润$167.3M。</p>
+        <p><strong>3. 零长期债务的保守资本结构：</strong>FY2025资产负债表显示几乎零长期债务（仅$44M融资租赁），现金$218M，净现金$181M。这是MZTI能在63年内任何经济周期（含2008金融危机、2020疫情）都不削减股息的根本保障。</p>
+        <p><strong>4. 冷藏品类的渠道稀缺性：</strong>MZTI的沙拉酱和蘸酱是冷藏品类（refrigerated），而非常温货架。冷藏品类的超市货架空间有限且进入壁垒高——需要冷链物流、冷藏陈列柜、短保质期管理。这种"冷链护城河"比常温包装食品更难复制。</p>
+    </div>
+
+    <div class="info-box">
+        <h2 id="chapter3">三、产品竞争力分析</h2>
+
+        <h3>3.1 护城河评估</h3>
+        <table>
+            <tr><th>护城河类型</th><th>评分</th><th>说明</th></tr>
+            <tr><td>规模优势</td><td>★★★☆☆</td><td>$19亿营收在包装食品中属中小型，规模不如Kraft Heinz/Conagra，但在冷藏酱料和冷冻面包细分品类是#1</td></tr>
+            <tr><td>品牌授权</td><td>★★★★★</td><td>同时拥有Olive Garden/Chick-fil-A/Subway/Arby's/Texas Roadhouse/Buffalo Wild Wings六大餐饮品牌零售授权——这种组合在全球独一无二</td></tr>
+            <tr><td>转换成本</td><td>★★★★☆</td><td>餐厅B2B客户换供应商需重新配方、过质监、重贴标——Chick-fil-A不会轻易换掉酱料供应商</td></tr>
+            <tr><td>渠道壁垒</td><td>★★★★☆</td><td>冷藏品类需要冷链物流+冷藏陈列柜——超市冷藏空间有限且已被MZTI占据</td></tr>
+            <tr><td>成本优势</td><td>★★☆☆☆</td><td>不是低成本玩家，毛利率23-26%在包装食品中偏低（MKC约42%，KHC约35%）</td></tr>
+            <tr><td>无形资产</td><td>★★★★☆</td><td>63年品牌沉淀+独家授权协议+1911年Marzetti品牌历史</td></tr>
+            <tr><td>网络效应</td><td>★☆☆☆☆</td><td>无典型网络效应，但"17家前30大连锁餐厅供应商"地位形成间接壁垒</td></tr>
+        </table>
+
+        <h3>3.2 从消费者视角看MZTI的商业模式</h3>
+        <div class="highlight">
+            <strong>场景1：你在沃尔玛买Chick-fil-A酱</strong><br>
+            你想吃Chick-fil-A的酱但又不想排队，于是在沃尔玛冷藏区买到一瓶Chick-fil-A酱——这瓶酱就是MZTI生产的。Chick-fil-A自己不开工厂做零售酱，它把品牌授权给MZTI，MZTI负责生产、包装、分销，Chick-fil-A收授权费。你作为消费者得到的是"和餐厅一样的味道"，MZTI得到的是"无需自己建品牌就能进超市"的轻资产增长。
+        </div>
+        <div class="highlight">
+            <strong>场景2：你在Subway点Sweet Onion Teriyaki酱</strong><br>
+            你在Subway点三明治时加的那勺Sweet Onion Teriyaki酱，是MZTI工厂生产的。2024年起，你还能在超市买到瓶装版本——同样是MZTI生产。一个酱料配方，MZTI同时赚B2B（卖给Subway门店）+ B2C（卖给你回家用）两份钱。这就是"双轮飞轮"的威力。
+        </div>
+        <div class="highlight">
+            <strong>场景3：你买Sister Schubert's冷冻晚餐卷</strong><br>
+            感恩节晚餐你买了一盒Sister Schubert's冷冻卷，烤箱加热15分钟即食。这是MZTI的#1冷冻卷品牌——一个看起来不起眼的品类，但MZTI在这个细分市场占据绝对主导地位。冷冻卷的"便利性+节庆场景"使其成为高复购率的防御性品类。
+        </div>
+
+        <h3>3.3 相对优势与可替代性</h3>
+        <div class="highlight">
+            <strong>vs Kraft Heinz（KHC）：</strong>KHC有Hidden Valley/Wish-Bone等品牌，规模远大于MZTI，但KHC没有"餐厅品牌零售授权"模式。KHC更依赖常温货架，MZTI专攻冷藏+冷冻——渠道错位竞争。<strong>可替代性中等</strong>：消费者可在Hidden Valley和Marzetti沙拉酱之间切换，但Chick-fil-A酱是独家授权，无法替代。
+        </div>
+        <div class="highlight">
+            <strong>vs McCormick（MKC）：</strong>MKC是调味料全球龙头，毛利率~42%远高于MZTI的23-26%。但MKC主营香料/调味粉，MZTI主营冷藏酱料/冷冻面包——品类不同。MKC有全球布局，MZTI纯美国。<strong>可替代性低</strong>：香料和冷藏酱不是直接替代品。
+        </div>
+        <div class="highlight">
+            <strong>vs Conagra（CAG）：</strong>CAG有Act II爆米花/Birds Eye冷冻蔬菜等，规模3倍于MZTI。但CAG没有餐厅B2B业务，没有品牌授权模式。<strong>可替代性中等</strong>：冷冻食品内部有重叠，但MZTI的冷冻大蒜面包和晚餐卷品类#1。
+        </div>
+
+        <h3>3.4 主要风险</h3>
+        <ul>
+            <li><strong>毛利率偏低（23-26%）：</strong>远低于MKC（42%）和KHC（35%），反映定价权弱+原料成本敏感。FY2022曾因成本通胀毛利率压缩到~18%。</li>
+            <li><strong>有机增长缓慢（1.8% 3年CAGR）：</strong>包装食品是成熟行业，MZTI过去3年营收CAGR仅1.8%——低于通胀。增长主要靠M&A和授权扩张。</li>
+            <li><strong>Q1 CY2026（FY26 Q3）业绩疲软：</strong>营收$453.4M同比-1%，EPS $1.35同比-13.9%，销量-5.6%——反映消费疲软+club渠道去库存。</li>
+            <li><strong>2026年5月收购Bachan's（$400M）：</strong>首次大规模举债收购，可能打破63年"零长期债务"传统，增加财务风险。</li>
+            <li><strong>纯美国市场：</strong>无国际增长引擎，受美国消费周期影响大。</li>
+            <li><strong>授权协议续约风险：</strong>Chick-fil-A/Subway等授权协议有期限，若不续约将损失零售业务。</li>
+        </ul>
+    </div>
+
+    <div class="info-box">
+        <h2 id="chapter4">四、历史财务指标（2013-2025）</h2>
+        <p style="color:#7f8c8d;">数据来源：roic.ai / stocktitan.net / SEC 10-K 10-Q filings。注：2025年6月27日从Lancaster Colony（LANC）更名为The Marzetti Company（MZTI），下表数据为延续实体。</p>
+
+        <h3>4.1 核心财务指标年度表</h3>
+        <table>
+            <tr><th>财年（6月结束）</th><th>营收($M)</th><th>净利润($M)</th><th>EPS($)</th><th>股息($)</th><th>ROE(%)</th><th>ROIC(%)</th><th>长期债务($M)</th><th>PE(年末)</th></tr>
+            <tr><td>2013</td><td>1,014</td><td>109</td><td>4.01</td><td>6.53*</td><td>20.51</td><td>19.47</td><td>0</td><td>24.3</td></tr>
+            <tr><td>2014</td><td>1,041</td><td>75</td><td>2.75</td><td>1.72</td><td>14.56</td><td>19.64</td><td>0</td><td>31.2</td></tr>
+            <tr><td>2015</td><td>1,105</td><td>102</td><td>3.72</td><td>1.82</td><td>18.33</td><td>18.34</td><td>0</td><td>31.4</td></tr>
+            <tr><td>2016</td><td>1,191</td><td>122</td><td>4.45</td><td>6.97*</td><td>22.25</td><td>22.20</td><td>0</td><td>28.8</td></tr>
+            <tr><td>2017</td><td>1,202</td><td>115</td><td>4.21</td><td>2.15</td><td>21.17</td><td>23.24</td><td>0</td><td>30.0</td></tr>
+            <tr><td>2018</td><td>1,223</td><td>135</td><td>4.94</td><td>2.35</td><td>22.03</td><td>21.91</td><td>0</td><td>35.0</td></tr>
+            <tr><td>2019</td><td>1,308</td><td>151</td><td>5.49</td><td>2.56</td><td>21.83</td><td>19.66</td><td>0</td><td>29.4</td></tr>
+            <tr><td>2020</td><td>1,334</td><td>137</td><td>4.97</td><td>2.75</td><td>18.14</td><td>17.60</td><td>19</td><td>42.2</td></tr>
+            <tr><td>2021</td><td>1,467</td><td>142</td><td>5.18</td><td>2.96</td><td>17.50</td><td>16.45</td><td>24</td><td>30.5</td></tr>
+            <tr><td>2022</td><td>1,676</td><td>90</td><td>3.26</td><td>3.16</td><td>10.62</td><td>13.00</td><td>25</td><td>25.7</td></tr>
+            <tr><td>2023</td><td>1,823</td><td>111</td><td>4.05</td><td>3.36</td><td>13.04</td><td>14.55</td><td>19</td><td>—</td></tr>
+            <tr><td>2024</td><td>1,872</td><td>159</td><td>5.78</td><td>3.57</td><td>17.74</td><td>17.58</td><td>45</td><td>—</td></tr>
+            <tr><td>2025</td><td>1,909</td><td>167</td><td>6.09</td><td>3.77</td><td>17.39</td><td>17.29</td><td>44**</td><td>~17</td></tr>
+        </table>
+        <p style="font-size:0.85em;color:#7f8c8d;">*2013和2016年股息含特别股息。**2025年长期债务主要是融资租赁，实际银行借款为零。</p>
+
+        <h3>4.2 关键趋势解读</h3>
+        <div class="highlight">
+            <strong>1. 63年股息增长的奇迹：</strong>从2013年$6.53（含特别股息）到2025年$3.77（常规），再到2025年11月第63次增至年化$4.00——63年间从未减少，涵盖7次经济衰退、3次石油危机、2008金融危机、2020疫情。<strong>美国仅12家公司达成此记录，包括Coca-Cola、P&G、3M、Johnson & Johnson等</strong>——MZTI是其中最小但最纯粹的食品公司。
+        </div>
+        <div class="highlight">
+            <strong>2. FY2022的低谷与恢复：</strong>FY2022净利润跌至$90M（EPS $3.26），ROE降至10.62%——主要因通胀导致原料成本飙升。但FY2024-2025强劲恢复，FY2025净利润$167M创新高，ROE回升至17.39%。<strong>毛利率从FY2022的~18%恢复到FY2025的22.3%（Q4）</strong>，反映成本节约计划+产品组合改善。
+        </div>
+        <div class="highlight">
+            <strong>3. ROE/ROIC长期稳定在17-22%：</strong>除FY2022低点（10.62%），13年间ROE基本在17-22%波动——这在低杠杆（零长期债务）条件下尤其难得。对比MKC ROE约15-30%（但有杠杆），MZTI的ROE是"无杠杆真实经营效率"的体现。ROIC从FY2022的13%恢复到FY2025的17.29%。
+        </div>
+        <div class="highlight">
+            <strong>4. 资产负债率极低：</strong>2013-2019年完全零长期债务，2020-2025年仅有$19-45M融资租赁（非银行借款）。<strong>资产负债率长期维持在5-10%的极低水平</strong>，这是63年连续股息增长的最根本保障。
+        </div>
+        <div class="highlight">
+            <strong>5. 估值从2020-2021年泡沫回归：</strong>PE从FY2020的42.2x（疫情避险溢价）降至当前17.47x——这是近10年估值最低位。<strong>当前PE 17.47x vs 10年均值~30x，估值折价40%+</strong>。
+        </div>
+    </div>
+
+    <div class="info-box">
+        <h2 id="chapter5">五、竞争分析</h2>
+
+        <h3>5.1 主要竞争对手对比</h3>
+        <table>
+            <tr><th>公司</th><th>代码</th><th>市值</th><th>营收</th><th>毛利率</th><th>ROE</th><th>股息率</th><th>核心品类</th></tr>
+            <tr><td><strong>Marzetti</strong></td><td>MZTI</td><td>$3.06B</td><td>$1.9B</td><td>~23-26%</td><td>16.8%</td><td>3.58%</td><td>冷藏酱/冷冻面包</td></tr>
+            <tr><td>Kraft Heinz</td><td>KHC</td><td>$42B</td><td>$26B</td><td>~35%</td><td>~5%</td><td>~4.5%</td><td>常温包装食品</td></tr>
+            <tr><td>Conagra</td><td>CAG</td><td>$15B</td><td>$12B</td><td>~27%</td><td>~10%</td><td>~3.5%</td><td>冷冻食品/常温</td></tr>
+            <tr><td>General Mills</td><td>GIS</td><td>$35B</td><td>$20B</td><td>~35%</td><td>~15%</td><td>~3.3%</td><td>谷物/烘焙/酸奶</td></tr>
+            <tr><td>McCormick</td><td>MKC</td><td>$19B</td><td>$6.5B</td><td>~42%</td><td>~15-30%</td><td>~2.2%</td><td>香料/调味粉</td></tr>
+            <tr><td>Lamb Weston</td><td>LW</td><td>$10B</td><td>$6.5B</td><td>~25%</td><td>~负</td><td>~3.5%</td><td>冷冻薯条</td></tr>
+        </table>
+
+        <h3>5.2 MZTI的相对竞争优势</h3>
+        <div class="highlight">
+            <strong>优势1：独一无二的"餐厅品牌零售授权"模式</strong><br>
+            MZTI是全美唯一同时拥有Olive Garden+Chick-fil-A+Subway+Arby's+Texas Roadhouse+Buffalo Wild Wings六大餐饮品牌零售授权的公司。这种"把餐厅品牌搬到超市"的模式无需自建品牌，资本回报率极高。FY2026前52周授权零售业务$5.6亿（+5.4%），是增长最快的子业务。
+        </div>
+        <div class="highlight">
+            <strong>优势2：63年连续股息增长——"股息之王"稀缺性</strong><br>
+            美国仅12家公司达成63年+连续股息增长记录。这不仅是财务成就，更是"业务韧性与管理层保守纪律"的证明。在包装食品行业中，没有任何直接竞争对手达到此记录（KHC近年削减过股息，CAG/GIS记录较短）。
+        </div>
+        <div class="highlight">
+            <strong>优势3：零长期债务的资产负债表</strong><br>
+            FY2025实际银行借款为零（仅$44M融资租赁），现金$218M，净现金$181M。对比KHC（净债务$28B）、CAG（净债务$9B）、GIS（净债务$5B）——MZTI是唯一"无杠杆"的包装食品公司。这是能在任何经济周期不减股息的根本。
+        </div>
+        <div class="highlight">
+            <strong>优势4：冷藏品类的渠道稀缺性</strong><br>
+            MZTI的沙拉酱/蘸酱是冷藏品类，需要冷链物流+冷藏陈列柜。超市冷藏空间有限且已被MZTI占据——新进入者难以获得陈列位。对比常温包装食品（KHC/GIS主营），冷藏品类进入壁垒更高。
+        </div>
+
+        <h3>5.3 MZTI的相对劣势</h3>
+        <ul>
+            <li><strong>规模偏小：</strong>$19亿营收 vs KHC $260亿/GIS $200亿，规模劣势导致采购议价力弱、广告投入有限。</li>
+            <li><strong>毛利率最低：</strong>23-26% vs MKC 42%/KHC 35%——反映定价权弱+原料成本敏感。</li>
+            <li><strong>纯美国市场：</strong>无国际增长引擎，而MKC 40%+海外/KHC 30%+海外。</li>
+            <li><strong>有机增长缓慢：</strong>3年营收CAGR仅1.8%，低于行业均值，增长依赖M&A。</li>
+            <li><strong>Q1 CY2026业绩疲软：</strong>营收-1%/EPS-13.9%/销量-5.6%，反映消费疲软。</li>
+        </ul>
+    </div>
+
+    <div class="info-box">
+        <h2 id="chapter6">六、利润分配分析（近10年）</h2>
+        <p style="color:#7f8c8d;">数据来源：stocktitan.net / SEC 10-K filings。单位：百万美元($M)。</p>
+
+        <h3>6.1 近10年利润分配表</h3>
+        <table>
+            <tr><th>财年</th><th>净利润</th><th>OCF</th><th>CapEx</th><th>FCF</th><th>股息支付</th><th>回购</th><th>股息+回购/FCF</th></tr>
+            <tr><td>2016</td><td>122</td><td>~160</td><td>~30</td><td>~128</td><td>~56</td><td>~5</td><td>48%</td></tr>
+            <tr><td>2017</td><td>115</td><td>~155</td><td>~35</td><td>~118</td><td>~60</td><td>~3</td><td>53%</td></tr>
+            <tr><td>2018</td><td>135</td><td>~165</td><td>~38</td><td>~127</td><td>~66</td><td>~4</td><td>55%</td></tr>
+            <tr><td>2019</td><td>151</td><td>~180</td><td>~45</td><td>~135</td><td>~72</td><td>~6</td><td>58%</td></tr>
+            <tr><td>2020</td><td>137</td><td>~175</td><td>~40</td><td>~135</td><td>~77</td><td>~8</td><td>63%</td></tr>
+            <tr><td>2021</td><td>142</td><td>~170</td><td>~45</td><td>~125</td><td>~84</td><td>~10</td><td>75%</td></tr>
+            <tr><td>2022</td><td>90</td><td>~85</td><td>~115</td><td><strong>-30</strong></td><td>~88</td><td>~12</td><td><strong>NM</strong></td></tr>
+            <tr><td>2023</td><td>111</td><td>~195</td><td>~60</td><td>~135</td><td>~94</td><td>~6</td><td>74%</td></tr>
+            <tr><td>2024</td><td>159</td><td>~230</td><td>~70</td><td>~184</td><td>~100</td><td>~8</td><td>59%</td></tr>
+            <tr><td>2025</td><td>167</td><td>~262</td><td>~80</td><td>~204</td><td>~104</td><td>~8</td><td>55%</td></tr>
+            <tr style="font-weight:bold;background:#eaf2f8;"><td>合计</td><td>1,309</td><td>~1,777</td><td>~558</td><td>~1,219</td><td>~801</td><td>~70</td><td>—</td></tr>
+        </table>
+        <p style="font-size:0.85em;color:#7f8c8d;">注：FY2022 FCF为负（-$30M），主要因CapEx激增至$115M（含产能扩张）+净利润下滑。NM=Not Meaningful。</p>
+
+        <h3>6.2 资本配置质量分析</h3>
+        <div class="highlight">
+            <strong>① 股息分配：63年纪律性增长的"防御性"核心</strong><br>
+            10年累计股息支付$801M，占FCF的66%。股息支付率从FY2016的48%升至FY2022的NM（FCF为负）再到FY2025的51%——<strong>长期维持在50-60%的健康水平</strong>。这是"留下40-50%利润再投资"的巴菲特式保守派息纪律。
+        </div>
+        <div class="highlight">
+            <strong>② 回购：极少量且非策略性</strong><br>
+            10年累计回购仅$70M（年均$7M），占总股本的极小部分。管理层明确表示"通常不进行大量回购"——这与巴菲特式"回购低估股票"理念不符，但符合MZTI"优先股息+有机再投资"的保守风格。<strong>回购10年CAGR +30.2%但基数极小</strong>，非主要资本配置工具。
+        </div>
+        <div class="highlight">
+            <strong>③ 资本开支：维持性为主+阶段性扩张</strong><br>
+            CapEx从FY2016的$30M增至FY2025的$80M，10年累计$558M。FY2022 CapEx激增至$115M（含产能扩张），导致FCF为负——这是为应对FY2022成本通胀进行的"逆周期投资"。FY2025 CapEx $80M占营收4.2%，属轻资产模式。
+        </div>
+        <div class="highlight">
+            <strong>④ 并购：阶段性精准收购</strong><br>
+            近年关键M&A：2025年2月收购Winland Foods亚特兰大酱料工厂；2026年5月收购Bachan's日本烧烤酱（$400M）。<strong>Bachan's是MZTI首次大规模举债收购</strong>，可能改变"零长期债务"传统——是63年资本配置史上最大转折点。
+        </div>
+        <div class="highlight">
+            <strong>⑤ 资本配置总评分：★★★★☆（优秀）</strong><br>
+            63年连续股息增长+零长期债务+OCF稳定为正+FCF长期为正（除FY2022）——这是教科书级的防御性资本配置。唯一的扣分点是：①回购过少（低估时未利用）；②Bachan's收购可能破坏资产负债表保守传统。
+        </div>
+    </div>
+
+    <div class="info-box" style="border:2px solid #1a5276;">
+        <h2 id="chapter7">七、投资总结</h2>
+
+        <h3>7.1 投资亮点</h3>
+        <ul>
+            <li><strong>63年连续股息增长——"股息之王"稀缺性：</strong>美国仅12家公司达成此记录，是业务韧性与管理层纪律的证明。</li>
+            <li><strong>零长期债务的资产负债表：</strong>净现金$181M，63年间任何衰退都未削减股息——防御性极强。</li>
+            <li><strong>独一无二的餐厅品牌零售授权模式：</strong>同时拥有Olive Garden/Chick-fil-A/Subway/Arby's/Texas Roadhouse/Buffalo Wild Wings六大品牌，FY2026授权零售$5.6亿（+5.4%）。</li>
+            <li><strong>冷藏品类渠道稀缺性：</strong>冷链物流+冷藏陈列柜构成进入壁垒，新进入者难以获得陈列位。</li>
+            <li><strong>估值处于10年低位：</strong>PE 17.47x vs 10年均值~30x，估值折价40%+。股息率3.58%是近10年最高位。</li>
+            <li><strong>ROE/ROIC长期17-22%：</strong>在零杠杆条件下的真实经营效率，优于多数包装食品同行。</li>
+            <li><strong>Beta 0.35极低波动：</strong>防御性特征明显，适合保守型组合。</li>
+            <li><strong>供应17家前30大连锁餐厅：</strong>B2B客户黏性极强，餐厅不轻易换供应商。</li>
+        </ul>
+
+        <h3>7.2 投资风险</h3>
+        <ul>
+            <li><strong>毛利率最低（23-26%）：</strong>远低于MKC(42%)/KHC(35%)，定价权弱+原料成本敏感。</li>
+            <li><strong>有机增长缓慢（1.8% CAGR）：</strong>包装食品是成熟行业，增长依赖M&A。</li>
+            <li><strong>Q1 CY2026业绩疲软：</strong>营收-1%/EPS-13.9%/销量-5.6%，反映消费疲软+club渠道去库存。</li>
+            <li><strong>Bachan's收购（$400M）：</strong>首次大规模举债，可能破坏63年"零长期债务"传统。</li>
+            <li><strong>纯美国市场：</strong>无国际增长引擎，受美国消费周期影响。</li>
+            <li><strong>授权协议续约风险：</strong>Chick-fil-A/Subway等授权有期限，不续约将损失零售业务。</li>
+            <li><strong>规模偏小：</strong>$19亿营收在包装食品中属中小型，采购议价力弱。</li>
+            <li><strong>消费降级风险：</strong>若消费者从品牌产品转向private label，MZTI零售业务承压。</li>
+        </ul>
+
+        <h3>7.3 估值分析</h3>
+        <table>
+            <tr><th>估值指标</th><th>当前值</th><th>10年均值</th><th>折价/溢价</th></tr>
+            <tr><td>PE（TTM）</td><td>17.47x</td><td>~30x</td><td><span class="tag tag-green">折价42%</span></td></tr>
+            <tr><td>Forward PE</td><td>15.73x</td><td>~28x</td><td><span class="tag tag-green">折价44%</span></td></tr>
+            <tr><td>股息率</td><td>3.58%</td><td>~1.7-2.2%</td><td><span class="tag tag-green">显著高于均值</span></td></tr>
+            <tr><td>FCF Yield</td><td>~6.7%</td><td>~3-4%</td><td><span class="tag tag-green">高于均值</span></td></tr>
+            <tr><td>P/S</td><td>1.60x</td><td>~3x</td><td><span class="tag tag-green">折价47%</span></td></tr>
+        </table>
+        <div class="highlight">
+            <strong>Sure Dividend估值模型：</strong>公允价值$189/股（基于5年CAGR 17.4%预测），当前$111.63 = <strong>折价41%（仅60% of fair value）</strong>。评级"Buy"。<br>
+            <strong>Koala Gains估值：</strong>建议新投资者等待$95-100入场点，当前$111.63已接近建议区间上沿。<br>
+            <strong>分析师共识：</strong>目标价$154（+38%上行空间），评级2.0（偏持有）。
+        </div>
+
+        <h3>7.4 巴菲特芒格6维度评分</h3>
+        <table>
+            <tr><th>维度</th><th>评分</th><th>说明</th></tr>
+            <tr><td>业务可理解性</td><td>★★★★★</td><td>卖酱料和冷冻面包，简单易懂——巴菲特式"我理解这个生意"</td></tr>
+            <tr><td>竞争优势（护城河）</td><td>★★★★☆</td><td>品牌授权+冷藏渠道+63年记录构成强护城河，但毛利率偏低扣分</td></tr>
+            <tr><td>管理层资本配置</td><td>★★★★☆</td><td>63年股息纪律+零债务优秀，但回购过少+Bachan's举债存疑</td></tr>
+            <tr><td>财务健康度</td><td>★★★★★</td><td>零长期债务+净现金+OCF>净利润+FCF长期为正——教科书级</td></tr>
+            <tr><td>估值安全边际</td><td>★★★★☆</td><td>PE折价42%+股息率10年最高+FCF Yield 6.7%——显著低估</td></tr>
+            <tr><td>长期增长前景</td><td>★★★☆☆</td><td>有机增长1.8%缓慢，依赖M&A+授权扩张，纯美国无国际引擎</td></tr>
+        </table>
+
+        <div class="highlight" style="background:#eafaf1;border-left-color:#27ae60;">
+            <strong>最终结论：<span class="tag tag-green">买入（首次覆盖）</span></strong><br><br>
+            MZTI是罕见的"63年股息之王+零长期债务+独特品牌授权模式+估值10年低位"的防御性价值股。当前PE 17.47x（10年折价42%）、股息率3.58%（10年最高）、FCF Yield 6.7%——提供了充分的安全边际。<br><br>
+            <strong>适合投资者：</strong>追求稳定股息+低波动+防御性配置的保守型价值投资者。Beta 0.35使其成为市场波动时的"避风港"。<br><br>
+            <strong>需监控的关键风险：</strong>①Bachan's收购后债务变化；②Q1 CY2026业绩疲软是否延续；③授权协议续约情况；④消费降级对品牌产品的冲击。<br><br>
+            <strong>芒格视角总结：</strong>"一家63年没削减股息、零长期债务、卖你每天吃的酱料和面包的公司，现在以10年最低估值交易——这不是激动人心的成长股，但是可靠的复利机器。安全边际充足，适合长期持有。"
+        </div>
+
+        <p style="text-align:center;font-size:0.9em;color:#7f8c8d;margin-top:20px;">
+            数据来源：The Marzetti Company 2025年报（10-K） / 2026 Q3财报 / SEC EDGAR / roic.ai / stocktitan.net / Sure Dividend / Koala Gains / Quartr / MarketBeat / Tasting Table / 公司官方演示文稿（June 2026）
+        </p>
+    </div>
+
+    <script src="scores_client.js"></script>
+    <script src="stock_topbar.js"></script>
+</body>
+</html>
