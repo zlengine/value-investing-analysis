@@ -32,6 +32,7 @@
         {code:'MKC',name:'McCormick & Company',href:'mkc.html'},
         {code:'MZTI',name:'The Marzetti Company - 63年股息之王/酱料冷冻面包隐形冠军',href:'mzti.html'},
         {code:'NTES',name:'NetEase 网易 - 全球长青游戏公司/账上净现金1635亿',href:'ntes.html'},
+        {code:'STN',name:'Stantec - 全球可持续工程设计隐形巨头/在手订单92亿/150次并购复利机器',href:'stn.html'},
         {code:'STNE',name:'StoneCo Ltd.',href:'stne.html'},
         {code:'MAT',name:'Mattel, Inc.',href:'mat.html'},
         {code:'INGR',name:'Ingredion Incorporated',href:'ingr.html'},
