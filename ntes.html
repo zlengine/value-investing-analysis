@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NetEase 网易 (NTES) 价值投资分析</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            padding-top: 70px;
+            background-color: #f0f2f5;
+            color: #333;
+        }
+        h1 {
+            text-align: center;
+            color: #1a5276;
+            font-size: 2.2em;
+            margin-bottom: 5px;
+        }
+        h2 {
+            color: #1a5276;
+            border-bottom: 2px solid #2e86c1;
+            padding-bottom: 8px;
+            margin-top: 30px;
+        }
+        h3 {
+            color: #2c3e50;
+            margin-top: 20px;
+        }
+        .subtitle {
+            text-align: center;
+            color: #7f8c8d;
+            font-size: 1.1em;
+            margin-bottom: 30px;
+        }
+        .info-box {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 15px 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #1a5276;
+            color: white;
+        }
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+        .highlight {
+            background: #eaf2f8;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 4px solid #2e86c1;
+        }
+        .tag {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.85em;
+            font-weight: bold;
+            color: white;
+        }
+        .tag-green { background-color: #27ae60; }
+        .tag-orange { background-color: #e67e22; }
+        .tag-red { background-color: #e74c3c; }
+        .rating-stars { color: #f39c12; }
+        .top-nav-bar { position: fixed; top: 0; left: 0; right: 0; height: 44px; background: #2c3e50; z-index: 999; }
+        .section-nav {
+            background: white;
+            border-radius: 10px;
+            padding: 15px 25px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+        .section-nav a {
+            display: inline-block;
+            margin: 5px 10px;
+            padding: 6px 14px;
+            background: #eaf2f8;
+            color: #1a5276;
+            text-decoration: none;
+            border-radius: 15px;
+            font-size: 0.9em;
+        }
+        .section-nav a:hover {
+            background: #2e86c1;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="top-nav-bar"></div>
+    <script src="nav_bar.js?v=20260624"></script>
+    <span id="topbarCode" style="display:none;">NTES</span>
+
+    <h1>NetEase, Inc. 网易（NASDAQ: NTES / HKEX: 9999）</h1>
+    <p class="subtitle">巴菲特/芒格式价值投资基本面分析 | 更新日期：2026年9月3日</p>
+
+    <div class="section-nav">
+        <a href="#chapter1">公司基本信息</a>
+        <a href="#chapter2">业务分析</a>
+        <a href="#chapter3">产品竞争力分析</a>
+        <a href="#chapter4">历史财务指标</a>
+        <a href="#chapter5">竞争分析</a>
+        <a href="#chapter6">利润分配分析</a>
+        <a href="#chapter7">投资总结</a>
+    </div>
+
+    <div class="info-box">
+        <h2 id="chapter1">一、公司基本信息</h2>
+        <table>
+            <tr><td style="width:30%;font-weight:bold;">公司全称</td><td>NetEase, Inc.（网易股份有限公司，开曼群岛注册）</td></tr>
+            <tr><td style="font-weight:bold;">股票代码</td><td>NTES（NASDAQ Global Select Market）/ 9999（香港交易所）</td></tr>
+            <tr><td style="font-weight:bold;">总部</td><td>中国杭州滨江区网商路599号网易大厦</td></tr>
+            <tr><td style="font-weight:bold;">成立时间</td><td>1997年，丁磊创立（中国最早的三大门户之一，2000年6月纳斯达克上市，2020年6月港交所二次上市）</td></tr>
+            <tr><td style="font-weight:bold;">最新收盘价</td><td>$122.76/ADS（2026/8/28）</td></tr>
+            <tr><td style="font-weight:bold;">市值</td><td><strong>$786亿美元</strong>（约¥5,600亿）</td></tr>
+            <tr><td style="font-weight:bold;">PE（TTM）</td><td>16.4x | Forward PE 11.5x</td></tr>
+            <tr><td style="font-weight:bold;">PSR</td><td>0.7x（同行中位数6.5x）</td></tr>
+            <tr><td style="font-weight:bold;">净利率</td><td>27.9%（游戏业务毛利率超68%）</td></tr>
+            <tr><td style="font-weight:bold;">ROE</td><td>20.4%</td></tr>
+            <tr><td style="font-weight:bold;">股息率（TTM）</td><td>2.4%</td></tr>
+            <tr><td style="font-weight:bold;">净现金</td><td><strong>¥1,635亿（约$234亿美元）</strong>——约占市值30%，几乎无有息负债</td></tr>
+            <tr><td style="font-weight:bold;">创始人/CEO</td><td>丁磊（William Ding）——持股约40%以上的绝对控制者，中国互联网在位时间最长的创始人CEO之一（29年）</td></tr>
+            <tr><td style="font-weight:bold;">员工人数</td><td>约3万人</td></tr>
+            <tr><td style="font-weight:bold;">行业</td><td>通信服务/互动娱乐（游戏占营收82%）</td></tr>
+        </table>
+
+        <div class="highlight">
+            <strong>公司一句话：</strong> 网易是"中国的暴雪+任天堂"——靠《梦幻西游》这个运营23年仍在创营收历史新高的"长生游戏"，加上《蛋仔派对》《燕云十六声》《漫威争锋》等新老爆款，做出了<strong>游戏收入全球前五、净利率28%、账上趴着1,635亿现金却几乎不借钱</strong>的生意。它是中国互联网公司中罕见的"专注做产品而非做平台"的公司。
+        </div>
+    </div>
+
+    <div class="info-box">
+        <h2 id="chapter2">二、业务分析</h2>
+
+        <div class="highlight">
+            <strong>一句话业务：</strong> 你在手机或电脑上玩的《梦幻西游》《蛋仔派对》《第五人格》《燕云十六声》，在网易云音乐听的歌，在有道词典查的单词，在网易严选拍的猫粮——这些全是网易的产品。<strong>其中游戏贡献了82%的收入和几乎全部利润</strong>，其余业务（音乐、教育、电商）是"副业舰队"。
+        </div>
+
+        <h3>2.1 业务板块拆解（2025财年，总营收¥1,126亿/+7%）</h3>
+        <table>
+            <tr><th>业务板块</th><th>2025营收</th><th>占比</th><th>同比</th><th>趋势与看点</th></tr>
+            <tr>
+                <td><strong>游戏及相关增值服务</strong></td>
+                <td>¥921亿（$132亿）</td>
+                <td><strong>81.8%</strong></td>
+                <td><span class="tag tag-green">在线游戏+11%</span></td>
+                <td>核心引擎。在线游戏收入¥896亿；《梦幻西游》电脑版23年后单季营收创新高；《燕云十六声》全球用户破8,000万；《漫威争锋》进Steam年度白金畅销榜；暴雪系游戏（魔兽世界等）中国区年营收创历史新高</td>
+            </tr>
+            <tr>
+                <td><strong>网易云音乐</strong></td>
+                <td>¥78亿</td>
+                <td>6.9%</td>
+                <td><span class="tag tag-red">-2.4%</span></td>
+                <td>上市以来首次下滑。社交娱乐（直播/K歌）收入暴跌32%；月活从2021年1.83亿降至1.47亿，被字节跳动汽水音乐（1.56亿月活）反超滑落至第四</td>
+            </tr>
+            <tr>
+                <td><strong>有道（教育）</strong></td>
+                <td>¥59亿</td>
+                <td>5.2%</td>
+                <td><span class="tag tag-green">转正</span></td>
+                <td>首次实现全年经营利润与经营现金流双正；"子曰4"教育大模型推理成本大降，AI订阅成为新增长点</td>
+            </tr>
+            <tr>
+                <td><strong>创新及其他（严选等）</strong></td>
+                <td>¥68亿</td>
+                <td>6.0%</td>
+                <td><span class="tag tag-orange">微降</span></td>
+                <td>严选宠物业务冲进中国线上品牌前三，猫粮狗粮做了11个亿级爆品；体量在921亿游戏面前只是零头</td>
+            </tr>
+        </table>
+
+        <h3>2.2 地域分布</h3>
+        <table>
+            <tr><th>市场</th><th>营收占比（约）</th><th>说明</th></tr>
+            <tr><td>中国大陆</td><td>~90%</td><td>基本盘。受版号发放节奏、未成年人防沉迷政策、宏观经济影响</td></tr>
+            <tr><td>海外</td><td>~10%（快速增长中）</td><td>《燕云十六声》登顶60多国iOS下载榜；《漫威争锋》北美/欧洲扩张；日本市场（《第五人格》《率土之滨》日服）长期深耕。管理层将"全球布局"列为核心战略</td></tr>
+        </table>
+
+        <h3>2.3 商业模式：怎么赚钱？</h3>
+        <div class="highlight">
+            <strong>游戏（印钞机模式）：</strong>玩家免费进入游戏，付费买虚拟道具/皮肤/通行证。毛利率68%+——一旦游戏开发完成，每多一个玩家的边际成本几乎为零。关键在"长线运营"：网易的独门绝技是把一款游戏运营10-23年持续更新内容（梦幻西游23年、大话西游20年、天下16年），让玩家社区形成感情沉淀和社交网络效应，一款游戏变成一棵每年结果的摇钱树。这就是申万宏源称其为"全球稀缺的长青游戏公司"的原因。
+        </div>
+        <div class="highlight">
+            <strong>非游戏（副业舰队）：</strong>云音乐靠订阅会员+直播打赏（后者正在萎缩）；有道靠AI订阅+智能硬件（词典笔）+在线营销；严选靠自有品牌电商（ODM精选模式）。三家副业各有亮点但都被各自赛道的巨头压制（腾讯音乐329亿 vs 云音乐78亿；好未来/新东方 vs 有道；阿里京东拼多多 vs 严选）。
+        </div>
+
+        <h3>2.4 2026年上半年最新动态</h3>
+        <ul>
+            <li><strong>H1 2026营收¥607亿（+7.0%）</strong>，游戏¥507亿（+8.3%），毛利¥424亿（+16.2%）——毛利率提升幅度远超收入增长，AI降本增效已实质兑现（AI覆盖美术/策划/编程/动画/QA全流程）</li>
+            <li>Q2 2026净利润¥70亿（同比-18.7%，主因上年同期高基数+投资收益波动），Non-GAAP ¥77亿；EPS miss预期22.5%，股价单日-5.8%——市场对"流水增速放缓+利润率高基数"的担忧集中释放</li>
+            <li>新游储备：《遗忘之海》2026年7月上线（摩根大通预计年流水50亿，但首月表现存争议）；《无限大》《归唐》研发中</li>
+            <li>高盛指出的三大担忧：游戏流水增长放缓、Q4'25-Q1'26利润率面临高基数、Genie 3等AI游戏创作工具对内容生产模式的潜在冲击</li>
+        </ul>
+    </div>
+
+    <div class="info-box">
+        <h2 id="chapter3">三、产品竞争力分析（消费者/玩家视角）</h2>
+
+        <h3>3.1 我为什么玩网易的游戏，而不是腾讯的？</h3>
+        <div class="highlight">
+            <strong>① 独一份的"中式长线游戏"体验。</strong>如果你想玩一款"像故乡一样"的游戏——《梦幻西游》运营23年，你的队友可能已经一起玩了十几年，账号本身成了有情感价值的资产。这种数十年沉淀的社交关系链，腾讯做不出第二款，新公司更是无法复制。<strong>这是网易最深的一条护城河：时间本身。</strong>
+        </div>
+        <div class="highlight">
+            <strong>② 品类创新敢为人先。</strong>《蛋仔派对》把"派对游戏+UGC创作"带到中国，稳居国内派对游戏榜首、人均在线时长还在涨；《第五人格》开创非对称对抗品类；《燕云十六声》把单机级武侠开放世界做进网游，冲上Steam全球畅销榜第二。<strong>腾讯强在流量和社交，网易强在玩法原创</strong>——当你在别的游戏中感到"换皮疲劳"时，网易更可能给你一个没玩过的新品类。
+        </div>
+        <div class="highlight">
+            <strong>③ 付费良心（相对而言）。</strong>网易长线游戏的付费设计（梦幻西游的经济系统、自由交易服）让平民玩家也能通过时间投入获得成就感，大话西游手游2025年推出的"自由交易服"推动参与度创新高——这是运营23年仍能增长的秘密：<strong>官方赚生态税，而不是杀鸡取卵</strong>。
+        </div>
+
+        <h3>3.2 副业产品的真实竞争力（诚实评估）</h3>
+        <table>
+            <tr><th>产品</th><th>我会用吗？</th><th>竞争地位</th></tr>
+            <tr>
+                <td>网易云音乐</td>
+                <td class="rating-stars">★★★★☆</td>
+                <td>乐评社区+歌单文化无可替代（"网抑云"梗的出圈证明了社区情感黏性），但曲库版权受制于腾讯音乐，月活已被字节汽水音乐反超。作为音乐爱好者我会留着它，但它是 defensive 的美好，不是 offensive 的增长</td>
+            </tr>
+            <tr>
+                <td>有道</td>
+                <td class="rating-stars">★★★☆☆</td>
+                <td>词典/翻译是刚需工具（中国学生装机必备），"子曰"大模型+AI订阅方向正确，但在好未来、新东方面前体量太小（59亿 vs 百亿级）。它终于盈利了，这是最重要的变化</td>
+            </tr>
+            <tr>
+                <td>网易严选</td>
+                <td class="rating-stars">★★★☆☆</td>
+                <td>中国最早的"ODM精选电商"（对标无印良品），宠物粮/家清做出11个亿级爆品、宠物类目线上前三。品质确实好，但流量上永远打不过天猫京东拼多多——它更像一个"活得还不错的精品品牌"而非平台</td>
+            </tr>
+        </table>
+
+        <div class="highlight" style="border-left-color:#e67e22;">
+            <strong>偏科的双刃剑：</strong>网易的"怪圈"是游戏越强、偏科越严重——2025年游戏占比首次突破82%，非游戏业务加起来不到游戏的1/4。坏处是没有第二增长曲线；好处是管理层被迫把全部资源押在唯一擅长的事上（做游戏），反而避免了多元化毁灭价值的陷阱（对比：许多中国互联网公司死于乱扩张）。
+        </div>
+    </div>
+
+    <div class="info-box">
+        <h2 id="chapter4">四、历史财务指标（2000-2025）</h2>
+
+        <h3>4.1 营收与净利润的26年长跑</h3>
+        <table>
+            <tr><th>年份</th><th>营收（¥亿）</th><th>净利润（¥亿）</th><th>关键事件</th></tr>
+            <tr><td>2000</td><td>~3</td><td><span class="tag tag-red">亏损</span></td><td>纳斯达克上市，恰逢互联网泡沫破裂，股价最低跌至$0.64，濒临退市+SEC调查</td></tr>
+            <tr><td>2001</td><td>~3</td><td><span class="tag tag-red">-2.6亿</span></td><td>生死关头，丁磊押注SP彩信+游戏自救</td></tr>
+            <tr><td>2002</td><td>~6</td><td><span class="tag tag-green">微利</span></td><td>《大话西游2》上线，游戏转型元年</td></tr>
+            <tr><td>2004</td><td>~21</td><td>5.4</td><td>《梦幻西游》上线——此后成为史上最长寿的现金奶牛</td></tr>
+            <tr><td>2008</td><td>~39</td><td>28.2</td><td>代理《魔兽世界》，跻身一线</td></tr>
+            <tr><td>2010</td><td>~57</td><td>22.0</td><td>魔兽《巫妖王之怒》获批，游戏收入+47%</td></tr>
+            <tr><td>2013</td><td>~98</td><td>44</td><td>手游时代开启</td></tr>
+            <tr><td>2016</td><td>382</td><td>116</td><td>《阴阳师》现象级爆发</td></tr>
+            <tr><td>2017</td><td>507</td><td>107</td><td>《荒野行动》称霸日本</td></tr>
+            <tr><td>2018</td><td>671</td><td>61</td><td><span class="tag tag-red">利润低谷</span>（版号冻结首年+投资损失）</td></tr>
+            <tr><td>2019</td><td>592</td><td>156</td><td>网易有道分拆上市；游戏收入重回增长</td></tr>
+            <tr><td>2020</td><td>737</td><td>121</td><td>港交所二次上市募资~242亿港元；汇率损失31亿拖累利润</td></tr>
+            <tr><td>2021</td><td>876</td><td>168</td><td>史上最严防沉迷新规（830新规）落地</td></tr>
+            <tr><td>2022</td><td>965</td><td>203</td><td>暴雪解约风波（14年合作破裂）</td></tr>
+            <tr><td>2023</td><td>1,035</td><td>294</td><td>《逆水寒》手游爆火（首月流水破纪录）；与暴雪复合</td></tr>
+            <tr><td>2024</td><td>1,053</td><td>297</td><td>《燕云十六声》《漫威争锋》全球上线</td></tr>
+            <tr><td>2025</td><td><strong>1,126</strong></td><td><strong>338</strong></td><td>在线游戏+11%重回双位数；《梦幻西游》电脑版23年创营收新高</td></tr>
+        </table>
+
+        <h3>4.2 核心财务比率趋势（2016-2025）</h3>
+        <table>
+            <tr><th>指标</th><th>2016</th><th>2018</th><th>2020</th><th>2022</th><th>2023</th><th>2024</th><th>2025</th><th>趋势解读</th></tr>
+            <tr><td>营收（¥亿）</td><td>340</td><td>512</td><td>737</td><td>965</td><td>1,035</td><td>1,053</td><td>1,126</td><td>10年CAGR约13%</td></tr>
+            <tr><td>净利润（¥亿）</td><td>116</td><td>61</td><td>121</td><td>203</td><td>294</td><td>297</td><td>338</td><td>2018低谷后7年3.5倍增长</td></tr>
+            <tr><td>净利率</td><td>34%</td><td>12%</td><td>16%</td><td>21%</td><td>28%</td><td>28%</td><td>30%</td><td>游戏占比提升驱动利润率结构性抬升</td></tr>
+            <tr><td>游戏毛利率</td><td>~65%</td><td>~63%</td><td>~64%</td><td>~65%</td><td>~69%</td><td>~68%</td><td>~68%</td><td>行业顶级水平且极其稳定</td></tr>
+            <tr><td>ROE</td><td>~30%</td><td>~13%</td><td>~20%</td><td>~25%</td><td>~27%</td><td>~23%</td><td>~20%</td><td>注意：1,635亿现金拉低ROE，经营性ROE更高</td></tr>
+            <tr><td>资产负债率</td><td>~40%</td><td>~38%</td><td>~42%</td><td>~42%</td><td>~40%</td><td>~41%</td><td>~39%</td><td>负债主要是预收（玩家充值）和应付，几乎无有息负债</td></tr>
+            <tr><td>经营现金流（¥亿）</td><td>~110</td><td>~80</td><td>~140</td><td>~290</td><td>~360</td><td>~460</td><td><strong>507</strong></td><td>净利润现金含量超100%，利润是真钱</td></tr>
+            <tr><td>净现金（¥亿）</td><td>~250</td><td>~300</td><td>~700</td><td>~900</td><td>~1,100</td><td>~1,400</td><td><strong>1,635</strong></td><td>占市值30%——A股+港股+中概股中最厚的现金垫之一</td></tr>
+            <tr><td>研发投入（¥亿）</td><td>~38</td><td>~50</td><td>~100</td><td>~150</td><td>~165</td><td>~170</td><td>177</td><td>连续6年破百亿，营收占比~16%全行业顶尖</td></tr>
+        </table>
+
+        <div class="highlight">
+            <strong>三个关键观察：</strong><br>
+            ① <strong>2018年是"惊吓测试"：</strong>版号冻结+投资损失把净利率打到12%，但网易没有亏损、没有裁员潮、第二年就恢复——证明商业模式的抗压性；<br>
+            ② <strong>现金奶牛的终极形态：</strong>2025年经营现金流507亿 > 净利润338亿，玩家先充值后消费（预收模式）意味着利润是"提前收到钱的利润"；<br>
+            ③ <strong>PE历史区间：</strong>网易过去10年PE中枢约15-25x，当前16.4x处于中枢下沿；Forward PE 11.5x接近历史最低区间——对于一家净现金占市值30%、净利率30%的公司，这个估值的隐含假设是"中国游戏行业永不再增长"。
+        </div>
+    </div>
+
+    <div class="info-box">
+        <h2 id="chapter5">五、竞争分析</h2>
+
+        <h3>5.1 游戏战场：网易 vs 腾讯（一超一强的双寡头）</h3>
+        <table>
+            <tr><th>维度</th><th>腾讯游戏</th><th>网易游戏</th><th>第三方（米哈游等）</th></tr>
+            <tr><td>2025游戏收入</td><td>~¥2,100亿（国内+海外Supercell/Riot等）</td><td>¥921亿</td><td>米哈游~¥300亿+（估）</td></tr>
+            <tr><td>核心能力</td><td>社交流量（微信/QQ导流）+资本（收购海外工作室）</td><td>自研玩法创新+长线运营（23年梦幻西游）</td><td>内容破圈（《原神》《崩坏》全球化）</td></tr>
+            <tr><td>头部产品</td><td>王者荣耀、和平精英、DNF手游</td><td>梦幻西游、蛋仔派对、第五人格、燕云十六声、漫威争锋</td><td>原神、崩坏：星穹铁道、绝区零</td></tr>
+            <tr><td>海外收入占比</td><td>~30%（Supercell/Riot/Epic持股）</td><td>~10%（快速提升中）</td><td>~50%+</td></tr>
+            <tr><td>商业模式差异</td><td>平台型：流量分发+投资布局</td><td>产品型：内容自研+运营深耕</td><td>内容型：单IP全球化</td></tr>
+        </table>
+
+        <div class="highlight">
+            <strong>为什么腾讯灭不掉网易？——错位竞争的生存智慧：</strong><br>
+            腾讯的强势品类是"强社交PVP"（MOBA/吃鸡，靠微信关系链碾压），网易则把资源集中在腾讯关系链无法发挥作用的品类：回合制MMORPG（梦幻/大话，玩家自己形成交易经济和帮派社区）、非对称对抗（第五人格）、UGC派对（蛋仔派对）、开放世界武侠（燕云十六声）。<strong>当游戏深度足够时，游戏内的社区本身就能替代微信的关系链</strong>——这是网易20年积累的独门壁垒。网易游戏收入规模是行业第三名的两倍还多，与腾讯构成断层式双寡头。
+        </div>
+
+        <h3>5.2 副业战场：各自面对巨头</h3>
+        <ul>
+            <li><strong>云音乐 vs 腾讯音乐（329亿 vs 78亿）：</strong>版权库差距是硬伤，社区调性是唯一差异化。2026年3月被字节汽水音乐月活反超，从第三滑至第四——这场仗基本打输了，但云音乐已盈利，是"活得体面的老三（老四）"</li>
+            <li><strong>有道 vs 好未来/新东方：</strong>双减后转向AI+硬件+海外营销，2025年首次双正（利润+现金流）。定位从"教培"变为"AI学习工具"，逻辑顺了但天花板有限</li>
+            <li><strong>严选 vs 天猫/京东/拼多多：</strong>不在一个维度。严选（68亿）是DTC精品品牌逻辑，正如Muji与淘宝的关系——赚品牌的钱，不赚流量的钱</li>
+        </ul>
+
+        <h3>5.3 护城河评估（巴菲特五要素）</h3>
+        <table>
+            <tr><th>护城河要素</th><th>评分</th><th>依据</th></tr>
+            <tr><td>无形资产（IP/品牌）</td><td class="rating-stars">★★★★★</td><td>梦幻西游23年、大话西游20年的IP资产净值无法重置；"网易出品"在中国玩家心中有"玩法创新"的心智标签</td></tr>
+            <tr><td>转换成本</td><td class="rating-stars">★★★★☆</td><td>23年沉淀的社交关系+账号资产（梦幻西游账号可卖数千元）构成真实转换成本；但休闲游戏（蛋仔）用户迁移成本较低</td></tr>
+            <tr><td>网络效应</td><td class="rating-stars">★★★★☆</td><td>游戏内社区/经济系统自增强（大话"自由交易服"参与度创新高）；UGC生态（蛋仔派对地图创作）具备平台属性</td></tr>
+            <tr><td>成本优势</td><td class="rating-stars">★★★☆☆</td><td>68%毛利率是内容质量的体现而非成本优势；AI全流程应用正在降本（2026H1毛利+16.2%远超收入+7%）</td></tr>
+            <tr><td>规模优势</td><td class="rating-stars">★★★★☆</td><td>921亿游戏收入支撑177亿研发投入——小公司做不起3A级开放世界（燕云十六声6年开发）</td></tr>
+        </table>
+
+        <div class="highlight" style="border-left-color:#27ae60;">
+            <strong>芒格式结论：</strong>网易是中国互联网公司中罕见的符合"伟大生意"标准的公司——预收款模式（先收钱后服务）、68%毛利率、20%+ ROE、净现金1,635亿、创始人29年在位。真正的弱点只有一个：<strong>它是一家被单一国家监管（版号/防沉迷）和单一品类（游戏）双重束缚的"戴着镣铐的舞者"</strong>。
+        </div>
+    </div>
+
+    <div class="info-box">
+        <h2 id="chapter6">六、利润分配分析（过去10年）</h2>
+
+        <h3>6.1 股东回报总表（每ADS口径，2017-2025）</h3>
+        <table>
+            <tr><th>年份</th><th>每股股息($/ADS)</th><th>派息总额（约$亿）</th><th>回购（约$亿）</th><th>派息率</th><th>备注</th></tr>
+            <tr><td>2017</td><td>0.66</td><td>~0.9</td><td>~0.7</td><td>~10%</td><td>2017年起建立季度分红制度</td></tr>
+            <tr><td>2018</td><td>1.09</td><td>~1.4</td><td>~5.6</td><td>~21%</td><td>股价低谷期大额回购（回购收益率3.78%）</td></tr>
+            <tr><td>2019</td><td>3.39</td><td>~4.4</td><td>~2.8</td><td>~28%</td><td>含特别股息</td></tr>
+            <tr><td>2020</td><td>3.55</td><td>~4.5</td><td>—</td><td>~35%</td><td>港股二次上市募资~31亿美元补充弹药</td></tr>
+            <tr><td>2021</td><td>4.71</td><td>~5.9</td><td>~3.4</td><td>~25%</td><td>防沉迷新规年仍增派息</td></tr>
+            <tr><td>2022</td><td>6.12</td><td>~7.7</td><td>~3.2</td><td>~34%</td><td>暴雪解约年，派息反而增长</td></tr>
+            <tr><td>2023</td><td>7.17</td><td>~9.0</td><td>~2.6</td><td>~28%</td><td>逆水寒手游爆发年</td></tr>
+            <tr><td>2024</td><td>8.48</td><td>~10.9</td><td>~2.5</td><td>~38%</td><td>Q4股息$1.22/ADS创单季纪录</td></tr>
+            <tr><td>2025</td><td>10.20</td><td><strong>~13.6</strong></td><td>~0.5</td><td><strong>~42%</strong></td><td>季度股息$1.22+$0.675+$0.57+$0.57；派息持续加码</td></tr>
+            <tr><td>2026至今</td><td>2.36（前3季）</td><td>~10+</td><td>~0.7</td><td>~40%</td><td>Q1 $1.16 + Q2 $0.72 + Q3 $0.48（9/18派付）——Q3股息回落反映利润高基数</td></tr>
+        </table>
+
+        <h3>6.2 资本配置结构（2025财年口径）</h3>
+        <table>
+            <tr><th>资金去向</th><th>金额（¥亿）</th><th>占经营现金流比例</th><th>说明</th></tr>
+            <tr><td>经营现金流</td><td><strong>507</strong></td><td>100%</td><td>资金总来源（另有利息收入~50亿）</td></tr>
+            <tr><td>研发再投入</td><td>177</td><td>35%</td><td>占营收16%——全力再投入主业，连续6年破百亿</td></tr>
+            <tr><td>股息</td><td>~97（$13.6亿）</td><td>19%</td><td>季度分红制度化，金额9年增长13倍</td></tr>
+            <tr><td>回购</td><td>~3.5</td><td>~1%</td><td>2025年回购明显缩量（管理层选择攒现金）</td></tr>
+            <tr><td>资本开支</td><td>~40</td><td>~8%</td><td>轻资产模式：机房+办公+园区</td></tr>
+            <tr><td>沉淀为净现金</td><td>~190</td><td>~37%</td><td>净现金从1,400亿增至1,635亿——"等待弹药"</td></tr>
+        </table>
+
+        <div class="highlight" style="border-left-color:#e67e22;">
+            <strong>资本配置打分：B+（优秀但偏保守）。</strong><br>
+            <strong>做对的事：</strong>①研发投入从不手软（营收16%比例超过腾讯），这是梦幻西游23年常青的根源；②分红9年13倍增长且制度化（每季度），在中国互联网公司中仅次于腾讯；③2018年、2022年两次行业恐慌期坚持增派息+回购，管理层用真金白银表态。<br>
+            <strong>可争议的事：</strong>1,635亿净现金（占市值30%）的收益率为~2%（存款+理财），<strong>等价于每年放弃~4%的再投资回报</strong>。丁磊的辩护是"游戏行业冬天说来就来，现金是穿越周期的氧气瓶"（网易2001年靠现金活下来的创伤记忆）——这个理由在2018年版号冻结时被证明是对的，但在当前回购缩量+收购保守的取向下，部分股东认为这是"过度防御"，是当前估值折价的原因之一（市场称之为"网易折价"）。
+        </div>
+    </div>
+
+    <div class="info-box">
+        <h2 id="chapter7">七、投资总结</h2>
+
+        <h3>7.1 打分卡（巴菲特五要素）</h3>
+        <table>
+            <tr><th>要素</th><th>评分</th><th>点评</th></tr>
+            <tr><td>生意模式可理解性</td><td class="rating-stars">★★★★☆</td><td>"做出好玩的游戏→玩家为爱付费→运营20年不断更新"——模式清晰，但单款游戏的成败有彩票属性</td></tr>
+            <tr><td>长期经济特征</td><td class="rating-stars">★★★★★</td><td>68%游戏毛利率、预收款模式、经营现金流>净利润、净现金1,635亿——教科书级的现金奶牛体质</td></tr>
+            <tr><td>护城河</td><td class="rating-stars">★★★★☆</td><td>时间壁垒（23年IP）+社区网络效应+研发规模，但游戏品类天然面临"下一代玩家口味"的不确定性</td></tr>
+            <tr><td>管理层</td><td class="rating-stars">★★★★☆</td><td>丁磊29年专注做产品、不乱扩张、财务极度保守（正向）；但现金使用过度保守、接班人问题悬而未决（负向）</td></tr>
+            <tr><td>价格/安全边际</td><td class="rating-stars">★★★★☆</td><td>PE 16.4x/Forward 11.5x处于历史低位，扣除净现金后实际业务PE仅~11x；但中概股系统性折价短期难消</td></tr>
+        </table>
+
+        <h3>7.2 投资逻辑一页纸</h3>
+        <div class="highlight" style="border-left-color:#27ae60;">
+            <strong>买网易 = 买入三样东西：</strong><br>
+            ① <strong>一台全球顶级的游戏印钞机</strong>：921亿收入/338亿净利/507亿现金流，与腾讯构成断层双寡头，梦幻西游证明它能把爆款运营成"百年老店"；<br>
+            ② <strong>一张1,635亿的净现金保单</strong>（市值的30%）：极端情况下公司私有化退市都绰绰有余——下行有底；<br>
+            ③ <strong>一张AI+全球化的免费彩票</strong>：AI已让2026H1毛利增速（+16.2%）2倍于收入增速（+7%）；燕云十六声/漫威争锋验证了全球化的可行性，海外收入若从10%提到20%就是再造一个增长引擎。
+        </div>
+        <div class="highlight" style="border-left-color:#e74c3c;">
+            <strong>主要风险（按杀伤力排序）：</strong><br>
+            ① <strong>监管黑天鹅</strong>：版号发放节奏、未成年人政策、乃至"精神鸦片"舆论——2018和2021两次熊市均由此触发，这是估值折价的第一原因；<br>
+            ② <strong>单一品类依赖</strong>：游戏占82%，副业全部被巨头压制，若游戏行业见顶（GLP-1式的生活方式冲击、Genie 3等AI创作工具降低游戏开发门槛），没有第二引擎；<br>
+            ③ <strong>新游不确定性</strong>：《遗忘之海》首月表现低于预期（首月流水需5亿+才能支撑50亿年线预测），2026下半年增长预期可能下修——这正是8月20日财报后股价-5.8%的原因；<br>
+            ④ <strong>关键人风险</strong>：丁磊一人绑定了产品文化，29年没有明确的二号位；<br>
+            ⑤ <strong>中概股系统性折价</strong>：VIE结构+中美关系，同样的利润在美股只卖腾讯一半的价格。
+        </div>
+
+        <div class="highlight">
+            <strong>巴菲特会怎么看？（思想实验）</strong><br>
+            芒格说过："用合理的价格买伟大的公司，而不是用便宜的价格买平庸的公司。"网易的问题恰恰相反——<strong>它是一家以平庸的价格出售的、相当不错的公司</strong>。16x市盈率买一个20% ROE、30%净利率、账上30%市值现金、分红连年增长的公司，在任何成熟市场都是不可能的价格；它之所以便宜，是因为叠加了"中国折价×游戏监管折价×单一品类折价"三重折扣。如果你相信：中国不会取缔游戏行业（版号已常态化发放）、网易的IP能像过去23年一样继续运营下去、丁磊不会乱花1,635亿现金——那么当前价格提供了<strong>足够厚的安全边际</strong>。反之，若你对上述任何一条没有信心，这趟车也不必上。<strong>能力圈原则：只赚自己看得懂的钱。</strong>
+        </div>
+
+        <p style="text-align:center;font-size:0.9em;color:#7f8c8d;margin-top:20px;">
+            数据来源：NetEase FY2025 Q4及年报（2026/2/11）/ Q2 2026财报（2026/8/20）/ 网易IR网站损益表历史数据 / DividendMax股息历史 / Morningstar / earnings-desk.com / companiesmarketcap.com / 智通财经 / 南方都市报 / 无冕财经 / 高盛研报（2026/2）/ 申万宏源研报 / QuestMobile 2026年3月报告
+        </p>
+    </div>
+
+    <script src="scores_client.js"></script>
+    <script src="stock_topbar.js"></script>
+</body>
+</html>
