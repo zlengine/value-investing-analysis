@@ -155,6 +155,58 @@
 
     <!-- 更新日志条目 - 按时间倒序排列，最新在最上面 -->
 
+    <div class="log-entry create">
+        <div class="log-header">
+            <span class="log-date">2026-09-09</span>
+            <span class="log-type create">新建</span>
+        </div>
+        <div class="log-desc">
+            <ul>
+                <li>新增SPH（Suburban Propane Partners）巴菲特/芒格式价值投资分析页面，共七章完整分析</li>
+                <li>公司基本信息：美国第三大丙烷零售商（1928年起经营/1996年MLP上市），市值$11.6亿，分配收益率7.47%，Beta仅0.41</li>
+                <li>业务分析：四大板块拆解——丙烷分销（核心，~90%毛利）、燃料油、可再生柴油分销、RNG战略转型；"送能源的牛奶配送公司"商业模式类比</li>
+                <li>产品竞争力分析：三维度护城河体检——可替代性/客户转换成本/定价权，储罐所有权锁定+hyperlocal区域密度护城河</li>
+                <li>历史财务指标（2016-2026）：ROE、负债率、PE趋势，2025财年净利润$1.066亿（+43.7%），FCF $1.143亿</li>
+                <li>竞争分析：vs AmeriGas（11%份额）/Ferrellgas（8%）/Cheniere等，碎片化市场（前五名合计&lt;30%）的生存策略</li>
+                <li>利润分配分析（2016-2025十年全景）：MLP分配政策、覆盖率2.2x、净债务/EBITDA 4.34x的可持续性评估</li>
+                <li>投资总结：收益型MLP估值框架，RNG转型期权价值，7.5%收益率+资产折价的安全边际分析</li>
+            </ul>
+        </div>
+        <div class="log-files">
+            <span class="added">+ sph.html (Suburban Propane完整分析页面，七章结构)</span><br>
+            <span class="modified">~ index.html (股票列表新增SPH条目)</span><br>
+            <span class="modified">~ stocks_data.js (共享数据源新增SPH条目)</span><br>
+            <span class="modified">~ changelog.html (新增本次更新日志)</span>
+        </div>
+    </div>
+
+    <div class="log-entry update">
+        <div class="log-header">
+            <span class="log-date">2026-09-07</span>
+            <span class="log-type update">更新</span>
+        </div>
+        <div class="log-desc">
+            <ul>
+                <li>苹果2025财年10-K年报中英对照页面（part1-part5）全面改版：从"段落级对照"升级为"逐句对照"结构</li>
+                <li>共转换264个中英段落对，拆分为706个逐句对照句对（part1: 115组/part2: 308组/part3: 156组/part4: 64组/part5: 63组），每句英文紧跟对应中文译文</li>
+                <li>精处理英文切句边界：U.S./D.C.缩写词（U.S. District Court/U.S. Tariffs等白名单不切分）、Inc./Ltd.等缩写、小数点、占位符标签，确保句子边界与原文语义一致</li>
+                <li>精处理中文切句边界：分号映射英文句号场景自动回退对齐（如分部描述段），知识产权段人工调整译文实现三句对齐</li>
+                <li>保留内嵌strong/em标签并自动平衡跨句标签（风险因子加粗导语、产品线名称加粗等）</li>
+                <li>优化逐句展示CSS：中文译文左边界线细化（3px→2px）、句对间距收紧（1.4em→0.9em），阅读节奏更适合句级对照</li>
+                <li>验证：内容零丢失（纯文本比对）、en/zh段落严格1:1配对生成、无占位符残留、无多句残留段落</li>
+            </ul>
+        </div>
+        <div class="log-files">
+            <span class="modified">~ part1.html (39个段落对→115个句对，CSS间距优化)</span><br>
+            <span class="modified">~ part2.html (101个段落对→308个句对)</span><br>
+            <span class="modified">~ part3.html (65个段落对→156个句对)</span><br>
+            <span class="modified">~ part4.html (26个段落对→64个句对)</span><br>
+            <span class="modified">~ part5.html (33个段落对→63个句对)</span><br>
+            <span class="added">+ transform_sentences.py (逐句对照转换工具，可复用于后续part6/7)</span><br>
+            <span class="modified">~ changelog.html (新增本次更新日志)</span>
+        </div>
+    </div>
+
     <div class="log-entry update">
         <div class="log-header">
             <span class="log-date">2026-09-04</span>
