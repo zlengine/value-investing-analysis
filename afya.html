@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Afya Limited (AFYA) 价值投资分析</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            padding-top: 70px;
+            background-color: #f0f2f5;
+            color: #333;
+        }
+        h1 {
+            text-align: center;
+            color: #1a5276;
+            font-size: 2.2em;
+            margin-bottom: 5px;
+        }
+        h2 {
+            color: #1a5276;
+            border-bottom: 2px solid #2e86c1;
+            padding-bottom: 8px;
+            margin-top: 30px;
+        }
+        h3 {
+            color: #2c3e50;
+            margin-top: 20px;
+        }
+        .subtitle {
+            text-align: center;
+            color: #7f8c8d;
+            font-size: 1.1em;
+            margin-bottom: 30px;
+        }
+        .info-box {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 15px 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #1a5276;
+            color: white;
+        }
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+        .highlight {
+            background: #eaf2f8;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 4px solid #2e86c1;
+        }
+        .highlight-warning {
+            background: #fdf2e9;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 4px solid #e67e22;
+        }
+        .tag {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.85em;
+            font-weight: bold;
+            color: white;
+        }
+        .tag-green { background-color: #27ae60; }
+        .tag-orange { background-color: #e67e22; }
+        .tag-red { background-color: #e74c3c; }
+        .rating-stars { color: #f39c12; }
+        .top-nav-bar { position: fixed; top: 0; left: 0; right: 0; height: 44px; background: #2c3e50; z-index: 999; }
+        .section-nav {
+            background: white;
+            border-radius: 10px;
+            padding: 15px 25px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+        .section-nav a {
+            display: inline-block;
+            margin: 5px 10px;
+            padding: 6px 14px;
+            background: #eaf2f8;
+            color: #1a5276;
+            text-decoration: none;
+            border-radius: 15px;
+            font-size: 0.9em;
+        }
+        .section-nav a:hover {
+            background: #2e86c1;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="top-nav-bar"></div>
+    <script src="nav_bar.js?v=20260624"></script>
+    <span id="topbarCode" style="display:none;">AFYA</span>
+
+    <h1>Afya Limited (NASDAQ: AFYA)</h1>
+    <p class="subtitle">巴菲特/芒格式价值投资基本面分析 | 更新日期：2026年9月11日</p>
+
+    <div class="section-nav">
+        <a href="#chapter1">公司基本信息</a>
+        <a href="#chapter2">业务分析</a>
+        <a href="#chapter3">产品竞争力分析</a>
+        <a href="#chapter4">历史财务指标</a>
+        <a href="#chapter5">竞争分析</a>
+        <a href="#chapter6">利润分配分析</a>
+        <a href="#chapter7">投资总结</a>
+    </div>
+
+    <div class="info-box">
+        <h2 id="chapter1">一、公司基本信息</h2>
+        <table>
+            <tr><td style="width:30%;font-weight:bold;">公司全称</td><td>Afya Limited（阿菲亚，巴西最大医学教育集团）</td></tr>
+            <tr><td style="font-weight:bold;">股票代码</td><td>AFYA（NASDAQ 纳斯达克）；B3二级上市：A2FY34</td></tr>
+            <tr><td style="font-weight:bold;">注册与总部</td><td>2019年3月22日于开曼群岛注册；总部位于巴西米纳斯吉拉斯州Nova Lima（贝洛奥里藏特都会区）</td></tr>
+            <tr><td style="font-weight:bold;">上市历史</td><td>2019年7月19日纳斯达克IPO，发行价$19、募资约$2.6亿，首日大涨27%；上市后营收从R$7.5亿增长至R$37亿（5倍）</td></tr>
+            <tr><td style="font-weight:bold;">控股股东</td><td>德国贝塔斯曼集团（Bertelsmann，欧洲最大传媒教育集团之一，旗下拥有RTL、企鹅兰登书屋等）通过教育板块控股（2026年8月巴西媒体报道确认）</td></tr>
+            <tr><td style="font-weight:bold;">最新收盘价</td><td>$13.57（2026/9/10）</td></tr>
+            <tr><td style="font-weight:bold;">市值</td><td>约$12.0亿美元（约¥85亿人民币）</td></tr>
+            <tr><td style="font-weight:bold;">企业价值（EV）</td><td>约$17亿美元（市值+净债务约R$14亿≈$5亿）</td></tr>
+            <tr><td style="font-weight:bold;">PE（TTM）</td><td>约7.8-8.9x / Forward PE约7.3x（FY2026E EPS约$1.87）</td></tr>
+            <tr><td style="font-weight:bold;">EV/EBITDA</td><td>约5.6x（FY25调整后EBITDA R$16.8亿≈$3.05亿）</td></tr>
+            <tr><td style="font-weight:bold;">P/B（市净率）</td><td>1.23x（每股净资产$10.83）</td></tr>
+            <tr><td style="font-weight:bold;">FCF收益率</td><td>13.3%（2025年FCF R$10.56亿创纪录，公司口径）</td></tr>
+            <tr><td style="font-weight:bold;">股息</td><td>FY2025年度股息$0.656/股（R$3.45，2026年4月支付），股息率约4.8-4.9%；上年仅$0.232，一年增长183%</td></tr>
+            <tr><td style="font-weight:bold;">52周区间</td><td>$13.00 - $16.43（2025年7-9月曾达约$18.2，过去12个月下跌约18%）</td></tr>
+            <tr><td style="font-weight:bold;">流动性</td><td>日均成交量约30万股（约$400万/天）——微盘股，流动性折价显著</td></tr>
+            <tr><td style="font-weight:bold;">员工人数</td><td>约9,395人</td></tr>
+            <tr><td style="font-weight:bold;">业务规模</td><td>3,755个MEC获批年医学招生名额（巴西第一）；33个医学院校区覆盖14个州；生态系统约29.5万活跃用户（医生+医学生）；医学课程净均学费约R$9,060/月（约$1,650）</td></tr>
+            <tr><td style="font-weight:bold;">信用评级</td><td>Moody's Local Brazil：AAA.br（2025年4月从AA+.br上调，巴西国内最高级，展望稳定）</td></tr>
+            <tr><td style="font-weight:bold;">管理层</td><td>CEO：Virgílio Deloy Capobianco Gibbon；CFO：Luis André Blanco</td></tr>
+            <tr><td style="font-weight:bold;">卖方评级（2026年中）</td><td>摩根大通6月下调目标价至$21（中性）；TipRanks最新"Hold $21"；8家评级中约半数为买入；PEG约0.35</td></tr>
+            <tr><td style="font-weight:bold;">近期焦点</td><td>2026年8月24日确认与巴西第二大教育集团Yduqs就潜在业务合并进行初期谈判（尚无约束性协议）；2026年7月多名高管减持引发关注</td></tr>
+        </table>
+        <div class="highlight">
+            <strong>一句话认识Afya：</strong>Afya是巴西最大的"医生摇篮"，做的事情可以类比为"<strong>在巴西医生供给的独木桥上收过路费的公司</strong>"——巴西当医生必须读6年私立医学院（公立免费但名额极少、竞争惨烈），而医学院招生名额由政府（MEC）审批、天花板锁死。Afya手握全国最多的3,755个获批名额，学生从入学、住院医师备考、专科培训到开业行医的整个职业生涯，都在它的教育生态里持续付费。
+        </div>
+    </div>
+
+    <div class="info-box">
+        <h2 id="chapter2">二、业务分析</h2>
+
+        <h3>2.1 Afya是做什么的？（用最通俗的话讲）</h3>
+        <p>巴西缺医生（每千人医生数显著低于欧美），想当医生有两条路：一是考免费的公立医学院，但名额极少、录取率堪比中彩票；二是读私立医学院——学费昂贵（每月约R$9,000，6年下来约R$65万≈$12万），但名额相对多、录取现实。这门生意的精髓在于：<strong>私立医学院的招生名额由巴西教育部（MEC）逐校审批，新增名额极其困难——名额就是牌照，牌照就是收费站</strong>。</p>
+        <p>Afya在这个赛道做到了巴西第一：33个校区、3,755个年获批名额、2.6万名在读医学生，且旗下整合校区常年<strong>100%满员</strong>。学生读完6年本科（本科板块），要考住院医师（residência）——Afya卖备考课程（继续教育板块）；考上后要读专科——Afya卖研究生课程；最终开业行医，需要电子病历、诊所管理、远程医疗、电子处方软件——Afya卖SaaS订阅（医疗实践解决方案板块）。约30万名医生和医学生构成了它的<strong>"医生全生命周期生态"</strong>，新校区几乎不用花钱打广告，学生自己找上门（获客成本极低）。</p>
+
+        <h3>2.2 业务板块拆解（2025财年，全年营收R$36.97亿，+11.9%）</h3>
+        <table>
+            <tr><th>板块</th><th>收入占比</th><th>FY25规模</th><th>说明与趋势</th></tr>
+            <tr>
+                <td><strong>本科教育（核心）</strong></td>
+                <td>约88%</td>
+                <td>约R$32.5亿（+13%）</td>
+                <td>其中医学院收入R$27.9亿（占本科86%）；健康科学类（护理/牙医/药学等）学生3.04万人（+18%）；本科毛利率创纪录63.9%</td>
+            </tr>
+            <tr>
+                <td>继续教育</td>
+                <td>约7.7%</td>
+                <td>R$2.84亿（+11%）</td>
+                <td>住院医师备考+研究生专科课程；B2B（对医院/机构）收入+48%；研究生学生超1万人；住院医师备考学生数同比-21%（疲软，但环比+30%显示复苏迹象）</td>
+            </tr>
+            <tr>
+                <td>医疗实践解决方案</td>
+                <td>约4.6%</td>
+                <td>R$1.71亿（+6%）</td>
+                <td>诊所管理SaaS+电子病历+电子处方；付费用户19.6万，月活22万（同比略降）；年开出处方超1,690万张</td>
+            </tr>
+        </table>
+        <p>2026上半年（1H26）结构基本一致：本科R$17.6亿（88.8%）、继续教育R$1.44亿（7.3%）、医疗实践R$0.85亿（4.3%）；总营收R$19.8亿（+7.0%）。</p>
+
+        <h3>2.3 怎么赚钱：商业模式本质</h3>
+        <ul>
+            <li><strong>牌照经济学：</strong>MEC名额审批是终极壁垒。巴西医学名额增速长期受限（2013年后"More Doctors"计划才放量），谁手里名额多、运营好，谁就赢了。Afya的策略：并购存量名额（目标每年+200个，要求标的医学收入占比&gt;60%、名义无杠杆IRR≥20%）+争取新批名额（2025年新获Bragança 100个等）。</li>
+            <li><strong>超长客户生命周期：</strong>医学学位6年、流失率极低（巴西医学院辍学率全学科最低之一），单客户LTV约R$65万起，毕业后还能继续卖备考、专科、SaaS——<strong>客户生命周期可能长达40年</strong>。</li>
+            <li><strong>满员即印钞：</strong>校区固定成本高、边际学生成本低，满员率从60%爬到100%的过程就是利润率抬升的过程（教科书案例：2024年收购的Unidom萨尔瓦多校区，收购前满员率不足60%，两次招生后接近100%）。2025财年调整后EBITDA利润率45.4%，为巴西教育行业最高水平。</li>
+            <li><strong>现金先收后服务：</strong>学费按月/学期预收，资产负债表上有R$1.58亿"客户预付款"；经营现金流转换率93.7%（1H26为87.8%），2025年自由现金流R$10.56亿创纪录。</li>
+            <li><strong>杠杆温和：</strong>净债务（剔除IFRS16）R$13.7亿，仅0.8倍EBITDA；平均债务久期3.6年；Moody's本地评级AAA.br。</li>
+        </ul>
+
+        <h3>2.4 生态系统飞轮：为什么获客成本极低</h3>
+        <p>巴西每一个医学生和年轻医生几乎都绕不开Afya的内容（旗下拥有住院医师备考头部品牌）——免费内容吸引学生→转化付费课程→医学院品牌认知强化→校区招生不打广告→利润率高→再投入内容。管理层在业绩会上明确表示："生态越强越整合，本科获客成本就越低，这是我们的竞争优势。"2025年ENADE（全国学生绩效考试）中Afya医学院表现优异，进一步强化"读医选Afya"的品牌心智。</p>
+
+        <h3>2.5 收入的地域分布</h3>
+        <p><strong>100%巴西</strong>。33个医学院校区分布14个州，核心区域为米纳斯吉拉斯州（总部所在地，2025年收购FUNIC进军贝洛奥里藏特都会区）、东北部（萨尔瓦多Unidom等）及南部。无海外业务——这也意味着<strong>雷亚尔汇率、巴西政治与监管是绕不开的国家风险敞口</strong>（美股ADS以美元计价，但资产与现金流100%雷亚尔）。</p>
+    </div>
+
+    <div class="info-box">
+        <h2 id="chapter3">三、产品竞争力分析（微观护城河体检）</h2>
+
+        <h3>3.1 核心板块：本科医学教育（收入占比约75-88%）</h3>
+        <p><strong>1. 可替代性：<span class="tag tag-green">低</span></strong></p>
+        <ul>
+            <li>替代选项：公立大学医学院（免费但名额极少、竞争极端激烈——多数考生考不上）；出国读医（成本更高、认证复杂）；换职业路径（护理、牙医——收入社会地位显著低于医生）；远程/线上医学学位（巴西法律不允许，医学必须线下实体教学）；</li>
+            <li>体验差距：Afya校区ENADE成绩优异、设备现代化，与公立名校的差距在缩小；</li>
+            <li>价格差距：私立之间学费差异有限（R$7,000-13,000/月），Afya净均学费R$9,060处于中位，靠名额与品牌而非低价竞争；</li>
+            <li>替代趋势：<strong>稳定</strong>——巴西医生缺口长期存在（联邦政府持续推动扩招），需求端没有萎缩迹象。</li>
+        </ul>
+        <p><strong>2. 客户转换成本：<span class="tag tag-green">高</span></strong></p>
+        <ul>
+            <li>财务转换成本：中途转学几乎不可能（医学院学分互认极难），已缴学费沉没；退学重考的机会成本巨大（可能再耗2-3年）；</li>
+            <li>时间转换成本：6年学籍+3年住院医师培训，职业路径绑定深；</li>
+            <li>心理转换成本："医生"是巴西社会声望最高的职业之一，家庭全力以赴供读；Afya品牌=医生摇篮的心智资产；</li>
+            <li>捆绑转换成本：本科→备考→专科→执业软件全链条绑定，学生时代建立的账户、内容、社群关系随职业生涯延续；</li>
+            <li>总体评估：<strong>一旦入学，客户关系锁定6年起，实际延伸至整个职业生涯。</strong></li>
+        </ul>
+        <p><strong>3. 定价权：<span class="tag tag-orange">中强</span></strong></p>
+        <ul>
+            <li>历史提价记录：医学课程净均学费R$9,060/月，同比+3%（1H26再+3.9%），持续跑赢巴西CPI区间上沿；</li>
+            <li>提价vs通胀：过去数年学费年均涨幅3-5%，与通胀大体同步略高——受制于家庭支付能力与FIES助学贷款政策；</li>
+            <li>提价vs流失：满员率保持100%，提价未见流失——供给（名额）锁死而需求刚性，教科书式的<strong>限量定价结构</strong>；</li>
+            <li>定价权来源：政府审批名额造成的供给瓶颈+职业回报（巴西医生收入社会顶层）支撑的支付意愿；</li>
+            <li>巴菲特测试："若提价10%会怎样？"——部分边缘学生会转向更便宜的次级私立或贷款读书，但名额仍会被抢满。<strong>定价权的约束不是竞争，而是巴西家庭的钱包和FIES政策。</strong></li>
+        </ul>
+        <p><strong>板块竞争力评级：<span class="rating-stars">★★★★☆（4.5/5）</span></strong>——牌照+刚需+超长LTV，接近收费桥式的生意结构。</p>
+
+        <h3>3.2 继续教育板块（住院医师备考+研究生专科）</h3>
+        <p><strong>1. 可替代性：<span class="tag tag-orange">中等</span></strong>——住院医师备考市场有几个竞争者（Afya旗下品牌已是头部），加上免费YouTube内容和题库APP；研究生专科必须修，但提供方众多。</p>
+        <p><strong>2. 客户转换成本：<span class="tag tag-orange">中低</span></strong>——课程按期购买，换供应商只需下次换一家，摩擦有限；但Afya本科毕业生的品牌惯性提供了天然漏斗。</p>
+        <p><strong>3. 定价权：<span class="tag tag-orange">中等</span></strong>——备考是"改变命运"型支出，价格敏感度低；但2024-2025年住院医师备考学生数同比-21%，说明需求有周期波动（与住院医师名额政策挂钩）；B2B渠道（对医院打包销售）+48%增长打开第二曲线。</p>
+        <p><strong>板块竞争力评级：<span class="rating-stars">★★★☆☆（3/5）</span></strong>——依托生态漏斗的现金牛，但自身周期性明显。</p>
+
+        <h3>3.3 医疗实践解决方案板块（诊所SaaS）</h3>
+        <p><strong>1. 可替代性：<span class="tag tag-red">高</span></strong>——巴西诊所软件市场竞争激烈（iClinic、Feegow、Doctoralia等众多玩家），产品体验差距不大。</p>
+        <p><strong>2. 客户转换成本：<span class="tag tag-orange">中等</span></strong>——电子病历数据迁移麻烦，医生习惯一旦养成有粘性；但单产品切换成本不高。</p>
+        <p><strong>3. 定价权：<span class="tag tag-red">弱</span></strong>——SaaS订阅定价受竞争压制；月活用户从23.8万降至22万，说明产品吸引力承压。</p>
+        <p><strong>板块竞争力评级：<span class="rating-stars">★★☆☆☆（2.5/5）</span></strong>——独立看不是好生意，战略价值在于<strong>把毕业生留在生态内、沉淀医生行为数据</strong>，是生态的"守门员"而非利润引擎（管理层2026年正在加大投入，短期拖累利润率）。</p>
+    </div>
+
+    <div class="info-box">
+        <h2 id="chapter4">四、历史财务指标（2019-2026）</h2>
+
+        <h3>4.1 上市以来核心经营数据（财年=日历年；单位：百万雷亚尔）</h3>
+        <table>
+            <tr><th>财年</th><th>营收(R$M)</th><th>同比</th><th>净利润(R$M)</th><th>EPS(R$)</th><th>调整后EBITDA(R$M)</th><th>EBITDA利润率</th><th>净债务(剔IFRS16)</th></tr>
+            <tr><td>2019</td><td>750.6</td><td>—</td><td>~150†</td><td>~1.5†</td><td>—</td><td>—</td><td>—</td></tr>
+            <tr><td>2020</td><td>1,201.2</td><td>+60%</td><td>~290†</td><td>~2.9†</td><td>—</td><td>—</td><td>—</td></tr>
+            <tr><td>2021</td><td>1,719.4</td><td>+43%</td><td>~240†</td><td>2.39</td><td>—</td><td>—</td><td>—</td></tr>
+            <tr><td>2022</td><td>~2,335†</td><td>+36%</td><td>~390†</td><td>~4.2†</td><td>~950†</td><td>~41%</td><td>—</td></tr>
+            <tr><td>2023</td><td>2,875.9</td><td>+23%</td><td>405.4</td><td>4.30</td><td>~1,270†</td><td>~44%</td><td>~1,800†</td></tr>
+            <tr><td>2024</td><td>3,304.3</td><td>+15%</td><td>648.9</td><td>7.01</td><td>1,455.6</td><td>44.1%</td><td>1,814.9</td></tr>
+            <tr><td>2025</td><td><strong>3,697.3</strong></td><td>+11.9%</td><td><strong>768.4</strong></td><td><strong>8.32</strong></td><td><strong>1,680.3</strong></td><td><strong>45.4%</strong></td><td><strong>1,369</strong></td></tr>
+            <tr><td>2026E(指引)</td><td>3,950-4,100</td><td>+7~11%</td><td>—</td><td>—</td><td>1,700-1,800</td><td>~43.5%（-190bps再投入）</td><td>—</td></tr>
+        </table>
+        <p style="font-size:0.85em;color:#7f8c8d;">†为基于美元披露数据（assetsanalyzer等）按当年平均汇率折算的估算值。2025年净利润含递延所得税资产确认收益（被CSLL补提部分抵消）。EPS从2021年R$2.39到2025年R$8.32，四年CAGR约37%；FCF从2021年R$3.49亿到2025年R$10.56亿，CAGR约32%。</p>
+
+        <h3>4.2 ROE（净资产收益率）逐年</h3>
+        <table>
+            <tr><th>财年</th><th>2019</th><th>2020</th><th>2021</th><th>2022</th><th>2023</th><th>2024</th><th>2025</th></tr>
+            <tr><td>ROE(约)</td><td>7.5%</td><td>10.5%</td><td>7.6%</td><td>11.7%</td><td>10.7%</td><td>14.8%</td><td><strong>15.2%（雷亚尔口径约15.7-16.7%）</strong></td></tr>
+        </table>
+        <p><strong>巴菲特/芒格式解读：</strong>ROE从个位数爬升至15%+，且这<strong>不是财务杠杆游戏</strong>——权益乘数同期从2.2x降至1.9x（去杠杆进行中），ROE提升完全来自经营端：净利率从2023年14.1%升至2025年20.8%、EBITDA利润率从44%升至45.4%、资产周转加快。教科书式的"经营性ROE改善"。距离巴菲特偏爱的20%+还差一步，但方向和质量都对。</p>
+
+        <h3>4.3 资产负债结构（去杠杆通道中）</h3>
+        <table>
+            <tr><th>指标</th><th>2022末</th><th>2023末†</th><th>2024末</th><th>2025末</th><th>1H26末</th></tr>
+            <tr><td>总资产(R$M)</td><td>7,199.5</td><td>~7,800</td><td>8,829.5</td><td>9,357.9</td><td>—</td></tr>
+            <tr><td>总负债(R$M)</td><td>3,949.4</td><td>~4,280</td><td>4,519.0</td><td>4,466.7</td><td>—</td></tr>
+            <tr><td>股东权益(R$M)</td><td>3,250.2</td><td>~3,549</td><td>4,310.6</td><td>4,891.2</td><td>—</td></tr>
+            <tr><td>负债/总资产</td><td>54.9%</td><td>~54.7%</td><td>51.2%</td><td><strong>47.7%</strong></td><td>—</td></tr>
+            <tr><td>权益乘数(资产/权益)</td><td>2.22x</td><td>~2.20x</td><td>2.05x</td><td><strong>1.91x</strong></td><td>—</td></tr>
+            <tr><td>现金(R$M)</td><td>1,093.1</td><td>—</td><td>911.0</td><td>1,125.4</td><td>1,006.5</td></tr>
+            <tr><td>净债务(剔IFRS16)</td><td>—</td><td>~1,800</td><td>1,814.9</td><td>1,369</td><td>1,394</td></tr>
+            <tr><td>净债务/EBITDA</td><td>—</td><td>~1.4x</td><td>~1.25x</td><td><strong>0.8x</strong></td><td>~0.9x</td></tr>
+        </table>
+        <p style="font-size:0.85em;color:#7f8c8d;">†2023年末基于9月末未经审计数据近似。注意：无形资产R$55.9亿占总资产59.7%（并购形成的牌照/客户关系/商标），这是教育并购机器的必然形态；商誉减值风险需跟踪ENADE/Enamed评估结果。</p>
+
+        <h3>4.4 PE（市盈率）压缩史：从成长股到深度价值</h3>
+        <table>
+            <tr><th>时点</th><th>股价</th><th>估值状态</th></tr>
+            <tr><td>2019/7 IPO</td><td>$19发行 / 首日+27%</td><td>成长股定价（约30-40x）</td></tr>
+            <tr><td>2020-2021</td><td>疫情冲击后反弹</td><td>高成长高估值阶段</td></tr>
+            <tr><td>2025年7-9月高点</td><td>约$18.2</td><td>约10-11x</td></tr>
+            <tr><td><strong>2026/9/10</strong></td><td><strong>$13.57</strong></td><td><strong>TTM PE约7.8-8.9x、EV/EBITDA约5.6x、FCF收益率13.3%、PEG约0.35</strong></td></tr>
+        </table>
+        <p>过去12个月股价下跌约18%、逼近52周低点——尽管同期EPS增长19%、FCF创纪录。下跌主因：①2026指引利润率-190bps（再投资周期）；②Enamed新评估监管扰动；③巴西雷亚尔走弱与新兴市场折价；④内部人减持与流动性枯竭（日均仅$400万成交）。</p>
+
+        <div class="highlight">
+            <strong>上市七年财务剧本（三幕）：</strong><br>
+            ① <strong>2019-2021（上市与疫情）</strong>：IPO后高速并购扩张（2021年单年并购对价R$12.3亿），疫情线上教学冲击下仍保持增长，但净利率仅个位数、ROE 7.6%；<br>
+            ② <strong>2022-2023（爬坡期）</strong>：Mais Médicos四校区2022年投产爬坡，营收破R$28亿，但利息支出高企（2023年财务费用R$4.58亿），净利率被压制在14%；<br>
+            ③ <strong>2024-2025（收获期）</strong>：满员率100%+并购贡献兑现，EBITDA利润率45.4%、净利R$7.68亿（+18.4%）、FCF R$10.56亿创纪录，一年还债R$4.45亿、净杠杆降至0.8x，AAA.br评级，启动分红+回购；<br>
+            ④ <strong>2026（再投资年）</strong>：管理层主动选择利润率-190bps，加大继续教育/技术/数据/商业化投入——短期利润让位于生态深化。
+        </div>
+    </div>
+
+    <div class="info-box">
+        <h2 id="chapter5">五、竞争分析</h2>
+
+        <h3>5.1 行业格局：名额牌照制下的"温和割据"</h3>
+        <p>巴西私立高教市场规模巨大但整体分散（Cogna/Kroton为学生数巨头），<strong>医学教育是其中利润率最高的"黄金细分"</strong>——学费最贵、流失率最低、需求刚性。按BTG（2025年）统计，Afya与Yduqs两家合计仅占全国运营医学名额的<strong>17.6%</strong>，说明市场远未垄断，但头部集中趋势明确。</p>
+        <table>
+            <tr><th>竞争者</th><th>医学名额</th><th>市场份额</th><th>背景与近况</th></tr>
+            <tr><td><strong>Afya</strong></td><td>3,768个获批</td><td><strong>约11%（第一）</strong></td><td>33校区/14州；EBITDA利润率45%为行业最高；2026年8月与Yduqs传出合并谈判</td></tr>
+            <tr><td><strong>Yduqs（Estácio母公司）</strong></td><td>2,120个（IDOMED）</td><td>约6%（第二）</td><td>巴西第二大高教集团；医学院+法学院+商学院（Ibmec）；1H26营收约R$30亿但Q2净亏损R$153万——大而不精，利润率远低于Afya</td></tr>
+            <tr><td>Cogna（Kroton）</td><td>有医学板块</td><td>分散</td><td>巴西最大私立高教集团（百万学生），以大众化课程为主，医学非核心</td></tr>
+            <tr><td>Ânima及其他区域玩家</td><td>少量</td><td>长尾</td><td>区域大学联盟，医学板块规模有限</td></tr>
+            <tr><td>公立大学（免费）</td><td>约占总名额1/3-1/2</td><td>—</td><td>免费但录取率极低，实际是私立需求的"制造机"</td></tr>
+        </table>
+
+        <h3>5.2 Afya vs 竞争对手：优势与劣势</h3>
+        <p><strong>Afya的优势：</strong></p>
+        <ul>
+            <li><strong>专注度碾压：</strong>对手们做"教育超市"（法律/商科/工程什么都卖），Afya只做医疗——86%本科收入来自医学生。专注带来品牌纯度（"读医找Afya"）、医生生态密度和行业最高利润率；</li>
+            <li><strong>执行记录：</strong>上市以来连续7年（2H19起）达成或超越指引——在巴西这个宏观波动剧烈的市场里极为罕见；</li>
+            <li><strong>满员率魔法：</strong>Unidom校区从收购前60%满员率两年拉到100%——品牌+招生能力可"点石成金"，是并购复利的前提；</li>
+            <li><strong>资产负债表最优：</strong>净杠杆0.8x vs Yduqs高杠杆（Q2财务费用致亏）；AAA.br本地评级；并购弹药充足；</li>
+            <li><strong>生态独占：</strong>30万用户医生生态（备考→专科→执业软件）为对手所无。</li>
+        </ul>
+        <p><strong>Afya的劣势（诚实清单）：</strong></p>
+        <ul>
+            <li>体量小于Cogna/Yduqs，跨学科交叉销售与政府关系资源不及巨头；</li>
+            <li>继续教育板块住院医师备考学生数同比-21%，赛道有政策周期性；</li>
+            <li>SaaS板块月活下滑（23.8万→22万），第二增长曲线尚未自我证明；</li>
+            <li>100%巴西单一国家敞口，对全球投资者构成天然折价。</li>
+        </ul>
+
+        <h3>5.3 护城河评估</h3>
+        <table>
+            <tr><th>护城河来源</th><th>评估</th><th>说明</th></tr>
+            <tr><td>监管牌照（MEC名额）</td><td><span class="tag tag-green">强</span></td><td>医学名额审批是终极壁垒——新进入者几乎无法获得成规模名额，存量牌照即收费站</td></tr>
+            <tr><td>转换成本</td><td><span class="tag tag-green">高</span></td><td>6年学位锁定+职业全周期生态绑定</td></tr>
+            <tr><td>品牌</td><td><span class="tag tag-green">中强</span></td><td>医学教育第一品牌，ENADE成绩+生态内容持续强化</td></tr>
+            <tr><td>网络效应</td><td><span class="tag tag-orange">中等</span></td><td>医生生态有弱网络效应（内容-用户-数据飞轮），但SaaS端面临竞争</td></tr>
+            <tr><td>成本优势</td><td><span class="tag tag-orange">中等</span></td><td>共享服务中心+零广告获客，利润率行业第一</td></tr>
+            <tr><td>规模优势</td><td><span class="tag tag-orange">中等</span></td><td>医学细分第一，但绝对规模小于综合教育巨头</td></tr>
+        </table>
+        <p><strong>结论：中等偏宽的护城河</strong>——核心是"政府审批的名额牌照+医生职业锁链"，这比绝大多数教育公司的护城河更坚固（教育行业普遍无护城河，Afya因医学牌照例外）。</p>
+
+        <h3>5.4 重大变量：Afya×Yduqs合并谈判（2026年8月24日确认）</h3>
+        <p>控股股东贝塔斯曼正与Yduqs（Estácio/Ibmec/IDOMED母公司）讨论潜在业务合并。据巴西媒体：双方高管连同Advent、BTG Pactual、美国银行已于圣保罗会面，9月再启新一轮谈判。合并将缔造巴西私立高教巨无霸：<strong>合计约5,900个医学年名额（占全国17.6%）、1H26合计EBITDA约R$18亿、营收约R$50亿</strong>。关键障碍：①巴西反垄断机构CADE审查（部分城市两家直接竞争，可能被要求剥离）；②Enamed评估监管环境收紧（STJ 2026年8月刚恢复MEC对成绩不达标医学院的处罚措施）；③双方估值与控制权安排。Afya官方口径：初期阶段、无约束性协议、不保证成交。</p>
+
+        <h3>5.5 竞争烈度：温和</h3>
+        <p>医学教育竞争的本质是<strong>名额竞标而非价格战</strong>：名额由政府分配锁死，各校学费差异有限且需求刚性，争夺发生在招生端（品牌与录取线）与并购端（存量校区买卖）。Afya的并购纪律（20% IRR门槛）使其在这两个战场都占上风。行业真正的不确定性来自监管（名额审批节奏、Enamed评估、PROFIMED法案）而非彼此厮杀。</p>
+    </div>
+
+    <div class="info-box">
+        <h2 id="chapter6">六、利润分配分析（2019-2026）</h2>
+
+        <h3>6.1 股东回报历史：从"零回报全再投资"到"分红+回购双轮启动"</h3>
+        <table>
+            <tr><th>时期</th><th>股息</th><th>回购</th><th>资本去向</th></tr>
+            <tr><td>2019-2023</td><td>无</td><td>无</td><td>全部利润再投入并购（2021年单年并购R$12.3亿）与校区爬坡</td></tr>
+            <tr><td>FY2024→2025/3支付</td><td>首次派息$0.232/股（约R$1.15亿）</td><td>极少</td><td>派息率约18%；重心仍是还债（2025年净债务-4.45亿）</td></tr>
+            <tr><td>FY2025→2026/4支付</td><td>$0.656/股（R$3.45，R$3.07亿）<span class="tag tag-green">+183%</span></td><td>启动（2025年库存股净增约R$3,200万）</td><td>派息率40%（公司明确以此为基准政策）</td></tr>
+            <tr><td>1H26</td><td>已付R$3.07亿</td><td>Q2单季回购R$1.33亿</td><td><strong>合计回馈股东R$4.48亿=FCFE的106%</strong>；回购授权还剩约60%</td></tr>
+        </table>
+
+        <h3>6.2 利润分配总表（百万雷亚尔）</h3>
+        <table>
+            <tr><th>年度</th><th>净利润</th><th>股息</th><th>回购</th><th>CapEx</th><th>净债务变动</th><th>留存率(剔股息)</th></tr>
+            <tr><td>2021</td><td>~240†</td><td>0</td><td>0</td><td>—</td><td>+并购R$1,235（举债扩张）</td><td>100%</td></tr>
+            <tr><td>2022</td><td>~390†</td><td>0</td><td>0</td><td>—</td><td>+Mais Médicos校区投入</td><td>100%</td></tr>
+            <tr><td>2023</td><td>405.4</td><td>0</td><td>0</td><td>—</td><td>~持平</td><td>100%</td></tr>
+            <tr><td>2024</td><td>648.9</td><td>0（FY24股息次年付）</td><td>0</td><td>~250</td><td>≈持平</td><td>100%</td></tr>
+            <tr><td>2025</td><td>768.4</td><td>0（FY25股息次年付）</td><td>~32</td><td>~270</td><td><span class="tag tag-green">-445（大幅去杠杆）</span></td><td>96%</td></tr>
+            <tr><td>1H26</td><td>463.1</td><td>307（FY25股息）</td><td>~141</td><td>—</td><td>+24.5（回馈106% FCFE所致）</td><td>34%</td></tr>
+        </table>
+        <p style="font-size:0.85em;color:#7f8c8d;">†估算值。2026年指引CapEx R$3.4-3.8亿（占收入8.6-9.3%，含数字化与校区投资）。</p>
+
+        <h3>6.3 资本配置质量评价</h3>
+        <p><strong>做得好的：</strong></p>
+        <ul>
+            <li><strong>并购纪律清晰可验证：</strong>"医学收入&gt;60%+名义无杠杆IRR≥20%"的硬门槛+Unidom满员率翻倍案例——买来的不是资产，是被品牌点亮的现金流；</li>
+            <li><strong>该收割时收割：</strong>2024-2025年把FCF优先用于还债（净杠杆1.25x→0.8x），AAA.br评级降低资金成本；</li>
+            <li><strong>该回馈时回馈：</strong>资产负债表干净后，股息一年+183%、回购授权快速执行（低估值时回购=价值创造，当前8x PE回购时机优秀）；</li>
+            <li><strong>指引7年全中</strong>——管理层信用是资本配置中最重要的隐形资产。</li>
+        </ul>
+        <p><strong>存疑的：</strong></p>
+        <ul>
+            <li>2026年选择利润率-190bps的再投资周期，押注生态深化——回报周期拉长，若继续教育/SaaS不能自我造血，利润率回不到45%+；</li>
+            <li>1H26回馈106% FCFE略激进（透支式回报），若Yduqs合并推进还需并购弹药，平衡术待观察；</li>
+            <li>2026年7月多名高管在低位减持——与管理层"看好长期"的表述存在张力。</li>
+        </ul>
+        <div class="highlight">
+            <strong>巴菲特/芒格式点评：</strong>这是一部教科书式的资本配置演进史——成长期零分红全再投资（2019-2023）→去杠杆（2024-2025）→分红回购双启动（2026）——每一步都踩在该踩的节点上。<strong>可持续增长率=ROE×留存率≈15.2%×60%≈9.1%</strong>，与2026年收入指引+7~11%高度吻合，说明管理层没有画饼。当前8倍PE回购自家股票，相当于买入收益率12.5%的"自家债券"，这是巴菲特最喜欢的那种回购。
+        </div>
+    </div>
+
+    <div class="info-box">
+        <h2 id="chapter7">七、投资总结</h2>
+
+        <h3>7.1 六维评分卡</h3>
+        <table>
+            <tr><th>维度</th><th>评分</th><th>点评</th></tr>
+            <tr><td>业务易懂性</td><td><span class="rating-stars">★★★★★ 5/5</span></td><td>拿政府牌照开医学院收学费，读6年、月费R$9,060、100%满员——生意结构一句话讲清</td></tr>
+            <tr><td>护城河</td><td><span class="rating-stars">★★★★☆ 3.5/5</span></td><td>名额牌照+职业锁定+第一品牌=中宽护城河；监管既是护城河也是天花板</td></tr>
+            <tr><td>资本配置</td><td><span class="rating-stars">★★★★☆ 4/5</span></td><td>并购纪律+去杠杆+低估值回购+40%派息，节奏近乎完美；扣分项：高管减持、106% FCFE略激进</td></tr>
+            <tr><td>财务安全</td><td><span class="rating-stars">★★★★☆ 4/5</span></td><td>净杠杆0.8x、AAA.br、现金R$10亿、FCF创纪录；扣分项：无形资产占总资产60%、单一国家风险</td></tr>
+            <tr><td>成长性</td><td><span class="rating-stars">★★★☆☆ 3/5</span></td><td>内生+并购年增7-12%，名额扩容受政府节奏约束；生态货币化（B2B/SaaS）是期权而非现实</td></tr>
+            <tr><td>估值吸引力</td><td><span class="rating-stars">★★★★☆ 4/5</span></td><td>PE 8x、EV/EBITDA 5.6x、FCF收益率13.3%、PEG 0.35、股息率4.9%——深度价值区间</td></tr>
+        </table>
+
+        <h3>7.2 估值：值多少钱？</h3>
+        <table>
+            <tr><th>估值方法</th><th>测算</th><th>隐含价值/股</th></tr>
+            <tr><td>PE法</td><td>FY2026E EPS约$1.87-2.0 × 合理PE 10-12x（15%+ROE、中宽护城河，参照新兴市场教育股折价后）</td><td>$19 - $24</td></tr>
+            <tr><td>EV/EBITDA法</td><td>FY26E EBITDA约R$17.5亿(≈$3.2亿) × 7-8x（巴西同业6-9x，Afya应享龙头溢价）- 净债务$5亿</td><td>$18 - $21</td></tr>
+            <tr><td>FCF收益率法</td><td>正常化FCF约$1.9-2.0亿，要求收益率从13.3%回归至8-9%</td><td>$21 - $25</td></tr>
+            <tr><td>股息验证法</td><td>若40%派息政策延续且EPS年增10%，两年后股息≈$0.87，4%目标股息率</td><td>$21</td></tr>
+            <tr><td><strong>当前市价</strong></td><td colspan="2"><strong>$13.57（2026/9/10）——较上述区间折价约30-45%</strong></td></tr>
+        </table>
+        <p style="font-size:0.85em;color:#7f8c8d;">摩根大通目标价$21（中性）。若Yduqs合并成行，协同效应（交叉销售+后台整合）提供额外上行期权，但需CADE放行且摊薄结构未知。</p>
+        <div class="highlight">
+            <strong>估值结论：</strong>市场当前给Afya的定价隐含了"巴西折价+微盘流动性折价+监管尾部风险"的三重惩罚，却几乎没有为"7年指引全中的执行记录、0.8x净杠杆、13.3% FCF收益率"支付对价。按芒格的标准，这是一门<strong>好生意被打上了新兴市场的折扣标签</strong>——安全边际主要来自估值，而非业务质量（业务质量本身就在中上水平）。
+        </div>
+
+        <h3>7.3 关键风险</h3>
+        <ul>
+            <li><strong>监管风险（最核心）：</strong>ENADE继任者Enamed新评估体系——2026年8月STJ已恢复MEC对Enamed 2025不达标课程的处罚，Afya部分校区面临整改压力（管理层称2026无实质影响、2027年有望扭转处罚，但需验证）；PROFIMED医事法案尚在参议院；名额审批节奏决定天花板；</li>
+            <li><strong>巴西国家风险：</strong>雷亚尔汇率波动直接冲击美元计价回报（2015、2020年雷亚尔曾大幅贬值）；政治周期（2026年大选年）与利率环境；</li>
+            <li><strong>治理摩擦：</strong>开曼控股结构+贝塔斯曼绝对控制+小股东话语权有限；2026年7月多名高管减持、4月控股股东减持——内部人行为需要持续监控；</li>
+            <li><strong>利润率投资期风险：</strong>2026年-190bps的再投资若回报不及预期，"45%利润率"叙事破灭；</li>
+            <li><strong>合并不确定性：</strong>Yduqs交易若以高溢价/摊薄方式推进，可能摧毁而非创造价值；CADE否决风险；</li>
+            <li><strong>流动性风险：</strong>日均$400万成交额，机构进出困难，价格发现效率低——这既是折价来源也是退出障碍。</li>
+        </ul>
+
+        <h3>7.4 关键催化剂与跟踪指标</h3>
+        <ul>
+            <li><strong>催化剂：</strong>Yduqs合并落地（2026年9月新一轮谈判）；2026年报指引达成（第8年）；Enamed整改反转；雷亚尔升值；股息继续高增长（2027年4月支付FY2026股息）；低估值回购加速执行；</li>
+            <li><strong>季度跟踪清单：</strong>满员率与净均学费涨幅（定价权验证）、医学名额审批与并购进度（每年+200目标）、住院医师备考学生数（周期拐点）、SaaS月活（生态健康度）、净杠杆与FCF转换率、Enamed/MEC政策动向、内部人买卖记录。</li>
+        </ul>
+
+        <h3>7.5 巴菲特/芒格最终裁决</h3>
+        <div class="highlight">
+            <p><strong>芒格式快评：</strong>"好生意+好价格+能看懂，剩下的只是_country risk的勇气问题。"Afya具备巴菲特偏爱的生意特征：<strong>政府牌照筑起的供给瓶颈、刚性需求、超长客户生命周期、100%满员、45% EBITDA利润率、13%自由现金流收益率</strong>——这不是普通教育公司（教育通常无护城河），而是被监管变成"收费桥"的特殊教育资产。</p>
+            <p><strong>但必须诚实面对：</strong>①巴西货币与政治风险无法对冲，芒格会说"我们更愿意在熟悉的水域捕鱼"；②微盘流动性意味着建仓与退出都有冲击成本；③控股股东结构下，小股东命运部分系于贝塔斯曼的资本运作意愿；④Enamed监管是真实的尾部风险。这些都解释了为什么8倍PE会存在——<strong>便宜不是没理由的，但理由是否足够便宜，是这笔投资的全部问题</strong>。</p>
+            <p><strong>结论：对能承受新兴市场波动、以3-5年为期的投资者，当前价格提供了约30-45%的估计安全边际，属于"高质量深度价值"标的；仓位应控制在即使遭遇雷亚尔危机式回撤也不影响持股心态的水平。</strong>股息（4.9%且高速增长）+回购是等待期的报酬，Yduqs合并是免费期权。一句话：<strong>用收费桥的价格，买下了巴西医生的摇篮——前提是你敢把钱放在巴西。</strong></p>
+        </div>
+
+        <div class="info-box">
+            <p><strong>数据来源</strong>：Afya Limited 2025年四季度暨全年业绩公告及财报（SEC 6-K，2026/3/12）、2026年二季度暨上半年业绩公告（SEC，2026/8/13）、2025年一季度业绩公告（2025/5/8）、2023年财报（SEC）、Q4 2025业绩会纪要、巴西Times Brasil（2026/8/24）、Melhores Escolas Médicas（BTG名额数据）、新浪财经/雪球/Robinhood/RedChip/TipRanks/assetsanalyzer等公开资料（截至2026年9月11日）。部分历史指标为估算值（文中以†或"约"标示）。本分析不构成投资建议。</p>
+        </div>
+    </div>
+
+    <script src="scores_client.js"></script>
+    <script src="stock_topbar.js"></script>
+</body>
+</html>

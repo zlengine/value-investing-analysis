@@ -11,6 +11,7 @@
 (function() {
     var stocks = [
         {code:'AAPL',name:'苹果公司',href:'aapl.html'},
+        {code:'AFYA',name:'Afya - 巴西最大医学教育集团/3755个牌照名额收费桥/FCF收益率13.3%',href:'afya.html'},
         {code:'MSFT',name:'微软公司',href:'msft.html'},
         {code:'GOOG',name:'Alphabet/Google - 互联网搜索..',href:'goog.html'},
         {code:'AMZN',name:'亚马逊公司',href:'amzn.html'},
