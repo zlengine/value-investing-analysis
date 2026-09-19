@@ -6,108 +6,103 @@
 <title>lululemon (LULU) 巴菲特芒格式价值投资分析</title>
 <style>
     body {
-        font-family: "Segoe UI", "Microsoft YaHei", Arial, sans-serif;
+        font-family: 'Segoe UI', Arial, sans-serif;
         margin: 0;
+        padding: 20px;
         background-color: #f0f2f5;
         color: #333;
-        line-height: 1.7;
-    }
-    .container {
-        max-width: 1000px;
-        margin: 0 auto;
-        padding: 20px;
-        background-color: #fff;
-        min-height: 100vh;
     }
     h1 {
         text-align: center;
-        color: #1a1a1a;
-        font-size: 1.8em;
-        margin: 20px 0 5px 0;
-    }
-    .subtitle {
-        text-align: center;
-        color: #666;
-        margin-bottom: 10px;
-        font-size: 1.05em;
+        color: #1a5276;
+        font-size: 2.2em;
+        margin-bottom: 5px;
     }
     h2 {
         color: #1a5276;
-        border-bottom: 3px solid #2980b9;
+        border-bottom: 2px solid #2e86c1;
         padding-bottom: 8px;
-        margin-top: 45px;
-        font-size: 1.4em;
+        margin-top: 30px;
     }
     h3 {
-        color: #2e86c1;
-        margin-top: 30px;
-        font-size: 1.15em;
+        color: #2c3e50;
+        margin-top: 20px;
     }
     h4 {
-        color: #1a5276;
-        margin-top: 22px;
+        color: #2c3e50;
+        margin-top: 15px;
+    }
+    .subtitle {
+        text-align: center;
+        color: #7f8c8d;
+        font-size: 1.1em;
+        margin-bottom: 30px;
+    }
+    .info-box {
+        background: white;
+        border-radius: 10px;
+        padding: 25px;
+        margin: 20px 0;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.08);
     }
     table {
         width: 100%;
         border-collapse: collapse;
         margin: 15px 0;
-        font-size: 0.92em;
+        background-color: white;
+    }
+    th, td {
+        padding: 10px 14px;
+        text-align: left;
+        border-bottom: 1px solid #e0e0e0;
     }
     th {
         background-color: #1a5276;
         color: white;
-        padding: 8px 6px;
-        text-align: left;
-    }
-    td {
-        border: 1px solid #ddd;
-        padding: 7px 6px;
+        font-weight: bold;
     }
     tr:nth-child(even) {
         background-color: #f8f9fa;
+    }
+    tr:hover {
+        background-color: #eaf2f8;
     }
     .num {
         text-align: right;
         font-variant-numeric: tabular-nums;
     }
-    .info-box {
-        background-color: #eaf2f8;
-        border-left: 5px solid #2980b9;
-        padding: 15px 20px;
-        margin: 20px 0;
-        border-radius: 0 8px 8px 0;
-    }
     .highlight {
-        background-color: #fef9e7;
-        border-left: 5px solid #f39c12;
+        background: #fef9e7;
+        border-left: 4px solid #2e86c1;
         padding: 15px 20px;
-        margin: 20px 0;
+        margin: 15px 0;
         border-radius: 0 8px 8px 0;
     }
-    .warning-box {
-        background-color: #fdedec;
-        border-left: 5px solid #c0392b;
-        padding: 15px 20px;
-        margin: 20px 0;
-        border-radius: 0 8px 8px 0;
+    .moat-item {
+        background: #eafaf1;
+        border-left: 4px solid #27ae60;
+        padding: 12px 18px;
+        margin: 10px 0;
+        border-radius: 0 6px 6px 0;
+    }
+    .risk-item {
+        background: #fdedec;
+        border-left: 4px solid #e74c3c;
+        padding: 12px 18px;
+        margin: 10px 0;
+        border-radius: 0 6px 6px 0;
     }
     .tag {
         display: inline-block;
-        padding: 2px 10px;
-        border-radius: 10px;
-        font-size: 0.82em;
+        padding: 3px 10px;
+        border-radius: 12px;
+        font-size: 0.85em;
         font-weight: bold;
         color: white;
     }
-    .tag-green { background-color: #1e8449; }
-    .tag-orange { background-color: #ca6f1e; }
-    .tag-red { background-color: #c0392b; }
-    .moat-item {
-        background-color: #f4f6f6;
-        border-radius: 8px;
-        padding: 12px 18px;
-        margin: 12px 0;
-    }
+    .tag-green { background-color: #27ae60; }
+    .tag-orange { background-color: #e67e22; }
+    .tag-red { background-color: #e74c3c; }
     .section-nav {
         background: white;
         border-radius: 10px;
@@ -130,14 +125,18 @@
         background: #2e86c1;
         color: white;
     }
+    ul {
+        line-height: 1.8;
+    }
+    .top-nav-bar { position: fixed; top: 0; left: 0; right: 0; height: 44px; background: #2c3e50; display: flex; align-items: center; justify-content: flex-end; padding: 0 20px; z-index: 9999; box-shadow: 0 2px 8px rgba(0,0,0,0.15); gap: 8px; }
+    .top-nav-link { color: white; padding: 6px 16px; border-radius: 16px; text-decoration: none; font-size: 13px; transition: background 0.2s; white-space: nowrap; }
 </style>
 </head>
 <body>
 <div class="top-nav-bar"></div>
-<script src="nav_bar.js"></script>
+<script src="nav_bar.js?v=20260624"></script>
 <span id="topbarCode" style="display:none;">LULU</span>
 
-<div class="container">
 <h1>lululemon athletica inc. (NASDAQ: LULU)</h1>
 <p class="subtitle">巴菲特/芒格式价值投资基本面分析 | 更新日期：2026年9月19日</p>
 
@@ -151,8 +150,8 @@
     <a href="#chapter7">投资总结</a>
 </div>
 
-<div class="info-box">
 <h2 id="chapter1">一、公司基本信息</h2>
+<div class="info-box">
 <table>
     <tr><td style="width:30%;font-weight:bold;">公司全称</td><td>lululemon athletica inc.（露露乐蒙，俗称"露露柠檬"/"lulu"）</td></tr>
     <tr><td style="font-weight:bold;">股票代码</td><td>LULU（NASDAQ 纳斯达克）</td></tr>
@@ -180,7 +179,7 @@
 </div>
 
 <h2 id="chapter2">二、业务分析</h2>
-
+<div class="info-box">
 <h3>2.1 公司是做什么的（大白话版）</h3>
 <p>想象一位32岁的都市白领女性Emma，每周上三次瑜伽课、周末晨跑。她愿意花$128买一条lululemon的Align瑜伽裤，而不是Athleta的$79或亚马逊的$29——因为这条裤子"像第二层皮肤"（Nulu面料的裸感），穿着去健身房、去咖啡店、去接孩子都体面，而且"穿lulu"本身就是一种生活方式的身份标识。LULU卖的不是服装，是<strong>"健康精致生活方式"的门票</strong>——这也是它能持续收取品牌溢价的核心逻辑。门店不是卖货的地方，是社区据点：免费的周末瑜伽课、门店大使（当地教练）计划、会员社区——先建关系，再卖裤子。</p>
 
@@ -203,9 +202,10 @@
 <div class="moat-item"><strong>2. DTC垂直模型→数据闭环：</strong>825家店+电商直接触达消费者，没有批发商分利，SG&A虽高（32%）但换来了完整客户画像与补货敏捷性。</div>
 <div class="moat-item"><strong>3. 社区营销→低获客成本：</strong>门店大使、免费社区瑜伽课、超300位全球大使的"人带人"模式，营销费用率低于同行的情况下维持了品牌热度（历史上）。</div>
 <div class="moat-item"><strong>4. 单店经济模型：</strong>坪效$1,400+/平方英尺（2026年口径），是服装零售的天花板水平（约为Gap的5倍以上）——开店即印钞，支撑全球扩张的资本自循环。</div>
+</div>
 
 <h2 id="chapter3">三、产品竞争力分析</h2>
-
+<div class="info-box">
 <h3>3.1 可替代性评估：中高（正在恶化）<span class="tag tag-orange">警戒</span></h3>
 <table>
     <tr><th>替代品</th><th>价格带</th><th>体验差距</th><th>威胁等级</th></tr>
@@ -215,7 +215,7 @@
     <tr><td>Athleta（Gap旗下）</td><td>低约30%（$55-98）</td><td>同为女性向但品牌热度弱、母公司资源分散</td><td class="tag tag-orange">中</td></tr>
     <tr><td>亚马逊/Shein平替</td><td>低60-75%</td><td>面料与版型有代差，但"够用"</td><td class="tag tag-green">结构性存在</td></tr>
 </table>
-<div class="warning-box">
+<div class="risk-item">
 <strong>最危险的信号不是替代品便宜，而是替代品同样贵：</strong>Alo和Vuori不是靠低价抢客，而是靠<strong>"新鲜感+社群营销+名人光环"</strong>以相同甚至更高的价格抢客——这证明LULU的护城河（品牌+产品+社区）并非不可复制。<strong>M Science数据显示：LULU在运动休闲市场份额一年内从~54%降至43.9%（-10pct），同期Alo +5.9pct、Vuori +2.2pct。</strong>这是25年品牌史上第一次出现系统性的份额流失。
 </div>
 
@@ -239,8 +239,10 @@
     <tr><td>转换成本</td><td class="num">2.0</td><td>服装无锁定，情感粘性可被新叙事击穿</td></tr>
 </table>
 <div class="highlight"><strong>结论：LULU仍有一条"窄护城河"（Morningstar评级），但河水正在变浅。</strong>它是"品牌型无形资产"护城河的经典样本，而2025-2026年的份额流失正是护城河侵蚀的教科书式实时案例——巴菲特提醒过：品牌护城河需要持续的"加固投资"（产品创新+品牌叙事），一旦投入不足或方向错误，侵蚀速度会远超预期。</div>
+</div>
 
 <h2 id="chapter4">四、历史财务指标（2011-2026E）</h2>
+<div class="info-box">
 <table>
     <tr><th>财年（近似日历年）</th><th>营收($B)</th><th>营收增速</th><th>净利润($M)</th><th>毛利率</th><th>营业利润率</th><th>ROE</th><th>备注</th></tr>
     <tr><td>2011</td><td class="num">1.0</td><td class="num">+34%</td><td class="num">185</td><td class="num">55%</td><td class="num">23%</td><td class="num">~25%</td><td>高速扩张期</td></tr>
@@ -255,7 +257,6 @@
     <tr><td>2025</td><td class="num">11.1</td><td class="num">+5%（剔53周+7%）</td><td class="num">1,579</td><td class="num">56.6%</td><td class="num">19.9%</td><td class="num">~33%</td><td>上市以来最低增速；净利-13%</td></tr>
     <tr><td>2026E（指引）</td><td class="num">10.4-10.5</td><td class="num"><strong>-5%至-7%</strong></td><td class="num">~1,050</td><td class="num">~55%</td><td class="num">~14-15%</td><td class="num">~20%</td><td><strong>上市以来首次年度营收萎缩</strong>；EPS $9.48-9.73（含$0.86一次性退税）</td></tr>
 </table>
-<div class="info-box">
 <p><strong>三个关键财务事实：</strong></p>
 <p>①<strong>零有息负债贯穿始终</strong>：账上现金$14亿（FY2026 Q2末）+ $5.94亿未动用循环信贷额度，30年上市史从未依赖债务扩张——资产负债表是堡垒级（与DECK同级别）。</p>
 <p>②<strong>ROE的"含金量"极高</strong>：2023-2024年40%+的ROE几乎全部由净利率（~17%）和周转率驱动，权益乘数仅~1.8x（源于回购压缩股本，而非举债）。</p>
@@ -263,7 +264,7 @@
 </div>
 
 <h2 id="chapter5">五、竞争分析</h2>
-
+<div class="info-box">
 <h3>5.1 竞争格局：从"独孤求败"到"围攻光明顶"</h3>
 <p>2019-2023年，LULU在高端运动休闲几乎没有同价位对手（Athleta掉队、Alo/Vuori尚小）。2024-2026年格局剧变——这是本案例最重要的行业背景：</p>
 <table>
@@ -285,16 +286,18 @@
 <h3>5.4 与可比公司的关键指标对比</h3>
 <table>
     <tr><th>指标（最新财年）</th><th>LULU</th><th>Nike</th><th>DECK</th><th>Athleta(Gap)</th></tr>
-    <tr><td>营收增速</td><td class="num" style="color:#c0392b;">-5%~-7%（FY26指引）</td><td class="num">低个位数</td><td class="num" style="color:#1e8449;">+10%</td><td class="num">下滑</td></tr>
-    <tr><td>毛利率</td><td class="num" style="color:#1e8449;">56-60%</td><td class="num">~45%</td><td class="num">57.7%</td><td class="num">~36%</td></tr>
+    <tr><td>营收增速</td><td class="num" style="color:#e74c3c;">-5%~-7%（FY26指引）</td><td class="num">低个位数</td><td class="num" style="color:#27ae60;">+10%</td><td class="num">下滑</td></tr>
+    <tr><td>毛利率</td><td class="num" style="color:#27ae60;">56-60%</td><td class="num">~45%</td><td class="num">57.7%</td><td class="num">~36%</td></tr>
     <tr><td>营业利润率</td><td class="num">19.9%→~15%</td><td class="num">~10%</td><td class="num">23.1%</td><td class="num">微利</td></tr>
     <tr><td>DTC占比</td><td class="num">~93%</td><td class="num">~45%</td><td class="num">~41%</td><td class="num">混合</td></tr>
-    <tr><td>有息负债</td><td class="num" style="color:#1e8449;">$0</td><td class="num" style="color:#c0392b;">$80-100亿</td><td class="num" style="color:#1e8449;">$0</td><td class="num">母公司层面</td></tr>
+    <tr><td>有息负债</td><td class="num" style="color:#27ae60;">$0</td><td class="num" style="color:#e74c3c;">$80-100亿</td><td class="num" style="color:#27ae60;">$0</td><td class="num">母公司层面</td></tr>
     <tr><td>Forward PE</td><td class="num">~10-11.5x</td><td class="num">20.8x</td><td class="num">~10x</td><td class="num">—</td></tr>
     <tr><td>核心矛盾</td><td>品牌老化vs重塑</td><td>增长重启</td><td>增长中的烦恼</td><td>边缘化</td></tr>
 </table>
+</div>
 
 <h2 id="chapter6">六、利润分配分析（过去十年）</h2>
+<div class="info-box">
 <p>LULU的资本配置哲学极端而纯粹：<strong>零股息+大额回购+再投资于门店与产品</strong>。过去十年没有支付过一分钱股息，所有股东回报都通过回购与股价实现。</p>
 <table>
     <tr><th>财年</th><th>净利润($M)</th><th>经营现金流($M，约)</th><th>资本开支($M，约)</th><th>回购金额($M)</th><th>回购占FCF</th><th>关键动作</th></tr>
@@ -307,15 +310,14 @@
     <tr><td>2025</td><td class="num">1,579</td><td class="num">~1,700</td><td class="num">~620</td><td class="num">1,200（500万股）</td><td class="num">~100%+</td><td><strong>回购均价约$240/股</strong></td></tr>
     <tr><td>2026 H1</td><td class="num">~700</td><td class="num">—</td><td class="num">~250</td><td class="num">Q2即达330（270万股）</td><td class="num">—</td><td>Q2回购均价~$122</td></tr>
 </table>
-<div class="warning-box">
+<div class="risk-item">
 <strong>芒格式资本配置审判——"在错误的价位回购"是本案例最大的资本配置污点：</strong>FY2025公司以约<strong>$240的均价</strong>回购了$12亿股票（彼时股价已从$485腰斩，管理层和市场都以为"够便宜了"），如今股价$98——<strong>这批回购已浮亏约60%，摧毁了约$7亿股东价值</strong>。相比之下，FY2026 Q2以~$122均价回购$3.3亿，价格纪律有所改善但依然接了落刀。教训印证了芒格的话：<strong>"回购的唯一正当理由是以低于内在价值的价格买入"</strong>——以"股价跌了很多"为理由的回购，是把择时问题伪装成资本配置决策。唯一值得肯定的是：至少回购替代了更糟糕的选项（盲目并购——Mirror $5亿学费已交过）。
 </div>
-<div class="info-box">
-<strong>分配结构的其余部分：</strong>①资本开支（每年$6-7亿）：40-45家净新店/年+门店优化（35家）+DC与数字基建——FY2026计划中国为重点的25-30家国际新店；②员工与营销投入：2025-2026年显著增加品牌营销（对抗Alo/Vuori声量）是SG&A上升主因；③零债务零分红：30年不变，财务政策极度保守。总体评价：再投资纪律尚可（Mirror是唯一重大失误），但<strong>回购的择时记录是资本配置的减分项</strong>。
+<p><strong>分配结构的其余部分：</strong>①资本开支（每年$6-7亿）：40-45家净新店/年+门店优化（35家）+DC与数字基建——FY2026计划中国为重点的25-30家国际新店；②员工与营销投入：2025-2026年显著增加品牌营销（对抗Alo/Vuori声量）是SG&A上升主因；③零债务零分红：30年不变，财务政策极度保守。总体评价：再投资纪律尚可（Mirror是唯一重大失误），但<strong>回购的择时记录是资本配置的减分项</strong>。</p>
 </div>
 
 <h2 id="chapter7">七、投资总结</h2>
-
+<div class="info-box">
 <h3>7.1 多空论点清单</h3>
 <table>
     <tr><th>多方（价值/困境反转）</th><th>空方（品牌衰亡/价值陷阱）</th></tr>
@@ -339,7 +341,7 @@
 <h3>7.3 与DECK的镜像对照（同为$100附近的运动服饰股，风险等级完全不同）</h3>
 <table>
     <tr><th>维度</th><th>DECK（$98）</th><th>LULU（$98）</th></tr>
-    <tr><td>营收方向</td><td class="num" style="color:#1e8449;">+10%增长中</td><td class="num" style="color:#c0392b;">-5%~-7%萎缩中</td></tr>
+    <tr><td>营收方向</td><td class="num" style="color:#27ae60;">+10%增长中</td><td class="num" style="color:#e74c3c;">-5%~-7%萎缩中</td></tr>
     <tr><td>核心问题</td><td>费用前置（主动投资）</td><td>品牌份额流失（被动失血）</td></tr>
     <tr><td>同店/需求</td><td>DTC可比+8.2%，国际+26%</td><td>可比-9%，美洲-12%，中国-8%</td></tr>
     <tr><td>管理层</td><td>稳定，指引超预期</td><td>CEO空窗+代理权之争+SEC级调查</td></tr>
