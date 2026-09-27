@@ -162,6 +162,25 @@
         </div>
         <div class="log-desc">
             <ul>
+                <li>index.html 股票列表"公司名称"列存量条目批量统一格式：按照上午定下的规范 <b>公司英文名称（中文公司名）- 主营业务行业/一句话核心特点介绍</b>，对全部124家公司条目进行统一调整（115条改写+9条已是标准格式保留）</li>
+                <li>调整前格式混乱：有的只写中文（苹果公司/微软公司）、有的只写英文无任何介绍（Kaspi.kz/Matson/ResMed）、有的堆砌大量指标数据（FTNT/PTC/ITRN等长串文字）</li>
+                <li>调整后效果：每条均为"英文名（中文名）- 一句话核心特点"，如 Microsoft（微软）- 全球软件与云计算巨头/Office+Azure+AI Copilot；Novo Nordisk（诺和诺德）- 全球糖尿病与GLP-1减肥药双巨头；一眼可识别公司身份与核心业务</li>
+                <li>所有链接经 backup.py verify 验证：126个链接全部正常，无404</li>
+            </ul>
+        </div>
+        <div class="log-files">
+            <span class="modified">~ index.html (124家公司名称列统一为标准格式)</span><br>
+            <span class="modified">~ changelog.html (新增本次更新日志)</span>
+        </div>
+    </div>
+
+    <div class="log-entry update">
+        <div class="log-header">
+            <span class="log-date">2026-09-27</span>
+            <span class="log-type update">更新</span>
+        </div>
+        <div class="log-desc">
+            <ul>
                 <li>项目规则新增"index.html股票列表公司名称列统一格式"规范（2026-09-27起强制执行）：新加入公司的名称列必须按 <b>公司英文名称（中文公司名）- 主营业务行业/一句话核心特点介绍</b> 的统一格式填写，做到简洁明了、突出公司最有名最核心的特点</li>
                 <li>标准写法：Booz Allen Hamilton（博思艾伦）- 美国政府技术服务/国防科技承包商；Broadridge Financial Solutions（博瑞吉）- 金融科技/投资者通讯与资本市场处理</li>
                 <li>变体写法（核心特点即公司名片时可直接入括号）：ASML Holding（EUV光刻机全球唯一制造商，半导体最宽护城河）</li>
