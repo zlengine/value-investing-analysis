@@ -16,6 +16,7 @@
         {code:'GOOG',name:'Alphabet/Google - 互联网搜索..',href:'goog.html'},
         {code:'AMZN',name:'亚马逊公司',href:'amzn.html'},
         {code:'META',name:'Meta平台公司',href:'meta.html'},
+        {code:'NFLX',name:'Netflix（奈飞）- 全球流媒体订阅霸主/原创内容+广告第二曲线',href:'nflx.html'},
         {code:'KSPI',name:'Kaspi.kz',href:'kspi.html'},
         {code:'SUZ',name:'Suzano S.A.',href:'suz.html'},
         {code:'CALM',name:'Cal-Maine Foods',href:'calm.html'},

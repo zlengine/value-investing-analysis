@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Netflix 奈飞 (NFLX) 详细分析</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f2f5;
+            color: #333;
+        }
+        h1 {
+            text-align: center;
+            color: #1a5276;
+            font-size: 2.2em;
+            margin-bottom: 5px;
+        }
+        h2 {
+            color: #1a5276;
+            border-bottom: 2px solid #2e86c1;
+            padding-bottom: 8px;
+            margin-top: 40px;
+        }
+        h3 { color: #21618c; margin-top: 25px; }
+        .subtitle {
+            text-align: center;
+            color: #7f8c8d;
+            font-size: 1.1em;
+            margin-top: 0;
+        }
+        .info-box {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            background: white;
+        }
+        th {
+            background-color: #1a5276;
+            color: white;
+            padding: 10px 8px;
+            text-align: left;
+            font-size: 0.95em;
+        }
+        td {
+            padding: 8px;
+            border-bottom: 1px solid #e0e0e0;
+            text-align: left;
+            font-size: 0.93em;
+        }
+        tr:nth-child(even) td { background-color: #f8f9fa; }
+        tr:hover td { background-color: #eaf2f8; }
+        .highlight {
+            background-color: #fef9e7;
+            border-left: 4px solid #2e86c1;
+            padding: 12px 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+        .moat-item {
+            background-color: #eafaf1;
+            border-left: 4px solid #27ae60;
+            padding: 15px;
+            border-radius: 4px;
+            margin: 10px 0;
+        }
+        .risk-item {
+            background-color: #fdedec;
+            border-left: 4px solid #e74c3c;
+            padding: 15px;
+            border-radius: 4px;
+            margin: 10px 0;
+        }
+        .tag { display: inline-block; padding: 2px 10px; border-radius: 12px; font-size: 0.85em; font-weight: 600; }
+        .tag-green { background-color: #eafaf1; color: #27ae60; }
+        .tag-orange { background-color: #fdf2e9; color: #e67e22; }
+        .tag-red { background-color: #fdedec; color: #e74c3c; }
+        .section-nav {
+            background: white;
+            border-radius: 10px;
+            padding: 15px 25px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+        .section-nav a {
+            display: inline-block;
+            margin: 5px 10px;
+            padding: 6px 14px;
+            background: #eaf2f8;
+            color: #1a5276;
+            text-decoration: none;
+            border-radius: 15px;
+            font-size: 0.9em;
+        }
+        .section-nav a:hover {
+            background: #2e86c1;
+            color: white;
+        }
+        p { line-height: 1.7; }
+        li { line-height: 1.7; margin-bottom: 4px; }
+    </style>
+</head>
+<body>
+    <div class="top-nav-bar"></div>
+    <script src="nav_bar.js?v=20260624"></script>
+    <span id="topbarCode" style="display:none;">NFLX</span>
+
+    <h1>Netflix, Inc. 奈飞 (NASDAQ: NFLX)</h1>
+    <p class="subtitle">巴菲特/芒格式价值投资基本面分析 | 更新日期：2026年9月</p>
+
+    <div class="section-nav">
+        <a href="#chapter1">公司基本信息</a>
+        <a href="#chapter2">业务分析</a>
+        <a href="#chapter3">产品竞争力分析</a>
+        <a href="#chapter4">历史财务指标</a>
+        <a href="#chapter5">竞争分析</a>
+        <a href="#chapter6">利润分配分析</a>
+        <a href="#chapter7">投资总结</a>
+    </div>
+
+    <h2 id="chapter1">一、公司基本信息</h2>
+    <div class="info-box">
+        <table>
+            <tr><td>公司全称</td><td>Netflix, Inc.</td></tr>
+            <tr><td>股票代码</td><td>NASDAQ: NFLX</td></tr>
+            <tr><td>市值</td><td>约$3,000亿（约$300B，2026年9月，股价$71.79）</td></tr>
+            <tr><td>最新股价</td><td>$71.79（2026年9月18日收盘；2025年11月完成1拆10）</td></tr>
+            <tr><td>52周区间</td><td>$65.08 - $126.71</td></tr>
+            <tr><td>历史最高</td><td>$133.91（2025年6月30日，拆股调整后）；当前较高点回撤约46%</td></tr>
+            <tr><td>成立年份</td><td>1997年（Reed Hastings与Marc Randolph创立，DVD邮租起家）</td></tr>
+            <tr><td>总部</td><td>Los Gatos, California, USA</td></tr>
+            <tr><td>员工人数</td><td>约14,000人</td></tr>
+            <tr><td>管理层</td><td>联席CEO：Ted Sarandos（内容）+ Greg Peters（运营）；创始人Reed Hastings已于2026年4月退出董事会</td></tr>
+            <tr><td>业务</td><td>全球流媒体订阅（SVOD）+ 广告 + 直播体育活动 + 游戏</td></tr>
+            <tr><td>企业价值(EV)</td><td>约$3,050亿（净债务仅约$52亿，杠杆极低）</td></tr>
+        </table>
+        <div class="highlight">
+            <strong>2026年股价大事记</strong>：2025年12月Netflix签约收购华纳兄弟探索（WBD）影业与流媒体业务（含HBO Max，企业价值$827亿）→ 2026年2月27日WBD毁约转投Paramount Skydance（$30/股全现金），Netflix收取<span style="color:#27ae60;font-weight:700;">$28亿分手费</span>；6月竞购Roku败给福克斯（约$220亿）；股价年内下跌约21-24%，同期S&P 500上涨约13%。
+        </div>
+    </div>
+
+    <h2 id="chapter2">二、业务分析</h2>
+    <div class="info-box">
+        <h3>2.1 公司是做什么的（通俗解释）</h3>
+        <p>Netflix是一家<strong>卖"无限量影视娱乐自助餐"的公司</strong>。每月交一次订阅费（美国最低档带广告套餐$7.99/月，高级档$24.99/月），就能无限观看它的全部电影、剧集、纪录片、综艺、直播节目，还能打游戏。就像有线电视时代的"付费频道"，但你想看什么、什么时候看，都由你说了算，而且没有广告打断（广告档除外）。</p>
+        <p>它的赚钱逻辑很简单：<strong>用全世界最大的内容预算（每年现金内容投入约$160-180亿）做出别人做不出的爆款（鱿鱼游戏、怪奇物语、布里奇顿），摊到全球3亿多个付费家庭头上，每个家庭每月付的钱减去内容成本，就是利润</strong>。订阅户数越多，每户摊到的内容成本越低，利润率越高——这就是"规模经济"。</p>
+
+        <h3>2.2 业务构成（2025年，总营收$45.2亿×10=452亿美元）</h3>
+        <table>
+            <tr><th>业务板块</th><th>2025年营收</th><th>占比</th><th>说明与趋势</th></tr>
+            <tr><td>流媒体订阅费（核心）</td><td>约$420亿</td><td>约93%</td><td>3亿+付费会员月费，标准/高级/带广告多档定价；2025年营收+15.9%</td></tr>
+            <tr><td>广告业务</td><td>约$15亿</td><td>约3%</td><td>2026年预计翻倍至约$30亿；广告层月活用户(MAU)超2.5亿，广告主4,000+（同比+70%），广告国家新注册中超60%选广告档</td></tr>
+            <tr><td>直播/体育/活动</td><td>合并计入订阅</td><td>—</td><td>WWE RAW（10年约$50亿）、NFL圣诞大战、WBC世界棒球经典赛（日本3,140万观众）、BTS演唱会（1,840万观众）——拉新与留存的战略武器</td></tr>
+            <tr><td>游戏/播客/创作者内容</td><td>早期阶段</td><td>&lt;1%</td><td>云TV游戏、儿童游戏App"Playground"、视频播客（Danny Go!等创作者入驻）——从"影视App"扩展为"娱乐App"</td></tr>
+        </table>
+
+        <h3>2.3 地理分布（2026年Q2，营收$125.6亿）</h3>
+        <table>
+            <tr><th>地区</th><th>营收占比（约）</th><th>同比增速</th><th>备注</th></tr>
+            <tr><td>美国+加拿大（UCAN）</td><td>44%</td><td>+10%</td><td>最赚钱市场，2026年上半年提价仅部分季度体现</td></tr>
+            <tr><td>欧洲/中东/非洲（EMEA）</td><td>32%</td><td>+14%</td><td>季度营收首破$40亿</td></tr>
+            <tr><td>拉美（LATAM）</td><td>12%</td><td>+21%</td><td>增速最快地区</td></tr>
+            <tr><td>亚太（APAC）</td><td>12%</td><td>+16%</td><td>日本为Q1'26会员增长最大贡献国（WBC棒球直播拉动）</td></tr>
+        </table>
+
+        <h3>2.4 商业模式与赚钱方式</h3>
+        <ul>
+            <li><strong>收入模式</strong>：月度/年度订阅费为主（先付钱后观看，现金流前置，无应收账款压力）+ 广告分成</li>
+            <li><strong>成本结构</strong>：内容摊销是最大成本（2025年约$160亿+），2026年预计+10%；销售费用率持续下降</li>
+            <li><strong>盈利能力跃升</strong>：营业利润率从2022年的17.8%提升至2025年的29.5%，2026年指引31.5%——收入增速跑赢内容成本增速</li>
+            <li><strong>现金流</strong>：2025年自由现金流约$95亿，2026年指引约$125亿；2022年前常年"利润为正但现金流为负"（内容投入太猛），如今彻底反转</li>
+        </ul>
+        <div class="highlight">
+            <strong>关键洞察</strong>：Netflix完成了从"烧钱换增长"到"现金奶牛"的惊险一跃。2016-2021年它累计借债$100多亿做内容，市场一度怀疑它永远赚不回现金；如今净债务仅$52亿（约0.3倍EBITDA），每年自由现金流$125亿。生意的本质变成了：<strong>内容是"固定资产"，会员费是"过路费"，规模越大路费越便宜</strong>。
+        </div>
+    </div>
+
+    <h2 id="chapter3">三、产品竞争力分析</h2>
+    <div class="info-box">
+        <h3>3.1 核心业务：流媒体订阅（SVOD）</h3>
+        <p><strong>1. 可替代性：<span class="tag tag-orange">中等偏高</span></strong></p>
+        <ul>
+            <li>直接替代品：Disney+（漫威/星球大战/皮克斯）、Amazon Prime Video（含NBA版权）、Max（HBO剧集）、Apple TV+、Peacock——同为月费制流媒体，体验差距在缩小</li>
+            <li>最大的间接替代品是<strong>YouTube</strong>：免费+创作者生态无限供给，2026年7月YouTube占美国电视观看时间14.2%（历史新高），Netflix降至7.8%（多年新低）；YouTube夏季还推出"Shows"功能直接模仿剧集模式</li>
+            <li>短视频（TikTok/Reels）争夺的是碎片时间，与"客厅大屏追剧"场景部分重叠</li>
+            <li>替代趋势：内容可替代性在<strong>缓慢上升</strong>（对手独家内容增多），但Netflix的爆款命中率、多语言本地化内容（韩剧、西语剧）和"总有一款适合你"的广度仍无可匹敌——观看时长H1'26约970亿小时，同比+2%，还在增长</li>
+        </ul>
+        <p><strong>2. 客户转换成本：<span class="tag tag-red">低</span></strong></p>
+        <ul>
+            <li>财务成本：月付制、随时取消、无违约金——切换成本几乎为零</li>
+            <li>时间成本：重新建账号、丢失观看历史与推荐算法冷启动——轻度摩擦</li>
+            <li>心理成本：全家共用账号的习惯、话题社交属性（"你看了XX没？"）——真实但有限</li>
+            <li>量化：美国用户平均月流失率仅约2%（年留存80%+），说明尽管"能走"，实际没多少人走；但"订阅轮换"（看完一部剧暂停订阅、出新剧再订回来）行为在年轻用户中增多，这是流媒体特有的低转换成本体现</li>
+        </ul>
+        <p><strong>3. 定价权：<span class="tag tag-green">强</span></strong></p>
+        <ul>
+            <li>历史提价记录：过去10年美国主流套餐价格几乎每年上调，标准档从$7.99（2014）涨至$17.99（2025），高级档$24.99；2026年上半年在美国/墨西哥/西班牙再次提价，公司确认"结果与历史提价一致、符合预期"</li>
+            <li>提价vs通胀：累计涨幅远超CPI，且流失率未显著上升——提价收入几乎全部落袋</li>
+            <li>定价权来源：规模+爆款内容+品牌习惯，而非锁定；广告档（$7.99）与高级档（$24.99）拉开价格带，实现"穷富通吃"</li>
+            <li>巴菲特测试："再提价10%会员会走吗？"——历史答案是：少数人走，多数人留下，ARPU（每会员收入）净增长</li>
+        </ul>
+        <p><strong>整体竞争力评级：4/5星</strong>（规模经济+品牌+习惯构成强组合，但缺乏硬性转换成本，需靠内容持续兑现）</p>
+
+        <h3>3.2 新增长曲线：广告与直播</h3>
+        <table>
+            <tr><th>维度</th><th>广告业务</th><th>直播/体育</th></tr>
+            <tr><td>规模</td><td>2026E约$30亿（占营收6%），翻倍增长</td><td>WWE/NFL/WBC等，收入并入订阅</td></tr>
+            <tr><td>竞争力</td><td>2.5亿+MAU是CTV(联网电视)广告稀缺资源；AI广告工具覆盖投放全流程；4,000+广告主</td><td>独家直播权是"非直播不可"的稀缺内容，拉新效果显著（WBC带动日本创单日注册纪录）</td></tr>
+            <tr><td>护城河</td><td><span class="tag tag-green">中等偏强</span>——规模即壁垒</td><td><span class="tag tag-orange">中等</span>——版权竞拍制，谁出钱谁拿</td></tr>
+        </table>
+
+        <h3>3.3 消费者视角双向测试</h3>
+        <div class="moat-item">
+            <strong>正面测试——我为什么每月付钱给Netflix？</strong>
+            <ul>
+                <li><strong>一家人一个价、什么都有</strong>：$17.99/月，爸妈看韩剧、我看美剧、孩子看动画，分开买电影票一个月都不止这个钱；对比Disney+只有合家欢、Max只有成人向，Netflix是唯一"全家都能找到想看的"平台</li>
+                <li><strong>爆款命中率</strong>：《鱿鱼游戏》《怪奇物语》《布里奇顿S4》（首季9,400万次观看）——别的平台一年出一部现象级，Netflix一季出一部；且70+语言本地化内容，在日韩拉美都成了"本地台"</li>
+                <li><strong>它比我自己还懂我</strong>：推荐算法看了8年我的口味，打开就是想看的；新平台冷启动推荐的东西驴唇不对马嘴</li>
+                <li><strong>没有心理负担</strong>：无广告打断（主套餐）、无合约、随时退——正因如此反而懒得退：$18就当"娱乐保险"了</li>
+            </ul>
+        </div>
+        <div class="risk-item">
+            <strong>反面测试——什么情况下我会离开Netflix？</strong>
+            <ul>
+                <li><strong>YouTube够用且免费</strong>：年轻人刷YouTube的时间早已超过Netflix；创作者内容无限、垂直兴趣（游戏/知识/生活）覆盖比任何片库都广——这是真实且在变大的吸引力</li>
+                <li><strong>爆款断档期</strong>：等《怪奇物语》最终季的空窗期，"订阅轮换"党会果断暂停，等新剧上线再回来——月付制让离开毫无成本</li>
+                <li><strong>涨价到心理线</strong>：标准档若涨破$25-30，而Disney+/广告档YouTube只要一半价格，价格敏感家庭会做算术题</li>
+                <li><strong>追IP的人各回各家</strong>：漫威粉有Disney+就够了，HBO剧粉有Max就够了——为单一IP付费的人不需要"自助大餐"</li>
+                <li><strong>结论</strong>：离开的理由真实存在且轻于大多数订阅生意（无锁定、无迁移成本），Netflix必须靠持续的内容供给"挣"每一次续费——这是它估值给不出"收费桥"溢价的根本原因</li>
+            </ul>
+        </div>
+    </div>
+
+    <h2 id="chapter4">四、历史财务指标</h2>
+    <div class="info-box">
+        <p>Netflix上市24年，财务特征经历了三个阶段：<strong>DVD租赁初创期（2002-2006，微利）→ 流媒体烧钱期（2007-2021，利润微薄+巨额内容负债+靠发债续命）→ 现金牛收获期（2022至今，利润率与自由现金流双双兑现）</strong>。</p>
+        <table>
+            <tr><th>年份</th><th>营收($亿)</th><th>营收增速</th><th>净利润($亿)</th><th>ROE</th><th>资产负债率</th><th>权益乘数</th><th>PE(年末约)</th></tr>
+            <tr><td>2002(IPO)</td><td>1.5</td><td>+106%</td><td>-0.6</td><td>亏损</td><td>约80%</td><td>极高</td><td>亏损</td></tr>
+            <tr><td>2005</td><td>6.8</td><td>+36%</td><td>0.07</td><td>约5%</td><td>约60%</td><td>约2.5</td><td>数百倍(微利)</td></tr>
+            <tr><td>2010</td><td>21.6</td><td>+48%</td><td>1.6</td><td>约35%</td><td>约55%</td><td>约2.2</td><td>约70倍</td></tr>
+            <tr><td>2015</td><td>67.8</td><td>+23%</td><td>1.2</td><td>约7%</td><td>约66%</td><td>约2.9</td><td>约190倍</td></tr>
+            <tr><td>2018</td><td>158</td><td>+35%</td><td>12.1</td><td>约90%(权益薄失真)</td><td>约61%</td><td>约2.5</td><td>约90倍</td></tr>
+            <tr><td>2020</td><td>250</td><td>+24%</td><td>27.6</td><td>约28%</td><td>约54%</td><td>约2.2</td><td>约75倍</td></tr>
+            <tr><td>2022</td><td>316</td><td>+6%</td><td>44.9</td><td>24.5%</td><td>57.2%</td><td>2.34</td><td>约29倍</td></tr>
+            <tr><td>2023</td><td>337</td><td>+7%</td><td>54.1</td><td>26%</td><td>57.8%</td><td>2.37</td><td>约40倍</td></tr>
+            <tr><td>2024</td><td>390</td><td>+16%</td><td>87.1</td><td>38%</td><td>53.9%</td><td>2.17</td><td>约45倍</td></tr>
+            <tr><td>2025</td><td>452</td><td>+15.9%</td><td>约110</td><td>约43%</td><td>52.1%</td><td>2.09</td><td>约40倍</td></tr>
+            <tr><td>2026E</td><td>512(指引)</td><td>+13-14%</td><td>约150E(含$28亿分手费)</td><td>约45%</td><td>48.4%(Q2)</td><td>1.94</td><td><strong>约20倍(当前价)</strong></td></tr>
+        </table>
+        <p style="font-size:0.85em;color:#7f8c8d;">注：2002-2020年为约值（基于公司10-K及公开数据整理，早期权益基数极薄导致ROE失真，2016年前后股东权益一度接近于零）；2021-2026年数据来自10-K/10-Q及stockanalysis.com（S&amp;P Global数据）。2025年11月1拆10，历史价格/PE均已按拆股调整口径估算。</p>
+        <ul>
+            <li><strong>ROE趋势</strong>：2018-2019年因权益基数极薄而数值失真（90%+）；真实经营性ROE看2023年后：26% → 38% → 43%，这是利润率扩张（17.8%→29.5%→31.5%）驱动的<strong>内生式高ROE，而非加杠杆</strong>——质量很高</li>
+            <li><strong>资产负债率误区</strong>：52-58%的"负债率"看似吓人，但其中约$200亿是内容应付款/制作负债（预付制作费，无利息），真正有息债务仅约$144亿（含租赁$167亿），净债务仅$52亿——<strong>真实杠杆极低</strong>，权益乘数1.94且逐年下降</li>
+            <li><strong>PE趋势</strong>：市场多年给60-90倍"成长股定价"，2022年腰斩至29倍，2023-2025年反弹回40-53倍，当前暴跌至约20倍（前瞻）——<strong>这是Netflix上市以来估值与"已兑现盈利能力"最匹配的时刻</strong></li>
+        </ul>
+    </div>
+
+    <h2 id="chapter5">五、竞争分析</h2>
+    <div class="info-box">
+        <h3>5.1 竞争格局与市场份额</h3>
+        <table>
+            <tr><th>竞争对手</th><th>背景/体量</th><th>相对Netflix的态势</th></tr>
+            <tr><td>YouTube (Alphabet)</td><td>美国电视时间份额14.2%（2026年7月，历史新高）</td><td><span class="tag tag-red">最大威胁</span>：免费+创作者无限供给+推出"Shows"模仿剧集；Alphabet市值$4.2万亿，火力悬殊</td></tr>
+            <tr><td>Disney+</td><td>约1.25亿订阅</td><td>已实现盈利，但娱乐板块广告收入Q2'26同比-1%，靠ESPN撑增速；漫威/星战IP壁垒稳固</td></tr>
+            <tr><td>Amazon Prime Video</td><td>约2亿月观众</td><td>电商补贴打法：广告默认开启、拿下NBA版权，低价+捆绑，不在乎流媒体本身赚不赚钱</td></tr>
+            <tr><td>Max（WBD→Paramount Skydance）</td><td>合并后约2亿+订阅</td><td>Paramount以$30/股全现金击败Netflix的$27.75混合报价拿下WBD；HBO内容+更大合并体量，2026年后成为更强的对手</td></tr>
+            <tr><td>Peacock (Comcast)</td><td>广告收入Q2'26同比+70%</td><td>凭世界杯/NBA转播首次实现盈利——体育直播路线被验证</td></tr>
+        </table>
+        <p><strong>Netflix的位置</strong>：3亿+付费会员、营收$452亿（约为Disney+Max+Peacock之和），是全球最大单一流媒体平台；但以"注意力份额"计，在美国电视时间中（7.8%）已被YouTube（14.2%）明显拉开——<strong>订阅份额第一≠注意力份额第一</strong>，这是2026年估值重估的核心原因之一。</p>
+
+        <h3>5.2 护城河评估</h3>
+        <div class="moat-item">
+            <strong>真实存在的护城河</strong>
+            <ul>
+                <li><strong>规模经济（最核心）</strong>：全球最大内容预算（年现金投入$160-180亿）摊到3亿家庭，每户每月仅摊$5左右，对手复制同样命中率需要同样规模的投入却没有同样的摊薄基数</li>
+                <li><strong>数据与推荐系统</strong>：8年+、3亿家庭的观看数据训练出的推荐与内容决策系统（拍什么、推给谁）</li>
+                <li><strong>全球分发网络</strong>：190+国家的基础设施、本地化能力与品牌认知——WBC日本、BTS直播证明其"全球内容本地发行"能力独一档</li>
+                <li><strong>习惯与默认位</strong>：电视遥控器上的默认按键、全家账号体系，户均日观看2小时+的惯性</li>
+            </ul>
+        </div>
+        <div class="risk-item">
+            <strong>护城河的薄弱处</strong>
+            <ul>
+                <li><strong>无硬转换成本</strong>：月付随时取消，与Visa/SAP式锁定完全不同——每一次续费都要靠内容重新"挣"回来</li>
+                <li><strong>内容资产是"租来的人才"</strong>：爆款依赖编剧/导演/演员，头部人才永远可以另立门户或被高价挖走；IP宇宙（怪奇物语等）不如迪士尼百年IP耐久</li>
+                <li><strong>免费替代品结构性地存在</strong>：YouTube的边际内容成本为零，Netflix的边际内容成本是真金白银——长期军备竞赛中成本端不占优</li>
+                <li><strong>竞争对手背后是巨头</strong>：Amazon/Apple/Alphabet不为流媒体利润而来，为生态而来——价格战耐受度更高</li>
+            </ul>
+        </div>
+        <p><strong>可替代性与转换成本综合评级</strong>：可替代性<span class="tag tag-orange">中等偏高</span>、转换成本<span class="tag tag-red">低</span>、定价权<span class="tag tag-green">强</span>——Netflix的护城河本质是<strong>"规模经济+习惯"型</strong>，而非"锁定"型，需要持续奔跑才能留任原地（芒格所说的"需要每天重新开门营业的生意"）。</p>
+    </div>
+
+    <h2 id="chapter6">六、利润分配分析</h2>
+    <div class="info-box">
+        <h3>6.1 近年利润分配表（$亿）</h3>
+        <table>
+            <tr><th>年份</th><th>净利润</th><th>股息</th><th>回购</th><th>内容再投资(现金)</th><th>有息债务变动</th><th>留存收益(账面累计)</th><th>留存率*</th></tr>
+            <tr><td>2021</td><td>51</td><td>0</td><td>约6</td><td>约177</td><td>净偿还约5</td><td>127</td><td>约88%</td></tr>
+            <tr><td>2022</td><td>45</td><td>0</td><td>0（暂停）</td><td>约170</td><td>持平</td><td>172</td><td>100%</td></tr>
+            <tr><td>2023</td><td>54</td><td>0</td><td>60</td><td>约130（主动削减）</td><td>持平</td><td>226</td><td>100%</td></tr>
+            <tr><td>2024</td><td>87</td><td>0</td><td>62</td><td>约160</td><td>持平</td><td>313</td><td>100%</td></tr>
+            <tr><td>2025</td><td>约110</td><td>0</td><td>90</td><td>约165</td><td>小幅净增（$10亿到期再融资）</td><td>423</td><td>100%</td></tr>
+            <tr><td>2026H1</td><td>87（含$28亿分手费）</td><td>0</td><td>60（Q2单季$47亿史上最大）</td><td>全年约180（1.1x摊销）</td><td>净债务$52亿</td><td>510</td><td>100%</td></tr>
+        </table>
+        <p style="font-size:0.85em;color:#7f8c8d;">*按"回购视同留存"口径：留存=净利润-股息。Netflix从未派息。回购授权余额$271亿（2026年4月新增$250亿）。数据来源：10-K/10-Q现金流量表、库存股科目变动。</p>
+
+        <h3>6.2 资本配置质量评估</h3>
+        <ul>
+            <li><strong>股息政策</strong>：上市24年从未派息——合理：再投资回报率（内容ROI）远高于派息价值，且股东回报由回购承担</li>
+            <li><strong>回购时机得分</strong>：2023年股价低位（拆股调整后约$30-50）回购$60亿——<span class="tag tag-green">优秀</span>；2025年高位（$90-110）回购$90亿——<span class="tag tag-orange">一般</span>；2026年Q2在$70-80区间回购$47亿——<span class="tag tag-green">较好</span>。整体执行纪律明显（2022年现金流紧张时果断暂停，H1'26收购战期间暂停、分手费到手后放量）</li>
+            <li><strong>内容再投资</strong>：2022-2023年主动削减内容开支（$170亿→$130亿）并换来自由现金流转正——这是管理层资本纪律的最佳证明：宁可让增长慢一拍，也要证明生意能自我造血</li>
+            <li><strong>并购纪律</strong>：对WBD报价$27.75/股（混合对价）守住估值上限，被$30全现金截胡后果断收取$28亿分手费离场；Roku竞购同样不追价。<strong>"敢于输掉交易"是巴菲特最欣赏的资本配置品质</strong></li>
+            <li><strong>可持续增速</strong>：ROE约43% × 留存率约90%（回购视同留存口径）→ 理论内生增速极高；实际增速由"会员×ARPU×广告"三因子决定，2026年指引+13-14%</li>
+        </ul>
+        <div class="highlight">
+            <strong>管理层资本配置总评：A-</strong>。内容投入从"军备竞赛"转向"ROI导向"、回购时机总体敏感、并购敢放手、债务杠杆极低且趋势下降。扣分项：2025年高位回购$90亿略嫌机械，以及2025年底发起WBD收购本身偏离了"轻资产内容平台"的舒适区（虽然退出得体）。
+        </div>
+    </div>
+
+    <h2 id="chapter7">七、投资总结</h2>
+    <div class="info-box">
+        <h3>7.1 巴菲特/芒格视角评分</h3>
+        <table>
+            <tr><th>评估维度</th><th>评分</th><th>说明</th></tr>
+            <tr><td>业务可理解性</td><td><span class="tag tag-green">高</span></td><td>收订阅费放内容，一句话讲清；广告/直播是自然延伸</td></tr>
+            <tr><td>护城河</td><td><span class="tag tag-orange">中等偏强</span></td><td>规模经济+数据+品牌+习惯；但无硬转换成本，需持续内容投入维持</td></tr>
+            <tr><td>管理层与资本配置</td><td><span class="tag tag-green">A-</span></td><td>现金流转正战略兑现、回购纪律、并购敢输（WBD分手费$28亿）</td></tr>
+            <tr><td>财务健康</td><td><span class="tag tag-green">优</span></td><td>净债务仅$52亿(0.3x EBITDA)，2026E自由现金流$125亿，无股息负担</td></tr>
+            <tr><td>成长性</td><td><span class="tag tag-orange">中速</span></td><td>营收增速17.6%→13.4%→11.7%逐季放缓；广告翻倍+直播+提价构成第二曲线</td></tr>
+            <tr><td>估值吸引力</td><td><span class="tag tag-green">合理偏低</span></td><td>前瞻PE约20倍（含一次性收益）/约23倍（剔除），为上市以来最低估值区间之一，较峰值回撤46%</td></tr>
+        </table>
+
+        <h3>7.2 多空要点</h3>
+        <div class="moat-item">
+            <strong>多头论据</strong>
+            <ul>
+                <li>营业利润率31.5%（2026E）仍在爬坡通道，广告收入翻倍至$30亿且远期可见$90亿+（对标YouTube/CTV市场）</li>
+                <li>每年$125亿自由现金流 + $271亿回购授权 ≈ 每年可将约6-8%流通市值回购注销，EPS复利机器</li>
+                <li>2026年估值约20倍前瞻PE，低于迪士尼（考虑其增速）、远低于自身五年均值（40倍+）——"成长股价格买现金牛"</li>
+                <li>WBD败局未必是坏事：省下$827亿并购+整合风险，还白赚$28亿——芒格式"错过本不属于你的牌局"</li>
+            </ul>
+        </div>
+        <div class="risk-item">
+            <strong>空头论据</strong>
+            <ul>
+                <li>YouTube注意力份额碾压（14.2% vs 7.8%），且"Shows"功能正面模仿剧集；创作者内容军备成本上升</li>
+                <li>观看时长H1'26仅+2%——用户时间增长见顶，未来增长只能靠提价与广告，弹性下降</li>
+                <li>增速逐季放缓（17.6%→11.7%指引），Q3'26指引低于华尔街预期，两周内两家投行下调评级</li>
+                <li>Paramount-WBD合并+Fox-Roku交易后，对手体量变大一圈，内容版权竞拍更贵</li>
+                <li>无股息+无转换成本：一旦内容失速，收入端没有任何"缓冲垫"</li>
+            </ul>
+        </div>
+
+        <h3>7.3 投资结论</h3>
+        <div class="highlight">
+            <p><strong>评级：优质公司，估值合理偏低——可分批建仓观察，非"遍地黄金"式便宜</strong></p>
+            <p><strong>定性</strong>：Netflix是"规模经济+习惯"型护城河的教科书案例，但<strong>不是</strong>巴菲特偏爱的"收费桥"——它没有锁定客户的结构性权力，每一份订阅费都要靠内容重新挣得。这门生意的伟大之处在于证明了内容规模可以复利；脆弱之处在于复利要求永不停歇的内容投入。</p>
+            <p><strong>估值判断</strong>：当前约$300亿×10=3000亿美元市值，对应2026E约20倍PE、EV/FCF约24倍。以"增速13%+利润率仍在扩张+年均6-8%回购缩股"的组合，20倍属于合理偏低——给了增速的钱，没给护城河确定性的钱，也没收护城河不确定性的税。</p>
+            <p><strong>关键跟踪指标</strong>：①广告收入能否兑现$30亿并向$60-90亿爬坡；②观看时长增速能否回到3-5%+；③UCAN提价后的流失率；④Paramount-WBD整合后是否出现内容版权成本通胀；⑤$271亿回购的实际执行价位。若①③兑现而股价仍疲弱，安全边际将进一步增厚。</p>
+            <p><strong>芒格会怎么说？</strong>："这是一家必须每天早晨重新赢得顾客的公司——没有收费站，只有擂台。但擂台上它块格最大、出拳最准、还在把奖金回购成股份。20倍价钱买它，赌的不是垄断，是它比所有对手更晚犯错误。仓位要配得上这份不确定。"</p>
+        </div>
+        <p style="font-size:0.85em;color:#7f8c8d;">数据来源：Netflix Q2'26股东信（2026-07-16）及10-Q（SEC EDGAR）、FY2025年报、stockanalysis.com（S&amp;P Global）、Nasdaq/Zacks（2026-07/09）、Motley Fool（2026-09-01）、Infobae/HSBC（2026-09-23）。股价截至2026年9月18日收盘。</p>
+    </div>
+
+    <script src="scores_client.js"></script>
+    <script src="stock_topbar.js"></script>
+</body>
+</html>
