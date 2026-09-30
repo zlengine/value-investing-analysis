@@ -133,7 +133,8 @@
         {code:'PTC',name:'PTC Inc. - 40年工业软件龙头/CAD(Creo/Onshape)+PLM(Windchill/Codebeamer)+ALM+SLM(ServiceMax)全栈+30,000客户+95%经常性收入+84%软件毛利率+40%FCF Margin+数据锁定+合规锁定护城河',href:'ptc.html'},
         {code:'ITRN',name:'Ituran Location and Control - 30年车联网龙头/以色列85-90%垄断份额+拉美#1 OEM telematics+263万订阅用户+80%被盗车辆找回率+70%经常性收入+零债务+净现金1.08亿+100%净利润派息+7%股息率+Big Data/Credit Carbon新业务+反周期性',href:'itrn.html'},
         {code:'MSI',name:'Motorola Solutions - 近100年公共安全通信绝对龙头/LMR对讲机80%份额+FirstNet LTE+Avigilon视频+Silvus军用MANET+5大护城河(生命安全品牌+极高切换成本+全栈生态+政府关系+技术领先)+FY2025营收$117亿+经营现金流$28亿+Backlog$157亿+SaaS转型+反周期性',href:'msi.html'},
-        {code:'ALLE',name:'Allegion plc - 117年门锁龙头/Schlage住宅锁#1+Von Duprin逃生装置#1+图纸指定锁定+美洲非住宅27.9%运营利润率+5大护城河(百年品牌+图纸指定+渠道深度+电子化生态+美洲统治)+FY2025营收$40.7亿+可用现金流$6.86亿+12年股息增长+9个并购电子化转型+反周期性',href:'alle.html'}
+        {code:'ALLE',name:'Allegion plc - 117年门锁龙头/Schlage住宅锁#1+Von Duprin逃生装置#1+图纸指定锁定+美洲非住宅27.9%运营利润率+5大护城河(百年品牌+图纸指定+渠道深度+电子化生态+美洲统治)+FY2025营收$40.7亿+可用现金流$6.86亿+12年股息增长+9个并购电子化转型+反周期性',href:'alle.html'},
+        {code:'BIDU',name:'Baidu（百度）- 中文搜索引擎/全面转型AI（文心+萝卜快跑+GPU云）',href:'bidu.html'}
     ];
 
     // 暴露为全局变量
