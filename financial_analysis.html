@@ -1190,7 +1190,65 @@
     </div>
     
     <div class="info-box">
-        <h2 id="chapter11">十一、总结</h2>
+        <h2 id="chapter-retain">十一、专题：利润100%留存 vs 100%分红再投资——谁的十年复利更快？</h2>
+        <div class="highlight">
+            <strong>问题</strong>：同一家公司，同样假设ROE十年不变、市盈率十年不变——甲方案把利润全部留在公司滚存；乙方案把利润全部分红，但投资者把每笔分红全部再买入该公司的股票。十年下来，哪种投资者的收益更高？
+        </div>
+
+        <h3>11.1 模型设定</h3>
+        <p>期初股东权益E₀=100万，股数100万股，ROE=r，市盈率PE=P（十年恒定），无增发配股。市值=净利润×PE（恒等式）。两条路径的差异只在于利润的去向：</p>
+        <table>
+            <tr><th>项目</th><th>甲：100%留存</th><th>乙：100%分红+再投资</th></tr>
+            <tr><td>权益演变</td><td>每年×(1+r)，十年后E=(1+r)<sup>10</sup>×E₀</td><td>恒定E₀（利润当年全部分走）</td></tr>
+            <tr><td>净利润演变</td><td>每年随权益复利增长</td><td>恒定 r×E₀</td></tr>
+            <tr><td>股数演变</td><td>不变</td><td>每年用分红按市价买股：增速 = 每股分红÷股价 = <strong>1/P</strong></td></tr>
+            <tr><td>股价演变</td><td>每年×(1+r)（股数不变、利润复利）</td><td>恒定（市值与股数都不变）</td></tr>
+            <tr><td><strong>十年总收益公式</strong></td><td><strong>(1+r)<sup>10</sup></strong>（赚股价）</td><td><strong>(1+1/P)<sup>10</sup></strong>（赚股数）</td></tr>
+        </table>
+
+        <h3>11.2 判据：只需比较 ROE 与 1/PE</h3>
+        <p>两条复利曲线的"引擎转速"分别是 <strong>r（ROE）</strong>和 <strong>1/P（盈利收益率）</strong>。因此：</p>
+        <ul>
+            <li><span class="tag tag-green">ROE &gt; 1/PE</span>（等价于 <strong>P/B &gt; 1</strong>）→ <strong>留存更优</strong>：公司按账面价值替你把利润再投资，市价高于账面，相当于打折买入新权益</li>
+            <li><span class="tag tag-red">ROE &lt; 1/PE</span>（等价于 <strong>P/B &lt; 1</strong>，破净）→ <strong>分红再投资更优</strong>：公司内部回报率还比不上你按市价买入的盈利收益率，留在公司反而是价值毁灭</li>
+            <li><span class="tag tag-orange">ROE = 1/PE</span>（P/B = 1）→ <strong>两者数学上完全相等</strong></li>
+        </ul>
+        <p><strong>一美元原则的由来</strong>：公司留存$1，明年多赚r，市值多P×r。留存$1创造超过$1市值 ⟺ P×r&gt;1 ⟺ ROE×PE&gt;1 ⟺ P/B&gt;1——这正是巴菲特"每留存一美元必须创造至少一美元市值"的数学表达。</p>
+
+        <h3>11.3 数字推演表（十年总收益倍数）</h3>
+        <table>
+            <tr><th>案例</th><th>ROE</th><th>PE</th><th>1/PE</th><th>P/B</th><th>甲：留存<br>(1+r)<sup>10</sup></th><th>乙：分红再投<br>(1+1/P)<sup>10</sup></th><th>胜者与差距</th></tr>
+            <tr><td>高回报成长股（类伯克希尔）</td><td>20%</td><td>25x</td><td>4.0%</td><td>5.0</td><td><strong>6.19x</strong></td><td>1.48x</td><td><span class="tag tag-green">甲胜，4.2倍差距</span></td></tr>
+            <tr><td>优质稳健公司（类ALLE/门锁）</td><td>15%</td><td>15x</td><td>6.7%</td><td>2.25</td><td><strong>4.05x</strong></td><td>1.90x</td><td><span class="tag tag-green">甲胜，2.1倍差距</span></td></tr>
+            <tr><td>边界情形（P/B=1）</td><td>8%</td><td>12.5x</td><td>8.0%</td><td>1.0</td><td>2.16x</td><td>2.16x</td><td><span class="tag tag-orange">精确平局</span></td></tr>
+            <tr><td>低回报+破净（类烟蒂）</td><td>5%</td><td>10x</td><td>10%</td><td>0.5</td><td>1.63x</td><td><strong>2.59x</strong></td><td><span class="tag tag-red">乙胜，领先约60%</span></td></tr>
+            <tr><td>极端烟蒂（深度破净）</td><td>4%</td><td>5x</td><td>20%</td><td>0.2</td><td>1.48x</td><td><strong>6.19x</strong></td><td><span class="tag tag-red">乙胜，4.2倍差距（镜像反转）</span></td></tr>
+        </table>
+        <p style="font-size:0.9em;color:#7f8c8d;">注：案例1与案例5互为完美镜像（20%/25x vs 4%/5x，r与1/P对调，6.19x与1.48x对调）——判据的对称性一目了然。</p>
+
+        <h3>11.4 直觉解释：两条路径买的是同一家公司，但"成交价"不同</h3>
+        <ul>
+            <li><strong>留存路径</strong>：公司按<strong>账面价值1:1</strong>（P/B=1的隐含价格）把你的利润换成新权益——你是以"批发价"追加投资</li>
+            <li><strong>分红再投路径</strong>：你按<strong>市场价</strong>（PE定价）买入——每$1只买到1/P美元的当期盈利，是"零售价"</li>
+            <li>市价高于账面（P/B&gt;1）时批发便宜，留存胜；破净（P/B&lt;1）时零售比"内部批发"还划算，分红胜</li>
+            <li><strong>回购</strong>介于两者之间：公司按市价缩股，等效于"强制代客分红再投资"，该笔资本的复利速度同样是1/PE而非ROE——这正是高ROE公司回购不如留存、破净公司回购优于留存的数学原因</li>
+        </ul>
+
+        <h3>11.5 现实印证</h3>
+        <ul>
+            <li><strong>伯克希尔60余年零分红</strong>：ROE长期约20%，远超任何时点的市场盈利收益率——留存是让股东财富复利最快的唯一选择，"子公司赚的每一美元都应该留在奥马哈"</li>
+            <li><strong>可口可乐/苹果的中间路线</strong>：成熟期ROE仍高但增量资本边际回报下降，于是"部分留存+部分回购+部分分红"——回购按市价成交，本质是把留存路径中"装不下"的资本以1/PE的速度还给股东复利</li>
+            <li><strong>烟蒂公司应该全分</strong>：ROE 5%、P/B 0.5的公司每留存$1只创造$0.5市值——不如全部分掉让股东按10%盈利收益率再投资，格雷厄姆的清算/分红主张即此数学</li>
+        </ul>
+
+        <div class="highlight">
+            <strong>芒格式总结</strong>："这个问题问到了资本配置的根上。<strong>留存和分红再投资买的是同一批资产，区别只在成交价——公司按账面替你买，市场按市价让你买。</strong>P/B&gt;1时公司替你买更便宜，留存胜；破净时分红让你捡自己的便宜，分红胜。所以'高分红好还是高留存好'从来不是道德问题，而是一道两个价格比大小的算术题。伯克希尔不分红不是吝啬，烟蒂股全分红也不是慷慨——各自都是那个价格下唯一理性的选择。"
+        </div>
+        <p style="font-size:0.85em;color:#7f8c8d;">推导备注：乙路径中股价恒为 P×r×E₀/股数，每年每股分红 r×E₀/股数，故股数年增速=1/P；甲路径股数不变、每股收益年增速=r。模型假设ROE与PE恒定、忽略税费（分红再投在现实中涉及红利税，会进一步削弱乙路径）。</p>
+    </div>
+
+    <div class="info-box">
+        <h2 id="chapter12">十二、总结</h2>
         <div class="highlight">
             <p>财务报表分析是一项综合性的工作，需要：</p>
             <ul>
@@ -1205,7 +1263,7 @@
     </div>
     
     <div class="info-box">
-        <p><strong>最后更新</strong>：2026年9月26日<br>
+        <p><strong>最后更新</strong>：2026年10月1日<br>
         <strong>数据来源</strong>：财务分析理论、会计准则（US GAAP / IFRS / 中国企业会计准则）、实践经验；LII案例数据来自其2026年Q2 10-Q</p>
     </div>
 </body>
