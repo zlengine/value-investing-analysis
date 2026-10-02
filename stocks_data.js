@@ -89,6 +89,7 @@
         {code:'AGX',name:'Argan',href:'agx.html'},
         {code:'TJX',name:'The TJX Companies - 全球最..',href:'tjx.html'},
         {code:'AMT',name:'American Tower - 全球最大通信塔REIT',href:'amt.html'},
+        {code:'AOS',name:'A. O. Smith（史密斯热水器）- 北美热水器/锅炉双料冠军/152年纯水技术公司',href:'aos.html'},
         {code:'TSCO',name:'Tractor Supply Company',href:'tsco.html'},
         {code:'EXEL',name:'Exelixis',href:'exel.html'},
         {code:'ULTA',name:'Ulta Beauty',href:'ulta.html'},
