@@ -153,6 +153,8 @@
         <a href="#chapter6">财务摘要 (FY2025)</a>
         <a href="#chapter7">FY2026 Q1最新业绩亮点</a>
         <a href="#chapter8">投资建议</a>
+        <a href="#chapter9">折扣收入专题</a>
+        <a href="#chapter10">美联储利率影响专题</a>
     </div>
 
     <div class="info-box">
@@ -1136,8 +1138,164 @@
         </div>
     </div>
 
+    <h2 id="chapter9">九、专题：占比最大的"折扣收入"（Discount Revenue）到底是什么？</h2>
     <div class="info-box">
-        <p><strong>最后更新</strong>：2026年5月18日<br>
+        <h3>9.1 一句话定义：商家手续费</h3>
+        <p><strong>折扣收入就是商家为接受美国运通卡付款而支付的手续费。</strong>用大白话说：你在餐厅刷Amex卡消费$100，餐厅实际只收到约$97.5-$97.8，中间$2.2-$2.5的差额归Amex所有——这笔钱在会计报表上就叫"折扣收入"（Discount Revenue）。</p>
+        <div class="highlight">
+            <p><strong>为什么叫"折扣"？——一个来自纸质时代的会计遗产</strong>。在信用卡行业的早期（20世纪初的记账卡时代），商家把顾客签名的签购单据（charge slips）卖给收单机构/发卡机构立即换取现金，机构支付的不是票面全额，而是<strong>票面金额"打折扣"后的金额</strong>（面值减去手续费）——类似企业把应收账款"贴现"给银行。这笔从商家结算款中扣除的费用，在会计上就被命名为"折扣"（discount），这个术语沿用至今。10-K原文定义："We earn 'discount' revenue from fees charged to merchants for accepting Cards... The merchant discount is generally deducted from the amount of the payment that the merchant acquirer..."（我们从商家为接受卡支付而支付的费用中赚取"折扣"收入……商家折扣一般从支付给收单机构的金额中扣除）。</p>
+        </div>
+
+        <h3>9.2 数字验证：折扣收入 ≈ 签账额 × 折扣率</h3>
+        <table>
+            <tr><th>指标（FY2025/最新季度）</th><th>数值</th><th>来源</th></tr>
+            <tr><td>折扣收入（FY2025全年）</td><td>约$360亿+（Q1-Q3'25已$275.2亿，同比+6%）</td><td>AXP Q3'25 Earnings Tables</td></tr>
+            <tr><td>折扣收入（FY2026 Q1最新）</td><td><strong>$95.1亿</strong>（同比+9%，FX调整后+7%）</td><td>AXP Fixed Income Presentation 2026年5月</td></tr>
+            <tr><td>占总收入比重</td><td><strong>约50%</strong>（Q1'26：$95.1亿/$189.1亿）</td><td>同上</td></tr>
+            <tr><td>季度签账额（Billed Business，Q3'25）</td><td>$4,163亿</td><td>AXP Q3'25 Earnings Tables</td></tr>
+            <tr><td>隐含平均折扣率</td><td>$94.1亿/$4,163亿 ≈ <strong>2.26%</strong></td><td>计算值</td></tr>
+        </table>
+        <p>这个2.2%-2.5%的平均折扣率（行业内叫MDR，Merchant Discount Rate）显著高于Visa/Mastercard生态中商家实际承担的费率（通常1.5%-2.0%，大商家可谈到更低）——这正是本页第四章分析过的"Amex费率溢价"，其背后是Amex持卡人3-4倍于普通卡的人均消费力。</p>
+
+        <h3>9.3 闭环 vs 开环：同样是"刷卡费"，钱进了谁的口袋？</h3>
+        <p>这是理解折扣收入的关键。同样是商家被扣~2%的"刷卡费"，不同商业模式下的分账方式完全不同：</p>
+        <table>
+            <tr><th>模式</th><th>谁收钱</th><th>每$100刷卡消费的分配</th></tr>
+            <tr>
+                <td><strong>Visa/Mastercard（开环）</strong></td>
+                <td>发卡行、收单行、网络三方分账</td>
+                <td>发卡行拿interchange约$1.4-1.8（大头）＋Visa/MC网络评估费仅约$0.10-0.15＋收单行拿残差约$0.2-0.4。<strong>Visa/MC自己只抽走约0.1%-0.15%</strong>，不碰信用风险、不碰客户服务</td>
+            </tr>
+            <tr>
+                <td><strong>American Express（闭环）</strong></td>
+                <td>Amex一家全拿</td>
+                <td>商家折扣率约$2.2-2.5<strong>全部归Amex</strong>——因为Amex同时是发卡行+收单行+网络。代价是Amex必须自己承担信用风险、奖励成本、客户服务和商户服务的全部开销</td>
+            </tr>
+        </table>
+        <div class="moat-item">
+            <strong>这就是闭环网络的经济学本质</strong>：Visa/MC是"收费站"——轻资产、抽小头、无风险；Amex是"购物中心业主"——收全额租金、但承担全部运营成本。折扣收入占Amex总收入约50%，而等价的"网络评估费"只占Visa总收入的对应部分很小——两种商业模式都能赚大钱，但赚钱的方式和承担的风险完全不同。这也解释了为什么AXP的ROE（~36%）远高于Visa（~50%虽高但资产极轻）之外的传统银行：它兼具网络的高毛利和银行的杠杆。
+        </div>
+
+        <h3>9.4 关键陷阱：折扣收入是"毛收入"，必须减去奖励成本才是真赚钱能力</h3>
+        <p>很多投资者（和媒体）看到"折扣收入$360亿"就以为是纯赚——<strong>错了一半</strong>。折扣收入有一个孪生兄弟藏在费用端：<strong>Card Member Rewards（持卡人奖励支出）</strong>。</p>
+        <table>
+            <tr><th>项目（Q3'25季度数据）</th><th>金额</th><th>占签账额比例</th></tr>
+            <tr><td>折扣收入（毛）</td><td>$94.1亿</td><td>2.26%</td></tr>
+            <tr><td>减：持卡人奖励支出（积分/里程/现金返还）</td><td>$46.1亿</td><td>1.11%</td></tr>
+            <tr><td><strong>= 净折扣收入（Amex真实留存的"网络税"）</strong></td><td><strong>$48.0亿</strong></td><td><strong>约1.15%</strong></td></tr>
+        </table>
+        <p>翻译成人话：商家每接受$100的Amex刷卡付$2.26手续费，其中约$1.11以积分里程形式返还给了持卡人（这是Amex维持高端会员价值主张的成本），Amex自己净留存约$1.15。所以"Amex折扣率2.2-2.5%"是<strong>毛费率</strong>，其<strong>净费率约1.1%-1.2%</strong>——与Visa/MC生态下"发卡行interchange净留存"相比才是公平对比。FY2025全年奖励支出约$183亿，占折扣收入的一半以上，是Amex最大单项费用。</p>
+
+        <h3>9.5 折扣收入为什么能维持高费率？（商家为什么一边抱怨一边继续接受）</h3>
+        <div class="moat-item">
+            <strong>商家付的不是"过路费"，而是"获客费+数据费"</strong>：①Amex持卡人平均消费额是普通卡用户的3-4倍，客单价更高——不接受Amex等于放弃最优质客户；②闭环数据让Amex能向商家提供精准营销（Amex Offers）；③签账卡模式下Amex对商家承担付款担保。这构成了一种"愿打愿挨"的均衡：商家抱怨费率高，但ROI算得过来。（详细论证见本页第四章4.2-4.3节，此处不重复。）
+        </div>
+
+        <h3>9.6 投资者视角：折扣收入是AXP最优质的一块收入</h3>
+        <table>
+            <tr><th>维度</th><th>折扣收入的质量评估</th></tr>
+            <tr><td>信用风险</td><td><span class="tag-green">无直接信用风险</span>——手续费按交易实时收取，不像贷款要担心违约（风险在持卡人奖励和服务成本端）</td></tr>
+            <tr><td>利率敏感性</td><td><span class="tag-green">几乎为零</span>——只随消费额（Billed Business）增长，与美联储利率无关（对比：净利息收入24%直接暴露于利率）</td></tr>
+            <tr><td>增长驱动</td><td>签账额增速×折扣率。FY2025签账额+7%、Q1'26+10%，折扣率长期稳定在2.2%-2.5%——量增价稳</td></tr>
+            <tr><td>主要威胁</td><td><span class="tag-orange">CCCA监管</span>——若信用卡竞争法案强制网络竞争，联名卡交易可能被路由到低费率网络，直接冲击折扣收入（详见第四章4.4节）</td></tr>
+        </table>
+        <div class="highlight">
+            <p><strong>巴菲特视角</strong>：折扣收入的本质是"对高端消费抽税权"。只要美国富裕人群继续消费、Amex品牌继续吸引他们持卡，这~50%的收入就像收费站一样随通胀和消费增长自动膨胀——这正是不依赖利率、不依赖经济周期剧烈波动的"收费桥"型生意。风险不在利率，而在监管（CCCA）和消费习惯变迁。</p>
+        </div>
+    </div>
+
+    <h2 id="chapter10">十、专题：美联储利率上升对AXP业务的影响</h2>
+    <div class="info-box">
+        <h3>10.1 当前利率背景：我们正处在什么地方？</h3>
+        <table>
+            <tr><th>时间</th><th>美联储动作</th><th>联邦基金利率目标区间</th></tr>
+            <tr><td>2022年3月-2023年7月</td><td>连续11次加息（对抗通胀）</td><td>0.25% → <strong>5.25-5.50%</strong>（峰值）</td></tr>
+            <tr><td>2024年9月起</td><td>开启降息周期</td><td>逐步降至3.50-3.75%</td></tr>
+            <tr><td><strong>2026年9月17日</strong></td><td><strong>重新加息25bp</strong></td><td><strong>3.75-4.00%（当前水平）</strong></td></tr>
+        </table>
+        <p>注意：2026年9月17日美联储<strong>重新加息</strong>至3.75-4.00%，银行最优惠利率（Prime Rate）随之从6.75%升至7.00%——分析"利率上升影响"正当其时。AXP的浮动利率贷款APR普遍锚定Prime（典型结构为Prime + 10%-21%），加息立即推高新账单利率。</p>
+
+        <h3>10.2 传导渠道一：资产端重定价（利好，但比想象的小）</h3>
+        <p>直觉上，加息对放贷机构是利好——AXP有<strong>$1,389亿持卡人贷款</strong>（Q3'25），且多数为Prime挂钩的浮动利率。粗算：若+100bp，理论上贷款利息收入年增约$13亿。同时账上<strong>$547亿现金</strong>（短期利率资产）也多赚约$5亿。</p>
+        <p><strong>但有两个折扣项</strong>：①相当比例的贷款余额是0%促销期余额（余额转移/新户 introductory APR），锁死利率不重定价；②Pay-in-Full的签账卡用户（Amex的基本盘客群）根本不产生利息收入——签账卡应收款$608亿是"零利率资产"。</p>
+
+        <h3>10.3 传导渠道二：负债端——AXP的特殊软肋（高beta存款）</h3>
+        <p>这是与普通人直觉相反的关键点。AXP的<strong>$1,499亿客户存款</strong>（Q3'25）主要来自American Express National Bank的<strong>线上高收益储蓄账户（HYSA）</strong>——这类存款与货币基金同类竞争，利率几乎完全跟随美联储（beta接近100%）。加息时：</p>
+        <table>
+            <tr><th>资产负债表项目（Q3'25）</th><th>规模</th><th>利率属性</th><th>+100bp的年化影响（粗估）</th></tr>
+            <tr><td>持卡人贷款</td><td>$1,389亿</td><td>浮动（Prime+利差），含促销余额折扣</td><td>约+$10-13亿</td></tr>
+            <tr><td>现金及等价物</td><td>$547亿</td><td>隔夜/短期利率，即时重定价</td><td>约+$5亿</td></tr>
+            <tr><td>客户存款（高息储蓄为主）</td><td>$1,499亿</td><td><strong>beta≈100%，即时重定价</strong></td><td><strong>约-$15亿</strong></td></tr>
+            <tr><td>长期债务</td><td>$578亿</td><td>以固定利率为主，到期再融资才受影响</td><td>当期影响小（再融资成本上升）</td></tr>
+        </table>
+        <div class="risk-item">
+            <strong>公司自己的话（10-K利率敏感性披露）</strong>：与市场直觉相反，AXP在10-K中明确披露——"Our current net interest income sensitivity analysis shows <strong>higher interest rates would have a detrimental impact on our net interest income</strong>"（我们当前的净利息收入敏感性分析显示，<strong>利率上升将对净利息收入产生不利影响</strong>）。原因就是上表：高beta存款的重定价压力（-$15亿/100bp）超过了浮动贷款+现金的收益（+$15-18亿/100bp中实际可实现部分）。SEC曾专门发函要求AXP扩展披露（±100bp/±200bp情景表，见各年10-K Table 23）。<strong>与传统银行"加息利好息差"的教科书结论相反，AXP的净息差对加息天然偏负敏感</strong>。
+        </div>
+
+        <h3>10.4 但历史为什么打脸？——2022-2023加息周期AXP的净利息收入反而暴增</h3>
+        <p>看实际数据，会发现一个矛盾：2022-2023年美联储暴力加息525bp，AXP的净利息收入（NII）不降反升：</p>
+        <table>
+            <tr><th>年份</th><th>净利息收入</th><th>占总收入比重</th><th>发生了什么</th></tr>
+            <tr><td>FY2021（零利率时代）</td><td>约$60亿</td><td>~14%</td><td>贷款少、存款成本低（0.2%）</td></tr>
+            <tr><td>FY2022（加息元年）</td><td>约$99亿</td><td>~19%</td><td>循环贷款余额增长+Prime飙升</td></tr>
+            <tr><td>FY2023</td><td>约$131亿</td><td>~22%</td><td>贷款继续增长，存款成本同步上行</td></tr>
+            <tr><td>FY2024</td><td>$155.4亿</td><td>23.6%</td><td>净利息收益率稳定在~8%</td></tr>
+            <tr><td>FY2025</td><td><strong>$173.6亿</strong></td><td><strong>24.0%</strong></td><td>利息收入$256.0亿 - 利息支出$82.3亿</td></tr>
+        </table>
+        <p><strong>调和这两个矛盾的关键：静态敏感性 ≠ 动态现实。</strong>10-K的敏感性分析是"瞬时冲击+资产负债表不变"的静态假设；而现实中2022-2024年发生了三件事：①循环贷款余额大幅增长（量增掩盖价损）；②高利率反而吸引资金涌入Amex的高息储蓄（存款从$940亿增至$1,500亿，负债规模扩大支撑了资产扩张）；③净利息收益率（Net Interest Yield）实际稳定在7.8%-8.2%的窄幅区间——说明AXP靠贷款高定价（Prime+10-21%的APR）始终维持着巨大息差缓冲垫。Q3'25净利息收益率8.2%，是普通商业银行（~3%）的近三倍——这么厚的缓冲垫，加息吃掉一点根本伤不到根基。</p>
+
+        <h3>10.5 结构性缓冲：AXP收入的76%与利率脱钩</h3>
+        <p>这是AXP相对纯信用卡银行（Synchrony、Capital One）最核心的防御结构：</p>
+        <table>
+            <tr><th>收入类型</th><th>FY2025占比</th><th>利率敏感性</th></tr>
+            <tr><td><strong>折扣收入</strong>（第九章）</td><td>~50%</td><td><span class="tag-green">无直接敏感性</span>——只随消费额走</td></tr>
+            <tr><td><strong>卡费收入</strong>（年费订阅）</td><td>~14%</td><td><span class="tag-green">无敏感性</span>——类订阅收入，连续30+季度双位数增长</td></tr>
+            <tr><td><strong>服务费及其他</strong></td><td>~10%</td><td><span class="tag-green">低敏感性</span></td></tr>
+            <tr><td><strong>处理收入等</strong></td><td>~2%</td><td><span class="tag-green">无敏感性</span></td></tr>
+            <tr><td><strong>净利息收入</strong></td><td>~24%</td><td><span class="tag-orange">直接暴露，且敏感性偏负</span>（10.3节）</td></tr>
+        </table>
+        <p>对比：Synchrony Financial（SYF）净利息率15.08%、收入几乎100%依赖利差——美联储一降息其NII立刻承压（2026Q2 SYF的NII增长就"受益于更低基准利率下的负债成本下降"）。AXP则是"消费公司为主+银行为辅"的混合体：<strong>利率对AXP的影响是"四分之一的问题"，对SYF是"全部的问题"。</strong></p>
+
+        <h3>10.6 传导渠道三、四：信用成本与消费增速（加息的间接伤害）</h3>
+        <table>
+            <tr><th>间接渠道</th><th>机制</th><th>AXP的防御力</th></tr>
+            <tr>
+                <td><strong>信用成本</strong></td>
+                <td>加息→循环户偿债负担↑→逾期/净核销率↑（当前美国平均信用卡APR已高达20.8%，接近历史峰值）</td>
+                <td><span class="tag-green">行业最优</span>——高端客群负债能力强：30+天逾期率仅1.3%、净核销率2.1%（Q3'25），且2026Q1还在改善。富客户对利率上升的敏感度远低于次级客群</td>
+            </tr>
+            <tr>
+                <td><strong>消费增速</strong></td>
+                <td>加息抑制消费→签账额增速放缓→折扣收入/卡费增速受损</td>
+                <td><span class="tag-green">较强</span>——AXP客群G&S（商品与服务）日常消费占70%+，T&E（旅游娱乐）也已恢复；2022-2023加息期间签账额仍保持+9%~+15%增长，Q1'26 billed business +10%。高端消费对利率的弹性天然偏低</td>
+            </tr>
+            <tr>
+                <td><strong>估值折现率</strong></td>
+                <td>利率↑→股票折现率↑→金融股估值压缩</td>
+                <td><span class="tag-orange">无法免疫</span>——这是市场层面的系统性影响，2023年加息尾声AXP一度跌至$130s（P/E~13x）即为此类压力</td>
+            </tr>
+        </table>
+
+        <h3>10.7 总结：加息对AXP影响的完整记分卡</h3>
+        <table>
+            <tr><th>影响维度</th><th>方向</th><th>量级</th></tr>
+            <tr><td>净利息收入（静态）</td><td><span class="tag-orange">偏负面</span></td><td>高beta存款压制，10-K自证"加息不利于NII"</td></tr>
+            <tr><td>净利息收入（动态）</td><td><span class="tag-green">中性偏正</span></td><td>2022-2023实际加息周期中NII近乎翻倍（量增+8%息差缓冲垫）</td></tr>
+            <tr><td>折扣收入+卡费（76%收入）</td><td><span class="tag-green">免疫</span></td><td>与利率无直接关联</td></tr>
+            <tr><td>信用成本</td><td><span class="tag-green">轻微负面</span></td><td>高端客群防御力行业最强</td></tr>
+            <tr><td>估值</td><td><span class="tag-orange">负面</span></td><td>系统性折现率压力</td></tr>
+        </table>
+        <div class="highlight">
+            <p><strong>芒格式总结</strong>："分析AXP的利率风险，正确的顺序是：先看收入结构，再看资产负债表。AXP有四分之三的收入（折扣+卡费）本质上是一家'消费会员公司'的订阅收入，与美联储无关；剩下四分之一（净利息收入）的账簿确实对加息偏负敏感——高息储蓄存款是它自己选择的双刃剑（低利率时成本极低，高利率时beta近100%）。但8%的净息差缓冲垫厚到足以吸收任何静态损失，2022-2023年525bp的暴力加息都没能阻止NII翻倍，就是最好的压力测试。<strong>对AXP而言，加息的真正风险从来不是息差，而是它最终会不会抑制富裕人群的刷卡热情</strong>——目前（Q1'26签账额+10%）还看不到这种迹象。真正的尾部风险清单上，利率排不进前三：CCCA监管、消费衰退、品牌老化都比它更值得担心。"</p>
+        </div>
+        <p style="font-size:0.85em;color:#7f8c8d;">数据来源：AXP Q3'25 Earnings Tables（SEC EDGAR）、AXP Fixed Income Investor Presentation（2026年5月，含Q1'26数据）、AXP FY2025 10-K（SEC EDGAR R34分部数据：FY2025总收入$722.3亿、NII $173.6亿）、AXP 2014 10-K折扣收入定义、SEC Division of Corporation Finance致AXP函件（2024-01-19，含"higher interest rates would have a detrimental impact on our net interest income"原文）、美联储Open Market Operations利率表（2026年9月17日加息25bp至3.75-4.00%）、FRED DFEDTARU、Synchrony FY2026Q2财报（SYF NIM 15.08%）。</p>
+        <div class="highlight">
+            <p><strong>勘误说明</strong>：本页第二章2.2节"FY2025扣除利息后总净收入为$548.7亿"实为<strong>非利息收入小计</strong>（$548.7亿）；FY2025真正的总净收入（Total revenues net of interest expense，含净利息收入）为<strong>$722.3亿</strong>（FY2024：$659.5亿，+9.5%）。本页各收入占比（折扣~49%、NII~22%）以$722亿为分母口径计算，数值正确，仅2.2节的表述需按此口径理解。</p>
+        </div>
+    </div>
+
+    <div class="info-box">
+        <p><strong>最后更新</strong>：2026年10月3日<br>
         <strong>数据来源</strong>：American Express IR官网、SEC 10-K/10-Q年报、StockTitan、Macrotrends、MarketCap.ru、Investing.com、雪球、CoinLaw、DCF Modeling、Edgen、TipRanks、DividendHistory等金融平台</p>
     </div>
 
