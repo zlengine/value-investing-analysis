@@ -72,6 +72,7 @@
         + '<a href="financial_analysis.html" class="top-nav-link" style="background:#2e7d32;" onmouseover="this.style.background=\'#43a047\'" onmouseout="this.style.background=\'#2e7d32\'">📖 财务分析</a>'
         + '<a href="changelog.html" class="top-nav-link" style="background:#856404;" onmouseover="this.style.background=\'#a0762a\'" onmouseout="this.style.background=\'#856404\'">📋 更新日志</a>'
         + '<a href="scorer.html" class="top-nav-link" style="background:#1a5276;" onmouseover="this.style.background=\'#2e86c1\'" onmouseout="this.style.background=\'#1a5276\'">📊 股票打分</a>'
+        + '<a href="options_analysis.html" class="top-nav-link" style="background:#00695c;" onmouseover="this.style.background=\'#00897b\'" onmouseout="this.style.background=\'#00695c\'">📈 期权分析</a>'
         + '<a href="javascript:void(0)" class="top-nav-link" style="background:#6a1b9a;" onmouseover="this.style.background=\'#8e24aa\'" onmouseout="this.style.background=\'#6a1b9a\'" onclick="NavBar.openCalc()">🧮 价值计算</a>';
 
     // 价值计算器弹窗HTML
