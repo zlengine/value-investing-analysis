@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>McDonald's（麦当劳）- 巴菲特/芒格式基本面分析</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f2f5;
+            color: #333;
+        }
+        h1 {
+            text-align: center;
+            color: #1a5276;
+            font-size: 2.2em;
+            margin-bottom: 5px;
+        }
+        .subtitle {
+            text-align: center;
+            color: #7f8c8d;
+            font-size: 1.1em;
+            margin-top: 0;
+        }
+        h2 {
+            color: #1a5276;
+            border-bottom: 2px solid #2e86c1;
+            padding-bottom: 8px;
+            margin-top: 40px;
+        }
+        h3 {
+            color: #21618c;
+            margin-top: 25px;
+        }
+        .info-box {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            background: white;
+        }
+        th {
+            background-color: #1a5276;
+            color: white;
+            padding: 10px;
+            text-align: left;
+        }
+        td {
+            padding: 10px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        tr:hover {
+            background-color: #eaf2f8;
+        }
+        .highlight {
+            background-color: #fef9e7;
+            border-left: 5px solid #2e86c1;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        .moat-item {
+            background-color: #eafaf1;
+            border-left: 5px solid #27ae60;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+        .risk-item {
+            background-color: #fdedec;
+            border-left: 5px solid #e74c3c;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+        .tag-green { color: #27ae60; font-weight: bold; }
+        .tag-orange { color: #e67e22; font-weight: bold; }
+        .tag-red { color: #e74c3c; font-weight: bold; }
+        .up { color: #27ae60; }
+        .down { color: #e74c3c; }
+        .section-nav {
+            background: white;
+            border-radius: 10px;
+            padding: 15px 25px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+        .section-nav a {
+            display: inline-block;
+            margin: 5px 10px;
+            padding: 6px 14px;
+            background: #eaf2f8;
+            color: #1a5276;
+            text-decoration: none;
+            border-radius: 15px;
+            font-size: 0.9em;
+        }
+        .section-nav a:hover {
+            background: #2e86c1;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="top-nav-bar"></div>
+    <script src="nav_bar.js?v=20260624"></script>
+    <span id="topbarCode" style="display:none;">MCD</span>
+
+    <h1>McDonald's Corporation（麦当劳）基本面分析</h1>
+    <p class="subtitle">NYSE: MCD ｜ 全球最大餐饮公司 ｜ "用汉堡包起来的地产帝国" ｜ 巴菲特/芒格式八章程式分析</p>
+
+    <div class="section-nav">
+        <a href="#chapter1">公司基本信息</a>
+        <a href="#chapter2">业务分析</a>
+        <a href="#chapter3">产品竞争力分析</a>
+        <a href="#chapter4">历史财务指标</a>
+        <a href="#chapter5">债务分析</a>
+        <a href="#chapter6">竞争分析</a>
+        <a href="#chapter7">利润分配分析</a>
+        <a href="#chapter8">投资总结</a>
+    </div>
+
+    <h2 id="chapter1">一、公司基本信息</h2>
+    <div class="info-box">
+        <table>
+            <tr><th>项目</th><th>内容</th></tr>
+            <tr><td>公司名称</td><td>McDonald's Corporation（麦当劳），NYSE: MCD</td></tr>
+            <tr><td>市值</td><td><strong>$1,669亿</strong>（2026年10月，较52周高点回撤约21%）</td></tr>
+            <tr><td>最新股价</td><td>$235.65（2026-10-13收盘）</td></tr>
+            <tr><td>成立时间</td><td>1940年Dick与Mac McDonald兄弟在加州圣贝纳迪诺开出第一家餐厅；1955年Ray Kroc取得特许经营权并创立McDonald's Corporation</td></tr>
+            <tr><td>总部</td><td>美国伊利诺伊州芝加哥</td></tr>
+            <tr><td>门店数</td><td>43,000+家，覆盖100多个国家，约95%为特许经营</td></tr>
+            <tr><td>股本</td><td>7.076亿股（持续回购收缩中）</td></tr>
+            <tr><td>估值指标</td><td>PE(TTM) 18.8倍 ｜ 前瞻PE 18.4倍 ｜ PB <strong>负值（股东权益为-10亿美元级）</strong> ｜ 股息率3.2%（季度股息$1.86）</td></tr>
+            <tr><td>企业价值(EV)</td><td>≈$2,050亿（市值$1,669亿＋净债务约$385亿）</td></tr>
+        </table>
+        <div class="highlight">
+            <strong>一句话认识这家公司</strong>：麦当劳表面卖汉堡，实际是全球最大的"餐饮地产+品牌授权"生意——它拥有或长期承租大量餐厅物业，再转租给加盟商，坐收<strong>租金+特许权使用费</strong>。全球系统销售额$1,390亿，麦当劳自己只确认$269亿营收、却拿走$87.9亿净利润：<strong>加盟商干重活、麦当劳收租、承担品牌与地产</strong>。巴菲特1996年坦言错过麦当劳是其投资生涯的遗憾之一。
+        </div>
+    </div>
+
+    <h2 id="chapter2">二、业务分析</h2>
+    <div class="info-box">
+        <h3>2.1 它是做什么的（说给120岁的人听）</h3>
+        <p>想象你在全世界任何一座城市，走进金色拱门：菜单几乎一样、巨无霸味道一样、卫生间干净程度一样、出餐速度一样——这种<strong>"全球一致的确定性"</strong>就是麦当劳的核心产品。它自己只经营约5%的门店，其余95%交给加盟商：加盟商付钱开店、雇人、买食材、承担盈亏，麦当劳收两笔钱——<strong>销售额的百分之几（特许权使用费）和物业租金</strong>（麦当劳拥有或主租大量餐厅土地房产再转租）。所以无论汉堡卖多卖少，麦当劳先收租、旱涝保收。</p>
+
+        <h3>2.2 业务板块（FY2025，2025年12月31日止）</h3>
+        <table>
+            <tr><th>口径</th><th>FY2025金额</th><th>说明</th></tr>
+            <tr><td><strong>全球系统销售额</strong>（全部门店终端流水）</td><td><strong>$1,390亿+（+7%）</strong></td><td>麦当劳真正"经营规模"的口径——43,000+门店的终端消费总额</td></tr>
+            <tr><td>公司确认营收（US+IOM+IDL三段合计）</td><td>$268.9亿</td><td>仅为系统销售额的19%——大部分流水归属加盟商</td></tr>
+            <tr><td>—— 特许经营收入（租金+使用费）</td><td>约$165亿（占62%）</td><td><strong>利润奶牛</strong>：毛利率极高，贡献公司营业利润的绝大部分</td></tr>
+            <tr><td>—— 自营餐厅收入</td><td>约$90亿（占33%）</td><td>主要在美英法德加等成熟市场，利润率远低于特许收入</td></tr>
+            <tr><td>—— 其他（品牌授权费等）</td><td>约$14亿（占5%）</td><td>IDL市场（如中国、日本由被特许方运营）收品牌费</td></tr>
+            <tr><td><strong>调整后营业利润</strong></td><td><strong>$126.2亿</strong>（营业利润率47%）</td><td>vs 2021年$100.7亿——四年增长25%</td></tr>
+        </table>
+
+        <h3>2.3 地域分部（FY2025营收占比，约数）</h3>
+        <table>
+            <tr><th>分部</th><th>营收占比</th><th>代表市场与特点</th></tr>
+            <tr><td><strong>美国（US）</strong></td><td>~39%</td><td>全球利润腹地；2026年同店增速放缓（Q2'26仅+0.8%），客流承压</td></tr>
+            <tr><td><strong>国际运营市场（IOM）</strong></td><td>~46%</td><td>英法德加澳等自营+特许混合市场；同店表现好于美国</td></tr>
+            <tr><td><strong>国际发展许可市场（IDL）</strong></td><td>~15%</td><td>中国、日本等由本地被特许方（如中信、三菱系）运营，纯收品牌费，轻资产高毛利</td></tr>
+        </table>
+
+        <h3>2.4 商业模式：怎么赚钱</h3>
+        <ul>
+            <li><strong>三层收入漏斗</strong>：品牌费（IDL，几乎纯利）→ 租金+特许权使用费（占大头，加盟商先付租金再分利润）→ 自营餐厅利润（薄利但保留品牌旗舰控制力）；</li>
+            <li><strong>地产金融结构</strong>：麦当劳历史上大量购置黄金地段土地，物业资产是"特许经营模式的地基"——加盟商违约也有地产兜底；</li>
+            <li><strong>数字化第二增长曲线</strong>：70个市场的忠诚度会员体系，TTM会员系统销售额$400亿（+20%），9,000万+月活App用户（90天活跃2.2亿）——App积分、专属折扣把随机客流变成可运营的私域流量；</li>
+            <li><strong>规模采购</strong>：全球采购量使其对供应商（如泰森、可口可乐）拥有极强议价权，供应链成本低于任何竞争对手。</li>
+        </ul>
+        <div class="highlight"><strong>芒格式观察</strong>：这是一门"收租的生意"——品牌是税，地产是锚。汉堡只是收租权的载体。理解了这一点，就明白为什么它能做到47%的营业利润率（餐饮业通常仅5-15%）。</div>
+    </div>
+
+    <h2 id="chapter3">三、产品竞争力分析</h2>
+    <div class="info-box">
+        <h3>3.1 核心产品：QSB（快速服务餐饮）的"全球确定性"</h3>
+        <p><strong>可替代性：中等偏高</strong> <span class="tag-orange">Medium-High</span></p>
+        <ul>
+            <li>直接替代：Wendy's、Burger King、Chick-fil-A、Shake Shack等所有快餐汉堡；间接替代：便利店食品、冷冻食品、外卖平台上的任何餐厅、在家做饭；</li>
+            <li>体验差距：单个汉堡易被模仿，但<strong>"任何城市、同样的品质、3分钟出餐、可预期的价格"</strong>这一组合无人能复制——Chick-fil-A品质口碑更好但门店密度低1/3；</li>
+            <li>替代趋势：<strong>温和加速中</strong>——美国健康意识+GLP-1减肥药普及+fast casual（Chipotle）分流年轻客群，是2015年以来从未消失的结构性逆风。</li>
+        </ul>
+        <p><strong>客户转换成本：低</strong> <span class="tag-red">Low</span></p>
+        <ul>
+            <li>单次消费决策零转换成本——今天吃麦当劳明天吃Wendy's没有任何摩擦；</li>
+            <li>但<strong>习惯与忠诚度体系在制造"软性粘性"</strong>：App积分/专属优惠券（会员消费占系统销售额约29%）、儿童生日记忆、"带孙子吃开心乐园餐"的代际情感传承；</li>
+            <li>对加盟商（B端客户）的转换成本极高：投资$150-250万开一家店、签20年租约——加盟权本身就是麦当劳筛选过的优质客户资产。</li>
+        </ul>
+        <p><strong>定价权：中强</strong> <span class="tag-green">Medium-Strong</span></p>
+        <ul>
+            <li>历史记录：2019-2024年美国累计提价约40%（远超CPI），营业利润率不降反升；但2024-2025年出现<strong>反弹信号</strong>——消费者对"$18巨无霸套餐"的愤怒引发TikTok声讨，管理层被迫推出McValue低价套餐拉回客流，2026年美国同店仅+0.8%；</li>
+            <li>巴菲特测试：提价10%，部分价格敏感客户会流向Wendy's/便利店——<strong>定价权有明确上限</strong>，麦当劳的护城河在"便利+一致+品牌"而非价格豁免权；</li>
+            <li>来源：品牌（全球第一餐饮品牌价值）+规模采购成本优势+无处不在的网点（drive-thru密度）；</li>
+            <li>趋势：<strong>边际走弱</strong>——通胀后性价比敏感度上升，是当前估值折价的核心原因之一。</li>
+        </ul>
+        <p><strong>综合竞争力评级：4.5/5星</strong> ⭐⭐⭐⭐⭐（C端低粘性是硬伤，但品牌+规模+地产的组合历经80年不可复制）</p>
+
+        <h3>3.2 消费者正反双向测试</h3>
+        <div class="moat-item"><strong>我为什么选麦当劳</strong>：出差到陌生城市，我不知道哪家本地馆子好吃，但我知道麦当劳的卫生间干净、巨无霸还是那个味、drive-thru三分钟拿到手、App上还有会员买一送一——<strong>我买的是确定性，不是惊喜</strong>。带孩子时，开心乐园餐+游乐区没有替代品；深夜饿了的公路上，麦当劳是唯一亮着灯的选项。性价比上McValue $5套餐在我预算紧张时永远接得住我。</div>
+        <div class="risk-item"><strong>我为什么离开麦当劳</strong>：当我发现一个巨无霸套餐卖到$18（2024年的愤怒时刻），我会拍视频骂它然后去Chick-fil-A或Wendy's——同样的钱体验更好；当我开始打GLP-1减肥针，我一天只吃得下一顿半饭，卡路里预算里没有薯条的位置；当我和同事午饭点外卖，Chipotle的碗感觉"更值、更健康"；周末想吃顿好的，本地精品汉堡店吊打它。<strong>离开的理由真实存在且在变大</strong>——这正是美国客流连续下滑的原因，也是股价跌21%的基本面注脚。</div>
+    </div>
+
+    <h2 id="chapter4">四、历史财务指标</h2>
+    <div class="info-box">
+        <h3>4.1 近五年关键指标（2021-2026）</h3>
+        <table>
+            <tr><th>指标</th><th>2021</th><th>2022</th><th>2023</th><th>2024</th><th>2025</th><th>TTM(1H26)</th></tr>
+            <tr><td>营收（亿美元）</td><td>232.2</td><td>231.8</td><td>254.9</td><td>259.2</td><td>268.9</td><td>277.0</td></tr>
+            <tr><td>净利润（亿美元）</td><td>75.5</td><td>61.8</td><td>84.7</td><td>82.3</td><td>~84.3</td><td>87.9</td></tr>
+            <tr><td>稀释EPS（美元）</td><td>10.04</td><td>8.33</td><td>11.56</td><td>11.39</td><td>11.95</td><td>12.31</td></tr>
+            <tr><td>调整后营业利润（亿美元）</td><td>100.7</td><td>~94</td><td>~115</td><td>~118</td><td>126.2</td><td>—</td></tr>
+            <tr><td>ROE（账面）</td><td colspan="6"><strong>无意义（负股东权益）</strong>——见下方解释</td></tr>
+            <tr><td>PE（年末，约）</td><td>26x</td><td>27x</td><td>25x</td><td>26x</td><td>25x</td><td><strong>18.8x</strong></td></tr>
+            <tr><td>有息债务（亿美元）</td><td>356</td><td>359</td><td>372</td><td>384</td><td>~390</td><td>399</td></tr>
+        </table>
+        <p>注：2021-2024年为10-K/年报口径；PE为年末股价除以当年EPS的近似值；2025年净利润按EPS $11.95×股本推算。</p>
+
+        <h3>4.2 芒格式核心观察：负股东权益≠财务危机</h3>
+        <p>麦当劳的资产负债表会让格雷厄姆式投资者皱眉：<strong>股东权益约为-10亿美元（每股净资产-$1.45）</strong>，资产负债率超100%。但这不是资不抵债，而是2006年以来累计<strong>超1,000亿美元回购+分红</strong>把账面权益"分光了"——账面权益只是历史会计数字，麦当劳的真实资产是品牌（无形）+地产（市值远高于账面折旧值）+加盟合同现金流。用账面ROE评估它完全失真，正确的标尺是<strong>ROIC：投入资本回报率长期约15-18%</strong>，在餐饮业属于顶级水平。</p>
+        <p><strong>真实经营回报</strong>：调整后营业利润率从2021年的43.4%提升到2025年的46.9%——每$100系统销售额中麦当劳抽取的利润越来越厚（租金+使用费+数字化溢价）。</p>
+        <div class="highlight"><strong>估值的历史坐标</strong>：当前PE 18.8x，是麦当劳<strong>过去十年最低估值区间</strong>（2016-2025年PE中枢24-27x）。上一次如此便宜是2015-2016年（当时"全天早餐"拯救了它）。股息率3.2%亦为十年高位——市场用脚投票投出了"美国客流衰退+GLP-1长期威胁"的定价。</div>
+    </div>
+
+    <h2 id="chapter5">五、债务分析</h2>
+    <div class="info-box">
+        <h3>5.1 有息负债占比</h3>
+        <table>
+            <tr><th>指标</th><th>数值</th><th>备注</th></tr>
+            <tr><td>有息负债总额（2026-06-30）</td><td><strong>$398.6亿</strong>（长期债务）</td><td>Q1'26末账面$401亿、公允价值$382亿——公允价值低于账面说明市场利率高于其票息（旧债便宜）</td></tr>
+            <tr><td>现金及等价物</td><td>约$10-15亿</td><td>麦当劳维持低现金运营，现金流按季分配</td></tr>
+            <tr><td>净债务</td><td>≈$385亿</td><td>—</td></tr>
+            <tr><td>净债务/EBITDA</td><td>≈<strong>2.6x</strong>（EBITDA约$148亿=调整后营业利润$126亿+D&A~$22亿）</td><td>消费垄断型企业中的温和杠杆</td></tr>
+            <tr><td>信用评级</td><td>BBB+（S&P）/ Baa1（Moody's），展望稳定</td><td>投资级，管理层明确以此为底线</td></tr>
+        </table>
+        <p><strong>关键区分</strong>：麦当劳账面负债率超100%容易吓到投资者，但结构上：①$399亿有息债务对应$148亿EBITDA，覆盖充分；②其余负债是应付账款、递延收入等无息经营占款；③资产端大量地产按成本折旧入账，市价远高于账面。<strong>真实杠杆 = 净债务2.6x EBITDA，在"品牌收租"商业模式下完全健康</strong>（类比：一家公寓REIT负债率70%没人恐慌）。</p>
+
+        <h3>5.2 现金流对债务的保障</h3>
+        <ul>
+            <li>利息保障倍数：EBITDA $148亿 ÷ 年利息支出约$15亿 ≈ <strong>10倍</strong>——即便EBITDA腰斩仍可覆盖利息5倍；</li>
+            <li>自由现金流：年自由现金流约$60-70亿，年度到期债务（$20-30亿）无需再融资即可偿还；</li>
+            <li>压力测试：EBITDA需连续下滑约60%以上才会威胁BBB+评级——对应系统销售额需崩塌约$800亿，历史上最差的2020年疫情也就下滑约8%；</li>
+            <li>到期结构：债务阶梯分布至2040年代，无近2-3年集中偿付墙，再融资风险低（且当前公允价值低于账面=存量票息便宜，公司反而没有动力提前还债）。</li>
+        </ul>
+
+        <h3>5.3 管理层对杠杆的态度（有明确出处）</h3>
+        <ul>
+            <li>2026年5月13日投资者概览材料（Investor Overview Deck）明文列出资本结构原则："Maintaining a strong investment grade credit rating"（维持强投资级评级）——杠杆服务于分红回购，但评级是红线；</li>
+            <li>2026年Q1 10-Q：当季支付股息$13亿+回购$3.93亿，同时长期债务基本持平（$398-401亿区间）——<strong>现金流优先分红、其次回购，杠杆维持不动</strong>；</li>
+            <li>言行对照：2020年疫情最紧张时期也未砍股息（连续49年增长的纪录优先），靠暂停回购+小幅举债渡过——证明其现金流保障冗余真实有效；</li>
+            <li>趋势判断：<strong>维持稳定杠杆</strong>（净债务/EBITDA约2.5-2.8x区间波动），与其"收租模式+投资级评级+连续加息股息"的三位一体资本配置战略完全一致。</li>
+        </ul>
+        <p><strong>财务安全评级</strong>：<span class="tag-orange">tag-orange（净债务/EBITDA约2.6x，但利息保障10倍、无再融资墙、评级稳定）</strong>——按消费垄断企业标准属于"健康且刻意"，非风险杠杆。</p>
+    </div>
+
+    <h2 id="chapter6">六、竞争分析</h2>
+    <div class="info-box">
+        <h3>6.1 主要竞争对手</h3>
+        <table>
+            <tr><th>对手</th><th>系统销售额量级</th><th>格局与麦当劳的相对地位</th></tr>
+            <tr><td>Starbucks（SBUX）</td><td>~$370亿</td><td>咖啡赛道王者，与MCD错位竞争（早餐时段正面交锋）</td></tr>
+            <tr><td>YUM! Brands（百胜）</td><td>~$650亿</td><td>KFC/塔可钟/必胜客三品牌合计，单一品牌均不及MCD一半</td></tr>
+            <tr><td>Chick-fil-A（未上市）</td><td>~$220亿</td><td>美国单店王（单店营收约MCD两倍），美国南部对MCD威胁最大</td></tr>
+            <tr><td>Restaurant Brands（RBI）</td><td>~$450亿</td><td>Burger King+Tim Hortons+Popeyes，汉堡老二老三联队，执行力长期弱于MCD</td></tr>
+            <tr><td>Wendy's / Chipotle（CMG）</td><td>~$140亿 / ~$115亿</td><td>Wendy's汉堡第三；CMG以"新鲜健康"切走年轻客群，是估值溢价最大的挑战者</td></tr>
+        </table>
+        <p>美国汉堡快餐市场份额（估算）：麦当劳约25-28%、Wendy's约13%、Burger King约11%、其他为区域品牌——<strong>麦当劳一家超过老二老三之和</strong>。全球看，麦当劳$1,390亿系统销售额约为第二名（赛百味萎缩后）的2倍以上，是无可争议的全球餐饮第一。</p>
+
+        <h3>6.2 护城河评估</h3>
+        <div class="moat-item"><strong>① 品牌与心智（极强）</strong>：全球最有价值餐饮品牌，"金拱门"是人类历史上辨识度最高的符号之一——地球上约1/3人口每年至少吃一次麦当劳。儿童心智占领（开心乐园餐）制造代际传承。</div>
+        <div class="moat-item"><strong>② 规模与成本（极强）</strong>：$1,390亿采购量带来的供应商议价权、全球物流体系、广告费摊薄（单店广告成本仅为区域品牌的1/5）——竞争对手在成本端永远追赶不上。</div>
+        <div class="moat-item"><strong>③ 房地产+特许体系（独特且被低估）</strong>：黄金地段资产（部分物业账面价值仅市价1/3）+20年加盟长约=接近REIT的收租现金流，但叠加品牌成长性。这是巴菲特最欣赏的"经济特许权"结构。</div>
+        <div class="moat-item"><strong>④ 数字化网络效应（增强中）</strong>：2.2亿90天活跃会员、TTM会员消费$400亿——会员数据反哺菜单与定价决策，数字渠道订单占比持续提升，形成数据飞轮。</div>
+        <div class="risk-item"><strong>⑤ 护城河的缺口</strong>：C端单次消费零转换成本；健康化/GLP-1/年轻客群偏好是长期逆风；定价权有明确上限（2024年$18套餐风波）；美国市场成熟饱和，增长依赖国际与数字化。</div>
+        <p><strong>可持续性判断</strong>：80年历史、历经无数次"麦当劳要完"的预言（1970s健康潮、2000s supersize争议、2015年客流危机、2020疫情）依然壮大——护城河的核心资产（品牌+地产+规模）<strong>没有侵蚀迹象</strong>，被侵蚀的是增长预期，而非竞争地位。</p>
+    </div>
+
+    <h2 id="chapter7">七、利润分配分析</h2>
+    <div class="info-box">
+        <h3>7.1 近五年利润分配全景（亿美元）</h3>
+        <table>
+            <tr><th>科目</th><th>2021</th><th>2022</th><th>2023</th><th>2024</th><th>2025</th><th>2026E</th></tr>
+            <tr><td>净利润</td><td>75.5</td><td>61.8</td><td>84.7</td><td>82.3</td><td>~84.3</td><td>~90</td></tr>
+            <tr><td>分红</td><td>38.9</td><td>40.7</td><td>42.9</td><td>45.5</td><td>~49</td><td>~52</td></tr>
+            <tr><td>回购</td><td>29.0</td><td>33.0</td><td>30</td><td>~28</td><td>~25</td><td>~20</td></tr>
+            <tr><td>资本开支（新店+改造）</td><td>18.8</td><td>19.3</td><td>23.2</td><td>~26</td><td>~28</td><td>~30</td></tr>
+            <tr><td>股息+回购/净利润</td><td>90%</td><td>119%</td><td>86%</td><td>89%</td><td>~88%</td><td>~80%</td></tr>
+            <tr><td>留存率（扣分红）</td><td>48%</td><td>34%</td><td>49%</td><td>45%</td><td>~42%</td><td>~42%</td></tr>
+        </table>
+        <p>注：2025-2026为推算值；分红+回购长期超净利润80%+，缺口由温和举债覆盖（与5.3节杠杆策略一致）。</p>
+
+        <h3>7.2 股息贵族的含金量</h3>
+        <ul>
+            <li><strong>连续49年增加股息</strong>（1976年以来从未中断，2026年若再加息将达成50年"股息之王"里程碑）——道指成分股中仅有的几家半个世纪的加息纪录之一；</li>
+            <li>当前季度股息$1.86（年化$7.44），payout约60-65%（以调整后EPS计），在QSB增速放缓期仍有加息空间；</li>
+            <li>股本变化：从2016年约8.6亿股收缩到2026年7.08亿股——<strong>十年缩股18%</strong>，EPS年化多增约2个百分点。</li>
+        </ul>
+
+        <h3>7.3 资本配置质量评价</h3>
+        <ul>
+            <li><strong>回购时机</strong>：历史上在2015-2016年（PE 17-18x）和2020年（疫情低点）大举回购最划算；2019-2021年PE 25x+时仍高位回购，时机判断中规中矩——但作为永续经营的收租企业，"永远回购"策略长期被证明正确；</li>
+            <li><strong>资本开支方向</strong>：近年CapEx约$28-30亿，一半投入新店（每年全球净增1,000+家，重点中国/美国南部）与"CosMc's"等新业态试验，一半投入存量店改造（自助点餐机、drive-thru双车道）——投在回报最确定的资产上；</li>
+            <li><strong>不折腾的纪律</strong>：麦当劳几乎不做大型并购（历史上最大收购是1990s的Donatos等小案且多数已剥离）——管理层深知自己的能力圈是把汉堡连锁做到极致，这是芒格式"知道边界"的典范；</li>
+            <li><strong>可持续增长率</strong>：ROIC约17% × 留存率约42% ≈ <strong>7%</strong>——与EPS五年复合增速（2021-2025：4.5%/年+回购贡献2%）+股息3.2% ≈ 10%总回报的历史事实吻合。</li>
+        </ul>
+    </div>
+
+    <h2 id="chapter8">八、投资总结</h2>
+    <div class="info-box">
+        <h3>8.1 各维度评分</h3>
+        <table>
+            <tr><th>维度</th><th>评分</th><th>理由</th></tr>
+            <tr><td>业务易懂性</td><td>5/5</td><td>全世界都看得懂的生意，但"地产+品牌授权"的盈利结构常被低估</td></tr>
+            <tr><td>护城河</td><td>4.5/5</td><td>品牌+规模+地产三重壁垒；扣0.5分因C端零转换成本与健康化逆风</td></tr>
+            <tr><td>资本配置</td><td>4.5/5</td><td>49年连续加息+十年缩股18%+不乱并购——教科书级纪律</td></tr>
+            <tr><td>财务安全</td><td>3.5/5</td><td>净债务/EBITDA 2.6x、利息保障10倍、投资级评级——健康但非保守</td></tr>
+            <tr><td>成长前景</td><td>3/5</td><td>美国成熟饱和、GLP-1长期威胁；增长靠国际扩张+数字化+提价，中个位数EPS增长</td></tr>
+            <tr><td>估值吸引力</td><td><strong>4/5</strong></td><td>PE 18.8x为十年最低区间（中枢24-27x）、股息率3.2%十年新高——罕见的折价</td></tr>
+        </table>
+
+        <h3>8.2 结论与安全边际</h3>
+        <div class="highlight">
+            <strong>芒格式总结</strong>：麦当劳是"收费桥"式的经济特许权——43,000家店是桥，$1,390亿系统消费是过桥的车流，租金与特许费是过路费。<strong>问题从来不是生意好不好，而是价格贵不贵</strong>。过去十年市场给24-27x PE，没人下得了手；2026年股价回撤21%后，PE 18.8x+股息率3.2%，估值首次回到"可以认真讨论"的区间。以FY2026E EPS约$12.80计，当前$235对应18.4x；若给回22-24x中性估值中枢，对应$280-307；要求15%安全边际的买入价约$218-235——<strong>当前价格已进入合理买入区间的上沿</strong>，$215-220（股息率3.4%+PE 17x）则是格雷厄姆会签字的位置。催化剂：美国客流企稳、GLP-1恐慌证伪、50年连续加息里程碑（2026年9月）。
+        </div>
+
+        <h3>8.3 关键风险</h3>
+        <div class="risk-item">①<strong>GLP-1减肥药长期压制卡路里需求</strong>：美国约10%人口已使用，QSR整体客流受抑，若渗透率翻倍则系统性压低单店模型；②<strong>美国客流下滑</strong>：Q2'26美国同店仅+0.8%、靠提价撑增长，性价比敏感度上升的消费者尚未回归；③<strong>定价权反噬</strong>：2019-2024累计提价40%后，进一步提价空间有限，同店增长引擎降档；④<strong>加盟商健康</strong>：美国加盟商利润率被最低工资+食材通胀挤压，若加盟体系盈利恶化将动摇"收租"根基。</div>
+
+        <h3>8.4 关键催化剂</h3>
+        <div class="moat-item">①估值处于十年低位，任何美国客流连续两季转正都将触发估值修复；②忠诚度会员$400亿TTM消费+20%增长，数字化溢价尚未被充分定价；③国际市场（尤其IDL）仍在双位数开店扩张，结构性增长余量足；④2026年9月若实现50年连续加息股息，将强化"股息之王"稀缺性溢价；⑤新业态（CosMc's饮品店、麦当劳之夜等）提供期权价值。</div>
+
+        <h3>8.5 数据来源</h3>
+        <ul>
+            <li>McDonald's Q4/FY2025业绩公告（2026-02）：FY2025营收$268.85亿、调整后营业利润$126.21亿、EPS $11.95、系统销售额$1,390亿+（+7%）</li>
+            <li>McDonald's Q2 2026业绩公告（2026-08-04）：Q2营收$70.99亿（+4%）、净利润$23.62亿（+5%）、EPS $3.32（+6%）、全球同店+1.3%/美国+0.8%、忠诚度会员TTM消费$400亿（+20%）、90天活跃用户2.2亿（+13%）</li>
+            <li>McDonald's Q2 2026 10-Q（2026-06-30）：长期债务$398.63亿、公允价值$383亿</li>
+            <li>McDonald's Q1 2026 10-Q：债务账面$401亿/公允$382亿、季度股息$1.86/股（$13亿）、回购130万股（$3.93亿）</li>
+            <li>McDonald's Investor Overview Deck（2026-05-13）：49年连续加息、投资级评级原则、2021 vs 2025调整后营业利润对比</li>
+            <li>stockanalysis.com / MarketBeat行情（2026-10）：市值$1,669亿、PE(TTM) 18.78、前瞻PE 18.38、TTM营收$277亿/净利$87.9亿、股本7.076亿股</li>
+        </ul>
+        <p><strong>最后更新</strong>：2026年10月14日 ｜ <strong>数据截止</strong>：2026年10月13日收盘</p>
+    </div>
+
+    <script src="scores_client.js"></script>
+    <script src="stock_topbar.js"></script>
+</body>
+</html>
