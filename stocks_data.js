@@ -138,7 +138,8 @@
         {code:'BIDU',name:'Baidu（百度）- 中文搜索引擎/全面转型AI（文心+萝卜快跑+GPU云）',href:'bidu.html'},
         {code:'GGG',name:'Graco（固瑞克）- 流体处理设备百年隐形冠军/专业无气喷涂机霸主',href:'ggg.html'},
         {code:'MCD',name:'McDonald\'s（麦当劳）- 全球最大餐饮公司/品牌+地产+特许经营收租模式',href:'mcd.html'},
-        {code:'TTI',name:'TTI Inc（伯克希尔旗下电子元器件分销商）- 连接器/无源器件专业分销隐形冠军/Mouser母公司',href:'tti.html'}
+        {code:'TTI',name:'TTI Inc（伯克希尔旗下电子元器件分销商）- 连接器/无源器件专业分销隐形冠军/Mouser母公司',href:'tti.html'},
+        {code:'MWA',name:'Mueller Water Products（穆勒水产品）- 北美市政供水基础设施设备/消防栓与水阀门百年领导者',href:'mwa.html'}
     ];
 
     // 暴露为全局变量
