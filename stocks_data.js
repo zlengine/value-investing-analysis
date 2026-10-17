@@ -137,7 +137,8 @@
         {code:'ALLE',name:'Allegion plc - 117年门锁龙头/Schlage住宅锁#1+Von Duprin逃生装置#1+图纸指定锁定+美洲非住宅27.9%运营利润率+5大护城河(百年品牌+图纸指定+渠道深度+电子化生态+美洲统治)+FY2025营收$40.7亿+可用现金流$6.86亿+12年股息增长+9个并购电子化转型+反周期性',href:'alle.html'},
         {code:'BIDU',name:'Baidu（百度）- 中文搜索引擎/全面转型AI（文心+萝卜快跑+GPU云）',href:'bidu.html'},
         {code:'GGG',name:'Graco（固瑞克）- 流体处理设备百年隐形冠军/专业无气喷涂机霸主',href:'ggg.html'},
-        {code:'MCD',name:'McDonald\'s（麦当劳）- 全球最大餐饮公司/品牌+地产+特许经营收租模式',href:'mcd.html'}
+        {code:'MCD',name:'McDonald\'s（麦当劳）- 全球最大餐饮公司/品牌+地产+特许经营收租模式',href:'mcd.html'},
+        {code:'TTI',name:'TTI Inc（伯克希尔旗下电子元器件分销商）- 连接器/无源器件专业分销隐形冠军/Mouser母公司',href:'tti.html'}
     ];
 
     // 暴露为全局变量
