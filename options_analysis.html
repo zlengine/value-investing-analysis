@@ -152,7 +152,7 @@
     <script src="nav_bar.js?v=20260624"></script>
 
     <h1>期权分析</h1>
-    <p class="subtitle">美股期权专题研究——本页收录期权机制、定价与实战案例分析</p>
+    <p class="subtitle">美股期权与衍生品专题研究——本页收录期权机制、定价、外汇对冲实战与案例分析</p>
 
     <div class="section-nav">
         <a href="#chapter1">案例背景与参数设定</a>
@@ -163,6 +163,7 @@
         <a href="#chapter6">学术文献与实证研究</a>
         <a href="#chapter7">真实历史案例</a>
         <a href="#chapter8">对期权卖方的启示</a>
+        <a href="#chapter9">专题：人民币升值低成本对冲</a>
     </div>
 
     <h2 id="chapter1">一、案例背景与参数设定</h2>
@@ -430,6 +431,102 @@
         </div>
 
         <p><strong>参考来源</strong>：OCC《Interpretative Guidance on the Adjustment Policy for Cash Dividends and Distributions》（2024年2月，SR-OCC-2024-003）；SEC Release No. 34-54748 / 34-55258（OCC调整规则修订批文）；Costco FY2024 Q3 Form 10-Q（特别股息$15/股、2024年1月12日支付约$66.55亿）；Merton (1973) <em>Bell Journal of Economics and Management Science</em>；Elton &amp; Gruber (1970) <em>Review of Economics and Statistics</em>；Kalay (1982) <em>JFE</em>；Boyd &amp; Jagannathan (1994) <em>RFS</em>；Kalay &amp; Subrahmanyam (1984) <em>Journal of Finance</em>；Lakonishok &amp; Vermaelen (1983)。<strong>最后更新</strong>：2026年10月8日</p>
+    </div>
+
+    <h2 id="chapter9">九、专题：在盈透证券低成本对冲人民币升值风险</h2>
+    <div class="info-box">
+        <h3>9.1 问题背景</h3>
+        <p>投资者通过盈透证券（IBKR）持有美元计价美股，最终消费货币为人民币。若人民币升值（USDCNH下跌），即使股价不跌，换回人民币的金额也会缩水。直观的对冲方式是"做多人民币"（现货做空CNH），但这需要保证金且每日支付利息。本章回答：<strong>如何在IBKR内用最少的保证金占用，对冲人民币升值的汇兑损耗</strong>。</p>
+
+        <h3>9.2 核心原理：对冲的真实成本是两地利差，不是保证金</h3>
+        <div class="highlight">
+            <strong>利率平价公式</strong>：远期/期货汇率 ≈ 即期汇率 × (1 + 人民币利率 × t) / (1 + 美元利率 × t)<br><br>
+            当<strong>美元利率 &gt; 人民币利率</strong>时，USD/CNH期货价格<strong>低于</strong>即期（美元远期贴水）。做空期货锁定的换汇汇率比当前即期略差，差额 ≈ 两地利差 × 期限，2026年量级约<strong>每年1%~2%</strong>（随美联储降息逐步收窄）。<br><br>
+            <strong>关键认知</strong>：保证金只是"押金"，平仓后归还；利差才是真金白银的成本，且会复利累积。
+        </div>
+
+        <h3>9.3 四种工具对比：保证金占用是关键差异</h3>
+        <table>
+            <tr><th>方案</th><th>工具（代码）</th><th>最小名义本金</th><th>保证金占用</th><th>持有成本</th><th>适合场景</th></tr>
+            <tr>
+                <td><strong>A（首选）</strong> <span class="tag-green">推荐</span></td>
+                <td>HKEX 微型USD/CNH期货（MCS）</td>
+                <td>$20,000</td>
+                <td><strong>约2%（~$400/张）</strong></td>
+                <td>利差（内嵌于期货价格）</td>
+                <td>敞口$2万~$50万，需精确控制对冲比例</td>
+            </tr>
+            <tr>
+                <td>B</td>
+                <td>HKEX标准期货（CUS）/ CME期货（CNH）</td>
+                <td>$100,000</td>
+                <td>约2%（~$2,000/张）</td>
+                <td>利差（同上）</td>
+                <td>大敞口，流动性最好</td>
+            </tr>
+            <tr>
+                <td><strong>C（零保证金）</strong> <span class="tag-green">推荐</span></td>
+                <td>买入USD/CNH看跌期权（HKEX/CME）</td>
+                <td>$100,000/张</td>
+                <td><strong>0</strong>（仅付权利金）</td>
+                <td>权利金沉没（约1%~2%/年）</td>
+                <td>不愿盯市、只防大幅升值</td>
+            </tr>
+            <tr>
+                <td>D <span class="tag-red">不推荐</span></td>
+                <td>现货做空CNH（负余额）</td>
+                <td>任意</td>
+                <td>通常≥5%</td>
+                <td>负余额每日计息</td>
+                <td>保证金效率最差，无优势</td>
+            </tr>
+        </table>
+        <div class="highlight">
+            <strong>结论</strong>：想几乎不占保证金 → 买看跌期权（方案C）；想成本最优且占用低 → 期货（方案A/B，保证金约2%且到期归还）；现货做多人民币（用户直觉方式）是保证金效率最差的路径。
+        </div>
+
+        <h3>9.4 数学示例：对冲$30万美元敞口</h3>
+        <p>假设即期USDCNH = 7.10（示例值），情景：人民币升值5% → 6.745</p>
+        <table>
+            <tr><th>项目</th><th>不对冲</th><th>期货对冲（15张MCS空单）</th><th>期权对冲（3张平值Put）</th></tr>
+            <tr><td>换回人民币</td><td>300,000 × 6.745 = ¥2,023,500</td><td>期货盈利 (7.10−6.745) × 20,000 × 15 ≈ ¥106,500，<strong>全额覆盖</strong></td><td>每张盈利约$5,000 × 3 = $15,000，<strong>全额覆盖</strong></td></tr>
+            <tr><td>汇兑损失</td><td><span class="down">−¥106,500</span></td><td>≈ 0</td><td>≈ 0</td></tr>
+            <tr><td>保证金占用</td><td>—</td><td>15 × $400 ≈ <strong>$6,000（2%）</strong></td><td><strong>$0</strong></td></tr>
+            <tr><td>事前成本</td><td>0</td><td>利差约1.5% × $30万 = $4,500/年（内嵌于期货价）</td><td>权利金约$3,600（6个月，假设1.2%）</td></tr>
+            <tr><td>若人民币贬值5%</td><td><span class="up">+¥106,500</span></td><td>期货亏$15,000，完全抵消</td><td>最多损失权利金$3,600</td></tr>
+        </table>
+        <div class="moat-item">
+            <strong>期权进阶：熊市价差砍成本</strong><br>
+            买入7.10 Put + 卖出6.75 Put组成价差组合，权利金可降至约一半（~$1,800），代价是放弃USDCNH跌破6.75以下的保护——对"只防大幅升值"的投资者是划算的保险结构。
+        </div>
+
+        <h3>9.5 巴菲特/芒格视角：先问要不要对冲</h3>
+        <div class="moat-item">
+            <strong>巴菲特的外汇实践与转变</strong>：2002–2007年巴菲特确实用外汇远期做空过美元（峰值约$200亿，获利超$20亿），但之后清仓，并多次表示——对长期持有的优质企业，汇率波动是噪音，企业竞争力的复利才是主旋律。伯克希尔投日本商社的做法是<strong>发行日元债买日元资产——自然对冲，不动用衍生品</strong>。
+        </div>
+        <div class="risk-item">
+            <strong>芒格式"反过来想"：对冲成本会复利侵蚀</strong><br>
+            1.5%/年 × 5年 ≈ <strong>复利侵蚀7.7%</strong>。若美股仓位是10年以上的复利机器，全额对冲可能得不偿失。对冲的收益上限是"锁定已知汇率"，代价是放弃贬值收益+支付利差。
+        </div>
+        <p><strong>分层建议</strong>：12个月内确定要换回的钱 → 期货全额对冲；1–3年 → 对冲30~50%；3年以上长期仓位 → 不对冲，或只用深虚值看跌期权当"灾难保险"。</p>
+
+        <h3>9.6 IBKR实操要点</h3>
+        <ol>
+            <li><strong>开通权限</strong>：HKEX衍生品权限（需通过港股衍生品知识测试）或CME Globex权限</li>
+            <li><strong>搜索代码</strong>：MCS（微型期货）、CUS（HKEX标准）、CME代码CNH；期权在期权链中选USD/CNH</li>
+            <li><strong>MCS合约规格</strong>：$20,000/张，最小跳动0.0001（=¥2），即月+下3个日历月+6个季月，现金结算</li>
+            <li><strong>标准合约（CUS/CME）到期前必须展期</strong>（实物交割），微型现金结算也建议主动展期</li>
+            <li>保证金在TWS账户窗口实时可见，约1.5%~2%/张，以交易所与IBKR当时设定为准</li>
+        </ol>
+
+        <h3>9.7 风险提示</h3>
+        <div class="risk-item">
+            <strong>风险一：CNH/CNY基差</strong>：对冲的是离岸价（CNH），最终换汇若走境内（CNY），两者通常偏差&lt;0.5%，极端时期可达1~2%。<br>
+            <strong>风险二：期货盯市与保证金动态调整</strong>：行情剧烈时交易所会临时上调保证金率；微型合约流动性弱于标准合约，买卖价差稍宽。<br>
+            <strong>风险三：期权的时间价值衰减</strong>：买Put的权利金是沉没成本，若人民币不升值，保险费白付——这正是"灾难保险"定价的原理，可接受但要心里有数。
+        </div>
+
+        <p><strong>数据来源</strong>：IBKR全球市场接入页面（CNH为可交易与入金币种）；HKEX USD/CNH衍生品规格页（CUS $100,000实物交割、MCS $20,000现金结算，IBKR为可提供交易的券商之一）；CME USD/CNH期货合约规格页（合约规模$100,000）。<strong>最后更新</strong>：2026年10月20日</p>
     </div>
 </body>
 </html>
