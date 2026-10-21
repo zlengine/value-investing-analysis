@@ -235,11 +235,12 @@
             <tr><td>FY2020</td><td>7.85</td><td>418</td><td>42.5%</td><td>62%</td><td>4.2x</td><td>22.1x</td><td>9.2%</td><td>$2.85</td></tr>
             <tr><td>FY2021</td><td>8.37</td><td>461</td><td>38.7%</td><td>60%</td><td>3.9x</td><td>21.3x</td><td>9.5%</td><td>$3.22</td></tr>
             <tr><td>FY2022</td><td>8.64</td><td>469</td><td>40.1%</td><td>61%</td><td>4.0x</td><td>24.7x</td><td>9.8%</td><td>$3.48</td></tr>
-            <tr><td>FY2023</td><td>9.28</td><td>518</td><td>48.3%</td><td>64%</td><td>4.5x</td><td>26.8x</td><td>10.2%</td><td>$3.88</td></tr>
+            <tr><td>FY2023*</td><td>9.28</td><td>272</td><td>约26%</td><td>64%</td><td>4.5x</td><td>约44x</td><td>10.2%</td><td>$3.88</td></tr>
             <tr><td>FY2024</td><td>10.66</td><td>606</td><td>55.7%</td><td>66%</td><td>5.0x</td><td>27.1x</td><td>11.0%</td><td>$4.59</td></tr>
             <tr><td>FY2025</td><td>11.98</td><td>935</td><td>93.2%</td><td>69%</td><td>5.8x</td><td>12.5x</td><td>11.0%</td><td>$6.35</td></tr>
             <tr><td>FY2026</td><td>11.22</td><td>851</td><td>80.7%</td><td>68%</td><td>5.5x</td><td>10.5x</td><td>11.0%</td><td>$6.51</td></tr>
         </table>
+        <p style="font-size:0.85em;color:#7f8c8d;">*FY2023勘误（2026-10-21）：原表误写净利润$518M/ROE 48.3%/PE 26.8x。经SEC文件核实（FY2023 Q4业绩Exhibit 99.2），FY2023 GAAP净利润为<strong>$271.8M</strong>（含$226M增量DOJ法律准备金，Q4单季亏损$68.4M）；ROE约26%；PE按GAAP口径约44x、按调整后口径约24x。$518M实为剔除法律准备金后的<strong>调整后净利润</strong>（ADEPS $3.88 × ~133M股 ≈ $518M），此前与GAAP口径混用，特此更正。详见4.2节。</p>
 
         <div class="chart-container">
             <canvas id="roeChart"></canvas>
@@ -258,6 +259,27 @@
             3. <strong>利润率稳定</strong>：调整后EBITDA利润率连续3年维持在11%，说明管理层在营收下降时仍能守住利润率<br>
             4. <strong>PE大幅压缩</strong>：从27x降至10.5x，市场正在为政府合同风险和高杠杆重新定价
         </div>
+
+        <h3>4.2 深度专题：FY2023净利润暴跌42%、FY2024/25连续暴增的原因拆解</h3>
+        <p><strong>先对齐口径</strong>：BAH财年截至3月31日（FY2023=2022年4月-2023年3月）。官方口径的正确数字序列是：<strong>FY2021 $461M → FY2022 $469M（增收不增利，+1.7%）→ FY2023 $271.8M（-42%，真正的暴跌）→ FY2024 $606M（+123%）→ FY2025 $935M（+54.3%，创纪录）</strong>。注意FY2022实际是"持平"而非下滑——如果您的数据源显示22年也在跌，多半是自然年/财年映射差异（中文平台常把截至2023年3月的财年标成"2022年报"），本节统一按BAH官方财年表述。</p>
+
+        <h4>下跌段：FY2022停滞 + FY2023暴跌的三层原因</h4>
+        <table>
+            <tr><th>原因</th><th>影响时段</th><th>机制与金额</th><th>性质</th></tr>
+            <tr><td><strong>① DOJ法律准备金（主因）</strong></td><td>FY2023（主要Q4）</td><td>DOJ自2017年起对BAH<strong>成本会计与间接成本计费实践</strong>（涉2011-2018年政府合同）展开《虚假申报法》民事调查。FY2023累计计提<strong>$350M准备金</strong>（其中Q4一次性增提$226M），直接把Q4打成单季亏损$68.4M、全年净利打到$271.8M。2023年7月以<strong>$377.45M</strong>正式和解——美国政府采购欺诈史上最大和解案之一</td><td><span class="tag-orange">一次性·法律</span></td></tr>
+            <tr><td><strong>② 劳动力成本通胀</strong></td><td>FY2022-FY2023</td><td>"大辞职潮"+安全审查人才稀缺→政府承包商抢人大战，工资涨幅快于合同定价调整，FY2022营收+3.2%但净利仅+1.7%——典型的"增收不增利"</td><td><span class="tag-orange">周期性·行业性</span></td></tr>
+            <tr><td><strong>③ 利息负担上升</strong></td><td>FY2022-FY2023</td><td>为支撑大额回购持续举债，恰逢美联储激进加息，利息支出显著抬升，挤压净利润</td><td><span class="tag-orange">财务性</span></td></tr>
+        </table>
+
+        <h4>反弹段：FY2024 +123%、FY2025 +54.3%的三层原因</h4>
+        <table>
+            <tr><th>原因</th><th>影响时段</th><th>机制与金额</th><th>性质</th></tr>
+            <tr><td><strong>① 低基数效应（约一半涨幅是"基数魔术"）</strong></td><td>FY2024</td><td>FY2023被$350M准备金压扁→FY2024无此项目，仅"恢复正常"就贡献约一半的净利增幅（FY2024还确认了和解落地相关尾差）</td><td><span class="tag-green">会计性</span></td></tr>
+            <tr><td><strong>② AI需求爆发（真实增长）</strong></td><td>FY2024-FY2025</td><td>ChatGPT（2022年11月）引爆政府AI需求，BAH是<strong>联邦政府最大的AI服务承包商之一</strong>（DoD旗舰数据平台Advana总包商等）。营收FY2024 +15.2%（多年来最快）至$10.66B、FY2025再+12.4%至<strong>$11.98B创纪录</strong>；book-to-bill持续高于1.4x；VoLT战略（2024年推出）聚焦AI与国防科技</td><td><span class="tag-green">真实经营</span></td></tr>
+            <tr><td><strong>③ 经营杠杆与利润率扩张</strong></td><td>FY2024-FY2025</td><td>营收高增下人员利用率提升、AI类项目附加值更高：调整后EBITDA从FY2023约$1.0B→FY2024约$1.16B→FY2025 <strong>$1,315M</strong>（利润率11%），净利率从FY2023的2.9%修复至FY2025的7.8%</td><td><span class="tag-green">真实经营</span></td></tr>
+        </table>
+
+        <div class="highlight"><strong>芒格式解读：净利润的"暴跌-暴涨"= 一次性法律冲击的光学效应 × AI真实景气周期的叠加</strong>。剔除法律准备金看核心经营，BAH其实<strong>从未下滑</strong>——调整后EPS一路上行（FY2021 $3.22 → FY2022 $3.48 → FY2023 $3.88 → FY2024 $4.59 → FY2025 $6.35），营收连续增长。这给两个教训：<strong>（1）看政企服务公司的GAAP净利润，必须先拆一次性法律/重组项目</strong>（当年市场也是这么定价的——FY2023 PE按GAAP约44x、按调整后仅约24x，说明市场看穿了准备金的一次性属性）；（2）高增长年份埋着高基数与客户集中度风险——FY2026政府效率部（DOGE）砍单、民用业务暴跌22%（见第八、九章），正是FY2024/25盛世的另一面。</div>
     </div>
 
  <h2 id="chapter5">五、竞争分析</h2>析 -->
