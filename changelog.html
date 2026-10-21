@@ -155,6 +155,24 @@
 
     <!-- 更新日志条目 - 按时间倒序排列，最新在最上面 -->
 
+    <div class="log-entry fix">
+        <div class="log-header">
+            <span class="log-date">2026-10-21</span>
+            <span class="log-type fix">修复</span>
+        </div>
+        <div class="log-desc">
+            <ul>
+                <li><strong>修复bah.html整章不渲染的严重故障</strong>（用户反馈"找不到第四章和4.2节"）：第四章标题行存在<strong>未闭合HTML注释</strong>（<code>&lt;!-- 第四章：历史财务&lt;h2...&gt;</code>，无<code>--&gt;</code>结束），注释一直延续到第五章标题行才闭合——导致<strong>整个第四章（财务表格、三张图表、4.1、4.2节）全部被浏览器当作注释吞掉不渲染</strong>。已修复为标准结构（h2在白卡片外+info-box包裹）</li>
+                <li>同步修复另外5处历史遗留标签破损：第二章开启标签损坏（<code>&lt;div class="info-&lt;h2...&gt;</code>）、第三章开启标签损坏（<code>&lt;di&lt;h2...&gt;</code>）、第五章游离文本"析 --&gt;"+重复标题、第六章游离"−&gt;"+重复标题、第七章标题嵌在highlight卡片内；补齐第五章info-box缺失的闭合div</li>
+                <li>验证结果：HTML注释8/8配对、div标签49/49配对、嵌套深度归零；第六章利润分配表FY2023净利润同步勘误（$518M→$272M GAAP口径+脚注说明调整后口径），与第四章4.2节保持一致</li>
+                <li>教训记录：<strong>curl验证源码存在≠浏览器渲染</strong>——注释内的内容源码可见但页面不显示，后续新增章节必须做渲染级验证</li>
+            </ul>
+        </div>
+        <div class="log-files">
+            <span class="modified">~ bah.html, changelog.html</span>
+        </div>
+    </div>
+
     <div class="log-entry update">
         <div class="log-header">
             <span class="log-date">2026-10-21</span>
