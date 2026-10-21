@@ -155,6 +155,24 @@
 
     <!-- 更新日志条目 - 按时间倒序排列，最新在最上面 -->
 
+    <div class="log-entry fix">
+        <div class="log-header">
+            <span class="log-date">2026-10-21</span>
+            <span class="log-type fix">修复</span>
+        </div>
+        <div class="log-desc">
+            <ul>
+                <li>bah.html <strong>4.1关键财务数据总览表全面复核并修正</strong>（数据源：SEC XBRL原始数据API——Assets/StockholdersEquity标签逐期提取10-K报告值，S&amp;P Global/stockanalysis资产负债表交叉验证）</li>
+                <li><strong>修正四列系统性错误</strong>：①ROE列（按净利润÷期末权益重算：FY2017 51.2%→44.1%、FY2019 44.2%→50.2%、FY2021 38.7%→43.0%、FY2022 40.1%→44.8%、FY2026 80.7%→77.0%等）②负债/资产列（原表60-69%全部错误→实际80.5%-86.3%：BAH因持续巨额回购形成$36.7亿库存股，权益极薄，总负债率长期80%+）③权益乘数列（原表3.9-5.8x→实际5.1-7.3x）④PE列（改为年末价÷GAAP摊薄EPS口径并标注近似值，FY2025 12.5x→~14x、FY2024 27.1x→~30x、FY2023→~43x）</li>
+                <li>营收/净利润/调整后EPS/EBITDA利润率列核对无误（微调：FY2017营收5.80→5.81、FY2023 9.28→9.26、FY2021/22/24 EBITDA利润率各修正0.1个百分点）；三张Chart.js图表数据数组同步更新；表格下方芒格视角highlight同步修正（ROA 11.8%→12.0%）；4.2节FY2023 PE表述44x/24x→43x/22x</li>
+                <li>新增口径说明脚注：完整披露FY2017-FY2026期末总资产与股东权益序列及计算方法，方便复核</li>
+            </ul>
+        </div>
+        <div class="log-files">
+            <span class="modified">~ bah.html, changelog.html</span>
+        </div>
+    </div>
+
     <div class="log-entry update">
         <div class="log-header">
             <span class="log-date">2026-10-21</span>
