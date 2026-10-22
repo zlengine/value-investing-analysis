@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coinbase Global（coinbase）- 巴菲特/芒格式基本面分析</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f2f5;
+            color: #333;
+        }
+        h1 {
+            text-align: center;
+            color: #1a5276;
+            font-size: 2.2em;
+            margin-bottom: 5px;
+        }
+        .subtitle {
+            text-align: center;
+            color: #7f8c8d;
+            font-size: 1.1em;
+            margin-top: 0;
+        }
+        h2 {
+            color: #1a5276;
+            border-bottom: 2px solid #2e86c1;
+            padding-bottom: 8px;
+            margin-top: 40px;
+        }
+        h3 {
+            color: #21618c;
+            margin-top: 25px;
+        }
+        .info-box {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            background: white;
+        }
+        th {
+            background-color: #1a5276;
+            color: white;
+            padding: 10px;
+            text-align: left;
+        }
+        td {
+            padding: 10px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        tr:hover {
+            background-color: #eaf2f8;
+        }
+        .highlight {
+            background-color: #fef9e7;
+            border-left: 5px solid #2e86c1;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        .moat-item {
+            background-color: #eafaf1;
+            border-left: 5px solid #27ae60;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+        .risk-item {
+            background-color: #fdedec;
+            border-left: 5px solid #e74c3c;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+        .tag-green { color: #27ae60; font-weight: bold; }
+        .tag-orange { color: #e67e22; font-weight: bold; }
+        .tag-red { color: #e74c3c; font-weight: bold; }
+        .section-nav {
+            background: white;
+            border-radius: 10px;
+            padding: 15px 25px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+        .section-nav a {
+            display: inline-block;
+            margin: 5px 10px;
+            padding: 6px 14px;
+            background: #eaf2f8;
+            color: #1a5276;
+            text-decoration: none;
+            border-radius: 15px;
+            font-size: 0.9em;
+        }
+        .section-nav a:hover {
+            background: #2e86c1;
+            color: white;
+        }
+        .chart-container {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 15px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+    </style>
+</head>
+<body>
+    <div class="top-nav-bar"></div>
+    <script src="nav_bar.js?v=20260624"></script>
+    <span id="topbarCode" style="display:none;">COIN</span>
+
+    <h1>Coinbase Global, Inc.（coinbase）基本面分析</h1>
+    <p class="subtitle">NASDAQ: COIN ｜ 美国最大受监管加密资产交易所：全球资产的"合规入口" + 净现金堡垒 + 强周期双刃剑 ｜ 巴菲特/芒格式八章程式分析</p>
+
+    <div class="section-nav">
+        <a href="#chapter1">公司基本信息</a>
+        <a href="#chapter2">业务分析</a>
+        <a href="#chapter3">产品竞争力分析</a>
+        <a href="#chapter4">历史财务指标</a>
+        <a href="#chapter5">债务分析</a>
+        <a href="#chapter6">竞争分析</a>
+        <a href="#chapter7">利润分配分析</a>
+        <a href="#chapter8">投资总结</a>
+    </div>
+
+    <!-- 一、公司基本信息 -->
+    <h2 id="chapter1">一、公司基本信息</h2>
+    <div class="info-box">
+        <table>
+            <tr><td>公司全称</td><td>Coinbase Global, Inc.</td></tr>
+            <tr><td>股票代码</td><td>NASDAQ: COIN（A类股）</td></tr>
+            <tr><td>市值</td><td><strong>约$450亿</strong>（2026年10月21日，$170.85/股；较52周高点$373.25回撤约54%）</td></tr>
+            <tr><td>企业价值（EV）</td><td>约$400亿（净现金公司：现金及等价物约$100亿+加密投资组合 − 有息债务$59亿，EV低于市值）</td></tr>
+            <tr><td>PE / P/S / P/B</td><td>TTM亏损（n/m）/ 7.6x / 约3.5x（2026年10月）</td></tr>
+            <tr><td>成立时间</td><td>2012年，Brian Armstrong与Fred Ehrsam创立</td></tr>
+            <tr><td>总部</td><td>无实体总部（远程优先），注册地特拉华州</td></tr>
+            <tr><td>CEO / CFO</td><td>Brian Armstrong / Alesia Haas</td></tr>
+            <tr><td>员工</td><td>4,951人（2025年Q4，含Deribit并表）</td></tr>
+            <tr><td>上市</td><td>2021年4月14日，NASDAQ直接上市（非传统IPO）</td></tr>
+            <tr><td>2026年战略（官方）</td><td>①"Everything Exchange"（一个平台交易加密/衍生品/股票/预测市场）②稳定币与支付基础设施③Base链上世界（DeFi集成与Base App）</td></tr>
+        </table>
+        <div class="highlight"><strong>一句话认识这家公司</strong>：全球有约4万亿美元加密资产总市值，其中<strong>超过12%存放在Coinbase平台上</strong>——它是全球最大合规加密交易所、美国机构入口的事实标准、全球最大加密期权交易所Deribit的拥有者、第二大稳定币USDC的收入分成方（与Circle五五分成）、以太坊最大Layer-2网络Base的运营方。2025年营收$71.8亿（+9%）、交易量$5.2万亿（+156%）、12个年收入超$1亿的产品。但它也是一台<strong>随币价波动的过山车</strong>：2021年净利$36亿→2022年巨亏$26亿→2024年$26亿→2026年上半年连亏两季（加密资产市值重计损失）。当前股价较52周高点腰斩，正值行业寒冬。</div>
+        <p><strong>最后更新</strong>：2026年10月22日（首次创建）｜ <strong>数据截止</strong>：2026年10月（Q2 2026财报已发布，Q3 2026预计11月初发布）</p>
+    </div>
+
+    <!-- 二、业务分析 -->
+    <h2 id="chapter2">二、业务分析</h2>
+    <div class="info-box">
+        <h3>2.1 它是做什么的（说给120岁的人听）</h3>
+        <p>想象一个"合规版证交所+银行+券商"三合一，但买卖的不是股票而是比特币等加密资产。全世界的人想安全地买币、存币、赚利息，又怕小交易所卷钱跑路（FTX就是2022年这么倒的）——<strong>Coinbase就是"最让人放心的那家店"</strong>：受美国50个州+联邦监管、纳斯达克上市每季度公开审计财报、把全球12%的加密资产锁在保险库级的托管里。它赚三种钱：<strong>①手续费</strong>（你每笔交易抽成约1%）；<strong>②利息和订阅费</strong>（帮你看管的USDC稳定币拿去买国债，利息与Circle五五分成；帮你质押区块链奖励；机构托管费；Coinbase One会员费）；<strong>③衍生品</strong>（2025年收购的Deribit是全球最大加密期权交易所，机构在那里对冲风险）。当币价涨、交易火爆时它日进斗金；币价跌时收入锐减——但订阅与服务收入（2025年$28.3亿，是2021年周期顶点的5.5倍）提供了前所未有的"过冬棉袄"。</p>
+
+        <h3>2.2 业务板块（FY2025，自然年）</h3>
+        <table>
+            <tr><th>板块</th><th>FY2025营收</th><th>占比</th><th>说明</th></tr>
+            <tr><td>消费者交易（Consumer）</td><td>$3,322.8M</td><td>46%</td><td>散户买卖抽佣，take rate约1%——币价与交易量的高Beta业务</td></tr>
+            <tr><td>订阅与服务（Subs & Services）</td><td>$2,828.0M</td><td>39%</td><td>稳定币收入$1,348.8M（+48%，USDC储备利息分成）+区块链奖励$677.4M（质押）+利息与金融费$247.0M+其他$554.8M（托管/Coinbase One/Base费）——<strong>周期缓冲垫</strong></td></tr>
+            <tr><td>机构交易（Institutional）</td><td>$479.7M</td><td>7%</td><td>Prime经纪+现货+衍生品（Deribit并表后Q4创纪录）</td></tr>
+            <tr><td>其他交易收入</td><td>$252.9M</td><td>4%</td><td>即时转账费+Base链交易费</td></tr>
+            <tr><td>公司利息及其他收入</td><td>$297.9M</td><td>4%</td><td>自有现金池的利息</td></tr>
+            <tr><td><strong>合计（总营收）</strong></td><td><strong>$7,181.3M（+9.4%）</strong></td><td>100%</td><td>调整后EBITDA $2,808M（净营收利润率约41%）；GAAP净利$1,260M（含Q4加密资产重计-$667M拖累）</td></tr>
+        </table>
+        <p><strong>2026年上半年（行业下行期）</strong>：Q1总营收$1.4B（交易$756M+订阅$584M）、净亏损$394M（主要为非现金加密资产重计损失）、调整后EBITDA +$303M（连续第13个季度为正）；Q2总营收$1.2B、净亏损$359M、调整后EBITDA +$208M（连续第14季为正）；Q1现金及等价物$102亿。<strong>行业寒冬中调整后EBITDA仍为正</strong>——与2022年（当年EBITDA转负、裁员20%）形成鲜明对比，证明订阅收入+成本纪律的"穿越周期能力"是真实改善。</p>
+
+        <h3>2.3 地理与商业模式</h3>
+        <ul>
+            <li>地理：美国为主（2024年约80%+），Deribit并表后国际衍生品敞口显著上升（Deribit总部新加坡/阿姆斯特丹，服务全球机构）；</li>
+            <li>客户：1亿+验证用户，付费用户约数百万级；机构端服务8/10的头部对冲基金与大量企业/政府（部分政府选它做战略比特币储备托管）；</li>
+            <li>赚钱模式：交易抽佣（量×价）+资产规模驱动的订阅收入（USDC规模×利率、质押规模、托管资产AUM）+期权/期货手续费——<strong>"成交量引擎+资产沉淀引擎"双轮</strong>，后者正成为更大的一半。</li>
+        </ul>
+        <div class="highlight"><strong>芒格式观察</strong>：Coinbase的本质是"<strong>全球资产上链/上所的收费站</strong>"。交易业务像券商（周期性），订阅业务像银行（资产驱动），Deribit像CME（衍生品垄断），Base像交易所自营的"开发区"。监管是它最大的成本，也是它最深的护城河——<strong>FTX倒闭那天起，"合规"从成本项变成了定价权</strong>。</div>
+    </div>
+
+    <!-- 三、产品竞争力分析 -->
+    <h2 id="chapter3">三、产品竞争力分析</h2>
+    <div class="info-box">
+        <h3>3.1 交易业务（消费者+机构，约53%营收）</h3>
+        <p><strong>可替代性：中偏高</strong> <span class="tag-orange">Medium-High</span></p>
+        <ul>
+            <li>直接替代：Binance（全球39%份额、费率更低但美国不合规）、Kraken（美国#2）、Robinhood（零佣金）、去中心化交易所Uniswind/DEX（自我托管）；</li>
+            <li>关键分化：散户端替代品多、切换容易；但<strong>美国受监管机构端近乎不可替代</strong>——大型机构、ETF发行商、政府储备的托管与Prime经纪，合规名单上只有Coinbase是"纳斯达克上市+十年无重大安全事故+全牌照"选项；</li>
+            <li>替代趋势：散户端加速（零佣金竞争），机构端稳定。</li>
+        </ul>
+        <p><strong>客户转换成本：散户低 / 机构高</strong> <span class="tag-orange">两极分化</span></p>
+        <ul>
+            <li>散户：一键转所，成本≈0（但Coinbase One订阅+法币出入金绑定提升粘性）；</li>
+            <li>机构：更换托管商=资产转移审计+合规尽调+对手方风控重做，周期数月、成本数十万美元级；ETF发行商更换托管人需重新报备SEC——<strong>事实上的锁定</strong>。</li>
+        </ul>
+        <p><strong>定价权：弱-中</strong> <span class="tag-orange">Weak-Medium</span></p>
+        <ul>
+            <li>历史记录：消费者take rate长期缓慢下行（从2021年~1.6%降至2025年~1.0%附近，Simple向Advanced转移+订阅用户免费额度）；</li>
+            <li>巴菲特测试：散户端提价10%→流向Robinhood/Binance；机构端/托管费→具备提价能力；</li>
+            <li>来源：监管壁垒（合规端）、品牌信任（FTX后时代）；趋势：散户端弱化、订阅端（Coinbase One定价）稳定。</li>
+        </ul>
+        <p><strong>交易业务综合评级：3/5星</strong> ⭐⭐⭐</p>
+
+        <h3>3.2 订阅与服务（39%营收：稳定币/质押/托管/会员）</h3>
+        <p><strong>可替代性：低-中</strong> <span class="tag-green">Low-Medium</span>（受监管场景USDC近乎唯一大规模选择；机构托管选择稀少）；<strong>转换成本：中-高</strong> <span class="tag-green">Medium-High</span>（USDC生态绑定+机构托管审计流程）；<strong>定价权：弱（结构性）</strong> <span class="tag-red">Weak</strong></span>——稳定币收入=USDC规模×储备利率，<strong>费率不由Coinbase决定而由美联储决定</strong>：2025年10月/12月两次降息已直接压低2026年稳定币收入（Q1'26 $305M环比下滑），这是当前最大的收入逆风。<strong>综合评级：3.5/5星</strong>——"类银行"资产沉淀模式，但利率敏感。</p>
+
+        <h3>3.3 Deribit衍生品+Base链（增长引擎）</h3>
+        <p><strong>Deribit：可替代性低</strong> <span class="tag-green">Low</span>——全球BTC/ETH期权<strong>绝对主导者</strong>（长期占全网期权成交量约80%+），机构对冲首选，深度与清算体系无对手；CME是唯一像样的竞争者但产品深度差距明显。<strong>Base：以太坊最大L2之一</strong>，交易量与交易费收入持续增长，是"链上华尔街"的战略入口。<strong>综合评级：4/5星</strong> ⭐⭐⭐⭐（细分垄断+期权定价权强）。</p>
+
+        <h3>3.4 消费者正反双向测试（美国加密投资者视角）</h3>
+        <div class="moat-item"><strong>我为什么选Coinbase</strong>：我是管着家里资产的普通投资者。买币对我来说最怕的不是手续费贵0.5%，而是<strong>交易所跑路</strong>——FTX暴雷卷走客户80亿美元还历历在目。Coinbase是纳斯达克上市公司，每季度财报审计公开，十年没出过大安全事故，还给我上了保险。我的USDC放里面能赚利息，订阅Coinbase One后交易零手续费还送加速提币；我叔叔那样的老派投资人只信"有SEC看着的"。机构端更是没得选：公司财库要配置比特币，合规部只放行Coinbase Prime——<strong>我买的是"不失眠"</strong>。</div>
+        <div class="risk-item"><strong>我为什么离它而去</strong>：①我是高频交易者，Binance费率0.1% vs Coinbase约1%，一年差出几万美元——走；②我是链上原生玩家，MetaMask+Uniswap自我托管，不付佣金不交托管费——走；③我只买比特币现货ETF（费率0.19%），根本不需要交易所账户——走；④Robinhood里本来就有我的股票账户，顺手零佣金买币——走；⑤要是Coinbase再出一次托管安全事故，"信任"这个唯一溢价瞬间归零——这是它输不起的赌注。</div>
+    </div>
+
+    <!-- 四、历史财务指标 -->
+    <h2 id="chapter4">四、历史财务指标（2021-2025，上市以来）</h2>
+    <div class="info-box">
+        <p>COIN于2021年4月上市，历史数据自2021年起（此前为私营公司）。数据源：SEC 10-K文件与XBRL原始数据。</p>
+        <table>
+            <tr><th>年份</th><th>总营收($M)</th><th>净利润($M)</th><th>调整后EBITDA($M)</th><th>ROE(期末权益)</th><th>负债/资产*</th><th>权益乘数*</th><th>PE(年末)</th></tr>
+            <tr><td>2021</td><td>7,839</td><td>3,624</td><td>4,111</td><td>56.8%</td><td>70.0%</td><td>3.3x</td><td>~18x</td></tr>
+            <tr><td>2022</td><td>3,194</td><td>-2,625</td><td>-578</td><td>-48.1%</td><td>93.9%*</td><td>16.4x*</td><td>亏损</td></tr>
+            <tr><td>2023</td><td>3,108</td><td>95</td><td>976</td><td>1.5%</td><td>57.4%</td><td>2.4x</td><td>~450x</td></tr>
+            <tr><td>2024</td><td>6,564</td><td>2,579</td><td>3,348</td><td>25.1%</td><td>54.4%</td><td>2.2x</td><td>~24x</td></tr>
+            <tr><td>2025</td><td>7,181</td><td>1,260</td><td>2,808</td><td>8.5%</td><td>50.1%</td><td>2.0x</td><td>~55x</td></tr>
+        </table>
+        <p style="font-size:0.85em;color:#7f8c8d;">*口径说明：期末总资产2021-2022年为当期旧列报（含客户托管资金，2022年$897亿总资产中约$700亿+为客户资产）；2024年10-K起按新列报重述（2023年末$147.5亿）。ROE=净利润÷期末股东权益（SEC XBRL：2021 $6,382M/2022 $5,455M/2023 $6,282M/2024 $10,277M/2025 $14,793M，2025年大增因Deribit收购股票对价+SBC+净利留存）。PE按年末收盘价÷当年GAAP摊薄EPS（2023/2025年被加密资产重计损失压低的EPS放大了PE）。</p>
+
+        <div class="chart-container">
+            <canvas id="roeChart"></canvas>
+        </div>
+        <div class="chart-container">
+            <canvas id="revenueChart"></canvas>
+        </div>
+
+        <div class="highlight">
+            <strong>巴菲特/芒格视角：</strong><br>
+            1. <strong>ROE是"币价Beta"不是经营质量</strong>：2021年56.8%和2022年-48.1%是同一家公司——收入与币价/交易量高度相关，这种盈利波动性本身说明<strong>它还不具备"跨越周期的定价权"</strong>；<br>
+            2. <strong>但"过冬能力"在真实改善</strong>：2022年熊市调整后EBITDA为负（-$578M）、裁员20%；2026年上半年更深的熊市中连续两季EBITDA为正——订阅收入（2021年顶点的5.5倍）+成本纪律在起作用；<br>
+            3. <strong>2025年净利$1,260M被"会计噪音"压低</strong>：GAAP净利含加密资产市值重计损失（Q4单季-$667M非现金），调整后净利$1,884M——投资者应两个都看：重计损失反映真实持币风险，调整值反映经营现金流；<br>
+            4. <strong>权益乘数2.0x且下降</strong>：杠杆温和（详见第五章），2025年权益增厚至$147.9亿主要靠股票对价收购与SBC，不是加债。
+        </div>
+    </div>
+
+    <!-- 五、债务分析 -->
+    <h2 id="chapter5">五、债务分析</h2>
+    <div class="info-box">
+        <h3>5.1 有息负债占比</h3>
+        <table>
+            <tr><th>项目</th><th>金额</th><th>说明</th></tr>
+            <tr><td>有息债务总额（2026年6月30日）</td><td>$59亿</td><td>可转换优先票据+高级票据（10-Q披露 carrying amount）；较2025年末$72亿下降$13亿——2026年上半年主动偿付/回购</td></tr>
+            <tr><td>现金及等价物（2025年末/Q1'26）</td><td>$113亿 / $102亿</td><td>2025年起USDC等支付型稳定币重分类为现金等价物</td></tr>
+            <tr><td><strong>净现金</strong></td><td><strong>约+$40-50亿</strong> <span class="tag-green">净现金</span></td><td>另有加密资产投资组合（非现金）作为第二层缓冲</td></tr>
+            <tr><td>债务构成</td><td>低息长债为主</td><td>2025年发行$20亿<strong>零息</strong>2030年可转债；存量含0.50%可转债（2026年到期）与3.375%/3.625%高级票据（2028/2031年，2023-2025年已多次折价回购缩减）</td></tr>
+            <tr><td>信用评级</td><td>投资级边缘/未广泛覆盖</td><td>2025年获评机构评级但覆盖度低，以10-Q披露为准</td></tr>
+        </table>
+
+        <h3>5.2 现金流对债务的保障</h3>
+        <ul>
+            <li><strong>净债务/EBITDA：负值（净现金）</strong> <span class="tag-green">Green</span>——即使按2026年熊市年化调整后EBITDA约$10亿计，净现金约$40亿+仍意味着实质零杠杆；</li>
+            <li><strong>利息保障倍数：约30x+</strong>（估算）：2025年调整后EBITDA $2,808M vs 利息费用（0%-3.625%票息组合，估算约$0.8-1.0亿）——公司利息<strong>收入</strong>（$298M）单独就超过了利息支出；</li>
+            <li><strong>压力测试</strong>：2022年级别的极端熊市（EBITDA -$578M）下，账上$100亿现金+零息长债结构仍可支撑多年——到期墙遥远（2026年$12.7亿可转债为最近到期，现金可全额覆盖且2026年上半年已削减债务$13亿）；</li>
+            <li><strong>杠杆趋势：去杠杆</strong>——2023-2025年持续折价回购高息票据、以0%可转债置换，总债务从峰值（含2026/2028/2031三笔）降至$59亿。</li>
+        </ul>
+
+        <h3>5.3 管理层对杠杆的态度（有出处）</h3>
+        <ul>
+            <li>Q4 2025股东信（2026年2月12日）："We ended 2025 with <strong>$11.3 billion in cash and cash equivalents</strong>... and repurchased <strong>$1.7 billion</strong> of our Class A common stock in Q4 and through February 10, 2026."——现金堡垒+股东回报并行；</li>
+            <li>资本配置行为记录：①2023-2024年在债券市价大跌时<strong>折价回购</strong>自身高息票据（买回$1债务花$0.6-0.8，直接创造股东价值）；②2025年以<strong>0%票息</strong>发行$20亿可转债——用市场情绪拿到近乎免费的资金；③2026年上半年在股价腰斩后继续回购+削减债务$13亿；</li>
+            <li>言行对照：<strong>说"保持资产负债表强势"，做的是净现金+零息置换+熊市回购</strong>——言行一致；</li>
+            <li>判断：<strong>去杠杆+股东回报并进</strong>，与"过冬型"经营策略一致，杠杆态度保守审慎。</li>
+        </ul>
+        <div class="highlight"><strong>财务安全度评级（结合行业特性）</strong>：<span class="tag-green">GREEN——净现金$40亿+，利息保障30x+，零息长债，无近期再融资墙</span>。对于一家收入随币价波动±60%的公司，这是唯一正确的资本结构——2022年熊市时它没有一分钱再融资压力，这是与FTX（挪用客户资金+高杠杆）的本质区别。</div>
+    </div>
+
+    <!-- 六、竞争分析 -->
+    <h2 id="chapter6">六、竞争分析</h2>
+    <div class="info-box">
+        <h3>6.1 分市场竞争格局</h3>
+        <table>
+            <tr><th>细分市场</th><th>Coinbase地位</th><th>主要竞争对手</th><th>份额概况</th></tr>
+            <tr><td>全球现货交易</td><td>#8（按量）/ 信任度第一</td><td>Binance、OKX、Bybit、Kraken</td><td>Binance约39%绝对主导；COIN约6%（2025年翻倍，Q1'26达8.6%创纪录）</td></tr>
+            <tr><td>美国受监管现货</td><td><strong>#1</strong></td><td>Kraken（#2）、Robinhood、Gemini</td><td>COIN占美国受监管现货的多数份额</td></tr>
+            <tr><td>加密期权/衍生品</td><td><strong>#1</strong>（Deribit）</td><td>CME、Paradigm、币安衍生品</td><td>Deribit长期占全网BTC/ETH期权成交量约80%+</td></tr>
+            <tr><td>稳定币（USDC分成）</td><td>#2</td><td>Tether(USDT #1)、PayPal(PYUSD)</td><td>USDC市值约$600亿级 vs USDT约$1400亿+；受监管机构场景USDC占优</td></tr>
+            <tr><td>机构托管/Prime</td><td><strong>#1</strong>（美国）</td><td>BitGo、Anchorage、银行系（BNY）</td><td>平台资产$400B+级（含托管），美国ETF主要托管人</td></tr>
+            <tr><td>Layer-2（Base）</td><td>头部</td><td>Arbitrum、Optimism、Solana生态</td><td>Base按交易量为以太坊L2第一梯队</td></tr>
+            <tr><td>代币化股票/预测市场（新战场）</td><td>入场者</td><td>Kalshi、Polymarket、Robinhood</td><td>2025-2026年"Everything Exchange"战略刚开始落地</td></tr>
+        </table>
+
+        <h3>6.2 护城河评估</h3>
+        <table>
+            <tr><th>护城河维度</th><th>评级</th><th>分析</th></tr>
+            <tr><td>监管牌照壁垒</td><td><span class="tag-green">极强</span></td><td>50州货币传输牌照+纽约BitLicense+SEC/CFTC注册+FCM期货牌照——新玩家复制需数年与数亿合规成本，且监管趋严下门槛还在升高</td></tr>
+            <tr><td>品牌与信任</td><td><span class="tag-green">强</span></td><td>FTX暴雷后"纳斯达克上市+十年无重大事故"成为稀缺资产；政府/机构选它的逻辑与个人投资者相同——不失眠</td></tr>
+            <tr><td>网络效应</td><td><span class="tag-orange">中</span></td><td>机构流动性聚集+USDC生态+Base开发者网络；但交易本身无网络效应（Binance更大）</td></tr>
+            <tr><td>转换成本</td><td><span class="tag-orange">两极</span></td><td>机构托管/Prime高；散户近零——护城河集中在机构端</td></tr>
+            <tr><td>规模经济</td><td><span class="tag-orange">中</span></td><td>技术/合规固定成本被$7B营收摊薄；但零佣金对手证明散户端规模护城河有限</td></tr>
+        </table>
+        <div class="highlight"><strong>护城河总结</strong>：COIN的护城河是"<strong>监管+信任+机构关系</strong>"三位一体——本质上是"合规垄断"而非"技术垄断"。芒格的检验：它能持续收高于对手的费率而不流失客户吗？机构端能，散户端不能。真正的长期威胁不是Binance，而是<strong>行业本身的成功</strong>：如果ETF与银行托管让机构不再需要交易所，护城河会被绕开——这就是为什么公司拼命向Deribit/稳定币/Base/代币化股票扩展（在护城河被绕开前把自己变成多收租的城堡）。</div>
+    </div>
+
+    <!-- 七、利润分配分析 -->
+    <h2 id="chapter7">七、利润分配分析（2021-2025）</h2>
+    <div class="info-box">
+        <table>
+            <tr><th>年份</th><th>净利润($M)</th><th>分红</th><th>回购($M)</th><th>并购/扩张投入</th><th>留存额($M)</th><th>留存率</th></tr>
+            <tr><td>2021</td><td>3,624</td><td>0</td><td>0</td><td>轻资产运营，资本开支极低</td><td>3,624</td><td>100%</td></tr>
+            <tr><td>2022</td><td>-2,625</td><td>0</td><td>0</td><td>裁员20%收缩</td><td>n/m</td><td>n/m</td></tr>
+            <tr><td>2023</td><td>95</td><td>0</td><td>0</td><td>折价回购自身票据（资本结构操作）</td><td>95</td><td>100%</td></tr>
+            <tr><td>2024</td><td>2,579</td><td>0</td><td>0</td><td>持续去杠杆</td><td>2,579</td><td>100%</td></tr>
+            <tr><td>2025</td><td>1,260</td><td>0</td><td>约1,500-1,700†</td><td><strong>收购Deribit约$2.9B</strong>（2025年最大加密并购，大头为股票对价）</td><td>1,260</td><td>100%</td></tr>
+        </table>
+        <p style="font-size:0.85em;color:#7f8c8d;">†首个回购授权2025年3月（$10亿）；公司披露Q4'25+至2026年2月10日累计回购$17亿，2025自然年回购约$15亿量级。回购不减少留存额（"回购即留存"原则）。从未分红。</p>
+        <ul>
+            <li><strong>可持续增长率</strong>：ROE 8.5%（2025年）× 留存率100% ≈ <strong>8.5%</strong>——但盈利波动性使该指标在此公司参考意义有限；</li>
+            <li><strong>资本配置质量</strong>：①上市前四年零分红零回购、全额留存筑资产负债表（2022年熊市证明正确）；②2023-2024年折价买回自家债券（低于面值20-40%）——教科书级的资本配置；③<strong>回购时点优秀</strong>：2026年股价腰斩后加速回购（Q4'25至2月$17亿），而非2021年高点——与多数科技公司相反，加分；④Deribit收购$2.9B是关键一搏：用垄断资产（期权）对冲现货周期，2025年Deribit收入创纪录，初步验证成功；</li>
+            <li><strong>芒格评分：B+/A-</strong>——留着过冬粮、便宜时买自家债券和股票、收购买的是垄断而非故事。扣分项：SBC（股票补偿）年均约$10亿量级，对股东的实际稀释不可忽视。</li>
+        </ul>
+    </div>
+
+    <!-- 八、投资总结 -->
+    <h2 id="chapter8">八、投资总结</h2>
+    <div class="info-box">
+        <h3>8.1 分维度评级</h3>
+        <table>
+            <tr><th>维度</th><th>评级</th><th>理由</th></tr>
+            <tr><td>业务可理解性</td><td><span class="tag tag-orange">2/5</span></td><td>公司好懂（收费站+银行+券商），但行业不可懂——十年后加密世界的形态超出任何人的能力圈。芒格："如果我看不懂十年后的行业，我就出局"</td></tr>
+            <tr><td>护城河</td><td><span class="tag tag-green">3.5/5</span></td><td>监管+信任+机构关系的合规垄断；散户端薄、机构端厚；衍生品(Deribit)细分垄断</td></tr>
+            <tr><td>资本配置</td><td><span class="tag tag-green">4/5</span></td><td>净现金+零息置换+折价买债+熊市回购+收购垄断资产——教科书级；扣SBC稀释分</td></tr>
+            <tr><td>财务安全</td><td><span class="tag tag-green">4.5/5</span></td><td>净现金$40亿+、利息保障30x+、零息长债、无再融资墙——行业最强的资产负债表</td></tr>
+            <tr><td>增长前景</td><td><span class="tag tag-orange">3/5</span></td><td>顺风：GENIUS稳定币法案、代币化资产、机构采用、监管明确化；逆风：降息压稳定币收入、周期深不可测</td></tr>
+            <tr><td>估值吸引力</td><td><span class="tag tag-red">2/5</span></td><td>P/S 7.6x、TTM亏损、市场一致预期forward PE约55x+——即便股价腰斩，仍不便宜</td></tr>
+        </table>
+
+        <h3>8.2 估值参考</h3>
+        <table>
+            <tr><th>情景</th><th>假设</th><th>估值含义</th></tr>
+            <tr><td>熊市（币价长期低迷）</td><td>交易收入再降40%+降息压稳定币收入</td><td>调整后EBITDA约$10亿、净现金$40亿支撑下限约$200-250亿市值（$80-95/股），当前价位仍有下行风险</td></tr>
+            <tr><td>中性（周期震荡）</td><td>订阅收入继续增长、交易随币价波动</td><td>正常化调整后EBITDA $20-25亿×15-20x±净现金 → $350-550亿市值区间（当前$450亿处于区间中部）</td></tr>
+            <tr><td>牛市（机构化+代币化成功）</td><td>"Everything Exchange"落地、USDC翻倍、Deribit持续创纪录</td><td>EBITDA $40亿+、市场给成长溢价 → $700亿+（$270+/股）</td></tr>
+        </table>
+
+        <h3>8.3 关键观察指标</h3>
+        <ul>
+            <li><strong>催化剂</strong>：BTC现货ETF资金流入、GENIUS法案后USDC规模增长、代币化股票上线进展、每季"订阅与服务收入占比"（穿越周期能力的核心指标）、回购执行速度；</li>
+            <li><strong>风险</strong>：①加密资产长期熊市（收入端-60%弹性）②美联储降息周期持续压稳定币收入③零佣金竞争侵蚀散户take rate④托管安全事件（信任护城河一夜归零）⑤监管反复。</li>
+        </ul>
+
+        <div class="highlight"><strong>芒格式最终结论：这是一家"行业内最好的公司"遇上"我们看不懂的行业"</strong>。用巴菲特的标准逐条打分：业务简单？收费站+银行模式本身简单，但收入由币价决定——<strong>盈利的不可预测性是硬伤</strong>。护城河？合规垄断真实存在，且FTX死后加深。财务安全？行业最强。管理层？Armstrong团队十年穿越三轮周期、资本配置纪律清晰。<strong>估值？$450亿=7.6x P/S买一个收入-60%弹性的周期股，没有安全边际</strong>。巴菲特和芒格会说什么？"这家公司管理层我们尊敬，但我们在能力圈外画一条线——我们不投资自己无法预测十年后现金流的企业，无论它多优秀。"对有能力判断加密周期的投资者，COIN是该行业唯一的"平台级+净现金+合规垄断"标的；对格雷厄姆-多德式的价值投资者，<strong>正确的动作是留在圈外，把它放进观察清单，等待"恐慌定价"（例如市值逼近净现金+$150亿的水平）再重新审视</strong>。</div>
+
+        <h3>8.4 数据来源</h3>
+        <ul>
+            <li>Coinbase Q4 2025 Shareholder Letter（2026-02-12）：FY2025营收$7,181.3M/净利$1,260M/调整后EBITDA $2,808M、分部收入明细、交易量$5.2T、现金$11.3B、回购$1.7B、12%全球加密资产、12个$100M+产品</li>
+            <li>Coinbase Q1 2026 Earnings Deck/电话会（2026-05-07，CFO Alesia Haas）：营收$1.4B、净亏损$394M、调整后EBITDA $303M（连续13季为正）、现金$10.2B、稳定币收入$305M</li>
+            <li>Coinbase Q2 2026 Earnings Presentation（2026-07-30）：营收$1.2B、净亏损$359M、调整后EBITDA $208M（连续14季为正）</li>
+            <li>SEC 10-Q（2026-06-30）：有息债务$59亿（2025年末$72亿）；SEC XBRL API：期末股东权益与总资产序列（2018-2025）</li>
+            <li>市场数据：Morningstar/雪球/东方财富（2026-10-21：$170.85、市值$450.8亿、P/S 7.61、52周高点$373.25）</li>
+            <li>竞争格局：CoinLaw/Investing in the Web/CoinGecko Trust Score（Binance约39%全球份额、COIN约6%/Q1'26达8.6%、Deribit期权主导地位）</li>
+        </ul>
+    </div>
+
+    <!-- 图表脚本 -->
+    <script src="scores_client.js"></script>
+    <script src="stock_topbar.js"></script>
+    <script>
+        const ctx1 = document.getElementById('roeChart');
+        if (ctx1) {
+            new Chart(ctx1, {
+                type: 'line',
+                data: {
+                    labels: ['2021', '2022', '2023', '2024', '2025'],
+                    datasets: [
+                        {
+                            label: 'ROE (%)',
+                            data: [56.8, -48.1, 1.5, 25.1, 8.5],
+                            borderColor: '#2e86c1',
+                            backgroundColor: 'rgba(46, 134, 193, 0.1)',
+                            fill: false,
+                            yAxisID: 'y'
+                        },
+                        {
+                            label: '净利润 ($M)',
+                            data: [3624, -2625, 95, 2579, 1260],
+                            type: 'bar',
+                            backgroundColor: 'rgba(39, 174, 96, 0.5)',
+                            yAxisID: 'y1'
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: { position: 'left', title: { display: true, text: 'ROE (%)' } },
+                        y1: { position: 'right', title: { display: true, text: '净利润 ($M)' }, grid: { drawOnChartArea: false } }
+                    }
+                }
+            });
+        }
+        const ctx2 = document.getElementById('revenueChart');
+        if (ctx2) {
+            new Chart(ctx2, {
+                type: 'bar',
+                data: {
+                    labels: ['2021', '2022', '2023', '2024', '2025'],
+                    datasets: [
+                        {
+                            label: '交易收入 ($M)',
+                            data: [6822, 2377, 1425, 3986, 4055],
+                            backgroundColor: 'rgba(46, 134, 193, 0.7)'
+                        },
+                        {
+                            label: '订阅与服务收入 ($M)',
+                            data: [518, 793, 1410, 2307, 2828],
+                            backgroundColor: 'rgba(39, 174, 96, 0.7)'
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    scales: { y: { beginAtZero: true, title: { display: true, text: '$M' } } }
+                }
+            });
+        }
+    </script>
+</body>
+</html>
