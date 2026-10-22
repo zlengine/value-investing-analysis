@@ -76,7 +76,7 @@
     <script src="nav_bar.js?v=20260624"></script>
     <span id="topbarCode" style="display:none;">BAH</span>
     <h1>Booz Allen Hamilton (NYSE: BAH)</h1>
-    <p style="text-align:center;color:#666;">巴菲特/芒格式价值投资基本面分析 | 更新日期：2026年10月21日（依据SEC XBRL原始数据全面复核4.1财务总览表：修正ROE/负债率/权益乘数/PE四列系统性错误）</p>
+    <p style="text-align:center;color:#666;">巴菲特/芒格式价值投资基本面分析 | 更新日期：2026年10月22日（新增5.4节Advana案例：人力密集型模式拆解与未来十年经营风险全景）</p>
 
     <div class="section-nav">
         <a href="#chapter1">公司基本信息</a>
@@ -354,6 +354,36 @@
         <div class="highlight" style="border-left-color:#e74c3c;">
             <strong>护城河侵蚀风险：</strong>Palantir和Anduril代表了一种新的竞争范式——"软件优先"vs"人力优先"。如果政府采购从"按人头付费"转向"按产品/平台付费"，BAH的人力密集型模式将面临结构性挑战。这不是短期风险，而是5-10年的长期威胁。
         </div>
+
+        <h3>5.4 案例专题：从Advana项目看懂BAH的"人力密集型"模式与未来十年风险</h3>
+
+        <h4>5.4.1 一个真实项目：Advana——五角大楼的"数据中台"</h4>
+        <p><strong>项目背景</strong>：五角大楼有数千个互不兼容的老旧业务系统（工资、库存、采购、维修……各说各话）。国会要求五角大楼通过财务审计（2018财年NDAA第911-913条），但数据不通就审计不了。于是DoD要建一个"数据中台"把所有系统接进来——这就是<strong>Advana</strong>（"Advancing Analytics"，现为War Data Platform）。<strong>BAH是它的总包商</strong>：2021年经GSA拿下五年$6.74亿合同，把Advana做成了DoD高管决策仪表盘、数据工具和分析产品的企业级平台，后来还承接了GAMECHANGER（立法文本AI分析工具）等技术支持。</p>
+        <p><strong>人力密集型到底是什么意思？——拆开这个$6.74亿看看钱花在哪</strong></p>
+        <p>想象两家公司接同一单：Palantir的方式是卖出Foundry平台（软件许可证+订阅），装好后客户自己用，边际成本趋近于零，毛利80%+；<strong>BAH的方式是派驻"人"到客户现场</strong>——数据工程师逐个对接五角大楼的数千个老旧系统（每个接口都是定制活）、安全架构师做涉密合规、分析师帮军官写查询、培训师教用户用——<strong>合同按"人工时×费率"计费（T&M/工时合同）或成本加成（cost-plus）</strong>。BAH的3万余名员工就是"产能"本身：营收≈人数×利用率×计费率。这就是FAR（联邦采购条例）里T&M合同的本质：政府买的不是产品而是<strong>专业人力时间</strong>。它的好处（对BAH）：需求确定（审计法规强制）、收入可见（积压$380亿）、客户离不开（换供应商=重新培训整个体系）；它的软肋：<strong>收入天花板=能雇到并留住多少持安全许可的人，且"更多工时=更多收入"意味着用AI提效反而可能减少自己的收入</strong>。</p>
+        <table>
+            <tr><th>维度</th><th>BAH模式（人力密集）</th><th>Palantir模式（软件密集）</th></tr>
+            <tr><td>政府买单买的是什么</td><td>专业人力时间（T&M/cost-plus按工时计费）</td><td>软件平台订阅（按许可证/用量）</td></tr>
+            <tr><td>产能</td><td>31,500名员工（其中26,400+持TS/SCI许可）</td><td>一套可无限复制的代码</td></tr>
+            <tr><td>毛利率</td><td>~11%（调整后EBITDA利润率）</td><td>~82%（2025年，政府业务$2.4B+53%）</td></tr>
+            <tr><td>增长约束</td><td>招人速度+安全许可产能</td><td>销售速度</td></tr>
+            <tr><td>AI提效对收入的影响</td><td><span class="tag tag-red">悖论：提效=工时减少=收入减少</span></td><td><span class="tag tag-green">提效=产品更强=卖更多</span></td></tr>
+        </table>
+
+        <h4>5.4.2 信号已经出现：Advana后续合同的改组</h4>
+        <div class="risk-item"><strong>2025年7月，Advana规划的$150亿后续大单（AAMAC）被取消</strong>——DoD没有继续走"总包商+人力驻场"的老路，而是改组采购思路，引入更商业化的交付模式。这正是上表那个悖论的现实版：当五角大楼想要"买产品"而不是"租人"时，$150亿量级的收入机会就会流向软件优先型玩家（Palantir已进入DoD数据生态，Anduril以硬件+软件平台模式崛起，Google等商用AI公司也在争夺Defense Cloud合同）。对BAH而言，Advana改组不是丢一张合同那么简单——它是政府采购范式转移的风向标。</div>
+
+        <h4>5.4.3 未来十年的经营风险全景（按时间轴排序）</h4>
+        <table>
+            <tr><th>风险</th><th>机制</th><th>时间尺度</th><th>严重度</th></tr>
+            <tr><td><strong>① 采购范式转移（最根本）</strong></td><td>政府从"按人头买服务"转向"按效果/按产品付费"（outcome-based procurement）；软件定义战争（SDW）要求"商业优先"——军用流程软件化后，驻场人力需求结构性下降</td><td>5-10年、不可逆</td><td><span class="tag tag-red">高</span></td></tr>
+            <tr><td><strong>② AI吞噬自己的工时</strong></td><td>BAH自己就是AI大户（帮政府落地AI），但GenAI写代码/做分析若让项目工时降30%，T&M收入同比例缩水——<strong>模式层面不存在"AI提效"的赢家路径，除非完成向产品化转型</strong>（VoLT战略正是为此）</td><td>3-7年</td><td><span class="tag tag-red">高</span></td></tr>
+            <tr><td><strong>③ 政治与预算周期</strong></td><td>97%收入来自美国政府：政府关门（FY2026 Q3已发生）、DOGE式削减、政治风向（BAH已被点名"审查承包商"）、每年10月1日拨款死线——这不是偶发是常态</td><td>每年</td><td><span class="tag tag-orange">中</span></td></tr>
+            <tr><td><strong>④ 人才争夺战</strong></td><td>产能=持许可的人。硅谷defense-tech（Palantir/Anduril/SpaceX）用股票期权抢走最顶尖的AI工程师；BAH人才成本上升侵蚀11%的利润率；且人才流失会带走下一代产品能力</td><td>持续</td><td><span class="tag tag-orange">中</span></td></tr>
+            <tr><td><strong>⑤ 利润率天花板</strong></td><td>人力模式的EBITDA利润率稳定在~11%，永远做不出软件的80%毛利——估值天花板被锁死（市场只给10.7x PE）</td><td>结构性</td><td><span class="tag tag-orange">中</span></td></tr>
+            <tr><td><strong>⑥ 债务与回购的脆弱性</strong></td><td>总债务~$40亿+净杠杆2.7x+账面权益仅$11亿（回购掏薄）——若政治冲击导致营收骤降，偿债安全垫比报表看起来薄</td><td>尾部风险</td><td><span class="tag tag-orange">中</span></td></tr>
+        </table>
+        <div class="highlight"><strong>芒格式总结</strong>：BAH当下的"坏消息清单"（营收-6.4%、Civil暴跌22%、DOGE砍单）都是<strong>周期性噪音</strong>；真正的<strong>结构性问题只有一个——商业模式</strong>。人力密集+按工时计费在"软件还做不了复杂政府活"的时代是印钞机（护城河=安全许可+转换成本），但在AI让软件越来越能干的时代，它的收入公式（人数×工时×费率）与未来方向相反。BAH的应对（VoLT战略、AI原生产品、分红+回购并进）方向正确，但转型是"边开飞机边换引擎"。对投资者的含义：<strong>10.7x PE不是白给的——市场正在为"这家公司十年后还存在多少按人头付费的需求"定价</strong>。观察指标：每年10-K里"产品化收入占比"是否持续上升、Advana式改组事件是否蔓延、book-to-bill能否守住1.0x。</div>
     </div>
 
     <h2 id="chapter6">六、利润分配分析（FY2017-FY2026）</h2>
