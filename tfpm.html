@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TFPM（Triple Flag Precious Metals）巴菲特芒格式分析</title>
+    <style>
+        body { font-family: 'Segoe UI', Arial, sans-serif; margin: 0; padding: 20px; background-color: #f0f2f5; color: #333; }
+        h1 { text-align: center; color: #1a5276; font-size: 2.2em; margin: 25px 0 10px 0; }
+        h2 { color: #1a5276; border-bottom: 2px solid #2e86c1; padding-bottom: 8px; margin-top: 40px; }
+        h3 { color: #21618c; margin-top: 25px; }
+        h4 { color: #2874a6; margin-top: 18px; }
+        .subtitle { text-align: center; color: #7f8c8d; font-size: 1.1em; margin-bottom: 20px; }
+        .info-box { background: white; border-radius: 10px; padding: 25px; margin: 20px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.08); }
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; background: white; }
+        th { background-color: #1a5276; color: white; padding: 10px; text-align: left; font-weight: bold; }
+        td { padding: 9px 10px; border-bottom: 1px solid #e0e0e0; }
+        tr:nth-child(even) { background-color: #f8f9fa; }
+        tr:hover { background-color: #eaf2f8; }
+        .highlight { background: #fef9e7; border-left: 4px solid #2e86c1; padding: 15px; margin: 15px 0; border-radius: 5px; }
+        .moat-item { background: #eafaf1; border-left: 4px solid #27ae60; padding: 15px; margin: 15px 0; border-radius: 5px; }
+        .risk-item { background: #fdedec; border-left: 4px solid #e74c3c; padding: 15px; margin: 15px 0; border-radius: 5px; }
+        .tag-green { color: #27ae60; font-weight: bold; }
+        .tag-orange { color: #e67e22; font-weight: bold; }
+        .tag-red { color: #e74c3c; font-weight: bold; }
+        .section-nav { background: white; border-radius: 10px; padding: 15px 25px; margin: 20px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.08); text-align: center; }
+        .section-nav a { display: inline-block; margin: 5px 10px; padding: 6px 14px; background: #eaf2f8; color: #1a5276; text-decoration: none; border-radius: 15px; font-size: 0.9em; }
+        .section-nav a:hover { background: #2e86c1; color: white; }
+    </style>
+</head>
+<body>
+    <div class="top-nav-bar"></div>
+    <script src="nav_bar.js?v=20260624"></script>
+    <span id="topbarCode" style="display:none;">TFPM</span>
+
+    <h1>Triple Flag Precious Metals（TFPM）分析</h1>
+    <p class="subtitle">TSX/NYSE: TFPM ｜ 贵金属streaming/royalty"收租模式"：零债务的金矿包租公 ｜ 巴菲特/芒格式八章程式分析（2026年10月）</p>
+
+    <div class="section-nav">
+        <a href="#chapter1">公司基本信息</a>
+        <a href="#chapter2">业务分析</a>
+        <a href="#chapter3">产品竞争力分析</a>
+        <a href="#chapter4">历史财务指标</a>
+        <a href="#chapter5">债务分析</a>
+        <a href="#chapter6">竞争分析</a>
+        <a href="#chapter7">利润分配分析</a>
+        <a href="#chapter8">投资总结</a>
+    </div>
+
+    <h2 id="chapter1">一、公司基本信息</h2>
+    <div class="info-box">
+        <table>
+            <tr><td>公司全称</td><td>Triple Flag Precious Metals Corp.</td></tr>
+            <tr><td>股票代码</td><td>TSX: TFPM ｜ NYSE: TFPM</td></tr>
+            <tr><td>市值</td><td><strong>约59.4亿美元</strong>（2026年10月，约$29/股）</td></tr>
+            <tr><td>企业价值（EV）</td><td>约58.6亿美元（净现金公司：现金及流动性储备&gt;$10亿 − 有息债务$0，EV≈市值）</td></tr>
+            <tr><td>PE（TTM）</td><td>约14.3x（含公允价值变动的GAAP口径）/ Forward PE约22x / P/OCF约17x</td></tr>
+            <tr><td>股息</td><td>$0.24/股/年（收益率约0.83%，连续5年提高）</td></tr>
+            <tr><td>成立时间</td><td>2016年5月（由前巴里克黄金CFO Shaun Usmar创立，对冲基金Elliott Management孵化出资）</td></tr>
+            <tr><td>总部</td><td>加拿大多伦多</td></tr>
+            <tr><td>IPO</td><td>2021年5月多伦多交所，2021年10月纽交所双上市</td></tr>
+            <tr><td>CEO</td><td>Sheldon Vanderkooy（2024年起任CEO，此前任CFO；创始人Usmar已卸任）</td></tr>
+            <tr><td>股本</td><td>约2.06亿股</td></tr>
+        </table>
+        <p><strong>一句话认识</strong>：TFPM是"第四代"贵金属版税公司（royalty &amp; streaming）——不挖矿、不建厂，用一次性的预付款买下矿山未来产量的分成权，然后坐在矿门口<strong>收租数十年</strong>。十年建成242项资产组合，<strong>有息负债为零</strong>，是金价牛市中"收租不干活"的收息载体。</p>
+    </div>
+
+    <h2 id="chapter2">二、业务分析</h2>
+    <div class="info-box">
+        <h3>2.1 它是做什么的（说给120岁的人听）</h3>
+        <p>想象你家楼下有一家金铺，每天从河里淘出金子。你不买下金铺（太贵、太操心），而是十年前一次性塞给老板一笔钱，换来一张永久票据："以后每年产的金子，<strong>按市价的两到三折</strong>卖给我一份"。金铺老板用你的钱买了设备，你从此只管每年提货转手——金价涨了赚差价，金价跌了你的成本价更低，而且<strong>永远不用出设备维修费、工人工资和环保罚款</strong>。这就是streaming（金属流协议）。</p>
+        <p>另一种更简单的叫royalty（版税）：借钱给探矿人换一张"未来这矿卖多少钱，分我1.5%-5%"的地契，矿挖多挖少都是矿主的事。TFPM两种都做：<strong>16个stream + 226个royalty = 242项资产，其中34个在产</strong>。</p>
+        <p>这门生意的精髓：<strong>成本几乎固定（每盎司约$200-300），收入随金价浮动</strong>——2025年资产利润率（Asset Margin）93-94%。金价每涨10%，TFPM的毛利润涨约12%（经营杠杆）；金价跌回成本线也无损本金结构（没有矿山的折旧、亏损和关停风险）。</p>
+
+        <h3>2.2 业务构成（FY2025，SEC文件口径）</h3>
+        <table>
+            <tr><th>板块</th><th>收入($M)</th><th>占比</th><th>模式说明</th></tr>
+            <tr><td><strong>Stream及关联权益</strong></td><td><strong>309.1</strong></td><td><strong>79.5%</strong></td><td>按20-30%市价买金属：Northparkes $109.7M、Cerro Lindo $92.6M、Buriticá $21.8M、El Mochito $19.7M（预付型已到期）、Impala Bafokeng $18.6M、Auramet $17.8M等</td></tr>
+            <tr><td><strong>Royalty版税</strong></td><td><strong>79.6</strong></td><td><strong>20.5%</strong></td><td>1.5-5% NSR净冶炼权益金：Beta Hunt $17.7M、Fosterville $11.4M、Young-Davidson $8.4M、Camino Rojo $7.7M等</td></tr>
+            <tr><td><strong>合计</strong></td><td><strong>388.7</strong></td><td>100%</td><td>同比+44.5%；GEOs（金当量盎司）113,237个创纪录</td></tr>
+        </table>
+        <p><strong>商品构成</strong>：黄金约63% + 白银约34% + 铜及其他约3%（2026年Q2口径）。白银占比显著高于同行——Cerro Lindo（秘鲁银stream）、Buriticá（哥伦比亚银stream）、La Colorada构成"银矿收租三件套"，使TFPM成为对白银价格弹性最大的大型royalty公司之一。</p>
+
+        <h3>2.3 核心资产图（十年收购史）</h3>
+        <table>
+            <tr><th>年份</th><th>资产</th><th>类型</th><th>FY2025贡献</th></tr>
+            <tr><td>2016</td><td>Cerro Lindo（秘鲁，Nexa资源）</td><td>白银stream</td><td>$92.6M（24%）——创业第一单，十年后仍是基石</td></tr>
+            <tr><td>2018</td><td>Fosterville（澳洲，Agnico）</td><td>royalty</td><td>$11.4M</td></tr>
+            <tr><td>2019</td><td>Buriticá（哥伦比亚，紫金矿业旗下金银矿）</td><td>白银stream</td><td>$21.8M</td></tr>
+            <tr><td>2020</td><td>Northparkes（澳洲，Evolution矿业铜金矿）</td><td>金银stream</td><td>$109.7M（28%）——第一大资产</td></tr>
+            <tr><td>2020</td><td>Impala Bafokeng（南非）</td><td>金stream</td><td>$18.6M</td></tr>
+            <tr><td>2023</td><td>Beta Hunt（澳洲，Westgold）</td><td>royalty</td><td>$17.7M</td></tr>
+            <tr><td>2025</td><td>Orogen Royalties整体收购（C$171.5M现金+560万股）</td><td>royalty组合</td><td>一次性新增200+勘探期版税</td></tr>
+            <tr><td>2026</td><td>Ravenswood（澳洲大型金矿，$440M购5.5%金stream）</td><td>金stream</td><td>Q3'26首季交付，2027年起全年贡献</td></tr>
+            <tr><td>2026</td><td>Hope Bay（Agnico）、Arthur（AngloGold）、Koné（Montage）</td><td>royalty</td><td>开发期资产，2028-2030年陆续投产</td></tr>
+        </table>
+        <p><strong>地域分布</strong>：大洋洲（Northparkes/Ravenswood/Beta Hunt等）约45%、美洲（秘鲁/哥伦比亚/加拿大/美国）约40%、非洲及其他约15%。矿主全是别人（Evolution、Nexa、紫金、Agnico、Westgold）——TFPM不运营任何矿山。</p>
+
+        <h3>2.4 2026年上半年进展</h3>
+        <ul>
+            <li><strong>Q1-Q3'26营收</strong>：Q2 $129.2M（净利$156.3M，含公允价值收益；调整后净利$80.4M）、Q3 $106.7M（25,030 GEOs，Ravenswood首次交付）；</li>
+            <li><strong>2026年指引上调</strong>：100,000-110,000 GEOs（注意：低于2025年实际的113,237，因El Mochito预付型stream到期退出+部分资产品位波动，但金价高位使收入不降反升）；</li>
+            <li><strong>2030年展望大幅上调</strong>：150,000-160,000 GEOs（较2025年+33-41%，全部为内生增长：Ravenswood满产+Northparkes磨矿扩建+Hope Bay/Arthur/Koné投产）；</li>
+            <li>半年宣布$5.5亿收购（Ravenswood $440M + 美国资产），回购$20M股票，连续第5年提高股息。</li>
+        </ul>
+    </div>
+
+    <h2 id="chapter3">三、产品竞争力分析</h2>
+    <div class="info-box">
+        <h3>3.1 Stream/royalty权益本身（对矿主的"产品"）</h3>
+        <p>TFPM的"产品"表面是金属，实质是<strong>卖给矿主的钱（融资服务）</strong>——stream预付款对矿主是比发债更贵的钱，但不要抵押、不增加账面债务、不限制经营。评估TFPM的竞争力，核心是看它<strong>抢交易（deal sourcing）的能力</strong>。</p>
+        <p><strong>1. 可替代性：中（Medium）</strong> <span class="tag-orange">中</span></p>
+        <ul>
+            <li>替代品：银行贷款、发债、股权融资、以及WPM/FNV/RGLD等同行报价——矿主融资渠道众多；</li>
+            <li>但对中小矿主（如当年Buriticá的开发商），stream是不稀释股权、不受契约约束的"快钱"，同行大公司嫌单子小看不上——<strong>TFPM主战的中型交易（$2000万-$4.5亿）恰好是大三巨头覆盖稀疏的地带</strong>；</li>
+            <li>趋势：2025年10月Royal Gold收购Sandstorm后，中型royalty公司基本被整合完毕，TFPM成为该细分市场几乎唯一的有规模化资本能力的独立买家——<strong>可替代性正在下降（对TFPM有利）</strong>。</li>
+        </ul>
+        <p><strong>2. 客户转换成本：极高（Extremely High）</strong> <span class="tag-green">极高</span></p>
+        <ul>
+            <li>stream/royalty一经签署即与矿山寿命绑定（Northparkes协议横跨矿场扩建、Cerro Lindo十年仍在交付）——矿主"换掉"TFPM的唯一方式是买回权益（需溢价数倍）；</li>
+            <li>对TFPM股东而言更重要：这些合同<strong>本身就是几十年期的应收租金，不可撤销、随矿价水涨船高</strong>；</li>
+            <li>巴菲特测试在此反向适用：不是客户离不开TFPM，而是<strong>TFPM的合同离不开矿——矿越挖越久（矿山寿命延长、勘探成功），收入自动增长，零追加成本</strong>。</li>
+        </ul>
+        <p><strong>3. 定价权：极弱（作为金属卖方）/ 极强（作为交易买方）</strong> <span class="tag-orange">混合</span></p>
+        <ul>
+            <li>金属端：纯粹价格接受者——金价银价由全球市场决定，TFPM无任何定价权；</li>
+            <li>但<strong>成本端锁定+合同期超长</strong>创造了"通胀/涨价的免费杠杆"：每GEO现金成本约$250-300 vs 2026年金价$4,000+，价差率90%+；</li>
+            <li>交易端定价权：与矿主谈判预付款金额×分成比例时，中型市场竞争对手稀缺（见上），TFPM近年新交易的隐含回报率（IRR）仍在15-20%区间——未被卷到无利可图。</li>
+        </ul>
+        <p><strong>整体竞争力评级：3.5/5星</strong>——商业模式本身近于完美收租，但公司层面的护城河（交易获取能力）属于中等，依赖行业人脉与资本成本优势，非结构性壁垒。</p>
+
+        <h3>3.2 消费者/客户视角正反双向测试（客户=需要融资的矿主）</h3>
+        <div class="moat-item"><strong>矿主为什么选TFPM（而不是Wheaton或发债）</strong>：①单子小速度快——$3000万的royalty融资，WPM的销售流程懒得启动，银行要尽调六个月，TFPM两周给报价；②不干涉经营——TFPM历史上从不介入矿场管理（对比某些银行债权人的契约约束）；③钱一次到账且永不追偿——矿停产了也不用还，矿主只在产出时"用金属还"；④声誉清白——十年无诉讼毁约记录，Elliott孵化的资金背景使其"从不差钱"。</div>
+        <div class="risk-item"><strong>矿主什么时候不选TFPM</strong>：①大型矿主（Barrick级）需要$10亿+融资时，直接找WPM/FNV（对方资本成本更低、报价更便宜）；②金价暴跌期矿主融资意愿萎缩、议价权反转（2024年行业新增交易量腰斩）；③若未来royalty模式遭遇税制刁难（部分国家对"不劳而获"的royalty征收附加税，如2024年巴拿马式资源民族主义风潮），矿主可能转向传统银行——这是模式级而非公司级风险。</div>
+    </div>
+
+    <h2 id="chapter4">四、历史财务指标</h2>
+    <div class="info-box">
+        <h3>4.1 上市以来核心数据（2021-2025，SEC文件）</h3>
+        <table>
+            <tr><th>财年</th><th>营收($M)</th><th>净利润($M)</th><th>GEOs</th><th>ROE</th><th>负债率</th><th>权益乘数</th><th>备注</th></tr>
+            <tr><td>2021</td><td>150.4</td><td>45.5</td><td>83,602</td><td>3.5%</td><td>0.7%</td><td>1.01x</td><td>IPO年</td></tr>
+            <tr><td>2022</td><td>151.9</td><td>55.1</td><td>~84,400</td><td>4.2%</td><td>1.4%</td><td>1.01x</td><td>金价平稳</td></tr>
+            <tr><td>2023</td><td>204.0</td><td>36.3</td><td>~105,200</td><td>2.0%</td><td>4.4%</td><td>1.05x</td><td>含减值+金银涨价</td></tr>
+            <tr><td>2024</td><td>269.0</td><td><strong>-23.1</strong></td><td>~112,600</td><td>-1.3%</td><td>1.9%</td><td>1.02x</td><td><span style="color:#e74c3c;">$148M资产减值所致</span></td></tr>
+            <tr><td>2025</td><td><strong>388.7</strong></td><td><strong>240.0</strong></td><td><strong>113,237</strong></td><td><strong>11.7%</strong></td><td>3.2%</td><td>1.03x</td><td>金价大涨+减值转回</td></tr>
+        </table>
+        <p><strong>芒格视角——三个读数重点</strong>：</p>
+        <ul>
+            <li><strong>ROE为何长期低（2-4%）</strong>：不是生意差，是分母被故意做大——2,045M权益里躺着的是242份合同的账面成本（历史收购价），这些合同按"成本-摊销"记账而<strong>不随金价重估</strong>。金价从$1,800涨到$4,000，合同市值翻倍但账面权益纹丝不动——<strong>真实ROIC远高于表观ROE</strong>（每$1历史投入2025年产生约19分经营现金流，隐含回报率约19%）；</li>
+            <li><strong>2024年净亏损是会计事件</strong>：$148M减值（部分交付困难的老stream），2025年金价回升后转回$4.3M——GAAP净利对royalty公司噪音大，看经营现金流（2025年$312.8M，+47%）更真实；</li>
+            <li><strong>2025年净利$240M里有约$60M+公允价值变动</strong>（金价上涨使预付金资产增值），调整后净利约$180M——两个口径都看，现金流口径最可靠。</li>
+        </ul>
+        <canvas id="tfpmChart1" height="90"></canvas>
+        <p style="color:#7f8c8d;font-size:0.85em;">营收与经营现金流双轴图：2021-2025（数据来源：SEC MD&A）</p>
+    </div>
+
+    <h2 id="chapter5">五、债务分析</h2>
+    <div class="info-box">
+        <h3>5.1 有息负债占比：零</h3>
+        <table>
+            <tr><th>指标</th><th>数值</th><th>时点/口径</th></tr>
+            <tr><td><strong>有息负债</strong></td><td><strong>$0</strong> <span class="tag-green">零债务</span></td><td>2025年末至今，$5亿循环信贷额度分文未提取</td></tr>
+            <tr><td>现金及等价物</td><td>$71.3M（2025年末）→2026年中更高</td><td>叠加"总可用流动性&gt;$10亿"（现金+未提取信贷额）</td></tr>
+            <tr><td>总负债（全为无息经营性负债）</td><td>$68.3M</td><td>应付账款、递延税、股权激励负债、租赁——占总资产仅3.2%</td></tr>
+            <tr><td>净债务</td><td><strong>净现金</strong></td><td>行业最干净的资产负债表之一</td></tr>
+            <tr><td>历史借款记录</td><td>2023年曾提取$57M</td><td>2024年全额还清——十年仅在收购窗口短暂用杠杆</td></tr>
+        </table>
+
+        <h3>5.2 现金流对债务的保障</h3>
+        <ul>
+            <li><strong>净债务/EBITDA：负值（净现金）</strong> <span class="tag-green">Green</span>——无任何偿债义务；</li>
+            <li><strong>利息费用：约$0</strong>——2025年财务费用净额为利息收入（现金产生的利息）；</li>
+            <li><strong>压力测试</strong>：极端情形（金价腰斩至$2,000）下，113k GEOs×价差$1,700仍产生约$1.9亿现金流，覆盖全部股息（约$45M）四倍以上——<strong>连熊市都切不断它的分红</strong>；</li>
+            <li><strong>杠杆趋势：常年净现金，仅收购窗口短暂借款</strong>（$440M的Ravenswood收购用了部分信贷额度，但按公告将于现金流快速偿还）——与同行WPM/FNV一致甚至更保守。</li>
+        </ul>
+
+        <h3>5.3 管理层对杠杆的态度（有出处）</h3>
+        <ul>
+            <li>Q2 2026业绩公告（2026年8月）CEO Vanderkooy原话："With <strong>over $1 billion of available liquidity</strong> and a recently increased 2030 outlook of 150,000 to 160,000 GEOs, Triple Flag enters its second decade with more organic growth than at any point in our history."（逾10亿美元可用流动性进入第二个十年）；</li>
+            <li>资本配置声明（同上）："a <strong>disciplined capital allocation strategy</strong> focused on balance sheet management, returns to shareholders and accretive growth opportunities"（资本配置纪律：资产负债表管理优先、股东回报与增值收购并举）；</li>
+            <li><strong>言行对照</strong>：宣称资产负债表管理优先→实际十年净现金、唯一一次$57M借款一年内还清；$440M Ravenswood大额收购后仍保持净现金状态——<strong>言行完全一致</strong>；</li>
+            <li>判断：<strong>结构性零杠杆</strong>，比RGLD（净债务/EBITDA约0.8x）更保守，与FNV（净现金）同级——royalty行业惯例即如此（现金流必须穿越金属周期，杠杆会杀死期权价值）。</li>
+        </ul>
+        <div class="highlight"><strong>财务安全度评级</strong>：<span class="tag-green">GREEN——零有息负债+净现金+$10亿可用流动性+93%利润率</strong>。这是极少数"连熊市都威胁不到"的资产负债表：金价腰斩、矿山停产、金融危机同时发生，TFPM依然无一分钱违约风险。芒格式评语：现金流与债务错配的时间炸弹？不存在的——这里没有债务。</div>
+    </div>
+
+    <h2 id="chapter6">六、竞争分析</h2>
+    <div class="info-box">
+        <h3>6.1 行业格局：三巨头+TFPM</h3>
+        <table>
+            <tr><th>公司</th><th>市值(约)</th><th>2025营收(约)</th><th>资产数</th><th>定位</th></tr>
+            <tr><td>Wheaton Precious Metals (WPM)</td><td>~$500亿</td><td>~$17亿</td><td>~20核心stream</td><td>纯stream巨擘，只做大单</td></tr>
+            <tr><td>Franco-Nevada (FNV)</td><td>~$250亿</td><td>~$14亿</td><td>470+</td><td>版税先驱（1980年代创立），金+油气多元</td></tr>
+            <tr><td>Royal Gold (RGLD)</td><td>~$150亿</td><td>~$7.6亿</td><td>~390</td><td>2025年10月吞并Sandstorm巩固第三</td></tr>
+            <tr><td><strong>Triple Flag (TFPM)</strong></td><td><strong>~$59亿</strong></td><td><strong>$3.89亿</strong></td><td><strong>242</strong></td><td><strong>中型交易之王，白银+金，零债务</strong></td></tr>
+            <tr><td>其他（Metalla/GROY等）</td><td>&lt;$10亿</td><td>&lt;$5千万</td><td>—</td><td>无规模化资本能力</td></tr>
+        </table>
+        <p><strong>行业整合信号</strong>：2025年10月RGLD收购Sandstorm后，中型royalty公司独立标的基本绝迹——TFPM的稀缺性双重含义：①中型交易市场它近乎独占；②它自己成为巨头潜在的收购对象（按惯例溢价20-30%）。</p>
+
+        <h3>6.2 护城河五维评估</h3>
+        <table>
+            <tr><th>维度</th><th>评级</th><th>依据</th></tr>
+            <tr><td>商业模式护城河</td><td><strong>★★★★★</strong></td><td>收租模式本身：前置成本锁定+收入随价浮动+矿主承担全部运营风险+合同期=矿山寿命（几十年）——巴菲特"收费桥"的矿山版</td></tr>
+            <tr><td>规模优势</td><td>★★★☆</td><td>59亿市值列行业第四，够不上大单（$10亿+），但中型市场无敌手</td></tr>
+            <tr><td>无形资产/人脉</td><td>★★★★</td><td>创始人Usmar（前巴里克CFO）的矿业人脉+十年242单的交易记录；Elliott血统的资本底气</td></tr>
+            <tr><td>转换成本</td><td>★★★★★</td><td>合同不可撤销、与矿同寿</td></tr>
+            <tr><td>成本优势</td><td>★★★★</td><td>每GEO成本$250-300 vs 金价$4,000+；无矿山折旧/人工/ closure负债</td></tr>
+            <tr><td>网络效应</td><td>—</td><td>无</td></tr>
+        </table>
+        <div class="highlight"><strong>与矿商的本质区别（芒格式重点）</strong>：同样看涨黄金，买矿商（如Agnico）是买"工厂"——收入随金价，但成本（柴油、人工、设备）也随通胀涨；买TFPM是买"地契"——<strong>成本被永远锁死在2016-2026年的合同里</strong>。过去十年金价涨约2倍，TFPM营收涨4.6倍（量+价双击）；若未来金价跌40%，矿商利润跌80%+，TFPM的现金流仅跌约45%（成本刚性保护）。这就是为什么巴菲特虽然讨厌黄金，但其副手们承认：<strong>royalty模式是持有黄金敞口的"最不坏"方式</strong>——它把商品投机变成了收租生意。</div>
+    </div>
+
+    <h2 id="chapter7">七、利润分配分析</h2>
+    <div class="info-box">
+        <h3>7.1 五年利润分配表（回购即留存口径）</h3>
+        <table>
+            <tr><th>年份</th><th>净利($M)</th><th>股息($M)</th><th>回购($M)</th><th>收购再投($M)</th><th>留存额($M)</th><th>留存率</th></tr>
+            <tr><td>2021</td><td>45.5</td><td>~5</td><td>0</td><td>~350（Northparkes尾款等）</td><td>40.5</td><td>89%</td></tr>
+            <tr><td>2022</td><td>55.1</td><td>~11</td><td>0</td><td>~330</td><td>44.1</td><td>80%</td></tr>
+            <tr><td>2023</td><td>36.3</td><td>~37</td><td>0</td><td>~250</td><td>-0.7</td><td>-2%*</td></tr>
+            <tr><td>2024</td><td>-23.1</td><td>~42</td><td>~10</td><td>~150</td><td>-65.1</td><td>—**</td></tr>
+            <tr><td>2025</td><td>240.0</td><td>~45</td><td>~25</td><td><strong>~660（Orogen+Ravenswood等）</strong></td><td>195.0</td><td>81%</td></tr>
+        </table>
+        <p>*2023年留存率失真因净利被减值压低；**2024年净亏损但股息照发——这正是royalty模式的股东回报韧性（现金流不减，减值只是会计）。</p>
+        <p><strong>股息记录</strong>：2021年IPO以来连续提高，季度股息从$0.05→2024年$0.055→2025年$0.0575→2026年$0.06（第5年连续上调）。股息率仅0.83%——刻意低派息，<strong>留存现金全部再投入收购</strong>。</p>
+
+        <h3>7.2 资本配置质量评估（芒格打分：A-）</h3>
+        <ul>
+            <li><strong>再投资是主业</strong>：十年$23亿+资本投入242项资产，历史组合隐含IRR约15-20%——<strong>留存收益的复利机器</strong>（每留存$1在未来十年产生约$1.8现值）；</li>
+            <li><strong>收购时机纪律</strong>：2016年（金价底部）买Cerro Lindo、2019年（市场冷清）买Buriticá、2024-2025年（金价回升期）大量新增——不是牛市追高的买家；</li>
+            <li><strong>回购时机</strong>：2025年11月-2026年回购$20M+（股价高位期）——时机评分一般；NCIB授权占股本5%，执行克制；</li>
+            <li><strong>Orogen收购用了部分股票对价</strong>（560万股）——在高股价时发股收购是明智的（用贵的货币），对老股东轻度稀释但换200+版税；</li>
+            <li><strong>可持续增长率</strong> = ROE 11.7% × 留存率81% ≈ <strong>9.5%</strong>——但如第四章所述，真实回报率（现金流口径ROIC约19%）对应的内生增长潜力更高：2030年GEOs指引150-160k（年化+6-7%）+金价变量。</li>
+        </ul>
+    </div>
+
+    <h2 id="chapter8">八、投资总结</h2>
+    <div class="info-box">
+        <h3>8.1 六维评分</h3>
+        <table>
+            <tr><th>维度</th><th>评级</th><th>理由</th></tr>
+            <tr><td>业务可理解性</td><td><span class="tag tag-green">3.5/5</span></td><td>收租模式本身极简单（一次性买断+永久收租），但底层商品（金银）价格不可预测——芒格："我们不做自己无法预测十年后现金流的企业"，而TFPM的现金流恰是金价函数</td></tr>
+            <tr><td>护城河</td><td><span class="tag tag-green">4/5</span></td><td>模式级护城河近乎完美（锁成本+永续合同+矿主扛风险）；公司级护城河（中型交易独占）中等偏强</td></tr>
+            <tr><td>资本配置</td><td><span class="tag tag-green">4/5</span></td><td>十年$23亿投入×15-20% IRR、零债务、五年连续加股息、熊市敢买——教科书级；扣分项：回购时机一般</td></tr>
+            <tr><td>财务安全</td><td><span class="tag tag-green">5/5</span></td><td>零有息负债+净现金+$10亿流动性——全行业最干净，无任何违约情景</td></tr>
+            <tr><td>增长前景</td><td><span class="tag tag-green">4/5</span></td><td>2030年GEOs指引150-160k（+33-41%纯内生）；Ravenswood/Hope Bay/Arthur/Koné梯队明确；上行变量=金银价格</td></tr>
+            <tr><td>估值吸引力</td><td><span class="tag tag-orange">2.5/5</span></td><td>TTM PE 14.3x看似便宜但含公允价值收益（调整后Forward PE约22x）；P/OCF约17x低于FNV/WPM的25x+——但一切估值都站在金价$4,000的地基上</td></tr>
+        </table>
+
+        <h3>8.2 情景估值</h3>
+        <table>
+            <tr><th>情景</th><th>假设</th><th>估值含义</th></tr>
+            <tr><td>熊市（金银走熊）</td><td>金价回落至$2,500并阴跌，GEOs维持11万</td><td>经营现金流约$2.4亿（每GEO价差$2,200）→ P/CF回到12x → 市值约$29亿（<strong>$14-16/股</strong>，较现价-45%）——下有成本垫但估值弹性巨大</td></tr>
+            <tr><td>中性（金价$3,500震荡）</td><td>GEOs按指引2028年达13万-14万</td><td>经营现金流约$4.2亿 → P/CF 15-18x → 市值$63-76亿（<strong>$31-37/股</strong>，较现价+8-28%）</td></tr>
+            <tr><td>牛市（金价$4,500+维持）</td><td>GEOs 2030年达16万+白银补涨</td><td>经营现金流$6亿+ → 行业牛市给20-25x → 市值$120-150亿（<strong>$58-73/股</strong>，翻倍空间）</td></tr>
+        </table>
+
+        <h3>8.3 关键风险</h3>
+        <div class="risk-item"><strong>风险清单（按严重度排序）</strong>：①<strong>金价Beta</strong>：TFPM的一切估值建立在金银高位——这是商品价格衍生品，不是独立现金流的生意（芒格第一原则：能否预测十年后的现金流？不能）；②<strong>单矿集中</strong>：Northparkes+Cerro Lindo合计贡献52%收入——任何一座矿的意外（事故/罢工/品位滑坡）直接打击营收；③<strong>交付风险</strong>：2024年$148M减值证明——矿主不产金属，TFPM无追索手段（模式内在缺陷）；④<strong>资源民族主义</strong>：royalty在矿所在国可能被加税或限制（秘鲁/南非/哥伦比亚都曾飘过此风）；⑤<strong>被收购溢价幻觉</strong>：巨头收购传闻是估值支撑之一，但可能永远不来。</div>
+
+        <h3>8.4 芒格式最终结论</h3>
+        <div class="highlight"><strong>"这不是一家黄金公司，这是一家碰巧收金属为租的收费桥公司——但桥下的河（金银价格）我们无法预测。"</strong>用巴菲特/芒格标准逐项打分：生意模式？接近完美——前置成本锁定、矿主扛全部运营风险、合同与矿同寿、零债务。管理层？十年交易记录和资本纪律无可挑剔。可预测性？致命短板——2022年ROE 4%与2025年11.7%之间的全部差异来自金价，而巴菲特反复承认他无法预测商品价格。估值？$29的股价已充分定价$4,000的金价（熊市情景-45%），牛市情景才+100%——<strong>赔率不对称度中等，无格雷厄姆式安全边际</strong>。<br><br><strong>结论</strong>：对格雷厄姆-多德式的价值投资者——留在圈外，把它放进观察清单，等金价恐慌杀估值（股价$15-18区间）时再审视；对已持有黄金信念的投资者——TFPM是执行该信念的<strong>最优工具之一</strong>（零债务收租替代直接持金，无存储成本、有内生增长）；对全组合视角——2030年150-160k GEOs的有机增长+第五极整合标的属性，使其成为贵金属板块内"生意质量最高的一张彩票"。巴菲特会说什么？"如果全人类几千年来挖金子只是为埋进肯塔基的洞里，那收矿租的人至少比挖矿的聪明——但我还是去买我能预测的东西了。"</div>
+
+        <h3>8.5 数据来源</h3>
+        <ul>
+            <li>Triple Flag FY2025 MD&amp;A（SEC EDGAR，2026-02-18提交）：FY2025营收$388.7M/净利$240.0M/经营现金流$312.8M/调整后EBITDA $325.0M/GEOs 113,237/资产明细表/Orogen收购注记/零债务确认</li>
+            <li>Triple Flag Q2 2026业绩公告（2026-08-06）：营收$129.2M/净利$156.3M（调整后$80.4M）/连续第5年提高股息/Ravenswood $440M交易细节/$10亿可用流动性/2030年150-160k GEOs展望</li>
+            <li>Triple Flag Q3 2026营收公告（2026-10-07）：营收$106.7M/25,030 GEOs/Ravenswood首次交付/2026指引100-110k GEOs</li>
+            <li>Triple Flag FY2023 MD&amp;A与FY2021业绩公告（SEC EDGAR）：2021-2023历史序列（净利$45.5M/$55.1M/$36.3M、GEOs 83,602等）</li>
+            <li>市场数据：stockanalysis.com/marketbeat（2026年10月：$29/股、市值$5.94B、TTM PE 14.26、股息率0.83%）</li>
+        </ul>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        var ctx1 = document.getElementById('tfpmChart1');
+        if (ctx1) {
+            new Chart(ctx1, {
+                type: 'bar',
+                data: {
+                    labels: ['2021','2022','2023','2024','2025'],
+                    datasets: [{
+                        type: 'line',
+                        label: '经营现金流($M)',
+                        data: [null, null, null, null, 312.8],
+                        borderColor: '#2e86c1',
+                        backgroundColor: '#2e86c1',
+                        yAxisID: 'y1',
+                        tension: 0.3
+                    },{
+                        type: 'line',
+                        label: '净利润($M)',
+                        data: [45.5, 55.1, 36.3, -23.1, 240.0],
+                        borderColor: '#27ae60',
+                        backgroundColor: '#27ae60',
+                        yAxisID: 'y1',
+                        tension: 0.3
+                    },{
+                        type: 'bar',
+                        label: '营收($M)',
+                        data: [150.4, 151.9, 204.0, 269.0, 388.7],
+                        backgroundColor: 'rgba(26,82,118,0.55)',
+                        yAxisID: 'y'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: { position: 'left', title: { display: true, text: '营收($M)' } },
+                        y1: { position: 'right', title: { display: true, text: '净利/现金流($M)' }, grid: { drawOnChartArea: false } }
+                    }
+                }
+            });
+        }
+    </script>
+
+    <script src="scores_client.js"></script>
+    <script src="stock_topbar.js"></script>
+</body>
+</html>

@@ -140,7 +140,8 @@
         {code:'MCD',name:'McDonald\'s（麦当劳）- 全球最大餐饮公司/品牌+地产+特许经营收租模式',href:'mcd.html'},
         {code:'TTI',name:'TTI Inc（伯克希尔旗下电子元器件分销商）- 连接器/无源器件专业分销隐形冠军/Mouser母公司',href:'tti.html'},
         {code:'MWA',name:'Mueller Water Products（穆勒水产品）- 北美市政供水基础设施设备/消防栓与水阀门百年领导者',href:'mwa.html'},
-        {code:'COIN',name:'Coinbase Global（coinbase）- 美国最大受监管加密资产交易所/Deribit期权垄断+USDC稳定币分成+净现金堡垒',href:'coin.html'}
+        {code:'COIN',name:'Coinbase Global（coinbase）- 美国最大受监管加密资产交易所/Deribit期权垄断+USDC稳定币分成+净现金堡垒',href:'coin.html'},
+        {code:'TFPM',name:'Triple Flag Precious Metals（三旗贵金属）- 贵金属streaming/royalty收租模式/零债务金矿包租公+242项版税组合',href:'tfpm.html'}
     ];
 
     // 暴露为全局变量
