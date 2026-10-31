@@ -155,6 +155,21 @@
 
     <!-- 更新日志条目 - 按时间倒序排列，最新在最上面 -->
 
+    <div class="log-entry fix">
+        <div class="log-header">
+            <span class="log-date">2026-10-31</span>
+            <span class="log-type fix">修复</span>
+        </div>
+        <div class="log-desc">
+            <ul>
+                <li>修复index.html主页不显示泡泡玛特条目的bug：根因是主页股票表格由前端JS重建，其解析规则会过滤掉代码长度&gt;6字符的行，而昨日新增条目代码写作"9992.HK"（7字符）被排除在重建表格之外（且与stocks_data.js打分匹配码'9992'不一致）。修复：代码列改为"9992"、港股代码信息移入名称列"Pop Mart泡泡玛特（9992.HK港股）"。教训：新增非纯字母短代码（港股/带后缀代码）条目时，必须做浏览器渲染级验证而非仅验证源码文本包含</li>
+            </ul>
+        </div>
+        <div class="log-files">
+            <span class="modified">~ index.html</span>
+        </div>
+    </div>
+
     <div class="log-entry create">
         <div class="log-header">
             <span class="log-date">2026-10-31</span>
