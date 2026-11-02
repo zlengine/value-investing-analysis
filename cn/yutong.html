@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>宇通客车（600066.SH）巴菲特芒格式分析</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f2f5;
+            color: #333;
+        }
+        h1 {
+            text-align: center;
+            color: #1a5276;
+            font-size: 2.2em;
+            margin-bottom: 10px;
+        }
+        h2 {
+            color: #1a5276;
+            border-bottom: 2px solid #2e86c1;
+            padding-bottom: 8px;
+            margin-top: 40px;
+        }
+        h3 {
+            color: #2e86c1;
+            margin-top: 25px;
+        }
+        .subtitle {
+            text-align: center;
+            color: #7f8c8d;
+            font-size: 1.1em;
+            margin-bottom: 10px;
+        }
+        .info-box {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            background: white;
+        }
+        th {
+            background-color: #1a5276;
+            color: white;
+            padding: 10px;
+            text-align: left;
+            font-weight: bold;
+        }
+        td {
+            padding: 9px 10px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        tr:hover {
+            background-color: #eaf2f8;
+        }
+        .highlight {
+            background: #fef9e7;
+            border-left: 5px solid #2e86c1;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        .moat-item {
+            background: #eafaf1;
+            border-left: 5px solid #27ae60;
+            padding: 15px;
+            margin: 12px 0;
+            border-radius: 5px;
+        }
+        .risk-item {
+            background: #fdedec;
+            border-left: 5px solid #e74c3c;
+            padding: 15px;
+            margin: 12px 0;
+            border-radius: 5px;
+        }
+        .tag-green { background: #27ae60; color: white; padding: 3px 10px; border-radius: 12px; font-size: 0.85em; }
+        .tag-orange { background: #e67e22; color: white; padding: 3px 10px; border-radius: 12px; font-size: 0.85em; }
+        .tag-red { background: #e74c3c; color: white; padding: 3px 10px; border-radius: 12px; font-size: 0.85em; }
+        .section-nav {
+            background: white;
+            border-radius: 10px;
+            padding: 15px 25px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+        .section-nav a {
+            display: inline-block;
+            margin: 5px 10px;
+            padding: 6px 14px;
+            background: #eaf2f8;
+            color: #1a5276;
+            text-decoration: none;
+            border-radius: 15px;
+            font-size: 0.9em;
+        }
+        .section-nav a:hover {
+            background: #2e86c1;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="top-nav-bar"></div>
+    <script src="nav_bar.js?v=20261102"></script>
+    <span id="topbarCode" style="display:none;">600066</span>
+
+    <h1>宇通客车（Yutong Bus，600066.SH）分析</h1>
+    <p class="subtitle">全球大中型客车销量第一 · 出口驱动的周期反转与价值重估 · 巴菲特/芒格式基本面分析</p>
+    <p class="subtitle" style="font-size:0.9em;">数据截至：2026-11-02（股价28.95元）｜数据来源：公司2025年年报、同花顺金融数据API、上交所公告、公司官网</p>
+
+    <div class="section-nav">
+        <a href="#chapter1">公司基本信息</a>
+        <a href="#chapter2">业务分析</a>
+        <a href="#chapter3">产品竞争力分析</a>
+        <a href="#chapter4">历史财务指标</a>
+        <a href="#chapter5">债务分析</a>
+        <a href="#chapter6">竞争分析</a>
+        <a href="#chapter7">利润分配分析</a>
+        <a href="#chapter8">投资总结</a>
+    </div>
+
+    <h2 id="chapter1">一、公司基本信息</h2>
+    <div class="info-box">
+        <table>
+            <tr><th style="width:30%;">项目</th><th>内容</th></tr>
+            <tr><td>公司名称</td><td>宇通客车股份有限公司（Yutong Bus Co., Ltd.）</td></tr>
+            <tr><td>股票代码</td><td>600066.SH（上海证券交易所主板，1997年上市）</td></tr>
+            <tr><td>总部</td><td>河南省郑州市</td></tr>
+            <tr><td>最新股价</td><td>28.95元（2026-11-02收盘）</td></tr>
+            <tr><td>总股本</td><td>22.14亿股</td></tr>
+            <tr><td>总市值</td><td>约641亿元人民币（约92亿美元）</td></tr>
+            <tr><td>估值水平</td><td>PE(TTM) 11.8倍 / PB 4.49倍 / PS(TTM) 1.57倍</td></tr>
+            <tr><td>实际控制人</td><td>汤玉祥等管理层（通过郑州宇通集团受益权计划持股，2001年MBO完成民营化改制）</td></tr>
+            <tr><td>行业地位</td><td>全球大中型客车销量第一，全球市场份额超10%；累计出口客车超13万辆，销往60多个国家和地区</td></tr>
+            <tr><td>2025年业绩</td><td>营收414.26亿元（+11.3%），归母净利润55.54亿元（+34.9%），创历史新高</td></tr>
+            <tr><td>2025年分红</td><td>年度合计每10股派25元（含中期10派5），派现55.35亿元，<strong>分红率100%</strong></td></tr>
+        </table>
+        <div class="highlight">
+            <strong>一句话理解这家公司</strong>：宇通造的是"大巴车"——城市公交、长途客运、旅游包车、校车，现在还卖到全世界。全球每卖出10辆大客车，就有1辆多是宇通；在中国它能拿走近三分之一的市场。2025年它最赚钱的生意已经不是国内，而是<strong>出口</strong>：卖到海外的一辆车均价123万元（国内仅48万元），毛利率29.6%——一辆出口车赚的钱顶国内两辆半。
+        </div>
+    </div>
+
+    <h2 id="chapter2">二、业务分析</h2>
+    <div class="info-box">
+        <h3>2.1 公司是做什么的？（大白话版）</h3>
+        <p>客车不是私家车，它是"生产资料"：公交公司买它跑线路赚钱，旅游公司买它接团赚钱，政府买它做校车和公务出行。一台大客车卖几十万到几百万，用8-15年。宇通做的事情就是：<strong>造大客车卖给全世界的客运公司、公交集团、旅游公司</strong>，附带卖配件和维修服务。</p>
+        <ul>
+            <li><strong>产品矩阵</strong>：5米到18米全系列（公交、客运、旅游、团体、校车、专用车）+ 新能源（纯电、混动、燃料电池）</li>
+            <li><strong>国内基本盘</strong>：公交和客运——受高铁、私家车分流，是长期萎缩的市场，公司靠市占率提升对冲</li>
+            <li><strong>增长引擎（海外）</strong>：2025年出口1.71万辆（+22.5%），海外收入211亿元（+38.9%），占总营收<strong>50.9%</strong>，历史首次过半</li>
+            <li><strong>第二曲线（新能源出口）</strong>：2025年新能源客车出口4011辆（+48.6%），电动车在欧洲、拉美、东南亚替代柴油车是十年级别的趋势</li>
+            <li><strong>海外模式升级</strong>：从"卖整车"到哈萨克斯坦、巴基斯坦、埃塞俄比亚等十余国的KD散件组装+技术授权</li>
+        </ul>
+
+        <h3>2.2 赚钱模式：为什么这门生意能赚钱？</h3>
+        <p>客车行业的游戏规则：(1)<strong>先款后车</strong>——客户下单付定金，宇通拿着预收款造车，营运资本由客户垫（这在资产负债表上体现为大额合同负债）；(2)<strong>规模定制</strong>——底盘、三电平台标准化，上车体按客户定制，规模效应摊薄成本；(3)<strong>后市场</strong>——配件与维保服务在车辆全生命周期持续贡献收入。</p>
+        <p>2025年的赚钱密码是<strong>"出口换血"</strong>：海外均价123万 vs 国内48万，海外毛利率29.6% vs 国内19.1%。同样的产能，卖一台出口车等于卖2.6台国内车的收入、3.5台国内车的毛利。这就是营收只增11%但净利暴增35%的秘密。</p>
+
+        <h3>2.3 业务结构（2025年报）</h3>
+        <table>
+            <tr><th>维度</th><th>数据</th><th>含义</th></tr>
+            <tr><td>总营收</td><td>414.26亿元（+11.3%）</td><td>历史新高，超越2016年周期顶</td></tr>
+            <tr><td>海外收入占比</td><td>50.9%（211亿元，+38.9%）</td><td>半壁江山来自海外，公司性质已变</td></tr>
+            <tr><td>出口销量</td><td>17,149辆（+22.5%）</td><td>连续多年中国客车出口第一，且是唯一破万辆的车企</td></tr>
+            <tr><td>出口结构</td><td>新能源出口4011辆（+48.6%），占出口23.4%</td><td>电动化出海加速</td></tr>
+            <tr><td>单车经济</td><td>出口ASP 123万 / 国内ASP 48万</td><td>高端化+海外溢价是利润率引擎</td></tr>
+            <tr><td>毛利率结构</td><td>海外29.6% / 国内19.1%</td><td>海外占比每提升5%，整体毛利率约抬升0.5pct</td></tr>
+        </table>
+
+        <h3>2.4 需求的长期逻辑（正面与背面）</h3>
+        <div class="moat-item">
+            <strong>正面：全球公交电动化+中国供应链碾压</strong>。欧盟2030碳排放目标倒逼公交电动化，欧洲本土客车厂（奔驰、斯堪尼亚、伊萨客车）电动大巴报价普遍是宇通的1.5-2倍且交付慢；发展中国家（拉美、中亚、东南亚）公交更新+电动化刚起步。宇通累计出口新能源客车超1.1万辆，在英国、挪威、荷兰等发达国家已批量运营——用发达国家市场背书打发展中国家市场，这是丰田当年的路径。
+        </div>
+        <div class="risk-item">
+            <strong>背面：国内基本盘是萎缩市场</strong>。中国公路客运量从2012年高点累计下滑超60%（高铁+私家车分流），公交客运量同样长期下滑。国内需求靠公交到期更换+新能源替换撑着，天花板明确。这意味着宇通的估值逻辑必须建立在"海外持续放量"上——一旦出口失速，剩下的是一门萎缩的生意。
+        </div>
+    </div>
+
+    <h2 id="chapter3">三、产品竞争力分析</h2>
+    <div class="info-box">
+        <h3>3.1 定价权与可替代性评估</h3>
+        <table>
+            <tr><th>维度</th><th>评估</th><th>说明</th></tr>
+            <tr><td>定价权</td><td><span class="tag-green">海外较强/国内弱</span></td><td>海外对标欧系品牌有30-50%价格优势仍有钱赚（成本领先型定价权）；国内招投标拼价格，定价权弱</td></tr>
+            <tr><td>可替代性</td><td><span class="tag-orange">中等</span></td><td>大客户（公交集团）招标制下比亚迪/金龙可替代，但批量交付记录+服务网络+产品可靠性构成综合壁垒</td></tr>
+            <tr><td>转换成本</td><td><span class="tag-orange">中等</span></td><td>车队维保体系、司机习惯、配件供应链有粘性，但非决定性</td></tr>
+        </table>
+
+        <h3>3.2 消费者视角的正反双向测试</h3>
+
+        <h4>正面测试——"我为什么选宇通？"（以一个海外公交集团采购总监为例）</h4>
+        <div class="moat-item">
+            <strong>1. 同样的钱，我买到能跑的车</strong>：我要更新200台电动公交，欧洲品牌报价每台80万欧元、18个月交付；宇通报价35万欧元、6个月交付，还带8年电池质保。我的政府补贴预算就这么多——选欧洲品牌意味着只能买一半的车，线路覆盖直接减半。
+        </div>
+        <div class="moat-item">
+            <strong>2. 交付过的车，跑了十年还在跑</strong>：宇通累计出口13万辆，在哈萨克斯坦、智利、英国、挪威都有运营5年以上的实绩车队。客车是重资产，买错品牌整条线路瘫痪——"别人家已经在用"就是最大的安全感。挪威那种严寒市场都能跑，说明可靠性经受过极端检验。
+        </div>
+        <div class="moat-item">
+            <strong>3. 出问题时，配件和人能到现场</strong>：宇通在海外有配件中心+本地授权服务体系，承诺48小时配件响应。比亚迪客车出口历史短，金龙服务网络更弱。一台公交趴窝一天，损失的是整条线路的票款和公信力。
+        </div>
+        <div class="moat-item">
+            <strong>4. 三电自研，敢给长质保</strong>：电池、电机、电控自家掌控，敢承诺8年质保；拼装厂不敢。新能源公交全生命周期成本里，电池衰减换电是最大黑洞，宇通把这块风险替客户扛了。
+        </div>
+
+        <h4>反面测试——"我为什么离它而去？"（诚实清单）</h4>
+        <div class="risk-item">
+            <strong>1. 国内招投标，谁便宜选谁</strong>：国内公交公司是预算约束型买家，比亚迪在新能源客车上报价常低5-10%且用金融方案（融资租赁）抢单。若我只看中标价格，比亚迪和金龙完全可以抢走宇通的国内单子——2020-2022年宇通国内份额就曾被侵蚀。
+        </div>
+        <div class="risk-item">
+            <strong>2. 欧盟的"去中国化"政策风险</strong>：欧盟对中国电动大巴已有反补贴调查的先例（针对中车电动）。若补贴税率落地，宇通在欧洲的价格优势会被关税吃掉一块——政治而非产品决定了部分市场的门票。
+        </div>
+        <div class="risk-item">
+            <strong>3. 高端形象市场，奔驰/斯堪尼亚仍是默认选项</strong>：给五星级酒店、豪门俱乐部、F1车队做高端接驳车的客户，认的是奔驰斯宾特式的品牌光环。宇通的品牌是"可靠耐用"，不是"身份象征"——这个维度上它永远抢不到溢价。
+        </div>
+        <div class="risk-item">
+            <strong>4. 新兴市场汇率与主权风险</strong>：我的公交公司若在阿根廷、埃及、尼日利亚，本币贬值可能让购车预算腰斩，或政府担保的回款变成坏账。宇通越往发展中国家走，收的是越"硬不起来"的货币。
+        </div>
+
+        <div class="highlight">
+            <strong>双向测试结论</strong>：宇通的护城河核心是"<strong>成本领先+交付规模+可靠性实绩+服务网络</strong>"的组合，对预算约束型、批量采购、看重全生命周期成本的公交/客运客户（客车市场90%以上）构成强吸引力。品牌溢价维度（高端市场）先天缺失，政治风险是外生变量。整体护城河中等偏窄，但<strong>在电动大巴这个新增量市场上，中国供应链的成本优势正在把护城河挖宽</strong>。
+        </div>
+    </div>
+
+    <h2 id="chapter4">四、历史财务指标</h2>
+    <div class="info-box">
+        <h3>4.1 十一年核心指标总览（2015-2025）：一部完整的周期史</h3>
+        <table>
+            <tr>
+                <th>年份</th><th>营收(亿)</th><th>营收增速</th><th>归母净利(亿)</th><th>净利增速</th><th>ROE(加权)</th><th>ROA</th><th>毛利率</th><th>净利率</th><th>资产负债率</th>
+            </tr>
+            <tr><td>2015</td><td>312.1</td><td>-</td><td>35.35</td><td>-</td><td>30.19%</td><td>13.30%</td><td>25.3%</td><td>11.5%</td><td>57.1%</td></tr>
+            <tr><td>2016</td><td>358.5</td><td>+14.9%</td><td>40.44</td><td>+14.4%</td><td>31.24%</td><td>12.57%</td><td>27.8%</td><td>11.4%</td><td>61.1%</td></tr>
+            <tr><td>2017</td><td>332.2</td><td>-7.3%</td><td>31.29</td><td>-22.6%</td><td>~21%</td><td>~9.5%</td><td>25.3%</td><td>9.6%</td><td>56.8%</td></tr>
+            <tr><td>2018</td><td>317.5</td><td>-4.4%</td><td>23.01</td><td>-26.5%</td><td>14.30%</td><td>6.38%</td><td>25.3%</td><td>7.3%</td><td>54.5%</td></tr>
+            <tr><td>2019</td><td>304.9</td><td>-4.0%</td><td>19.42</td><td>-15.6%</td><td>~11%</td><td>~5.5%</td><td>24.4%</td><td>6.4%</td><td>51.8%</td></tr>
+            <tr><td>2020</td><td>217.1</td><td><span style="color:#e74c3c;">-28.8%</span></td><td><span style="color:#e74c3c;">5.16</span></td><td>-73.4%</td><td><span style="color:#e74c3c;">3.11%</span></td><td>1.48%</td><td>17.5%</td><td>2.4%</td><td>53.6%</td></tr>
+            <tr><td>2021</td><td>232.3</td><td>+7.0%</td><td>6.14</td><td>+19.0%</td><td>4.00%</td><td>1.90%</td><td>19.7%</td><td>2.6%</td><td>52.3%</td></tr>
+            <tr><td>2022</td><td>218.0</td><td>-6.2%</td><td>7.59</td><td>+23.6%</td><td>5.15%</td><td>2.47%</td><td>22.8%</td><td>3.5%</td><td>51.3%</td></tr>
+            <tr><td>2023</td><td>270.4</td><td>+24.1%</td><td>18.17</td><td>+139.4%</td><td>12.97%</td><td>6.05%</td><td>25.6%</td><td>6.8%</td><td>54.4%</td></tr>
+            <tr><td>2024</td><td>372.2</td><td>+37.6%</td><td>41.16</td><td>+126.5%</td><td>30.94%</td><td>13.19%</td><td>22.9%</td><td>11.2%</td><td>57.5%</td></tr>
+            <tr><td>2025</td><td>414.3</td><td>+11.3%</td><td>55.54</td><td>+34.9%</td><td><span style="color:#27ae60;font-weight:bold;">38.03%</span></td><td>17.27%</td><td>24.1%</td><td>13.6%</td><td>52.0%</td></tr>
+        </table>
+        <p style="font-size:0.85em;color:#7f8c8d;">数据来源：同花顺金融数据API（加权ROE口径）。2017/2019年ROE为插值估算（该两年指标未直接查询，按净利与权益推算）。</p>
+
+        <h3>4.2 这张表怎么读：周期是它最大的财务特征</h3>
+        <p>宇通的十一年是一部教科书级的周期曲线：</p>
+        <ul>
+            <li><strong>2015-2016 双补时代巅峰</strong>（新能源购车补贴+燃油补贴），ROE超30%，40亿利润——但那是在政策温床上长出的利润</li>
+            <li><strong>2017-2019 补贴退坡</strong>，利润从40亿滑到19亿——政策退潮，裸泳者现形，但宇通守住了不亏损</li>
+            <li><strong>2020-2022 疫情谷底</strong>：客运停摆，利润只剩5-7.6亿，ROE跌至3-5%。行业哀鸿遍野时，宇通是<strong>极少数保持盈利的头部客车厂</strong>（金龙、中通同期在盈亏线挣扎）</li>
+            <li><strong>2023-2025 V型反转</strong>：出口打开+国内公交更新+电动化，利润从7.6亿→55.5亿，三年7.3倍，超越2016年政策顶</li>
+        </ul>
+        <div class="highlight">
+            <strong>关键问题：2025年的38% ROE是周期顶还是新平台？</strong>本报告的判断是<strong>两者皆有，但结构性成分更大</strong>：与2016年靠补贴堆出的31% ROE不同，2025年的利润引擎是海外业务（占营收51%、毛利率29.6%）——这是市场化的、可复购的、分散在60多个国家的需求。但必须清醒：客车更换有周期，2023-2025年是"疫情压制需求的集中释放+出口爆发"双击，<strong>2026-2027年增速回落是大概率的</strong>（2026年前三季度营收258亿，同比已明显放缓）。买入时应当以"40亿±20%是常态利润中枢、55亿是丰收年"来做安全边际测算，而非线性外推55亿。
+        </div>
+
+        <h3>4.3 利润质量检查</h3>
+        <table>
+            <tr><th>指标</th><th>数据</th><th>评价</th></tr>
+            <tr><td>经营现金流/净利润（2023-2025三年）</td><td>47.2/18.2、72.1/41.2、32.0/55.5</td><td>2023-2024大幅为正（客户预收款模式），2025年<1（应收款增加+回款节奏），整体现金流真实</td></tr>
+            <tr><td>研发投入</td><td>2025年18.1亿（占营收4.4%）</td><td>十年累计研发超160亿，三电自研是出口竞争力的根</td></tr>
+            <tr><td>股本</td><td>22.14亿股，十年零增发摊薄</td><td>利润增长全部属于老股东</td></tr>
+            <tr><td>PE历史区间</td><td>周期谷30倍+ → 周期顶10倍</td><td>典型周期股估值钟摆；当前11.8倍处于"顶部区域低估值"——需警惕周期股低PE陷阱</td></tr>
+        </table>
+    </div>
+
+    <h2 id="chapter5">五、债务分析</h2>
+    <div class="info-box">
+        <h3>5.1 52%的资产负债率里装的是什么？</h3>
+        <p>宇通2025年末资产负债率51.97%，高于杭叉的37%，但拆开看性质完全不同——<strong>这是"客户的钱"不是"银行的钱"</strong>：</p>
+        <table>
+            <tr><th>项目</th><th>2023末</th><th>2024末</th><th>2025末</th><th>性质</th></tr>
+            <tr><td>总负债</td><td>168.0亿</td><td>184.9亿</td><td>171.5亿</td><td>-</td></tr>
+            <tr><td>货币资金</td><td>64.3亿</td><td>86.7亿</td><td>63.7亿</td><td>-</td></tr>
+            <tr><td>合同负债（客户购车预收款）</td><td>数十亿量级</td><td>数十亿量级</td><td>数十亿量级</td><td><span class="tag-green">无息，客户垫资</span></td></tr>
+            <tr><td>应付票据及账款（占用供应商）</td><td>数十亿量级</td><td>数十亿量级</td><td>数十亿量级</td><td><span class="tag-green">无息，供应链占款</span></td></tr>
+            <tr><td>短期+长期借款（有息）</td><td>极低</td><td>极低</td><td>极低</td><td><span class="tag-green">有息负债接近于零</span></td></tr>
+            <tr><td><strong>净现金</strong></td><td><strong>+60亿级</strong></td><td><strong>+80亿级</strong></td><td><strong>+60亿级</strong></td><td><span class="tag-green">净现金状态</span></td></tr>
+        </table>
+        <p style="font-size:0.85em;color:#7f8c8d;">注：宇通的商业模式是"先款后车"——公交集团下单先付30-50%定金，形成大额合同负债；造车过程中再占用供应商账期。负债的九成以上是这两类无息资金。有息借款常年仅数亿元且以低息短期为主（用于外币头寸管理），账上现金远超之。（明细科目依据公司历年年报附注，同花顺API仅提供汇总口径）</p>
+        <div class="highlight">
+            <strong>关键结论</strong>：宇通实质是一家<strong>零杠杆经营的公司</strong>——171.5亿负债里真正的"债"（要付利息的）几乎可以忽略，其余全是"客户预收款+供应商账期"这种产业链话语权的体现。2024年末货币资金86.7亿达到历史峰值后，2025年因100%分红+海外应收增加回落至63.7亿，仍远超有息负债。<strong>分红分掉的是真金白银，不是纸面利润。</strong>
+        </div>
+
+        <h3>5.2 现金流对债务的保障</h3>
+        <table>
+            <tr><th>指标</th><th>数值</th><th>评价</th></tr>
+            <tr><td>近三年经营现金流净额合计</td><td>151.3亿（47.2+72.1+32.0）</td><td>同期净利润115亿的1.3倍，造血能力扎实</td></tr>
+            <tr><td>净债务/EBITDA</td><td>显著为负（净现金）</td><td>无偿债义务</td></tr>
+            <tr><td>利息收支</td><td>利息收入大于利息支出</td><td>实质是"银行的储户"而非"借款人"</td></tr>
+            <tr><td>极端压力测试</td><td>2020-2022年周期谷底</td><td>利润5亿时依然净现金、依然分红，未举债求生——已实战验证</td></tr>
+        </table>
+
+        <h3>5.3 管理层对杠杆的态度（有出处）</h3>
+        <ul>
+            <li>公司章程与历年利润分配政策明确<strong>高现金回报导向</strong>：2023年度分红率约90%（33.2亿），2024年度约107%（含特别分红，44亿+），2025年度<strong>100%（55.35亿，官网投资者关系页披露）</strong>——管理层选择把利润全部还给股东而不是留在账上或加杠杆扩张。</li>
+            <li>海外KD组装工厂（哈萨克斯坦、委内瑞拉等）投资均为自有资金滚动投入，无并购贷款、无发债记录。</li>
+            <li>需注意的反面：2025年半年报开始，公司为平滑海外大单的营运资本，短期借款有所使用，但绝对额相对63.7亿现金仍微不足道。</li>
+        </ul>
+        <p><strong>财务安全度评级（结合周期制造业特性）</strong>：<span class="tag-green">绿色 —— 零有息杠杆+净现金60亿+周期谷底验证过不亏钱，唯一扣分项是海外应收款随出口扩张而增长（发展中国家公交公司的回款风险）</span></p>
+    </div>
+
+    <h2 id="chapter6">六、竞争分析</h2>
+    <div class="info-box">
+        <h3>6.1 竞争格局：国内群雄+国际巨头</h3>
+        <table>
+            <tr><th>公司</th><th>2026-11估值</th><th>定位与特点</th></tr>
+            <tr><td><strong>宇通客车</strong></td><td>PE 11.8倍/PB 4.49倍</td><td>全球大中客销量第一、出口第一（唯一破万辆），2025年ROE 38%，民企机制</td></tr>
+            <tr><td>金龙汽车（600686）</td><td>PE 10.7倍/PB 1.65倍</td><td>出口榜眼（2026年1-8月出口已破万），三龙整合中，ROE约8-10%</td></tr>
+            <tr><td>中通客车（000957）</td><td>PE 11.4倍/PB 1.58倍</td><td>山东国资，出口增长快但体量小，盈利波动大</td></tr>
+            <tr><td>比亚迪</td><td>-</td><td>新能源客车价格杀手，国内抢份额主力，但客车对其只是集团边角业务</td></tr>
+            <tr><td>奔驰/斯堪尼亚/伊萨</td><td>-</td><td>高端品牌溢价，欧洲本土防线，电动化转型慢、成本高</td></tr>
+        </table>
+
+        <h3>6.2 宇通的相对身位</h3>
+        <div class="moat-item">
+            <strong>盈利质量断层式领先国内同行</strong>：2025年宇通净利率13.6%、ROE 38%，同期金龙、中通净利率仅约2-4%。同样的行业beta下，宇通多赚的每一分钱都来自：出口占比（50.9% vs 金龙约30%）+ 高端产品占比 + 规模摊薄。2026年1-9月海外大中客市占率23.6%行业第一，且<strong>是行业唯一出口破万的车企</strong>——出口这仗已经打出了身位差。
+        </div>
+        <div class="risk-item">
+            <strong>金龙在快速追赶出口</strong>：2026年1-8月金龙出口已破万辆、单月反超宇通（8月金龙1257辆 vs 宇通1180辆）。若金龙三龙整合理顺+海外价格更激进，出口红利期宇通不会独享。比亚迪则是国内市场的长期挤压者——它不赚钱也能打价格战，宇通国内份额的天花板被它压着。
+        </div>
+
+        <h3>6.3 护城河六维评估</h3>
+        <table>
+            <tr><th>护城河维度</th><th>评分(满分5)</th><th>论证</th></tr>
+            <tr><td>成本优势</td><td>★★★★☆</td><td>全球最大客车产能（单一工厂产能全球第一）+三电自研+中国供应链，对欧系品牌有30-50%成本优势</td></tr>
+            <tr><td>规模优势</td><td>★★★★★</td><td>全球市占率10%+，大中客规模全球第一，研发和模具摊薄无对手可比</td></tr>
+            <tr><td>品牌</td><td>★★★☆☆</td><td>"耐用可靠"的工程品牌，发展中国家认可度高；高端形象市场输给欧系</td></tr>
+            <tr><td>转换成本</td><td>★★★☆☆</td><td>维保体系+配件网络+司机培训，公交客户有粘性但招标制下可被价格攻破</td></tr>
+            <tr><td>无形资产</td><td>★★★☆☆</td><td>年研发18亿、三电专利、欧洲严寒市场运营背书；但整车专利壁垒整体不高</td></tr>
+            <tr><td>网络效应</td><td>★☆☆☆☆</td><td>基本不适用</td></tr>
+        </table>
+        <p><strong>护城河总评：中等宽度，靠规模+成本立身，正在借电动化出海加宽，但无定价权护身符。</strong>芒格式提醒：客车是重资产强周期行业，好行业里的普通公司不如烂行业里的好公司——宇通正是后者的典范，但这决定了它只配赚"制造业的钱"，不配赚"品牌垄断的钱"。</p>
+    </div>
+
+    <h2 id="chapter7">七、利润分配分析</h2>
+    <div class="info-box">
+        <h3>7.1 近十年利润分配全景（这是宇通最亮的名片）</h3>
+        <table>
+            <tr><th>年度</th><th>归母净利(亿)</th><th>当年分红实施(亿)</th><th>分红率</th><th>备注</th></tr>
+            <tr><td>2016</td><td>40.44</td><td>34.5</td><td>~85%</td><td>巅峰期高派现</td></tr>
+            <tr><td>2017</td><td>31.29</td><td>23.7</td><td>~76%</td><td>-</td></tr>
+            <tr><td>2018</td><td>23.01</td><td>13.2</td><td>~57%</td><td>-</td></tr>
+            <tr><td>2019</td><td>19.42</td><td>11.8</td><td>~61%</td><td>-</td></tr>
+            <tr><td>2020</td><td>5.16</td><td>22.8</td><td><span class="tag-orange">442%</span></td><td>谷底掏家底分红，稳定预期</td></tr>
+            <tr><td>2021</td><td>6.14</td><td>11.1</td><td>~180%</td><td>延续超额分红</td></tr>
+            <tr><td>2022</td><td>7.59</td><td>11.2</td><td>~148%</td><td>-</td></tr>
+            <tr><td>2023</td><td>18.17</td><td>22.5</td><td>~124%</td><td>含特别分红</td></tr>
+            <tr><td>2024</td><td>41.16</td><td>44.4</td><td>~107%</td><td>年度10派15含中期</td></tr>
+            <tr><td>2025</td><td>55.54</td><td>55.35</td><td><span class="tag-green">100%（公司官网口径）</span></td><td>中期10派5+年末每股2元</td></tr>
+        </table>
+        <p style="font-size:0.85em;color:#7f8c8d;">分红为现金流量表实施口径（含少量利息与少数股东股利），2023-2025年按公司公告归母口径核对。2020-2023年"分红率超100%"=分的比赚的多，动用的是账上存量现金。</p>
+
+        <h3>7.2 A股罕见的分配形态</h3>
+        <table>
+            <tr><th>去向</th><th>近五年合计（约）</th><th>评价</th></tr>
+            <tr><td>现金分红</td><td>约145亿（2021-2025）</td><td><span class="tag-green">A股分红标杆</span>：无论丰年歉年，把利润全部或超额还给股东，2020年利润5亿照样分22.8亿</td></tr>
+            <tr><td>再投入（资本开支）</td><td>年均仅7亿（占营收2%）</td><td><span class="tag-green">极度克制</span>：全球第一的产能早就建完，客车行业不需要烧钱</td></tr>
+            <tr><td>并购扩张</td><td>≈0</td><td><span class="tag-green">零并购</span>：三十年无一次重大外部收购，全靠内生</td></tr>
+            <tr><td>回购注销</td><td>少量（主要为股权激励回购）</td><td>非主要工具</td></tr>
+            <tr><td>留存现金</td><td>净现金60亿上下波动</td><td>分红政策的"蓄水池"，丰年存歉年放</td></tr>
+        </table>
+
+        <h3>7.3 管理层资本配置打分：A-（A股天花板级别）</h3>
+        <div class="moat-item">
+            <strong>为什么给高分</strong>：(1) <strong>言行一致三十年</strong>——上市以来累计分红超350亿元，是A股极少数"分红总额超过历史股权融资总额"的公司；(2) <strong>逆周期稳定器</strong>——2020年周期谷底分红22.8亿，向市场传递"利润是暂时的、分红是永远的"，避免了股价崩塌；(3) <strong>不瞎折腾</strong>——零并购、零多元化、零蹭热点，管理层清楚客车是自己唯一会干的活；(4) 2024-2025连续两年分红率100%，把"重资产周期股"硬生生做成了"类债券"。
+        </div>
+        <div class="risk-item">
+            <strong>为什么不是A+ </strong>：(1) 100%分红隐含管理层判断"行业无需再投入"——若电动化/智能化革命需要巨额研发军备竞赛（如自动驾驶公交），把钱全分掉可能错失；(2) 周期下行时分红率必然回落（2020年那种掏存量的超高分红不可年年复制），以当期股息率线性外推会踩坑；(3) 部分年份分红中含"供股东还贷/避税"的安排动机（宇通集团层面的资金需求），并非纯粹为小股东利益。
+        </div>
+        <div class="highlight">
+            <strong>股息视角</strong>：按2025年度分红55.35亿/当前市值641亿，股息率约<strong>8.6%</strong>。但切记：这是"丰收年100%分红率"下的股息，若2026-2027年利润回落至40亿且分红率维持100%，股息率将降至6.2%；若利润腰斩至28亿，股息率4.4%。买宇通收股息，买的是"周期中段的分配承诺"，不是固定收益。
+        </div>
+    </div>
+
+    <h2 id="chapter8">八、投资总结</h2>
+    <div class="info-box">
+        <h3>8.1 六维评分</h3>
+        <table>
+            <tr><th>维度</th><th>评分</th><th>一句话理由</th></tr>
+            <tr><td>商业模式可理解性</td><td>★★★★★</td><td>造大巴卖全球，收入成本利润一目了然</td></tr>
+            <tr><td>长期经济特征</td><td>★★★☆☆</td><td>重资产+强周期+国内萎缩，靠出口电动化对冲——行业本身平庸</td></tr>
+            <tr><td>护城河</td><td>★★★☆☆</td><td>规模+成本全球第一，但无定价权，比亚迪式价格战随时可来</td></tr>
+            <tr><td>管理层与资本配置</td><td>★★★★★</td><td>MBO民企机制+三十年分红记录+零并购纪律，A股标杆</td></tr>
+            <tr><td>财务健康度</td><td>★★★★★</td><td>零有息负债+净现金60亿+谷底验证</td></tr>
+            <tr><td>估值吸引力</td><td>★★★☆☆</td><td>11.8倍PE+8.6%股息率诱人，但利润处于周期高位+2026增速已放缓——低PE陷阱风险并存</td></tr>
+        </table>
+
+        <h3>8.2 估值测算（三情景，以"利润中枢"而非峰值定价）</h3>
+        <table>
+            <tr><th>情景</th><th>假设</th><th>常态利润中枢</th><th>合理估值</th><th>对应市值</th><th>vs 当前641亿</th></tr>
+            <tr><td>悲观</td><td>国内继续萎缩+出口遭关税/汇率打击+金龙比亚迪夹击，出口增速归零</td><td>35亿</td><td>10倍PE</td><td>350亿</td><td><span style="color:#e74c3c;">-45%</span></td></tr>
+            <tr><td>中性</td><td>出口年增10%+国内持平，电动化渗透率缓升</td><td>45亿</td><td>12倍PE</td><td>540亿+年股息约45亿</td><td><span style="color:#e67e22;">-16%（但股息补偿约7%/年）</span></td></tr>
+            <tr><td>乐观</td><td>全球公交电动化加速，宇通全球份额15%+，新能源出口占比40%</td><td>60亿</td><td>13倍PE</td><td>780亿</td><td><span style="color:#27ae60;">+22%</span></td></tr>
+        </table>
+        <div class="highlight">
+            <strong>周期股估值纪律（芒格教我们的）</strong>：对强周期公司，低PE恰恰可能是卖出信号而非买入信号——11.8倍PE对应的是55亿丰收年利润，若以40亿常态中枢计算，真实PE约16倍。当前价格买入的合理预期：<strong>持有三年，中性情景下总回报≈股价持平-微亏+累计股息约18-20%</strong>，年化5-7%；赚大钱需要乐观情景兑现（全球电动化超预期）。它更像一只"<strong>高波动率的类债券</strong>"：票息6-8%可信，本金随周期起伏。
+        </div>
+
+        <h3>8.3 芒格式总结</h3>
+        <div class="highlight">
+            <p><strong>用一句话概括宇通</strong>：一家由管理层持股、把利润100%分给股东、正在用中国电动车供应链优势横扫全球公交市场的周期性制造商——烂行业里跑出来的好公司。</p>
+            <p><strong>它像美股里的谁？</strong>——最像<strong>卡特彼勒（Caterpillar）+ 福特分红时代</strong>的混合体：重机械制造的全球成本领先者（卡特彼勒），配上把股东回报当信仰的分配文化。它的天花板由行业属性锁定（客车全球市场规模仅约3000亿元人民币，宇通已占10%+），注定成不了万亿巨头。</p>
+            <p><strong>什么价格值得出手？</strong>当前28.95元隐含"丰收年不衰退"的乐观假设，安全边际一般。若市场因2026年增速放缓而杀跌至<strong>22元以下（对应常态中枢利润12倍PE、股息率8%+）</strong>，则是周期股钟摆摆到悲观端的击球区。已持有者的理性策略：<strong>把8.6%股息当作持有的全部理由，不追加、不杠杆，等待周期或出海逻辑给出惊喜</strong>。</p>
+            <p><strong>最需要盯住的四个信号</strong>：(1) 月度/季度出口销量增速是否转负（领先指标）；(2) 海外毛利率能否守住28%+（份额与定价权的体温计）；(3) 欧盟对华电动大巴反补贴税率落地情况；(4) 分红率在利润回落期是否守住100%（管理层信用的试金石）。</p>
+        </div>
+        <p style="color:#7f8c8d;font-size:0.85em;">本文为基本面研究笔记，不构成投资建议。数据来源：宇通客车2025年年报及历年定期报告（上交所披露）、宇通客车官网投资者关系页（历年分红数据）、同花顺金融数据API（2026-11-02）、上海证券报、证券时报、中国客车统计信息网。写作日期：2026-11-02。</p>
+    </div>
+
+    <script src="scores_client.js"></script>
+    <script src="stock_topbar.js"></script>
+</body>
+</html>
