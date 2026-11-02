@@ -66,8 +66,9 @@
     }
 
     // 导航栏HTML（统一模板，所有页面共用）
-    // 布局：左侧[首页][股票数量] —— 右侧[财务分析][更新日志][股票打分][价值计算]
+    // 布局：左侧[首页][A股港股][股票数量] —— 右侧[财务分析][更新日志][股票打分][期权分析][价值计算]
     var navBarHTML = '<a href="index.html" class="top-nav-link" style="background:#2c3e50;" onmouseover="this.style.background=\'#34495e\'" onmouseout="this.style.background=\'#2c3e50\'">← 首页</a>'
+        + '<a href="cn/index.html" class="top-nav-link" style="background:#c0392b;" onmouseover="this.style.background=\'#e74c3c\'" onmouseout="this.style.background=\'#c0392b\'">🇨🇳 A股港股</a>'
         + '<span id="companyCount" class="top-nav-link" style="background:#1a5276;cursor:pointer;margin-right:auto;" onclick="window.scrollTo({top:0,behavior:\'smooth\'})">📊 <span id="countValue">' + STOCK_COUNT + '</span>家覆盖</span>'
         + '<a href="financial_analysis.html" class="top-nav-link" style="background:#2e7d32;" onmouseover="this.style.background=\'#43a047\'" onmouseout="this.style.background=\'#2e7d32\'">📖 财务分析</a>'
         + '<a href="changelog.html" class="top-nav-link" style="background:#856404;" onmouseover="this.style.background=\'#a0762a\'" onmouseout="this.style.background=\'#856404\'">📋 更新日志</a>'

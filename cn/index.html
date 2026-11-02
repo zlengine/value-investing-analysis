@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A股·港股公司分析</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            padding-top: 48px;
+            background-color: #f5f5f5;
+        }
+        .top-nav-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 44px;
+            background: #2c3e50;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding: 0 20px;
+            z-index: 999;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+            gap: 8px;
+        }
+        .top-nav-link {
+            color: white;
+            padding: 6px 16px;
+            border-radius: 16px;
+            text-decoration: none;
+            font-size: 13px;
+            transition: background 0.2s;
+            white-space: nowrap;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+            font-weight: bold;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+        a {
+            color: #4CAF50;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .site-banner {
+            max-width: 900px;
+            margin: 0 auto 10px;
+            background: white;
+            border-radius: 10px;
+            padding: 18px 24px;
+            box-shadow: 0 1px 6px rgba(0,0,0,0.08);
+            color: #555;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+        .site-banner strong { color: #1a5276; }
+        .search-container {
+            max-width: 700px;
+            margin: 25px auto;
+            position: relative;
+        }
+        .search-box {
+            width: 100%;
+            padding: 14px 20px 14px 50px;
+            font-size: 16px;
+            border: 2px solid #ddd;
+            border-radius: 30px;
+            outline: none;
+            box-sizing: border-box;
+            transition: border-color 0.3s, box-shadow 0.3s;
+            background: white;
+        }
+        .search-box:focus {
+            border-color: #2e86c1;
+            box-shadow: 0 0 0 3px rgba(46,134,193,0.15);
+        }
+        .search-icon {
+            position: absolute;
+            left: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 18px;
+            color: #999;
+            pointer-events: none;
+        }
+        .search-hint {
+            text-align: center;
+            color: #999;
+            font-size: 13px;
+            margin-top: 6px;
+        }
+        .search-results {
+            max-width: 700px;
+            margin: 0 auto 20px;
+            display: none;
+        }
+        .search-results.active {
+            display: block;
+        }
+        .search-result-item {
+            background: white;
+            border-radius: 10px;
+            padding: 16px 20px;
+            margin-bottom: 10px;
+            box-shadow: 0 1px 6px rgba(0,0,0,0.08);
+            transition: box-shadow 0.2s;
+        }
+        .search-result-item:hover {
+            box-shadow: 0 3px 12px rgba(0,0,0,0.15);
+        }
+        .search-result-title {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 6px;
+        }
+        .search-result-title a {
+            color: #1a5276;
+        }
+        .search-result-url {
+            font-size: 12px;
+            color: #999;
+            margin-bottom: 6px;
+        }
+        .search-result-snippet {
+            font-size: 14px;
+            color: #555;
+            line-height: 1.6;
+        }
+        .search-result-snippet mark {
+            background: #fff3cd;
+            color: #333;
+            padding: 1px 3px;
+            border-radius: 3px;
+        }
+        .search-result-score {
+            display: inline-block;
+            background: #eaf2f8;
+            color: #1a5276;
+            font-size: 11px;
+            padding: 2px 8px;
+            border-radius: 10px;
+            margin-left: 8px;
+        }
+        .search-stats {
+            text-align: center;
+            color: #7f8c8d;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+        .search-loading {
+            text-align: center;
+            padding: 30px;
+            color: #999;
+        }
+        .search-no-result {
+            text-align: center;
+            padding: 30px;
+            color: #999;
+            font-size: 15px;
+        }
+        .search-clear {
+            position: absolute;
+            right: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            font-size: 18px;
+            color: #999;
+            cursor: pointer;
+            display: none;
+            padding: 4px 8px;
+        }
+        .search-clear.visible {
+            display: block;
+        }
+        .search-clear:hover {
+            color: #333;
+        }
+        .sortable { cursor: pointer; user-select: none; }
+        .sortable:hover { background: #45a049; }
+        .sort-active { background: #3d8b40 !important; }
+        .sort-active .sort-icon { opacity: 1; }
+        .sort-icon { opacity: 0.4; font-size: 12px; margin-left: 3px; }
+        .sort-asc .sort-icon::after { content: "↑"; }
+        .sort-desc .sort-icon::after { content: "↓"; }
+    </style>
+</head>
+<body>
+    <div class="top-nav-bar"></div>
+    <script src="nav_bar.js?v=20261102"></script>
+    <div style="padding: 20px;">
+    <h1>A股·港股公司分析索引</h1>
+
+    <div class="site-banner">
+        本站为 <strong>A股与港股</strong> 的巴菲特/芒格式价值投资分析站点，与<strong>美股网站</strong>共用同一套分析框架（八章结构：公司基本信息/业务分析/产品竞争力/历史财务指标/债务分析/竞争分析/利润分配/投资总结）、排版规范与打分系统。
+        数据来源：公司年报/中报、同花顺金融数据API、港交所披露易。分析内容仅供研究参考，<strong>不构成投资建议</strong>。
+    </div>
+
+    <div class="search-container">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="searchInput" class="search-box" placeholder="搜索公司名称、股票代码、关键词（如：护城河、ROE、定价权...）" autocomplete="off">
+        <button class="search-clear" id="searchClear" onclick="clearSearch()">✕</button>
+        <div class="search-hint">全文搜索覆盖所有公司分析页面 · 支持中英文关键词</div>
+    </div>
+
+    <div class="search-results" id="searchResults"></div>
+
+    <div id="mainContent">
+    <h2 style="color:#4CAF50; border-bottom:2px solid #4CAF50; padding-bottom:8px;">A股·港股公司分析</h2>
+    <div id="stockFilterBar" style="display:flex;gap:10px;margin-bottom:12px;flex-wrap:wrap;align-items:center;">
+        <span style="font-size:13px;color:#666;font-weight:600;">筛选：</span>
+        <select id="filterFundamental" style="padding:5px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;">
+            <option value="">基本面-全部</option>
+            <option value="5">基本面 5分</option>
+            <option value="4">基本面 4分+</option>
+            <option value="3">基本面 3分+</option>
+            <option value="2">基本面 2分+</option>
+            <option value="1">基本面 1分+</option>
+            <option value="0">基本面-未评分</option>
+        </select>
+        <select id="filterPrice" style="padding:5px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;">
+            <option value="">价格-全部</option>
+            <option value="5">价格 5分</option>
+            <option value="4">价格 4分+</option>
+            <option value="3">价格 3分+</option>
+            <option value="2">价格 2分+</option>
+            <option value="1">价格 1分+</option>
+            <option value="0">价格-未评分</option>
+        </select>
+        <select id="filterTotal" style="padding:5px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;">
+            <option value="">综合-全部</option>
+            <option value="10">综合 10分</option>
+            <option value="8">综合 8分+</option>
+            <option value="6">综合 6分+</option>
+            <option value="4">综合 4分+</option>
+        </select>
+        <span id="dbStatus" style="margin-left:auto;font-size:12px;color:#999;"></span>
+    </div>
+    <table id="stockTable">
+        <thead>
+            <tr>
+                <th class="sortable" data-sort="code">股票代码 <span class="sort-icon">⇅</span></th>
+                <th style="text-align:center;" class="sortable" data-sort="fundamental">基本面 <span class="sort-icon">⇅</span></th>
+                <th style="text-align:center;" class="sortable" data-sort="price">价格 <span class="sort-icon">⇅</span></th>
+                <th>公司名称</th>
+                <th>市值</th>
+                <th style="text-align:center;" class="sortable" data-sort="updated">更新时间 <span class="sort-icon">⇅</span></th>
+            </tr>
+        </thead>
+        <tbody id="stockTableBody">
+        <tr>
+            <td><a href="popmart.html">9992</a></td>
+            <td>Pop Mart泡泡玛特（9992.HK港股）- 潮玩帝国/LABUBU超级IP孵化机器/70%毛利率零负债/Q3'26营收暴跌45-50%的潮汐考验</td>
+            <td>1,741亿港元</td>
+        </tr>
+        </tbody>
+    </table>
+    </div>
+    </div>
+
+    <script src="scores_client.js"></script>
+    <script>
+    // === Stock Score Display with Sort & Filter ===
+    (function() {
+        var sortState = { field: 'code', dir: 'asc' };
+        var cachedStocks = null;
+        var currentScores = {};
+
+        function parseRowsOnce() {
+            if (cachedStocks) return cachedStocks;
+            var tbody = document.getElementById('stockTableBody');
+            var rows = tbody.querySelectorAll('tr');
+            var stocks = [];
+            rows.forEach(function(row) {
+                var link = row.querySelector('a[href$=".html"]');
+                if (!link) return;
+                var href = link.getAttribute('href');
+                if (href === 'financial_analysis.html') return;
+                var code = link.textContent.trim();
+                if (!code || code.length > 6) return;
+                var cells = row.querySelectorAll('td');
+                var name = cells.length >= 2 ? cells[1].textContent.trim() : '';
+                var mcap = cells.length >= 3 ? cells[2].textContent.trim() : '-';
+                var created = row.getAttribute('data-created') || '';
+                stocks.push({ code: code, name: name, mcap: mcap, href: href, created: created });
+            });
+            cachedStocks = stocks;
+            return stocks;
+        }
+
+        function renderScoreHTML(val) {
+            if (!val || val === 0) return '<span style="color:#ccc;font-size:13px;">-</span>';
+            var color = val >= 5 ? '#1a8a4a' : val >= 4 ? '#27ae60' : val >= 3 ? '#f39c12' : val >= 2 ? '#e67e22' : '#c0392b';
+            var stars = '';
+            for (var i = 1; i <= 5; i++) {
+                stars += '<span style="color:' + (i <= val ? '#f39c12' : '#ddd') + ';font-size:12px;">★</span>';
+            }
+            return '<span style="font-weight:700;color:' + color + ';font-size:14px;">' + val + '</span> <span style="font-size:11px;">' + stars + '</span>';
+        }
+
+        function formatTime(isoStr) {
+            if (!isoStr) return '<span style="color:#ccc;">-</span>';
+            try {
+                var d = new Date(isoStr);
+                if (isNaN(d.getTime())) return '<span style="color:#ccc;">-</span>';
+                var mm = String(d.getMonth() + 1).padStart(2, '0');
+                var dd = String(d.getDate()).padStart(2, '0');
+                var hh = String(d.getHours()).padStart(2, '0');
+                var mi = String(d.getMinutes()).padStart(2, '0');
+                if (isoStr.length <= 10) {
+                    return '<span style="font-size:12px;color:#888;">' + mm + '-' + dd + '</span>';
+                }
+                return '<span style="font-size:12px;color:#666;">' + mm + '-' + dd + ' ' + hh + ':' + mi + '</span>';
+            } catch(e) { return '<span style="color:#ccc;">-</span>'; }
+        }
+
+        function renderTable() {
+            var scores = currentScores;
+            var stocks = parseRowsOnce();
+            var filterF = document.getElementById('filterFundamental').value;
+            var filterP = document.getElementById('filterPrice').value;
+            var filterT = document.getElementById('filterTotal').value;
+
+            stocks.forEach(function(s) {
+                var sc = scores[s.code] || {};
+                s.fundamental = sc.fundamental || 0;
+                s.price = sc.price || 0;
+                s.updated = sc.updated || s.created || '';
+                s.total = s.fundamental + s.price;
+            });
+
+            var filtered = stocks.filter(function(s) {
+                if (filterF !== '') {
+                    if (filterF === '0') { if (s.fundamental !== 0) return false; }
+                    else { if (s.fundamental < parseInt(filterF)) return false; }
+                }
+                if (filterP !== '') {
+                    if (filterP === '0') { if (s.price !== 0) return false; }
+                    else { if (s.price < parseInt(filterP)) return false; }
+                }
+                if (filterT !== '') {
+                    if (s.total < parseInt(filterT)) return false;
+                }
+                return true;
+            });
+
+            var field = sortState.field;
+            var dir = sortState.dir;
+            filtered.sort(function(a, b) {
+                var va, vb;
+                switch(field) {
+                    case 'code': va = a.code; vb = b.code; break;
+                    case 'fundamental': va = a.fundamental; vb = b.fundamental; break;
+                    case 'price': va = a.price; vb = b.price; break;
+                    case 'updated': va = a.updated || ''; vb = b.updated || ''; break;
+                    default: va = a.code; vb = b.code;
+                }
+                var cmp;
+                if (typeof va === 'number') { cmp = va - vb; }
+                else { cmp = va < vb ? -1 : va > vb ? 1 : 0; }
+                return dir === 'asc' ? cmp : -cmp;
+            });
+
+            var html = '';
+            for (var i = 0; i < filtered.length; i++) {
+                var s = filtered[i];
+                html += '<tr>';
+                html += '<td><a href="' + s.href + '">' + s.code + '</a></td>';
+                html += '<td style="text-align:center;">' + renderScoreHTML(s.fundamental) + '</td>';
+                html += '<td style="text-align:center;">' + renderScoreHTML(s.price) + '</td>';
+                html += '<td>' + s.name + '</td>';
+                html += '<td>' + s.mcap + '</td>';
+                html += '<td style="text-align:center;">' + formatTime(s.updated) + '</td>';
+                html += '</tr>';
+            }
+            if (filtered.length === 0) {
+                html = '<tr><td colspan="6" style="text-align:center;color:#999;padding:30px;">没有符合条件的股票</td></tr>';
+            }
+            document.getElementById('stockTableBody').innerHTML = html;
+
+            document.querySelectorAll('.sortable').forEach(function(th) {
+                th.classList.remove('sort-active', 'sort-asc', 'sort-desc');
+                if (th.getAttribute('data-sort') === field) {
+                    th.classList.add('sort-active', dir === 'asc' ? 'sort-asc' : 'sort-desc');
+                }
+            });
+        }
+
+        document.addEventListener('click', function(e) {
+            var th = e.target.closest('.sortable');
+            if (!th) return;
+            var field = th.getAttribute('data-sort');
+            if (sortState.field === field) {
+                sortState.dir = sortState.dir === 'asc' ? 'desc' : 'asc';
+            } else {
+                sortState.field = field;
+                sortState.dir = 'asc';
+            }
+            renderTable();
+        });
+
+        ['filterFundamental', 'filterPrice', 'filterTotal'].forEach(function(id) {
+            document.getElementById(id).addEventListener('change', renderTable);
+        });
+
+        function loadScores() {
+            var localScores = ScoresDB.getAllLocal() || {};
+            var localCount = Object.keys(localScores).length;
+            currentScores = localScores;
+            updateDbStatus(localCount, 'local');
+            renderTable();
+
+            ScoresDB.syncFromRemote(function(err, scores) {
+                if (err || !scores) {
+                    updateDbStatus(localCount, 'error');
+                    return;
+                }
+                currentScores = scores;
+                var count = Object.keys(scores).length;
+                updateDbStatus(count, count > 0 ? 'synced' : 'empty');
+                renderTable();
+            });
+        }
+
+        function updateDbStatus(count, source) {
+            var statusEl = document.getElementById('dbStatus');
+            if (!statusEl) return;
+            if (source === 'synced') {
+                statusEl.innerHTML = '☁️ 云端同步 · ' + count + '条打分';
+                statusEl.style.color = '#27ae60';
+            } else if (source === 'error') {
+                statusEl.innerHTML = '⚠️ 云端同步失败，显示本地缓存 · ' + count + '条';
+                statusEl.style.color = '#e67e22';
+            } else if (count > 0) {
+                statusEl.innerHTML = '💾 本地缓存 · ' + count + '条打分';
+                statusEl.style.color = '#27ae60';
+            } else {
+                statusEl.innerHTML = '💾 暂无打分数据';
+                statusEl.style.color = '#999';
+            }
+        }
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', function() { loadScores(); });
+        } else {
+            loadScores();
+        }
+    })();
+    </script>
+
+    <script>
+    // === 全文搜索（search-index.json 未生成前优雅降级）===
+    var searchIndex = null;
+    var searchTimer = null;
+
+    var searchInput = document.getElementById('searchInput');
+    var searchResults = document.getElementById('searchResults');
+    var searchClear = document.getElementById('searchClear');
+    var mainContent = document.getElementById('mainContent');
+
+    function loadSearchIndex() {
+        if (searchIndex) return Promise.resolve(searchIndex);
+        return fetch('search-index.json')
+            .then(function(r) {
+                if (!r.ok) throw new Error('no index');
+                return r.json();
+            })
+            .then(function(data) {
+                searchIndex = data;
+                return searchIndex;
+            });
+    }
+
+    function escapeHtml(text) {
+        var div = document.createElement('div');
+        div.appendChild(document.createTextNode(text));
+        return div.innerHTML;
+    }
+
+    function highlightText(text, query) {
+        if (!query) return escapeHtml(text);
+        var escaped = escapeHtml(text);
+        var escapedQuery = escapeHtml(query);
+        var re = new RegExp('(' + escapedQuery.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'gi');
+        return escaped.replace(re, '<mark>$1</mark>');
+    }
+
+    function search(query) {
+        if (!query || query.trim().length < 2) {
+            searchResults.classList.remove('active');
+            searchResults.innerHTML = '';
+            mainContent.style.display = '';
+            searchClear.classList.remove('visible');
+            return;
+        }
+        searchResults.innerHTML = '<div class="search-loading">搜索中...</div>';
+        searchResults.classList.add('active');
+        searchClear.classList.add('visible');
+
+        loadSearchIndex().then(function(index) {
+            var q = query.trim().toLowerCase();
+            var pages = index.pages || [];
+            var results = [];
+            pages.forEach(function(page) {
+                var title = (page.title || '').toLowerCase();
+                var content = (page.content || '').toLowerCase();
+                var score = 0;
+                var pos = -1;
+                if (title.indexOf(q) !== -1) { score += 10; }
+                pos = content.indexOf(q);
+                if (pos !== -1) { score += 1; }
+                if (score > 0) {
+                    var snippetStart = Math.max(0, pos - 40);
+                    var snippet = (page.content || '').substring(snippetStart, snippetStart + 120);
+                    results.push({ page: page, score: score, snippet: snippet });
+                }
+            });
+            results.sort(function(a, b) { return b.score - a.score; });
+            renderSearchResults(results, query);
+        }).catch(function() {
+            searchResults.innerHTML = '<div class="search-no-result">全文搜索索引尚未生成，请直接浏览下方公司列表</div>';
+        });
+    }
+
+    function renderSearchResults(results, query) {
+        mainContent.style.display = results.length > 0 ? 'none' : '';
+        if (results.length === 0) {
+            searchResults.innerHTML = '<div class="search-no-result">未找到与 "' + escapeHtml(query) + '" 相关的内容</div>';
+            return;
+        }
+        var html = '<div class="search-stats">找到 <strong>' + results.length + '</strong> 条相关结果</div>';
+        results.slice(0, 10).forEach(function(r) {
+            var sc = ScoresDB.get(r.page.code) || {};
+            var scoreBadge = (sc.fundamental || sc.price) ? '<span class="search-result-score">基本面' + (sc.fundamental || '-') + ' · 价格' + (sc.price || '-') + '</span>' : '';
+            html += '<div class="search-result-item">'
+                + '<div class="search-result-title"><a href="' + r.page.url + '">' + highlightText(r.page.title, query) + '</a>' + scoreBadge + '</div>'
+                + '<div class="search-result-url">' + r.page.url + '</div>'
+                + '<div class="search-result-snippet">...' + highlightText(r.snippet, query) + '...</div>'
+                + '</div>';
+        });
+        searchResults.innerHTML = html;
+    }
+
+    function clearSearch() {
+        searchInput.value = '';
+        searchResults.classList.remove('active');
+        searchResults.innerHTML = '';
+        mainContent.style.display = '';
+        searchClear.classList.remove('visible');
+        searchInput.focus();
+    }
+
+    searchInput.addEventListener('input', function() {
+        clearTimeout(searchTimer);
+        var v = searchInput.value;
+        searchTimer = setTimeout(function() { search(v); }, 300);
+    });
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && searchInput.value) clearSearch();
+    });
+    </script>
+</body>
+</html>

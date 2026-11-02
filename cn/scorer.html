@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>股票打分系统 - A股港股价值投资分析</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📊</text></svg>">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: #f5f7fa;
+            color: #333;
+            padding-top: 48px;
+        }
+        .top-nav-bar {
+            position: fixed; top: 0; left: 0; right: 0;
+            background: linear-gradient(90deg, #1a5276, #2e86c1);
+            padding: 8px 20px;
+            display: flex; align-items: center; gap: 10px;
+            z-index: 1000;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+        }
+        .top-nav-link {
+            color: white; text-decoration: none;
+            padding: 6px 14px; border-radius: 6px;
+            font-size: 13px; font-weight: 500;
+            transition: background 0.2s;
+        }
+        .top-nav-link:hover { background: rgba(255,255,255,0.2); }
+        .header {
+            background: linear-gradient(135deg, #1a5276 0%, #2e86c1 100%);
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+        }
+        .header h1 { font-size: 28px; margin-bottom: 8px; }
+        .header p { font-size: 14px; opacity: 0.9; }
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+        .back-link {
+            display: inline-block;
+            color: #1a5276;
+            text-decoration: none;
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+        .stats-bar {
+            display: flex; gap: 15px; flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+        .stat-card {
+            background: white;
+            padding: 15px 20px;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            flex: 1; min-width: 140px;
+            text-align: center;
+        }
+        .stat-num { font-size: 24px; font-weight: 700; color: #1a5276; }
+        .stat-label { font-size: 12px; color: #666; margin-top: 4px; }
+        .filter-bar {
+            background: white;
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            display: flex; gap: 12px; align-items: center; flex-wrap: wrap;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+        .filter-bar label { font-size: 13px; color: #555; }
+        .filter-bar select {
+            padding: 5px 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 13px;
+        }
+        .score-table {
+            width: 100%;
+            background: white;
+            border-collapse: collapse;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        .score-table th {
+            background: #1a5276;
+            color: white;
+            padding: 12px 10px;
+            text-align: left;
+            font-size: 13px;
+            cursor: pointer;
+            user-select: none;
+        }
+        .score-table th.sort-active { background: #2e86c1; }
+        .score-table th.sort-active.desc::after { content: ' ↓'; }
+        .score-table th.sort-active:not(.desc)::after { content: ' ↑'; }
+        .score-table td {
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+            font-size: 13px;
+        }
+        .score-table tr:hover { background: #f9f9f9; }
+        .score-table a { color: #1a5276; text-decoration: none; font-weight: 600; }
+        .score-val { font-weight: 700; font-size: 14px; }
+        .s5 { color: #1a8a4a; }
+        .s4 { color: #27ae60; }
+        .s3 { color: #f39c12; }
+        .s2 { color: #e67e22; }
+        .s1 { color: #c0392b; }
+        .stars { font-size: 11px; }
+        .stars .on { color: #f39c12; }
+        .stars .off { color: #ddd; }
+        .no-score { color: #ccc; }
+        .edit-btn {
+            background: #1a5276;
+            color: white;
+            border: none;
+            padding: 5px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+        .edit-btn:hover { background: #2e86c1; }
+        .empty-msg { text-align: center; color: #999; padding: 30px; }
+        .modal-overlay {
+            display: none;
+            position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 2000;
+            justify-content: center; align-items: center;
+        }
+        .modal-overlay.active { display: flex; }
+        .modal {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            min-width: 320px;
+            max-width: 90%;
+        }
+        .modal h3 { margin-bottom: 15px; color: #1a5276; }
+        .modal label { display: block; margin: 10px 0 5px; font-size: 13px; color: #555; }
+        .modal select {
+            width: 100%; padding: 8px; border: 1px solid #ddd;
+            border-radius: 4px; font-size: 14px; margin-bottom: 10px;
+        }
+        .modal-buttons { display: flex; gap: 10px; margin-top: 15px; }
+        .btn-save { background: #27ae60; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; }
+        .btn-cancel { background: #999; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; }
+        .btn-delete { background: #c0392b; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; margin-right: auto; }
+    </style>
+</head>
+<body>
+    <div class="top-nav-bar"></div>
+    <script src="nav_bar.js?v=20260624"></script>
+
+    <div class="header">
+        <h1>A股港股股票打分系统</h1>
+        <p>对所有已分析的A股/港股公司进行基本面和价格评分，统一管理</p>
+    </div>
+
+    <div class="container">
+        <a href="index.html" class="back-link">&larr; 返回首页</a>
+
+        <div class="stats-bar" id="statsBar"></div>
+
+        <div class="filter-bar">
+            <label>基本面筛选:</label>
+            <select id="filterF"><option value="">全部</option><option value="1">1分+</option><option value="2">2分+</option><option value="3">3分+</option><option value="4">4分+</option><option value="5">5分</option><option value="0">未评分</option></select>
+            <label>价格筛选:</label>
+            <select id="filterP"><option value="">全部</option><option value="1">1分+</option><option value="2">2分+</option><option value="3">3分+</option><option value="4">4分+</option><option value="5">5分</option><option value="0">未评分</option></select>
+            <span id="dbStatus" style="margin-left:auto;font-size:12px;color:#999;"></span>
+        </div>
+
+        <details class="sync-settings" style="margin:10px 0;padding:10px;background:#f8f9fa;border:1px solid #e0e0e0;border-radius:6px;">
+            <summary style="cursor:pointer;font-weight:bold;color:#555;">☁️ JSONBin 云端同步状态</summary>
+            <div style="margin-top:12px;font-size:13px;color:#666;line-height:1.6;">
+                <p style="margin:0 0 8px;">打分数据自动同步到 <strong>JSONBin.io</strong> 云端，跨设备/浏览器实时共享。无需手动设置 Token，开箱即用。</p>
+                <p style="margin:0 0 8px;color:#27ae60;"><strong>✓ 数据源：</strong>JSONBin.io（Bin ID: <code>6a3a9819da38895dfef1fe31</code>）</p>
+                <div style="display:flex;gap:8px;align-items:center;margin:10px 0;">
+                    <button id="syncNowBtn" style="padding:6px 14px;background:#3498db;color:#fff;border:none;border-radius:4px;cursor:pointer;">立即从云端同步</button>
+                    <button id="restoreBtn" style="padding:6px 14px;background:#f39c12;color:#fff;border:none;border-radius:4px;cursor:pointer;">强制覆盖本地</button>
+                    <span id="syncStatus" style="font-size:12px;color:#999;">就绪</span>
+                </div>
+                <p id="lastSyncInfo" style="margin:8px 0 0;font-size:12px;color:#999;"></p>
+            </div>
+        </details>
+
+        <table class="score-table">
+            <thead>
+                <tr>
+                    <th data-sort="code" class="sortable">代码</th>
+                    <th data-sort="name" class="sortable">名称</th>
+                    <th data-sort="fundamental" class="sortable">基本面</th>
+                    <th data-sort="price" class="sortable">价格</th>
+                    <th data-sort="total" class="sortable">总分</th>
+                    <th data-sort="updated" class="sortable">更新时间</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody id="scoreBody"></tbody>
+        </table>
+    </div>
+
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal">
+            <h3 id="modalTitle">编辑评分</h3>
+            <label>基本面评分 (1-5)</label>
+            <select id="modalF"><option value="0">未评分</option><option value="1">1 - 很差</option><option value="2">2 - 较差</option><option value="3">3 - 一般</option><option value="4">4 - 较好</option><option value="5">5 - 优秀</option></select>
+            <label>价格评分 (1-5)</label>
+            <select id="modalP"><option value="0">未评分</option><option value="1">1 - 极贵</option><option value="2">2 - 偏贵</option><option value="3">3 - 合理</option><option value="4">4 - 偏低</option><option value="5">5 - 极便宜</option></select>
+            <div class="modal-buttons">
+                <button class="btn-delete" id="modalDelete">删除</button>
+                <button class="btn-cancel" id="modalCancelBtn">取消</button>
+                <button class="btn-save" id="modalSaveBtn">保存</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="scores_client.js"></script>
+    <script src="stocks_data.js?v=20260624"></script>
+    <script>
+    (function(){
+        var sortState = { field: 'total', dir: 'desc' };
+        var editingCode = null;
+        var currentScores = {};
+
+        var stocks = window.STOCKS_DATA || [];
+
+        function starsHTML(val){
+            var h='';
+            for(var i=1;i<=5;i++) h+='<span class="'+(i<=val?'on':'off')+'">&#9733;</span>';
+            return h;
+        }
+        function valClass(v){return v>=5?'s5':v>=4?'s4':v>=3?'s3':v>=2?'s2':'s1';}
+
+        function renderScoreCell(val){
+            if(!val||val===0) return '<span class="no-score">-</span>';
+            return '<span class="score-val '+valClass(val)+'">'+val+'</span> <span class="stars">'+starsHTML(val)+'</span>';
+        }
+
+        function formatTime(isoStr){
+            if(!isoStr) return '<span style="color:#ccc;">-</span>';
+            try{
+                var d=new Date(isoStr);
+                if(isNaN(d.getTime())) return '<span style="color:#ccc;">-</span>';
+                var mm=String(d.getMonth()+1).padStart(2,'0');
+                var dd=String(d.getDate()).padStart(2,'0');
+                var hh=String(d.getHours()).padStart(2,'0');
+                var mi=String(d.getMinutes()).padStart(2,'0');
+                return '<span style="font-size:12px;color:#666;">'+mm+'-'+dd+' '+hh+':'+mi+'</span>';
+            }catch(e){return '<span style="color:#ccc;">-</span>';}
+        }
+
+        function renderStats(){
+            var scores=currentScores;
+            var total=stocks.length;
+            var scored=0,fSum=0,pSum=0,fScored=0,pScored=0;
+            stocks.forEach(function(s){
+                var sc=scores[s.code]||{};
+                if(sc.fundamental>0){fSum+=sc.fundamental;fScored++;}
+                if(sc.price>0){pSum+=sc.price;pScored++;}
+                if(sc.fundamental>0||sc.price>0) scored++;
+            });
+            var fAvg=fScored>0?(fSum/fScored).toFixed(1):'-';
+            var pAvg=pScored>0?(pSum/pScored).toFixed(1):'-';
+            document.getElementById('statsBar').innerHTML=
+                '<div class="stat-card"><div class="stat-num">'+total+'</div><div class="stat-label">总股票数</div></div>'+
+                '<div class="stat-card"><div class="stat-num">'+scored+'</div><div class="stat-label">已评分</div></div>'+
+                '<div class="stat-card"><div class="stat-num">'+fAvg+'</div><div class="stat-label">基本面均分</div></div>'+
+                '<div class="stat-card"><div class="stat-num">'+pAvg+'</div><div class="stat-label">价格均分</div></div>';
+        }
+
+        function renderTable(){
+            var scores=currentScores;
+            var filterF=document.getElementById('filterF').value;
+            var filterP=document.getElementById('filterP').value;
+
+            var data=stocks.map(function(s){
+                var sc=scores[s.code]||{};
+                return {
+                    code:s.code,name:s.name,href:s.href,
+                    fundamental:sc.fundamental||0,
+                    price:sc.price||0,
+                    total:(sc.fundamental||0)+(sc.price||0),
+                    updated:sc.updated||''
+                };
+            });
+
+            data=data.filter(function(s){
+                if(filterF!==''){
+                    if(filterF==='0'){if(s.fundamental!==0) return false;}
+                    else{if(s.fundamental<parseInt(filterF)) return false;}
+                }
+                if(filterP!==''){
+                    if(filterP==='0'){if(s.price!==0) return false;}
+                    else{if(s.price<parseInt(filterP)) return false;}
+                }
+                return true;
+            });
+
+            var field=sortState.field,dir=sortState.dir;
+            data.sort(function(a,b){
+                var va,vb;
+                switch(field){
+                    case 'code':va=a.code;vb=b.code;break;
+                    case 'name':va=a.name;vb=b.name;break;
+                    case 'fundamental':va=a.fundamental;vb=b.fundamental;break;
+                    case 'price':va=a.price;vb=b.price;break;
+                    case 'total':va=a.total;vb=b.total;break;
+                    case 'updated':va=a.updated||'';vb=b.updated||'';break;
+                    default:va=a.total;vb=b.total;
+                }
+                var cmp;
+                if(typeof va==='number'){cmp=va-vb;}
+                else{cmp=va<vb?-1:va>vb?1:0;}
+                return dir==='asc'?cmp:-cmp;
+            });
+
+            var html='';
+            for(var i=0;i<data.length;i++){
+                var s=data[i];
+                html+='<tr>';
+                html+='<td><a href="'+s.href+'">'+s.code+'</a></td>';
+                html+='<td>'+s.name+'</td>';
+                html+='<td>'+renderScoreCell(s.fundamental)+'</td>';
+                html+='<td>'+renderScoreCell(s.price)+'</td>';
+                html+='<td style="font-weight:700;">'+(s.total>0?s.total:'<span class="no-score">-</span>')+'</td>';
+                html+='<td>'+formatTime(s.updated)+'</td>';
+                html+='<td><button class="edit-btn" data-code="'+s.code+'">评分</button></td>';
+                html+='</tr>';
+            }
+            if(data.length===0){
+                html='<tr><td colspan="7" class="empty-msg">没有符合条件的股票</td></tr>';
+            }
+            document.getElementById('scoreBody').innerHTML=html;
+
+            document.querySelectorAll('.sortable').forEach(function(th){
+                th.classList.remove('sort-active','desc');
+                if(th.getAttribute('data-sort')===field){
+                    th.classList.add('sort-active');
+                    if(dir==='desc') th.classList.add('desc');
+                }
+            });
+
+            renderStats();
+        }
+
+        document.addEventListener('click',function(e){
+            var th=e.target.closest('.sortable');
+            if(th){
+                var field=th.getAttribute('data-sort');
+                if(sortState.field===field){sortState.dir=sortState.dir==='asc'?'desc':'asc';}
+                else{sortState.field=field;sortState.dir='asc';}
+                renderTable();
+                return;
+            }
+            var btn=e.target.closest('.edit-btn');
+            if(btn){
+                var code=btn.getAttribute('data-code');
+                openModal(code);
+            }
+        });
+
+        document.getElementById('filterF').addEventListener('change',renderTable);
+        document.getElementById('filterP').addEventListener('change',renderTable);
+
+        function openModal(code){
+            editingCode=code;
+            var sc=currentScores[code]||{};
+            document.getElementById('modalTitle').textContent='编辑评分 - '+code;
+            document.getElementById('modalF').value=sc.fundamental||0;
+            document.getElementById('modalP').value=sc.price||0;
+            document.getElementById('modalOverlay').classList.add('active');
+        }
+        function closeModal(){
+            editingCode=null;
+            document.getElementById('modalOverlay').classList.remove('active');
+        }
+
+        document.getElementById('modalSaveBtn').addEventListener('click',function(){
+            if(!editingCode) return;
+            var f=parseInt(document.getElementById('modalF').value);
+            var p=parseInt(document.getElementById('modalP').value);
+            ScoresDB.save(editingCode, f, p);
+            closeModal();
+            loadScores();
+        });
+        document.getElementById('modalCancelBtn').addEventListener('click',closeModal);
+        document.getElementById('modalDelete').addEventListener('click',function(){
+            if(!editingCode) return;
+            ScoresDB.delete(editingCode);
+            closeModal();
+            loadScores();
+        });
+        document.getElementById('modalOverlay').addEventListener('click',function(e){
+            if(e.target===this) closeModal();
+        });
+
+        function loadScores(){
+            // 先用本地缓存立即显示
+            currentScores = ScoresDB.getAllLocal() || {};
+            var statusEl = document.getElementById('dbStatus');
+            if (statusEl) {
+                statusEl.innerHTML = '💾 本地缓存 · ' + Object.keys(currentScores).length + '条打分';
+                statusEl.style.color = '#27ae60';
+            }
+            renderTable();
+            // 异步从云端拉取最新数据并刷新
+            ScoresDB.syncFromRemote(function(err, scores){
+                if(!err){
+                    currentScores = scores || {};
+                    if (statusEl) {
+                        statusEl.innerHTML = '☁️ 云端同步 · ' + Object.keys(currentScores).length + '条打分';
+                        statusEl.style.color = '#27ae60';
+                    }
+                    renderTable();
+                }
+            });
+        }
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', loadScores);
+        } else {
+            loadScores();
+        }
+
+        // ===== JSONBin 云端同步 =====
+        function updateSyncUI() {
+            var status = ScoresDB.getStatus();
+            var statusEl = document.getElementById('syncStatus');
+            var lastSyncEl = document.getElementById('lastSyncInfo');
+
+            var statusText = '';
+            var color = '#999';
+            if (status.status === 'syncing') {
+                statusText = '同步中...';
+                color = '#3498db';
+            } else if (status.status === 'success') {
+                statusText = '✓ 已同步';
+                color = '#27ae60';
+            } else if (status.status === 'error') {
+                statusText = '✗ 同步失败：' + (status.error || '');
+                color = '#e74c3c';
+            } else {
+                statusText = '就绪';
+                color = '#27ae60';
+            }
+            statusEl.textContent = statusText;
+            statusEl.style.color = color;
+
+            if (status.lastSync) {
+                var d = new Date(status.lastSync);
+                lastSyncEl.textContent = '上次同步：' + d.toLocaleString('zh-CN');
+            } else {
+                lastSyncEl.textContent = '';
+            }
+        }
+
+        document.getElementById('syncNowBtn').addEventListener('click', function() {
+            document.getElementById('syncStatus').textContent = '同步中...';
+            document.getElementById('syncStatus').style.color = '#3498db';
+            ScoresDB.syncFromRemote(function(err, scores) {
+                if (err) {
+                    document.getElementById('syncStatus').textContent = '✗ 同步失败：' + err.message;
+                    document.getElementById('syncStatus').style.color = '#e74c3c';
+                } else {
+                    document.getElementById('syncStatus').textContent = '✓ 已同步 ' + Object.keys(scores).length + ' 条打分';
+                    document.getElementById('syncStatus').style.color = '#27ae60';
+                    loadScores();
+                }
+            });
+        });
+
+        document.getElementById('restoreBtn').addEventListener('click', function() {
+            if (!confirm('从云端恢复会覆盖当前本地数据，确定继续？')) return;
+            document.getElementById('syncStatus').textContent = '恢复中...';
+            document.getElementById('syncStatus').style.color = '#3498db';
+            ScoresDB.syncFromRemote(function(err, scores) {
+                if (err) {
+                    document.getElementById('syncStatus').textContent = '✗ 恢复失败：' + err.message;
+                    document.getElementById('syncStatus').style.color = '#e74c3c';
+                } else {
+                    document.getElementById('syncStatus').textContent = '✓ 已恢复 ' + Object.keys(scores).length + ' 条打分';
+                    document.getElementById('syncStatus').style.color = '#27ae60';
+                    loadScores();
+                }
+            });
+        });
+
+        // 监听同步状态变化
+        ScoresDB.onStatusChange(updateSyncUI);
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', updateSyncUI);
+        } else {
+            updateSyncUI();
+        }
+    })();
+    </script>
+</body>
+</html>

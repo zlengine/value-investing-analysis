@@ -155,6 +155,23 @@
 
     <!-- 更新日志条目 - 按时间倒序排列，最新在最上面 -->
 
+    <div class="log-entry create">
+        <div class="log-header">
+            <span class="log-date">2026-11-02</span>
+            <span class="log-type create">新建</span>
+        </div>
+        <div class="log-desc">
+            <ul>
+                <li><strong>双网站架构上线</strong：新建A股港股网站（cn/子目录，https://zlengine.github.io/value-investing-analysis/cn/），与美股网站共用同一套巴菲特/芒格八章分析框架、排版规范、打分系统（JSONBin按股票代码区分）与价值计算器。cn/包含独立组件：nav_bar.js（含🇺🇸美股网站切换入口）、stocks_data.js、index.html（打分展示/排序/筛选/搜索）、scorer.html、changelog.html、scores_client.js、stock_topbar.js。美股网站导航栏新增"🇨🇳 A股港股"红色入口按钮。泡泡玛特（9992.HK，港股归属）从美股网站迁移至cn/（原根目录popmart.html删除，打分数据按代码9992在云端无缝保留）。项目规则文件新增最高优先级"双网站架构与公司归属路由"章节：此后每次分析公司先按上市地判定归属（美股/中概ADR→根目录；A股/港股→cn/），自动更新到对应网站</li>
+            </ul>
+        </div>
+        <div class="log-files">
+            <span class="added">+ cn/index.html、cn/nav_bar.js、cn/stocks_data.js、cn/changelog.html、cn/scorer.html、cn/scores_client.js、cn/stock_topbar.js、cn/popmart.html</span><br>
+            <span class="modified">~ nav_bar.js、index.html、stocks_data.js、changelog.html、.trae/rules/project_rules.md</span><br>
+            <span class="deleted">- popmart.html（迁移至cn/popmart.html）</span>
+        </div>
+    </div>
+
     <div class="log-entry update">
         <div class="log-header">
             <span class="log-date">2026-11-02</span>
