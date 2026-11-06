@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taiwan Semiconductor (TSM) 价值投资分析</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f2f5;
+            color: #333;
+        }
+        h1 {
+            text-align: center;
+            color: #1a5276;
+            font-size: 2.2em;
+            margin-bottom: 5px;
+        }
+        h2 {
+            color: #1a5276;
+            border-bottom: 2px solid #2e86c1;
+            padding-bottom: 8px;
+            margin-top: 30px;
+        }
+        h3 {
+            color: #2c3e50;
+            margin-top: 20px;
+        }
+        h4 {
+            color: #2c3e50;
+            margin-top: 15px;
+        }
+        .subtitle {
+            text-align: center;
+            color: #7f8c8d;
+            font-size: 1.1em;
+            margin-bottom: 30px;
+        }
+        .info-box {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            background-color: white;
+        }
+        th, td {
+            padding: 10px 14px;
+            text-align: left;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        th {
+            background-color: #1a5276;
+            color: white;
+            font-weight: bold;
+        }
+        tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        tr:hover {
+            background-color: #eaf2f8;
+        }
+        .highlight {
+            background: #fef9e7;
+            border-left: 4px solid #2e86c1;
+            padding: 15px 20px;
+            margin: 15px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .moat-item {
+            background: #eafaf1;
+            border-left: 4px solid #27ae60;
+            padding: 12px 18px;
+            margin: 10px 0;
+            border-radius: 0 6px 6px 0;
+        }
+        .risk-item {
+            background: #fdedec;
+            border-left: 4px solid #e74c3c;
+            padding: 12px 18px;
+            margin: 10px 0;
+            border-radius: 0 6px 6px 0;
+        }
+        .tag {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.85em;
+            font-weight: bold;
+            color: white;
+        }
+        .tag-green { background-color: #27ae60; }
+        .tag-orange { background-color: #e67e22; }
+        .tag-red { background-color: #e74c3c; }
+        .star { color: #f39c12; }
+        .section-nav {
+            background: white;
+            border-radius: 10px;
+            padding: 15px 25px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+        .section-nav a {
+            display: inline-block;
+            margin: 5px 10px;
+            padding: 6px 14px;
+            background: #eaf2f8;
+            color: #1a5276;
+            text-decoration: none;
+            border-radius: 15px;
+            font-size: 0.9em;
+        }
+        .section-nav a:hover {
+            background: #2e86c1;
+            color: white;
+        }
+        .src {
+            color: #7f8c8d;
+            font-size: 0.88em;
+            line-height: 1.7;
+        }
+    </style>
+</head>
+<body>
+    <div class="top-nav-bar"></div>
+    <script src="nav_bar.js?v=20260624"></script>
+    <span id="topbarCode" style="display:none;">TSM</span>
+    <h1>Taiwan Semiconductor Manufacturing (NYSE: TSM)</h1>
+    <p class="subtitle">沃伦·巴菲特/查理·芒格风格 · 价值投资基本面分析 | 更新日期：2026年11月6日</p>
+
+    <div class="section-nav">
+        <a href="#chapter1">公司基本信息</a>
+        <a href="#chapter2">业务分析</a>
+        <a href="#chapter3">产品竞争力分析</a>
+        <a href="#chapter4">历史财务指标</a>
+        <a href="#chapter5">债务分析</a>
+        <a href="#chapter6">竞争分析</a>
+        <a href="#chapter7">谷歌TPU绑定关系</a>
+        <a href="#chapter8">利润分配分析</a>
+        <a href="#chapter9">投资总结</a>
+    </div>
+
+    <h2 id="chapter1">一、公司基本信息</h2>
+    <div class="info-box">
+        <table>
+            <tr><td>公司全称</td><td>Taiwan Semiconductor Manufacturing Company Limited（台湾积体电路制造股份有限公司）</td></tr>
+            <tr><td>股票代码</td><td>NYSE: TSM（ADR）／TWSE: 2330</td></tr>
+            <tr><td>最新收盘价</td><td>$353.10（2026年11月5日收盘，当日 -10.78%）</td></tr>
+            <tr><td>市值</td><td>约 1.76 万亿美元（全球市值前十）</td></tr>
+            <tr><td>估值</td><td>PE(TTM) 23.9 倍；Forward PE 17.0 倍；分析师目标价均值 $586.69</td></tr>
+            <tr><td>52周区间</td><td>$266.82 – $487.47</td></tr>
+            <tr><td>股息</td><td>$4.06/ADR（年化，股息率约 1.15%）</td></tr>
+            <tr><td>FY2025 营收</td><td>NT$3.809 万亿（+31.6% YoY），约 US$1,210 亿</td></tr>
+            <tr><td>FY2025 净利</td><td>NT$1.7179 万亿（+46.4% YoY），EPS NT$66.25</td></tr>
+            <tr><td>3Q26 业绩</td><td>营收 NT$1.4942 万亿（+50.9% YoY）、净利 NT$7,630.6 亿、EPS NT$29.43、毛利率 66.4%、营业利润率 58.7%、ROE 45.5%</td></tr>
+            <tr><td>2026 全年指引</td><td>美元营收同比增长约 44%；资本开支 US$600–640 亿（1月原指引 520–560 亿，已两次上调）</td></tr>
+            <tr><td>Q4'26 指引</td><td>营收 US$523–543 亿；毛利率 65%–67%</td></tr>
+            <tr><td>信用评级</td><td>S&P AA-（展望正面）；Moody's Aa2（2026年10月由 Aa3 上调）</td></tr>
+            <tr><td>总部／员工</td><td>台湾新竹／约 8 万人</td></tr>
+        </table>
+        <div class="highlight">
+            <strong>一句话业务：</strong>全球最大的纯晶圆代工厂，7nm 以下先进制程市占约 90%，同时掌握 CoWoS/SoIC 先进封装。全世界所有顶级 AI 芯片——英伟达 GPU、谷歌 TPU、苹果自研芯片、AMD GPU——都要排队经过它的产线。它不设计芯片，只做制造，因此客户的竞争关系不会变成它的利益冲突。
+        </div>
+    </div>
+
+    <h2 id="chapter2">二、业务分析</h2>
+    <div class="info-box">
+        <h3>2.1 商业模式：只做"代工"，反而成了最深的护城河</h3>
+        <p>台积电不设计、不销售自有品牌芯片，只替客户制造。这个看似"低附加值"的定位解决了一个根本矛盾：如果台积电自己也卖芯片，那苹果、英伟达、谷歌就不敢把最先进的设计交给它。正因为"不与客户竞争"，客户愿意把最核心的图纸、最先进的制程需求、最真实的产能规划全部交给台积电。这是它四十年来最值钱的一条承诺。</p>
+        <p>赚钱方式分三块：<strong>晶圆制造</strong>（按片收费，占绝大部分）、<strong>先进封装</strong>（CoWoS/SoIC，AI 时代增长最快的部分）、<strong>其他</strong>（光罩、测试、设计生态服务）。定价权来自"别处做不出来"，而不是来自垄断协议。</p>
+
+        <h3>2.2 收入结构（3Q26）</h3>
+        <table>
+            <tr><th>按制程</th><th>占晶圆收入</th><th>按平台</th><th>占净营收</th></tr>
+            <tr><td>2nm（N2，2025年底量产）</td><td>8%</td><td>HPC（高性能计算）</td><td>约 66%（2Q26）</td></tr>
+            <tr><td>3nm（N3 家族）</td><td>33%</td><td>智能手机</td><td>约 22%（2Q26）</td></tr>
+            <tr><td>5nm（N5 家族）</td><td>28%</td><td>IoT</td><td>约 6%</td></tr>
+            <tr><td>7nm</td><td>10%</td><td>汽车</td><td>约 4%</td></tr>
+            <tr><td>7nm 及以下合计</td><td>79%</td><td>DCE／其他</td><td>约 2%</td></tr>
+        </table>
+        <p class="src">来源：TSMC 3Q26 Management Report（2026-10-15）、2Q26 Management Report（2026-07）。先进制程占比从 2021 年的约 50% 提升到 79%，收入结构持续向 AI 倾斜。</p>
+
+        <h3>2.3 先进封装：AI 时代的第二道闸门</h3>
+        <p>一颗 AI 芯片不只是"一片晶圆"：GPU/TPU 的计算 die 要与 8–12 颗 HBM 内存堆栈放在同一块硅中介层上，再封装到基板。这道工序叫 CoWoS（Chip on Wafer on Substrate），目前只有台积电能大规模量产。台积电 2026 年底 CoWoS 月产能目标约 <strong>14 万片</strong>（2024 年约 3–4 万片），仍是全行业最紧的瓶颈。先进封装加上光罩、测试等，占 2026 年资本开支的 10%–20%。</p>
+        <p>换句话说：<strong>制程决定"能不能做出来"，封装决定"能不能装成一台机器"。</strong>两者都在台积电手里，这才是 AI 芯片客户真正离不开它的原因。</p>
+
+        <h3>2.4 全球产能布局</h3>
+        <table>
+            <tr><th>基地</th><th>定位</th><th>进度（截至2026年11月）</th></tr>
+            <tr><td>台湾新竹／台中／台南／高雄</td><td>N2、N3、CoWoS、SoIC 主力</td><td>N2 于 2025Q4 量产，2026 年快速爬坡；高雄为 2nm 重镇</td></tr>
+            <tr><td>美国亚利桑那</td><td>N4/N3，后续规划 N2</td><td>第一座 4nm 厂已量产，第二座 3nm 厂建设中</td></tr>
+            <tr><td>日本熊本（JASM）</td><td>12/16/22/28nm 成熟制程</td><td>第一座已量产，第二座建设/评估中</td></tr>
+            <tr><td>德国德累斯顿（ESMC）</td><td>汽车与工业用成熟制程</td><td>建设中</td></tr>
+        </table>
+        <p>海外建厂的核心目的不是成本（海外成本更高），而是<strong>地缘政治保险</strong>：让美国和欧洲客户相信"即使台海出事，先进芯片仍有替代产能"。这张保单很贵，但客户愿意付溢价。</p>
+
+        <h3>2.5 客户结构：集中，但集中得"分散"</h3>
+        <p>2025 年英伟达约占台积电营收 19%（约 NT$7,269 亿 / US$232 亿），首次超过苹果成为第一大客户；苹果约 18%–20%；博通约 7%–15%（其中很大一部分是谷歌 TPU 及网络芯片）；联发科约 9%、高通约 8%、AMD 约 7%。前十大客户合计占营收约七成。</p>
+        <p>这种集中度看似危险，实则比单一客户依赖更稳：AI 训练/推理、手机、PC、汽车四条需求曲线并不同步，任何一条下行时，另外几条可以补位。2023 年手机去库存、AI 尚未爆发时，台积电靠 3nm 手机芯片撑住了；2026 年 AI 爆发时，手机反而成了"稳定器"。</p>
+    </div>
+
+    <h2 id="chapter3">三、产品竞争力分析</h2>
+    <div class="info-box">
+        <h3>3.1 护城河拆解</h3>
+        <div class="moat-item"><strong>制程领先半个身位：</strong>N3 大规模量产已三年，N2 于 2025Q4 量产并快速爬坡，A16 在规划中。三星 2nm 良率与量产规模仍落后，英特尔 18A 尚未证明能承接外部大客户。先进制程的差距不是"一年"，而是"一代良率曲线"——客户不敢拿旗舰产品去赌。</div>
+        <div class="moat-item"><strong>良率是隐形的定价权：</strong>同样一片晶圆，台积电的良率可能高出 10–20 个百分点。对客户而言，这等于单位成本低 10%–20%，所以即使台积电报价更贵，总成本反而更低。良率来自二十年积累的工艺数据、设备调校和工程师文化，无法用资本快速复制。</div>
+        <div class="moat-item"><strong>制程＋封装一体化：</strong>CoWoS、SoIC、InFO 都在内部完成，客户不需要在晶圆厂和封装厂之间协调。AI 芯片的交付周期以"季度"计，少一道外部协调就少一个月的风险。</div>
+        <div class="moat-item"><strong>不竞争承诺：</strong>纯代工模式让客户敢把最先进设计交出来。这是三星（自己也做手机/存储）和英特尔（自己也做 CPU/GPU）结构上无法复制的信任优势。</div>
+        <div class="moat-item"><strong>产能确定性：</strong>AI 芯片客户最怕的不是贵，而是"拿不到货"。台积电用巨额资本开支（2026 年 600–640 亿美元）和长期产能预订，把"确定性"本身做成了产品。</div>
+
+        <h3>3.2 消费者（客户）视角的双向测试</h3>
+        <h4>正面测试：我为什么选台积电？</h4>
+        <div class="moat-item">
+            <strong>因为"失败的成本"我承担不起。</strong>一颗旗舰 AI 芯片的流片加封测成本以千万美元计，晚三个月上市可能丢掉一整代客户。三星报价便宜 20%–30%，但如果良率只有台积电的七成、交期多一个季度，我省下的钱还不够补市值损失。<br>
+            <strong>因为客户只认"能买到"。</strong>我卖的是整机/云服务，客户不会因为我用了更便宜的代工厂就宽容我的交付延期。台积电的产能排队虽然痛苦，但至少可预期。<br>
+            <strong>因为封装也得一起解决。</strong>HBM 和计算 die 的 CoWoS 封装只有台积电能大规模做，我没有第二家可以"分开采购"。
+        </div>
+        <h4>反面测试：我为什么可能离开台积电？</h4>
+        <div class="risk-item">
+            <strong>地缘政治。</strong>如果我的政府要求"关键芯片必须在本土或盟友境内制造"，我会把一部分订单交给英特尔或三星的美国/韩国厂，哪怕良率差一点——这是政治账，不是成本账。<br>
+            <strong>产能分配不公。</strong>英伟达拿走了约六成 CoWoS 产能，我排在后面。如果连续两个季度拿不到足够产能，我会认真扶持第二供应商。<br>
+            <strong>价格与捆绑。</strong>如果台积电把先进封装和晶圆捆绑涨价，而三星愿意"封装打折＋晶圆打折"，我会把成熟制程或次级产品线转过去试水。<br>
+            <strong>技术路线分歧。</strong>如果我的芯片架构更适合 EMIB（英特尔）或面板级封装，而台积电坚持自有路线，我会分单。
+        </div>
+        <p><strong>结论：</strong>转换成本很高，但不是无限高。客户不会因为"更便宜"离开，但会因为"拿不到产能"和"政治压力"离开。护城河的真实宽度，取决于台积电能否持续把最先进产能留在台湾之外的可信副本里。</p>
+    </div>
+
+    <h2 id="chapter4">四、历史财务指标</h2>
+    <div class="info-box">
+        <table>
+            <tr><th>年度</th><th>营收（NT$万亿）</th><th>同比</th><th>净利润（NT$亿）</th><th>毛利率</th><th>EPS（NT$）</th><th>资本开支（US$亿）</th></tr>
+            <tr><td>2021</td><td>1.587</td><td>+18.5%</td><td>5,965</td><td>51.6%</td><td>23.01</td><td>300</td></tr>
+            <tr><td>2022</td><td>2.264</td><td>+42.6%</td><td>10,165</td><td>59.6%</td><td>39.20</td><td>363</td></tr>
+            <tr><td>2023</td><td>2.162</td><td>-4.5%</td><td>8,385</td><td>54.4%</td><td>32.34</td><td>304</td></tr>
+            <tr><td>2024</td><td>2.894</td><td>+33.9%</td><td>11,732</td><td>56.1%</td><td>45.25</td><td>298</td></tr>
+            <tr><td>2025</td><td>3.809</td><td>+31.6%</td><td>17,179</td><td>约 59.9%</td><td>66.25</td><td>约 400</td></tr>
+            <tr><td>2026E</td><td>约 5.5–5.7</td><td>美元口径 +44%</td><td>—</td><td>64%–66%</td><td>—</td><td>600–640</td></tr>
+        </table>
+        <p class="src">来源：TSMC 2025 Annual Report、3Q26 Earnings Release（2026-10-15）。2026E 营收按公司"美元营收增长约 44%"指引及汇率假设折算，为估算值；EPS 未做预测。</p>
+        <div class="highlight">
+            <strong>财务特征三句话：</strong>① 增长不是线性的，而是"台阶式"——2023 年下滑 4.5%，2024–2026 年连续三年高增长，这是半导体资本周期的常态；② 毛利率随制程领先扩大而抬升，从 51.6% 到 66.4%，说明定价权在增强；③ 资本开支越大，未来增长越快——台积电管理层明确表示"高资本开支与未来几年的高增长机会正相关"（3Q26 法说会，2026-10-15）。
+        </div>
+    </div>
+
+    <h2 id="chapter5">五、债务分析</h2>
+    <div class="info-box">
+        <h3>5.1 有息负债：一家"几乎不借钱"的重资产公司</h3>
+        <table>
+            <tr><th>项目（2025年末）</th><th>金额（NT$亿）</th><th>占总资产</th><th>占总负债</th></tr>
+            <tr><td>应付公司债（有息负债主体）</td><td>8,562</td><td>10.8%</td><td>34.6%</td></tr>
+            <tr><td>总负债</td><td>24,722</td><td>31.2%</td><td>100%</td></tr>
+            <tr><td>总资产</td><td>79,330</td><td>100%</td><td>—</td></tr>
+            <tr><td>现金及有价证券（2025Q4）</td><td>约 31,000</td><td>39.1%</td><td>—</td></tr>
+            <tr><td><strong>净现金</strong></td><td><strong>约 22,400</strong></td><td>—</td><td>—</td></tr>
+        </table>
+        <p>关键要区分<strong>有息负债</strong>与<strong>无息经营性负债</strong>：台积电 NT$2.47 万亿总负债中，真正要付利息的只有 NT$8,562 亿公司债，其余约 NT$1.6 万亿是应付账款、应付设备款、应计费用等"占用上游资金"的无息负债。这类负债是规模优势的体现，不是财务风险。</p>
+        <p>净现金约 NT$2.24 万亿（约 US$700 亿），<strong>净债务/EBITDA 为负值</strong>，标普 AA-、穆迪 Aa2，是半导体行业最高信用评级。用芒格的话说："这家公司就算三年不赚钱，也不会倒闭。"</p>
+
+        <h3>5.2 现金流对债务的保障</h3>
+        <div class="moat-item">
+            <strong>利息保障倍数：</strong>2025 年营业利润约 NT$2.0 万亿，利息费用仅百亿量级，保障倍数在 100 倍以上。<br>
+            <strong>资本开支自我融资：</strong>2026 年资本开支 600–640 亿美元，同年经营现金流足以覆盖，不需要靠新增债务。公司明确表示"过去仅靠自身业务创造的现金即可支持有机增长"。<br>
+            <strong>到期结构：</strong>公司债以 5–30 年长天期为主，2026–2028 年没有集中偿付墙；即使某年集中到期，以净现金规模也可直接偿还。<br>
+            <strong>压力测试：</strong>即使 EBITDA 下滑 60%，利息与到期本金仍可覆盖；真正会伤到台积电的不是债务，而是资本开支投错方向。
+        </div>
+
+        <h3>5.3 管理层对杠杆的态度</h3>
+        <p>3Q26 法说会（2026-10-15）CFO 黄仁昭（Wendell Huang）明确表示 2026 年资本预算 600–640 亿美元，并称"资本开支与未来增长机会高度相关"。管理层长期口径是"堡垒式资产负债表"（fortress balance sheet）与"半导体行业最高信用评级"，把维持净现金和 AA- 评级视为战略资产，而不是可以优化的负债成本。</p>
+        <p><strong>言行对照：</strong>公司过去十年没有进行大规模并购，没有借债回购，股息随盈利稳步提升但派息率维持在 30% 左右，剩余现金全部投入产能。这与其"技术领先优先、股东回报次之"的公开表述完全一致。趋势判断：<span class="tag tag-green">去杠杆/维持净现金</span>，且资本开支由经营现金流覆盖，属于"越扩张越安全"的罕见结构。</p>
+    </div>
+
+    <h2 id="chapter6">六、竞争分析</h2>
+    <div class="info-box">
+        <h3>6.1 主要对手</h3>
+        <table>
+            <tr><th>对手</th><th>最强项</th><th>短板</th><th>对台积电的威胁</th></tr>
+            <tr><td>三星电子</td><td>存储＋代工垂直整合，报价低，2nm 激进</td><td>先进制程良率与交付稳定性长期被客户质疑；自家手机/存储业务与客户存在利益冲突</td><td><span class="tag tag-orange">中高</span> 价格敏感型客户与部分 ASIC 可能分流</td></tr>
+            <tr><td>英特尔代工（IFS）</td><td>18A/14A 技术、美国本土产能、EMIB 封装</td><td>外部大客户验证不足，量产记录待证明</td><td><span class="tag tag-orange">中</span> 地缘政治驱动的"第二供应商"</td></tr>
+            <tr><td>中芯国际</td><td>中国本土成熟制程</td><td>受设备出口管制，先进制程受限</td><td><span class="tag tag-green">低</span> 不影响先进制程格局</td></tr>
+            <tr><td>Rapidus（日本）</td><td>2nm 新厂、政府支持</td><td>2027 年才计划量产，无客户验证</td><td><span class="tag tag-green">低</span> 长期观察</td></tr>
+        </table>
+
+        <h3>6.2 真正的风险不是竞争，而是集中与地缘</h3>
+        <div class="risk-item"><strong>客户集中：</strong>英伟达＋苹果合计约 38% 营收。任何一家转单或砍单，都会造成两个季度的增长缺口。</div>
+        <div class="risk-item"><strong>台海地缘：</strong>最先进产能高度集中在台湾。这是估值上长期存在的"折价因子"，也是海外建厂的真正动机。</div>
+        <div class="risk-item"><strong>资本周期：</strong>2023 年营收下滑 4.5% 证明半导体没有"永续增长"。如果 AI 资本开支在 2028 年降温，台积电会先经历一轮产能利用率下滑。</div>
+        <div class="risk-item"><strong>客户自研/垂直整合：</strong>苹果、特斯拉等客户尝试自建产线或扶持第二供应商，长期会侵蚀份额，但短期无法绕开先进制程。</div>
+        <p><strong>芒格式判断：</strong>竞争格局的最大特点不是"对手很强"，而是"对手无法在不牺牲良率的前提下提供同等确定性"。这让台积电的竞争优势具有"结构性"而非"周期性"。</p>
+    </div>
+
+    <h2 id="chapter7">七、谷歌自研 AI 芯片与台积电的绑定关系</h2>
+    <div class="info-box">
+        <h3>7.1 一句话结论</h3>
+        <div class="highlight">
+            <strong>需要，而且在两个环节是"硬必需"：先进制程代工（N3/N2）与 CoWoS 先进封装。</strong>谷歌可以更换芯片设计协作方（博通→联发科），可以在 HBM、基板、测试上多源采购，但截至 2026 年 11 月，<strong>没有任何一颗量产 TPU 不是台积电制造的</strong>。反过来，台积电对谷歌的依赖要低一个数量级：谷歌直接贡献台积电营收约 3.5%–6%，而英伟达约 19%。这是一组明显不对称的依赖。
+        </div>
+
+        <h3>7.2 制造链条拆解：哪一环必需，哪一环可替代</h3>
+        <table>
+            <tr><th>环节</th><th>承担者</th><th>事实与日期</th><th>是否离不开台积电</th></tr>
+            <tr><td>芯片架构设计</td><td>Google 自研（MXU、ICI、SparseCore）</td><td>TPU v4 论文（ISCA 2023）披露自研架构；v7 Ironwood 于 2026-04-22 正式 GA</td><td><span class="tag tag-green">否</span> 设计在谷歌内部</td></tr>
+            <tr><td>ASIC 协作/后端设计</td><td>博通（主）、联发科（第二来源）</td><td>博通与谷歌合作自 2016 年，续约至 2031 年（Capacity Media）；联发科承接 TPU v7e，2026 年 CoWoS 产能翻倍至 2 万片（2026-05-29 报道）</td><td><span class="tag tag-green">否</span> 设计伙伴可换，且已双源</td></tr>
+            <tr><td>晶圆代工</td><td>台积电</td><td>v4：N7（2021）；v5p：N5（2023）；v6e Trillium：N5（2024）；v7 Ironwood：N3P（2025–2026）；v8：N2（2026–2027 流片，2027 年底量产）</td><td><span class="tag tag-red">是（当前 100%）</span></td></tr>
+            <tr><td>先进封装</td><td>台积电 CoWoS（Ironwood 为 CoWoS 家族）</td><td>Ironwood 集成 192GB HBM3e、7.37TB/s 带宽；台积电 2026 年底 CoWoS 月产能目标 14 万片</td><td><span class="tag tag-red">是（规模量产唯一）</span></td></tr>
+            <tr><td>HBM 内存</td><td>SK 海力士（主）、三星、美光</td><td>SK 海力士与台积电签 HBM4 合作 MOU（2026），HBM4 起与 CoWoS 协同设计</td><td><span class="tag tag-green">否</span> 三家可竞争，但 HBM4 与台积电工艺耦合加深</td></tr>
+            <tr><td>基板</td><td>揖斐电、新光电气、欣兴等 ABF 载板厂</td><td>行业通用供应链，非台积电垄断</td><td><span class="tag tag-green">否</span></td></tr>
+            <tr><td>测试</td><td>台积电＋日月光/安靠等 OSAT</td><td>先进测试部分在台积电内部完成，最终测试可外包</td><td><span class="tag tag-orange">部分</span></td></tr>
+        </table>
+        <p class="src">说明：基板与测试供应商为行业通用分工，非谷歌官方披露；TPU 各代制程节点来自 Google 论文、Google Cloud 博客及产业链报道，v5e 的节点在不同资料中存在 N5/N7 口径差异。</p>
+
+        <h3>7.3 逐环节回答"是否离不开台积电"</h3>
+        <h4>（1）制程：技术上可替代，商业上不可替代</h4>
+        <p>谷歌历史上从未在量产 TPU 上采用第二家晶圆厂。原因不是"没试过"，而是试错成本太高：一颗 TPU 从设计到量产约 18–24 个月，若在三星 2nm 上遇到良率问题，损失的是整整一代 Gemini 训练窗口。三星 2nm 在 2025–2026 年已有特斯拉 AI5/AI6 等外部订单，说明其能力在提升；但截至 2026 年 11 月，<strong>没有公开证据表明任何一代量产 TPU 由三星或英特尔代工</strong>。英特尔 18A 更先进，但外部大客户验证尚未完成。</p>
+        <p>因此制程环节的判断是：<strong>短期（2026–2027）必需；中期（2028 后）存在"政治性双源"的可能，但第二供应商大概率只承接非旗舰 SKU。</strong></p>
+
+        <h4>（2）先进封装：比制程更紧的绑定</h4>
+        <p>TPU 的算力密度依赖"计算 die＋8–12 颗 HBM"的 2.5D 封装。CoWoS 的产能扩张速度（2024 年约 3–4 万片/月 → 2026 年底 14 万片/月）仍赶不上 AI 需求，英伟达锁定了约 60% 产能，博通（主要是谷歌 TPU）约 15%，野村证券则估算谷歌 TPU 占 2026 年 CoWoS 产能约 23%、2027 年升至 26%。两组口径不同，但都指向同一结论：<strong>谷歌是 CoWoS 的第二/第三大用户，且份额在上升。</strong></p>
+        <p>封装环节的替代方案（三星 I-Cube、英特尔 EMIB）在技术和产能上都不足以承接 TPU 这种规模，且需要重新设计 interposer 与封装协同。因此<strong>先进封装是"事实上的独家绑定"，紧于制程</strong>。</p>
+
+        <h4>（3）如果台积电产能紧张，谷歌的备选路径</h4>
+        <table>
+            <tr><th>备选路径</th><th>可行性</th><th>代价</th><th>时间</th></tr>
+            <tr><td>降低规格（减少 HBM 颗数/缩小 die）</td><td><span class="tag tag-green">高</span></td><td>单芯片性能下降，需要更多芯片达到同等算力</td><td>即时</td></tr>
+            <tr><td>转三星 2nm＋I-Cube</td><td><span class="tag tag-orange">中</span></td><td>重新流片、良率风险、软件调优，至少 12–18 个月</td><td>2028 年起</td></tr>
+            <tr><td>推迟部署</td><td><span class="tag tag-green">高</span></td><td>Gemini 训练/推理进度延后，云收入机会成本</td><td>即时</td></tr>
+            <tr><td>外购英伟达 GPU</td><td><span class="tag tag-green">高</span></td><td>毛利率被压缩，且同样受台积电 CoWoS 约束——<strong>绕不开台积电</strong></td><td>即时</td></tr>
+        </table>
+        <p>关键洞察：<strong>"转买 GPU"并不能摆脱台积电</strong>，因为英伟达 GPU 也在台积电生产，而且占用更多 CoWoS 产能。谷歌真正的替代路径只有"三星/英特尔"，而这两条路都要 2 年以上。</p>
+
+        <h3>7.4 反向量化：谁更需要谁</h3>
+        <table>
+            <tr><th>维度</th><th>英伟达</th><th>苹果</th><th>谷歌（TPU）</th></tr>
+            <tr><td>占台积电 2025 年营收</td><td>约 19%（US$232 亿）</td><td>约 18%–20%</td><td>约 3.5%–6%（估算）</td></tr>
+            <tr><td>占台积电 CoWoS 产能（2026）</td><td>约 60%</td><td>—（手机为主）</td><td>约 15%（博通口径）～23%（野村口径）</td></tr>
+            <tr><td>对台积电的议价能力</td><td>极强（预付款、包产能）</td><td>强（最大手机客户）</td><td>中（增长最快，但绝对量小）</td></tr>
+            <tr><td>台积电对其依赖度</td><td>高</td><td>高</td><td>低到中</td></tr>
+            <tr><td>它离开台积电的代价</td><td>极高（无替代）</td><td>极高（无替代）</td><td>极高（无替代，但可减量）</td></tr>
+        </table>
+        <p><strong>量级估算（非公司披露）：</strong>按 GF Securities 预测的 2026 年 TPU 出货约 450 万颗、N3P 晶圆单价约 2.2 万美元、单片良品约 60–70 颗、CoWoS 每片承载约 12–20 颗封装计算，台积电从谷歌 TPU 直接获得的晶圆＋封装＋测试收入约 <strong>US$50–80 亿</strong>，占台积电 2026 年约 US$1,770 亿营收的 <strong>3%–4.5%</strong>。若把博通为谷歌配套的网络芯片（Tomahawk/Jericho）也算进来，上限约 6%。</p>
+        <p>对照博通口径：瑞银估算谷歌 2026 年给博通带来约 300 亿美元、2027 年约 560 亿美元收入（2026-02-11）。这 300 亿美元包含 HBM、基板、设计服务与博通毛利，<strong>不能等同于台积电的收入</strong>——这也是市场最容易混淆的地方。</p>
+        <div class="highlight">
+            <strong>不对称性总结：</strong>谷歌失去台积电 = 100% 的 TPU 供应中断；台积电失去谷歌 = 约 3%–6% 的营收缺口，且可被英伟达/苹果/AMD 的增量填补。所以"谷歌需要台积电"是生存问题，"台积电需要谷歌"是增长问题。
+        </div>
+
+        <h3>7.5 情景测算：转单与外销的边际影响</h3>
+        <table>
+            <tr><th>情景</th><th>假设</th><th>对台积电营收影响</th><th>概率判断</th></tr>
+            <tr><td>A. 谷歌 30% TPU 转三星（2028）</td><td>三星 2nm 良率达标、I-Cube 产能到位</td><td>减少约 US$15–25 亿，占 2028 年营收约 0.7%–1.2%</td><td><span class="tag tag-orange">20%–30%</span></td></tr>
+            <tr><td>B. 谷歌 TPU 外销翻倍（2027）</td><td>Anthropic/Meta 等外部客户放量，TPU 出货 884 万颗</td><td>增加约 US$30–50 亿，占 2027 年营收约 1.5%–2.5%</td><td><span class="tag tag-green">50%–60%</span></td></tr>
+            <tr><td>C. 谷歌自建产能/垂直整合</td><td>谷歌投资建厂或扶持英特尔</td><td>短期无影响，长期分流</td><td><span class="tag tag-green">低于 10%</span></td></tr>
+            <tr><td>D. 台积电 CoWoS 扩产不及预期</td><td>2027 年产能低于 16 万片/月</td><td>谷歌被迫降规格或推迟，台积电也少赚</td><td><span class="tag tag-orange">30%</span></td></tr>
+        </table>
+        <p>关键结论：<strong>TPU 外销对台积电是净利好，且量级大于"转单"的潜在损失。</strong>因为无论 TPU 卖给谁，芯片都在台积电制造；而外销扩大的是总需求，转单只是改变分配。</p>
+
+        <h3>7.6 竞争格局：哪些已证实，哪些是传闻</h3>
+        <table>
+            <tr><th>事件</th><th>状态</th><th>对台积电含义</th></tr>
+            <tr><td>Alphabet 3Q26 财报称"TPU 系统销售是营收增长的重要贡献"，且资本开支包含"扩大 TPU 系统销售所需的库存建设"</td><td><span class="tag tag-green">已证实</span>（Alphabet 2026-10-28 财报）</td><td>TPU 从自用走向外销，台积电受益于总量增长</td></tr>
+            <tr><td>Anthropic 扩大使用 Google Cloud TPU，计划最多 100 万颗、6GW</td><td><span class="tag tag-green">已证实</span>（Google Cloud 新闻稿 2025-10-23）</td><td>长期锁定台积电 N3/N2 与 CoWoS 需求</td></tr>
+            <tr><td>Meta 在生产环境部署 TPU，被称为"首次对外销售"</td><td><span class="tag tag-orange">待证实</span>（2026 年媒体报道，无谷歌/Meta 官方确认）</td><td>若属实，TPU 外销逻辑加强</td></tr>
+            <tr><td>谷歌与联发科开发第八代 TPU，形成"双设计供应商"</td><td><span class="tag tag-orange">产业链传闻</span>（2026-04-27 报道）</td><td>设计端双源，但代工仍是台积电，影响中性偏正</td></tr>
+            <tr><td>联发科独家获得 TPU v9 升级版"Triggerfish"订单，2028 年量产</td><td><span class="tag tag-orange">分析师爆料</span>（郭明錤，2026-06-22）</td><td>进一步确认台积电 N2 长期订单</td></tr>
+            <tr><td>TPU v8 拆分为 8t（博通，训练）与 8i（联发科，推理），均采用台积电 N2</td><td><span class="tag tag-orange">产业链报道</span>（2026 年）</td><td>台积电 N2 首批大客户之一</td></tr>
+        </table>
+
+        <h3>7.7 可证伪的观察指标</h3>
+        <table>
+            <tr><th>指标</th><th>当前值/方向</th><th>证伪阈值（出现即说明判断错了）</th></tr>
+            <tr><td>台积电 CoWoS 月产能</td><td>2026 年底目标 14 万片</td><td>2027 年中仍低于 12 万片，且谷歌 TPU 出货仍增长 → "封装是瓶颈"判断错误</td></tr>
+            <tr><td>谷歌在 CoWoS 中的份额</td><td>15%–23%（口径不一）</td><td>连续两个季度低于 10%，同时 TPU 出货增长 >30% → 谷歌已找到替代封装</td></tr>
+            <tr><td>三星 2nm 客户进展</td><td>Tesla AI5/AI6 等已签约</td><td>出现"谷歌 TPU 某 SKU 由三星量产、良率 >70%"的官方确认 → 双源成真</td></tr>
+            <tr><td>台积电 N2 首批客户</td><td>2026 年爬坡，谷歌 v8 在列</td><td>2027 年台积电 N2 客户名单无谷歌 → v8 延期或转单</td></tr>
+            <tr><td>谷歌资本开支 vs 台积电 HPC 收入</td><td>2026 年 capex 1,950–2,050 亿美元</td><td>谷歌 capex 连续两季 +30%，台积电 HPC 收入却环比持平 → 采购泄漏到别处</td></tr>
+            <tr><td>英特尔 18A/14A 外部客户</td><td>尚无谷歌订单</td><td>英特尔官方宣布谷歌为首发外部大客户 → 格局生变</td></tr>
+            <tr><td>联发科 v8e/v9 流片厂</td><td>台积电 N2/CoWoS</td><td>联发科宣布 v9 转三星 2nm → 设计双源变成代工双源</td></tr>
+        </table>
+        <p><strong>三个"判断错了"的信号（最灵敏）：</strong>① 谷歌公开确认某代 TPU 由三星/英特尔量产；② 台积电 CoWoS 产能大幅放量而谷歌份额反而下降；③ 谷歌资本开支高增长但台积电来自谷歌的晶圆订单连续两季不增。</p>
+
+        <h3>7.8 与英伟达的对照：同样依赖台积电，粘性不同</h3>
+        <table>
+            <tr><th>维度</th><th>英伟达 GPU</th><th>谷歌 TPU</th></tr>
+            <tr><td>制程/封装</td><td>N4/N3 → N2/A16；CoWoS-L，双 die，封装复杂度更高</td><td>N7→N5→N3P→N2；CoWoS 家族，复杂度略低</td></tr>
+            <tr><td>占台积电营收</td><td>约 19%（2025）</td><td>约 3.5%–6%（2026E）</td></tr>
+            <tr><td>占 CoWoS 产能</td><td>约 60%</td><td>约 15%–23%</td></tr>
+            <tr><td>设计自主性</td><td>完全自有，直接对接台积电</td><td>自有架构＋博通/联发科后端，台积电需通过设计伙伴对接</td></tr>
+            <tr><td>对台积电的议价</td><td>极强（预付款、包产能、共同开发）</td><td>中等（增长快但绝对量小）</td></tr>
+            <tr><td>转换成本</td><td>极高：CUDA 生态＋NVLink＋系统级优化＋台积电共同设计</td><td>高：软件栈（JAX/XLA）自有，但硬件可换设计伙伴；换代工需重流片</td></tr>
+            <tr><td>粘性来源</td><td>制程＋封装＋产能优先权＋联合研发</td><td>制程＋封装；设计端可换人，代工端不可换</td></tr>
+            <tr><td>台积电更怕谁离开</td><td>英伟达（19% vs 6%）</td><td>相对不怕</td></tr>
+        </table>
+        <p><strong>一句话对照：</strong>英伟达是台积电"最大且最难替代"的客户；谷歌是"增长最快但可被其他客户补位"的客户。两者都离不开台积电的先进制程与封装，但台积电对英伟达的依赖是"结构性"的，对谷歌的依赖是"增量性"的。</p>
+
+        <p class="src">
+            本节数据与日期：TSMC 3Q26 Earnings Release / Management Report / Transcript（2026-10-15）；TSMC 2025 Annual Report；Alphabet 2026 Q3 Earnings Release 与电话会（2026-10-28）；Google Cloud 关于 Anthropic 扩大 TPU 使用的新闻稿（2025-10-23）；Google Cloud "Ironwood" 博客（2026）；Google TPU v4 ISCA 论文（2023）；Broadcom 与谷歌合作至 2031 年（Capacity Media 报道）；瑞银关于博通 TPU 营收的估算（2026-02-11）；GF Securities TPU 出货预测（2026-08-25）；野村 CoWoS 份额预测（2026-07-01）；SpecForge 2026 CoWoS 分配（2026）；联发科 TPU v7e/v8e 报道（2026-05-29）；郭明錤关于 TPU v9 的爆料（2026-06-22）；SEMICON/ValueChain 客户营收占比（2025）。标"传闻/爆料"者未获公司确认；营收占比与情景测算为本文估算，非公司披露。本节不构成投资建议。
+        </p>
+    </div>
+
+    <h2 id="chapter8">八、利润分配分析</h2>
+    <div class="info-box">
+        <h3>8.1 股息：稳定提升，但不追求高分红</h3>
+        <table>
+            <tr><th>年度</th><th>每股现金股利（NT$）</th><th>派息率（约）</th><th>备注</th></tr>
+            <tr><td>2022</td><td>11.0</td><td>28%</td><td>季度配发</td></tr>
+            <tr><td>2023</td><td>11.5</td><td>36%</td><td>盈利下滑但股利未降</td></tr>
+            <tr><td>2024</td><td>16.0</td><td>35%</td><td>随盈利上调</td></tr>
+            <tr><td>2025</td><td>约 20–21</td><td>约 31%</td><td>季度股利持续提升</td></tr>
+            <tr><td>2026E</td><td>约 25–26</td><td>约 30%–33%</td><td>ADR 年化 $4.06</td></tr>
+        </table>
+        <p>台积电的资本配置顺序非常清晰：<strong>先投产能，再留现金，最后分红</strong>。这不是对股东不友好，而是因为再投资的回报率远高于股东自己拿钱去投：2026 年 ROE 达 45.5%，每留下 1 元利润，能创造远超 1 元的市值。</p>
+
+        <h3>8.2 回购与并购</h3>
+        <div class="moat-item"><strong>几乎不回购：</strong>台积电历史上没有大规模回购计划。管理层认为在成长期回购是"用最贵的价格买自己的股票"，不如建厂。</div>
+        <div class="moat-item"><strong>几乎不并购：</strong>公司明确表示对并购"高度谨慎"，过去依靠有机增长。这与巴菲特喜欢的"不靠并购堆规模"的特征一致。</div>
+        <div class="moat-item"><strong>资本开支即股东回报：</strong>2026 年 600–640 亿美元资本开支，本质是把今天的利润转换成明天的产能与定价权。只要新增产能的回报率高于资本成本，这就是最优的资本配置。</div>
+
+        <h3>8.3 自由现金流与分红可持续性</h3>
+        <p>2025 年经营现金流约 NT$2.2 万亿，资本开支约 NT$1.3 万亿，自由现金流约 NT$0.9 万亿；同年现金股利约 NT$0.5–0.6 万亿，覆盖倍数约 1.5–1.8 倍。即使在资本开支最高的 2026 年，经营现金流仍足以覆盖资本开支与股利，不需要外部融资。分红的可持续性没有疑问，问题只在于"分得多不多"——而这家公司的答案是"故意不分太多"。</p>
+        <p><strong>芒格视角：</strong>一家能把利润以 40%+ ROE 再投资的公司，不分红才是对股东负责。台积电的分红政策不是"吝啬"，而是"把复利留在体内"。</p>
+    </div>
+
+    <h2 id="chapter9">九、投资总结</h2>
+    <div class="info-box">
+        <h3>9.1 护城河评分</h3>
+        <table>
+            <tr><th>维度</th><th>评分</th><th>说明</th></tr>
+            <tr><td>技术领先</td><td><span class="star">★★★★★</span></td><td>N3 量产三年、N2 领先爬坡，良率优势难以复制</td></tr>
+            <tr><td>客户转换成本</td><td><span class="star">★★★★☆</span></td><td>极高，但地缘政治可强制部分转移</td></tr>
+            <tr><td>定价权</td><td><span class="star">★★★★☆</span></td><td>毛利率从 51.6% 提升到 66.4%，议价能力增强</td></tr>
+            <tr><td>资产负债表</td><td><span class="star">★★★★★</span></td><td>净现金约 NT$2.2 万亿，AA- 评级</td></tr>
+            <tr><td>管理层资本配置</td><td><span class="star">★★★★★</span></td><td>不并购、不回购、专注产能与技术</td></tr>
+            <tr><td>可预测性</td><td><span class="star">★★★☆☆</span></td><td>受半导体周期与地缘政治影响</td></tr>
+        </table>
+
+        <h3>9.2 估值</h3>
+        <p>当前 PE(TTM) 23.9 倍、Forward PE 17.0 倍，对应 2026 年约 44% 的美元营收增长和 66% 的毛利率。用"成长股"的标准看不算贵，用"公用事业"的标准看不算便宜。合理的理解是：<strong>市场已经把"AI 资本开支高增长"计入价格，但没有把"台海风险"完全计入。</strong></p>
+        <p>如果 2027 年 TPU 出货如 GF Securities 预测增长 96%、英伟达 Rubin 放量、N2 满产，台积电 2027 年 EPS 仍有 25%–35% 的增长空间，对应 Forward PE 可能降到 13–15 倍；反之，若 AI 资本开支在 2027 年下半年降温，估值会先于业绩调整。</p>
+
+        <h3>9.3 风险清单</h3>
+        <div class="risk-item"><strong>地缘政治（最高权重）：</strong>台海局势是估值长期折价的根源，也是无法用财务分析化解的风险。</div>
+        <div class="risk-item"><strong>客户集中：</strong>英伟达＋苹果约 38%，任何一家转单都会造成短期缺口。</div>
+        <div class="risk-item"><strong>资本周期：</strong>2023 年营收下滑 4.5% 是提醒——半导体没有永续增长。</div>
+        <div class="risk-item"><strong>第二供应商：</strong>三星 2nm、英特尔 18A 的进步会在 2028 年后侵蚀部分份额。</div>
+        <div class="risk-item"><strong>估值：</strong>23.9 倍 PE 已反映较多乐观预期，任何指引下修都会带来双杀。</div>
+
+        <h3>9.4 巴菲特/芒格式结论</h3>
+        <div class="highlight">
+            <strong>这是一家"用制造规模收租"的公司。</strong>它不预测 AI 谁会赢，只负责给所有参赛者提供跑鞋；它不设计芯片，却掌握着所有芯片的出生证。谷歌 TPU 的例子说明：客户可以在设计端换伙伴、在内存端换供应商，但到了先进制程和先进封装，只有一扇门。门后面的人不需要大声说话，排队的人自然会付钱。<br><br>
+            <strong>但好公司不等于好价格。</strong>当前 23.9 倍 PE、1.76 万亿美元市值，已经假设了 AI 资本开支的持续高增长。真正的安全边际不来自"它有多好"，而来自"你付了多少钱"。对于长期投资者，台积电更适合"在周期恐慌时买入并长期持有"，而不是在 AI 狂热的高点追高。
+        </div>
+        <p class="src">本页数据来源：TSMC 2025 Annual Report、TSMC 3Q26 Earnings Release/Management Report/Transcript（2026-10-15）、TSMC 投资人关系页面（信用评级、财务目标）、StockAnalysis（2026-11-05 收盘价与估值）、Alphabet 2026 Q3 Earnings Release（2026-10-28）及相关产业链报道。估算数据已标注，不构成投资建议。</p>
+    </div>
+
+    <script src="scores_client.js"></script>
+    <script src="stock_topbar.js"></script>
+</body>
+</html>

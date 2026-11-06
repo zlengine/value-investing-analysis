@@ -155,6 +155,25 @@
 
     <!-- 更新日志条目 - 按时间倒序排列，最新在最上面 -->
 
+    <div class="log-entry create">
+        <div class="log-header">
+            <span class="log-date">2026-11-06</span>
+            <span class="log-type create">新建</span>
+        </div>
+        <div class="log-desc">
+            <ul>
+                <li><strong>新建台积电（TSM）分析页面 tsm.html</strong>：按美股网站八章标准模板（债务分析为第五章）搭建九章结构。核心数据：FY2025 营收 NT$3.809 万亿（+31.6%）、净利 NT$1.7179 万亿（+46.4%）、EPS NT$66.25；3Q26 营收 NT$1.4942 万亿（+50.9% YoY）、净利 NT$7,630.6 亿、毛利率 66.4%、ROE 45.5%；2026 年美元营收指引 +44%、资本开支 600–640 亿美元；净现金约 NT$2.2 万亿，S&P AA-/Moody's Aa2。</li>
+                <li><strong>新增第七章"谷歌自研 AI 芯片与台积电的绑定关系"</strong>：结论为——谷歌在先进制程（N3/N2）与 CoWoS 先进封装两环"硬必需"台积电，设计端（博通/联发科）、HBM、基板、测试均可替代。含制造链条拆解表（v4 N7→v5 N5→v6 N5→v7 N3P→v8 N2）、逐环节必要性分析、谷歌备选路径、反向量化（谷歌占台积电营收约 3.5%–6% vs 英伟达约 19%）、情景测算、已证实与传闻对照表、7 项可证伪观察指标、与英伟达的代工粘性对照。</li>
+                <li>区分事实与推断：Alphabet 3Q26 财报（2026-10-28）关于"TPU 系统销售贡献营收增长"为已证实；Anthropic 最多 100 万颗/6GW（2025-10-23 官方）为已证实；Meta 部署 TPU、谷歌-联发科共同开发第八代 TPU、TPU v9 订单等标注为传闻/分析师爆料。</li>
+                <li>同步更新 index.html 股票列表与 stocks_data.js（新增 TSM 条目），并执行 node 语法检查、链接验证与浏览器渲染验证。</li>
+            </ul>
+        </div>
+        <div class="log-files">
+            <span class="added">+ tsm.html</span><br>
+            <span class="modified">~ index.html、stocks_data.js、changelog.html</span>
+        </div>
+    </div>
+
     <div class="log-entry update">
         <div class="log-header">
             <span class="log-date">2026-11-03</span>
