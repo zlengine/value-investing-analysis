@@ -142,7 +142,8 @@
         {code:'MWA',name:'Mueller Water Products（穆勒水产品）- 北美市政供水基础设施设备/消防栓与水阀门百年领导者',href:'mwa.html'},
         {code:'COIN',name:'Coinbase Global（coinbase）- 美国最大受监管加密资产交易所/Deribit期权垄断+USDC稳定币分成+净现金堡垒',href:'coin.html'},
         {code:'TFPM',name:'Triple Flag Precious Metals（三旗贵金属）- 贵金属streaming/royalty收租模式/零债务金矿包租公+242项版税组合',href:'tfpm.html'},
-        {code:'TSM',name:'Taiwan Semiconductor（台积电）- 全球最大晶圆代工厂/先进制程+CoWoS封装双垄断/AI芯片唯一量产入口',href:'tsm.html'}
+        {code:'TSM',name:'Taiwan Semiconductor（台积电）- 全球最大晶圆代工厂/先进制程+CoWoS封装双垄断/AI芯片唯一量产入口',href:'tsm.html'},
+        {code:'LOPE',name:'Grand Canyon Education（大峡谷教育）- 美国大学运营外包服务商/GCU学费分成60%/2041年长约',href:'lope.html'}
     ];
 
     // 暴露为全局变量
