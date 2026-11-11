@@ -143,6 +143,7 @@
         {code:'COIN',name:'Coinbase Global（coinbase）- 美国最大受监管加密资产交易所/Deribit期权垄断+USDC稳定币分成+净现金堡垒',href:'coin.html'},
         {code:'TFPM',name:'Triple Flag Precious Metals（三旗贵金属）- 贵金属streaming/royalty收租模式/零债务金矿包租公+242项版税组合',href:'tfpm.html'},
         {code:'TSM',name:'Taiwan Semiconductor（台积电）- 全球最大晶圆代工厂/先进制程+CoWoS封装双垄断/AI芯片唯一量产入口',href:'tsm.html'},
+        {code:'NVDA',name:'NVIDIA（英伟达）- AI算力霸主/GPU+CUDA+NVLink机柜与网络全栈平台',href:'nvda.html'},
         {code:'LOPE',name:'Grand Canyon Education（大峡谷教育）- 美国大学运营外包服务商/GCU学费分成60%/2041年长约',href:'lope.html'}
     ];
 

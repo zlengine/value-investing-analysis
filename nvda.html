@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NVIDIA (NVDA) 价值投资分析</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f2f5;
+            color: #333;
+        }
+        h1 {
+            text-align: center;
+            color: #1a5276;
+            font-size: 2.2em;
+            margin-bottom: 5px;
+        }
+        h2 {
+            color: #1a5276;
+            border-bottom: 2px solid #2e86c1;
+            padding-bottom: 8px;
+            margin-top: 30px;
+        }
+        h3 {
+            color: #2c3e50;
+            margin-top: 20px;
+        }
+        h4 {
+            color: #2c3e50;
+            margin-top: 15px;
+        }
+        .subtitle {
+            text-align: center;
+            color: #7f8c8d;
+            font-size: 1.1em;
+            margin-bottom: 30px;
+        }
+        .info-box {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            background-color: white;
+        }
+        th, td {
+            padding: 10px 14px;
+            text-align: left;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        th {
+            background-color: #1a5276;
+            color: white;
+            font-weight: bold;
+        }
+        tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        tr:hover {
+            background-color: #eaf2f8;
+        }
+        .highlight {
+            background: #fef9e7;
+            border-left: 4px solid #2e86c1;
+            padding: 15px 20px;
+            margin: 15px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .moat-item {
+            background: #eafaf1;
+            border-left: 4px solid #27ae60;
+            padding: 12px 18px;
+            margin: 10px 0;
+            border-radius: 0 6px 6px 0;
+        }
+        .risk-item {
+            background: #fdedec;
+            border-left: 4px solid #e74c3c;
+            padding: 12px 18px;
+            margin: 10px 0;
+            border-radius: 0 6px 6px 0;
+        }
+        .tag {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.85em;
+            font-weight: bold;
+            color: white;
+        }
+        .tag-green { background-color: #27ae60; }
+        .tag-orange { background-color: #e67e22; }
+        .tag-red { background-color: #e74c3c; }
+        .star { color: #f39c12; }
+        .section-nav {
+            background: white;
+            border-radius: 10px;
+            padding: 15px 25px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+        .section-nav a {
+            display: inline-block;
+            margin: 5px 10px;
+            padding: 6px 14px;
+            background: #eaf2f8;
+            color: #1a5276;
+            text-decoration: none;
+            border-radius: 15px;
+            font-size: 0.9em;
+        }
+        .section-nav a:hover {
+            background: #2e86c1;
+            color: white;
+        }
+        .src {
+            color: #7f8c8d;
+            font-size: 0.88em;
+            line-height: 1.7;
+        }
+    </style>
+</head>
+<body>
+    <div class="top-nav-bar"></div>
+    <script src="nav_bar.js?v=20260624"></script>
+    <span id="topbarCode" style="display:none;">NVDA</span>
+
+    <h1>NVIDIA Corporation（NASDAQ: NVDA）</h1>
+    <p class="subtitle">沃伦·巴菲特/查理·芒格风格 · 价值投资基本面分析 | 更新日期：2026年11月11日</p>
+
+    <div class="section-nav">
+        <a href="#chapter1">公司基本信息</a>
+        <a href="#chapter2">业务分析</a>
+        <a href="#chapter3">产品竞争力分析</a>
+        <a href="#chapter4">历史财务指标</a>
+        <a href="#chapter5">债务分析</a>
+        <a href="#chapter6">管理层与公司文化</a>
+        <a href="#chapter7">竞争分析</a>
+        <a href="#chapter8">利润分配分析</a>
+        <a href="#chapter9">投资总结</a>
+    </div>
+
+    <h2 id="chapter1">一、公司基本信息</h2>
+    <div class="info-box">
+        <table>
+            <tr><td>公司全称</td><td>NVIDIA Corporation（英伟达，1993 年 4 月成立于加州圣克拉拉）</td></tr>
+            <tr><td>股票代码／上市地</td><td>NASDAQ: NVDA（纳斯达克全球精选市场）</td></tr>
+            <tr><td>最新收盘价</td><td>$168.80（2026 年 11 月 10 日美股收盘，当日 -5.53%）</td></tr>
+            <tr><td>市值／企业价值</td><td>市值约 <strong>$4.07 万亿</strong>；EV ≈ $4.05 万亿（有息负债 $334 亿 − 现金及证券 $566 亿）</td></tr>
+            <tr><td>估值</td><td>PE(TTM, GAAP) 21.1x；PE(TTM, 非 GAAP) 约 23.8x；FY2027E Forward PE 约 18x；EV/EBITDA(TTM) 约 19.7x</td></tr>
+            <tr><td>股价位置</td><td>2026 年 10 月市值峰值约 $5.8 万亿（对应股价约 $240），当前较峰值回撤约 30%</td></tr>
+            <tr><td>FY2026 业绩</td><td>营收 $2,159.4 亿（+65%）；GAAP 净利 $1,200.7 亿；毛利率 71.1%</td></tr>
+            <tr><td>FY2027 最新季度</td><td>Q2（截至 2026-07-26）营收 $962.2 亿（+106%）；数据中心 $890.2 亿（+117%）；净利 $596.9 亿；毛利率 75.0%</td></tr>
+            <tr><td>FY2027 Q3 指引</td><td>营收 $1,080 亿 ±2%；毛利率 74.0% ±50bp；<strong>不含中国大陆及香港的数据中心计算收入</strong></td></tr>
+            <tr><td>股东回报</td><td>季度股息 $0.25/股（年化 $1.00，股息率约 0.6%）；回购授权余额 $990 亿（2026-07-26）</td></tr>
+            <tr><td>信用评级</td><td>Moody's Aa1（展望正面，2026-08-19 确认）；S&P AA（稳定，2026-06-11 由 AA- 上调）</td></tr>
+            <tr><td>总部／员工</td><td>美国加州圣克拉拉／约 3.6 万人（FY2026 10-K 口径）</td></tr>
+        </table>
+        <div class="highlight">
+            <strong>一句话业务：</strong>全球 AI 算力的"总承包商"。它卖的不再只是一颗 GPU，而是显卡＋NVLink 机柜＋InfiniBand/Spectrum-X 网络＋CUDA 软件＋整机系统（DGX/HGX）的"AI 工厂"整套方案。全球云厂商、模型公司、主权 AI 与国家实验室要建 AI 集群，第一站几乎都必须找它——因为芯片、互连、软件生态和交付确定性同时具备的，只有它一家。
+        </div>
+        <p class="src">来源：NVIDIA FY2026 10-K（2026-02）、FY2026 Q4 及 FY2027 Q1/Q2 财报与 CFO Commentary（2026-02-25、2026-05、2026-08-26）、NVIDIA 8-K、2026-11-10 收盘行情。市值按约 241 亿股摊薄股本计算，为近似值。</p>
+    </div>
+
+    <h2 id="chapter2">二、业务分析</h2>
+    <div class="info-box">
+        <h3>2.1 商业模式：从"卖芯片"到"卖 AI 工厂"</h3>
+        <p>理解英伟达的关键，是看清它过去三年卖的东西变了。2022 年它主要卖一张 H100 加速卡；2024 年卖的是一个装着 72 颗 GPU、通过 NVLink 连成一体的 GB200 NVL72 机柜；2026 年卖的是一整套"AI 工厂"——机柜、网络、存储、供电设计、软件栈（CUDA-X、NIM、Nemotron）、部署与运维手册（DSX），甚至可以帮客户解决土地、电力和数据中心融资。</p>
+        <p>这个迁移改变了三件事：<strong>① 单客户价值量</strong>从几十万美元变成数亿美元；<strong>② 毛利率结构</strong>从"芯片毛利"变成"系统毛利"，整机柜和网络里包含更多外购件（HBM、电源、结构件），毛利率低于纯芯片，但绝对毛利额更大；<strong>③ 客户关系</strong>从"卖给服务器代工厂"变成"直接与云厂商、模型公司、主权客户共同规划多年产能"。</p>
+
+        <h3>2.2 四条业务线：数据中心已是绝对主体</h3>
+        <table>
+            <tr><th>业务线</th><th>FY2026 营收</th><th>占比</th><th>同比</th><th>最新季度（Q2 FY2027）</th><th>同比</th></tr>
+            <tr><td>数据中心（Data Center）</td><td>$1,937.4 亿</td><td>89.7%</td><td>+68%</td><td>$890.2 亿</td><td>+117%</td></tr>
+            <tr><td>— 其中计算（Compute）</td><td>$1,623.6 亿</td><td>75.2%</td><td>+59%</td><td>未单独披露</td><td>—</td></tr>
+            <tr><td>— 其中网络（Networking）</td><td>$313.8 亿</td><td>14.5%</td><td>+142%</td><td>未单独披露</td><td>—</td></tr>
+            <tr><td>游戏（Gaming）</td><td>$160.4 亿</td><td>7.4%</td><td>+41%</td><td>并入"边缘计算"</td><td>—</td></tr>
+            <tr><td>专业可视化（ProViz）</td><td>$31.9 亿</td><td>1.5%</td><td>+70%</td><td>并入"边缘计算"</td><td>—</td></tr>
+            <tr><td>汽车与机器人（Automotive）</td><td>$23.5 亿</td><td>1.1%</td><td>+39%</td><td>并入"边缘计算"</td><td>—</td></tr>
+            <tr><td>OEM 及其他</td><td>$6.2 亿</td><td>0.3%</td><td>+59%</td><td>—</td><td>—</td></tr>
+            <tr><td><strong>合计</strong></td><td><strong>$2,159.4 亿</strong></td><td>100%</td><td>+65%</td><td><strong>$962.2 亿</strong></td><td>+106%</td></tr>
+        </table>
+        <p class="src">来源：FY2026 Q4 CFO Commentary（2026-02-25）、FY2027 Q2 CFO Commentary（2026-08-26）。<strong>口径变化：</strong>自 FY2027 Q1 起，公司将游戏、专业可视化、汽车合并为"边缘计算（Edge Computing）"披露，Q2 FY2027 为 $71.98 亿（+27%）；上表 FY2026 仍按原四条线列示。Q4 FY2026 的逐项收入为：游戏 $37.27 亿、专业可视化 $13.21 亿、汽车 $6.04 亿。</p>
+
+        <h3>2.3 数据中心内部：超大客户与"AI 原生"客户双引擎</h3>
+        <table>
+            <tr><th>客户类别</th><th>Q2 FY2027 营收</th><th>占数据中心</th><th>同比</th><th>代表客户</th></tr>
+            <tr><td>Hyperscale（超大云厂商）</td><td>$487.1 亿</td><td>54.7%</td><td>+102%</td><td>微软、亚马逊、谷歌、Meta、Oracle</td></tr>
+            <tr><td>AI Clouds、工业与企业（ACIE）</td><td>$403.1 亿</td><td>45.3%</td><td>+138%</td><td>CoreWeave、Nebius、xAI、OpenAI 生态、主权 AI、企业</td></tr>
+        </table>
+        <p>2024 年市场最大的担心是"只有微软一家在买"。2026 年的数据显示增长已经扩散：ACIE 增速（+138%）连续两个季度高于超大云（+102%），说明模型公司、主权 AI 和企业需求正在接力。这是本轮景气度比 2023 年更"宽"的证据，也是估值能维持的前提。</p>
+        <p>中国是反面：Q2 FY2027 向中国交付的数据中心 Hopper 产品不到数据中心收入的 1%，且 Q3 指引完全不含中国数据中心计算收入。中国从"重要增量市场"变成了"可选项"。</p>
+
+        <h3>2.4 游戏、专业可视化、汽车与机器人</h3>
+        <table>
+            <tr><th>业务</th><th>FY2026</th><th>关键驱动</th><th>2026 年状态</th></tr>
+            <tr><td>游戏</td><td>$160.4 亿（+41%）</td><td>GeForce RTX 50 系（Blackwell 架构）、DLSS 4、游戏本</td><td>Q4 FY2026 同比 +47%，但环比 -13%（节后渠道去库存）；公司提示 FY2027 起<strong>供给约束</strong>（内存涨价）是逆风。Q2 FY2027 边缘计算增长主要靠 Blackwell 工作站，消费 PC 受内存与整机涨价拖累。</td></tr>
+            <tr><td>专业可视化</td><td>$31.9 亿（+70%）</td><td>RTX 工作站、Omniverse、设计与仿真</td><td>Q4 FY2026 同比 +159%，是 AI 设计与数字孪生需求外溢的直接受益者，但基数小。</td></tr>
+            <tr><td>汽车与机器人</td><td>$23.5 亿（+39%）</td><td>DRIVE Hyperion、Orin/Thor、Isaac GR00T 人形机器人平台</td><td>Q4 FY2026 同比 +6%，增速不快；2026 年与富士康、VinFast、Uber、HUMAIN 扩大 Robotaxi 生态，Cosmos 3、GR00T 参考平台落地，属于"期权价值"而非当期利润。</td></tr>
+        </table>
+        <p>把三条线合起来看：FY2026 合计 $215.8 亿，只占总营收 10%；但它们提供了两样东西——<strong>消费级 GPU 的开发者习惯</strong>（今天的游戏玩家是明天的 CUDA 工程师）和<strong>物理 AI 的入口</strong>（机器人、自动驾驶）。芒格会提醒：这两样现在都不值 4 万亿市值里的多少，别把期权当现金流。</p>
+
+        <h3>2.5 地区结构与客户集中度</h3>
+        <p>按客户所在地，美国约占收入的一半以上，亚太（含中国大陆、台湾地区）次之，欧洲与其他地区补充。真正的集中度不在"国家"，而在"客户类型"：超大云厂商占数据中心收入约 55%，且这一比例在下降——2024 年曾超过 60%。前几大客户的具体名称公司不披露，但 CFO 明确表示超大云仍是"最大客户类别"。</p>
+        <div class="highlight">
+            <strong>业务分析三句话：</strong>① 数据中心占九成收入、贡献几乎全部增量，其他三条线是"生态与期权"；② 增长引擎正从"超大云"扩散到"AI 原生＋主权 AI＋企业"，这是景气度变宽的证据；③ 商业模式从芯片走向系统与 AI 工厂，收入天花板抬高，但毛利率、营运资金与资产负债表风险同时上升。
+        </div>
+    </div>
+
+    <h2 id="chapter3">三、产品竞争力分析</h2>
+    <div class="info-box">
+        <h3>3.1 数据中心：可替代性低、转换成本高、定价权强但在推理端松动</h3>
+        <table>
+            <tr><th>维度</th><th>评级</th><th>依据</th></tr>
+            <tr><td>可替代性</td><td><span class="tag tag-green">低</span></td><td>训练侧几乎无可替代：CUDA 生态、NVLink 机柜级互连、InfiniBand/Spectrum-X 网络、成熟的并行训练框架适配。AMD MI400/MI450 在单卡算力上接近，但机柜级互连（Helios）与软件栈成熟度仍落后；自研 ASIC（TPU/Trainium/MTIA）只服务自家负载，不外售。</td></tr>
+            <tr><td>客户转换成本</td><td><span class="tag tag-green">高</span></td><td>换平台意味着重写/重调训练代码、重建集群网络、重新验证稳定性，周期 6–18 个月；一个万卡集群的迁移成本以亿美元计。推理侧转换成本较低——模型已定型，换芯片主要是工程适配。</td></tr>
+            <tr><td>定价权</td><td><span class="tag tag-green">强</span></td><td>2023–2026 年 ASP 持续上行（H100→H200→B200→B300→Vera Rubin），客户仍排队。但推理场景已出现"每 token 成本"比对，AMD MI400 报价低 25%–30%，云厂商开始用自研 ASIC 压价。定价权正从"绝对"变为"分层"：训练强、推理中。</td></tr>
+        </table>
+
+        <h3>3.2 游戏、专业可视化、汽车：护城河厚度依次递减</h3>
+        <table>
+            <tr><th>业务</th><th>可替代性</th><th>转换成本</th><th>定价权</th><th>说明</th></tr>
+            <tr><td>游戏</td><td><span class="tag tag-orange">中高</span></td><td><span class="tag tag-orange">中</span></td><td><span class="tag tag-orange">中</span></td><td>AMD Radeon、Intel Arc、游戏主机、云游戏都可替代；护城河是 RTX/DLSS 生态与玩家习惯，不是硬件垄断。2025–2026 年 RTX 50 系因定价与供货受到玩家批评，说明品牌溢价有上限。</td></tr>
+            <tr><td>专业可视化</td><td><span class="tag tag-green">低到中</span></td><td><span class="tag tag-green">高</span></td><td><span class="tag tag-green">强</span></td><td>ISV 认证（CATIA、SolidWorks、Siemens）、Omniverse 与 CUDA 渲染管线形成工作流锁定；替代品（AMD Radeon Pro）存在但认证生态弱。</td></tr>
+            <tr><td>汽车与机器人</td><td><span class="tag tag-orange">中高</span></td><td><span class="tag tag-orange">中</span></td><td><span class="tag tag-orange">中</span></td><td>Tesla 自研 FSD 芯片、Mobileye、高通 Ride、地平线都可替代；英伟达的优势是全栈（芯片＋DRIVE 软件＋仿真＋GR00T），但车厂普遍要求"双供应商"。机器人是早期市场，标准未定。</td></tr>
+        </table>
+
+        <h3>3.3 世代节奏与供应链依赖：一年一代，但命门在台积电与 HBM</h3>
+        <table>
+            <tr><th>平台</th><th>量产/发布</th><th>关键规格</th><th>制程/封装</th><th>状态（2026-11）</th></tr>
+            <tr><td>Hopper（H100/H200）</td><td>2022–2024</td><td>HBM3/HBM3e</td><td>台积电 N4/N5 + CoWoS</td><td>仍在云上满载，二手/存量需求旺盛</td></tr>
+            <tr><td>Blackwell（B200/GB200）</td><td>2024–2025</td><td>NVL72 机柜、192GB HBM3e</td><td>台积电 N4P + CoWoS-L</td><td>仍是收入主力</td></tr>
+            <tr><td>Blackwell Ultra（GB300）</td><td>2025–2026</td><td>HBM3e 容量提升、推理优化</td><td>CoWoS-L</td><td>2026 年放量主力</td></tr>
+            <tr><td>Vera Rubin</td><td>2026 Q3 起爬坡</td><td>Vera CPU + Rubin GPU、HBM4、Spectrum-6</td><td>台积电 N3 + CoWoS-L</td><td><strong>已全面量产</strong>（2026-08-26 财报）</td></tr>
+            <tr><td>Rubin Ultra / Feynman</td><td>2027 / 2028（规划）</td><td>更高带宽、光电共封装</td><td>N2/A16 规划中</td><td>路线图已公布，未量产</td></tr>
+        </table>
+        <p>一年一代的节奏是英伟达最被低估的护城河：它把竞争对手的"追赶周期"变成了"永远差一代"。代价是<strong>对台积电 CoWoS 与 HBM 的硬依赖</strong>——英伟达约占 2026 年全球 CoWoS 产能的 60%，HBM4 由 SK 海力士、三星、美光供应。Q2 FY2027 公司把供应承诺从 $1,190 亿提高到 $2,790 亿，"主要用于存储采购"，这既是备货，也是对内存涨价的被动接受。</p>
+
+        <h3>3.4 客户视角的双向测试</h3>
+        <h4>正面测试：我为什么选英伟达？</h4>
+        <div class="moat-item">
+            <strong>因为"晚三个月"的代价我付不起。</strong>一个大模型训练集群晚三个月上线，可能错过一整代模型窗口；英伟达的机柜级方案是"插电即用"，网络、驱动、框架全部预验证。我买的不是最便宜的芯片，是<strong>确定性</strong>。<br>
+            <strong>因为我的工程师只会 CUDA。</strong>全球几百万开发者、几乎所有论文与开源框架首先适配 CUDA。换 AMD 或 TPU，我要重新招人、重写 kernel、重做性能调优——这笔账比芯片差价大得多。<br>
+            <strong>因为机柜和网络也得一起解决。</strong>万卡集群的瓶颈在互连，不在单卡。NVLink＋InfiniBand/Spectrum-X 是唯一经过超大规模验证的组合，我没有第二家可以"分开采购"。<br>
+            <strong>因为产能可以提前锁定。</strong>英伟达能帮我锁定台积电 CoWoS 与 HBM 产能，甚至帮我解决电力和数据中心融资——这是"总承包商"的价值。
+        </div>
+        <h4>反面测试：我为什么可能离开英伟达？</h4>
+        <div class="risk-item">
+            <strong>推理成本。</strong>模型定型后，推理是可以被"专用化"的。谷歌 TPU、亚马逊 Trainium、Meta MTIA 在自家负载上单位成本可低 30%–60%；AMD MI400 报价低 25%–30%。当推理占比超过训练，我会把增量预算切给自研 ASIC。<br>
+            <strong>供应分配与捆绑。</strong>如果连续两个季度拿不到足够机柜，或者被要求"买网络才配 GPU"，我会加速扶持第二供应商。<br>
+            <strong>地缘政治。</strong>如果我的政府要求"关键算力必须用本土芯片"，我会把部分订单交给本土方案，哪怕性能差一点——这是政治账。<br>
+            <strong>资本开支纪律。</strong>如果我的自由现金流被 AI 资本开支压得喘不过气，我会先砍"最贵的方案"，而不是最不重要的方案。英伟达是那个"最贵"的。<br>
+            <strong>电力与土地。</strong>当瓶颈从芯片变成电力和土地，英伟达的芯片优势会被稀释——这也是它为什么要去做 DSX、担保和数据中心融资。
+        </div>
+        <p><strong>结论：</strong>转换成本很高，但不是无限高。客户不会因为"便宜 20%"离开，但会因为"推理成本差一倍"和"拿不到货"离开。护城河的真实宽度，取决于英伟达能否让"每 token 成本"继续领先，而不只是"每芯片性能"领先。</p>
+
+        <h3>3.5 综合竞争力评级</h3>
+        <table>
+            <tr><th>业务</th><th>综合评级</th><th>一句话判断</th></tr>
+            <tr><td>数据中心</td><td><span class="star">★★★★★</span> 5/5</td><td>训练侧事实垄断，推理侧开始分层；护城河从"芯片"升级为"系统＋软件＋供给"。</td></tr>
+            <tr><td>专业可视化</td><td><span class="star">★★★★☆</span> 4/5</td><td>工作流与 ISV 认证锁定，小而稳。</td></tr>
+            <tr><td>游戏</td><td><span class="star">★★★☆☆</span> 3/5</td><td>品牌与生态强，但价格与供给约束显现，替代品多。</td></tr>
+            <tr><td>汽车与机器人</td><td><span class="star">★★★☆☆</span> 3/5</td><td>全栈能力领先，但车厂双供应商策略与自研芯片是长期压制。</td></tr>
+        </table>
+    </div>
+
+    <h2 id="chapter4">四、历史财务指标</h2>
+    <div class="info-box">
+        <h3>4.1 七年损益与现金流</h3>
+        <table>
+            <tr><th>财年（截至1月下旬）</th><th>营收（$亿）</th><th>同比</th><th>毛利率</th><th>营业利润率</th><th>净利润（$亿）</th><th>经营现金流（$亿）</th><th>自由现金流（$亿）</th><th>ROE</th><th>研发费用率</th></tr>
+            <tr><td>FY2020</td><td>109.2</td><td>-7%</td><td>62.3%</td><td>26.1%</td><td>28.0</td><td>47.6</td><td>36.4</td><td>22.9%</td><td>25.9%</td></tr>
+            <tr><td>FY2021</td><td>166.8</td><td>+53%</td><td>62.3%</td><td>27.2%</td><td>43.3</td><td>58.2</td><td>47.0</td><td>25.6%</td><td>23.5%</td></tr>
+            <tr><td>FY2022</td><td>269.1</td><td>+61%</td><td>64.9%</td><td>37.3%</td><td>97.5</td><td>91.1</td><td>73.0</td><td>36.6%</td><td>19.6%</td></tr>
+            <tr><td>FY2023</td><td>269.7</td><td>0%</td><td>56.9%</td><td>15.7%</td><td>43.7</td><td>56.4</td><td>38.1</td><td>19.8%</td><td>27.2%</td></tr>
+            <tr><td>FY2024</td><td>609.2</td><td>+126%</td><td>72.7%</td><td>54.1%</td><td>297.6</td><td>280.9</td><td>270.2</td><td>91.4%</td><td>14.2%</td></tr>
+            <tr><td>FY2025</td><td>1,305.0</td><td>+114%</td><td>75.0%</td><td>62.4%</td><td>728.8</td><td>640.9</td><td>608.5</td><td>91.9%</td><td>9.9%</td></tr>
+            <tr><td>FY2026</td><td>2,159.4</td><td>+65%</td><td>71.1%</td><td>60.4%</td><td>1,200.7</td><td>约 889</td><td>约 829</td><td>约 101.5%</td><td>8.6%</td></tr>
+            <tr><td>FY2027 H1</td><td>1,778.4</td><td>+112%</td><td>75.0%</td><td>65.9%</td><td>1,180.1</td><td>744.2</td><td>699.9</td><td>—</td><td>约 8%</td></tr>
+        </table>
+        <p class="src">来源：NVIDIA 各财年 10-K、FY2026 Q4 与 FY2027 Q2 8-K（2026-02-25、2026-08-26）。FY2026 经营现金流为四个季度加总（135+154+238+362 亿美元），自由现金流＝经营现金流−物业设备及无形资产购置（约 $60 亿），为估算；FY2026 ROE 按期末股东权益 $1,572.9 亿与期初 $793.3 亿平均计算。FY2027 H1 数据来自 10-Q（截至 2026-07-26）。</p>
+
+        <h3>4.2 资本回报：ROIC 高得不像制造业</h3>
+        <table>
+            <tr><th>指标</th><th>FY2024</th><th>FY2025</th><th>FY2026</th><th>说明</th></tr>
+            <tr><td>ROE</td><td>91.4%</td><td>91.9%</td><td>约 101.5%</td><td>利润率极高＋权益基数被回购压低</td></tr>
+            <tr><td>ROIC（税后经营利润／投入资本）</td><td>约 62%</td><td>约 159%</td><td>约 107%</td><td>投入资本＝股东权益＋有息负债−现金及证券；FY2026 现金基数大，拉低账面 ROIC</td></tr>
+            <tr><td>研发费用（$亿）</td><td>86.8</td><td>129.1</td><td>185.0</td><td>绝对额五年增长 2.1 倍</td></tr>
+            <tr><td>研发费用率</td><td>14.2%</td><td>9.9%</td><td>8.6%</td><td>不是研发变少，是收入涨得更快</td></tr>
+            <tr><td>存货（$亿）</td><td>53.0</td><td>100.8</td><td>214.0</td><td>为 Blackwell/Vera Rubin 备货</td></tr>
+            <tr><td>供应及相关承诺（$亿）</td><td>—</td><td>—</td><td>952</td><td>FY2027 Q1 升至 1,190，Q2 升至 2,790（主要为存储）</td></tr>
+        </table>
+        <div class="highlight">
+            <strong>财务特征三句话：</strong>① 这是一条"台阶式"增长曲线——FY2023 零增长、FY2024–FY2026 连续翻倍级扩张，半导体资本周期从未消失；② 毛利率在 71%–75% 高位震荡，规模效应已经吃到尽头，未来毛利率的方向取决于"系统占比"与"内存成本"，而非产能利用率；③ ROE/ROIC 超过 100%，说明它用极少的资本撬动极高的回报——这是软件公司的特征，不是硬件公司的特征。
+        </div>
+    </div>
+
+    <h2 id="chapter5">五、债务分析</h2>
+    <div class="info-box">
+        <h3>5.1 有息负债：账面上是"净现金堡垒"</h3>
+        <table>
+            <tr><th>项目（$亿）</th><th>2025-01-26</th><th>2026-01-25</th><th>2026-07-26</th></tr>
+            <tr><td>短期债务</td><td>10.0</td><td>10.0</td><td>10.0</td></tr>
+            <tr><td>长期债务</td><td>84.6</td><td>74.7</td><td>323.7</td></tr>
+            <tr><td><strong>有息负债合计</strong></td><td><strong>94.6</strong></td><td><strong>84.7</strong></td><td><strong>333.7</strong></td></tr>
+            <tr><td>现金、现金等价物及可售证券</td><td>432.1</td><td>625.6</td><td>566.0</td></tr>
+            <tr><td><strong>净现金（负数为净债务）</strong></td><td><strong>337.5</strong></td><td><strong>540.9</strong></td><td><strong>232.3</strong></td></tr>
+            <tr><td>总资产</td><td>1,116.0</td><td>2,068.0</td><td>3,202.7</td></tr>
+            <tr><td>总负债</td><td>322.7</td><td>495.1</td><td>912.9</td></tr>
+            <tr><td>有息负债／总资产</td><td>8.5%</td><td>4.1%</td><td>10.4%</td></tr>
+            <tr><td>有息负债／总负债</td><td>29.3%</td><td>17.1%</td><td>36.6%</td></tr>
+        </table>
+        <p>2026 年 6 月，英伟达定价发行 <strong>$250 亿高级无抵押债券</strong>（S&P 于 6 月 11 日上调至 AA，Moody's Aa1），长期债务从 $75 亿跳到 $324 亿。这是公司历史上第一次大规模举债。但即便举债后，现金及证券 $566 亿仍高于有息负债 $334 亿，<strong>净现金 $232 亿</strong>，净债务/EBITDA 为负值。</p>
+        <p>更关键的是负债结构：$913 亿总负债中，真正付息的是 $334 亿；其余 $579 亿是应付账款（$151 亿）、应计费用（$270 亿）、经营租赁负债、递延收入等<strong>无息经营性负债</strong>——这是占用上游资金的能力，不是财务风险。表观"负债率上升"主要来自规模扩张，而不是加杠杆炒作。</p>
+
+        <h3>5.2 现金流对债务的保障</h3>
+        <div class="moat-item">
+            <strong>利息保障倍数：</strong>TTM 经营利润约 $1,975 亿，年化利息支出约 $10–15 亿，覆盖倍数在 100 倍以上；即使按新增 $250 亿债券全年计息，覆盖仍远超 50 倍。<br>
+            <strong>自由现金流覆盖：</strong>FY2027 H1 经营现金流 $744 亿、资本开支仅 $44 亿，自由现金流约 $700 亿；单季度自由现金流即可覆盖全部到期债务。<br>
+            <strong>到期结构：</strong>新发债券以 5–30 年期限为主，原有债券 2030 年后到期，2027–2029 年没有集中偿付墙。<br>
+            <strong>压力测试：</strong>即使 EBITDA 下滑 80%，利息仍可覆盖；真正会伤到英伟达的不是债务，而是<strong>表外承诺与客户信用</strong>（见 5.3）。
+        </div>
+
+        <h3>5.3 真正的"杠杆"在表外：$3,660 亿承诺与 $1,085 亿担保</h3>
+        <table>
+            <tr><th>项目（截至 2026-07-26，$亿）</th><th>金额</th><th>性质</th><th>风险点</th></tr>
+            <tr><td>供应与产能承诺</td><td>2,790</td><td>未来采购义务（主要是存储）</td><td>若 AI 需求骤降，高价库存与照付不议合同会变成减值</td></tr>
+            <tr><td>云服务协议</td><td>290</td><td>多年算力租用</td><td>研发自用，刚性支出</td></tr>
+            <tr><td>未起租数据中心租约</td><td>250</td><td>长期租赁</td><td>期限最长 20 年，公司计划转租给第三方</td></tr>
+            <tr><td>股权投资承诺</td><td>250</td><td>对 AI 模型公司、基础设施金融方的投资</td><td>估值波动与减值</td></tr>
+            <tr><td>资本开支承诺</td><td>80</td><td>设备与厂房</td><td>可控</td></tr>
+            <tr><td><strong>承诺合计</strong></td><td><strong>3,660</strong></td><td>—</td><td>相当于 FY2027E 营收的 0.9 倍</td></tr>
+            <tr><td>追加 AI 云协议＋第三方租约</td><td>560</td><td>为客户锁定土地、电力、机房的安排</td><td>客户违约时可能回到英伟达表内</td></tr>
+            <tr><td>担保（SB Energy $1,050 亿＋AI 云 $35 亿）</td><td>1,085</td><td>为 OpenAI 在俄亥俄 PORTS-Pike 园区等提供信用支持</td><td>分阶段生效，若 OpenAI 违约，最大敞口 $1,050 亿</td></tr>
+        </table>
+        <p class="src">来源：FY2027 Q2 CFO Commentary（2026-08-26）。公司明确说明：PORTS-Pike 园区每部署一代英伟达基础设施，约对应 150 万颗 GPU、$1,500–2,000 亿英伟达收入；担保在数据中心投入服务后分阶段生效，并随 OpenAI 支付租金而递减。</p>
+
+        <h3>5.4 管理层对杠杆与资本结构的态度</h3>
+        <p>CFO Colette Kress 在 FY2027 Q2 评论中表示："我们与广泛的供应商网络合作，锁定未来数年所需的关键零部件……承诺从上季度的 $1,190 亿增加到 $2,790 亿，主要与存储采购有关。"（2026-08-26）同一份文件中，公司把 $250 亿债券的用途定义为"一般公司用途"。</p>
+        <p>Moody's 在 2026-08-19 确认 Aa1 评级、展望正面，理由是"均衡的资本配置政策将支撑其异常强劲的净现金状况和信用指标"。S&P 在 2026-06-11 上调至 AA，理由是 AI 驱动的增长"超出我们的基准预测"，且公司"正在加深竞争护城河与定价权，演变为全栈数据中心平台"。</p>
+        <p><strong>言行对照：</strong>公司一边维持净现金、一边首次大举发债，同时用担保和股权投资为下游客户"加杠杆"。这不是传统意义的财务杠杆，而是<strong>生态杠杆</strong>——用自己的资产负债表替客户和供应链承担周期风险。趋势判断：<span class="tag tag-green">净现金维持</span>，但 <span class="tag tag-orange">表外风险敞口快速上升</span>。</p>
+        <div class="highlight">
+            <strong>债务结论：</strong>以传统债务指标衡量，英伟达是 Aa1/AA 级的"净现金堡垒"，债务风险几乎可以忽略。但把 $3,660 亿承诺、$560 亿追加安排与 $1,085 亿担保加进来，其真实风险敞口约 $5,300 亿，相当于股东权益（$2,290 亿）的 2.3 倍。芒格会问："如果 AI 资本开支在 2028 年掉头，这些承诺和担保会变成什么？"——这是本页最重要的风险问题。
+        </div>
+    </div>
+
+    <h2 id="chapter6">六、管理层与公司文化</h2>
+    <div class="info-box">
+        <h3>6.1 核心人物档案</h3>
+        <table>
+            <tr><th>项目</th><th>内容</th><th>来源／时间</th></tr>
+            <tr><td>黄仁勋（Jensen Huang）</td><td>1963 年生于台湾台南，1973 年移居美国；俄勒冈州立大学电机工程学士（1984）、斯坦福大学电机工程硕士（1992）</td><td>公司官网、公开访谈</td></tr>
+            <tr><td>职业履历</td><td>1984–1985 年任 AMD 芯片设计师；1985–1993 年任 LSI Logic 系统工程师／销售；1993 年 4 月与 Chris Malachowsky、Curtis Priem 共同创立 NVIDIA</td><td>公司官网</td></tr>
+            <tr><td>当前职务</td><td>创始人、总裁兼 CEO、董事；实际最高决策者，直接管理约 60 名高管（无 COO、无明确二把手）</td><td>腾讯新闻 2026-11-11、公司治理文件</td></tr>
+            <tr><td>持股</td><td>约 <strong>3.58%</strong>，按 $4.07 万亿市值约合 $1,456 亿；无 AB 股、无绝对控制权</td><td>新浪财经 2026-11-10 引最新财报</td></tr>
+            <tr><td>激励结构</td><td>长期以股权激励为主，基本薪金占比低；具体年度金额以 DEF 14A 为准（本次未逐项核实）</td><td>DEF 14A（未逐项核实）</td></tr>
+        </table>
+
+        <h3>6.2 关键经历与事迹：三次濒死、两次豪赌</h3>
+        <table>
+            <tr><th>时间</th><th>事件</th><th>结果</th></tr>
+            <tr><td>1995–1996</td><td>NV1 失败，公司现金只够撑几个月；日本世嘉仍支付 $200 万开发费并允许延期</td><td>靠这笔钱活下来，转向 PC 图形</td></tr>
+            <tr><td>1997</td><td>RIVA 128 孤注一掷，公司只剩一次流片机会</td><td>成功，奠定 3D 显卡地位</td></tr>
+            <tr><td>2006</td><td>推出 CUDA，把 GPU 变成通用并行计算平台，连续多年被华尔街质疑"浪费钱"</td><td>2012 年 AlexNet 后成为 AI 算力标准，护城河的核心</td></tr>
+            <tr><td>2008–2009</td><td>金融危机＋芯片封装缺陷，股价跌至 $2 附近，公司第二次濒死</td><td>裁员、收缩、活下来</td></tr>
+            <tr><td>2014–2020</td><td>移动芯片 Tegra 在手机市场失败，转向汽车、游戏主机与数据中心</td><td>失败业务被放弃，数据中心成为第二曲线</td></tr>
+            <tr><td>2020</td><td>以 $69 亿收购 Mellanox</td><td>网络业务从 0 做到 FY2026 $314 亿，是史上最成功的半导体并购之一</td></tr>
+            <tr><td>2020–2022</td><td>拟以 $400 亿收购 Arm，遭各国监管反对</td><td>2022 年 2 月终止，支付约 $12.5 亿分手费；战略失误但止损果断</td></tr>
+            <tr><td>2023–2026</td><td>ChatGPT 后 All-in AI 工厂，年度迭代，营收从 $270 亿做到 $2,159 亿</td><td>成为全球市值最高公司之一（2026 年 10 月约 $5.8 万亿）</td></tr>
+        </table>
+
+        <h3>6.3 诚信与合规记录</h3>
+        <table>
+            <tr><th>事项</th><th>状态</th><th>事实与影响</th></tr>
+            <tr><td>2026-11-08 董事会独立调查</td><td><span class="tag tag-green">已证实（一手来源）</span></td><td>公司官网新闻稿《Statement From NVIDIA Board of Directors》（2026-11-08）原文：因"近期报道称创始人兼 CEO 黄仁勋成为外国情报活动的目标（has been the target of a foreign intelligence effort）"，董事会启动独立调查；由独立董事组成的委员会监督、外部独立律师协助；董事会强调"目前没有理由认为国家安全或 NVIDIA 机密受到损害（no reason to believe that either national security or NVIDIA secrets were compromised）"；黄仁勋表示全力支持并承诺配合；董事会对黄仁勋及其领导团队抱有信心。调查结论尚未公布。</td></tr>
+            <tr><td>外国情报活动的具体情节与是否造成损失</td><td><span class="tag tag-orange">未证实</span></td><td>董事会声明将相关媒体报道作为调查缘由，但未披露报道细节，也未确认任何机密外泄；本页不采信具体情节，仅记录"调查已启动"这一公司确认的事实。</td></tr>
+            <tr><td>个人私德相关报道</td><td><span class="tag tag-orange">未证实（媒体转述）</span></td><td>多家媒体援引其致员工备忘录，称黄仁勋承认婚外情并致歉；公司未公开备忘录全文，本页不作为已证实事实引用，也不作道德评价。该事项与投资判断的相关性，主要在于关键人风险与舆论影响，而非财务或经营造假。</td></tr>
+            <tr><td>H20 对华出口与 15% 收入分成安排</td><td><span class="tag tag-green">已证实</span></td><td>2025 年 8 月公司与美国政府达成安排，恢复对华销售 H20 并以部分收入分成换取许可；2026 年中国数据中心收入占比已降至不足 1%。</td></tr>
+            <tr><td>法国反垄断突击检查</td><td><span class="tag tag-green">已证实（检查）</span></td><td>2024 年 7 月法国竞争管理局搜查英伟达巴黎办公室，调查显卡市场行为；截至 2026 年 11 月未公布处罚结论。</td></tr>
+            <tr><td>美国司法部反垄断调查传闻</td><td><span class="tag tag-orange">未证实</span></td><td>2024 年多家媒体报道司法部发出调查函，公司未确认，亦无起诉。</td></tr>
+            <tr><td>2018 年加密收入证券集体诉讼</td><td><span class="tag tag-green">已证实（和解）</span></td><td>股东指控公司隐瞒加密挖矿对游戏显卡收入的贡献；2022 年达成和解，金额未对公司财务构成重大影响。</td></tr>
+        </table>
+
+        <h3>6.4 性格与管理风格（附言行一致性检验）</h3>
+        <p>黄仁勋的公开形象高度一致：皮衣、长时间演讲、"the more you buy, the more you save"、"我们离倒闭只有 30 天"。这些不是人设，而是他真实的管理方法——用偏执制造紧迫感，用长期技术路线对抗季度压力。</p>
+        <table>
+            <tr><th>公开表述</th><th>实际行为</th><th>一致性</th></tr>
+            <tr><td>"加速计算是长期路线，CUDA 会改变计算"（2006 年起多次 GTC 演讲）</td><td>连续 20 年投入 CUDA，即使华尔街多年不认可；FY2026 研发 $185 亿</td><td><span class="tag tag-green">一致</span></td></tr>
+            <tr><td>"我们离倒闭只有 30 天"（多次内部讲话）</td><td>组织扁平、约 60 人直接汇报、快速试错；Tegra 手机业务失败后果断退出</td><td><span class="tag tag-green">一致</span></td></tr>
+            <tr><td>"股东回报是资本配置的一部分"（历年财报）</td><td>FY2026 回购 $401 亿，均价处于历史高位（PE 40x 以上）；回购不择时</td><td><span class="tag tag-orange">部分一致</span></td></tr>
+            <tr><td>"中国是重要市场"（多次公开表态）</td><td>Q3 FY2027 指引完全剔除中国数据中心计算收入，实际以合规优先</td><td><span class="tag tag-orange">部分一致</span></td></tr>
+            <tr><td>"我们与供应商是 T0 级合作"（GTC／供应链访谈）</td><td>与台积电、SK 海力士共同设计、提前锁产能；供应承诺 $2,790 亿</td><td><span class="tag tag-green">一致</span></td></tr>
+            <tr><td>"AI 工厂要惠及所有客户"（2026-08-26 财报）</td><td>同时提供 $1,085 亿担保与融资平台，替客户加杠杆</td><td><span class="tag tag-orange">部分一致（风险外溢）</span></td></tr>
+        </table>
+
+        <h3>6.5 能力圈与资本配置纪律</h3>
+        <div class="moat-item"><strong>并购：</strong>Mellanox（$69 亿，2020）是教科书级成功——网络业务 FY2026 达 $314 亿，占数据中心收入 16%；Arm（$400 亿，2020–2022）失败但止损快，分手费约 $12.5 亿；此后以小规模补强为主（Run:ai、Deci、Lepton、Enfabrica 等），不搞大跨界。</div>
+        <div class="moat-item"><strong>回购时机：</strong>FY2025–FY2026 合计回购约 $738 亿，恰逢股价从 $40 涨到 $190（拆股后口径），估值 40–60 倍。回购减少了股本，但也把大量现金买在了高估值上——这是资本配置里最明显的瑕疵。</div>
+        <div class="risk-item"><strong>投资与担保：</strong>2025 年起大规模投资 AI 模型公司与基础设施金融方（含对 Intel 的 $50 亿入股、对 OpenAI 的分阶段投资安排），并为客户数据中心提供 $1,085 亿担保。这已超出"芯片公司"的能力圈，进入"产业资本＋投行"领域，需要新的风控能力。</div>
+        <div class="highlight"><strong>判断：</strong>经营能力圈极强（加速计算、系统、生态），资本配置能力圈正在被"生态投资"稀释。ROIC 超过 100% 说明主业资本效率极高；但表外承诺的回报率尚未经过周期检验。</div>
+
+        <h3>6.6 对公司战略的观点</h3>
+        <p>黄仁勋的核心判断有四条：<strong>① 计算正在从 CPU 转向 GPU 加速</strong>（"买得越多，省得越多"）；<strong>② AI 工厂是新时代的基础设施</strong>，算力就是收入，"每个 token 都在创造利润"（2026-08-26 财报）；<strong>③ 一年一代的节奏不能停</strong>，停顿一代就出局；<strong>④ 主权 AI 与物理 AI 是下一个十年</strong>。这些判断与公司实际动作高度吻合：Vera Rubin 全面量产、Spectrum-6、Vera CPU、DSX、Cosmos 3、GR00T 都在按节奏落地。</p>
+        <p>唯一"说与做"存在张力的是中国：公开场合始终强调中国市场重要性，实际行动是"合规优先、指引剔除"。这不是虚伪，而是地缘政治下的理性选择，但投资者应把"中国收入"当作零来处理。</p>
+
+        <h3>6.7 公司文化与组织</h3>
+        <table>
+            <tr><th>维度</th><th>事实</th><th>评价</th></tr>
+            <tr><td>组织架构</td><td>极度扁平，约 60 名高管直接向 CEO 汇报；无 COO、无事业部制诸侯</td><td>决策快，但关键人依赖极重</td></tr>
+            <tr><td>考核与晋升</td><td>以技术里程碑与产品交付为核心；" intellectual honesty "（知识诚实）被反复强调</td><td>工程师文化浓，销售文化弱</td></tr>
+            <tr><td>供应链协作</td><td>与台积电、SK 海力士、鸿海等"T0 级"共同设计、共同扩产</td><td>把供应商变成盟友，难被复制</td></tr>
+            <tr><td>人员流失</td><td>核心高管团队（Colette Kress、Jay Puri、Debora Shoquist 等）任职均超过 10 年；近 3–5 年无公开的核心技术负责人离职潮</td><td>稳定性高于行业平均</td></tr>
+            <tr><td>合规文化</td><td>出口管制合规团队大幅扩张；对华销售以许可为前提</td><td>经历过 2022 与 2025 两轮管制，应对成熟</td></tr>
+        </table>
+
+        <h3>6.8 治理结构与继任</h3>
+        <p>英伟达只有一类普通股，<strong>没有 AB 股、没有投票权信托、没有控股股东</strong>；黄仁勋以 3.58% 持股掌控公司，靠的是创始人权威与董事会信任，而非股权控制。董事会独立董事占多数，CEO 与董事长职务分离。关联交易规模很小，主要是高管薪酬与少量投资，不构成利益冲突。</p>
+        <p>继任是最大的治理缺口：公司没有公开的接班计划，没有 COO 或明确二把手，约 60 名高管直接向 CEO 汇报。2026 年 11 月董事会就"黄仁勋成为外国情报活动目标"的报道启动独立调查，再次暴露了这种依赖——调查期间董事会明确表示对其领导团队有信心，黄仁勋继续履职；但如果因任何原因需要更换 CEO，董事会必须在极短时间内找到一个能同时驾驭技术路线、供应链与客户关系的人，而这样的人在市场上几乎不存在。</p>
+
+        <h3>6.9 压力测试（四档情境）</h3>
+        <table>
+            <tr><th>情境</th><th>冲击</th><th>理由</th><th>缓冲因素</th></tr>
+            <tr><td>黄仁勋单独离开</td><td><span class="tag tag-red">大</span></td><td>创始人是技术路线、客户关系与供应链的最终决策者；无明确接班人；市场信心会先崩一轮</td><td>CUDA 生态、$566 亿现金、稳定的高管团队、董事会可迅速任命临时 CEO</td></tr>
+            <tr><td>黄仁勋＋CFO 同时离开</td><td><span class="tag tag-red">大</span></td><td>战略与资本市场沟通同时真空；$3,660 亿承诺与 $1,085 亿担保需要极强的信用背书</td><td>财务团队深度、审计与评级机构关系、净现金</td></tr>
+            <tr><td>创始人退出或公开反对董事会</td><td><span class="tag tag-orange">中</span></td><td>无 AB 股，股权上无法阻止；但创始人威望可能引发代理权争夺与舆论战</td><td>单一股权结构、独立董事会、机构股东占主导</td></tr>
+            <tr><td>战略方向摇摆（如放弃年度迭代）</td><td><span class="tag tag-orange">中</span></td><td>一年一代是护城河核心；一旦停摆，AMD/ASIC 会在 12–18 个月内追平</td><td>已锁定的台积电/HBM 产能、CUDA 惯性、客户切换成本</td></tr>
+        </table>
+        <p class="src">来源：NVIDIA 新闻稿《Statement From NVIDIA Board of Directors》（2026-11-08，公司官网新闻室）、公司治理文件、腾讯新闻／新浪财经 2026-11-10/11 报道。个人私德相关细节均标注"未证实（媒体转述）"，不作为事实采信，也不作道德评价。</p>
+    </div>
+
+    <h2 id="chapter7">七、竞争分析</h2>
+    <div class="info-box">
+        <h3>7.1 对手地图：三种不同的威胁</h3>
+        <table>
+            <tr><th>对手</th><th>最强项</th><th>短板</th><th>威胁</th></tr>
+            <tr><td>AMD（MI400/MI450、Helios 机柜）</td><td>单卡算力接近、报价低 25%–30%、开放生态（ROCm）、与 OpenAI 的 6GW 合作</td><td>软件栈成熟度、机柜级互连、交付规模</td><td><span class="tag tag-orange">中高</span> 数据中心 GPU 收入约 $67 亿/季，份额 5%–7%</td></tr>
+            <tr><td>谷歌 TPU（Ironwood v7）</td><td>自用成本极低、2026-04 正式 GA、Anthropic 100 万颗、Meta 签多年租约</td><td>主要服务自家/租户，不直接零售</td><td><span class="tag tag-orange">中高</span> 已从"内部自用"走向"对外租赁"</td></tr>
+            <tr><td>亚马逊 Trainium 3</td><td>与 Anthropic 深度绑定（Project Rainier）、AWS 内部负载</td><td>生态封闭、只服务 AWS</td><td><span class="tag tag-orange">中</span></td></tr>
+            <tr><td>Meta MTIA / 微软 Maia 200</td><td>推理专用、单位成本低、自给自足</td><td>训练能力弱、量产规模小</td><td><span class="tag tag-green">中低</span> 先替代推理增量</td></tr>
+            <tr><td>博通（定制 ASIC＋网络）</td><td>为谷歌/ Meta 等定制 XPU，Tomahawk 交换芯片</td><td>不提供完整软件栈</td><td><span class="tag tag-orange">中</span> "卖铲子的铲子"</td></tr>
+            <tr><td>华为昇腾</td><td>中国本土替代、政策支持</td><td>制程受限、生态弱</td><td><span class="tag tag-green">低（海外）</span>／<span class="tag tag-orange">中（中国）</span></td></tr>
+            <tr><td>英特尔（Gaudi 4 / Crescent Island）</td><td>价格、x86 生态、美国本土产能</td><td>AI 软件栈与客户验证不足</td><td><span class="tag tag-green">低</span></td></tr>
+        </table>
+        <p class="src">来源：各公司 2026 年财报与发布会、行业统计（2026 年 8 月）；市场份额为第三方估算，口径不一（按收入／按出货量差异较大）。</p>
+
+        <h3>7.2 市场份额与结构性变化</h3>
+        <p>按收入计，英伟达 2026 年仍占全球 AI 加速器市场约 <strong>73%–80%</strong>，低于 2023 年的约 92%；AMD 约 5%–7%；定制 ASIC（TPU、Trainium、MTIA、Maia）合计约 <strong>20%–28%</strong>，且几乎全部用于 hyperscaler 内部负载。换句话说，英伟达失去的份额，主要不是被 AMD 抢走，而是被"客户自己造"替代。</p>
+        <p>这是本轮竞争与历史上任何一次都不同的地方：<strong>客户变成对手</strong>。谷歌、亚马逊、Meta、微软既是英伟达最大的客户，也是它最大的潜在替代者。它们不需要在公开市场打败英伟达，只需要在"自家推理负载"上不用它——而推理正在成为 AI 算力的主要部分。</p>
+
+        <h3>7.3 护城河来源排序与可持续年限</h3>
+        <table>
+            <tr><th>排序</th><th>护城河</th><th>强度</th><th>可持续年限</th><th>判断依据</th></tr>
+            <tr><td>1</td><td>CUDA 软件生态与开发者习惯</td><td><span class="tag tag-green">极强</span></td><td>8–10 年</td><td>几百万开发者、所有主流框架优先适配；迁移需重写 kernel</td></tr>
+            <tr><td>2</td><td>机柜级系统与 NVLink 互连</td><td><span class="tag tag-green">强</span></td><td>5–8 年</td><td>NVL72 已被超大规模验证；AMD Helios 2027 才规模交付</td></tr>
+            <tr><td>3</td><td>网络（InfiniBand / Spectrum-X）</td><td><span class="tag tag-green">强</span></td><td>5–7 年</td><td>Mellanox 遗产＋以太网路线；博通是唯一同量级对手</td></tr>
+            <tr><td>4</td><td>供应链锁定（CoWoS／HBM）</td><td><span class="tag tag-orange">中强</span></td><td>3–5 年</td><td>占 CoWoS 约 60%，但台积电在扩产、三星/英特尔在追赶</td></tr>
+            <tr><td>5</td><td>年度迭代节奏与品牌</td><td><span class="tag tag-green">强</span></td><td>5 年</td><td>一年一代把追赶者永远甩在一代之后；但依赖台积电执行</td></tr>
+            <tr><td>6</td><td>装机量与迁移成本</td><td><span class="tag tag-green">强</span></td><td>10 年以上</td><td>存量集群越多，替换越难</td></tr>
+        </table>
+        <div class="highlight">
+            <strong>芒格式判断：</strong>英伟达的护城河不是"芯片更快"，而是"整个行业按它的节奏写软件、建机房、排产能"。这种护城河在训练时代几乎不可攻破，但在推理时代会被"成本"一点点凿开。未来 5 年最可能的格局不是"英伟达衰退"，而是"英伟达仍是第一，但份额从 80% 降到 60%–65%，增速从 100% 降到 20%–30%"。
+        </div>
+    </div>
+
+    <h2 id="chapter8">八、利润分配分析</h2>
+    <div class="info-box">
+        <h3>8.1 五年利润分配表</h3>
+        <table>
+            <tr><th>财年（$亿）</th><th>净利润</th><th>现金分红</th><th>股票回购</th><th>扩张资本开支</th><th>留存金额</th><th>留存率</th><th>股东回报／自由现金流</th></tr>
+            <tr><td>FY2022</td><td>97.5</td><td>约 4.0</td><td>约 102</td><td>约 18</td><td>93.5</td><td>95.9%</td><td>—</td></tr>
+            <tr><td>FY2023</td><td>43.7</td><td>4.0</td><td>100</td><td>18.3</td><td>39.7</td><td>90.8%</td><td>273%</td></tr>
+            <tr><td>FY2024</td><td>297.6</td><td>4.0</td><td>95</td><td>10.7</td><td>293.6</td><td>98.7%</td><td>37%</td></tr>
+            <tr><td>FY2025</td><td>728.8</td><td>8.3</td><td>337</td><td>32.4</td><td>720.5</td><td>98.9%</td><td>57%</td></tr>
+            <tr><td>FY2026</td><td>1,200.7</td><td>9.7</td><td>401</td><td>约 60</td><td>1,191.0</td><td>99.2%</td><td>50%</td></tr>
+            <tr><td>FY2027 H1</td><td>1,180.1</td><td>约 6</td><td>约 400</td><td>44.3</td><td>1,174.1</td><td>99.5%</td><td>约 58%</td></tr>
+        </table>
+        <p class="src">来源：NVIDIA 各财年 10-K、FY2026 Q4 与 FY2027 Q2 8-K。留存金额＝净利润−现金分红（按项目规则，回购不减少留存）；FY2022 回购与资本开支为近似值。FY2027 H1 股东回报含 Q2 单季 $260 亿（回购＋分红），H1 合计约 $410 亿。</p>
+
+        <h3>8.2 分配结构解读</h3>
+        <div class="moat-item"><strong>留存率接近 100%，但不是"囤钱"：</strong>FY2026 净利润 $1,200.7 亿，只分红 $9.7 亿，留存 $1,191 亿。其中 $401 亿用于回购，其余进入现金、可售证券与生态投资（非上市股权 $222 亿、可售股权 $129 亿）。这是"把利润重新投回生态"的典型成长型分配。</div>
+        <div class="moat-item"><strong>股息从象征性变为"有意义"：</strong>FY2025 前季度股息仅 $0.01，FY2027 已提高到 $0.25/季（年化 $1.00）。按当前股价股息率约 0.6%，仍很低，但方向明确——公司开始用股息吸引长期资金。</div>
+        <div class="risk-item"><strong>回购时机是明显瑕疵：</strong>FY2025–FY2026 回购 $738 亿，股价区间大致从 $40 涨到 $190（拆股后口径），对应 PE 40–60 倍。管理层在估值最高时回购最多，这是"资本配置不择时"的典型。好在回购规模相对自由现金流仍可控（约 50%），没有借钱回购。</div>
+        <div class="highlight"><strong>可持续增长率＝ROE×留存率：</strong>FY2026 为 101.5%×99.2%≈100.7%。这个数字已经"饱和"，说明英伟达的增长不受资本约束，而受<strong>需求、供给（CoWoS/HBM）与电力</strong>约束。对股东的含义是：它不需要外部融资就能支撑增长，这是极高质量的商业模式。</div>
+    </div>
+
+    <h2 id="chapter9">九、投资总结</h2>
+    <div class="info-box">
+        <h3>9.1 估值：从"完美定价"回到"合理偏低"</h3>
+        <table>
+            <tr><th>指标</th><th>数值（2026-11-10）</th><th>说明</th></tr>
+            <tr><td>股价／市值</td><td>$168.80／$4.07 万亿</td><td>较 10 月峰值约 $5.8 万亿回撤约 30%</td></tr>
+            <tr><td>企业价值（EV）</td><td>约 $4.05 万亿</td><td>有息负债 $334 亿 − 现金及证券 $566 亿</td></tr>
+            <tr><td>PE(TTM, GAAP)</td><td>21.1x</td><td>TTM 净利约 $1,929 亿（含股权投资收益）</td></tr>
+            <tr><td>PE(TTM, 非 GAAP)</td><td>约 23.8x</td><td>剔除股权投资收益、含股权激励费用</td></tr>
+            <tr><td>Forward PE（FY2027E）</td><td>约 18x</td><td>按 FY2027E 非 GAAP EPS 约 $9.3 估算</td></tr>
+            <tr><td>EV/EBITDA(TTM)</td><td>约 19.7x</td><td>EBITDA 约 $2,055 亿</td></tr>
+            <tr><td>FCF 收益率（FY2027E）</td><td>约 3.4%</td><td>FY2027E 自由现金流约 $1,400 亿</td></tr>
+            <tr><td>同业参考</td><td>TSM 23.9x；AMD 约 35x；AVGO 约 38x</td><td>TSM 为 2026-11-05 收盘口径；AMD/AVGO 为市场一致预期估算</td></tr>
+        </table>
+
+        <h3>9.2 反向 DCF：市场只要求"8%–10% 的增长"</h3>
+        <p>以 FY2027E 自由现金流约 $1,400 亿为起点、贴现率 9%、永续增长 3%，当前 $4.07 万亿市值只隐含<strong>未来 5 年自由现金流年均增长约 8%–10%</strong>，第 6–10 年降至 4%–6%。而公司最近四个季度营收增速分别是 +62%、+73%、+151%、+106%。这意味着：市场不是在为"AI 永续繁荣"定价，而是在为"2028 年资本开支见顶、增速快速回落"定价。</p>
+        <div class="highlight">
+            <strong>估值的核心矛盾：</strong>如果你相信 AI 资本开支在 2028–2029 年只是"增速放缓"而非"绝对下滑"，当前价格明显便宜；如果你相信这是典型的资本周期顶部，当前价格只是"从泡沫回到合理"，还谈不上便宜。巴菲特会说：<strong>价格已经反映了悲观，但悲观是否过头，取决于你看得懂看不懂 2028 年的 AI 需求。</strong>
+        </div>
+
+        <h3>9.3 三情景推演（FY2028 视角）</h3>
+        <table>
+            <tr><th>情景</th><th>假设</th><th>FY2028 EPS</th><th>给予 PE</th><th>目标价</th><th>相对现价</th></tr>
+            <tr><td><span class="tag tag-red">悲观（25%）</span></td><td>AI 资本开支 2027 年见顶，2028 年下滑 30%；推理价格战，毛利率降至 65%</td><td>$6.0</td><td>15x</td><td>$90</td><td>-47%</td></tr>
+            <tr><td><span class="tag tag-orange">中性（50%）</span></td><td>2028 年营收增速降至 20%–25%，毛利率 72%–74%，推理与主权 AI 补位</td><td>$13.0</td><td>22x</td><td>$286</td><td>+69%</td></tr>
+            <tr><td><span class="tag tag-green">乐观（25%）</span></td><td>物理 AI／机器人放量，2028 年营收仍增 40%+，毛利率维持 75%</td><td>$18.0</td><td>26x</td><td>$468</td><td>+177%</td></tr>
+        </table>
+        <p>概率加权目标价约 <strong>$283</strong>（+68%）。这个结果对"悲观情景"的假设非常敏感：如果悲观情景的 EPS 不是 $6 而是 $4，目标价会降到 $60，加权结果降到 $250 以下。所以真正的安全边际，来自"即使 AI 周期见顶，英伟达仍能保持 $6 以上 EPS"的判断。</p>
+
+        <h3>9.4 六维评分</h3>
+        <table>
+            <tr><th>维度</th><th>评分</th><th>理由</th></tr>
+            <tr><td>业务可理解性</td><td><span class="star">★★★★★</span> 5/5</td><td>卖算力、卖系统、卖软件，逻辑清晰；但"AI 工厂＋担保＋融资"使资产负债表变复杂</td></tr>
+            <tr><td>护城河</td><td><span class="star">★★★★★</span> 5/5</td><td>CUDA＋NVLink＋网络＋供给锁定，四重叠加，宽度罕见</td></tr>
+            <tr><td>资本配置</td><td><span class="star">★★★★☆</span> 4/5</td><td>Mellanox 极成功、Arm 止损果断；但高位回购、生态担保扩张扣分</td></tr>
+            <tr><td>财务安全</td><td><span class="star">★★★★★</span> 5/5</td><td>净现金 $232 亿、Aa1/AA、利息覆盖 100x+；表外承诺是唯一瑕疵</td></tr>
+            <tr><td>成长前景</td><td><span class="star">★★★★★</span> 5/5</td><td>训练、推理、主权 AI、物理 AI 四条曲线接力；但基数已大</td></tr>
+            <tr><td>估值吸引力</td><td><span class="star">★★★★☆</span> 4/5</td><td>Forward PE 18x、FCF 收益率 3.4%，相对增速便宜；相对周期顶部不便宜</td></tr>
+        </table>
+        <div class="highlight">
+            <strong>综合评级：4.5/5（买入观察，分批建仓）。</strong>业务质量与财务安全度是满分级别；扣分主要来自可核查的两点：一是资本配置——高位回购与表外担保／承诺的快速扩张，二是估值——当前价格已反映"周期见顶"的部分预期，但尚未提供足够安全边际。关键人依赖（无公开接班计划）属于结构性风险，不因未经证实的个人报道而下调评分；董事会已启动的调查针对"外国情报活动目标"报道，公司明确表示目前没有理由认为机密受损，调查结论公布前应作为不确定性而非既定过失处理。
+        </div>
+
+        <h3>9.5 买入价格区间</h3>
+        <table>
+            <tr><th>区间</th><th>对应 FY2027E PE</th><th>判断</th></tr>
+            <tr><td>$120–145</td><td>13–16x</td><td><span class="tag tag-green">有安全边际</span> 悲观情景也能承受，适合分批建仓</td></tr>
+            <tr><td>$145–175</td><td>16–19x</td><td><span class="tag tag-orange">合理偏低</span> 当前价位，需要相信 2028 年不大幅下滑</td></tr>
+            <tr><td>$175–220</td><td>19–24x</td><td><span class="tag tag-orange">合理</span> 需要 FY2028 EPS ≥$13 兑现</td></tr>
+            <tr><td>>$220</td><td>>24x</td><td><span class="tag tag-red">偏贵</span> 已透支乐观情景，除非物理 AI 超预期</td></tr>
+        </table>
+
+        <h3>9.6 这笔投资在什么条件下会失败</h3>
+        <div class="risk-item"><strong>① AI 资本开支在 2028 年绝对下滑超过 30%，且推理／主权 AI 无法在 12 个月内补位。</strong>这是最可能的失败路径——半导体资本周期从未消失，英伟达 FY2023 就经历过零增长。</div>
+        <div class="risk-item"><strong>② 推理场景的单位成本优势被 ASIC 反超 2 倍以上。</strong>如果谷歌 TPU、Trainium、MTIA 在自家负载上的成本优势从 30%–60% 扩大到 2 倍，hyperscaler 会把增量预算全部切给自研，英伟达份额从 80% 掉到 50% 以下。</div>
+        <div class="risk-item"><strong>③ 供应链或地缘中断。</strong>台海局势、CoWoS/HBM 产能不足、存储价格失控，任何一项都会让"交付确定性"这个核心卖点失效。</div>
+        <div class="risk-item"><strong>④ 表外承诺与担保出现大规模减值。</strong>$2,790 亿供应承诺＋$1,085 亿担保，如果 OpenAI 等客户违约，英伟达需要同时承担库存减值与信用损失，净现金可能在一个季度内消失。</div>
+        <div class="risk-item"><strong>⑤ 外部情报与地缘风险升级。</strong>董事会已就"黄仁勋成为外国情报活动目标"的报道启动独立调查（2026-11-08），并称目前没有理由认为国家安全或公司机密受损。若调查结论改变这一判断，或引发管理层变动，将同时冲击客户信任与估值。这是当前最不可预测、也最难量化的风险。</div>
+
+        <h3>9.7 关键跟踪指标</h3>
+        <table>
+            <tr><th>指标</th><th>当前值</th><th>警戒线</th></tr>
+            <tr><td>数据中心收入同比</td><td>+117%（Q2 FY2027）</td><td>连续两个季度低于 +30%</td></tr>
+            <tr><td>毛利率</td><td>75.0%</td><td>低于 70%</td></tr>
+            <tr><td>供应承诺</td><td>$2,790 亿</td><td>继续翻倍但收入不增</td></tr>
+            <tr><td>应收账款周转天数（DSO）</td><td>60 天</td><td>超过 75 天</td></tr>
+            <tr><td>存货</td><td>$316 亿</td><td>连续两季增速高于收入增速</td></tr>
+            <tr><td>hyperscaler 资本开支指引</td><td>2027 年仍在上调</td><td>集体下调超过 10%</td></tr>
+            <tr><td>董事会调查结论</td><td>进行中（2026-11-08 启动）</td><td>认定机密受损，或引发管理层变动</td></tr>
+        </table>
+        <p class="src">本页所有财务数据来自 NVIDIA 向 SEC 提交的 10-K/10-Q/8-K 及 CFO Commentary；行情数据为 2026-11-10 收盘；管理层引述均标注日期与出处；媒体报道中未经公司或监管确认的内容已标注"未证实"。估值与情景推演为分析师假设，不构成投资建议。</p>
+    </div>
+
+    <script src="scores_client.js"></script>
+    <script src="stock_topbar.js"></script>
+</body>
+</html>
