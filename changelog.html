@@ -155,6 +155,25 @@
 
     <!-- 更新日志条目 - 按时间倒序排列，最新在最上面 -->
 
+    <div class="log-entry update">
+        <div class="log-header">
+            <span class="log-date">2026-11-16</span>
+            <span class="log-type update">更新</span>
+        </div>
+        <div class="log-desc">
+            <ul>
+                <li><strong>ai.html 第二章（需求侧）正文改写：</strong>把"为什么云厂是 L1 需求侧"融进现有叙述，不新增章节、不做问答板块。依次讲清：①云厂同时是算力的最终买单人、出租方、模型自研方，云服务器厂商只负责把机器造出来，订单由云厂发出，所以需求侧不是"房东"而是下单的人；②数据中心主要自建（拿地、建楼、拉电、装机柜、买 GPU 均自掏腰包，少部分租 REIT/批发商），2026 年四大云厂 capex 合计约 7,300 亿美元、同比约 +78%，其中服务器与加速器约 60-65%，机房/电力/散热约 35-40%；③推理确实吃算力，给出 1,000 亿参数、2,000 token 请求约 4×10^14 次运算、约 0.4 GPU·秒，日 1,000 万请求约 46 GPU·天、30% 利用率约 150 张卡的简化测算，并对比训练（一次性大额）与推理（随用量线性增长）；④"需求在应用层、下单在云厂"的传导链（用户付费→云厂 capex→NVDA 订单→台积电产能→ASML 设备）；⑤主权 AI 与企业私有云是需求侧例外但体量仍小。</li>
+                <li><strong>全页术语通俗化：</strong>新增 1.4"术语速查"表（37 个词，一句话解释），覆盖 capex、HBM、DRAM、NAND、企业级 SSD、CoWoS、EUV、ASIC、GPU、CPU、ODM、CR3/CR5、TTM、P/S、CPO、光模块、InfiniBand、NVLink、以太网、PCB、CCL、UPS、CDU、液冷、DC REIT、Neocloud、EDA、IP 核、foundry、tape-out、yield、TCO、token、inference、training、scaling law、agent、sovereign AI；第 3-9 章在术语首次出现处补"中文（英文缩写）"解释；第 13 章补 P/S（市销率）解释。</li>
+                <li><strong>目录微调：</strong>需求侧（谁买单）、算力（芯片）、存储（内存/SSD）、电力与散热（最硬约束），章节编号与顺序不变。</li>
+                <li><strong>校验：</strong>14 章、68 张表、div/span/tr/td/th 标签全部闭合平衡，131.5KB；备份 20261116_235923，链接验证 139/139。</li>
+            </ul>
+        </div>
+        <div class="log-files">
+            <span class="modified">~ ai.html（需求侧正文、1.4 术语表、3-9 章术语解释、目录文字）</span><br>
+            <span class="modified">~ changelog.html</span>
+        </div>
+    </div>
+
     <div class="log-entry create">
         <div class="log-header">
             <span class="log-date">2026-11-16</span>

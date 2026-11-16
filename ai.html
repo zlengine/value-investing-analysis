@@ -207,12 +207,12 @@
 
 <div class="section-nav">
     <a href="#chapter1">产业链全景</a>
-    <a href="#chapter2">需求侧</a>
-    <a href="#chapter3">算力</a>
-    <a href="#chapter4">存储</a>
+    <a href="#chapter2">需求侧（谁买单）</a>
+    <a href="#chapter3">算力（芯片）</a>
+    <a href="#chapter4">存储（内存/SSD）</a>
     <a href="#chapter5">制造与封测</a>
     <a href="#chapter6">网络互联</a>
-    <a href="#chapter7">电力与散热</a>
+    <a href="#chapter7">电力与散热（最硬约束）</a>
     <a href="#chapter8">软件与模型</a>
     <a href="#chapter9">应用层</a>
     <a href="#chapter10">节点汇总表</a>
@@ -225,8 +225,8 @@
 <div class="highlight">
     <strong>阅读说明（数据口径与代码说明）</strong>
     <ul>
-        <li><strong>市值与 TTM 收入</strong>：StockAnalysis（数据源 Nasdaq Data Link），美股收盘 2026-11-13。非美股为本币市值，括号内按 USD/JPY≈150、USD/KRW≈1,400、USD/TWD≈31.5、USD/CNY≈7.1、USD/HKD≈7.8 折算，仅作量级参考。不同数据商（如 CompaniesMarketCap）给出的市值可能相差 20% 以上，本页只采用同一快照源，避免混用。</li>
-        <li><strong>份额</strong>：Counterpoint（HBM 2026Q2，2026-09-01 更新；光模块）、TrendForce（CoWoS 2026-06/09、DRAM 2026Q2）、IDC（服务器 2026Q1）、公司财报与电话会。份额均注明口径（按收入／按出货量／按金额）。</li>
+        <li><strong>市值与 TTM（滚动十二个月，trailing twelve months）收入</strong>：StockAnalysis（数据源 Nasdaq Data Link），美股收盘 2026-11-13。非美股为本币市值，括号内按 USD/JPY≈150、USD/KRW≈1,400、USD/TWD≈31.5、USD/CNY≈7.1、USD/HKD≈7.8 折算，仅作量级参考。不同数据商（如 CompaniesMarketCap）给出的市值可能相差 20% 以上，本页只采用同一快照源，避免混用。</li>
+        <li><strong>份额</strong>：Counterpoint（HBM 2026Q2，2026-09-01 更新；光模块）、TrendForce（CoWoS 2026-06/09、DRAM 2026Q2）、IDC（服务器 2026Q1）、公司财报与电话会。份额均注明口径（按收入／按出货量／按金额）；本页的 CR3/CR5 指前三／前五名合计份额。</li>
         <li><strong>"估算"</strong>：指行业 BOM 拆解或机构区间估计，不是公司披露值；存在争议或仅有单一来源的标注"未证实"。</li>
         <li><strong>代码说明</strong>：本页代码 <strong>AI</strong> 是网站专题页编号，<strong>不是</strong> C3.ai（NYSE: AI，市值约 19 亿美元）的股票代码，两者不要混淆。</li>
     </ul>
@@ -235,20 +235,20 @@
 <h2 id="chapter1">一、产业链全景：从需求到材料的传导</h2>
 <div class="info-box">
     <h3>1.1 分层地图</h3>
-    <p>AI 产业链不是一条直线，而是"<strong>需求拉动 + 物理约束</strong>"的双螺旋：云厂的资本开支决定芯片订单，芯片订单决定晶圆与先进封装产能，产能决定设备与材料采购；而电力、散热、机房是所有层共同的物理上限。下面这张图按"钱往下走、货往上走"的顺序排列。</p>
+    <p>AI 产业链不是一条直线，而是"<strong>需求拉动 + 物理约束</strong>"的双螺旋：云厂的资本开支（capex，买设备、建机房的一次性大额支出）决定芯片订单，芯片订单决定晶圆与先进封装产能，产能决定设备与材料采购；而电力、散热、机房是所有层共同的物理上限。下面这张图按"钱往下走、货往上走"的顺序排列。</p>
     <div class="chain-map">
         <div class="chain-layer"><span class="num">L1 需求</span><span class="name">云计算 / 主权 AI / 企业推理</span><span class="desc">四大云厂 2026 年 capex 约 7,300 亿美元，是整条链的总闸门</span></div>
         <div class="chain-arrow">↓ 下单</div>
         <div class="chain-layer"><span class="num">L2 模型</span><span class="name">基础大模型 / 推理 API / 工具链</span><span class="desc">把算力变成 token，再把 token 卖给开发者和企业</span></div>
         <div class="chain-arrow">↓ 训练与推理消耗</div>
-        <div class="chain-layer"><span class="num">L3 算力</span><span class="name">GPU / 定制 ASIC / CPU / AI 服务器</span><span class="desc">加速器占 AI 服务器 BOM 的 60-70%，是价值量最集中的一层</span></div>
+        <div class="chain-layer"><span class="num">L3 算力</span><span class="name">GPU / 定制 ASIC / CPU / AI 服务器</span><span class="desc">加速器占 AI 服务器 BOM（物料清单，整机成本构成）的 60-70%，是价值量最集中的一层</span></div>
         <div class="chain-arrow">↓ 需要配套</div>
-        <div class="chain-layer"><span class="num">L4 存储</span><span class="name">HBM / DRAM / 企业级 SSD / 控制器</span><span class="desc">HBM 决定 GPU 带宽，2026 年处于超级周期</span></div>
+        <div class="chain-layer"><span class="num">L4 存储</span><span class="name">HBM（高带宽内存）/ DRAM / 企业级 SSD / 控制器</span><span class="desc">HBM 决定 GPU 带宽，2026 年处于超级周期</span></div>
         <div class="chain-arrow">↓ 流片与封装</div>
-        <div class="chain-layer"><span class="num">L5 制造</span><span class="name">先进制程 / CoWoS 封装 / 设备 / 材料 / 光罩 IP</span><span class="desc">台积电与 ASML 是两个单点瓶颈，扩产周期以年计</span></div>
+        <div class="chain-layer"><span class="num">L5 制造</span><span class="name">先进制程 / CoWoS（基板上晶圆封装）/ 设备 / 材料 / 光罩 IP</span><span class="desc">台积电与 ASML 是两个单点瓶颈，扩产周期以年计</span></div>
         <div class="chain-arrow">↓ 连接与供电</div>
-        <div class="chain-layer"><span class="num">L6 网络</span><span class="name">交换芯片 / 光模块 / 铜连接 / PCB</span><span class="desc">万卡集群里，网络决定 GPU 利用率，价值占比随集群规模上升</span></div>
-        <div class="chain-layer"><span class="num">L7 能源</span><span class="name">变压器 / 燃气轮机 / UPS / 液冷 / 机房</span><span class="desc">2026 年最硬的约束不是芯片，而是电力和并网时间</span></div>
+        <div class="chain-layer"><span class="num">L6 网络</span><span class="name">交换芯片 / 光模块 / 铜连接 / PCB（印制电路板）</span><span class="desc">万卡集群里，网络决定 GPU 利用率，价值占比随集群规模上升</span></div>
+        <div class="chain-layer"><span class="num">L7 能源</span><span class="name">变压器 / 燃气轮机 / UPS（不间断电源）/ 液冷 / 机房</span><span class="desc">2026 年最硬的约束不是芯片，而是电力和并网时间</span></div>
         <div class="chain-arrow">↓ 最终变现</div>
         <div class="chain-layer"><span class="num">L8 应用</span><span class="name">编程 / 办公 / 客服 / 广告 / 搜索 / 自驾 / 机器人 / 医疗 / 法律</span><span class="desc">收入增速快但基数小，仍在为推理成本买单</span></div>
     </div>
@@ -285,6 +285,53 @@
     </div>
     <p class="source">口径提示：TTM 收入为 StockAnalysis 统计的最近十二个月总收入，包含非 AI 业务，不能直接当作"AI 收入"；增速与毛利为区间估算，各公司财年不同。</p>
 
+    <h3>1.4 术语速查：先认识这些词，再看后面的表</h3>
+    <p>下面这些英文缩写会在后文反复出现。第一次出现时正文里会写成"中文（英文）"，这里先给一句话解释；读的时候不必背，遇到看不懂的词回来查即可。</p>
+    <div class="table-wrap">
+        <table>
+            <tr><th>术语</th><th>一句话解释（大白话）</th></tr>
+            <tr><td>capex（资本开支）</td><td>企业买设备、建厂房、铺电力的一次性大额支出；不算当年的普通费用，而是分摊到以后几年折旧。</td></tr>
+            <tr><td>TTM（滚动十二个月）</td><td>最近四个季度的收入或利润加总，用来消除季节性波动，比"去年全年"更贴近当下。</td></tr>
+            <tr><td>CR3 / CR5</td><td>行业前三名／前五名公司的合计市场份额，用来判断"是不是少数几家说了算"。</td></tr>
+            <tr><td>P/S（市销率）</td><td>市值 ÷ 收入。公司还没盈利时，用它比市盈率更好用；P/S 越高，市场对增长的预期越满。</td></tr>
+            <tr><td>BOM（物料清单）</td><td>一台整机由哪些零件构成、各占多少成本。说"占 BOM 的 60%"，就是占整机成本的四六成。</td></tr>
+            <tr><td>GPU（图形处理器）</td><td>原本用来画图，因为擅长并行计算，成了 AI 训练与推理的主力芯片。</td></tr>
+            <tr><td>ASIC（专用集成电路）</td><td>为某个特定任务定制的芯片：干那件事很快、很省电，但干别的就不行，不能像 GPU 那样通用。</td></tr>
+            <tr><td>CPU（中央处理器）</td><td>服务器的"总调度"，负责逻辑判断、任务分配和数据搬运；AI 服务器一般还要配 2 颗。</td></tr>
+            <tr><td>HBM（高带宽内存）</td><td>把多层内存芯片像盖楼一样垂直堆叠，贴在 GPU 旁边，专门解决"算得快但喂不饱"的问题。</td></tr>
+            <tr><td>DRAM（动态随机存取内存）</td><td>断电就丢数据的"工作内存"，服务器主内存用它，HBM 的基底也是它。</td></tr>
+            <tr><td>NAND（闪存颗粒）</td><td>断电不丢数据的存储颗粒，手机和 SSD 里的"仓库"就是它。</td></tr>
+            <tr><td>SSD（固态硬盘）</td><td>用 NAND 颗粒做的硬盘，没有机械结构，读写比传统硬盘快几个数量级。</td></tr>
+            <tr><td>ODM（原始设计制造商）</td><td>按品牌或云厂的要求设计并代工，自己不卖品牌；AI 服务器大多由它们组装。</td></tr>
+            <tr><td>foundry（晶圆代工）</td><td>只负责把芯片设计变成晶圆，不设计芯片；台积电就是全球最大的 foundry。</td></tr>
+            <tr><td>tape-out（流片）</td><td>设计完成后送到晶圆厂试产的第一版。流片一次要花几千万美元，失败就要重来。</td></tr>
+            <tr><td>yield（良率）</td><td>一片晶圆上合格芯片的比例。良率从 60% 提到 90%，成本可能直接降三分之一。</td></tr>
+            <tr><td>CoWoS（基板上晶圆封装）</td><td>把 GPU 和 HBM 封在同一块基板上，让它们靠得足够近、传得足够快；AI 芯片的必经工序。</td></tr>
+            <tr><td>EUV（极紫外光刻）</td><td>用波长 13.5 纳米的极紫外光在晶圆上"印"电路，7nm 以下的先进制程离不开它。</td></tr>
+            <tr><td>EDA（电子设计自动化）</td><td>设计芯片用的软件工具链，从画电路图到仿真验证都靠它；相当于芯片行业的"CAD"。</td></tr>
+            <tr><td>IP 核（IP core）</td><td>别人已经设计好、可以直接买来拼进芯片的电路模块，比如 CPU 核、接口核。</td></tr>
+            <tr><td>光模块</td><td>把电信号转成光信号、通过光纤传输的器件；数据中心里机柜之间、集群之间靠它连。</td></tr>
+            <tr><td>CPO（共封装光学）</td><td>把光引擎和交换芯片封在一起，缩短电信号路径，降低功耗和延迟，是光模块的下一代形态。</td></tr>
+            <tr><td>InfiniBand（无限带宽）</td><td>一种高性能网络协议，延迟低、带宽高，常用于 GPU 集群；代价是贵、生态相对封闭。</td></tr>
+            <tr><td>NVLink</td><td>NVIDIA 自家的 GPU 高速互联总线，让多张卡像一张大卡一样协同工作。</td></tr>
+            <tr><td>以太网（Ethernet）</td><td>最通用的网络标准，便宜、开放、生态大；AI 集群正在用它逐步替代 InfiniBand。</td></tr>
+            <tr><td>PCB（印制电路板）</td><td>承载芯片、电容和线路的"底板"，层数越多、线越细，能做的高速信号就越多。</td></tr>
+            <tr><td>CCL（覆铜板）</td><td>做 PCB 的基材；高速 CCL 的树脂和铜箔决定信号损耗，是 AI 服务器 PCB 的关键材料。</td></tr>
+            <tr><td>UPS（不间断电源）</td><td>市电断了能立刻顶上、保证机房不断电的设备，里面通常是电池加逆变器。</td></tr>
+            <tr><td>CDU（冷量分配单元）</td><td>液冷系统的"水泵 + 换热器"，把冷却液送到每个机柜，再把热量带走。</td></tr>
+            <tr><td>液冷</td><td>用液体代替空气给芯片散热；单柜功率到 100kW 以上时，风冷基本吹不动了。</td></tr>
+            <tr><td>DC REIT（数据中心不动产信托）</td><td>持有数据中心并收租的上市信托，像"包租公"；收入稳定，但对利率敏感。</td></tr>
+            <tr><td>Neocloud（新兴算力云）</td><td>专门出租 GPU 算力的新型云商，比如 CoreWeave、Nebius；不是全功能云，只卖算力。</td></tr>
+            <tr><td>token（词元）</td><td>模型处理文本的最小单位，大约相当于 0.75 个英文单词或半个汉字；API 按 token 计费。</td></tr>
+            <tr><td>training（训练）</td><td>用海量数据一次性"教会"模型，投入极大、次数很少；像建工厂。</td></tr>
+            <tr><td>inference（推理）</td><td>模型回答每一次请求所做的计算，随用户用量线性增长；像工厂每天开工。</td></tr>
+            <tr><td>scaling law（规模定律）</td><td>参数、数据、算力越大，模型能力越强的经验规律；它解释了为什么大家要不断买更多卡。</td></tr>
+            <tr><td>agent（智能体）</td><td>能自己拆解任务、调用工具、多步执行的 AI；不只是回答问题，还会"动手做事"。</td></tr>
+            <tr><td>sovereign AI（主权 AI）</td><td>国家自己建设、数据不出境的 AI 算力与模型，买单方通常是政府或国企。</td></tr>
+            <tr><td>TCO（总拥有成本）</td><td>采购价 + 电费 + 运维 + 折旧的合计成本；只看买价会低估电费和散热的价值。</td></tr>
+        </table>
+    </div>
+
     <div class="highlight">
         <strong>一句话总结第一章：</strong>AI 产业链的利润，长期停留在"<strong>扩产最慢、认证最难、替代最少</strong>"的环节——先进制程、EUV、HBM、GPU 生态、电力设备；而"组装、通用存储、模型 API"这些进入门槛相对低的环节，收入增长很快，但利润会被竞争和资本开支吃掉。
     </div>
@@ -293,13 +340,18 @@
 <h2 id="chapter2">二、需求侧：谁在为 AI 买单</h2>
 <div class="info-box">
     <h3>2.1 云计算与超大规模数据中心</h3>
+    <p>先把一个容易绕晕的问题说清楚：为什么把云厂放在 L1（第一层，需求侧），而不是把英伟达放在需求侧？因为在这条链上，云厂同时扮演三个角色。第一，它是<strong>算力的最终买单人</strong>——GPU、HBM、服务器、变压器、液冷，最后都是它签的采购合同；第二，它是<strong>算力的出租方</strong>——把买来的算力按小时或按 token（词元，模型处理文本的最小单位）卖给企业和开发者；第三，它是<strong>模型的自研方</strong>——Google、Meta、微软、亚马逊都在训练自己的模型。云服务器厂商（比如鸿海、广达、Dell）只是"把服务器造出来"的人，它们不决定今年买多少张卡；真正决定"买 100 万张还是 200 万张 GPU"的，是云厂的资本开支（capex，买设备、建机房的一次性大额支出）预算。所以需求侧不是"房东"，而是<strong>下单的人</strong>。</p>
+    <p>那数据中心是云厂自己投资新建的吗？<strong>主要是自建</strong>。拿地、建楼、拉高压电、装机柜、买 GPU，钱都是云厂自己出；只有一部分成熟园区会向数据中心 REIT（不动产信托，持有数据中心并收租的上市公司）或批发型运营商租用。量级上，2026 年四大云厂（Amazon、Microsoft、Alphabet、Meta）的资本开支合计约 7,300 亿美元，同比约 +78%。这笔钱大致怎么分？服务器与加速器占大头，约 60-65%；机房土建、电力接入、变压器、UPS、液冷等占其余约 35-40%。按 1GW 园区约 300 亿美元粗算，7,300 亿美元相当于一年新增 200GW 以上的数据中心——这当然是上限（部分钱用于替换旧设备），但它足以说明：2026 年最先缺的往往不是 GPU，而是电。</p>
+    <p>再说第三个问题：用户用大模型，真的会消耗云厂的算力吗？<strong>会，而且消耗方式与训练不同</strong>。训练（training）是一次性的大额投入：把海量数据喂给模型，跑几个月，花掉几万张 GPU，像建一座工厂；推理（inference）是每次请求都要做的"前向计算"：你发一句话，模型先把这句话切成 token，再让几十层网络从头算一遍，最后吐出回答，像工厂每天开工。用户数、上下文长度、模型参数规模，三者共同决定要占多少张卡。举个简化例子：一个 1,000 亿参数的模型、2,000 个 token 的请求，大约需要 4×10^14 次浮点运算；按单卡 1,000 TFLOPS 的有效算力，约等于 0.4 个 GPU·秒。一天 1,000 万次请求，就是约 46 个 GPU·天；按 30% 利用率，需要约 150 张卡。这还没算上下文缓存、批量调度和冗余。所以应用层越火，云厂越要买卡——推理是随用量线性增长的持续消耗，不是一次性投入。</p>
+    <p>于是就形成了这样一条传导链：终端用户和企业把钱付给云厂或模型公司（订阅费、API 费、算力租金）→ 云厂把其中一部分变成资本开支 → 资本开支变成英伟达的 GPU 订单 → 订单变成台积电的晶圆与 CoWoS 产能 → 产能变成 ASML 的光刻机与 HBM 的采购。终端消费者是"最终付费的人"，但在这条链上，真正发出订单、决定产能的是云厂。这就是把云厂称为"需求侧"的原因，也是为什么分析 AI 产业链要先看四大云厂的 capex 指引。</p>
+    <p>当然，需求侧不只有四大云厂。主权 AI（sovereign AI，国家自己建设、数据不出境的算力与模型）和企业自建／私有云，也会直接下单买卡，是需求侧的一部分；但按金额算，它们的体量仍明显小于四大云厂。下面两节分别展开。</p>
     <div class="table-wrap">
         <table>
             <tr><th>维度</th><th>内容</th></tr>
-            <tr><td>这个节点做什么</td><td>建设并运营 GPU 集群、存储、网络和数据中心，把算力按小时或按 token 租给企业、开发者和模型公司；同时自用训练自家模型。</td></tr>
+            <tr><td>这个节点做什么</td><td>建设并运营 GPU 集群、存储、网络和数据中心，把算力按小时或按 token（词元）租给企业、开发者和模型公司；同时自用训练自家模型。它既是算力的最终买单人，也是出租方和模型自研方。</td></tr>
             <tr><td>不可替代在哪</td><td>资本（单个 1GW 园区约 300 亿美元）、电力接入、土地、芯片配额、企业客户关系，五者缺一不可。全球能一次性交付 GW 级 AI 园区的玩家不超过 5 家。</td></tr>
             <tr><td>价值量占比</td><td>云厂 capex 就是整条链的"最终需求"。其中 IT 设备约占 60-65%，电力、散热、机房建设约占 35-40%（行业拆解估算）。</td></tr>
-            <tr><td>竞争格局与集中度</td><td>2026 年四大云厂 capex：Amazon 约 2,200 亿、Microsoft 约 1,700 亿、Alphabet 1,950-2,050 亿、Meta 1,350-1,450 亿美元，合计约 7,300 亿美元；再加 Oracle 约 557-700 亿美元。按 AI 云收入口径，CR4 估计在 70% 以上（估算）。</td></tr>
+            <tr><td>竞争格局与集中度</td><td>2026 年四大云厂 capex：Amazon 约 2,200 亿、Microsoft 约 1,700 亿、Alphabet 1,950-2,050 亿、Meta 1,350-1,450 亿美元，合计约 7,300 亿美元；再加 Oracle 约 557-700 亿美元。按 AI 云收入口径，CR4（前四名合计份额）估计在 70% 以上（估算）。</td></tr>
             <tr><td>国产化 / 替代进展</td><td>中国侧为阿里、腾讯、字节、百度、华为云，资本开支约为美国的 1/4-1/3（估算）；受先进制程与 HBM 供应限制，单集群规模与利用率落后一代左右。</td></tr>
             <tr><td>瓶颈与卡点</td><td>电力并网（2-5 年）、变压器与燃气轮机交期、GPU 与 CoWoS 配额、融资成本、AI 收入回报证明。</td></tr>
         </table>
@@ -321,7 +373,7 @@
     <div class="moat-item"><strong>正面看：</strong>云厂是 AI 时代"收租"的一方——企业要把模型跑起来，最终绕不开三件事：算力、数据存放、合规。前两者在云厂手里，第三者只有云厂能一次性满足。只要 AI 应用收入持续增长，云厂的算力租金就有底。</div>
     <div class="risk-item"><strong>反面看：</strong>云厂同时是整条链最大的"风险承担者"。7,300 亿美元 capex 对应的是每年约 1,500-2,000 亿美元的折旧，而 AI 应用侧的总收入目前只有数百亿美元。如果 2027 年推理需求不及预期，云厂会先砍订单，上游所有环节跟着去库存。</div>
 
-    <h3>2.2 主权 AI</h3>
+    <h3>2.2 主权 AI（sovereign AI）</h3>
     <div class="table-wrap">
         <table>
             <tr><th>维度</th><th>内容</th></tr>
@@ -366,8 +418,8 @@
     <div class="table-wrap">
         <table>
             <tr><th>维度</th><th>内容</th></tr>
-            <tr><td>这个节点做什么</td><td>用大量并行计算单元做矩阵乘法，承担大模型训练与推理；现代产品已从"单卡"演进为"GPU + HBM + NVLink + 交换机 + 机柜"的系统级交付。</td></tr>
-            <tr><td>不可替代在哪</td><td>不是单卡算力，而是 <strong>CUDA 软件生态 + NVLink 互联 + 系统集成</strong>。客户迁移意味着重写算子、重训模型、重建运维体系，转换成本以年计。</td></tr>
+            <tr><td>这个节点做什么</td><td>GPU（图形处理器，AI 训练与推理的主力芯片）用大量并行计算单元做矩阵乘法，承担大模型训练与推理；现代产品已从"单卡"演进为"GPU + HBM + NVLink + 交换机 + 机柜"的系统级交付。</td></tr>
+            <tr><td>不可替代在哪</td><td>不是单卡算力，而是 <strong>CUDA 软件生态 + NVLink（NVIDIA 的 GPU 高速互联总线）+ 系统集成</strong>。客户迁移意味着重写算子、重训模型、重建运维体系，转换成本以年计。</td></tr>
             <tr><td>价值量占比</td><td>8 卡 AI 服务器 BOM 的 60-70%；在整座数据中心 capex 中约占 35-45%（估算）。</td></tr>
             <tr><td>竞争格局与集中度</td><td>按数据中心加速器收入，NVIDIA 2026 年份额约 80-85%（Presenc AI 估算），低于 2023 年的约 92%；AMD 约 6-8%；CR2 超过 88%。按出货量口径，NVIDIA 份额更高。</td></tr>
             <tr><td>国产化 / 替代进展</td><td>华为昇腾（未上市）在中国政企市场份额领先；寒武纪（688256，市值约 5,647 亿元）、海光信息（688041）在推理侧放量；受先进制程与 HBM 供应限制，训练侧仍有代差。</td></tr>
@@ -390,12 +442,12 @@
     <div class="table-wrap">
         <table>
             <tr><th>维度</th><th>内容</th></tr>
-            <tr><td>这个节点做什么</td><td>云厂为自家模型和负载定制专用芯片（Google TPU、AWS Trainium、Meta MTIA、Microsoft Maia、字节/阿里自研 XPU），由设计服务商或内部团队完成。</td></tr>
-            <tr><td>不可替代在哪</td><td>在特定负载上，单位算力成本与能效可优于通用 GPU 30-50%（估算）；供应链自主，不受 GPU 配额约束。</td></tr>
+            <tr><td>这个节点做什么</td><td>ASIC（专用集成电路，为特定模型或负载定制的芯片）：云厂为自家模型和负载定制专用芯片（Google TPU、AWS Trainium、Meta MTIA、Microsoft Maia、字节/阿里自研 XPU），由设计服务商或内部团队完成。</td></tr>
+            <tr><td>不可替代在哪</td><td>在特定负载上，单位算力成本与能效可优于通用 GPU 30-50%（估算）；客户算的是总拥有成本（TCO，采购 + 电费 + 运维 + 折旧的合计），不是单卡买价；供应链自主，不受 GPU 配额约束。</td></tr>
             <tr><td>价值量占比</td><td>定制机柜 BOM 中 ASIC 芯片约占 40-60%；ASIC 服务器占 AI 服务器出货价值约 27.8%（TrendForce 2026 年估算）。</td></tr>
             <tr><td>竞争格局与集中度</td><td>Broadcom 约占定制 AI ASIC 市场 55-60%，Marvell 约 15-20%，Alchip、Global Unichip 承接流片与设计服务；CR2 约 75%（估算，按收入）。</td></tr>
             <tr><td>国产化 / 替代进展</td><td>寒武纪、海光、平头哥（未上市）在中低端推理替代；高端训练 ASIC 仍依赖台积电先进制程。</td></tr>
-            <tr><td>瓶颈与卡点</td><td>台积电 3nm/2nm 与 CoWoS 配额；软件栈（编译器、算子库）弱于 CUDA；单一大客户依赖。</td></tr>
+            <tr><td>瓶颈与卡点</td><td>台积电 3nm/2nm 与 CoWoS 配额；流片（tape-out，把设计送到晶圆厂试产）一次成本高、失败要重来；软件栈（编译器、算子库）弱于 CUDA；单一大客户依赖。</td></tr>
         </table>
     </div>
     <div class="table-wrap">
@@ -413,7 +465,7 @@
     <div class="table-wrap">
         <table>
             <tr><th>维度</th><th>内容</th></tr>
-            <tr><td>这个节点做什么</td><td>服务器主控与调度，负责数据预处理、任务编排、操作系统与虚拟化；AI 服务器通常仍需 2 颗 CPU 配 8 颗 GPU。</td></tr>
+            <tr><td>这个节点做什么</td><td>CPU（中央处理器，服务器的总调度）负责数据预处理、任务编排、操作系统与虚拟化；AI 服务器通常仍需 2 颗 CPU 配 8 颗 GPU。</td></tr>
             <tr><td>不可替代在哪</td><td>通用控制与生态（x86 软件栈、虚拟化、数据库）短期无法被 GPU 取代；但价值占比在下降。</td></tr>
             <tr><td>价值量占比</td><td>AI 服务器 BOM 的 4-8%；在整机成本中持续被 GPU 挤压。</td></tr>
             <tr><td>竞争格局与集中度</td><td>x86 服务器 CPU：Intel 约 55-65%、AMD 约 35-45%（2025-2026 区间估算，Mercury Research 口径）；ARM 服务器份额不足 10%，但在云厂自研中快速上升。</td></tr>
@@ -431,11 +483,11 @@
         </table>
     </div>
 
-    <h3>3.4 AI 服务器整机与 ODM</h3>
+    <h3>3.4 AI 服务器整机与 ODM（原始设计制造商）</h3>
     <div class="table-wrap">
         <table>
             <tr><th>维度</th><th>内容</th></tr>
-            <tr><td>这个节点做什么</td><td>把 GPU、CPU、HBM、网卡、电源、散热组装成 8 卡服务器或整机柜，完成测试、交付与售后；云厂直采时由 ODM 主导，企业客户走品牌 OEM。</td></tr>
+            <tr><td>这个节点做什么</td><td>把 GPU、CPU、HBM、网卡、电源、散热组装成 8 卡服务器或整机柜，完成测试、交付与售后；云厂直采时由 ODM（原始设计制造商，按云厂要求设计并代工）主导，企业客户走品牌 OEM（代工制造商，贴自己的品牌卖）。</td></tr>
             <tr><td>不可替代在哪</td><td>较弱。核心是产能、交付速度、良率与客户认证；技术壁垒主要在液冷、整机柜与高速互联的工程能力。</td></tr>
             <tr><td>价值量占比</td><td>组装环节附加值约 3-8%（估算），但收入体量极大：2026Q1 全球服务器收入超过 1,220 亿美元（IDC）。</td></tr>
             <tr><td>竞争格局与集中度</td><td>ODM Direct 占 2026Q1 服务器收入 50.2%（615 亿美元），品牌 OEM 升至 49.8%（IDC）；鸿海自称约 40% 的全球 AI 机柜份额，目标 2026 年提升至 45% 以上；广达、纬创、纬颖紧随；Dell、SMCI、HPE 承压。</td></tr>
@@ -466,7 +518,7 @@
     <div class="table-wrap">
         <table>
             <tr><th>维度</th><th>内容</th></tr>
-            <tr><td>这个节点做什么</td><td>用 TSV 硅通孔把多层 DRAM 堆叠，紧贴 GPU/ASIC 封装，提供 TB/s 级带宽；HBM3E 之后进入 HBM4，成为下一代加速器标配。</td></tr>
+            <tr><td>这个节点做什么</td><td>用 TSV 硅通孔把多层 DRAM（动态随机存取内存，断电即失的工作内存）堆叠，紧贴 GPU/ASIC 封装，提供 TB/s 级带宽；HBM3E 之后进入 HBM4，成为下一代加速器标配。</td></tr>
             <tr><td>不可替代在哪</td><td>没有 HBM，GPU 的算力发挥不出来。带宽与容量直接决定大模型能否装进显存，是"算力木桶"的最短木板之一。</td></tr>
             <tr><td>价值量占比</td><td>AI 服务器 BOM 的 10-15%；在 GPU 模块成本中约占 20-30%（估算）。</td></tr>
             <tr><td>竞争格局与集中度</td><td>2026Q2 按收入：SK 海力士 50%、三星 33%、美光 18%（Counterpoint，2026-09-01），CR3=100%。三星称 2027 年 HBM 供应基本售罄，HBM4 销售三季度环比翻三倍。</td></tr>
@@ -498,7 +550,7 @@
     </div>
     <div class="highlight"><strong>周期提示：</strong>DRAM 是整条链里最典型的周期品。2026 年的高毛利来自"AI 需求 + 供给克制"的双击，但 2027-2028 年三大厂扩产落地后，价格与毛利都可能快速回落。看这一层，必须同时看库存、capex 和 HBM 挤占效应，不能只看当期利润。</div>
 
-    <h3>4.3 企业级 SSD</h3>
+    <h3>4.3 企业级 SSD（固态硬盘）</h3>
     <div class="table-wrap">
         <table>
             <tr><th>维度</th><th>内容</th></tr>
@@ -507,7 +559,7 @@
             <tr><td>价值量占比</td><td>AI 服务器 BOM 的 2-4%；在存储系统中占比更高。</td></tr>
             <tr><td>竞争格局与集中度</td><td>三星、SK 海力士（Solidigm）、美光、铠侠、SanDisk/WDC，CR5 超过 90%（估算，按收入）。</td></tr>
             <tr><td>国产化 / 替代进展</td><td>长江存储（未上市）在企业级 SSD 上突破；江波龙、佰维存储做模组与主控。</td></tr>
-            <tr><td>瓶颈与卡点</td><td>NAND 周期、QLC 耐久、主控与固件、客户认证。</td></tr>
+            <tr><td>瓶颈与卡点</td><td>NAND（闪存颗粒，断电不丢数据的存储介质）周期、QLC 耐久、主控与固件、客户认证。</td></tr>
         </table>
     </div>
     <div class="table-wrap">
@@ -544,11 +596,11 @@
 
 <h2 id="chapter5">五、制造与封测：单点瓶颈所在</h2>
 <div class="info-box">
-    <h3>5.1 先进制程代工</h3>
+    <h3>5.1 先进制程代工（foundry）</h3>
     <div class="table-wrap">
         <table>
             <tr><th>维度</th><th>内容</th></tr>
-            <tr><td>这个节点做什么</td><td>把芯片设计版图刻到晶圆上，完成数千道工艺；3nm/2nm 是 AI 芯片的主战场。</td></tr>
+            <tr><td>这个节点做什么</td><td>foundry（晶圆代工）把芯片设计版图刻到晶圆上，完成数千道工艺；3nm/2nm 是 AI 芯片的主战场。</td></tr>
             <tr><td>不可替代在哪</td><td>先进制程只有台积电、三星、Intel 三家能量产；良率、产能与客户信任构成三重壁垒。台积电在 5 倍光罩规模的 CoWoS-L 上是唯一量产厂商（魏哲家，2026-10）。</td></tr>
             <tr><td>价值量占比</td><td>芯片成本的 20-30%（估算）；在 AI 服务器 BOM 中约 5-8%。</td></tr>
             <tr><td>竞争格局与集中度</td><td>台积电代工份额约 70%，先进制程超过 90%（估算，按收入）；三星、Intel 追赶；中芯国际受 DUV 限制，停留在 7nm 级。</td></tr>
@@ -566,12 +618,12 @@
         </table>
     </div>
 
-    <h3>5.2 先进封装（CoWoS 类）</h3>
+    <h3>5.2 先进封装（CoWoS 类：基板上晶圆封装）</h3>
     <div class="table-wrap">
         <table>
             <tr><th>维度</th><th>内容</th></tr>
             <tr><td>这个节点做什么</td><td>把 GPU die、HBM 堆栈、中介层（interposer）封装在一起，解决带宽与功耗；CoWoS-S/L、SoIC 是主流路线。</td></tr>
-            <tr><td>不可替代在哪</td><td>没有先进封装，HBM 与 GPU 无法高效互联。台积电 CoWoS-L 5.5 倍光罩良率已达 98-99%（2026-08），后来者短期难以复制。</td></tr>
+            <tr><td>不可替代在哪</td><td>没有先进封装，HBM 与 GPU 无法高效互联。台积电 CoWoS-L 5.5 倍光罩的良率（yield，合格芯片占投产芯片的比例）已达 98-99%（2026-08），后来者短期难以复制。</td></tr>
             <tr><td>价值量占比</td><td>AI 芯片成本的 10-20%（估算）；台积电 2026 年 600-640 亿美元 capex 中，先进封装占 10-20%。</td></tr>
             <tr><td>竞争格局与集中度</td><td>台积电 CoWoS 份额超过 90%（估算）；ASE、Amkor、Powertech 承接外溢订单。月产能从 2026 年初 7.5-8 万片提升至年底 12-14 万片，2028 年目标 26 万片（TrendForce）。NVIDIA 占 CoWoS 分配约 60%（TrendForce，2026-09）。</td></tr>
             <tr><td>国产化 / 替代进展</td><td>长电科技、通富微电、华天科技在 2.5D/3D 封装上追赶；关键设备与中介层材料仍依赖进口。</td></tr>
@@ -588,7 +640,7 @@
         </table>
     </div>
 
-    <h3>5.3 EUV 与半导体设备</h3>
+    <h3>5.3 EUV（极紫外光刻）与半导体设备</h3>
     <div class="table-wrap">
         <table>
             <tr><th>维度</th><th>内容</th></tr>
@@ -635,11 +687,11 @@
         </table>
     </div>
 
-    <h3>5.5 光罩与 IP / EDA</h3>
+    <h3>5.5 光罩与 IP 核 / EDA（电子设计自动化）</h3>
     <div class="table-wrap">
         <table>
             <tr><th>维度</th><th>内容</th></tr>
-            <tr><td>这个节点做什么</td><td>光罩把版图转印到晶圆；IP 提供可复用的 CPU/接口/存储控制器模块；EDA 提供设计、仿真、验证工具。</td></tr>
+            <tr><td>这个节点做什么</td><td>光罩把版图转印到晶圆；IP 核（可复用的电路设计模块）提供 CPU、接口、存储控制器等模块；EDA 提供设计、仿真、验证工具。</td></tr>
             <tr><td>不可替代在哪</td><td>先进制程一套光罩成本可达数百万美元（估算）；EDA 双寡头掌握设计流程的事实标准，切换成本极高。</td></tr>
             <tr><td>价值量占比</td><td>光罩占设计成本 10-20%；EDA 占设计成本 5-10%（估算）。</td></tr>
             <tr><td>竞争格局与集中度</td><td>光罩：Photronics（商用）、台积电/三星/Intel 自用、Toppan/DNP；EDA：Synopsys + Cadence 约 70-80%，ARM 在 CPU IP 约 40%+。</td></tr>
@@ -684,11 +736,11 @@
         </table>
     </div>
 
-    <h3>6.2 光模块（含硅光 / CPO）</h3>
+    <h3>6.2 光模块（含硅光 / CPO 共封装光学）</h3>
     <div class="table-wrap">
         <table>
             <tr><th>维度</th><th>内容</th></tr>
-            <tr><td>这个节点做什么</td><td>完成电信号与光信号的转换，承担机柜间与集群间的长距互联；800G 向 1.6T 迭代，硅光与 CPO 是下一代路线。</td></tr>
+            <tr><td>这个节点做什么</td><td>光模块（把电信号转成光信号、通过光纤传输的器件）完成机柜间与集群间的长距互联；800G 向 1.6T 迭代，硅光与 CPO（共封装光学，把光引擎与交换芯片封在一起）是下一代路线。</td></tr>
             <tr><td>不可替代在哪</td><td>高速率、低功耗、高可靠性三者兼顾的工程能力；1.6T 迭代窗口只有 1-2 年，先发者能锁定云厂订单。</td></tr>
             <tr><td>价值量占比</td><td>AI 数据中心 capex 的 3-6%；在万卡集群的网络成本中占大头（估算）。</td></tr>
             <tr><td>竞争格局与集中度</td><td>按数据中心光模块收入，中际旭创约 27%、Coherent 约 15-18%、新易盛约 10-12%，CR5 约 61.4%，中国厂商合计约 60%（Counterpoint）。800G 中际旭创份额超过 40%，1.6T 估计 50-70%（2026 年前 4 个月，机构估算）。</td></tr>
@@ -710,7 +762,7 @@
     </div>
     <p class="source">来源：Counterpoint 数据中心光模块收入份额（2026）、中国海关与公司公告（2026 年前 4 个月）、StockAnalysis（2026-11-13）。1.6T 份额为机构估算区间。</p>
 
-    <h3>6.3 铜连接（AEC / Retimer / 连接器）</h3>
+    <h3>6.3 铜连接（AEC 有源电缆 / Retimer 信号中继 / 连接器）</h3>
     <div class="table-wrap">
         <table>
             <tr><th>维度</th><th>内容</th></tr>
@@ -732,7 +784,7 @@
         </table>
     </div>
 
-    <h3>6.4 协议路线：NVLink / 以太网 / InfiniBand</h3>
+    <h3>6.4 协议路线：NVLink / 以太网（Ethernet）/ InfiniBand（高性能网络协议）</h3>
     <div class="table-wrap">
         <table>
             <tr><th>维度</th><th>内容</th></tr>
@@ -746,7 +798,7 @@
     </div>
     <div class="highlight"><strong>投资含义：</strong>如果以太网在 scale-out 中持续替代 InfiniBand，受益的是 Broadcom、Arista、Marvell 与光模块厂商；如果 NVLink 继续向机柜外延伸，NVIDIA 的系统级锁定会更强。这是 2026-2028 年最值得跟踪的技术路线之争。</div>
 
-    <h3>6.5 PCB 与高速铜箔 / CCL</h3>
+    <h3>6.5 PCB（印制电路板）与高速铜箔 / CCL（覆铜板）</h3>
     <div class="table-wrap">
         <table>
             <tr><th>维度</th><th>内容</th></tr>
@@ -818,7 +870,7 @@
         </table>
     </div>
 
-    <h3>7.3 UPS 与电源</h3>
+    <h3>7.3 UPS（不间断电源）与电源</h3>
     <div class="table-wrap">
         <table>
             <tr><th>维度</th><th>内容</th></tr>
@@ -839,7 +891,7 @@
         </table>
     </div>
 
-    <h3>7.4 液冷与 CDU</h3>
+    <h3>7.4 液冷与 CDU（冷量分配单元）</h3>
     <div class="table-wrap">
         <table>
             <tr><th>维度</th><th>内容</th></tr>
@@ -861,7 +913,7 @@
         </table>
     </div>
 
-    <h3>7.5 机房建设与数据中心 REIT</h3>
+    <h3>7.5 机房建设与数据中心 REIT（不动产信托）</h3>
     <div class="table-wrap">
         <table>
             <tr><th>维度</th><th>内容</th></tr>
@@ -892,7 +944,7 @@
     <div class="table-wrap">
         <table>
             <tr><th>维度</th><th>内容</th></tr>
-            <tr><td>这个节点做什么</td><td>用海量数据预训练通用模型，通过 API、订阅、企业私有化部署变现；前沿模型同时承担"技术军备竞赛"与"品牌广告"的角色。</td></tr>
+            <tr><td>这个节点做什么</td><td>用海量数据预训练通用模型，通过 API、订阅、企业私有化部署变现。支撑这一切的是规模定律（scaling law）：参数、数据、算力越大，模型能力越强；前沿模型同时承担"技术军备竞赛"与"品牌广告"的角色。</td></tr>
             <tr><td>不可替代在哪</td><td>前沿能力 + 资本 + 算力 + 数据飞轮；但对大多数企业客户而言，模型能力正在趋同，"最好"与"够用"的差距在缩小。</td></tr>
             <tr><td>价值量占比</td><td>训练成本只占云厂 capex 的一小部分，但决定了算力采购的方向；模型层收入目前只有数百亿美元级，远小于基础设施投入。</td></tr>
             <tr><td>竞争格局与集中度</td><td>前沿梯队：OpenAI（私募估值约 8,520 亿美元，2026-03）、Anthropic（约 9,650 亿美元，2026-05）、Google、Meta、xAI；中国：DeepSeek、阿里 Qwen、字节豆包、百度文心。收入为媒体口径，未证实。</td></tr>
@@ -913,14 +965,14 @@
     </div>
     <p class="source">来源：Anthropic 官方 Series H 公告（2026-05-28）、媒体融资报道（2026-03/05）、StockAnalysis（2026-11-13）。年化收入与私募估值为媒体口径，未证实。</p>
 
-    <h3>8.2 推理服务与 API</h3>
+    <h3>8.2 推理服务（inference）与 API</h3>
     <div class="table-wrap">
         <table>
             <tr><th>维度</th><th>内容</th></tr>
-            <tr><td>这个节点做什么</td><td>把模型能力按 token 卖给开发者与企业；提供托管推理、微调、Agent 运行时、向量检索等配套服务。</td></tr>
+            <tr><td>这个节点做什么</td><td>把模型能力按 token 卖给开发者与企业；提供托管推理、微调、Agent（智能体，能自己拆解任务并调用工具的 AI）运行时、向量检索等配套服务。</td></tr>
             <tr><td>不可替代在哪</td><td>资本（GPU 集群）、电力、运维与调度能力；但服务本身同质化，客户迁移成本低。</td></tr>
             <tr><td>价值量占比</td><td>推理已占 AI 算力的 50-60%（2026 年估算），且随 Agent 普及继续上升。</td></tr>
-            <tr><td>竞争格局与集中度</td><td>云厂（MSFT、AMZN、GOOGL）占大部分；Oracle 靠大单快速上升；Neocloud（CoreWeave、Nebius）抢占价格敏感客户。CR3 约 60-70%（估算）。</td></tr>
+            <tr><td>竞争格局与集中度</td><td>云厂（MSFT、AMZN、GOOGL）占大部分；Oracle 靠大单快速上升；Neocloud（新兴算力云，专门出租 GPU 算力，如 CoreWeave、Nebius）抢占价格敏感客户。CR3 约 60-70%（估算）。</td></tr>
             <tr><td>国产化 / 替代进展</td><td>阿里云、火山引擎、百度智能云、华为云在国内主导；价格战激烈。</td></tr>
             <tr><td>瓶颈与卡点</td><td>GPU 折旧、电价、客户集中、价格战、融资成本。</td></tr>
         </table>
@@ -938,7 +990,7 @@
     <div class="table-wrap">
         <table>
             <tr><th>维度</th><th>内容</th></tr>
-            <tr><td>这个节点做什么</td><td>训练框架、MLOps、数据治理、Agent 编排、向量数据库、评估与监控；把模型能力变成可交付的企业软件。</td></tr>
+            <tr><td>这个节点做什么</td><td>训练框架、MLOps、数据治理、Agent（智能体，能自己拆解任务并调用工具的 AI）编排、向量数据库、评估与监控；把模型能力变成可交付的企业软件。</td></tr>
             <tr><td>不可替代在哪</td><td>嵌入企业工作流与数据资产，迁移成本高；但通用工具容易被云厂与大模型公司捆绑。</td></tr>
             <tr><td>价值量占比</td><td>企业软件预算的 5-10%（估算）。</td></tr>
             <tr><td>竞争格局与集中度</td><td>Databricks、Hugging Face（未上市）；Palantir AIP、Snowflake Cortex、ServiceNow；芯片设计侧 Synopsys/Cadence 的 AI 工具。格局分散。</td></tr>
@@ -1083,7 +1135,7 @@
     <p class="source">来源：StockAnalysis（2026-11-13）、各公司 2026 年三季报/电话会、IDC、TrendForce。模型层收入与私募估值为媒体口径，未证实；"赚钱/烧钱"为基于公开财务的定性判断，不是投资建议。</p>
 
     <h3>11.1 三层"卖铲子"的生意</h3>
-    <div class="moat-item"><strong>第一层：稀缺制造。</strong>台积电的先进制程与 CoWoS、ASML 的 EUV、SK 海力士/三星/美光的 HBM。它们的共同点是：扩产慢、认证难、客户没有替代方案。只要 AI 资本开支还在增长，它们就能持续提价或满产。</div>
+    <div class="moat-item"><strong>第一层：稀缺制造。</strong>台积电的先进制程与 CoWoS、ASML 的 EUV、SK 海力士/三星/美光的 HBM。它们的共同点是：扩产慢、认证难、客户没有替代方案。只要 AI 资本开支还在增长，它们就能持续提价或满产。客户算的是总拥有成本（TCO），不是单个零件的报价，所以这些环节的溢价更难被砍掉。</div>
     <div class="moat-item"><strong>第二层：标准与生态。</strong>NVIDIA 的 CUDA/NVLink、Broadcom 的交换芯片与定制 ASIC、ARM 的指令集、Synopsys/Cadence 的 EDA。它们卖的不是单一零件，而是"别人必须遵守的规则"。</div>
     <div class="moat-item"><strong>第三层：能源与物理基础设施。</strong>GE Vernova 的燃机、Eaton 的配电、Vertiv 的电源与液冷、Digital Realty 的机房。AI 越发展，电力和散热越紧缺，这一层的确定性反而越高。</div>
 
@@ -1141,7 +1193,7 @@
     <h3>13.6 模型层价格战</h3>
     <p>模型能力的差距在缩小，API 价格持续下降。开源模型（DeepSeek、Qwen、Llama）让企业可以在私有环境部署"够用"的模型，进一步压缩闭源 API 的溢价。模型层的收入增长很快，但利润率可能长期低于市场预期。</p>
 
-    <h3>13.7 估值：用 P/S 看谁最贵</h3>
+    <h3>13.7 估值：用 P/S（市销率，市值 ÷ 收入）看谁最贵</h3>
     <div class="table-wrap">
         <table>
             <tr><th>公司</th><th>市值</th><th>TTM 收入</th><th>P/S（倍）</th><th>解读</th></tr>
