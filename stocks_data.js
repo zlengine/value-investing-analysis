@@ -10,6 +10,7 @@
  */
 (function() {
     var stocks = [
+        {code:'AI',name:'AI产业链专题（专题页，非个股）- 从算力到应用的完整地图/8层39个节点全景',href:'ai.html'},
         {code:'AAPL',name:'苹果公司',href:'aapl.html'},
         {code:'AFYA',name:'Afya - 巴西最大医学教育集团/3755个牌照名额收费桥/FCF收益率13.3%',href:'afya.html'},
         {code:'MSFT',name:'微软公司',href:'msft.html'},

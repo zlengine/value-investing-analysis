@@ -155,6 +155,27 @@
 
     <!-- 更新日志条目 - 按时间倒序排列，最新在最上面 -->
 
+    <div class="log-entry create">
+        <div class="log-header">
+            <span class="log-date">2026-11-16</span>
+            <span class="log-type create">新建</span>
+        </div>
+        <div class="log-desc">
+            <ul>
+                <li><strong>新建 ai.html：AI 产业链专题页（代码 AI），十四章节、8 层产业链地图、39 个节点。</strong>1 产业链全景（分层地图＋传导时滞表＋各层收入/增速/毛利）；2 需求侧（云计算、主权 AI、企业推理）；3 算力（GPU、定制 ASIC、CPU、AI 服务器 ODM）；4 存储（HBM、DRAM、企业级 SSD、控制器）；5 制造与封测（先进制程、CoWoS、EUV 与设备、材料、光罩/IP/EDA）；6 网络互联（交换芯片、光模块、铜连接、协议路线、PCB/CCL）；7 电力与散热（变压器配电、燃机发电、UPS、液冷 CDU、机房与 DC REIT）；8 软件与模型（基础大模型、推理 API、工具链、数据标注）；9 应用层（编程/办公/客服/广告/搜索/自驾/机器人/医疗/法律）；10 统一格式节点汇总表（30 行）；11 价值链利润分配；12 护城河最深与最易商品化的三个节点；13 七类风险与 P/S 估值表；14 确定性—成长性—估值分层结论与芒格式三问。</li>
+                <li><strong>数据口径：</strong>市值与 TTM 收入统一取 StockAnalysis（数据源 Nasdaq Data Link）2026-11-13 收盘；非美股为本币市值并按 USD/JPY≈150、USD/KRW≈1,400、USD/TWD≈31.5、USD/CNY≈7.1、USD/HKD≈7.8 折算，页面已注明；份额取 Counterpoint（HBM 2026Q2 50%/33%/18%、光模块 CR5 61.4%）、TrendForce（CoWoS 2026 年底 12-14 万片/月、DRAM 2Q26 三星 39.4%/SK 海力士 24.9%、ASIC 占 AI 服务器 27.8%）、IDC（2026Q1 服务器收入 1,220 亿美元、ODM Direct 50.2%）；2026 四大云厂 capex 约 7,300 亿美元、同比约 +78%。私募估值与媒体收入口径均标注"未证实"。</li>
+                <li><strong>代码说明：</strong>专题页代码 AI 为网站编号，非 NYSE: AI（C3.ai，市值约 19 亿美元）股票代码，页面顶部已明确区分。</li>
+                <li><strong>排版与流程：</strong>全宽布局、body 灰底 #f0f2f5、h2 在 .info-box 外、白卡片圆角阴影、标准 table/highlight/moat-item/risk-item/tag-*、14 项目录 section-nav；接入 nav_bar.js、scores_client.js、stock_topbar.js；宽表使用 .table-wrap 横向滚动避免页面溢出。</li>
+            </ul>
+        </div>
+        <div class="log-files">
+            <span class="added">+ ai.html</span><br>
+            <span class="modified">~ index.html（新增 AI 专题条目，市值列 —）</span><br>
+            <span class="modified">~ stocks_data.js（新增 {code:'AI'} 条目）</span><br>
+            <span class="modified">~ changelog.html</span>
+        </div>
+    </div>
+
     <div class="log-entry update">
         <div class="log-header">
             <span class="log-date">2026-11-15</span>
