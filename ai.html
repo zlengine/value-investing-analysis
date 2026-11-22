@@ -203,12 +203,13 @@
 <script src="nav_bar.js?v=20260624"></script>
 <span id="topbarCode" style="display:none;">AI</span>
 <h1>AI 产业链全景</h1>
-<p class="subtitle">从算力到应用的完整地图 · 专题页（非个股）· 数据截至 2026 年 11 月 13 日</p>
+<p class="subtitle">从算力到应用的完整地图 · 专题页（非个股）· 数据截至 2026 年 11 月 21 日</p>
 
 <div class="section-nav">
     <a href="#chapter1">产业链全景</a>
     <a href="#chapter2">需求侧（谁买单）</a>
     <a href="#l1debate">L1 之争与测算</a>
+    <a href="#ai-revenue">终端收入与过剩</a>
     <a href="#chapter3">算力（芯片）</a>
     <a href="#chapter4">存储（内存/SSD）</a>
     <a href="#chapter5">制造与封测</a>
@@ -545,6 +546,105 @@
     <p><strong>缓冲因素：</strong>①take-or-pay（照付不议条款，客户不用也要付）——Anthropic 约 80% 云承诺不可取消；②预付款——Oracle 披露部分 AI 合同客户预付了 GPU 采购款；③GPU 可转租——云厂可以把闲置算力转租给其他模型公司、企业或 Neocloud；④自用吸收——搜索、广告、推荐、自家模型训练可以吃掉一部分闲置算力；⑤合同可重谈——多年期、非等额，部分条款可以延期而不是违约。这些缓冲会让"崩塌"表现为<strong>增速下台阶</strong>，而不是"腰斩"。</p>
 
     <div class="highlight"><strong>结论：</strong>更准确的说法是——<strong>需求在终端用户，下单决策在云厂，弹性与斜率在模型公司</strong>。模型公司是"需求放大器 + 信用创造者"，决定这条链走多快，但不决定方向从哪里开始；云厂是订单的发出者与资本风险的承担者；终端用户是最终付钱的人。三者缺一不可，硬说谁是唯一的 L1，都会丢掉一半真相。<br><br><strong>反向提醒：</strong>如果未来 2-3 年模型公司的收入快速追上承诺（收入／承诺比从 1/14 升到 1/5 以上），它就真的会变成 L1 的一部分，甚至是主要部分。这是需要每年复核的判断，不是永久结论。</div>
+
+    <h3 id="ai-revenue">2.5 AI 的最终消费端到底花了多少钱？现在算不算投资过剩？</h3>
+    <p>上一节算的是"下单的人"，这一节算"最后付钱的人"：<strong>2026 年，个人和企业真正花在 AI 上的钱有多少？拿它去对 7,300 亿美元的云厂 capex，是过剩还是不足？</strong>先给答案：<strong>2026 年全球终端 AI 支出（去重后）约 1,500 亿美元，只有四大云厂 capex 的 21%、全行业 AI capex 的 14%；但 AI 收入增速（约 200%）远高于 capex 增速（约 78%），缺口在收窄而不是在扩大。所以现在的状态不是"全面过剩"，而是"投资显著超前于收入、且超前得还算收敛"——真正过剩的是应用层的想象力，真正不足的是应用层的收入。</strong></p>
+
+    <h4>2.5.1 先说口径：为什么"AI 收入"这个数字能被算出五种答案</h4>
+    <p>在拆数字之前必须先讲清三件事，否则后面的比率全是错的：</p>
+    <div class="highlight"><strong>①同一笔钱被算好几遍。</strong>企业通过 Azure 调用 OpenAI 模型，微软记一次云收入，OpenAI 记一次模型收入，应用厂商再记一次应用收入——同一笔 100 美元的支出在产业链上被重复计入三张报表。Exponential View（Azeem Azhar 团队，2026-06）梳理 1,000 多家公司后做了去重，得到"过去 12 个月全球生成式 AI 真实收入 1,100 亿美元、年化运行率超 1,750 亿美元（不含中国大陆）"——这是目前最接近"终端真实支出"的口径。</div>
+    <div class="highlight"><strong>②"终端支出"与"产业收入"不是一回事。</strong>个人订阅 20 美元/月是终端支出；企业买 API 是中间投入，最终要靠应用赚回来。用户问的"大家对大模型的消费支出"是前者，但产业链上大部分钱暂时是后者——这决定了下面要分别看"谁掏钱"和"钱停在谁那"。</div>
+    <div class="highlight"><strong>③官方指引、卖方估算、第三方调研三者不能混。</strong>OpenAI、Anthropic 未上市，收入靠媒体与投资人会议披露（标注"未证实"）；Gartner/IDC 是"终端用户支出"预测口径；Goldman 是"回本所需收入"反推口径。三者数字差异很大，本节逐一标注。</div>
+
+    <h4>2.5.2 四块拆分：钱从谁的口袋出来</h4>
+    <div class="table-wrap">
+        <table>
+            <tr><th>板块</th><th>2026 年规模（亿美元）</th><th>增速</th><th>关键构成与推算</th><th>来源／口径</th></tr>
+            <tr><td><strong>① 个人订阅</strong><br>（B2C 付费）</td><td><strong>约 400</strong></td><td>约 +233%（2025 年 120 亿）</td><td>全球消费者 AI 支出 400 亿美元、用户约 20 亿（占全球人口 24%）、美国成人采用率 64%；ChatGPT 付费订阅超 5,000 万（2026-02 官方）、周活超 9 亿；主力价位 $20/月 Plus、$200/月 Pro。按 5,000 万 × 约 $25/月 推算，仅 ChatGPT 订阅年化约 150 亿美元（<strong>估算</strong>）；Claude 订阅占其收入约 15%，约 60-100 亿美元（<strong>估算</strong>）；Google One 的 AI 套餐计入 Alphabet"订阅、平台与设备"季度 143 亿美元中，AI 可归因部分约 30-50 亿美元（<strong>估算</strong>）</td><td>Menlo Ventures《2026 消费者 AI 报告》（2026-09）；OpenAI 官方（2026-02，付费超 5,000 万）；Alphabet 2026Q3 财报</td></tr>
+            <tr><td><strong>② API 与按量计费</strong><br>（企业调用）</td><td><strong>约 600-700</strong></td><td>约 +150%-200%</td><td>Anthropic 年化约 650 亿美元、其中 75%-85% 来自企业 API（约 500-550 亿）；OpenAI 年化约 500 亿（2026-09，FT/CNBC 口径）、企业收入已于 2026-08 超过消费者（年初为消费 60 : 企业 40），企业部分约 250-300 亿；Google Vertex／Gemini API、xAI、Mistral 等合计约 100-150 亿（<strong>估算</strong>）。注意：经 Azure／Bedrock／Vertex 代销的部分在云厂报表里已计一次，此处为去重前口径</td><td>Anthropic（招股书与投资人披露，媒体转述，<strong>未证实</strong>）；OpenAI CFO 2026-08-14 投资人会议；FT／CNBC（2026-09）</td></tr>
+            <tr><td><strong>③ 企业席位与工具</strong><br>（SaaS 口径）</td><td><strong>约 300-400</strong></td><td>约 +100%-150%</td><td>Microsoft 365 Copilot 付费席位超 3,000 万（2026-07 电话会），按 $30/席/月 推算年化约 108 亿美元（<strong>估算</strong>，且已含在微软 Productivity 收入内）；Cursor（Anysphere）ARR 约 40 亿美元（2026-06，其中企业约 26 亿）；GitHub Copilot、Claude Code、Windsurf 等合计约 30-50 亿（<strong>估算</strong>）；私有化部署以项目制为主、难以拆分。<strong>注意口径冲突：</strong>Gartner 预测 2026 年"AI 模型与平台"终端支出仅 640 亿美元（+63.4%），明显低于模型公司自身的收入合计——说明 Gartner 统计的是"企业采购 AI 平台"的窄口径，不含消费者订阅与云代销</td><td>Microsoft FY26Q4 电话会（2026-07）；QAI／DVC（2026-06）；Gartner（2026-07-20、2026-09-16）</td></tr>
+            <tr><td><strong>④ 广告与电商</strong><br>（间接变现）</td><td><strong>约 30-50</strong></td><td>基数极小、增速最快</td><td>美国 AI 搜索广告 2026 年约 20.8 亿美元，仅占搜索广告总盘 1.3%（预计 2029 年 259 亿）；OpenAI 广告收入 2026 年预测约 25 亿美元（投资人材料，Axios 2026-04）；eMarketer 的"美国 AI 广告 320 亿美元"中 80% 以上是"AI 生成内容旁边"的存量转移，不是新增 AI 收入；Menlo 预测未来 12 个月 Agent 导购影响 1,000 亿美元线上 GMV——那是交易额，不是 AI 收入。<strong>这一块属于间接需求，不能与前三块简单相加</strong></td><td>AI Search Tools 汇总（2026）；Axios（2026-04）；eMarketer（2026-06）；Menlo（2026-09）</td></tr>
+            <tr><td><strong>合计（去重后）</strong></td><td><strong>约 1,500<br>（区间 1,400-1,700）</strong></td><td>约 +100%（2026 全年）<br>年末年化约 2,200-2,500</td><td>以 Exponential View 的 1,750 亿美元年化运行率为锚（2026 年中），按全年确认收入折算约 1,400-1,600 亿；再加 2026 下半年加速的增量，取 <strong>1,500 亿为中值</strong>。个人 400 + 企业 API 650 + 席位工具 350 + 广告 40 ≈ 1,440，与 EV 口径互相印证（差额来自未披露的自建与地区差异）</td><td>Exponential View（2026-06，经钛媒体转述）；本页汇总<strong>估算</strong></td></tr>
+        </table>
+    </div>
+    <p><strong>地区差异（可查部分）：</strong>美国占全球生成式搜索广告收入约 60%；美国成人 AI 采用率 64%，全球人口采用率 24%；EV 口径明确剔除中国大陆本土市场——中国以免费为主（豆包、通义、元宝），付费率与 ARPU 低一个量级，若纳入会拉低全球平均值（<strong>估算，无统一口径</strong>）。企业端渗透率仍极低：Uber 给每名工程师的 AI 预算上限约 1,500 美元/年，已排在美国企业前 10%——这说明企业侧的钱才刚开始花。</p>
+
+    <h4>2.5.3 总量对四个分母：AI 收入到底能覆盖多少投资</h4>
+    <div class="table-wrap">
+        <table>
+            <tr><th>比率</th><th>分子（2026）</th><th>分母（2026）</th><th>结果</th><th>怎么读</th></tr>
+            <tr><td>终端 AI 收入 / 四大云厂 capex</td><td>1,500 亿</td><td>7,300 亿（Goldman 口径为五家 8,000 亿）</td><td><strong>约 21%</strong><br>（区间 19%-23%）</td><td>每投 1 美元，当年只收回约 0.21 美元收入——这是"投资超前"的最直观刻度</td></tr>
+            <tr><td>终端 AI 收入 / 云厂 AI 相关折旧</td><td>1,500 亿</td><td>约 870 亿<br>（EV：2026Q1 单季 210 亿 × 4，全年增长后 850-900 亿）</td><td><strong>约 1.7 倍</strong><br>（窄口径）</td><td>刚跨过折旧门槛、余量很薄（EV 原话"just about clears"）。若换成分母=云厂全部折旧（约 2,500-2,800 亿，<strong>估算</strong>），只有 0.55-0.6 倍</td></tr>
+            <tr><td>终端 AI 收入 / 云厂 AI 相关收入</td><td>1,500 亿</td><td>约 1,000 亿<br>（Azure AI 年化 370 亿 +123%；Google Cloud AI 约 300 亿、AWS AI 约 350 亿、Oracle OCI AI 约 100 亿，后三者为<strong>估算</strong>）</td><td><strong>约 1.5 倍</strong></td><td>比值大于 1 说明"终端付的钱"多于"云厂从 AI 收到的钱"，差额是模型层与应用层截留的毛利。两个数不是同一口径（模型公司收入是云厂收入的上游成本），只宜看趋势、不宜看绝对值</td></tr>
+            <tr><td>终端 AI 收入 / 全行业 AI capex</td><td>1,500 亿</td><td>约 10,500 亿<br>（四大云厂 7,300 + Neocloud／主权／企业自建 2,000-3,000，<strong>估算</strong>）</td><td><strong>约 14%</strong></td><td>把 Neocloud 与主权 AI 算进来，超前程度更明显；这也是"局部过剩"最容易出现的地方</td></tr>
+        </table>
+    </div>
+    <p><strong>关键的第三个数字——回本门槛：</strong>Goldman（2026-09-24）测算，按 2026-2027 平均年 capex，超大规模云厂需要每年约 <strong>3,000 亿美元</strong>的 AI 收入才能在投资上打平；若要让基础设施层与应用层都拿到"像样的回报"，全行业 AI 应用支出需要约 <strong>1 万亿美元/年</strong>（对比 2026 年全球软件支出约 1.5 万亿）。用 1,500 亿去对 3,000 亿，<strong>缺口正好一半</strong>；而对 1 万亿，只到了 15%。Sequoia 的 David Cahn 用"英伟达数据中心收入 ×2（能源厂房）×2（运营毛利）"得到的门槛，2026 年仍在 6,000 亿美元以上，差距超过 4 倍——这是市场上最悲观的一把尺子，但它衡量的含电力与机房，口径比 Goldman 更宽。</p>
+
+    <h4>2.5.4 三组可验证的检验：过剩还是不足</h4>
+    <p><strong>检验一：覆盖检验——收入能不能覆盖折旧和电费，缺口谁补？</strong></p>
+    <div class="table-wrap">
+        <table>
+            <tr><th>口径</th><th>数字</th><th>结论</th></tr>
+            <tr><td>收入 vs 折旧 + 电力/运营</td><td>1,500 亿 vs 折旧约 870 亿 + 电力与人力约 450-500 亿（<strong>估算</strong>）= 1,320-1,370 亿</td><td><span class="tag tag-orange">勉强覆盖</span> 覆盖倍数约 1.1-1.15 倍，任何一次价格战或利用率下滑都会击穿</td></tr>
+            <tr><td>收入 vs 回本门槛（Goldman）</td><td>1,500 亿 vs 3,000 亿</td><td><span class="tag tag-red">缺口约 1,500 亿/年</span></td></tr>
+            <tr><td>缺口由谁补贴</td><td>①云厂非 AI 业务利润（搜索广告、电商、Office）；②债务（2026 年美国 AI 相关债券发行超 6,800 亿美元）；③股权（OpenAI 2026-03 融资 1,220 亿美元）；④供应商融资（英伟达股权投资承诺约 200 亿美元 + 约 1,180 亿美元担保）</td><td>四条腿都在用，说明现在的 AI 投资是<strong>"多元补贴"而非"自我造血"</strong>；补贴的可持续性取决于资本市场，不取决于 AI 需求本身</td></tr>
+        </table>
+    </div>
+    <p><strong>检验二：价格与利用率检验——如果过剩，价格会先说话。</strong></p>
+    <div class="table-wrap">
+        <table>
+            <tr><th>指标</th><th>2026 年读数</th><th>含义</th></tr>
+            <tr><td>H100 现货/合约租金</td><td>Neocloud 实际成交约 $2.96/GPU·小时（Ornn 指数，2026-10-28）；16 家供应商公开报价中位数 $4.20（2026-10-07）；超大规模云厂 H100 指数约 $7.17（2026-10-24）；Nebius 2026-10-01 <strong>上调</strong>报价（H100 $3.85→$4.50，B200 $7.15→$8.50）</td><td><span class="tag tag-green">供给仍紧</span> 租金没有崩、反而局部上调——这是"尚未全面过剩"最硬的证据</td></tr>
+            <tr><td>推理单价</td><td>同等能力的百万 token 价格两年下降约 280 倍（斯坦福 AI Index）；a16z 口径约 1,000 倍</td><td>单价崩塌但总支出上升，靠的是用量：全球 token 月消耗超 30Q、同比约 +14 倍，需求弹性 1.2-1.8（EV）——杰文斯悖论</td></tr>
+            <tr><td>利用率与交付</td><td>Goldman：超大规模云厂处于"供给受限"状态，正加速交付产能；微软称在"加速交付容量并提升机队效率"</td><td>2026 年没有闲置；但供给受限本身会吸引过度建设，过剩风险落在 2027-2028 的新增产能上</td></tr>
+            <tr><td>Neocloud 合约期限与空置率</td><td>合约趋于"短约 + 挂牌价"，Nebius 等以 1 年内合约为主（Rillor，2026-10）；空置率无公开权威数据</td><td><span class="tag tag-orange">结构性脆弱</span> 短约意味着租金可以快速下修；空置率<strong>未证实</strong>，只能作为观察项</td></tr>
+        </table>
+    </div>
+    <p><strong>检验三：融资检验——这些支出有多少不是自己赚的。</strong></p>
+    <div class="table-wrap">
+        <table>
+            <tr><th>指标</th><th>2026 年读数</th><th>含义</th></tr>
+            <tr><td>capex / 经营现金流</td><td>超大规模云厂 capex 已<strong>超过</strong>经营现金流（Goldman，2026-09）</td><td>投资不再由自己赚的钱覆盖，差额必须发债或增发——这是本轮周期性质变化的分水岭</td></tr>
+            <tr><td>表外承诺</td><td>ECB：八家大厂表外承诺 2026Q2 超 4 万亿美元、超过表内负债；美联储：七家超 3 万亿（未起租租约 + 照付不议 + 残值担保）</td><td>杠杆的真实规模不只在资产负债表上</td></tr>
+            <tr><td>循环融资比例</td><td>英伟达持有 CoreWeave、OpenAI、Anthropic 股权并为其采购提供支持；Alphabet/Amazon 的"其他收入"含 Anthropic 股权重估</td><td>"报告的需求部分由企业自身融资决策驱动"（ECB）——收入里有一块是自己出的钱</td></tr>
+            <tr><td>信用市场定价</td><td>CoreWeave 5 年 CDS 约 1,113bp、2031 债券收益率 15.66%（困境区间）；英伟达 CDS 约 139bp（2026-11-06）；云厂债券利差相对同评级走阔</td><td>信用市场已经在给高杠杆环节定价，但没给投资级云厂定价</td></tr>
+        </table>
+    </div>
+
+    <h4>2.5.5 三种情景：软着陆、增速下台阶、硬着陆</h4>
+    <div class="table-wrap">
+        <table>
+            <tr><th>情景</th><th>触发条件</th><th>2027-2028 路径</th><th>观测指标（可证伪）</th></tr>
+            <tr><td><strong>软着陆（基准）</strong><br><span class="tag tag-green">概率约 50%-60%（本页估算）</span></td><td>token 需求增速持续高于单价降幅；企业席位续费率保持高位；云厂非 AI 利润继续补贴</td><td>capex 增速从约 100% 降到 54%（2027）、12%（2028）（Goldman）；AI 收入年增 60%-80%；覆盖倍数 2028 升到 2 倍以上，缺口靠云厂自有利润 + 正常发债填平</td><td>AI 收入年化/折旧 &gt;1.5x；推理毛利率 &gt;50%；企业 NRR &gt;120%</td></tr>
+            <tr><td><strong>增速下台阶</strong><br><span class="tag tag-orange">概率约 25%-35%</span></td><td>前沿模型能力同质化、开源追上；企业试点转生产的速度慢于预期；电力/并网延迟拖累交付</td><td>capex 增速降到 20%-30%，2028 部分项目延期；AI 收入年增 30%-40%；模型层价格战压缩毛利，应用层开始出清</td><td>云厂 capex 指引连续两季下修；RPO 增速腰斩；GPU 租金连续两季 -10%</td></tr>
+            <tr><td><strong>硬着陆</strong><br><span class="tag tag-red">概率约 10%-20%</span></td><td>已承诺 capex 无法撤回 + AI 收入增速掉到 20% 以下；Neocloud 违约、存储减值、信用市场重定价</td><td>2027 仍在建（沉没成本），2028 capex 实质下降 20%-35%；模型公司被迫重谈合同；应用层大面积出清，但头部云厂与英伟达"缩小但活着"</td><td>云厂盈利 miss 且 capex 不下修；CoreWeave 类 CDS &gt;1,500bp；HBM/DRAM 合约价转跌</td></tr>
+        </table>
+    </div>
+
+    <h4>2.5.6 季度仪表盘：八个指标与阈值</h4>
+    <div class="table-wrap">
+        <table>
+            <tr><th>指标</th><th>2026 年末读数</th><th>预警阈值</th><th>它先于什么变化</th></tr>
+            <tr><td>终端 AI 收入年化 / AI 相关折旧年化</td><td>约 1.7x（窄口径）</td><td>&lt;1.2x</td><td>覆盖能力，最直接的过剩信号</td></tr>
+            <tr><td>云厂 capex / 经营现金流</td><td>&gt;1.0</td><td>&gt;1.2 且持续两季</td><td>对外部融资的依赖度</td></tr>
+            <tr><td>AI 收入增速 ÷ capex 增速</td><td>约 200% ÷ 78% ≈ 2.6</td><td>&lt;1（连续两季）</td><td>缺口是在收窄还是扩大</td></tr>
+            <tr><td>token 用量增速 ÷ 单价降幅（弹性）</td><td>1.2-1.8（EV）</td><td>&lt;1.0</td><td>杰文斯悖论失效 = 需求见顶</td></tr>
+            <tr><td>H100 现货租金（Ornn／公开报价）</td><td>$2.96-4.20/GPU·小时</td><td>连续两季 -10%</td><td>算力从短缺转过剩的第一现场</td></tr>
+            <tr><td>推理业务毛利率</td><td>未单独披露，估 50%-60%</td><td>&lt;40%</td><td>价格战是否已伤到成本线</td></tr>
+            <tr><td>Neocloud 信用（CoreWeave CDS）</td><td>约 1,113bp</td><td>&gt;1,500bp 或出现违约</td><td>高杠杆环节的出清</td></tr>
+            <tr><td>企业 AI 席位续费率（NRR）</td><td>未披露，Copilot 席位季度净增翻倍</td><td>&lt;110%</td><td>企业需求是真实的还是试验性的</td></tr>
+        </table>
+    </div>
+
+    <div class="highlight">
+        <strong>2.5 结论：现在处在"真实需求"与"补贴需求"的哪个位置？过剩在哪一层？</strong><br><br>
+        <strong>位置：以真实需求为主，但补贴比例不低。</strong>按可查数据推断，1,500 亿美元终端 AI 支出中约 <strong>60%-70% 是真实付费需求</strong>（有付费用户、有企业合同、有实际用量与毛利），约 <strong>30%-40% 带补贴或循环成分</strong>（云厂自有利润补贴算力定价、模型公司用股权融资换订单、芯片厂投资客户再买芯片）——这是<strong>本页估算</strong>，划分依据是"钱是否来自最终用户的可持续预算"，无法精确到个位数。<br><br>
+        <strong>过剩在哪一层：</strong>①<strong>应用层严重不足</strong>——终端收入只有 capex 的 21%、只有 Goldman 回本门槛的一半，应用层是整条链最短的那块板；②<strong>模型层不是过剩，是"收入真实但承诺超前"</strong>——OpenAI 约 500 亿、Anthropic 约 650 亿的年化收入真实且高速，但两家合计逾万亿美元的多年云承诺远大于当年收入；③<strong>算力层 2026 年不过剩、2027-2028 有局部过剩风险</strong>——2026 年仍供给受限、GPU 租金坚挺，过剩风险集中在新增电力、机柜与低端 GPU，而高端封装（CoWoS）与电力接入依然不足。<br><br>
+        <strong>一句话：这不是 2000 年的"收入为零、只有故事"，也不是健康的自我循环——是"收入真实、增速极快、但仍只覆盖了投资的一小部分，差额靠资本市场续命"的中间状态。</strong>判断它走向软着陆还是硬着陆，不取决于 AI 有多强，取决于三条线：AI 收入增速能否持续高于单价降幅、云厂能否在 capex 超过经营现金流后仍保持投资级信用、以及应用层能不能在 2027 年之前把收入基数抬到 3,000 亿美元这个回本门槛附近。
+    </div>
+    <p class="source">来源与口径（快照 2026-11-21）：Menlo Ventures《2026: The State of Consumer AI》（2026-09，全球消费者 AI 支出 400 亿美元、用户 20 亿、美国成人采用率 64%）；Exponential View / Azeem Azhar 去重测算（2026-06，经钛媒体转述：TTM 1,100 亿美元、年化 1,750 亿美元、2026Q1 单季收入 250 亿 vs 折旧 210 亿、token 月耗 30Q、弹性 1.2-1.8、分层云 78-80%／模型 9%／应用 11%）；Goldman Sachs US Equity Views《AI capex, required revenues, and what's priced in the AI trade》（2026-09-24：2026 capex 8,000 亿、2027 共识 1.1 万亿、GS 估 1.2／1.4 万亿、回本需年收入约 3,000 亿、应用层需约 1 万亿、capex 已超经营现金流）；Gartner（2026-07-20：AI 模型与平台终端支出 640 亿、+63.4%；2026-09-16：全球 AI 总支出 2.7 万亿、+49.5%）；OpenAI 官方（ChatGPT 付费超 5,000 万、周活超 9 亿）与 CFO 2026-08-14 投资人会议（企业收入超过消费者）；OpenAI 年化约 500 亿（FT／CNBC，2026-09）；Anthropic 年化约 650 亿、企业 API 占 75%-85%（招股书与投资人披露，媒体转述，<strong>未证实</strong>）；Microsoft FY26Q4（2026-07：Copilot 付费席位超 3,000 万、Microsoft Cloud 593 亿、RPO 6,780 亿 +84%）；Alphabet 2026Q3（订阅平台设备 143 亿、Google One AI 套餐需求强劲、Gemini App 月活 10 亿）；Cursor ARR 约 40 亿（QAI／DVC，2026-06）；Perplexity 超 7.5 亿（DVC，2026-09）；GPU 租金（Ornn 指数 2026-10-28、Uvik 中位价 2026-10-07、Silicon Data 2026-10-24、Nebius 2026-10-01 调价）；AI 广告（美国 AI 搜索广告 20.8 亿、占搜索 1.3%，AI Search Tools 汇总；OpenAI 广告预测 25 亿，Axios 2026-04；eMarketer 美国 AI 广告 320 亿但 80%+ 为存量转移）；斯坦福 AI Index（token 单价两年 -280 倍）；Sequoia David Cahn 门槛（经钛媒体转述，2026 年仍在 6,000 亿美元以上）；ECB／美联储表外承诺（2026-11）；CoreWeave CDS 与债券（2026-11，市场数据经媒体转述）。<strong>1,500 亿总量、四块拆分中的推算项、云厂 AI 收入分母、全行业 capex、覆盖倍数、情景概率与"60%-70% 真实／30%-40% 补贴"均为本页估算</strong>，方法已在表内写明；私募与未上市公司财务数据标注"未证实"。</p>
+
 </div>
 
 <h2 id="chapter3">三、算力：价值量最集中的一层</h2>
