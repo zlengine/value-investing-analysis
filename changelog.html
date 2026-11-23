@@ -155,6 +155,30 @@
 
     <!-- 更新日志条目 - 按时间倒序排列，最新在最上面 -->
 
+    <div class="log-entry fix">
+        <div class="log-header">
+            <span class="log-date">2026-11-23</span>
+            <span class="log-type fix">修复</span>
+        </div>
+        <div class="log-desc">
+            <ul>
+                <li><strong>全站修复：目录锚点跳转后标题被顶部固定导航栏遮挡约 108px。</strong>用共享 CSS 注入解决，不逐页改：</li>
+                <li>nav_bar.js 注入 <code>[id] { scroll-margin-top: 56px }</code>，覆盖只有 44px 主栏的页面（index/scorer/changelog 等）；stock_topbar.js 注入 <code>html body [id] { scroll-margin-top: 120px }</code>，覆盖「主栏 44px + 打分栏 64px = 108px」的公司页与专题页。后者用 <code>html body</code> 提升优先级，与脚本加载顺序无关，不会与 56px 规则叠加。</li>
+                <li>未新增 <code>html { scroll-behavior }</code>：保持原有瞬时跳转体验，避免与页面既有逻辑冲突（nav_bar 的 scrollTo smooth 未改动）。11 个未加载 nav_bar 的页面（buffett、duan、part1-5 等）经核查无固定栏或无锚点，无需补偿。</li>
+                <li><strong>验证：</strong>本地无头浏览器实测 aapl(#chapter2=121、#chapter3=120)、nvda(#chapter5=120)、amt(#chapter3=120)、ai.html(#ai-revenue=121、#capex-path=120)、cn/popmart.html(8 个锚点 120-121)、cn/laopu.html(9 个锚点 120-121)，全部位于 108px 固定栏下沿以下；index/scorer/cn-index 等无横向溢出，index 141 行条目、scorer STOCKS_DATA.length=136 正常。</li>
+                <li><strong>顺带修复 aapl.html 既有 HTML 损坏：</strong>5 处把 <code>&lt;h2 id&gt;</code> 插进 <code>&lt;div&gt;</code>／<code>&lt;/tr&gt;</code> 标签中间（早前批量插 id 的误替换），已还原为正常标签、补齐 chapter6 的 id，div 13/13 平衡、6 个 h2 id 齐全，乱码文本消失。</li>
+                <li><strong>已知残留（未擅自处理）：</strong>①全站同类标签损坏共 361 行、涉及多页（aci/adt/agx/amat/amp/amzn/anf 等），建议单开任务逐页核对修复，不宜脚本盲改；②末章锚点在视口低于约 841px 时因文档底部内容不足而无法滚到 120px，属页面长度问题非补偿失效，未添加底部占位以免产生布局位移。</li>
+                <li><strong>校验：</strong>node -c 通过（nav_bar.js、stock_topbar.js、cn/nav_bar.js、cn/stock_topbar.js）；链接验证 139/139；备份 20261123_085920。</li>
+            </ul>
+        </div>
+        <div class="log-files">
+            <span class="modified">~ nav_bar.js（注入 scroll-margin-top:56px）</span><br>
+            <span class="modified">~ stock_topbar.js（注入 html body [id] scroll-margin-top:120px）</span><br>
+            <span class="modified">~ aapl.html（修复 5 处畸形标签、补 chapter6 id）</span><br>
+            <span class="modified">~ changelog.html</span>
+        </div>
+    </div>
+
     <div class="log-entry update">
         <div class="log-header">
             <span class="log-date">2026-11-22</span>

@@ -26,7 +26,9 @@
             '.nav-calc-box { background:#fff; border-radius:12px; padding:24px; width:360px; max-width:90vw; box-shadow:0 8px 32px rgba(0,0,0,0.3); position:relative; }',
             '.nav-calc-close { position:absolute; top:12px; right:16px; cursor:pointer; font-size:22px; color:#999; line-height:1; }',
             '.nav-calc-input { width:100%; padding:8px; border:1px solid #ccc; border-radius:4px; font-size:14px; box-sizing:border-box; }',
-            '.nav-calc-btn { width:100%; padding:10px; background:#6a1b9a; color:#fff; border:none; border-radius:6px; font-size:15px; cursor:pointer; font-weight:bold; }'
+            '.nav-calc-btn { width:100%; padding:10px; background:#6a1b9a; color:#fff; border:none; border-radius:6px; font-size:15px; cursor:pointer; font-weight:bold; }',
+            '/* 锚点跳转补偿：仅顶部导航栏（44px）时，目标标题不被固定栏遮挡，留 12px 呼吸空间 */',
+            '[id] { scroll-margin-top: 56px; }'
         ].join('\n');
         document.head.appendChild(style);
     }

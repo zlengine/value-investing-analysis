@@ -97,6 +97,26 @@
 
     <!-- 更新日志条目 - 按时间倒序排列，最新在最上面 -->
 
+    <div class="log-entry fix">
+        <div class="log-header">
+            <span class="log-date">2026-11-23</span>
+            <span class="log-type fix">修复</span>
+        </div>
+        <div class="log-desc">
+            <ul>
+                <li><strong>全站修复（与美股网站同步）：目录锚点跳转后标题被顶部固定导航栏遮挡约 108px。</strong>用共享 CSS 注入解决，不逐页改：cn/nav_bar.js 注入 <code>[id] { scroll-margin-top: 56px }</code>（仅 44px 主栏的页面）；cn/stock_topbar.js 注入 <code>html body [id] { scroll-margin-top: 120px }</code>（主栏 44px + 打分栏 64px = 108px 的公司页，留 12px 余量）。后者用 <code>html body</code> 提高优先级，与脚本加载顺序无关、不叠加。</li>
+                <li>未新增 <code>html { scroll-behavior }</code>，保持原有瞬时跳转体验；cn 全部 11 个页面均加载 nav_bar，无需逐页处理。</li>
+                <li><strong>验证：</strong>本地无头浏览器实测 cn/popmart.html 8 个锚点落点 120-121px（真实点击「债务分析」top=121px）、cn/laopu.html 9 个锚点 120-121px，均在 108px 固定栏下沿以下；cn/index.html、cn/scorer.html 无横向溢出。</li>
+                <li><strong>校验：</strong>node -c 通过（cn/nav_bar.js、cn/stock_topbar.js）；链接验证 139/139；备份 20261123_085920。</li>
+            </ul>
+        </div>
+        <div class="log-files">
+            <span class="modified">~ cn/nav_bar.js（注入 scroll-margin-top:56px）</span><br>
+            <span class="modified">~ cn/stock_topbar.js（注入 html body [id] scroll-margin-top:120px）</span><br>
+            <span class="modified">~ cn/changelog.html</span>
+        </div>
+    </div>
+
     <div class="log-entry create">
         <div class="log-header">
             <span class="log-date">2026-11-19</span>

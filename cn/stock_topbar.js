@@ -56,7 +56,9 @@
             '.topbar-note-textarea { width:100%; min-height:120px; padding:10px; border:1px solid #ccc; border-radius:6px; font-size:14px; box-sizing:border-box; resize:vertical; font-family:inherit; }',
             '.topbar-note-save-btn { width:100%; padding:10px; background:#1a5276; color:#fff; border:none; border-radius:6px; font-size:15px; cursor:pointer; font-weight:bold; margin-top:12px; }',
             '/* body padding 适配加高的导航栏 */',
-            'body { padding-top: 120px !important; }'
+            'body { padding-top: 120px !important; }',
+            '/* 锚点跳转补偿：主栏 44px + 打分栏 64px = 108px，留 12px 呼吸空间；用 html body 提升优先级，覆盖 nav_bar.js 的通用规则 */',
+            'html body [id] { scroll-margin-top: 120px; }'
         ].join('\n');
         document.head.appendChild(style);
     }
