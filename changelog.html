@@ -157,6 +157,26 @@
 
     <div class="log-entry fix">
         <div class="log-header">
+            <span class="log-date">2026-11-25</span>
+            <span class="log-type fix">修复</span>
+        </div>
+        <div class="log-desc">
+            <ul>
+                <li><strong>全站修复 72 个页面的历史遗留 HTML 结构损坏：</strong>2026-06-24「全站添加章节目录导航条」提交在批量插 id 时，把完整的 <code>&lt;h2 id="chapterN"&gt;标题&lt;/h2&gt;</code> 字符串插进了其它标签、注释与正文中间，共 356 个损坏行（另有约 20 处顶格插入），导致 <code>&lt;div class="info-box"&gt;</code>、<code>chart-container</code>、<code>&lt;canvas&gt;</code>、<code>&lt;/script&gt;</code>、<code>&lt;/tr&gt;</code> 等标签被劈开、目录锚点挂到畸形元素上、部分页面渲染出乱码重复标题。</li>
+                <li><strong>修复方式：</strong>逐页人工还原（先建基线备份，再分 6 批并行、批内逐页核对上下文），未用脚本盲改；把 h2 移回各章真正的标题位置、还原被劈开的标签、补回被吞掉的 <code>&lt;/div&gt;</code>/<code>&lt;/tr&gt;</code>/<code>&lt;/table&gt;</code>/<code>&lt;/p&gt;</code> 约 30 处、删除重复的无 id 标题；被截断的 7 处句尾按损坏前提交 e1dabe3 原文逐字恢复（ktb「竞争对手。」、mat 芒格引语后半句、ldos/lrcx 句号、sfm「Gather 模仿。」与「决策」、chkr 引语收尾引号），未自创任何措辞。</li>
+                <li><strong>核验：</strong>与损坏前快照逐字比对确认正文无丢失；此前 3 个文件的"文字量减少"警报查明为<strong>测量假象</strong>——损坏文件的 <code>&lt;/script&gt;</code> 被劈开后，图表 JS 源码泄漏进正文计数（eme/iesc 各 -2,369、fix -4,293），修复后 JS 回到脚本区被正确排除，无实际内容丢失。</li>
+                <li><strong>校验：</strong>72 文件 badH2=0、leftover=0、全站残留损坏行=0、章节 id 从 chapter1 连续到末章、div/span/tr/td/th/table 开闭平衡；verify 139/139；修复前基线备份 20261123_095912。</li>
+                <li><strong>涉及文件（72 个）：</strong>ppc、anf、axp、mnst、nice、wu、zts、mkc、aci、klac、eme、fix、iesc、mms、phi、v、tjx、suz、musa、vips、amat、chkp、agx、asml、ktb、mat、ldos、lrcx、main_analysis、rmd、bke、nvo、matx、sfm、rol、chkr、gww、fis、adt、ftdr、goog、hrb、tsco、tlih、kspi、uhs、cmcsa、amp、spg、syy、vst、shw、ingr、kgc、jbs、chtr、mco、calm、nok、dxcm、idxx、gis、chh、it、ctas、br、qlys、atmu、msft、amzn、stne、meta。</li>
+            </ul>
+        </div>
+        <div class="log-files">
+            <span class="modified">~ 上述 72 个 html（逐页还原 h2 位置与被劈开的标签）</span><br>
+            <span class="modified">~ changelog.html</span>
+        </div>
+    </div>
+
+    <div class="log-entry fix">
+        <div class="log-header">
             <span class="log-date">2026-11-23</span>
             <span class="log-type fix">修复</span>
         </div>
